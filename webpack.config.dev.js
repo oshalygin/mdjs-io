@@ -4,16 +4,15 @@ import path from "path";
 
 export default {
   debug: true,
-  devtool: "cheap-module-eval-source-map",
+  devtool: "#source-map",
   noInfo: true,
   entry: [
-    "eventsource-polyfill", // necessary for hot reloading with IE
     "webpack-hot-middleware/client?reload=true",
     "./client/index"
   ],
   target: "web",
   output: {
-    path: __dirname + "/dist", // Note: Physical files are only output by the production build task `npm run build`.
+    path: path.join(__dirname, "dist"),
     publicPath: "/",
     filename: "bundle.js"
   },
@@ -46,7 +45,7 @@ export default {
       },
       { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream" },
       { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml" },
-      {test: /\.ico$/, loader: "file-loader?name=[name].[ext]"},
+      { test: /\.ico$/, loader: "file-loader?name=[name].[ext]" },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: [

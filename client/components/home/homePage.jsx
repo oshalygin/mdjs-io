@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from "react";
 import { Link } from "react-router";
 
@@ -6,7 +7,8 @@ class HomePage extends React.Component {
         const undecoratedButton = {
             textDecoration: "none"
         };
-
+        const derplord = "lawls";
+        console.log(derplord);
         return (
             <div className="content-grid mdl-grid">
                 <div className="mdl-layout-spacer"></div>
