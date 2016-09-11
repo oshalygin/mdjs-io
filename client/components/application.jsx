@@ -1,12 +1,13 @@
 import React, {PropTypes} from "react";
 import { connect } from "react-redux";
-import Header from "./common/header.jsx";
-import Drawer from "./common/drawer.jsx";
+
+import SideBarNavigation from "./common/sideBarNavigation.jsx";
 
 class Application extends React.Component {
     render() {
         return (
-            <div>
+            <div id="wrapper">
+                <SideBarNavigation />
                 {this.props.children}
             </div>
         );

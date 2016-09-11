@@ -11,11 +11,13 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
 
 import "../node_modules/animate.css/animate.min.css";
-import "./styles/style.css";
+
 
 import "../node_modules/material-design-lite/material.min.js";
 import "./styles/material.icons.css";
 import "./styles/material.style.css";
+import "./styles/style.css";
+
 
 import "./images/favicon.ico";
 import "./images/apple-touch-icon.png";
@@ -30,7 +32,7 @@ import "../node_modules/bootstrap/dist/js/bootstrap.min";
 import "../node_modules/metismenu/dist/metisMenu.min";
 import "../node_modules/jquery-slimscroll/jquery.slimscroll.min";
 
-import "./assets/js/inspinia.js";
+import "./inspinia.js";
 
 import pace from "../node_modules/pace-progress/pace.min";
 pace.start();
