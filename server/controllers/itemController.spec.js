@@ -1,7 +1,7 @@
 import itemController from "./itemController";
 import expect from "expect";
 
-describe("item Controller", () => {
+describe("Item Controller", () => {
 
     it("status of 200 is returned when a successful get is made", () => {
         const expected = 200;
