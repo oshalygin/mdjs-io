@@ -8,6 +8,11 @@ import { Provider } from "react-redux";
 
 import "../node_modules/material-design-lite/material.min.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "../node_modules/font-awesome/css/font-awesome.min.css";
+
+import "./assets/css/animate.css";
+import "./assets/css/style.css";
+
 import "../node_modules/material-design-lite/material.min.js";
 import "./styles/material.icons.css";
 import "./styles/material.style.css";
@@ -18,6 +23,14 @@ import "./images/favicon-16x16.png";
 import "./images/favicon-32x32.png";
 import "./images/mstile-150x150.png";
 import "./images/safari-pinned-tab.svg";
+
+import "./assets/js/jquery-2.1.1.js";
+import "./assets/js/bootstrap.min.js";
+import "./assets/js/plugins/metisMenu/jquery.metisMenu.js";
+import "./assets/js/plugins/slimscroll/jquery.slimscroll.min.js";
+
+import "./assets/js/inspinia.js";
+import "./assets/js/plugins/pace/pace.min.js";
 
 import Application from "./components/application.jsx";
 import HomePage from "./components/home/homePage.jsx";
