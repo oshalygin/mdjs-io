@@ -10,8 +10,8 @@ import "../node_modules/material-design-lite/material.min.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
 
-import "./assets/css/animate.css";
-import "./assets/css/style.css";
+import "../node_modules/animate.css/animate.min.css";
+import "./styles/style.css";
 
 import "../node_modules/material-design-lite/material.min.js";
 import "./styles/material.icons.css";
@@ -24,13 +24,13 @@ import "./images/favicon-32x32.png";
 import "./images/mstile-150x150.png";
 import "./images/safari-pinned-tab.svg";
 
-import "./assets/js/jquery-2.1.1.js";
-import "./assets/js/bootstrap.min.js";
-import "./assets/js/plugins/metisMenu/jquery.metisMenu.js";
-import "./assets/js/plugins/slimscroll/jquery.slimscroll.min.js";
+
+import "../node_modules/jquery/dist/jquery.min";
+import "../node_modules/bootstrap/dist/js/bootstrap.min";
+import "../node_modules/metismenu/dist/metisMenu.min";
+import "../node_modules/jquery-slimscroll/jquery.slimscroll.min";
 
 import "./assets/js/inspinia.js";
-import "./assets/js/plugins/pace/pace.min.js";
 
 import Application from "./components/application.jsx";
 import HomePage from "./components/home/homePage.jsx";
