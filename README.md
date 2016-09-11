@@ -1,6 +1,6 @@
-# <a href='#'>Merchant Dashboard</a>
+# Merchant Dashboard
 
-&nbsp;&nbsp; [![Build Status](https://travis-ci.org/oshalygin/MerchantDashboard.svg?branch=master)](https://travis-ci.org/oshalygin/MerchantDashboard)
+[![Build Status](https://travis-ci.org/oshalygin/MerchantDashboard.svg?branch=master)](https://travis-ci.org/oshalygin/MerchantDashboard)
 [![Coverage Status](http://coveralls.io/repos/github/oshalygin/MerchantDashboard/badge.svg?branch=master)](https://coveralls.io/github/oshalygin/MerchantDashboard?branch=master)
 
 
