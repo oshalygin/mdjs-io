@@ -32,6 +32,9 @@ import "../node_modules/jquery-slimscroll/jquery.slimscroll.min";
 
 import "./assets/js/inspinia.js";
 
+import pace from "../node_modules/pace-progress/pace.min";
+pace.start();
+
 import Application from "./components/application.jsx";
 import HomePage from "./components/home/homePage.jsx";
 
