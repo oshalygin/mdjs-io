@@ -7,7 +7,6 @@
       "request": "launch",
       "webRoot": "${workspaceRoot}",
       "url": "http://localhost:9999/",
-      "userDataDir": "${workspaceRoot}/.vscode/chrome",
       "sourceMaps": true,
       "diagnosticLogging": true
     }
