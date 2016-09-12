@@ -1,5 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import { xhrCallFailure } from "./xhrStatusActions";
+import { router } from "react-router";
 import axios from "axios";
 
 export function loginSuccess(user) {
@@ -25,8 +26,25 @@ export function loginRequest(email, password) {
 
 /* eslint-disable */
 export function login(user) {
-    return dispatch => {
-        axios.get("http://www.westernregister.com")
+    return function (dispatch) {
+        return axios
+            .post("http://localhost:59947/api/dashboard/security",
+            {
+                email: user.email,
+                password: user.password
+            },
+            {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            .then(user => {
+                console.log(user.data);
+                dispatch(loginSuccess(user.data))
+            })
+            .catch(error => {
+                console.log(error);
+            });
     }
 }
 

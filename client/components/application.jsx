@@ -8,6 +8,13 @@ class Application extends React.Component {
 
     render() {
         const currentPath = this.props.location.pathname.replace("/", "");
+        if (currentPath === "login") {
+            return (
+                <div>
+                    {this.props.children}
+                </div>
+            );
+        }
         return (
             <div id="wrapper">
                 <SideBarNavigation pathName={currentPath} />
@@ -15,6 +22,7 @@ class Application extends React.Component {
             </div>
         );
     }
+
 }
 
 Application.propTypes = {

@@ -1,6 +1,6 @@
 import React, { PropTypes } from "react";
 import { bindActionCreators } from "react-redux";
-import * as userActions from "../../actions/"
+// import * as userActions from "../../actions/"
 
 class SideBarUser extends React.Component {
 

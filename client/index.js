@@ -40,6 +40,8 @@ pace.start();
 import Application from "./components/application.jsx";
 import HomePage from "./components/home/homePage.jsx";
 
+import LoginPage from "./components/login/loginPage.jsx";
+
 const store = configureStore();
 
 render(
@@ -48,6 +50,7 @@ render(
 
             <Route path="/" component={Application}>
                 <IndexRoute component={HomePage} />
+                <Route path="login" component={LoginPage} />
                 <Route path="home" component={HomePage} />
                 <Route path="items" component={HomePage} />
                 <Route path="item-categories" component={HomePage} />
@@ -56,9 +59,7 @@ render(
                 <Route path="discounts" component={HomePage} />
                 <Route path="orders" component={HomePage} />
                 <Route path="users" component={HomePage} />
-
             </Route>
-
         </Router>
     </Provider>,
     document.getElementById("application")
