@@ -5,7 +5,7 @@ export function setPath(pathName) {
     return {
         home: pathName.toLowerCase() === "home" || pathName === "" ? "active" : null,
         items: pathName.toLowerCase() === "items" ? "active" : null,
-        itemCategories: pathName.toLowerCase() === "itemCategories" ? "active" : null,
+        itemCategories: pathName.toLowerCase() === "item-categories" ? "active" : null,
         modifiers: pathName.toLowerCase() === "modifiers" ? "active" : null,
         taxes: pathName.toLowerCase() === "taxes" ? "active" : null,
         discounts: pathName.toLowerCase() === "discounts" ? "active" : null,
@@ -49,38 +49,36 @@ const SideBarNavigation = ({pathName}) => {
                         </Link>
                     </li>
                     <li className={path.itemCategories}>
-                        <Link to="itemCategories">
+                        <Link to="item-categories">
                             <i className="fa fa-folder-open-o"></i> <span className="nav-label">Item Categories</span>
                         </Link>
                     </li>
-                     <li className={path.modifiers}>
+                    <li className={path.modifiers}>
                         <Link to="modifiers">
                             <i className="fa fa-pencil-square-o"></i> <span className="nav-label">Modifiers</span>
                         </Link>
-                     </li>
-                     <li className={path.taxes}>
+                    </li>
+                    <li className={path.taxes}>
                         <Link to="taxes">
                             <i className="fa fa-percent"></i> <span className="nav-label">Taxes</span>
                         </Link>
-                     </li>
-                     <li className={path.discounts}>
+                    </li>
+                    <li className={path.discounts}>
                         <Link to="discounts">
                             <i className="fa fa-download"></i> <span className="nav-label">Discounts</span>
                         </Link>
-                     </li>
-                     <li className={path.orders}>
+                    </li>
+                    <li className={path.orders}>
                         <Link to="orders">
                             <i className="fa fa-shopping-cart"></i> <span className="nav-label">Orders</span>
                         </Link>
-                     </li>
-                     <li className={path.users}>
+                    </li>
+                    <li className={path.users}>
                         <Link to="users">
                             <i className="fa fa-users"></i> <span className="nav-label">Users</span>
                         </Link>
                     </li>
-
                 </ul>
-
             </div>
         </nav>
     );

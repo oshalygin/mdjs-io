@@ -49,6 +49,14 @@ render(
             <Route path="/" component={Application}>
                 <IndexRoute component={HomePage} />
                 <Route path="home" component={HomePage} />
+                <Route path="items" component={HomePage} />
+                <Route path="item-categories" component={HomePage} />
+                <Route path="modifiers" component={HomePage} />
+                <Route path="taxes" component={HomePage} />
+                <Route path="discounts" component={HomePage} />
+                <Route path="orders" component={HomePage} />
+                <Route path="users" component={HomePage} />
+
             </Route>
 
         </Router>
