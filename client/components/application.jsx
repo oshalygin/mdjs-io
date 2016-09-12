@@ -4,10 +4,13 @@ import { connect } from "react-redux";
 import SideBarNavigation from "./common/sideBarNavigation.jsx";
 
 class Application extends React.Component {
+
+
     render() {
+        const currentPath = this.props.location.pathname.replace("/", "");
         return (
             <div id="wrapper">
-                <SideBarNavigation />
+                <SideBarNavigation pathName={currentPath} />
                 {this.props.children}
             </div>
         );
@@ -15,7 +18,8 @@ class Application extends React.Component {
 }
 
 Application.propTypes = {
-    children: PropTypes.object.isRequired
+    children: PropTypes.object.isRequired,
+    location: PropTypes.object
 };
 
 export default connect()(Application);
