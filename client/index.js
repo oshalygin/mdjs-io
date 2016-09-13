@@ -11,7 +11,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
 
 import "../node_modules/animate.css/animate.min.css";
-
+import "./styles/toastrOptions";
 
 import "../node_modules/material-design-lite/material.min.js";
 import "./styles/material.icons.css";

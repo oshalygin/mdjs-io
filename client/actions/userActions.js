@@ -10,6 +10,7 @@ export function loginSuccess(user) {
     };
 }
 
+
 export function loginRequested(user) {
     return {
         type: actionTypes.LOGIN_REQUEST,
@@ -39,11 +40,13 @@ export function login(user) {
                 }
             })
             .then(user => {
-                console.log(user.data);
+                if (!user.data.success) {
+                    throw (user.data.message);
+                }
                 dispatch(loginSuccess(user.data))
             })
             .catch(error => {
-                console.log(error);
+                throw (error);
             });
     }
 }

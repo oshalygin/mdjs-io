@@ -1,4 +1,5 @@
 import React, { PropTypes } from "react";
+import toastr from "toastr";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as userActions from "../../actions/userActions.js";
@@ -16,14 +17,19 @@ class LoginPage extends React.Component {
     }
 
     login(event) {
+        toastr.success("lalws");
         event.preventDefault();
         let {user} = this.state;
         this.props.userActions.login(user)
-            .then(() => this.redirect());
+            .then(() => this.redirect())
+            .catch((error => {
+                console.log("toastr message:", error);
+            }));
+
     }
 
     redirect() {
-        console.log(this.context.router);
+        console.log("redirecting to the home page");
         this.context.router.push("/home");
     }
 
@@ -71,7 +77,7 @@ class LoginPage extends React.Component {
                             onSubmit = {this.login}>Login</button>
 
                         <a href="#"><small>Forgot password?</small></a>
-                        <p className="text-muted text-center"><small>Do not have an account?</small></p>
+                        <p className="text-muted text-center"><small>Don't have an account?</small></p>
                         <a className="btn btn-sm btn-white btn-block" href="#">Create an account</a>
                     </form>
                     <p className="m-t"> <small>Western Register is a registered trademark of Western Register, LLC.</small> </p>
@@ -88,7 +94,7 @@ LoginPage.propTypes = {
 };
 
 LoginPage.contextTypes = {
-  router: React.PropTypes.object.isRequired
+    router: React.PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {
