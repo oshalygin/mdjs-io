@@ -1,6 +1,5 @@
 import * as actionTypes from "./actionTypes";
-import { xhrCallFailure } from "./xhrStatusActions";
-import axios from "axios";
+import { xhrCallFailure } from "./xhrStatusActions"; //eslint-disable-line
 
 export function loadItemsSuccess(items) {
     return {
@@ -13,19 +12,6 @@ export function updateItemsSuccess(item) {
     return {
         type: actionTypes.UPDATE_ITEM_SUCCESS,
         item
-    };
-}
-
-export function loadItems() {
-    return function (dispatch) {
-        return axios.get("/api/item")
-            .then(items => {
-                dispatch(loadItemsSuccess(items.data));
-            })
-            .catch(error => {
-                dispatch(xhrCallFailure);
-                throw (error);
-            });
     };
 }
 

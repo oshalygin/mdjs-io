@@ -4,6 +4,9 @@ const initialState = loadState();
 
 export default {
     user: {},
+    categories: [],
+    discounts: [],
+
     items: !!initialState && initialState.items
         ? initialState.items
         : []

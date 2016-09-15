@@ -1,4 +1,5 @@
 import * as actionTypes from "./actionTypes";
+import {loadCategoriesSuccess} from "./categoryActions";
 import { xhrCallFailure } from "./xhrStatusActions"; //eslint-disable-line
 import axios from "axios";
 
@@ -6,21 +7,6 @@ export function loginSuccess(user) {
     return {
         type: actionTypes.LOGIN_SUCCESS,
         user
-    };
-}
-
-
-export function loginRequested(user) {
-    return {
-        type: actionTypes.LOGIN_REQUEST,
-        user
-    };
-}
-
-export function loginRequest(email, password) {
-    const user = { email, password };
-    return function (dispatch) {
-        dispatch(loginRequested(user));
     };
 }
 
@@ -42,6 +28,7 @@ export function login(user) {
                     throw (userResponse.data.message);
                 }
                 dispatch(loginSuccess(userResponse.data.data));
+                dispatch(loadCategoriesSuccess(userResponse.data.data.companyData.categories));
             })
             .catch(error => {
                 throw (error);
