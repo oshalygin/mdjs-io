@@ -96,7 +96,6 @@ LoginPage.contextTypes = {
 };
 
 function mapStateToProps(state) {
-    console.log("here?");
     return {
         user: state.user
     };

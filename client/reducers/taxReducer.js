@@ -1,10 +1,10 @@
 import * as actionTypes from "../actions/actionTypes"; //eslint-disable-line no-unused-vars
 import initialState from "./initialState";
 
-export default function categoriesReducer(state = initialState.categories, action) {
+export default function taxReducer(state = initialState.taxes, action) {
     switch (action.type) {
-        case actionTypes.LOAD_CATEGORIES_SUCCESS: {
-            return [...action.categories];
+        case actionTypes.LOAD_TAXES_SUCCESS: {
+            return [...action.taxes];
         }
         default: {
             return state;

@@ -1,12 +1,20 @@
 import { combineReducers } from "redux";
 import items from "./itemReducer";
 import user from "./userReducer";
-import categories from "./categoriesReducer";
+import categories from "./categoryReducer";
+import modifiers from "./modifierReducer";
+import discounts from "./discountReducer";
+import taxes from "./taxReducer";
+import refundReasons from "./refundReasonReducer";
 
 const rootReducer = combineReducers({
     user,
     categories,
-    items
+    items,
+    modifiers,
+    discounts,
+    taxes,
+    refundReasons
 });
 
 export default rootReducer;
