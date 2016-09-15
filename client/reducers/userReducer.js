@@ -7,8 +7,13 @@ export default function itemReducer(state = initialState.user, action) {
 
             break;
         }
+        case actionTypes.LOGIN_SUCCESS: {
+            console.log(state);
+            console.log(action);
+            console.log("derp");
+        }
         default: {
-                return state;
+            return state;
         }
     }
 }

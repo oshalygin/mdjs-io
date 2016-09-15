@@ -1,6 +1,5 @@
 import * as actionTypes from "./actionTypes";
-import { xhrCallFailure } from "./xhrStatusActions";
-import { router } from "react-router";
+import { xhrCallFailure } from "./xhrStatusActions"; //eslint-disable-line
 import axios from "axios";
 
 export function loginSuccess(user) {
@@ -25,7 +24,6 @@ export function loginRequest(email, password) {
     };
 }
 
-/* eslint-disable */
 export function login(user) {
     return function (dispatch) {
         return axios
@@ -39,35 +37,14 @@ export function login(user) {
                     "Content-Type": "application/json"
                 }
             })
-            .then(user => {
-                if (!user.data.success) {
-                    throw (user.data.message);
+            .then(userResponse => {
+                if (!userResponse.data.success) {
+                    throw (userResponse.data.message);
                 }
-                dispatch(loginSuccess(user.data))
+                dispatch(loginSuccess(userResponse.data.data));
             })
             .catch(error => {
                 throw (error);
             });
-    }
+    };
 }
-
-// export function loadItems() {
-//     return function (dispatch) {
-//         return axios.get("/api/item")
-//             .then(items => {
-//                 dispatch(loadItemsSuccess(items.data));
-//             })
-//             .catch(error => {
-//                 dispatch(xhrCallFailure);
-//                 throw (error);
-//             });
-//     };
-// }
-
-// export function updateItem(item) {
-//     return function (dispatch) {
-//         dispatch(updateItemsSuccess(item));
-//     };
-// }
-
-

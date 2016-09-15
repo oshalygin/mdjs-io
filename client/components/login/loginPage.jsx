@@ -9,7 +9,7 @@ class LoginPage extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            user: props.user
+            user: {}
         };
         this.login = this.login.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -17,15 +17,13 @@ class LoginPage extends React.Component {
     }
 
     login(event) {
-        toastr.success("lalws");
         event.preventDefault();
         let {user} = this.state;
-        this.props.userActions.login(user)
+        this.props.userActions.login({...user})
             .then(() => this.redirect())
             .catch((error => {
-                console.log("toastr message:", error);
+                toastr.error(error);
             }));
-
     }
 
     redirect() {
@@ -98,6 +96,7 @@ LoginPage.contextTypes = {
 };
 
 function mapStateToProps(state) {
+    console.log("here?");
     return {
         user: state.user
     };
