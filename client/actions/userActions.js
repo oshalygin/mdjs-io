@@ -29,7 +29,7 @@ export function loginRequest(email, password) {
 export function login(user) {
     return function (dispatch) {
         return axios
-            .post("http://localhost:59947/api/dashboard/security",
+            .post("http://localhost:82/api/dashboard/security",
             {
                 email: user.email,
                 password: user.password
