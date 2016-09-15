@@ -3,7 +3,7 @@ import toastr from "toastr";
 toastr.options = {
   closeButton: true,
   debug: false,
-  progressBar: false,
+  progressBar: true,
   preventDuplicates: false,
   positionClass: "toast-top-right",
   onclick: null,
@@ -15,4 +15,4 @@ toastr.options = {
   hideEasing: "linear",
   showMethod: "fadeIn",
   hideMethod: "fadeOut"
-}
+};

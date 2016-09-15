@@ -9,6 +9,7 @@ import { Provider } from "react-redux";
 import "../node_modules/material-design-lite/material.min.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
+import "../node_modules/toastr/build/toastr.min.css";
 
 import "../node_modules/animate.css/animate.min.css";
 import "./styles/toastrOptions";
