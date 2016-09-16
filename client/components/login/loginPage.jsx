@@ -4,6 +4,8 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as userActions from "../../actions/userActions.js";
 
+import LoginForm from "./loginForm";
+
 class LoginPage extends React.Component {
 
     constructor(props, context) {
@@ -21,68 +23,45 @@ class LoginPage extends React.Component {
         let {user} = this.state;
         this.props.userActions.login({...user})
             .then(() => this.redirect())
-            .catch((error => {
-                toastr.error(error);
-            }));
+            .catch(error => toastr.error(error));
     }
 
-    redirect() {
-        console.log("redirecting to the home page");
-        this.context.router.push("/home");
-    }
+redirect() {
+    console.log("redirecting to the home page");
+    this.context.router.push("/home");
+}
 
-    onChange(event) {
-        const property = event.target.name;
-        let {user} = this.state;
-        user[property] = event.target.value;
-    }
+onChange(event) {
+    const property = event.target.name;
+    let {user} = this.state;
+    user[property] = event.target.value;
+}
 
-    render() {
-        return (
-            <div className="middle-box text-center loginscreen animated fadeInDown">
+render() {
+    // let loading = false;
+    // if (loading) {
+    // }
+
+    return (
+        <div className="middle-box text-center loginscreen animated fadeInDown">
+            <div>
                 <div>
-                    <div>
-                        <h1 className="logo-name">WR</h1>
-                    </div>
-                    <h3>Welcome to Western Register</h3>
-                    <p>
-                        The ultimate merchant dashboard experience
-                    </p>
-                    <p>Login to get started</p>
-                    <form className="m-t">
-                        <div className="form-group">
-                            <input
-                                type = "email"
-                                name = "email"
-                                className = "form-control"
-                                placeholder = "Username"
-                                onChange = {this.onChange}
-                                required />
-                        </div>
-                        <div className="form-group">
-                            <input
-                                type = "password"
-                                name = "password"
-                                className = "form-control"
-                                placeholder = "Password"
-                                onChange = {this.onChange}
-                                required />
-                        </div>
-                        <button
-                            type = "submit"
-                            className = "btn btn-primary block full-width m-b"
-                            onClick = {this.login}
-                            onSubmit = {this.login}>Login</button>
-
-                        <a href="#"><small>Forgot password?</small></a>
-                        <p className="text-muted text-center"><small>Don't have an account?</small></p>
-                        <a className="btn btn-sm btn-white btn-block" href="#">Create an account</a>
-                    </form>
-                    <p className="m-t"> <small>Western Register is a registered trademark of Western Register, LLC.</small> </p>
+                    <h1 className="logo-name">WR</h1>
                 </div>
+                <h3>Welcome to Western Register</h3>
+                <p>
+                    The ultimate merchant dashboard experience
+                </p>
+                <p>Login to get started</p>
+                <LoginForm
+                    onChange={this.onChange}
+                    login={this.login} />
+
+                <p className="m-t"> <small>Western Register is a registered trademark of Western Register, LLC.</small> </p>
             </div>
-        );
-    }
+        </div>
+    );
+}
 
 }
 
