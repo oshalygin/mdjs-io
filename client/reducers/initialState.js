@@ -3,6 +3,7 @@
 
 export default {
     user: {},
+    loading: {},
     categories: [],
     discounts: [],
     modifiers: [],

@@ -6,6 +6,7 @@ import modifiers from "./modifierReducer";
 import discounts from "./discountReducer";
 import taxes from "./taxReducer";
 import refundReasons from "./refundReasonReducer";
+import loading from "./loadingReducer";
 
 const rootReducer = combineReducers({
     user,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
     modifiers,
     discounts,
     taxes,
-    refundReasons
+    refundReasons,
+    loading
 });
 
 export default rootReducer;

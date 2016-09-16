@@ -16,8 +16,21 @@ export function loginSuccess(user) {
     };
 }
 
+export function loadingUser() {
+    return {
+        type: actionTypes.LOADING_USER
+    };
+}
+
+export function loadedUserSuccess() {
+    return {
+        type: actionTypes.LOADED_USER_SUCCESS
+    };
+}
+
 export function login(user) {
     return function (dispatch) {
+        dispatch(loadingUser());
         return axios
             .post("http://localhost:82/api/dashboard/security",
             {
@@ -40,6 +53,7 @@ export function login(user) {
                 dispatch(loadTaxesSuccess(userResponse.data.data.companyData.taxes));
                 dispatch(loadModifiersSuccess(userResponse.data.data.companyData.modifiers));
                 dispatch(loadRefundReasonsSuccess(userResponse.data.data.companyData.refundReasons));
+                dispatch(loadedUserSuccess());
             })
             .catch(error => {
                 throw (error);

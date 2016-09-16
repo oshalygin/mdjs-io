@@ -11,7 +11,7 @@ const Spinner = ({hidden}) => {
 };
 
 Spinner.propTypes = {
-    hidden: PropTypes.bool.isRequired
+    hidden: PropTypes.bool
 };
 
 export default Spinner;

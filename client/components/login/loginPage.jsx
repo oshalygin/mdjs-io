@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as userActions from "../../actions/userActions.js";
 
+import Spinner from "../common/spinner.jsx";
 import LoginForm from "./loginForm.jsx";
 
 class LoginPage extends React.Component {
@@ -11,7 +12,8 @@ class LoginPage extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            user: {}
+            user: {},
+            loading: {}
         };
         this.login = this.login.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -35,12 +37,14 @@ onChange(event) {
     const property = event.target.name;
     let {user} = this.state;
     user[property] = event.target.value;
+
 }
 
 render() {
-    // let loading = false;
-    // if (loading) {
-    // }
+    const {loading} = this.props;
+    let formComponent = !loading.loadingUser
+        ? (<LoginForm onChange={this.onChange} login={this.login} />)
+        : (<Spinner />);
 
     return (
         <div className="middle-box text-center loginscreen animated fadeInDown">
@@ -53,9 +57,7 @@ render() {
                     The ultimate merchant dashboard experience
                 </p>
                 <p>Login to get started</p>
-                <LoginForm
-                    onChange={this.onChange}
-                    login={this.login} />
+                {formComponent}
 
                 <p className="m-t"> <small>Western Register is a registered trademark of Western Register, LLC.</small> </p>
             </div>
@@ -67,6 +69,7 @@ render() {
 
 LoginPage.propTypes = {
     user: PropTypes.object.isRequired,
+    loading: PropTypes.object.isRequired,
     userActions: PropTypes.object.isRequired
 };
 
@@ -76,7 +79,8 @@ LoginPage.contextTypes = {
 
 function mapStateToProps(state) {
     return {
-        user: state.user
+        user: state.user,
+        loading: state.loading
     };
 }
 

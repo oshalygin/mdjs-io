@@ -18,6 +18,7 @@ import "../node_modules/material-design-lite/material.min.js";
 import "./styles/material.icons.css";
 import "./styles/material.style.css";
 import "./styles/style.css";
+import "./styles/spinner.css";
 
 
 import "./images/favicon.ico";
