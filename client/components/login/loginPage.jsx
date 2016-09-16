@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as userActions from "../../actions/userActions.js";
 
-import LoginForm from "./loginForm";
+import LoginForm from "./loginForm.jsx";
 
 class LoginPage extends React.Component {
 
