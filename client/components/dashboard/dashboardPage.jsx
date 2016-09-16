@@ -2,7 +2,7 @@
 import React from "react";
 // import { Link } from "react-router";
 
-class HomePage extends React.Component {
+class DashboardPage extends React.Component {
     render() {
         return (
             <div id="page-wrapper" className="gray-bg">
@@ -54,4 +54,4 @@ class HomePage extends React.Component {
     }
 }
 
-export default HomePage;
+export default DashboardPage;

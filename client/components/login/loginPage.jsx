@@ -57,6 +57,7 @@ render() {
                     The ultimate merchant dashboard experience
                 </p>
                 <p>Login to get started</p>
+
                 {formComponent}
 
                 <p className="m-t"> <small>Western Register is a registered trademark of Western Register, LLC.</small> </p>

@@ -3,13 +3,13 @@ import expect from "expect";
 import { mount, shallow } from "enzyme";
 import TestUtils from "react-addons-test-utils";
 import React from "react";
-import HomePage from "./homePage.jsx";
+import DashboardPage from "./dashboardPage.jsx";
 
 function setup() {
-    return shallow(<HomePage />);
+    return shallow(<DashboardPage />);
 }
 
-describe("<HomePage />", () => {
+describe("<DashboardPage />", () => {
 
     // it("Home page includes a button with a text of 'Get started using your dashboard!'", () => {
     //     const wrapper = setup();

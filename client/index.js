@@ -40,29 +40,33 @@ import pace from "../node_modules/pace-progress/pace.min";
 pace.start();
 
 import Application from "./components/application.jsx";
-import HomePage from "./components/home/homePage.jsx";
+import DashboardPage from "./components/dashboard/dashboardPage.jsx";
 
 import LoginPage from "./components/login/loginPage.jsx";
 
 const store = configureStore();
 
+function isAuthorized(nextState, replace) {
+    const state = store.getState();
+    replace("/login");
+}
+
 render(
     <Provider store={store}>
         <Router history={browserHistory}>
-
-            <Route path="/" component={Application}>
-                <IndexRoute component={HomePage} />
+            <Route path="/" component={Application} >
+                <IndexRoute component={DashboardPage} onEnter={ (nextState, replace) => { isAuthorized(nextState, replace) } } />
                 <Route path="login" component={LoginPage} />
-                <Route path="home" component={HomePage} />
-                <Route path="items" component={HomePage} />
-                <Route path="item-categories" component={HomePage} />
-                <Route path="modifiers" component={HomePage} />
-                <Route path="taxes" component={HomePage} />
-                <Route path="discounts" component={HomePage} />
-                <Route path="orders" component={HomePage} />
-                <Route path="users" component={HomePage} />
+                <Route path="dashboard" component={DashboardPage} />
+                <Route path="items" component={DashboardPage} />
+                <Route path="item-categories" component={DashboardPage} />
+                <Route path="modifiers" component={DashboardPage} />
+                <Route path="taxes" component={DashboardPage} />
+                <Route path="discounts" component={DashboardPage} />
+                <Route path="orders" component={DashboardPage} />
+                <Route path="users" component={DashboardPage} />
             </Route>
         </Router>
-    </Provider>,
+    </Provider >,
     document.getElementById("application")
 );
