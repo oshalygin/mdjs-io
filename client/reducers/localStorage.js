@@ -22,3 +22,12 @@ export const saveState = (state) => {
             console.log("save state error: " + error);
         }
 };
+
+export const persistUserToken = (userToken) => {
+        try {
+            const serializedState = JSON.stringify(userToken);
+            localStorage.setItem("token", serializedState);
+        } catch (error) {
+            console.log("saving user token failure: error " + error);
+        }
+};

@@ -29,8 +29,8 @@ class LoginPage extends React.Component {
     }
 
 redirect() {
-    console.log("redirecting to the home page");
-    this.context.router.push("/home");
+    console.log("redirecting to the dashboard page");
+    this.context.router.push("/dashboard");
 }
 
 onChange(event) {

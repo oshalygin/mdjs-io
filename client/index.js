@@ -47,15 +47,22 @@ import LoginPage from "./components/login/loginPage.jsx";
 const store = configureStore();
 
 function isAuthorized(nextState, replace) {
+    if (nextState.location.pathname === "/login") {
+        return;
+    }
     const state = store.getState();
+    if (state.user && state.user.loggedIn === true) {
+        return;
+    }
     replace("/login");
 }
+
 
 render(
     <Provider store={store}>
         <Router history={browserHistory}>
-            <Route path="/" component={Application} >
-                <IndexRoute component={DashboardPage} onEnter={ (nextState, replace) => { isAuthorized(nextState, replace) } } />
+            <Route path="/" component={Application} onEnter={(nextState, replace) => isAuthorized(nextState, replace)}>
+                <IndexRoute component={DashboardPage} />
                 <Route path="login" component={LoginPage} />
                 <Route path="dashboard" component={DashboardPage} />
                 <Route path="items" component={DashboardPage} />
