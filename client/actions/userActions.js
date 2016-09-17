@@ -29,6 +29,12 @@ export function loadedUserSuccess() {
     };
 }
 
+export function loadedUserFailure() {
+    return {
+        type: actionTypes.LOADED_USER_FAILURE
+    };
+}
+
 export function login(user) {
     return function (dispatch) {
         dispatch(loadingUser());
@@ -63,13 +69,12 @@ export function login(user) {
 }
 
 export function loginWithToken(dispatch, tokenKey) {
-    console.log("From the action yo");
     return function () {
         dispatch(loadingUser());
         return axios
             .post(endpoints.LOGIN_TOKEN_ENDPOINT,
             {
-               token: tokenKey
+                token: tokenKey
             },
             {
                 headers: {
@@ -77,10 +82,6 @@ export function loginWithToken(dispatch, tokenKey) {
                 }
             })
             .then(userResponse => {
-                console.log(userResponse);
-                if (!userResponse.data.success) {
-                    throw (userResponse.data.message);
-                }
                 dispatch(loginSuccess(userResponse.data.data));
                 dispatch(loadCategoriesSuccess(userResponse.data.data.companyData.categories));
                 dispatch(loadDiscountsSuccess(userResponse.data.data.companyData.discounts));
@@ -90,8 +91,8 @@ export function loginWithToken(dispatch, tokenKey) {
                 dispatch(loadRefundReasonsSuccess(userResponse.data.data.companyData.refundReasons));
                 dispatch(loadedUserSuccess());
             })
-            .catch(error => {
-                throw (error);
+            .catch(error => { //eslint-disable-line no-unused-vars
+                dispatch(loadedUserFailure());
             });
     };
 }

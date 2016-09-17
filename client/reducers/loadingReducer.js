@@ -9,6 +9,9 @@ export default function loadingReducer(state = initialState.loading, action) {
         case actionTypes.LOADED_USER_SUCCESS: {
             return {...state, loadingUser: false };
         }
+        case actionTypes.LOADED_USER_FAILURE: {
+            return {...state, loadingUser: false };
+        }
         default: {
             return state;
         }

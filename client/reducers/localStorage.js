@@ -22,6 +22,18 @@ export const saveState = (state) => {
         }
 };
 
+export const loadUserToken = () => {
+        try {
+            const serializedState = localStorage.getItem("token");
+            if (serializedState === null) {
+                return undefined;
+            }
+            return JSON.parse(serializedState);
+        } catch (error) {
+            return undefined;
+        }
+};
+
 export const persistUserToken = (userToken) => {
         try {
             const serializedState = JSON.stringify(userToken);
