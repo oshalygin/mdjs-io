@@ -1,5 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import * as endpoints from "./httpEndpoints";
+import { persistUserToken } from "../reducers/localStorage";
 import { loadCategoriesSuccess } from "./categoryActions";
 import { loadDiscountsSuccess } from "./discountActions";
 import { loadModifiersSuccess } from "./modifierActions";
@@ -61,6 +62,7 @@ export function login(user) {
                 dispatch(loadModifiersSuccess(userResponse.data.data.companyData.modifiers));
                 dispatch(loadRefundReasonsSuccess(userResponse.data.data.companyData.refundReasons));
                 dispatch(loadedUserSuccess());
+                persistUserToken(userResponse.data.data.token);
             })
             .catch(error => {
                 throw (error);
@@ -90,9 +92,11 @@ export function loginWithToken(dispatch, tokenKey) {
                 dispatch(loadModifiersSuccess(userResponse.data.data.companyData.modifiers));
                 dispatch(loadRefundReasonsSuccess(userResponse.data.data.companyData.refundReasons));
                 dispatch(loadedUserSuccess());
+                persistUserToken(userResponse.data.data.token);
             })
             .catch(error => { //eslint-disable-line no-unused-vars
                 dispatch(loadedUserFailure());
+                throw (error);
             });
     };
 }

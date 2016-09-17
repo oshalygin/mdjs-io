@@ -1,9 +1,16 @@
 import { loadUserToken } from "./localStorage";
-const token = loadUserToken();
 import { loginWithToken } from "../actions/userActions";
 
-export function retrieveUser(dispatch) {
-    loginWithToken(dispatch, token)();
+
+export function retrieveUser(dispatch, callback) {
+    const token = loadUserToken();
+    loginWithToken(dispatch, token)()
+        .then(() => {
+            callback();
+        })
+        .catch((error) => {
+            callback(error);
+        });
 }
 
 export default {

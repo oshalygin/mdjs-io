@@ -47,24 +47,39 @@ import DashboardPage from "./components/dashboard/dashboardPage.jsx";
 import LoginPage from "./components/login/loginPage.jsx";
 
 const store = configureStore();
-retrieveUser(store.dispatch);
 
-function isAuthorized(nextState, replace) {
+function isAuthorized(nextState, replace, callback) {
     if (nextState.location.pathname === "/login") {
+        callback();
         return;
     }
     const state = store.getState();
     if (state.user && state.user.loggedIn === true) {
+        callback();
         return;
     }
-    replace("/login");
+
+    retrieveUser((store.dispatch), (error) => {
+        if (!!error) {
+            replace("/login");
+        }
+        callback();
+    });
+        // .then(() => {
+        //     callback();
+        //     return;
+        // })
+        // .catch(() => {
+        //     callback();
+        //     replace("/login");
+        // });
 }
 
 
 render(
     <Provider store={store}>
         <Router history={browserHistory}>
-            <Route path="/" component={Application} onEnter={(nextState, replace) => isAuthorized(nextState, replace)}>
+            <Route path="/" component={Application} onEnter={(nextState, replace, callback) => isAuthorized(nextState, replace, callback)}>
                 <IndexRoute component={DashboardPage} />
                 <Route path="login" component={LoginPage} />
                 <Route path="dashboard" component={DashboardPage} />
