@@ -5,6 +5,8 @@ import { render } from "react-dom";
 import configureStore from "./store/configureStore";
 import { Router, Route, IndexRoute, browserHistory } from "react-router";
 import { Provider } from "react-redux";
+import { dispatch } from "redux";
+import { retrieveUser } from "./reducers/initialState";
 
 import "../node_modules/material-design-lite/material.min.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
@@ -45,6 +47,7 @@ import DashboardPage from "./components/dashboard/dashboardPage.jsx";
 import LoginPage from "./components/login/loginPage.jsx";
 
 const store = configureStore();
+retrieveUser(store.dispatch);
 
 function isAuthorized(nextState, replace) {
     if (nextState.location.pathname === "/login") {

@@ -1,4 +1,3 @@
-// import colors from "colors";
 /* eslint-disable no-undefined */
 /* eslint-disable no-console */
 

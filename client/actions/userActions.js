@@ -1,10 +1,11 @@
 import * as actionTypes from "./actionTypes";
-import {loadCategoriesSuccess} from "./categoryActions";
-import {loadDiscountsSuccess} from "./discountActions";
-import {loadModifiersSuccess} from "./modifierActions";
-import {loadTaxesSuccess} from "./taxActions";
-import {loadItemsSuccess} from "./itemActions";
-import {loadRefundReasonsSuccess} from "./refundReasonActions";
+import * as endpoints from "./httpEndpoints";
+import { loadCategoriesSuccess } from "./categoryActions";
+import { loadDiscountsSuccess } from "./discountActions";
+import { loadModifiersSuccess } from "./modifierActions";
+import { loadTaxesSuccess } from "./taxActions";
+import { loadItemsSuccess } from "./itemActions";
+import { loadRefundReasonsSuccess } from "./refundReasonActions";
 
 import { xhrCallFailure } from "./xhrStatusActions"; //eslint-disable-line
 import axios from "axios";
@@ -32,7 +33,7 @@ export function login(user) {
     return function (dispatch) {
         dispatch(loadingUser());
         return axios
-            .post("http://localhost:82/api/dashboard/security",
+            .post(endpoints.LOGIN_ENDPOINT,
             {
                 email: user.email,
                 password: user.password
@@ -43,6 +44,40 @@ export function login(user) {
                 }
             })
             .then(userResponse => {
+                if (!userResponse.data.success) {
+                    throw (userResponse.data.message);
+                }
+                dispatch(loginSuccess(userResponse.data.data));
+                dispatch(loadCategoriesSuccess(userResponse.data.data.companyData.categories));
+                dispatch(loadDiscountsSuccess(userResponse.data.data.companyData.discounts));
+                dispatch(loadItemsSuccess(userResponse.data.data.companyData.items));
+                dispatch(loadTaxesSuccess(userResponse.data.data.companyData.taxes));
+                dispatch(loadModifiersSuccess(userResponse.data.data.companyData.modifiers));
+                dispatch(loadRefundReasonsSuccess(userResponse.data.data.companyData.refundReasons));
+                dispatch(loadedUserSuccess());
+            })
+            .catch(error => {
+                throw (error);
+            });
+    };
+}
+
+export function loginWithToken(dispatch, tokenKey) {
+    console.log("From the action yo");
+    return function () {
+        dispatch(loadingUser());
+        return axios
+            .post(endpoints.LOGIN_TOKEN_ENDPOINT,
+            {
+               token: tokenKey
+            },
+            {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            .then(userResponse => {
+                console.log(userResponse);
                 if (!userResponse.data.success) {
                     throw (userResponse.data.message);
                 }
