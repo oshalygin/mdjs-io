@@ -18,6 +18,12 @@ export function loginSuccess(user) {
     };
 }
 
+export function logoutSuccess() {
+    return {
+        type: actionTypes.LOGOUT_SUCCESS
+    };
+}
+
 export function loadingUser() {
     return {
         type: actionTypes.LOADING_USER
@@ -98,5 +104,11 @@ export function loginWithToken(dispatch, tokenKey) {
                 dispatch(loadedUserFailure());
                 throw (error);
             });
+    };
+}
+
+export function logout() {
+    return function (dispatch) {
+        dispatch(logoutSuccess());
     };
 }

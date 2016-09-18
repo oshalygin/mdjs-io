@@ -1,7 +1,9 @@
-import React, {PropTypes} from "react";
+import React, { PropTypes } from "react";
 import { connect } from "react-redux";
 
 import SideBarNavigation from "./common/sideBarNavigation.jsx";
+import SearchBar from "./common/searchBar.jsx";
+import DashboardPage from "./dashboard/dashboardPage.jsx";
 
 class Application extends React.Component {
 
@@ -18,6 +20,10 @@ class Application extends React.Component {
         return (
             <div id="wrapper">
                 <SideBarNavigation pathName={currentPath} />
+                <div id="page-wrapper" className="gray-bg">
+                    <SearchBar />
+                    <DashboardPage />
+                </div>
                 {this.props.children}
             </div>
         );

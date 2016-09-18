@@ -5,7 +5,6 @@ import { render } from "react-dom";
 import configureStore from "./store/configureStore";
 import { Router, Route, IndexRoute, browserHistory } from "react-router";
 import { Provider } from "react-redux";
-import { dispatch } from "redux";
 import { retrieveUser } from "./reducers/initialState";
 
 import "../node_modules/material-design-lite/material.min.css";
@@ -21,7 +20,6 @@ import "./styles/material.icons.css";
 import "./styles/material.style.css";
 import "./styles/style.css";
 import "./styles/spinner.css";
-
 
 import "./images/favicon.ico";
 import "./images/apple-touch-icon.png";
@@ -65,14 +63,6 @@ function isAuthorized(nextState, replace, callback) {
         }
         callback();
     });
-        // .then(() => {
-        //     callback();
-        //     return;
-        // })
-        // .catch(() => {
-        //     callback();
-        //     replace("/login");
-        // });
 }
 
 
