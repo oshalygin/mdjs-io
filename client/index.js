@@ -3,7 +3,7 @@ import "babel-polyfill";
 import React from "react";
 import { render } from "react-dom";
 import configureStore from "./store/configureStore";
-import { Router, Route, IndexRoute, browserHistory } from "react-router";
+import { Router, Route, IndexRoute, browserHistory, Redirect } from "react-router";
 import { Provider } from "react-redux";
 import { retrieveUser } from "./reducers/initialState";
 
@@ -80,6 +80,7 @@ render(
                 <Route path="discounts" component={DashboardPage} />
                 <Route path="orders" component={DashboardPage} />
                 <Route path="users" component={DashboardPage} />
+                <Redirect to="dashboard" from="*" />
             </Route>
         </Router>
     </Provider>,

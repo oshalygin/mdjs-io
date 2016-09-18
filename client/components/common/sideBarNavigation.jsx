@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 export function setPath(pathName) {
     return {
-        home: pathName.toLowerCase() === "home" || pathName === "" ? "active" : null,
+        dashboard: pathName.toLowerCase() === "dashboard" || pathName === "" ? "active" : null,
         items: pathName.toLowerCase() === "items" ? "active" : null,
         itemCategories: pathName.toLowerCase() === "item-categories" ? "active" : null,
         modifiers: pathName.toLowerCase() === "modifiers" ? "active" : null,
@@ -38,8 +38,8 @@ const SideBarNavigation = ({pathName}) => {
                             WR+
                         </div>
                     </li>
-                    <li className={path.home}>
-                        <Link to="home">
+                    <li className={path.dashboard}>
+                        <Link to="dashboard">
                             <i className="fa fa-th-large"></i> <span className="nav-label">Dashboard</span>
                         </Link>
                     </li>
