@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import * as itemActions from "../../actions/itemActions";
 
 
+
+
 class ItemPage extends React.Component {
 
     render() {
@@ -57,7 +59,6 @@ class ItemPage extends React.Component {
                                 <table className="table table-striped">
                                     <thead>
                                         <tr>
-
                                             <th></th>
                                             <th>Project </th>
                                             <th>Completed </th>
@@ -69,7 +70,9 @@ class ItemPage extends React.Component {
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <input type="checkbox" id="derp" className="mdl-checkbox__input" />
+                                                <label className="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" htmlFor="checkbox-1">
+                                                    <input type="checkbox" id="checkbox-1" className="mdl-checkbox__input" />
+                                                </label>
                                             </td>
                                             <td>Project<small>This is example of project</small></td>
                                             <td><span className="pie">0.52/1.561</span></td>
@@ -78,7 +81,11 @@ class ItemPage extends React.Component {
                                             <td><a href="#"><i className="fa fa-check text-navy"></i></a></td>
                                         </tr>
                                         <tr>
-                                            <td><input type="checkbox" className="i-checks" name="input[]" /></td>
+                                            <td>
+                                                <label className="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" htmlFor="checkbox-1">
+                                                    <input type="checkbox" id="checkbox-1" className="mdl-checkbox__input" />
+                                                </label>
+                                            </td>
                                             <td>Alpha project</td>
                                             <td><span className="pie">6,9</span></td>
                                             <td>40%</td>
@@ -86,7 +93,11 @@ class ItemPage extends React.Component {
                                             <td><a href="#"><i className="fa fa-check text-navy"></i></a></td>
                                         </tr>
                                         <tr>
-                                            <td><input type="checkbox" className="i-checks" name="input[]" /></td>
+                                            <td>
+                                                <label className="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" htmlFor="checkbox-1">
+                                                    <input type="checkbox" id="checkbox-1" className="mdl-checkbox__input" />
+                                                </label>
+                                            </td>
                                             <td>Betha project</td>
                                             <td><span className="pie">3,1</span></td>
                                             <td>75%</td>
@@ -94,7 +105,11 @@ class ItemPage extends React.Component {
                                             <td><a href="#"><i className="fa fa-check text-navy"></i></a></td>
                                         </tr>
                                         <tr>
-                                            <td><input type="checkbox" className="i-checks" name="input[]" /></td>
+                                            <td>
+                                                <label className="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" htmlFor="checkbox-1">
+                                                    <input type="checkbox" id="checkbox-1" className="mdl-checkbox__input" />
+                                                </label>
+                                            </td>
                                             <td>Gamma project</td>
                                             <td><span className="pie">4,9</span></td>
                                             <td>18%</td>
