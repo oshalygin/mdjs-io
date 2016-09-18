@@ -3,7 +3,6 @@ import { loginWithToken } from "../actions/userActions";
 
 
 export function retrieveUser(dispatch, callback) {
-
     const token = loadUserToken();
     if (!token) {
         callback("No user token retrieved from localStorage");
