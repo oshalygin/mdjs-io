@@ -82,6 +82,6 @@ render(
                 <Route path="users" component={DashboardPage} />
             </Route>
         </Router>
-    </Provider >,
+    </Provider>,
     document.getElementById("application")
 );
