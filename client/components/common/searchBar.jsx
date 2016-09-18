@@ -15,6 +15,7 @@ class SearchBar extends React.Component {
     logout(event) {
         event.preventDefault();
         this.props.userActions.logout();
+        this.context.router.push("/login");
     }
 
     render() {
@@ -31,7 +32,7 @@ class SearchBar extends React.Component {
                     </div>
                     <ul className="nav navbar-top-links navbar-right">
                         <li>
-                            <a href="#">
+                            <a href="{javascript:void(0)}" onClick={this.logout}>
                                 <i className="fa fa-sign-out"></i> Log out
                             </a>
                         </li>
@@ -45,6 +46,10 @@ class SearchBar extends React.Component {
 SearchBar.propTypes = {
     user: PropTypes.object.isRequired,
     userActions: PropTypes.object.isRequired
+};
+
+SearchBar.contextTypes = {
+    router: React.PropTypes.object.isRequired
 };
 
 

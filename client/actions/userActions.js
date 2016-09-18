@@ -1,6 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import * as endpoints from "./httpEndpoints";
-import { persistUserToken } from "../reducers/localStorage";
+import { persistUserToken, removeUserToken } from "../reducers/localStorage";
 import { loadCategoriesSuccess } from "./categoryActions";
 import { loadDiscountsSuccess } from "./discountActions";
 import { loadModifiersSuccess } from "./modifierActions";
@@ -109,6 +109,7 @@ export function loginWithToken(dispatch, tokenKey) {
 
 export function logout() {
     return function (dispatch) {
+        removeUserToken();
         dispatch(logoutSuccess());
     };
 }
