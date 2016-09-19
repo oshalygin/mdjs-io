@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/oshalygin/MerchantDashboard.svg?branch=master)](https://travis-ci.org/oshalygin/MerchantDashboard)
 [![Coverage Status](http://coveralls.io/repos/github/oshalygin/MerchantDashboard/badge.svg?branch=master)](https://coveralls.io/github/oshalygin/MerchantDashboard?branch=master)
+[![Dependency Status](https://www.versioneye.com/user/projects/57df8885037c20002d0da5ac/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/57df8885037c20002d0da5ac)
 
 
 ####To run this application follow these steps:

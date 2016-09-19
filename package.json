@@ -64,6 +64,7 @@
     "babel-preset-react-hmre": "1.1.1",
     "babel-register": "6.8.0",
     "babel-watch": "^2.0.2",
+    "cheerio": "^0.22.0",
     "colors": "1.1.2",
     "compression": "1.6.1",
     "coveralls": "^2.11.12",
@@ -92,14 +93,14 @@
     "react-addons-test-utils": "15.0.2",
     "redux-immutable-state-invariant": "1.2.3",
     "redux-logger": "^2.6.1",
-    "redux-mock-store": "1.0.2",
-    "rimraf": "2.5.2",
+    "redux-mock-store": "^1.2.0",
+    "rimraf": "^2.5.4",
     "style-loader": "0.13.1",
     "url-loader": "0.5.7",
-    "wallaby-webpack": "0.0.22",
-    "webpack": "1.13.0",
-    "webpack-dev-middleware": "1.6.1",
-    "webpack-hot-middleware": "2.10.0"
+    "wallaby-webpack": "0.0.23",
+    "webpack": "^1.13.2",
+    "webpack-dev-middleware": "^1.8.1",
+    "webpack-hot-middleware": "^2.12.2"
   },
   "repository": {
     "type": "git",
