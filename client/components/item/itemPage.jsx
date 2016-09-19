@@ -8,6 +8,10 @@ import * as itemActions from "../../actions/itemActions";
 
 class ItemPage extends React.Component {
 
+    componentDidMount() {
+        componentHandler.upgradeDom(); //eslint-disable-line no-undef
+    }
+
     render() {
         return (
             <div className="row">
@@ -82,8 +86,8 @@ class ItemPage extends React.Component {
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label className="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" htmlFor="checkbox-1">
-                                                    <input type="checkbox" id="checkbox-1" className="mdl-checkbox__input" />
+                                                <label className="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" htmlFor="checkbox-2">
+                                                    <input type="checkbox" id="checkbox-2" className="mdl-checkbox__input" />
                                                 </label>
                                             </td>
                                             <td>Alpha project</td>
@@ -94,8 +98,8 @@ class ItemPage extends React.Component {
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label className="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" htmlFor="checkbox-1">
-                                                    <input type="checkbox" id="checkbox-1" className="mdl-checkbox__input" />
+                                                <label className="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" htmlFor="checkbox-3">
+                                                    <input type="checkbox" id="checkbox-3" className="mdl-checkbox__input" />
                                                 </label>
                                             </td>
                                             <td>Betha project</td>
@@ -106,8 +110,8 @@ class ItemPage extends React.Component {
                                         </tr>
                                         <tr>
                                             <td>
-                                                <label className="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" htmlFor="checkbox-1">
-                                                    <input type="checkbox" id="checkbox-1" className="mdl-checkbox__input" />
+                                                <label className="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" htmlFor="checkbox-4">
+                                                    <input type="checkbox" id="checkbox-4" className="mdl-checkbox__input" />
                                                 </label>
                                             </td>
                                             <td>Gamma project</td>

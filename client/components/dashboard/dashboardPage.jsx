@@ -3,6 +3,11 @@ import React from "react";
 // import { Link } from "react-router";
 
 class DashboardPage extends React.Component {
+
+    componentDidMount() {
+        componentHandler.upgradeDom(); //eslint-disable-line no-undef
+    }
+
     render() {
         return (
             <div className="text-center m-t-lg">
