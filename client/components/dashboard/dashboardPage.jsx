@@ -12,7 +12,7 @@ class DashboardPage extends React.Component {
         return (
             <div className="text-center m-t-lg">
 
-                <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                <button className="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
                     Button
                 </button>
                 <h1>
