@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 
 import SideBarNavigation from "./common/sideBarNavigation.jsx";
 import SearchBar from "./common/searchBar.jsx";
-import DashboardPage from "./dashboard/dashboardPage.jsx";
 
 class Application extends React.Component {
 
