@@ -27,7 +27,7 @@ TextInput.propTypes = {
     onChange: PropTypes.func,
     placeholder: PropTypes.string,
     // placeholder: PropTypes.string.isRequired,
-    value: PropTypes.string,
+    value: PropTypes.any,
     error: PropTypes.string
 };
 
