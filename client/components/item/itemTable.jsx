@@ -2,18 +2,20 @@ import React, { PropTypes } from "react";
 import ItemTableRow from "./itemTableRow.jsx";
 
 const ItemTable = ({items, checked}) => {
-
+    const centeredHeaders = {
+        textAlign: "center"
+    };
     return (
         <div className="table-responsive">
             <table className="table table-striped">
                 <thead>
                     <tr>
                         <th />
-                        <th>Image </th>
-                        <th>Name </th>
-                        <th>Price</th>
-                        <th>Date Updated</th>
-                        <th>Controls</th>
+                        <th style={centeredHeaders} />
+                        <th style={centeredHeaders}>Name </th>
+                        <th style={centeredHeaders}>Price</th>
+                        <th style={centeredHeaders}>Date Updated</th>
+                        <th />
                     </tr>
                 </thead>
                 <tbody>

@@ -2,7 +2,12 @@ import React, { PropTypes } from "react";
 
 const ItemTableRow = ({item, checked}) => {
     const tableRowAlignment = {
-        verticalAlign: "middle"
+        verticalAlign: "middle",
+        textAlign: "center"
+    };
+    const alignLeft = {
+        ...tableRowAlignment,
+            textAlign: "left"
     };
     return (
         <tr>
@@ -15,7 +20,7 @@ const ItemTableRow = ({item, checked}) => {
             <td style={tableRowAlignment} >{item.label}</td>
             <td style={tableRowAlignment}>$ {item.price}</td>
             <td style={tableRowAlignment}>{item.lastUpdatedDate}</td>
-            <td>
+            <td style={alignLeft}>
                 <button className="mdl-button mdl-js-button mdl-button--primary">
                     Edit
                 </button>
