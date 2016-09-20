@@ -12,7 +12,14 @@ const ItemTableRow = ({item, checked}) => {
             <td>{item.label}</td>
             <td>$ {item.price}</td>
             <td>{item.lastUpdatedDate}</td>
-            <td><a href="#"><i className="fa fa-check text-navy" /></a></td>
+            <td>
+                <button className="mdl-button mdl-js-button mdl-button--primary">
+                    Edit
+                </button>
+                <button className="mdl-button mdl-js-button mdl-button--accent">
+                    Deactivate
+                </button>
+            </td>
         </tr>
     );
 };
