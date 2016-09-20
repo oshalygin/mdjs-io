@@ -17,7 +17,7 @@ const ItemTableRow = ({item, checked}) => {
                 </label>
             </td>
             <td>{item.photoURL}</td>
-            <td style={tableRowAlignment} >{item.label}</td>
+            <td style={tableRowAlignment}>{item.label}</td>
             <td style={tableRowAlignment}>$ {item.price}</td>
             <td style={tableRowAlignment}>{item.lastUpdatedDate}</td>
             <td style={alignLeft}>
