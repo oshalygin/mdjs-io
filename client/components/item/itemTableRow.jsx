@@ -1,17 +1,20 @@
 import React, { PropTypes } from "react";
 
 const ItemTableRow = ({item, checked}) => {
+    const tableRowAlignment = {
+        verticalAlign: "middle"
+    };
     return (
         <tr>
-            <td>
+            <td style={tableRowAlignment}>
                 <label className="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" htmlFor={item.itemID}>
                     <input type="checkbox" id={item.itemID} className="mdl-checkbox__input" onChange={checked} checked={item.checked} />
                 </label>
             </td>
             <td>{item.photoURL}</td>
-            <td>{item.label}</td>
-            <td>$ {item.price}</td>
-            <td>{item.lastUpdatedDate}</td>
+            <td style={tableRowAlignment} >{item.label}</td>
+            <td style={tableRowAlignment}>$ {item.price}</td>
+            <td style={tableRowAlignment}>{item.lastUpdatedDate}</td>
             <td>
                 <button className="mdl-button mdl-js-button mdl-button--primary">
                     Edit
