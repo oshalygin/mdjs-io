@@ -37,8 +37,19 @@ class ItemPage extends React.Component {
     render() {
         const {items} = this.props;
         console.log(items);
+
+        const buttonOffset = {
+            marginBottom: "20px"
+        };
+
         return (
             <div className="row">
+                <div className="col-lg-12">
+                    <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
+                        style={buttonOffset}>
+                        New Item
+                    </button>
+                </div>
                 <div className="col-lg-12">
                     <div className="ibox float-e-margins">
                         <div className="ibox-title">
