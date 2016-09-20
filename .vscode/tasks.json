@@ -10,7 +10,7 @@
         {
             "isBuildCommand": true,
             "taskName": "start",
-            "args": ["run", "windows-start", "-s"]
+            "args": ["run", "windows-start"]
         }
 
     ]
