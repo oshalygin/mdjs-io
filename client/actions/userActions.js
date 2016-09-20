@@ -1,6 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import * as endpoints from "./httpEndpoints";
-import { persistUserToken, removeUserToken } from "../reducers/localStorage";
+import { persistUserToken, removeUserToken } from "../utilities/localStorage";
 import { loadCategoriesSuccess } from "./categoryActions";
 import { loadDiscountsSuccess } from "./discountActions";
 import { loadModifiersSuccess } from "./modifierActions";

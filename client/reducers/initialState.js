@@ -1,4 +1,4 @@
-import { loadUserToken } from "./localStorage";
+import { loadUserToken } from "../utilities/localStorage";
 import { loginWithToken } from "../actions/userActions";
 
 

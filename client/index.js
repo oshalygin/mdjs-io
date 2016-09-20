@@ -46,6 +46,7 @@ pace.start();
 import Application from "./components/application.jsx";
 import DashboardPage from "./components/dashboard/dashboardPage.jsx";
 import ItemPage from "./components/item/itemPage.jsx";
+import ItemDetailPage from "./components/item/itemDetailPage.jsx";
 
 import LoginPage from "./components/login/loginPage.jsx";
 
@@ -79,6 +80,7 @@ render(
                 <Route path="login" component={LoginPage} />
                 <Route path="dashboard" component={DashboardPage} />
                 <Route path="items" component={ItemPage} />
+                <Route path="item/:id" component={ItemDetailPage} />
                 <Route path="item-categories" component={DashboardPage} />
                 <Route path="modifiers" component={DashboardPage} />
                 <Route path="taxes" component={DashboardPage} />

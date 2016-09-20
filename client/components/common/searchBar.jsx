@@ -23,8 +23,8 @@ class SearchBar extends React.Component {
             <div className="row border-bottom">
                 <nav className="navbar navbar-static-top white-bg" role="navigation" style={{ marginBottom: 0 }}>
                     <div className="navbar-header">
-                        <a className="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i className="fa fa-bars"></i> </a>
-                        <form role="search" className="navbar-form-custom" method="post" action="#">
+                        <a className="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i className="fa fa-bars"/> </a>
+                        <form role="search" className="navbar-form-custom" method="post" action="{javascript:void(0)}">
                             <div className="form-group">
                                 <input type="text" placeholder="Search for something..." className="form-control" name="top-search" id="top-search" />
                             </div>
@@ -33,7 +33,7 @@ class SearchBar extends React.Component {
                     <ul className="nav navbar-top-links navbar-right">
                         <li>
                             <a href="{javascript:void(0)}" onClick={this.logout}>
-                                <i className="fa fa-sign-out"></i> Log out
+                                <i className="fa fa-sign-out"/> Log out
                             </a>
                         </li>
                     </ul>

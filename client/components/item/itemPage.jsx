@@ -34,8 +34,6 @@ class ItemPage extends React.Component {
 
     render() {
         const {items} = this.props;
-        console.log(items);
-
         const buttonOffset = {
             marginBottom: "20px"
         };
@@ -57,9 +55,9 @@ class ItemPage extends React.Component {
                             <div className="row">
                                 <div className="col-sm-3">
                                     <TextInput
-                                        name="searchItems"
-                                        label="search"
-                                        placeholder="Search"
+                                        name="filteredItems"
+                                        label="filter"
+                                        placeholder="Filter"
                                         />
                                 </div>
                             </div>
