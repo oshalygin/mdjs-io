@@ -7,8 +7,11 @@ import { Router, Route, IndexRoute, browserHistory, Redirect } from "react-route
 import { Provider } from "react-redux";
 import { retrieveUser } from "./reducers/initialState";
 
-// import "../node_modules/material-design-lite/material.min.css";
+
+import "./styles/material.icons.css";
 import "./styles/material.style.min.css";
+import "../node_modules/material-design-lite/material.min.js";
+
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
 import "../node_modules/toastr/build/toastr.min.css";
@@ -16,10 +19,11 @@ import "../node_modules/toastr/build/toastr.min.css";
 import "../node_modules/animate.css/animate.min.css";
 import "./styles/toastrOptions";
 
-import "../node_modules/material-design-lite/material.min.js";
-import "./styles/material.icons.css";
+
+
 import "./styles/style.css";
 import "./styles/spinner.css";
+import "./styles/dashboard.style.css";
 
 import "./images/favicon.ico";
 import "./images/apple-touch-icon.png";
