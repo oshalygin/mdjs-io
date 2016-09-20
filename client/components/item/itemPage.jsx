@@ -29,9 +29,7 @@ class ItemPage extends React.Component {
     checkboxChangeHandler(event) {
         const checkedItem = this.props.items
             .filter(item => item.id === event.target.itemID)[0];
-        console.log(checkedItem.label);
-
-        // this.props.itemActions.markCheckedItems(Object.assign({}, checkedItem));
+        this.props.itemActions.itemChecked(checkedItem);
     }
 
     render() {

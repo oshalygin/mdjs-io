@@ -8,6 +8,13 @@ export function loadItemsSuccess(items) {
     };
 }
 
+export function itemCheckedSuccess(item) {
+    return {
+        type: actionTypes.ITEM_CHECKED,
+        item
+    };
+}
+
 export function updateItemsSuccess(item) {
     return {
         type: actionTypes.UPDATE_ITEM_SUCCESS,
@@ -21,4 +28,12 @@ export function updateItem(item) {
     };
 }
 
-
+export function itemChecked(item) {
+    const checkedItem = {
+        ...item,
+        checked: !item.checked
+    };
+    return function (dispatch) {
+        dispatch(itemCheckedSuccess(checkedItem));
+    };
+}
