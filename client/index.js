@@ -11,6 +11,8 @@ import { retrieveUser } from "./reducers/initialState";
 import "./styles/material.icons.css";
 import "./styles/material.style.min.css";
 import "../node_modules/material-design-lite/material.min.js";
+import "../node_modules/getmdl-select/getmdl-select.min.css";
+import "../node_modules/getmdl-select/getmdl-select.min";
 
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
@@ -80,7 +82,7 @@ render(
                 <Route path="login" component={LoginPage} />
                 <Route path="dashboard" component={DashboardPage} />
                 <Route path="items" component={ItemPage} />
-                <Route path="item/:id" component={ItemDetailPage} />
+                <Route path="item(/:id)" component={ItemDetailPage} />
                 <Route path="item-categories" component={DashboardPage} />
                 <Route path="modifiers" component={DashboardPage} />
                 <Route path="taxes" component={DashboardPage} />

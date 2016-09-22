@@ -45,7 +45,7 @@ const ItemForm = ({item, onChange}) => {
                     <TextInput
                         name="priceTypeID"
                         value={item.priceTypeID}
-                        label={item.priceTypeID.toString()}
+                        label={"derp"}
                         placeholder="Unit of Measure (oz)"
                         onChange={onChange}
                         />
@@ -61,7 +61,8 @@ const ItemForm = ({item, onChange}) => {
 };
 
 ItemForm.propTypes = {
-    item: PropTypes.object.isRequired
+    item: PropTypes.object.isRequired,
+    onChange: PropTypes.func.isRequired
 };
 
 export default ItemForm;

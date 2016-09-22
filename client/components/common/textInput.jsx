@@ -11,7 +11,7 @@ const TextInput = ({name, label, onChange, placeholder, value, error}) => {
                     onChange={onChange}
                     value={value}
                     name={name} />
-                <label className="mdl-textfield__label" htmlFor={label}>{placeholder}</label>
+                <label className="mdl-textfield__label" htmlFor={name}>{placeholder}</label>
                 {error && <span className="mdl-textfield__error">{error}</span>}
             </div>
 

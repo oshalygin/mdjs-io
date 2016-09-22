@@ -13,6 +13,8 @@ class ItemDetailPage extends React.Component {
             item: {},
             heading: ""
         };
+
+        this.onChange = this.onChange.bind(this);
     }
 
     componentDidUpdate() {
@@ -21,6 +23,14 @@ class ItemDetailPage extends React.Component {
 
     componentDidMount() {
         componentHandler.upgradeDom(); //eslint-disable-line no-undef
+    }
+
+    onChange(event) {
+        // console.log(this.props);
+        let {item} = this.props;
+        const property = event.target.name;
+        item[property] = event.target.value;
+        this.setState({item: item});
     }
 
     render() {
@@ -32,7 +42,7 @@ class ItemDetailPage extends React.Component {
                         <div className="ibox-title">
                             <h5>{itemHeading}</h5>
                         </div>
-                        <ItemForm item={item} />
+                        <ItemForm item={item} onChange={this.onChange} />
                     </div>
                 </div>
                 <div className="col-lg-offset-3 col-lg-6">
@@ -60,7 +70,7 @@ function mapStateToProps(state, ownProps) {
         label: "",
         name: "",
         lastUpdatedBy: null,
-        price: null,
+        price: 0,
         color: null,
         photoURL: "",
         priceTypeId: null,

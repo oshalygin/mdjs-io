@@ -1,4 +1,5 @@
 import React, { PropTypes } from "react";
+import { Link } from "react-router";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as itemActions from "../../actions/itemActions";
@@ -34,17 +35,19 @@ class ItemPage extends React.Component {
 
     render() {
         const {items} = this.props;
-        const buttonOffset = {
-            marginBottom: "20px"
+
+        const newItemButtonDecorationAndOffset = {
+            textDecoration: "none",
+            marginBottom: "1.2em"
         };
 
         return (
             <div className="row">
                 <div className="col-lg-12">
-                    <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
-                        style={buttonOffset}>
+                    <Link to="item" className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
+                        style={newItemButtonDecorationAndOffset}>
                         New Item
-                    </button>
+                    </Link>
                 </div>
                 <div className="col-lg-12">
                     <div className="ibox float-e-margins">

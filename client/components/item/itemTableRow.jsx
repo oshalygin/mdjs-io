@@ -1,4 +1,5 @@
 import React, { PropTypes } from "react";
+import moment from "moment";
 
 const ItemTableRow = ({item, checked}) => {
     const tableRowAlignment = {
@@ -9,6 +10,8 @@ const ItemTableRow = ({item, checked}) => {
         ...tableRowAlignment,
             textAlign: "left"
     };
+    const parsedLastUpdatedDate = moment(item.lastUpdatedDate).format("MMM DD, YYYY - HH:mm A");
+
     return (
         <tr>
             <td style={tableRowAlignment}>
@@ -19,7 +22,7 @@ const ItemTableRow = ({item, checked}) => {
             <td>{item.photoURL}</td>
             <td style={tableRowAlignment}>{item.label}</td>
             <td style={tableRowAlignment}>$ {item.price}</td>
-            <td style={tableRowAlignment}>{item.lastUpdatedDate}</td>
+            <td style={tableRowAlignment}>{parsedLastUpdatedDate}</td>
             <td style={alignLeft}>
                 <button className="mdl-button mdl-js-button mdl-button--primary">
                     Edit
