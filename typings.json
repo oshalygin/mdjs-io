@@ -11,6 +11,7 @@
     "history": "registry:dt/history#1.8.0+20160316155526",
     "mime": "registry:dt/mime#0.0.0+20160316155526",
     "mocha": "registry:dt/mocha#2.2.5+20160619032855",
+    "moment": "registry:dt/moment#2.11.1+20160829143156",
     "nock": "registry:dt/nock#0.54.0+20160613160405",
     "node": "registry:dt/node#6.0.0+20160621231320",
     "react": "registry:dt/react#0.14.0+20160630100702",
