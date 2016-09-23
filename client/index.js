@@ -11,8 +11,9 @@ import { retrieveUser } from "./reducers/initialState";
 import "./styles/material.icons.css";
 import "./styles/material.style.min.css";
 import "../node_modules/material-design-lite/material.min.js";
-import "../node_modules/getmdl-select/getmdl-select.min.css";
-import "../node_modules/getmdl-select/getmdl-select.min";
+
+import "../node_modules/mdl-selectfield/dist/mdl-selectfield.min.css";
+import "../node_modules/mdl-selectfield/dist/mdl-selectfield.min.js";
 
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
@@ -48,7 +49,7 @@ pace.start();
 import Application from "./components/application.jsx";
 import DashboardPage from "./components/dashboard/dashboardPage.jsx";
 import ItemPage from "./components/item/itemPage.jsx";
-import ItemDetailPage from "./components/item/itemDetailPage.jsx";
+import ItemDetailPage from "./components/itemDetail/itemDetailPage.jsx";
 
 import LoginPage from "./components/login/loginPage.jsx";
 

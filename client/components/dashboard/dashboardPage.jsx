@@ -11,8 +11,6 @@ class DashboardPage extends React.Component {
     render() {
         return (
             <div className="text-center m-t-lg">
-
-
                 <h1>
                     Welcome to the Merchant Dashboard
                 </h1>

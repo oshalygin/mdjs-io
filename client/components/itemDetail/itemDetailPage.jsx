@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as itemActions from "../../actions/itemActions";
 
-import ItemForm from "./itemForm.jsx";
+import ItemDetailForm from "./itemDetailForm.jsx";
 
 
 class ItemDetailPage extends React.Component {
@@ -23,14 +23,14 @@ class ItemDetailPage extends React.Component {
 
     componentDidMount() {
         componentHandler.upgradeDom(); //eslint-disable-line no-undef
+
     }
 
     onChange(event) {
-        // console.log(this.props);
         let {item} = this.props;
         const property = event.target.name;
         item[property] = event.target.value;
-        this.setState({item: item});
+        this.setState({});
     }
 
     render() {
@@ -42,7 +42,7 @@ class ItemDetailPage extends React.Component {
                         <div className="ibox-title">
                             <h5>{itemHeading}</h5>
                         </div>
-                        <ItemForm item={item} onChange={this.onChange} />
+                        <ItemDetailForm item={item} onChange={this.onChange} />
                     </div>
                 </div>
                 <div className="col-lg-offset-3 col-lg-6">

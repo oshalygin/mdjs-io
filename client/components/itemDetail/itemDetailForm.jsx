@@ -1,7 +1,9 @@
 import React, { PropTypes } from "react";
-import TextInput from "../common/textInput.jsx";
 
-const ItemForm = ({item, onChange}) => {
+import TextInput from "../common/textInput.jsx";
+import SelectList from "../common/selectList.jsx";
+
+const ItemDetailForm = ({item, onChange}) => {
     const imagePlaceholderContainer = {
         position: "relative",
         backgroundColor: "yellow",
@@ -42,13 +44,7 @@ const ItemForm = ({item, onChange}) => {
                         placeholder="Price"
                         onChange={onChange}
                         />
-                    <TextInput
-                        name="priceTypeID"
-                        value={item.priceTypeID}
-                        label={"derp"}
-                        placeholder="Unit of Measure (oz)"
-                        onChange={onChange}
-                        />
+                    <SelectList />
                 </div>
                 <div className="col-md-offset-4 col-md-3">
                     <div style={imagePlaceholderContainer}>
@@ -60,10 +56,10 @@ const ItemForm = ({item, onChange}) => {
     );
 };
 
-ItemForm.propTypes = {
+ItemDetailForm.propTypes = {
     item: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired
 };
 
-export default ItemForm;
+export default ItemDetailForm;
 
