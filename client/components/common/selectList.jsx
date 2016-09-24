@@ -4,7 +4,7 @@ import SelectListRow from "./selectListRow.jsx";
 const SelectList = ({value, label, name, options, onChange}) => {
     let classList = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select";
     if (!!value) {
-        classList += " is-dirty";
+        classList += " is-dirty"; //eslint-disable-line operator-assignment
     }
     return (
         <div className={classList} >

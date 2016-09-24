@@ -2,6 +2,7 @@ import React, { PropTypes } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as itemActions from "../../actions/itemActions";
+import { itemPriceTypes } from "../../utilities/constants";
 
 import ItemDetailForm from "./itemDetailForm.jsx";
 
@@ -75,16 +76,19 @@ ItemDetailPage.contextTypes = {
 function mapStateToProps(state, ownProps) {
     let item = {
         itemID: "",
-        label: "",
         name: "",
+        label: "",
         lastUpdatedBy: null,
         price: 0,
         color: null,
         photoURL: "",
-        priceTypeId: null,
         itemCategoryID: null,
         isActive: null
     };
+    item = {...item,
+        priceTypeID: itemPriceTypes[0].value
+    };
+    console.log(item);
     let itemHeading = "New Item";
 
 
