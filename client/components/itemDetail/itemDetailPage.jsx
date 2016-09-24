@@ -31,15 +31,14 @@ class ItemDetailPage extends React.Component {
 
         if (event.target.tagName === "LI") {
             const property = event.target.attributes.getNamedItem("name").value;
-            console.log(property);
             item[property] = event.target.attributes.getNamedItem("data-value").value;
-            console.log(item[property]);
         } else {
             const property = event.target.name;
             item[property] = event.target.value;
         }
 
         this.setState({});
+        componentHandler.upgradeDom(); //eslint-disable-line no-undef
     }
 
     render() {

@@ -2,6 +2,7 @@ import React, { PropTypes } from "react";
 
 import TextInput from "../common/textInput.jsx";
 import SelectList from "../common/selectList.jsx";
+import { itemPriceTypes } from "../../utilities/constants";
 
 const ItemDetailForm = ({item, onChange}) => {
     const imagePlaceholderContainer = {
@@ -20,12 +21,9 @@ const ItemDetailForm = ({item, onChange}) => {
         backgroundColor: "red"
     };
 
-    const itemPriceTypes = [
-        { label: "Each", value: "Each" },
-        { label: "oz", value: "oz" },
-        { label: "lb", value: "lb" },
-        { label: "mg", value: "mg" }
-    ];
+    const itemPriceIdValue = itemPriceTypes
+        .filter(priceType => priceType.value == item.priceTypeID)[0] //eslint-disable-line eqeqeq
+        .label;
 
     return (
         <div className="ibox-content">
@@ -33,21 +31,18 @@ const ItemDetailForm = ({item, onChange}) => {
                 <div className="col-md-offset-1 col-sm-3">
                     <TextInput
                         name="name"
-                        label={item.name}
                         value={item.name}
                         placeholder="Name"
                         onChange={onChange}
                         />
                     <TextInput
                         name="label"
-                        label={item.label}
                         value={item.label}
                         placeholder="Item Label"
                         onChange={onChange}
                         />
                     <TextInput
                         name="price"
-                        label={item.price.toString()}
                         value={item.price}
                         placeholder="Price"
                         onChange={onChange}
@@ -55,6 +50,9 @@ const ItemDetailForm = ({item, onChange}) => {
                     <SelectList
                         onChange={onChange}
                         options={itemPriceTypes}
+                        name="priceTypeID"
+                        label="Price Type"
+                        value={itemPriceIdValue}
                         />
                 </div>
                 <div className="col-md-offset-4 col-md-3">

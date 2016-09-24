@@ -1,6 +1,6 @@
 import React, { PropTypes } from "react";
 
-const TextInput = ({name, label, onChange, placeholder, value, error}) => {
+const TextInput = ({name, onChange, placeholder, value, error}) => {
 
     return (
         <div>
@@ -22,7 +22,6 @@ const TextInput = ({name, label, onChange, placeholder, value, error}) => {
 
 TextInput.propTypes = {
     name: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
     // onChange: PropTypes.func.isRequired,
     onChange: PropTypes.func,
     placeholder: PropTypes.string,
