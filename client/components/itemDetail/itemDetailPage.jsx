@@ -1,4 +1,5 @@
 import React, { PropTypes } from "react";
+import { Link } from "react-router";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as itemActions from "../../actions/itemActions";
@@ -16,6 +17,7 @@ class ItemDetailPage extends React.Component {
         };
 
         this.onChange = this.onChange.bind(this);
+        this.onSave = this.onSave.bind(this);
     }
 
     componentDidUpdate() {
@@ -42,6 +44,15 @@ class ItemDetailPage extends React.Component {
         componentHandler.upgradeDom(); //eslint-disable-line no-undef
     }
 
+    onSave() {
+        const {item} = this.props;
+        if (!!item) {
+            this.props.itemActions.updateItem(item);
+        } else {
+            this.props.itemActions.createItem(item);
+        }
+    }
+
     render() {
         const {itemHeading, item} = this.props;
         return (
@@ -54,10 +65,15 @@ class ItemDetailPage extends React.Component {
                         <ItemDetailForm item={item} onChange={this.onChange} />
                     </div>
                 </div>
-                <div className="col-lg-offset-3 col-lg-6">
-                    <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
-                        Show All Items
+                <div className="col-lg-offset-3 col-lg-3">
+                    <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onClick={this.onSave}>
+                        Save Item
                     </button>
+                </div>
+                <div className="col-lg-offset-1 col-lg-2 text-right">
+                    <Link to="items" className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
+                        View All Items
+                    </Link>
                 </div>
             </div>
         );
@@ -66,7 +82,8 @@ class ItemDetailPage extends React.Component {
 
 ItemDetailPage.propTypes = {
     item: PropTypes.object.isRequired,
-    itemHeading: PropTypes.string.isRequired
+    itemHeading: PropTypes.string.isRequired,
+    itemActions: PropTypes.object.isRequired
 };
 
 ItemDetailPage.contextTypes = {
@@ -75,7 +92,6 @@ ItemDetailPage.contextTypes = {
 
 function mapStateToProps(state, ownProps) {
     let item = {
-        itemID: "",
         name: "",
         label: "",
         lastUpdatedBy: null,
@@ -83,14 +99,11 @@ function mapStateToProps(state, ownProps) {
         color: null,
         photoURL: "",
         itemCategoryID: null,
-        isActive: null
-    };
-    item = {...item,
+        isActive: null,
         priceTypeID: itemPriceTypes[0].value
     };
-    console.log(item);
-    let itemHeading = "New Item";
 
+    let itemHeading = "New Item";
 
     if (ownProps.params.id) {
         const itemExists = state.items.find(existingItem => existingItem.itemID == ownProps.params.id); //eslint-disable-line eqeqeq

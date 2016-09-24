@@ -15,9 +15,16 @@ export function itemCheckedSuccess(item) {
     };
 }
 
+export function itemCreatedSuccess(item) {
+    return {
+        type: actionTypes.ITEM_CREATED,
+        item
+    };
+}
+
 export function updateItemsSuccess(item) {
     return {
-        type: actionTypes.UPDATE_ITEM_SUCCESS,
+        type: actionTypes.ITEM_UPDATED,
         item
     };
 }
@@ -25,6 +32,12 @@ export function updateItemsSuccess(item) {
 export function updateItem(item) {
     return function (dispatch) {
         dispatch(updateItemsSuccess(item));
+    };
+}
+
+export function createItem(item) {
+    return function (dispatch) {
+        dispatch(itemCreatedSuccess(item));
     };
 }
 

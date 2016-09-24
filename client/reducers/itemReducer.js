@@ -8,17 +8,24 @@ export default function itemReducer(state = initialState.items, action) {
                 return [...items,
                 {...item,
                     checked: false
-                     }];
+                        }];
         }, []);
     }
-    case actionTypes.ITEM_CHECKED: {
-        let items = [...state];
-        let checkedItemIndex = items.findIndex(item => item.itemID === action.item.itemID);
-        items.splice(checkedItemIndex, 1, action.item);
-        return [...items];
-    }
-        default: {
-        return state;
-    }
+
+        case actionTypes.ITEM_CHECKED: {
+            let items = [...state];
+            let checkedItemIndex = items.findIndex(item => item.itemID === action.item.itemID);
+            items.splice(checkedItemIndex, 1, action.item);
+            return [...items];
+        }
+        case actionTypes.UPDATE_ITEM_SUCCESS: {
+            let items = [...state];
+            let checkedItemIndex = items.findIndex(item => item.itemID === action.item.itemID);
+            items.splice(checkedItemIndex, 1, action.item);
+            return [...items];
+     }
+            default: {
+                  return state;
+        }
 }
 }
