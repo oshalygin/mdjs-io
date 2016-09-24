@@ -19,6 +19,14 @@ const ItemDetailForm = ({item, onChange}) => {
         height: "5em",
         backgroundColor: "red"
     };
+
+    const itemPriceTypes = [
+        { label: "Each", value: "Each" },
+        { label: "oz", value: "oz" },
+        { label: "lb", value: "lb" },
+        { label: "mg", value: "mg" }
+    ];
+
     return (
         <div className="ibox-content">
             <div className="row">
@@ -44,7 +52,10 @@ const ItemDetailForm = ({item, onChange}) => {
                         placeholder="Price"
                         onChange={onChange}
                         />
-                    <SelectList />
+                    <SelectList
+                        onChange={onChange}
+                        options={itemPriceTypes}
+                        />
                 </div>
                 <div className="col-md-offset-4 col-md-3">
                     <div style={imagePlaceholderContainer}>

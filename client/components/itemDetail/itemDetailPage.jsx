@@ -28,8 +28,17 @@ class ItemDetailPage extends React.Component {
 
     onChange(event) {
         let {item} = this.props;
-        const property = event.target.name;
-        item[property] = event.target.value;
+
+        if (event.target.tagName === "LI") {
+            const property = event.target.attributes.getNamedItem("name").value;
+            console.log(property);
+            item[property] = event.target.attributes.getNamedItem("data-value").value;
+            console.log(item[property]);
+        } else {
+            const property = event.target.name;
+            item[property] = event.target.value;
+        }
+
         this.setState({});
     }
 

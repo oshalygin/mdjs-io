@@ -12,12 +12,14 @@ import "./styles/material.icons.css";
 import "./styles/material.style.min.css";
 import "../node_modules/material-design-lite/material.min.js";
 
-import "../node_modules/mdl-selectfield/dist/mdl-selectfield.min.css";
-import "../node_modules/mdl-selectfield/dist/mdl-selectfield.min.js";
+import "../node_modules/getmdl-select/getmdl-select.min.css";
+// derp.init(".getmdl-select"); //eslint-disable-line
+// console.log(derp);
 
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
 import "../node_modules/toastr/build/toastr.min.css";
+
 
 import "../node_modules/animate.css/animate.min.css";
 import "./styles/toastrOptions";
