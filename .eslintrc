@@ -289,13 +289,6 @@
       2,
       "before"
     ], // enforce the spacing around the * in generator functions (off by default)
-    //
-    // Legacy
-    //
-    // The following rules are included for compatibility with JSHint and JSLint.
-    // While the names of the rules may not match up with the JSHint/JSLint counterpart,
-    // the functionality is the same.
-    //
     "max-depth": [
       2,
       3
@@ -311,15 +304,24 @@
     ], // limits the number of parameters that can be used in the function declaration. (off by default)
     "max-statements": 0, // specify the maximum number of statement allowed in a function (off by default)
     "no-bitwise": 0, // disallow use of bitwise operators (off by default)
-    "no-plusplus": 2, // disallow use of unary operators, ++ and -- (off by default)
+    "no-plusplus": 0, // disallow use of unary operators, ++ and -- (off by default)
     //
     // eslint-plugin-react
     //
     // React specific linting rules for ESLint
     //
+    "react/jsx-pascal-case" : 2,
+    "react/jsx-closing-bracket-location": 2,
+    "react/jsx-no-bind": 2,
+    "react/require-render-return": 2,
+    "react/sort-comp": 2,
+    "react/no-is-mounted": 2,
+    "jsx-quotes": 2,
+    "react/jsx-curly-spacing": 2,
+    "react/jsx-boolean-value" : 2,
+    "react/no-string-refs": 2,
     "react/display-name": 0, // Prevent missing displayName in a React component definition
     // "react/jsx-quotes": [2, "double", "avoid-escape"], // Enforce quote style for JSX attributes
-    "jsx-quotes": "warn",
     "react/jsx-no-undef": 2, // Disallow undeclared variables in JSX
     "react/jsx-sort-props": 0, // Enforce props alphabetical sorting
     "react/jsx-uses-react": 2, // Prevent React to be incorrectly marked as unused
@@ -331,6 +333,6 @@
     "react/prop-types": 2, // Prevent missing props validation in a React component definition
     "react/react-in-jsx-scope": 2, // Prevent missing React when using JSX
     "react/self-closing-comp": 2, // Prevent extra closing tags for components without children
-    "react/wrap-multilines": 2, // Prevent missing parentheses around multilines JSX
+    "react/jsx-wrap-multilines": 2, // Prevent missing parentheses around multilines JSX
   }
 }

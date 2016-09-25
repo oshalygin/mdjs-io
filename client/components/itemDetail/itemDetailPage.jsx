@@ -20,13 +20,13 @@ class ItemDetailPage extends React.Component {
         this.onSave = this.onSave.bind(this);
     }
 
-    componentDidUpdate() {
-        componentHandler.upgradeDom(); //eslint-disable-line no-undef
-    }
-
     componentDidMount() {
         componentHandler.upgradeDom(); //eslint-disable-line no-undef
 
+    }
+
+    componentDidUpdate() {
+        componentHandler.upgradeDom(); //eslint-disable-line no-undef
     }
 
     onChange(event) {
