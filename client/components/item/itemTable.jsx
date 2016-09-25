@@ -25,7 +25,6 @@ const ItemTable = ({items, checked, onEdit, onActiveStateToggle}) => {
                                 key={item.itemID}
                                 item={item}
                                 checked={checked}
-                                onEdit={onEdit}
                                 onActiveStateToggle={onActiveStateToggle}
                                 />
                         );
@@ -39,7 +38,6 @@ const ItemTable = ({items, checked, onEdit, onActiveStateToggle}) => {
 ItemTable.propTypes = {
     items: PropTypes.array.isRequired,
     checked: PropTypes.func.isRequired,
-    onEdit: PropTypes.func.isRequired,
     onActiveStateToggle: PropTypes.func.isRequired
 };
 

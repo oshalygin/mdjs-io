@@ -1,7 +1,8 @@
 import React, { PropTypes } from "react";
+import { Link } from "react-router";
 import moment from "moment";
 
-const ItemTableRow = ({item, checked, onEdit, onActiveStateToggle}) => {
+const ItemTableRow = ({item, checked, onActiveStateToggle}) => {
     const tableRowAlignment = {
         verticalAlign: "middle",
         textAlign: "center"
@@ -24,10 +25,10 @@ const ItemTableRow = ({item, checked, onEdit, onActiveStateToggle}) => {
             <td style={tableRowAlignment}>$ {item.price}</td>
             <td style={tableRowAlignment}>{parsedLastUpdatedDate}</td>
             <td style={alignLeft}>
-                <button className="mdl-button mdl-js-button mdl-button--primary">
+                <Link to="/item/4" className="mdl-button mdl-js-button mdl-button--primary">
                     Edit
-                </button>
-                <button className="mdl-button mdl-js-button mdl-button--accent">
+                </Link>
+                <button className="mdl-button mdl-js-button mdl-button--accent" onClick={onActiveStateToggle}>
                     Deactivate
                 </button>
             </td>
@@ -38,7 +39,6 @@ const ItemTableRow = ({item, checked, onEdit, onActiveStateToggle}) => {
 ItemTableRow.propTypes = {
     item: PropTypes.object.isRequired,
     checked: PropTypes.func.isRequired,
-    onEdit: PropTypes.func.isRequired,
     onActiveStateToggle: PropTypes.func.isRequired
 };
 
