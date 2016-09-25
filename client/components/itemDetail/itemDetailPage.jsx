@@ -21,7 +21,8 @@ class ItemDetailPage extends React.Component {
         this.onChange = this.onChange.bind(this);
         this.onSave = this.onSave.bind(this);
         this.redirect = this.redirect.bind(this);
-        this.isValid = this.isValid.bind(this);
+        this.propertyIsValid = this.propertyIsValid.bind(this);
+        this.formIsValid = this.formIsValid.bind(this);
     }
 
     componentDidMount() {
@@ -40,22 +41,20 @@ class ItemDetailPage extends React.Component {
             const property = event.target.attributes.getNamedItem("name").value;
             const pattern = event.target.attributes.getNamedItem("pattern").value;
             item[property] = event.target.attributes.getNamedItem("data-value").value;
-            this.isValid(property, item[property], pattern);
+            this.propertyIsValid(property, item[property], pattern);
 
         } else {
             const property = event.target.name;
             const pattern = event.target.pattern;
             item[property] = event.target.value;
-            this.isValid(property, item[property], pattern);
+            this.propertyIsValid(property, item[property], pattern);
         }
-
-        componentHandler.upgradeDom(); //eslint-disable-line no-undef
     }
 
     onSave() {
         const {item, errors} = this.props;
-        if (errors) {
-            console.log(errors);
+        if (!this.formIsValid()) {
+            toastr.error("Form Validation Errors!");
             return;
         }
         if (!!item.itemID) {
@@ -73,13 +72,26 @@ class ItemDetailPage extends React.Component {
         this.context.router.push("/items");
     }
 
-    isValid(property, value, pattern) {
+    propertyIsValid(property, value, pattern) {
         let {errors} = this.props;
         const regexPattern = pattern.replace("\"", "");
         const patternTest = new RegExp(regexPattern);
 
         errors[property] = !patternTest.exec(value)[0];
         this.setState({});
+    }
+
+    formIsValid() {
+        let {errors, item} = this.props;
+
+        for (const property in errors) {
+            if (errors.hasOwnProperty(property)) {
+                if (errors[property]) {
+                    return false;
+                }
+            }
+        }
+        return !!item.name && !!item.price;
     }
 
     render() {
