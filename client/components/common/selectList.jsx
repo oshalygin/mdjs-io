@@ -16,8 +16,13 @@ const SelectList = ({value, label, name, options, onChange}) => {
                 onChange={onChange}
                 tabIndex="-1"
                 data-value={value} />
-            <label htmlFor={name} className="mdl-textfield__label">{label}</label>
+            <i className="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+            <label htmlFor={name} className="mdl-textfield__label">
+                {label}
+            </label>
+
             <ul htmlFor={name} className="mdl-menu mdl-menu--bottom-left mdl-js-menu" name="priceTypeId">
+
                 {options.map(option => {
                     return (
                         <SelectListRow

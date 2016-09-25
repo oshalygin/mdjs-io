@@ -57,7 +57,7 @@ export function createItem(item) {
                     "Content-Type": "application/json"
                 }
             })
-            .then((response) => {
+            .then((response ) => {
                 dispatch(itemCreatedSuccess(response.data));
                 dispatch(loadingCreatingItemSuccess());
             })
