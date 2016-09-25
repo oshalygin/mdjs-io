@@ -26,7 +26,7 @@ const SideBarNavigation = ({pathName}) => {
                                 <span className="clear"> <span className="block m-t-xs"> <strong className="font-bold">Oleg Shalygin</strong>
                                 </span>
                                     <span className="text-muted text-xs block">
-                                        Software Developer <b className="caret"></b>
+                                        Software Developer <b className="caret" />
                                     </span>
                                 </span>
                             </a>
@@ -40,42 +40,42 @@ const SideBarNavigation = ({pathName}) => {
                     </li>
                     <li className={path.dashboard}>
                         <Link to="dashboard">
-                            <i className="fa fa-th-large"></i> <span className="nav-label">Dashboard</span>
+                            <i className="fa fa-th-large" /> <span className="nav-label">Dashboard</span>
                         </Link>
                     </li>
                     <li className={path.items}>
                         <Link to="items">
-                            <i className="fa fa-tasks"></i> <span className="nav-label">Items</span>
+                            <i className="fa fa-tasks" /> <span className="nav-label">Items</span>
                         </Link>
                     </li>
                     <li className={path.itemCategories}>
                         <Link to="item-categories">
-                            <i className="fa fa-folder-open-o"></i> <span className="nav-label">Item Categories</span>
+                            <i className="fa fa-folder-open-o" /> <span className="nav-label">Item Categories</span>
                         </Link>
                     </li>
                     <li className={path.modifiers}>
                         <Link to="modifiers">
-                            <i className="fa fa-pencil-square-o"></i> <span className="nav-label">Modifiers</span>
+                            <i className="fa fa-pencil-square-o" /> <span className="nav-label">Modifiers</span>
                         </Link>
                     </li>
                     <li className={path.taxes}>
                         <Link to="taxes">
-                            <i className="fa fa-percent"></i> <span className="nav-label">Taxes</span>
+                            <i className="fa fa-percent" /> <span className="nav-label">Taxes</span>
                         </Link>
                     </li>
                     <li className={path.discounts}>
                         <Link to="discounts">
-                            <i className="fa fa-download"></i> <span className="nav-label">Discounts</span>
+                            <i className="fa fa-download" /> <span className="nav-label">Discounts</span>
                         </Link>
                     </li>
                     <li className={path.orders}>
                         <Link to="orders">
-                            <i className="fa fa-shopping-cart"></i> <span className="nav-label">Orders</span>
+                            <i className="fa fa-shopping-cart" /> <span className="nav-label">Orders</span>
                         </Link>
                     </li>
                     <li className={path.users}>
                         <Link to="users">
-                            <i className="fa fa-users"></i> <span className="nav-label">Users</span>
+                            <i className="fa fa-users" /> <span className="nav-label">Users</span>
                         </Link>
                     </li>
                 </ul>

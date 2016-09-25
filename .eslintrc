@@ -311,7 +311,7 @@
     // React specific linting rules for ESLint
     //
     "react/jsx-pascal-case" : 2,
-    "react/jsx-closing-bracket-location": 2,
+    "react/jsx-closing-bracket-location": 0,
     "react/jsx-no-bind": 2,
     "react/require-render-return": 2,
     "react/sort-comp": 2,

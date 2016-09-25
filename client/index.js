@@ -1,4 +1,5 @@
 /* eslint-disable import/default */
+/* eslint-disable react/jsx-no-bind */
 import "babel-polyfill";
 import React from "react";
 import { render } from "react-dom";
@@ -7,24 +8,18 @@ import { Router, Route, IndexRoute, browserHistory, Redirect } from "react-route
 import { Provider } from "react-redux";
 import { retrieveUser } from "./reducers/initialState";
 
-
 import "./styles/material.icons.css";
 import "./styles/material.style.min.css";
 import "../node_modules/material-design-lite/material.min.js";
 
 import "../node_modules/getmdl-select/getmdl-select.min.css";
-// derp.init(".getmdl-select"); //eslint-disable-line
-// console.log(derp);
 
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
 import "../node_modules/toastr/build/toastr.min.css";
 
-
 import "../node_modules/animate.css/animate.min.css";
 import "./styles/toastrOptions";
-
-
 
 import "./styles/style.css";
 import "./styles/spinner.css";
@@ -36,7 +31,6 @@ import "./images/favicon-16x16.png";
 import "./images/favicon-32x32.png";
 import "./images/mstile-150x150.png";
 import "./images/safari-pinned-tab.svg";
-
 
 import "../node_modules/jquery/dist/jquery.min";
 import "../node_modules/bootstrap/dist/js/bootstrap.min";

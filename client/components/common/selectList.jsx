@@ -19,12 +19,14 @@ const SelectList = ({value, label, name, options, onChange}) => {
             <label htmlFor={name} className="mdl-textfield__label">{label}</label>
             <ul htmlFor={name} className="mdl-menu mdl-menu--bottom-left mdl-js-menu" name="priceTypeId">
                 {options.map(option => {
-                    return (<SelectListRow
-                        key={option.value}
-                        label={option.label}
-                        name={name}
-                        value={option.value}
-                        onChange={onChange} />);
+                    return (
+                        <SelectListRow
+                            key={option.value}
+                            label={option.label}
+                            name={name}
+                            value={option.value}
+                            onChange={onChange} />
+                    );
                 })}
             </ul>
         </div>

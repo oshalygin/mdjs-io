@@ -6,7 +6,7 @@ const Spinner = ({hidden}) => {
         : { visibility: "block" };
 
     return (
-        <div style={spinnerVisibility} className="spinner"></div>
+        <div style={spinnerVisibility} className="spinner" />
     );
 };
 

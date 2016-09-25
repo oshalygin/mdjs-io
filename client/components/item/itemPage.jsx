@@ -19,11 +19,11 @@ class ItemPage extends React.Component {
         this.checkboxChangeHandler = this.checkboxChangeHandler.bind(this);
     }
 
-    componentDidUpdate() {
+    componentDidMount() {
         componentHandler.upgradeDom(); //eslint-disable-line no-undef
     }
 
-    componentDidMount() {
+    componentDidUpdate() {
         componentHandler.upgradeDom(); //eslint-disable-line no-undef
     }
 
