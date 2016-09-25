@@ -12,7 +12,7 @@ const ItemTableRow = ({item, checked, onActiveStateToggle}) => {
             textAlign: "left"
     };
     const parsedLastUpdatedDate = moment(item.lastUpdatedDate).format("MMM DD, YYYY - HH:mm A");
-
+    const editLink = `item/${item.itemID}`;
     return (
         <tr>
             <td style={tableRowAlignment}>
@@ -25,7 +25,7 @@ const ItemTableRow = ({item, checked, onActiveStateToggle}) => {
             <td style={tableRowAlignment}>$ {item.price}</td>
             <td style={tableRowAlignment}>{parsedLastUpdatedDate}</td>
             <td style={alignLeft}>
-                <Link to="/item/4" className="mdl-button mdl-js-button mdl-button--primary">
+                <Link to={editLink} className="mdl-button mdl-js-button mdl-button--primary">
                     Edit
                 </Link>
                 <button className="mdl-button mdl-js-button mdl-button--accent" onClick={onActiveStateToggle}>
