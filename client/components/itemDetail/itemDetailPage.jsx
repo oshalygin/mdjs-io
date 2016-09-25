@@ -13,6 +13,7 @@ class ItemDetailPage extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
+            errors: {},
             item: {},
             heading: ""
         };
@@ -20,6 +21,7 @@ class ItemDetailPage extends React.Component {
         this.onChange = this.onChange.bind(this);
         this.onSave = this.onSave.bind(this);
         this.redirect = this.redirect.bind(this);
+        this.isValid = this.isValid.bind(this);
     }
 
     componentDidMount() {
@@ -40,14 +42,20 @@ class ItemDetailPage extends React.Component {
         } else {
             const property = event.target.name;
             item[property] = event.target.value;
+
         }
+
 
         this.setState({});
         componentHandler.upgradeDom(); //eslint-disable-line no-undef
     }
 
     onSave() {
-        const {item} = this.props;
+        const {item, errors} = this.props;
+        if (errors) {
+            console.log(errors);
+            return;
+        }
         if (!!item.itemID) {
             this.props.itemActions.updateItem(item)
                 .then(() => this.redirect())
@@ -58,12 +66,22 @@ class ItemDetailPage extends React.Component {
                 .catch(error => toastr.error(error));
         }
     }
+
     redirect() {
         this.context.router.push("/items");
     }
 
+    isValid(property, value, pattern) {
+        let errors = this.props;
+        const regexPattern = pattern.replace("\"", "");
+        const patternTest = new RegExp(regexPattern);
+
+        errors.property = patternTest.exec(value);
+        this.setState({});
+    }
+
     render() {
-        const {itemHeading, item} = this.props;
+        const {itemHeading, item, errors} = this.props;
         return (
             <div className="row">
                 <div className="col-lg-offset-3 col-lg-6">
@@ -71,7 +89,7 @@ class ItemDetailPage extends React.Component {
                         <div className="ibox-title">
                             <h5>{itemHeading}</h5>
                         </div>
-                        <ItemDetailForm item={item} onChange={this.onChange} />
+                        <ItemDetailForm item={item} onChange={this.onChange} errors={errors} />
                     </div>
                 </div>
                 <div className="col-lg-offset-3 col-lg-3">
@@ -92,7 +110,8 @@ class ItemDetailPage extends React.Component {
 ItemDetailPage.propTypes = {
     item: PropTypes.object.isRequired,
     itemHeading: PropTypes.string.isRequired,
-    itemActions: PropTypes.object.isRequired
+    itemActions: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
 };
 
 ItemDetailPage.contextTypes = {
@@ -128,7 +147,12 @@ function mapStateToProps(state, ownProps) {
 
     return {
         item: item,
-        itemHeading: itemHeading
+        itemHeading: itemHeading,
+        errors: {
+            name: false,
+            label: false,
+            price: false
+        }
     };
 }
 

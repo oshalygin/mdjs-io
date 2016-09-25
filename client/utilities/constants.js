@@ -4,3 +4,6 @@ export const itemPriceTypes = [
     { label: "lb", value: 2 },
     { label: "mg", value: 3 }
 ];
+
+export const stringPattern = "[A-Z, a-z, ]*";
+export const numberPattern = "-?[0-9]*(\.[0-9]+)?";
