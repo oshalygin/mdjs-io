@@ -38,15 +38,17 @@ class ItemDetailPage extends React.Component {
 
         if (event.target.tagName === "LI") {
             const property = event.target.attributes.getNamedItem("name").value;
+            const pattern = event.target.attributes.getNamedItem("pattern").value;
             item[property] = event.target.attributes.getNamedItem("data-value").value;
+            this.isValid(property, item[property], pattern);
+
         } else {
             const property = event.target.name;
+            const pattern = event.target.pattern;
             item[property] = event.target.value;
-
+            this.isValid(property, item[property], pattern);
         }
 
-
-        this.setState({});
         componentHandler.upgradeDom(); //eslint-disable-line no-undef
     }
 
@@ -72,11 +74,11 @@ class ItemDetailPage extends React.Component {
     }
 
     isValid(property, value, pattern) {
-        let errors = this.props;
+        let {errors} = this.props;
         const regexPattern = pattern.replace("\"", "");
         const patternTest = new RegExp(regexPattern);
 
-        errors.property = patternTest.exec(value);
+        errors[property] = !patternTest.exec(value)[0];
         this.setState({});
     }
 

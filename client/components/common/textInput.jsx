@@ -52,7 +52,7 @@ TextInput.propTypes = {
     placeholder: PropTypes.string,
     // placeholder: PropTypes.string.isRequired,
     value: PropTypes.any,
-    error: PropTypes.string
+    error: PropTypes.any
 };
 
 export default TextInput;

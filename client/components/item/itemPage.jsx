@@ -61,6 +61,7 @@ class ItemPage extends React.Component {
                                         name="filteredItems"
                                         label="filter"
                                         placeholder="Filter"
+                                        pattern="[A-Z,a-z, ]*"
                                         />
                                 </div>
                             </div>
