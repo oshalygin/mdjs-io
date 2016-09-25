@@ -1,5 +1,6 @@
 import * as actionTypes from "./actionTypes";
-import { xhrCallFailure } from "./xhrStatusActions"; //eslint-disable-line
+import * as endpoints from "./httpEndpoints";
+import axios from "axios";
 
 export function loadItemsSuccess(items) {
     return {
@@ -15,10 +16,22 @@ export function itemCheckedSuccess(item) {
     };
 }
 
+export function savingItem() {
+    return {
+        type: actionTypes.ITEM_SAVING
+    };
+}
+
 export function itemCreatedSuccess(item) {
     return {
         type: actionTypes.ITEM_CREATED,
         item
+    };
+}
+
+export function loadingCreatingItemSuccess() {
+    return {
+        type: actionTypes.LOADING_CREATING_ITEM_SUCCESS
     };
 }
 
@@ -37,7 +50,21 @@ export function updateItem(item) {
 
 export function createItem(item) {
     return function (dispatch) {
-        dispatch(itemCreatedSuccess(item));
+        return axios.post(endpoints.ITEM_ENDPOINT, {
+                ...item
+            }, {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            .then((response) => {
+                dispatch(itemCreatedSuccess(response.data));
+                dispatch(loadingCreatingItemSuccess());
+            })
+            .catch(errorResponse => {
+                throw (errorResponse);
+            });
+
     };
 }
 

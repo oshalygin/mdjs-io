@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as itemActions from "../../actions/itemActions";
 import { itemPriceTypes } from "../../utilities/constants";
+import toastr from "toastr";
 
 import ItemDetailForm from "./itemDetailForm.jsx";
 
@@ -18,6 +19,7 @@ class ItemDetailPage extends React.Component {
 
         this.onChange = this.onChange.bind(this);
         this.onSave = this.onSave.bind(this);
+        this.redirect = this.redirect.bind(this);
     }
 
     componentDidMount() {
@@ -46,11 +48,18 @@ class ItemDetailPage extends React.Component {
 
     onSave() {
         const {item} = this.props;
-        if (!!item) {
-            this.props.itemActions.updateItem(item);
+        if (!!item.itemID) {
+            this.props.itemActions.updateItem(item)
+                .then(() => this.redirect())
+                .catch(error => toastr.error(error));
         } else {
-            this.props.itemActions.createItem(item);
+            this.props.itemActions.createItem(item)
+                .then(() => this.redirect())
+                .catch(error => toastr.error(error));
         }
+    }
+    redirect() {
+        this.context.router.push("/items");
     }
 
     render() {
@@ -94,13 +103,16 @@ function mapStateToProps(state, ownProps) {
     let item = {
         name: "",
         label: "",
-        lastUpdatedBy: null,
         price: 0,
         color: null,
         photoURL: "",
         itemCategoryID: null,
         isActive: null,
-        priceTypeID: itemPriceTypes[0].value
+        priceTypeID: itemPriceTypes[0].value,
+
+        facilityID: state.user.facilityID,
+        createdBy: state.user.userID,
+        companyID: state.user.companyID
     };
 
     let itemHeading = "New Item";
