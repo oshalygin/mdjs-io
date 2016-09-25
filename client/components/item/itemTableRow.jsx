@@ -1,7 +1,7 @@
 import React, { PropTypes } from "react";
 import moment from "moment";
 
-const ItemTableRow = ({item, checked}) => {
+const ItemTableRow = ({item, checked, onEdit, onActiveStateToggle}) => {
     const tableRowAlignment = {
         verticalAlign: "middle",
         textAlign: "center"
@@ -37,7 +37,9 @@ const ItemTableRow = ({item, checked}) => {
 
 ItemTableRow.propTypes = {
     item: PropTypes.object.isRequired,
-    checked: PropTypes.func.isRequired
+    checked: PropTypes.func.isRequired,
+    onEdit: PropTypes.func.isRequired,
+    onActiveStateToggle: PropTypes.func.isRequired
 };
 
 export default ItemTableRow;

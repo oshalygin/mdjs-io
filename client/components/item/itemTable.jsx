@@ -1,7 +1,7 @@
 import React, { PropTypes } from "react";
 import ItemTableRow from "./itemTableRow.jsx";
 
-const ItemTable = ({items, checked}) => {
+const ItemTable = ({items, checked, onEdit, onActiveStateToggle}) => {
     const centeredHeaders = {
         textAlign: "center"
     };
@@ -24,7 +24,10 @@ const ItemTable = ({items, checked}) => {
                             <ItemTableRow
                                 key={item.itemID}
                                 item={item}
-                                checked={checked} />
+                                checked={checked}
+                                onEdit={onEdit}
+                                onActiveStateToggle={onActiveStateToggle}
+                                />
                         );
                     })}
                 </tbody>
@@ -35,7 +38,9 @@ const ItemTable = ({items, checked}) => {
 
 ItemTable.propTypes = {
     items: PropTypes.array.isRequired,
-    checked: PropTypes.func.isRequired
+    checked: PropTypes.func.isRequired,
+    onEdit: PropTypes.func.isRequired,
+    onActiveStateToggle: PropTypes.func.isRequired
 };
 
 export default ItemTable;
