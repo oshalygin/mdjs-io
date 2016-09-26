@@ -55,9 +55,10 @@ export function createItem(item) {
             }, {
                 headers: {
                     "Content-Type": "application/json"
+                    // Authorization: token
                 }
             })
-            .then((response ) => {
+            .then((response) => {
                 dispatch(itemCreatedSuccess(response.data));
                 dispatch(loadingCreatingItemSuccess());
             })

@@ -48,6 +48,6 @@ export const persistUserToken = (userToken) => {
         const serializedState = JSON.stringify(userToken);
         localStorage.setItem("token", serializedState);
     } catch (error) {
-        console.log("saving user token failure: error " + error);
+        console.log("Saving Token Failure: " + error);
     }
 };

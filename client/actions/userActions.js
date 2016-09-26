@@ -8,7 +8,6 @@ import { loadTaxesSuccess } from "./taxActions";
 import { loadItemsSuccess } from "./itemActions";
 import { loadRefundReasonsSuccess } from "./refundReasonActions";
 
-import { xhrCallFailure } from "./xhrStatusActions"; //eslint-disable-line
 import axios from "axios";
 
 export function loginSuccess(user) {

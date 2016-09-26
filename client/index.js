@@ -1,5 +1,6 @@
 /* eslint-disable import/default */
 /* eslint-disable react/jsx-no-bind */
+
 import "babel-polyfill";
 import React from "react";
 import { render } from "react-dom";

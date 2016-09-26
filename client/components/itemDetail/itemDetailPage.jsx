@@ -39,10 +39,8 @@ class ItemDetailPage extends React.Component {
 
         if (event.target.tagName === "LI") {
             const property = event.target.attributes.getNamedItem("name").value;
-            const pattern = event.target.attributes.getNamedItem("pattern").value;
             item[property] = event.target.attributes.getNamedItem("data-value").value;
-            this.propertyIsValid(property, item[property], pattern);
-
+            this.setState({});
         } else {
             const property = event.target.name;
             const pattern = event.target.pattern;
@@ -52,7 +50,7 @@ class ItemDetailPage extends React.Component {
     }
 
     onSave() {
-        const {item, errors} = this.props;
+        const { item } = this.props;
         if (!this.formIsValid()) {
             toastr.error("Form Validation Errors!");
             return;
