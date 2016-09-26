@@ -19,9 +19,9 @@ export function itemCheckedSuccess(item) {
     };
 }
 
-export function itemActiveStateToggledSuccess(item) {
+export function itemDeactivatedSuccess(item) {
     return {
-        type: actionTypes.ITEM_ACITE_STATE_TOGGLED,
+        type: actionTypes.ITEM_DEACTIVATED,
         item
     };
 }
@@ -50,7 +50,8 @@ export function createOrUpdateItem(item) {
         dispatch(loadingItemCreationOrUpdates());
 
         const token = loadUserToken();
-        return axios.post(endpoints.ITEM_ENDPOINT, {
+        return axios
+            .post(endpoints.ITEM_ENDPOINT, {
                 ...item
             }, {
                 headers: {
@@ -59,8 +60,38 @@ export function createOrUpdateItem(item) {
                 }
             })
             .then((response) => {
-                dispatch(itemCreatedOrUpdatedSuccess({ ...response.data }));
+                dispatch(itemCreatedOrUpdatedSuccess({...response.data
+                }));
                 dispatch(loadingItemCreationOrUpdatesSuccess());
+            })
+            .catch(errorResponse => {
+                throw (errorResponse);
+            });
+
+    };
+}
+
+export function deactivateItem(item) {
+    return function (dispatch) {
+        // dispatch(loadingItemCreationOrUpdates());
+
+        let deactivatedItem = {...item,
+            isActive: false
+        };
+        console.log(item);
+        const token = loadUserToken();
+        const endpoint = `${endpoints.ITEM_ENDPOINT}/${deactivatedItem.itemID}`;
+        return axios
+            .delete(endpoint, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: token
+                }
+            })
+            .then(() => {
+                dispatch(itemDeactivatedSuccess({...deactivatedItem
+                }));
+                // dispatch(loadingItemCreationOrUpdatesSuccess());
             })
             .catch(errorResponse => {
                 throw (errorResponse);
@@ -76,15 +107,5 @@ export function itemChecked(item) {
     };
     return function (dispatch) {
         dispatch(itemCheckedSuccess(checkedItem));
-    };
-}
-
-export function itemActivated(item) {
-    const toggledItem = {
-        ...item,
-        isActive: !item.isActive
-    };
-    return function (dispatch) {
-        dispatch(itemActiveStateToggledSuccess(toggledItem));
     };
 }

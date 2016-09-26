@@ -17,7 +17,7 @@ class ItemPage extends React.Component {
         };
 
         this.checkboxChangeHandler = this.checkboxChangeHandler.bind(this);
-        this.onActiveStateToggle = this.onActiveStateToggle.bind(this);
+        this.deactivate = this.deactivate.bind(this);
 
     }
 
@@ -35,8 +35,11 @@ class ItemPage extends React.Component {
         this.props.itemActions.itemChecked(checkedItem);
     }
 
-    onActiveStateToggle() {
-        console.log("onActiveStateToggle");
+    deactivate(event) {
+        const deactivatedItem = this.props.items
+            .filter(item => item.itemID == event.target.name)[0]; //eslint-disable-line eqeqeq
+
+        this.props.itemActions.deactivateItem(deactivatedItem);
     }
 
     render() {
@@ -74,7 +77,7 @@ class ItemPage extends React.Component {
                             <ItemTable
                                 items={items}
                                 checked={this.checkboxChangeHandler}
-                                onActiveStateToggle={this.onActiveStateToggle} />
+                                deactivate={this.deactivate} />
                         </div>
                     </div>
                 </div>

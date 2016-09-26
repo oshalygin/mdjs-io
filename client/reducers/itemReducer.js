@@ -23,6 +23,13 @@ export default function itemReducer(state = initialState.items, action) {
                     return [...items];
                 }
             }
+        case actionTypes.ITEM_DEACTIVATED:
+            {
+                let items = [...state];
+                let deactivatedItemIndex = items.findIndex(item => item.itemID === action.item.itemID);
+                items.splice(deactivatedItemIndex, 1, action.item);
+                return [...items];
+            }
         case actionTypes.ITEM_CHECKED:
             {
                 let items = [...state];
@@ -30,7 +37,6 @@ export default function itemReducer(state = initialState.items, action) {
                 items.splice(checkedItemIndex, 1, action.item);
                 return [...items];
             }
-
         default:
             {
                 return state;
