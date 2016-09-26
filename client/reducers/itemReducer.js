@@ -11,9 +11,17 @@ export default function itemReducer(state = initialState.items, action) {
                     }];
                 }, []);
             }
-        case actionTypes.ITEM_CREATED:
+        case actionTypes.ITEM_CREATED_OR_UPDATED:
             {
-                return [...state, action.item];
+                let items = [...state];
+                let currentItemIndex = items.findIndex(item => item.itemID === action.item.itemID);
+
+                if (currentItemIndex === -1) {
+                    return [...state, action.item];
+                } else { //eslint-disable-line no-else-return
+                    items.splice(currentItemIndex, 1, action.item);
+                    return [...items];
+                }
             }
         case actionTypes.ITEM_CHECKED:
             {
@@ -22,13 +30,7 @@ export default function itemReducer(state = initialState.items, action) {
                 items.splice(checkedItemIndex, 1, action.item);
                 return [...items];
             }
-        case actionTypes.ITEM_UPDATED:
-            {
-                let items = [...state];
-                let checkedItemIndex = items.findIndex(item => item.itemID === action.item.itemID);
-                items.splice(checkedItemIndex, 1, action.item);
-                return [...items];
-            }
+
         default:
             {
                 return state;

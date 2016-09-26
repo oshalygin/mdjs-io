@@ -54,15 +54,11 @@ class ItemDetailPage extends React.Component {
             toastr.error("Form Validation Errors!");
             return;
         }
-        if (!!item.itemID) {
-            this.props.itemActions.updateItem(item)
-                .then(() => this.redirect())
-                .catch(error => toastr.error(error));
-        } else {
-            this.props.itemActions.createItem(item)
-                .then(() => this.redirect())
-                .catch(error => toastr.error(error));
-        }
+
+        this.props.itemActions.createOrUpdateItem(item)
+            .then(() => this.redirect())
+            .catch(error => toastr.error(error));
+
     }
 
     redirect() {
@@ -139,19 +135,16 @@ function mapStateToProps(state, ownProps) {
         itemCategoryID: null,
         isActive: null,
         priceTypeID: itemPriceTypes[0].value
-
-        // facilityID: state.user.facilityID,
-        // createdBy: state.user.userID,
-        // companyID: state.user.companyID
     };
 
     let itemHeading = "New Item";
 
     if (ownProps.params.id) {
-        const itemExists = state.items.find(existingItem => existingItem.itemID == ownProps.params.id); //eslint-disable-line eqeqeq
+        const {items} = state;
+        const existingItem = items.filter(stateItem => stateItem.itemID == ownProps.params.id)[0]; //eslint-disable-line eqeqeq
 
-        if (itemExists) {
-            item = itemExists;
+        if (!!existingItem) {
+            item = Object.assign({}, existingItem);
             itemHeading = "Update Item";
         }
     }

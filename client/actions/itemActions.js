@@ -19,40 +19,35 @@ export function itemCheckedSuccess(item) {
     };
 }
 
-export function savingItem() {
+export function itemActiveStateToggledSuccess(item) {
     return {
-        type: actionTypes.ITEM_SAVING
-    };
-}
-
-export function itemCreatedSuccess(item) {
-    return {
-        type: actionTypes.ITEM_CREATED,
+        type: actionTypes.ITEM_ACITE_STATE_TOGGLED,
         item
     };
 }
 
-export function loadingCreatingItemSuccess() {
+export function itemCreatedOrUpdatedSuccess(item) {
     return {
-        type: actionTypes.LOADING_CREATING_ITEM_SUCCESS
-    };
-}
-
-export function updateItemsSuccess(item) {
-    return {
-        type: actionTypes.ITEM_UPDATED,
+        type: actionTypes.ITEM_CREATED_OR_UPDATED,
         item
     };
 }
 
-export function updateItem(item) {
-    return function (dispatch) {
-        dispatch(updateItemsSuccess(item));
+export function loadingItemCreationOrUpdatesSuccess() {
+    return {
+        type: actionTypes.LOADING_ITEM_CREATED_OR_UPDATED_SUCCESS
     };
 }
 
-export function createItem(item) {
+export function loadingItemCreationOrUpdates() {
+    return {
+        type: actionTypes.LOADING_ITEM_CREATED_OR_UPDATED
+    };
+}
+
+export function createOrUpdateItem(item) {
     return function (dispatch) {
+        dispatch(loadingItemCreationOrUpdates());
 
         const token = loadUserToken();
         return axios.post(endpoints.ITEM_ENDPOINT, {
@@ -64,8 +59,8 @@ export function createItem(item) {
                 }
             })
             .then((response) => {
-                dispatch(itemCreatedSuccess(response.data));
-                dispatch(loadingCreatingItemSuccess());
+                dispatch(itemCreatedOrUpdatedSuccess({ ...response.data }));
+                dispatch(loadingItemCreationOrUpdatesSuccess());
             })
             .catch(errorResponse => {
                 throw (errorResponse);
@@ -81,5 +76,15 @@ export function itemChecked(item) {
     };
     return function (dispatch) {
         dispatch(itemCheckedSuccess(checkedItem));
+    };
+}
+
+export function itemActivated(item) {
+    const toggledItem = {
+        ...item,
+        isActive: !item.isActive
+    };
+    return function (dispatch) {
+        dispatch(itemActiveStateToggledSuccess(toggledItem));
     };
 }

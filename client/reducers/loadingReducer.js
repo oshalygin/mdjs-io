@@ -9,16 +9,16 @@ export default function loadingReducer(state = initialState.loading, action) {
                     loadingUser: true
                 };
             }
-        case actionTypes.LOADING_CREATING_ITEM:
+        case actionTypes.LOADING_ITEM_CREATED_OR_UPDATED:
             {
                 return {...state,
-                    creatingItem: true
+                    createUpdateItem: true
                 };
             }
-        case actionTypes.LOADING_CREATING_ITEM_SUCCESS:
+        case actionTypes.LOADING_ITEM_CREATED_OR_UPDATED_SUCCESS:
             {
                 return {...state,
-                    creatingItem: false
+                    createUpdateItem: false
                 };
             }
         case actionTypes.LOADED_USER_SUCCESS:
