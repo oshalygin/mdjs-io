@@ -7,6 +7,7 @@ import { itemPriceTypes } from "../../utilities/constants";
 import toastr from "toastr";
 
 import ItemDetailForm from "./itemDetailForm.jsx";
+import Spinner from "../common/spinner.jsx";
 
 class ItemDetailPage extends React.Component {
     constructor(props, context) {
@@ -88,7 +89,20 @@ class ItemDetailPage extends React.Component {
     }
 
     render() {
-        const {itemHeading, item, errors} = this.props;
+        const {itemHeading, item, errors, loading} = this.props;
+
+        let formComponent = !loading.createUpdateItem
+            ? (<ItemDetailForm item={item} onChange={this.onChange} errors={errors} />)
+            : (
+                <div className="ibox-content">
+                    <div className="row">
+                        <div className="col-md-12">
+                            <Spinner />
+                        </div>
+                    </div>
+                </div>
+            );
+
         return (
             <div className="row">
                 <div className="col-lg-offset-3 col-lg-6">
@@ -96,7 +110,7 @@ class ItemDetailPage extends React.Component {
                         <div className="ibox-title">
                             <h5>{itemHeading}</h5>
                         </div>
-                        <ItemDetailForm item={item} onChange={this.onChange} errors={errors} />
+                        {formComponent}
                     </div>
                 </div>
                 <div className="col-lg-offset-3 col-lg-3">
@@ -116,6 +130,7 @@ class ItemDetailPage extends React.Component {
 
 ItemDetailPage.propTypes = {
     item: PropTypes.object.isRequired,
+    loading: PropTypes.object.isRequired,
     itemHeading: PropTypes.string.isRequired,
     itemActions: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
@@ -152,6 +167,7 @@ function mapStateToProps(state, ownProps) {
     return {
         item: item,
         itemHeading: itemHeading,
+        loading: state.loading,
         errors: {
             name: false,
             label: false,
