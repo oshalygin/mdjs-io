@@ -8,7 +8,6 @@ import toastr from "toastr";
 
 import ItemDetailForm from "./itemDetailForm.jsx";
 
-
 class ItemDetailPage extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -139,11 +138,11 @@ function mapStateToProps(state, ownProps) {
         photoURL: "",
         itemCategoryID: null,
         isActive: null,
-        priceTypeID: itemPriceTypes[0].value,
+        priceTypeID: itemPriceTypes[0].value
 
-        facilityID: state.user.facilityID,
-        createdBy: state.user.userID,
-        companyID: state.user.companyID
+        // facilityID: state.user.facilityID,
+        // createdBy: state.user.userID,
+        // companyID: state.user.companyID
     };
 
     let itemHeading = "New Item";

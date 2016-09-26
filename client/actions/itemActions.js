@@ -1,5 +1,8 @@
 import * as actionTypes from "./actionTypes";
 import * as endpoints from "./httpEndpoints";
+import {
+    loadUserToken
+} from "../utilities/localStorage";
 import axios from "axios";
 
 export function loadItemsSuccess(items) {
@@ -50,12 +53,14 @@ export function updateItem(item) {
 
 export function createItem(item) {
     return function (dispatch) {
+
+        const token = loadUserToken();
         return axios.post(endpoints.ITEM_ENDPOINT, {
                 ...item
             }, {
                 headers: {
-                    "Content-Type": "application/json"
-                    // Authorization: token
+                    "Content-Type": "application/json",
+                    Authorization: token
                 }
             })
             .then((response) => {
