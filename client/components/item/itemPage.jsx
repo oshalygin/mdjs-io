@@ -1,8 +1,10 @@
 import React, { PropTypes } from "react";
+import toastr from "toastr";
 import { Link } from "react-router";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import * as itemActions from "../../actions/itemActions";
+
 
 import TextInput from "../common/textInput.jsx";
 import ItemTable from "./itemTable.jsx";
@@ -39,7 +41,13 @@ class ItemPage extends React.Component {
         const deactivatedItem = this.props.items
             .filter(item => item.itemID == event.target.name)[0]; //eslint-disable-line eqeqeq
 
-        this.props.itemActions.deactivateItem(deactivatedItem);
+        this.props.itemActions.deactivateItem(deactivatedItem)
+            .then(() => {
+
+            })
+            .catch(() => {
+                toastr.error(`could not deactivate the item, ${deactivatedItem.label}`);
+            });
     }
 
     render() {

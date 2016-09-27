@@ -21,6 +21,13 @@ export function itemCheckedSuccess(item) {
 
 export function itemDeactivatedSuccess(item) {
     return {
+        type: actionTypes.ITEM_DEACTIVATED_SUCCESS,
+        item
+    };
+}
+
+export function itemDeactivated(item) {
+    return {
         type: actionTypes.ITEM_DEACTIVATED,
         item
     };
@@ -73,12 +80,14 @@ export function createOrUpdateItem(item) {
 
 export function deactivateItem(item) {
     return function (dispatch) {
-        // dispatch(loadingItemCreationOrUpdates());
 
         let deactivatedItem = {...item,
-            isActive: false
+            isActive: false,
+            disabled: true
         };
-        console.log(item);
+
+        dispatch(itemDeactivated(deactivatedItem));
+
         const token = loadUserToken();
         const endpoint = `${endpoints.ITEM_ENDPOINT}/${deactivatedItem.itemID}`;
         return axios
