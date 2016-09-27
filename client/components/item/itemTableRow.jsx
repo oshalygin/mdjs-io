@@ -11,7 +11,7 @@ const ItemTableRow = ({item, checked, deactivate}) => {
         ...tableRowAlignment,
             textAlign: "left"
     };
-    const parsedLastUpdatedDate = moment(item.lastUpdatedDate).format("MMM DD, YYYY - HH:mm A");
+    const parsedLastUpdatedDate = moment(item.lastUpdatedDate).format("MMM DD, YYYY - hh:mm A");
     const editLink = `item/${item.itemID}`;
     return (
         <tr>
