@@ -5,7 +5,7 @@ import SelectList from "../common/selectList.jsx";
 import ItemImage from "./itemImage.jsx";
 import { itemPriceTypes, stringPattern, numberPattern } from "../../utilities/constants";
 
-const ItemDetailForm = ({item, errors, onChange}) => {
+const ItemDetailForm = ({item, errors, onChange, onDrop}) => {
 
     const itemPriceIdValue = itemPriceTypes
         .filter(priceType => priceType.value == item.priceTypeID)[0] //eslint-disable-line eqeqeq
@@ -48,7 +48,7 @@ const ItemDetailForm = ({item, errors, onChange}) => {
                         />
                 </div>
                 <div className="col-md-offset-4 col-md-3">
-                    <ItemImage />
+                    <ItemImage onDrop={onDrop} />
                 </div>
             </div>
         </div>
@@ -58,7 +58,8 @@ const ItemDetailForm = ({item, errors, onChange}) => {
 ItemDetailForm.propTypes = {
     errors: PropTypes.object.isRequired,
     item: PropTypes.object.isRequired,
-    onChange: PropTypes.func.isRequired
+    onChange: PropTypes.func.isRequired,
+    onDrop: PropTypes.func.isRequired
 };
 
 export default ItemDetailForm;

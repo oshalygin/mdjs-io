@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 import React, { PropTypes } from "react";
 import DropZone from "react-dropzone";
 
@@ -26,31 +27,34 @@ const imageItem = {
     margin: "0 auto",
     textAlign: "center",
     verticalAlign: "middle",
-    lineHeight: `${imageBoxLength - imageBoxLength/10}${unitOfMeasure}`
+    lineHeight: `${imageBoxLength - imageBoxLength / 10}${unitOfMeasure}`
 };
 
-function readFiles(files) {
-    console.log(files);
+let previewLink = "";
+
+let imageContent = !!previewLink
+    ? (<div style={imageItem}>Drag/Click Here</div>)
+    : (<div style={imageItem}>derp</div>);
+
+function onImageDrop(files, onDrop) {
+    previewLink = files[0].preview;
+    onDrop(files);
 }
 
-const ItemImage = () => {
+
+
+const ItemImage = ({onDrop}) => {
     return (
         <div style={imagePlaceholderContainer}>
-            <DropZone style={imageContainer} onDrop={(files) => readFiles(files)}>
-                <div style={imageItem}>Drag/Click Here</div>
+            <DropZone style={imageContainer} onDrop={(files) => onImageDrop(files, onDrop)}>
+                {imageContent}
             </DropZone>
         </div>
     );
 };
 
-// <div style={imagePlaceholderContainer}>
-//             <div style={imageContainer}>
-//                 <div style={imageItem} />
-//             </div>
-//         </div>
-
 ItemImage.propTypes = {
-
+    onDrop: PropTypes.func.isRequired
 };
 
 export default ItemImage;

@@ -23,6 +23,7 @@ class ItemDetailPage extends React.Component {
         this.redirect = this.redirect.bind(this);
         this.propertyIsValid = this.propertyIsValid.bind(this);
         this.formIsValid = this.formIsValid.bind(this);
+        this.onDrop = this.onDrop.bind(this);
     }
 
     componentDidMount() {
@@ -75,6 +76,10 @@ class ItemDetailPage extends React.Component {
         this.setState({});
     }
 
+    onDrop(files) {
+        console.log(files);
+    }
+
     formIsValid() {
         let {errors, item} = this.props;
 
@@ -92,7 +97,7 @@ class ItemDetailPage extends React.Component {
         const {itemHeading, item, errors, loading} = this.props;
 
         let formComponent = !loading.createUpdateItem
-            ? (<ItemDetailForm item={item} onChange={this.onChange} errors={errors} />)
+            ? (<ItemDetailForm item={item} onDrop={this.onDrop} onChange={this.onChange} errors={errors} />)
             : (
                 <div className="ibox-content">
                     <div className="row">
