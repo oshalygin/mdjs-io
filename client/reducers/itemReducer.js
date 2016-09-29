@@ -34,9 +34,8 @@ export default function itemReducer(state = initialState.items, action) {
         case actionTypes.ITEM_DEACTIVATED_SUCCESS:
             {
                 let items = [...state];
-                let deactivatedItemIndex = items.findIndex(item => item.itemID === action.item.itemID);
-                items.splice(deactivatedItemIndex, 1, action.item);
-                return [...items];
+                let reducedItemList = items.filter(item => item.itemID !== action.item.itemID);
+                return [...reducedItemList];
             }
         case actionTypes.ITEM_CHECKED:
             {
