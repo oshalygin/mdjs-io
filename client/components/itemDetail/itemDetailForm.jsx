@@ -2,24 +2,10 @@ import React, { PropTypes } from "react";
 
 import TextInput from "../common/textInput.jsx";
 import SelectList from "../common/selectList.jsx";
+import ItemImage from "./itemImage.jsx";
 import { itemPriceTypes, stringPattern, numberPattern } from "../../utilities/constants";
 
 const ItemDetailForm = ({item, errors, onChange}) => {
-    const imagePlaceholderContainer = {
-        position: "relative",
-        backgroundColor: "yellow",
-        width: "25em",
-        height: "25em",
-        float: "right"
-    };
-    const imagePlaceholder = {
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        width: "5em",
-        height: "5em",
-        backgroundColor: "red"
-    };
 
     const itemPriceIdValue = itemPriceTypes
         .filter(priceType => priceType.value == item.priceTypeID)[0] //eslint-disable-line eqeqeq
@@ -62,9 +48,7 @@ const ItemDetailForm = ({item, errors, onChange}) => {
                         />
                 </div>
                 <div className="col-md-offset-4 col-md-3">
-                    <div style={imagePlaceholderContainer}>
-                        <div style={imagePlaceholder} />
-                    </div>
+                    <ItemImage />
                 </div>
             </div>
         </div>
