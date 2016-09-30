@@ -151,6 +151,7 @@ ItemDetailPage.contextTypes = {
 
 function mapStateToProps(state, ownProps) {
     let item = {
+        itemId: 0,
         name: "",
         label: "",
         price: 0,
@@ -162,7 +163,7 @@ function mapStateToProps(state, ownProps) {
     };
 
     let itemHeading = "New Item";
-
+    //Need to revisit this area to make sure that the image is persisted appropriately
     if (ownProps.params.id) {
         const {items} = state;
         const existingItem = items.filter(stateItem => stateItem.itemID == ownProps.params.id)[0]; //eslint-disable-line eqeqeq

@@ -10,7 +10,6 @@ const ItemDetailForm = ({item, errors, onChange, onDrop}) => {
     const itemPriceIdValue = itemPriceTypes
         .filter(priceType => priceType.value == item.priceTypeID)[0] //eslint-disable-line eqeqeq
         .label;
-    console.log(item);
     return (
         <div className="ibox-content">
             <div className="row">
