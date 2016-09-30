@@ -27,27 +27,19 @@ const imageItem = {
     margin: "0 auto",
     textAlign: "center",
     verticalAlign: "middle",
+    cursor: "pointer",
     lineHeight: `${imageBoxLength - imageBoxLength / 10}${unitOfMeasure}`
 };
 
-let previewLink = "";
 
-
-function onImageDrop(files, onDrop) {
-    previewLink = files[0].preview;
-    onDrop(files);
-}
-
-
-
-const ItemImage = ({onDrop}) => {
-    let imageContent = !!previewLink
+const ItemImage = ({itemPreview, onDrop}) => {
+    let imageContent = !!itemPreview
         ? (<div style={imageItem}>Drag/Click Here</div>)
-        : (<div style={imageItem}>derp</div>);
+        : (<div style={imageItem}>Drag/Click Here</div>);
 
     return (
         <div style={imagePlaceholderContainer}>
-            <DropZone style={imageContainer} onDrop={(files) => onImageDrop(files, onDrop)}>
+            <DropZone style={imageContainer} onDrop={onDrop}>
                 {imageContent}
             </DropZone>
         </div>
@@ -55,7 +47,8 @@ const ItemImage = ({onDrop}) => {
 };
 
 ItemImage.propTypes = {
-    onDrop: PropTypes.func.isRequired
+    onDrop: PropTypes.func.isRequired,
+    itemPreview: PropTypes.string.isRequired
 };
 
 export default ItemImage;
