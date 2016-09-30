@@ -34,7 +34,7 @@ const imageItem = {
 
 const ItemImage = ({itemPreview, onDrop}) => {
     let imageContent = !!itemPreview
-        ? (<div style={imageItem}>Drag/Click Here</div>)
+        ? (<div style={imageItem}>Image is now here</div>)
         : (<div style={imageItem}>Drag/Click Here</div>);
 
     return (

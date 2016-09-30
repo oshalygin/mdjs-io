@@ -32,6 +32,7 @@ export default function itemReducer(state = initialState.items, action) {
             }
         case actionTypes.ITEM_DEACTIVATED:
         case actionTypes.ITEM_CHECKED:
+        case actionTypes.ITEM_PREVIEW_UPDATED:
             {
                 let items = [...state];
                 let selectedItemIndex = items.findIndex(item => item.itemID === action.item.itemID);

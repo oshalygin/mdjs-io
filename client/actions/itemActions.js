@@ -19,6 +19,13 @@ export function itemCheckedSuccess(item) {
     };
 }
 
+export function itemPhotoUpdatedSuccess(item) {
+    return {
+        type: actionTypes.ITEM_PREVIEW_UPDATED,
+        item
+    };
+}
+
 export function itemDeactivatedSuccess(item) {
     return {
         type: actionTypes.ITEM_DEACTIVATED_SUCCESS,
@@ -98,9 +105,7 @@ export function deactivateItem(item) {
                 }
             })
             .then(() => {
-                dispatch(itemDeactivatedSuccess({...deactivatedItem
-                }));
-                // dispatch(loadingItemCreationOrUpdatesSuccess());
+                dispatch(itemDeactivatedSuccess({...deactivatedItem}));
             })
             .catch(errorResponse => {
                 throw (errorResponse);
@@ -116,5 +121,15 @@ export function itemChecked(item) {
     };
     return function (dispatch) {
         dispatch(itemCheckedSuccess(checkedItem));
+    };
+}
+
+export function itemImageUpdated(item, newPhotoUrl) {
+    const updatedImageItem = {
+        ...item,
+       photoURL: newPhotoUrl
+    };
+    return function (dispatch) {
+        dispatch(itemPhotoUpdatedSuccess(updatedImageItem));
     };
 }
