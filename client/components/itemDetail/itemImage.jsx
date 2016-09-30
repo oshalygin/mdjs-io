@@ -32,9 +32,6 @@ const imageItem = {
 
 let previewLink = "";
 
-let imageContent = !!previewLink
-    ? (<div style={imageItem}>Drag/Click Here</div>)
-    : (<div style={imageItem}>derp</div>);
 
 function onImageDrop(files, onDrop) {
     previewLink = files[0].preview;
@@ -44,6 +41,10 @@ function onImageDrop(files, onDrop) {
 
 
 const ItemImage = ({onDrop}) => {
+    let imageContent = !!previewLink
+        ? (<div style={imageItem}>Drag/Click Here</div>)
+        : (<div style={imageItem}>derp</div>);
+
     return (
         <div style={imagePlaceholderContainer}>
             <DropZone style={imageContainer} onDrop={(files) => onImageDrop(files, onDrop)}>
