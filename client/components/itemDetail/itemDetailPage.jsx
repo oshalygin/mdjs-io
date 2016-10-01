@@ -162,8 +162,6 @@ function mapStateToProps(state, ownProps) {
         priceTypeID: itemPriceTypes[0].value
     };
 
-    let itemHeading = "New Item";
-
     const {items} = state;
     const existingItem = items
         .filter(stateItem => stateItem.itemID == ownProps.params.id || stateItem.itemID === item.itemID)[0]; //eslint-disable-line eqeqeq
@@ -171,11 +169,10 @@ function mapStateToProps(state, ownProps) {
     if (!!existingItem) {
         item = Object.assign({}, existingItem);
     }
-    if (existingItem && existingItem.itemID !== 0) {
-        itemHeading = "Update Item";
-    }
 
-
+    const itemHeading = (existingItem && existingItem.itemID !== 0)
+            ? "Update Item"
+            : "New Item";
 
     return {
         item: item,
