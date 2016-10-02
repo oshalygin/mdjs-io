@@ -80,8 +80,8 @@ class ItemDetailPage extends React.Component {
         const {item} = this.props;
         console.log(item);
         console.log(files);
-        const filePreviewUrl = files[0].preview;
-        this.props.itemActions.itemImageUpdated(item, filePreviewUrl);
+        const file = files[0];
+        this.props.itemActions.itemImageUpdated(item, file);
     }
 
     formIsValid() {
@@ -157,6 +157,9 @@ function mapStateToProps(state, ownProps) {
         price: 0,
         color: null,
         photoURL: "",
+        file: {
+            lastModifiedDate: new Date()
+        },
         itemCategoryID: null,
         isActive: null,
         priceTypeID: itemPriceTypes[0].value

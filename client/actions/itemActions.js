@@ -62,11 +62,20 @@ export function loadingItemCreationOrUpdates() {
 export function createOrUpdateItem(item) {
     return function (dispatch) {
         dispatch(loadingItemCreationOrUpdates());
+        let itemToPersist = {...item };
+
+        delete itemToPersist.photoURL;
+        delete itemToPersist.file;
 
         const token = loadUserToken();
+
+        // let data = new FormData();
+        // data.append("item", {...item
+        // });
+        // data.append("file", )
         return axios
             .post(endpoints.ITEM_ENDPOINT, {
-                ...item
+                ...itemToPersist
             }, {
                 headers: {
                     "Content-Type": "application/json",
@@ -105,7 +114,8 @@ export function deactivateItem(item) {
                 }
             })
             .then(() => {
-                dispatch(itemDeactivatedSuccess({...deactivatedItem}));
+                dispatch(itemDeactivatedSuccess({...deactivatedItem
+                }));
             })
             .catch(errorResponse => {
                 throw (errorResponse);
@@ -124,10 +134,11 @@ export function itemChecked(item) {
     };
 }
 
-export function itemImageUpdated(item, newPhotoUrl) {
+export function itemImageUpdated(item, file) {
     const updatedImageItem = {
         ...item,
-       photoURL: newPhotoUrl
+        photoURL: file.preview,
+        file: {...file}
     };
     return function (dispatch) {
         dispatch(itemPhotoUpdatedSuccess(updatedImageItem));
