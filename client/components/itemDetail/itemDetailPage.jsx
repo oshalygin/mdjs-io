@@ -78,8 +78,6 @@ class ItemDetailPage extends React.Component {
 
     onDrop(files) {
         const {item} = this.props;
-        console.log(item);
-        console.log(files);
         const file = files[0];
         this.props.itemActions.itemImageUpdated(item, file);
     }

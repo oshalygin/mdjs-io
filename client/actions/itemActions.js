@@ -62,26 +62,29 @@ export function loadingItemCreationOrUpdates() {
 export function createOrUpdateItem(item) {
     return function (dispatch) {
         dispatch(loadingItemCreationOrUpdates());
-        let itemToPersist = {...item };
+        let itemToPersist = {...item
+        };
 
         delete itemToPersist.photoURL;
         delete itemToPersist.file;
 
         const token = loadUserToken();
 
-        // let data = new FormData();
-        // data.append("item", {...item
-        // });
-        // data.append("file", )
+//this approach wont work...
+        const data = new FormData();
+        data.append("item", {...item
+        });
+        data.append("file", {...item.file
+        });
+
         return axios
-            .post(endpoints.ITEM_ENDPOINT, {
-                ...itemToPersist
-            }, {
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: token
-                }
-            })
+            .post(endpoints.ITEM_ENDPOINT,
+                data, {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                        Authorization: token
+                    }
+                })
             .then((response) => {
                 dispatch(itemCreatedOrUpdatedSuccess({...response.data
                 }));
@@ -138,7 +141,8 @@ export function itemImageUpdated(item, file) {
     const updatedImageItem = {
         ...item,
         photoURL: file.preview,
-        file: {...file}
+        file: {...file
+        }
     };
     return function (dispatch) {
         dispatch(itemPhotoUpdatedSuccess(updatedImageItem));
