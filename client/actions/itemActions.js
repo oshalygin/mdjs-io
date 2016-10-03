@@ -62,19 +62,18 @@ export function loadingItemCreationOrUpdates() {
 export function createOrUpdateItem(item) {
     return function (dispatch) {
         dispatch(loadingItemCreationOrUpdates());
-        let itemToPersist = {...item
+        let itemToPersist = {
+            ...item
         };
-
         delete itemToPersist.photoURL;
         delete itemToPersist.file;
 
         const token = loadUserToken();
 
-//this approach wont work...
         const data = new FormData();
-        data.append("item", {...item
-        });
-        data.append("file", {...item.file
+
+        data.append("file", {
+            ...item.file
         });
 
         return axios
