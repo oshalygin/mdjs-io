@@ -73,8 +73,8 @@ export function createOrUpdateItem(item) {
         const data = new FormData();
 
         data.append("item", JSON.stringify(itemToPersist));
-        data.append("file", {...item.file
-        });
+        console.log(item.file);
+        data.append("file", item.file);
 
         return axios
             .post("http://localhost:59947/api/dashboard/item",
@@ -137,12 +137,10 @@ export function itemChecked(item) {
 }
 
 export function itemImageUpdated(item, file) {
-    const updatedImageItem = {
-        ...item,
+    const updatedImageItem = Object.assign({}, {...item,
         photoURL: file.preview,
-        file: {...file
-        }
-    };
+        file: file
+    });
     return function (dispatch) {
         dispatch(itemPhotoUpdatedSuccess(updatedImageItem));
     };

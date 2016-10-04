@@ -51,7 +51,7 @@ class ItemDetailPage extends React.Component {
     }
 
     onSave() {
-        const { item } = this.props;
+        const { item } = this.state;
         if (!this.formIsValid()) {
             toastr.error("Form Validation Errors!");
             return;
@@ -79,6 +79,7 @@ class ItemDetailPage extends React.Component {
     onDrop(files) {
         const {item} = this.props;
         const file = files[0];
+        item.file = file;
         this.props.itemActions.itemImageUpdated(item, file);
     }
 
@@ -155,9 +156,7 @@ function mapStateToProps(state, ownProps) {
         price: 0,
         color: 0,
         photoURL: "",
-        file: {
-            lastModifiedDate: new Date()
-        },
+        file: null,
         itemCategoryID: 0,
         isActive: 1,
         priceTypeID: itemPriceTypes[0].value
