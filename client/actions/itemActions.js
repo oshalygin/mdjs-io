@@ -72,15 +72,15 @@ export function createOrUpdateItem(item) {
 
         const data = new FormData();
 
-        data.append("file", {
-            ...item.file
+        data.append("item", JSON.stringify(itemToPersist));
+        data.append("file", {...item.file
         });
 
         return axios
-            .post(endpoints.ITEM_ENDPOINT,
+            .post("http://localhost:59947/api/dashboard/item",
                 data, {
                     headers: {
-                        "Content-Type": "multipart/form-data",
+                        "Content-Type": false,
                         Authorization: token
                     }
                 })

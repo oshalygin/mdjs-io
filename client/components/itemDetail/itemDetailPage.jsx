@@ -153,13 +153,13 @@ function mapStateToProps(state, ownProps) {
         name: "",
         label: "",
         price: 0,
-        color: null,
+        color: 0,
         photoURL: "",
         file: {
             lastModifiedDate: new Date()
         },
-        itemCategoryID: null,
-        isActive: null,
+        itemCategoryID: 0,
+        isActive: 1,
         priceTypeID: itemPriceTypes[0].value
     };
 
