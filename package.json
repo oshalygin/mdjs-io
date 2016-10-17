@@ -26,10 +26,10 @@
     "postbuild": "babel-node ./server/application.production.js"
   },
   "author": "Oleg Shalygin",
-  "license": "GNU AGPLv3",
+  "license": "GPL-3.0",
   "dependencies": {
     "animate.css": "^3.5.2",
-    "axios": "^0.14.0",
+    "axios": "^0.15.1",
     "babel-polyfill": "^6.13.0",
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
