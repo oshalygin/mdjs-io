@@ -9,8 +9,8 @@
 1.  Clone this repository.
 2.  Run  `npm install`  to pull in the project dependencies.
 3.  Run  `npm start`  to kick off the application.
-    * It should automatically load a browser window and point to  `http://localhost:9999`.
-    * If the browser window does not load, then manually navigate your browser to  `http://localhost:9999`.
+    * It should automatically load a browser window and point to  `http://localhost:8080`.
+    * If the browser window does not load, then manually navigate your browser to  `http://localhost:8080`.
 3.  If you are on a Windows environment, run `npm run start-windows` to launch the application.
     * babel-watch doesn't work on Windows as it uses unix named pipes.
     * Various other differences between OSX and windows such as setting the node environment variable and path lookup.

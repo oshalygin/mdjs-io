@@ -13,7 +13,7 @@ let application = express();
 application.use(bodyParser.urlencoded({ extended: true }));
 application.use(bodyParser.json());
 
-let port = process.env.PORT || 9999; //eslint-disable-line no-process-env
+let port = process.env.PORT || 8080; //eslint-disable-line no-process-env
 
 const applicationCompiler = webpack(configuration);
 application.use(require("webpack-dev-middleware")(applicationCompiler, {

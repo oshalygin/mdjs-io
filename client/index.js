@@ -71,7 +71,6 @@ function isAuthorized(nextState, replace, callback) {
     });
 }
 
-
 render(
     <Provider store={store}>
         <Router history={browserHistory}>
