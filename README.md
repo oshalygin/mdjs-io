@@ -1,7 +1,7 @@
 # Merchant Dashboard
 
 [![Build Status](https://travis-ci.org/oshalygin/MerchantDashboard.svg?branch=master)](https://travis-ci.org/oshalygin/MerchantDashboard)
-[![Coverage Status](http://coveralls.io/repos/github/oshalygin/MerchantDashboard/badge.svg?branch=master)](https://coveralls.io/github/oshalygin/MerchantDashboard?branch=master)
+[![codecov](https://codecov.io/gh/oshalygin/MerchantDashboard/branch/master/graph/badge.svg)](https://codecov.io/gh/oshalygin/MerchantDashboard)
 [![Dependency Status](https://www.versioneye.com/user/projects/57df8885037c20002d0da5ac/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/57df8885037c20002d0da5ac)
 
 
