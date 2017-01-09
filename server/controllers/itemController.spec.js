@@ -1,5 +1,5 @@
 import itemController from "./itemController";
-import expect from "expect";
+import { expect } from "chai";
 
 describe("Item Controller", () => {
 
@@ -23,7 +23,7 @@ describe("Item Controller", () => {
         };
         let response = {
             status: function (statusCode) {
-                expect(statusCode).toEqual(expected);
+                expect(statusCode).equals(expected);
                 return this;
             },
             json: function () { }

@@ -14,7 +14,7 @@
     "tests": "NODE_ENV=test mocha --reporter min",
     "windows-tests": "SET NODE_ENV=test && mocha --reporter min",
     "test": "NODE_ENV=test babel-node ./node_modules/.bin/isparta cover --include 'client/**/*.js*' _mocha",
-    "test:cover": "babel-node node_modules/isparta/bin/isparta cover --root client --report lcov _mocha -- --require ./utilities/testSetup.js \"client/**/*.spec.js\" --reporter spec",
+    "test:cover": "babel-node node_modules/isparta/bin/isparta cover --report lcov _mocha -- --require ./utilities/testSetup.js \"client/**/*.spec.js\" \"server/**/*.spec.js\" --reporter spec",
     "codacy:coverage": "cat ./coverage/lcov.info | codacy-coverage",
     "windows-test": "SET NODE_ENV=test && babel-node ./node_modules/isparta/bin/isparta cover --report html node_modules/mocha/ bin/_mocha -- --reporter spec",
     "clean-dist": "npm run remove-dist && mkdir dist",
