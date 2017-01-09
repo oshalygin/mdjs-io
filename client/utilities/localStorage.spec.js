@@ -1,4 +1,4 @@
-import expect from "expect";
+import { expect } from "chai";
 import { loadState, saveState } from "./localStorage";
 
 describe("Local Storage", () => {
@@ -17,7 +17,7 @@ describe("Local Storage", () => {
     it("Loading the state properly returns the object from the key", () => {
 
         const actual = !!loadState().state.items;
-        expect(actual).toBeTruthy();
+        expect(actual).is.true; //eslint-disable-line no-unused-expressions
 
     });
 

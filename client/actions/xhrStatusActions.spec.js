@@ -1,4 +1,4 @@
-import expect from "expect";
+import { expect } from "chai";
 import * as xhrStatusActions from "./xhrStatusActions";
 import * as actionTypes from "./actionTypes";
 
@@ -15,14 +15,14 @@ describe("Xhr Status Actions", () => {
 
         const expected = actionTypes.XHR_CALL_START;
         const actual = xhrStatusActions.xhrCallStarted().type;
-        expect(actual).toEqual(expected);
+        expect(actual).equals(expected);
     });
 
      it("xhrCallFailure properly returns back an action type of 'XHR_CALL_FAILURE", () => {
 
         const expected = actionTypes.XHR_CALL_FAILURE;
         const actual = xhrStatusActions.xhrCallFailure().type;
-        expect(actual).toEqual(expected);
+        expect(actual).equals(expected);
     });
 
 });

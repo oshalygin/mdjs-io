@@ -1,12 +1,18 @@
+sudo: required
+
+branches:
+  only:
+    - master
+
 language: node_js
 node_js:
-  - "6.4"
-before_install:
-  - npm install -g yarn --cache-min 999999999
-install:
-  - yarn
+  - "7.2.1"
+
+cache:
+  yarn: true
+
 script:
-  -  "npm run lint"
-  -  "npm test"
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - npm run lint
+  - npm test:cover
+  - npm run codacy:coverage
+  

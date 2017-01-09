@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
-import expect from "expect";
+
 import { mount, shallow } from "enzyme";
+import { expect } from "chai";
 import TestUtils from "react-addons-test-utils";
 import React from "react";
 import NotFound from "./notFound.jsx";
@@ -15,7 +16,7 @@ describe("<NotFound />", () => {
         const wrapper = shallow(<NotFound {...props} />);
         const actual = wrapper.find("p").children().get(0);
 
-        expect(actual).toEqual(expected);
+        expect(actual).equals(expected);
 
     });
 

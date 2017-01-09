@@ -1,4 +1,4 @@
-import expect from "expect";
+import { expect } from "chai";
 
 describe("Server Sanity Check", () => {
     describe("Simple math", () => {
@@ -9,7 +9,7 @@ describe("Server Sanity Check", () => {
             const b = 5;
             let actual = a + b;
 
-            expect(actual).toEqual(expected);
+            expect(actual).equals(expected);
         });
     });
 });
