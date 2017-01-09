@@ -1,7 +1,7 @@
 # Merchant Dashboard
 
 [![Build Status](https://travis-ci.org/oshalygin/MerchantDashboard.svg?branch=master)](https://travis-ci.org/oshalygin/MerchantDashboard)
-[![codecov](https://codecov.io/gh/oshalygin/MerchantDashboard/branch/master/graph/badge.svg)](https://codecov.io/gh/oshalygin/MerchantDashboard)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e58319fbcc4244f4956c649397d8911b)](https://www.codacy.com/app/oshalygin/MerchantDashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=oshalygin/MerchantDashboard&amp;utm_campaign=Badge_Grade)
 [![Dependency Status](https://www.versioneye.com/user/projects/57df8885037c20002d0da5ac/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/57df8885037c20002d0da5ac)
 
 
