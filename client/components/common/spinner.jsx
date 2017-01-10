@@ -1,17 +1,17 @@
-import React, { PropTypes } from "react";
+import React, { PropTypes } from 'react';
 
 const Spinner = ({hidden}) => {
-    let spinnerVisibility = hidden ?
-        { visibility: "none" }
-        : { visibility: "block" };
+  const spinnerVisibility = hidden ?
+    { visibility: 'none' }
+    : { visibility: 'block' };
 
-    return (
-        <div style={spinnerVisibility} className="spinner" />
-    );
+  return (
+    <div style={spinnerVisibility} className="spinner" />
+  );
 };
 
 Spinner.propTypes = {
-    hidden: PropTypes.bool
+  hidden: PropTypes.bool
 };
 
 export default Spinner;

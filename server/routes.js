@@ -1,12 +1,12 @@
-import express from "express";
-import itemApi from "./controllers/itemController";
+import express from 'express';
+import itemApi from './controllers/itemController';
 
-let router = express.Router();
-let itemController = itemApi();
+const router = express.Router();
+const itemController = itemApi();
 
 // {api/items}
 router
-    .route("/items")
-    .get(itemController.get);
+  .route('/items')
+  .get(itemController.get);
 
 export default router;
