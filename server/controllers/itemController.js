@@ -10,7 +10,7 @@ export default function itemController(dataAccess = dataAccessApi) {
   function get(request, response) {
     const query = request.query;
     dataAccess.getAllItems(query, (error, items) => {
-      if (!!error) {
+      if (error) {
         response.status(500).json(error);
       }
       response.status(200).json(items);
