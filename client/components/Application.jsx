@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import SideBarNavigation from './common/sideBarNavigation.jsx';
-import SearchBar from './common/searchBar.jsx';
+import SideBarNavigation from './common/SideBarNavigation.jsx';
+import SearchBar from './common/SearchBar.jsx';
 
 class Application extends React.Component {
 

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import SelectListRow from './selectListRow.jsx';
+import SelectListRow from './SelectListRow.jsx';
 
 const SelectList = ({value, label, name, options, onChange}) => {
   let classList = 'mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select';

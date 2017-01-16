@@ -43,12 +43,12 @@ import './inspinia.js';
 import pace from '../node_modules/pace-progress/pace.min';
 pace.start();
 
-import Application from './components/application.jsx';
-import DashboardPage from './components/dashboard/dashboardPage.jsx';
-import ItemPage from './components/item/itemPage.jsx';
-import ItemDetailPage from './components/itemDetail/itemDetailPage.jsx';
+import Application from './components/Application.jsx';
+import DashboardPage from './components/dashboard/DashboardPage.jsx';
+import ItemPage from './components/item/ItemPage.jsx';
+import ItemDetailPage from './components/itemDetail/ItemDetailPage.jsx';
 
-import LoginPage from './components/login/loginPage.jsx';
+import LoginPage from './components/login/LoginPage.jsx';
 
 const store = configureStore();
 

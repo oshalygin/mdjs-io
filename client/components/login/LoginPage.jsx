@@ -4,8 +4,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as userActions from '../../actions/userActions.js';
 
-import Spinner from '../common/spinner.jsx';
-import LoginForm from './loginForm.jsx';
+import Spinner from '../common/Spinner.jsx';
+import LoginForm from './LoginForm.jsx';
 
 class LoginPage extends React.Component {
 

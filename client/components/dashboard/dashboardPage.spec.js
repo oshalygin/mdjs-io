@@ -2,7 +2,7 @@
 import { mount, shallow } from 'enzyme';
 import TestUtils from 'react-addons-test-utils';
 import React from 'react';
-import DashboardPage from './dashboardPage.jsx';
+import DashboardPage from './DashboardPage.jsx';
 
 function setup() {
   return shallow(<DashboardPage />);

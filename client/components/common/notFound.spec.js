@@ -4,7 +4,7 @@ import { mount, shallow } from 'enzyme';
 import { expect } from 'chai';
 import TestUtils from 'react-addons-test-utils';
 import React from 'react';
-import NotFound from './notFound.jsx';
+import NotFound from './NotFound.jsx';
 
 describe('<NotFound />', () => {
 

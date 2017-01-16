@@ -6,8 +6,8 @@ import * as itemActions from '../../actions/itemActions';
 import { itemPriceTypes } from '../../utilities/constants';
 import toastr from 'toastr';
 
-import ItemDetailForm from './itemDetailForm.jsx';
-import Spinner from '../common/spinner.jsx';
+import ItemDetailForm from './ItemDetailForm.jsx';
+import Spinner from '../common/Spinner.jsx';
 
 class ItemDetailPage extends React.Component {
   constructor(props, context) {

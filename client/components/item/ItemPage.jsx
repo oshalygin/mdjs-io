@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 import * as itemActions from '../../actions/itemActions';
 
 
-import TextInput from '../common/textInput.jsx';
-import ItemTable from './itemTable.jsx';
+import TextInput from '../common/TextInput.jsx';
+import ItemTable from './ItemTable.jsx';
 
 class ItemPage extends React.Component {
   constructor(props, context) {
