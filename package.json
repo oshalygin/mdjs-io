@@ -1,13 +1,13 @@
 {
   "name": "merchant-dashboard",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Merchant Dashboard built with React and Redux",
   "scripts": {
     "prestart": "babel-node utilities/startingDisplayMessage.js",
     "start": "npm-run-all --parallel open:server",
     "windows-start": "npm-run-all --parallel open-windows:server",
-    "open:server": "babel-watch ./server/application.js",
-    "open-windows:server": "babel-node ./server/application.js",
+    "open:server": "babel-watch ./server/application.dev.js",
+    "open-windows:server": "babel-node ./server/application.dev.js",
     "lint": "eslint webpack.config.* \"client/**/*.js\" \"client/**/*.jsx\" \"server/**\" utilities/** --color ",
     "lint:watch": "npm run lint -- --watch",
     "test:watch": "npm run tests -- --watch",

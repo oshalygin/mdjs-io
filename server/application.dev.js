@@ -23,7 +23,7 @@ application.use(require('webpack-dev-middleware')(applicationCompiler, {
 
 application.use(require('webpack-hot-middleware')(applicationCompiler));
 
-application.use('/api', router);
+application.use('/api/v1', router);
 application.use('/client', express.static(path.join(__dirname, '../client')));
 
 application.get('*', (request, response) => {

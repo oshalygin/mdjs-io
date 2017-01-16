@@ -1,19 +1,35 @@
 /* eslint-disable no-use-before-define */
 import express from 'express'; //eslint-disable-line no-unused-vars
-import * as dataAccessApi from '../dataAccess/itemDataAccess';
+import axios from 'axios';
+import { ITEM_ENDPOINT } from '../routes/httpEndpoints';
 
-export default function itemController(dataAccess = dataAccessApi) {
-  return {
-    get
-  };
+const itemController = {
+  get
+};
 
-  function get(request, response) {
-    const query = request.query;
-    dataAccess.getAllItems(query, (error, items) => {
-      if (error) {
-        response.status(500).json(error);
+function getItemById(itemId) {
+  return axios.get(`${ITEM_ENDPOINT}/${itemId}`,
+    {
+      headers: {
+        'Content-Type': 'application/json'
       }
-      response.status(200).json(items);
-    });
-  }
+    }
+  );
 }
+
+function get(request, response) {
+
+  const itemId = request.params.id;
+  if (itemId) {
+    getItemById(itemId)
+      .then((result) => {
+        response.send(200).json(result);
+      })
+      .catch((error) => { //eslint-disable-line no-unused-vars
+        response.sendStatus(400);
+      });
+  }
+
+}
+
+export default itemController;

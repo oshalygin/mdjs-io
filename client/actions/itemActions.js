@@ -69,7 +69,6 @@ export function createOrUpdateItem(item) {
     delete itemToPersist.file;
 
     const token = loadUserToken();
-
     const data = new FormData();
 
     data.append('item', JSON.stringify(itemToPersist));
