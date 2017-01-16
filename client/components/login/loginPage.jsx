@@ -22,26 +22,26 @@ class LoginPage extends React.Component {
 
   login(event) {
     event.preventDefault();
-    let {user} = this.state;
+    const {user} = this.state;
     this.props.userActions.login({ ...user })
       .then(() => this.redirect())
       .catch(error => toastr.error(error));
   }
 
   redirect() {
-    this.context.router.push("/dashboard");
+    this.context.router.push('/dashboard');
   }
 
   onChange(event) {
     const property = event.target.name;
-    let {user} = this.state;
+    const {user} = this.state;
     user[property] = event.target.value;
 
   }
 
   render() {
     const {loading} = this.props;
-    let formComponent = !loading.loadingUser
+    const formComponent = !loading.loadingUser
       ? (<LoginForm onChange={this.onChange} login={this.login} />)
       : (<Spinner />);
 

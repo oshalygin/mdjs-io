@@ -54,8 +54,8 @@ class ItemPage extends React.Component {
     const {items} = this.props;
 
     const newItemButtonDecorationAndOffset = {
-      textDecoration: "none",
-      marginBottom: "1.2em"
+      textDecoration: 'none',
+      marginBottom: '1.2em'
     };
 
     return (

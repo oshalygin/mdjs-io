@@ -36,7 +36,7 @@ class ItemDetailPage extends React.Component {
   }
 
   onChange(event) {
-    let {item} = this.props;
+    const {item} = this.props;
 
     if (event.target.tagName === 'LI') {
       const property = event.target.attributes.getNamedItem('name').value;
@@ -68,7 +68,7 @@ class ItemDetailPage extends React.Component {
   }
 
   propertyIsValid(property, value, pattern) {
-    let {errors} = this.props;
+    const {errors} = this.props;
     const regexPattern = pattern.replace("\"", ""); //eslint-disable-line quotes
     const patternTest = new RegExp(regexPattern);
 
@@ -84,7 +84,7 @@ class ItemDetailPage extends React.Component {
   }
 
   formIsValid() {
-    let {errors, item} = this.props;
+    const {errors, item} = this.props;
 
     for (const property in errors) {
       if (errors.hasOwnProperty(property)) {
@@ -99,7 +99,7 @@ class ItemDetailPage extends React.Component {
   render() {
     const {itemHeading, item, errors, loading} = this.props;
 
-    let formComponent = !loading.createUpdateItem
+    const formComponent = !loading.createUpdateItem
       ? (<ItemDetailForm item={item} onDrop={this.onDrop} onChange={this.onChange} errors={errors} />)
       : (
         <div className="ibox-content">

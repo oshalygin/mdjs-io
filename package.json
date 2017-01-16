@@ -8,7 +8,7 @@
     "windows-start": "npm-run-all --parallel open-windows:server",
     "open:server": "babel-watch ./server/application.js",
     "open-windows:server": "babel-node ./server/application.js",
-    "lint": "./node_modules/.bin/eslint -c .eslintrc webpack.config.* client/**/*.js client/**/*.jsx server/**/*.js test ./utilities --color",
+    "lint": "eslint webpack.config.* \"client/**/*.js\" \"client/**/*.jsx\" \"server/**\" utilities/** --color ",
     "lint:watch": "npm run lint -- --watch",
     "test:watch": "npm run tests -- --watch",
     "tests": "NODE_ENV=test mocha --reporter min",

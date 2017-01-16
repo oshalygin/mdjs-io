@@ -38,7 +38,7 @@ const ItemImage = ({itemPreview, onDrop}) => {
     lineHeight: `${imageBoxLength - imageBoxLength / 10}${unitOfMeasure}`
   };
 
-  let imageContent = !!itemPreview
+  const imageContent = !!itemPreview
     ? (<div style={imageItem} />)
     : (<div style={imageItem}>Drag/Click Here</div>);
 
