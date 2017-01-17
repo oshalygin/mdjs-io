@@ -1,12 +1,11 @@
 import express from 'express';
-import itemApi from './controllers/itemController';
+import itemController from '../controllers/itemController';
 
 const router = express.Router();
-const itemController = itemApi();
 
-// {api/items}
+// {api/item}
 router
-  .route('/items/:id')
+  .route('/item/:id')
   .get(itemController.get);
 
 export default router;

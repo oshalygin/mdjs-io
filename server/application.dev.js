@@ -7,7 +7,7 @@ import configuration from '../webpack.config.dev';
 import colors from 'colors'; //eslint-disable-line no-unused-vars
 import open from 'open';
 
-import router from './routes';
+import router from './routes/routes-v1';
 
 const application = express();
 application.use(bodyParser.urlencoded({ extended: true }));
