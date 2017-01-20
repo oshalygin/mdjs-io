@@ -1,6 +1,8 @@
 /* eslint-disable no-use-before-define */
 import express from 'express'; //eslint-disable-line no-unused-vars
 import axios from 'axios';
+
+import logger from '../../utilities/logger';
 import { ITEM_ENDPOINT } from '../routes/httpEndpoints';
 
 const itemController = {
@@ -8,7 +10,12 @@ const itemController = {
 };
 
 function getItemById(itemId) {
-  return axios.get(`${ITEM_ENDPOINT}/${itemId}`,
+
+  const endpoint = itemId
+    ? ITEM_ENDPOINT
+    : `${ITEM_ENDPOINT}/${itemId}`;
+
+  return axios.get(endpoint,
     {
       headers: {
         'Content-Type': 'application/json'
@@ -20,16 +27,15 @@ function getItemById(itemId) {
 function get(request, response) {
 
   const itemId = request.params.id;
-  if (itemId) {
-    getItemById(itemId)
-      .then((result) => {
-        response.send(200).json(result);
-      })
-      .catch((error) => { //eslint-disable-line no-unused-vars
-        response.sendStatus(400);
-      });
-  }
-
+  getItemById(itemId)
+    .then((result) => {
+      response.send(200).json(result);
+    })
+    .catch((error) => { //eslint-disable-line no-unused-vars
+      logger.error(error);
+      response.sendStatus(400);
+    });
 }
+
 
 export default itemController;
