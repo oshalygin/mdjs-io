@@ -1,5 +1,7 @@
 import * as actionTypes from './actionTypes';
-import * as endpoints from './httpEndpoints';
+import {
+  ITEM_ENDPOINT
+} from './httpEndpoints';
 import {
   loadUserToken
 } from '../utilities/localStorage';
@@ -70,13 +72,12 @@ export function createOrUpdateItem(item) {
 
     const token = loadUserToken();
     const data = new FormData();
-
     data.append('item', JSON.stringify(itemToPersist));
     
     data.append('file', item.file);
 
     return axios
-      .post('http://localhost:59947/api/dashboard/item',
+      .post(ITEM_ENDPOINT,
       data, {
         headers: {
           'Content-Type': false,
@@ -108,7 +109,7 @@ export function deactivateItem(item) {
     dispatch(itemDeactivated(deactivatedItem));
 
     const token = loadUserToken();
-    const endpoint = `${endpoints.ITEM_ENDPOINT}/${deactivatedItem.itemID}`;
+    const endpoint = `${ITEM_ENDPOINT}/${deactivatedItem.itemID}`;
     return axios
       .delete(endpoint, {
         headers: {

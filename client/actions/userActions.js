@@ -1,5 +1,8 @@
 import * as actionTypes from './actionTypes';
-import * as endpoints from './httpEndpoints';
+import {
+  LOGIN_ENDPOINT,
+  LOGIN_TOKEN_ENDPOINT
+} from './httpEndpoints';
 import { persistUserToken, removeUserToken } from '../utilities/localStorage';
 import { loadCategoriesSuccess } from './categoryActions';
 import { loadDiscountsSuccess } from './discountActions';
@@ -45,7 +48,7 @@ export function login(user) {
   return function (dispatch) {
     dispatch(loadingUser());
     return axios
-      .post(endpoints.LOGIN_ENDPOINT,
+      .post(LOGIN_ENDPOINT,
       {
         email: user.email,
         password: user.password
@@ -79,7 +82,7 @@ export function loginWithToken(dispatch, tokenKey) {
   return function () {
     dispatch(loadingUser());
     return axios
-      .post(endpoints.LOGIN_TOKEN_ENDPOINT,
+      .post(LOGIN_TOKEN_ENDPOINT,
       {
         token: tokenKey
       },
