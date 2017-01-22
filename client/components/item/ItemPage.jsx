@@ -6,8 +6,10 @@ import { connect } from 'react-redux';
 import * as itemActions from '../../actions/itemActions';
 
 
-import TextInput from '../common/TextInput.jsx';
+import TextField from '../common/TextField.jsx';
 import ItemTable from './ItemTable.jsx';
+
+const fullWidth = { width: '100%' };
 
 class ItemPage extends React.Component {
   constructor(props, context) {
@@ -51,7 +53,7 @@ class ItemPage extends React.Component {
   }
 
   render() {
-    const {items} = this.props;
+    const { items } = this.props;
 
     const newItemButtonDecorationAndOffset = {
       textDecoration: 'none',
@@ -74,12 +76,13 @@ class ItemPage extends React.Component {
             <div className="ibox-content">
               <div className="row">
                 <div className="col-sm-3">
-                  <TextInput
-                    name="filteredItems"
-                    label="filter"
-                    placeholder="Filter"
-                    pattern="[A-Z,a-z, ]*"
-                    />
+                  <TextField
+                    name="username"
+                    type="text"
+                    onChange={this.onChange}
+                    errorText={this.state.error}
+                    style={fullWidth}
+                    floatingLabelText="Filter" />
                 </div>
               </div>
               <ItemTable

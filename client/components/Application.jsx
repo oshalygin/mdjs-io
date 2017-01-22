@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import SideBarNavigation from './common/SideBarNavigation.jsx';
 import SearchBar from './common/SearchBar.jsx';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import muiTheme from '../utilities/muiTheme.js';
 
 class Application extends React.Component {
 
@@ -17,6 +19,7 @@ class Application extends React.Component {
       );
     }
     return (
+      <MuiThemeProvider muiTheme={muiTheme}>
       <div id="wrapper">
         <SideBarNavigation pathName={currentPath} />
         <div id="page-wrapper" className="gray-bg">
@@ -29,7 +32,8 @@ class Application extends React.Component {
             </div>
           </div>
         </div>
-      </div>
+        </div>
+      </MuiThemeProvider>  
     );
   }
 

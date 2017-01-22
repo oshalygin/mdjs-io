@@ -43,6 +43,10 @@ import './inspinia.js';
 import pace from '../node_modules/pace-progress/pace.min';
 pace.start();
 
+// Necessary for Material-UI
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+
 import Application from './components/Application.jsx';
 import DashboardPage from './components/dashboard/DashboardPage.jsx';
 import ItemPage from './components/item/ItemPage.jsx';
@@ -70,6 +74,7 @@ function isAuthorized(nextState, replace, callback) {
     callback();
   });
 }
+
 
 render(
   <Provider store={store}>
