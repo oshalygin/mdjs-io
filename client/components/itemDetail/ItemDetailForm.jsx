@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
 
 import TextField from '../common/TextField.jsx';
-import SelectList from '../common/selectList.jsx';
+import SelectList from '../common/SelectList.jsx';
+import MenuItem from 'material-ui/MenuItem';
 import ItemImage from './itemImage.jsx';
 import { itemPriceTypes } from '../../utilities/constants';
 
@@ -38,13 +39,19 @@ const ItemDetailForm = ({ item, errors, onChange, onDrop }) => {
             onChange={onChange}
             errorText={errors.price}
           />
+
           <SelectList
             onChange={onChange}
-            options={itemPriceTypes}
-            name="priceTypeID"
-            label="Price Type"
+            fullWidth
+            floatingLabelText="Price Type"
             value={itemPriceIdValue}
-          />
+          >
+            {itemPriceTypes.map(itemPrice => {
+              return (
+                <MenuItem value={itemPrice.value} primaryText={itemPrice.label} key={itemPrice.value} />
+              );
+          })}
+          </SelectList>
         </div>
         <div className="col-md-offset-4 col-md-3">
           <ItemImage
