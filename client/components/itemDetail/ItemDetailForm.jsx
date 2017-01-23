@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import TextField from '../common/TextField.jsx';
 import SelectList from '../common/selectList.jsx';
 import ItemImage from './itemImage.jsx';
-import { itemPriceTypes, stringPattern, numberPattern } from '../../utilities/constants';
+import { itemPriceTypes } from '../../utilities/constants';
 
 const ItemDetailForm = ({ item, errors, onChange, onDrop }) => {
 

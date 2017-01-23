@@ -1,50 +1,29 @@
-import React, { PropTypes } from 'react';
-import SelectListRow from './SelectListRow.jsx';
+import React from 'react';
+import SelectField from 'material-ui/SelectField';
 
-const SelectList = ({value, label, name, options, onChange}) => {
-  let classList = 'mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select';
-  if (!!value) {
-    classList += ' is-dirty'; //eslint-disable-line operator-assignment
+import { primaryBlue } from '../../utilities/colors';
+
+const formControlUnderlineFocus = {
+  color: primaryBlue
+};
+
+class CustomSelectField extends React.Component {
+
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      value: 1,
+      underlineFocusStyle: formControlUnderlineFocus
+    };
   }
-  return (
-    <div className={classList} >
-      <input className="mdl-textfield__input"
-        type="text"
-        id={name}
-        name={name}
-        value={value}
-        onChange={onChange}
-        tabIndex="-1"
-        data-value={value} />
-      <i className="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
-      <label htmlFor={name} className="mdl-textfield__label">
-        {label}
-      </label>
 
-      <ul htmlFor={name} className="mdl-menu mdl-menu--bottom-left mdl-js-menu" name="priceTypeId">
+  render() {
+    const props = {...this.state, ...this.props};
+    return (
+      <SelectField {...props} />
+    );
+  }
 
-        {options.map(option => {
-          return (
-            <SelectListRow
-              key={option.value}
-              label={option.label}
-              name={name}
-              value={option.value}
-              onChange={onChange} />
-          );
-        })}
-      </ul>
-    </div>
-  );
-};
+}
 
-SelectList.propTypes = {
-  value: PropTypes.any.isRequired,
-  label: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  options: PropTypes.array,
-  defaultOption: PropTypes.bool,
-  onChange: PropTypes.func.isRequired
-};
-
-export default SelectList;
+export default CustomSelectField;
