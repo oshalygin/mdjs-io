@@ -64,16 +64,13 @@ export function loadingItemCreationOrUpdates() {
 export function createOrUpdateItem(item) {
   return function (dispatch) {
     dispatch(loadingItemCreationOrUpdates());
-    const itemToPersist = {
-      ...item
-    };
+    const itemToPersist = { ...item };
     delete itemToPersist.photoURL;
     delete itemToPersist.file;
 
     const token = loadUserToken();
     const data = new FormData();
     data.append('item', JSON.stringify(itemToPersist));
-    
     data.append('file', item.file);
 
     return axios

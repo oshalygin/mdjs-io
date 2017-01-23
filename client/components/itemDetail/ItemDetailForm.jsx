@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 
-import TextInput from '../common/textInput.jsx';
+import TextField from '../common/TextField.jsx';
 import SelectList from '../common/selectList.jsx';
 import ItemImage from './itemImage.jsx';
 import { itemPriceTypes, stringPattern, numberPattern } from '../../utilities/constants';
 
-const ItemDetailForm = ({item, errors, onChange, onDrop}) => {
+const ItemDetailForm = ({ item, errors, onChange, onDrop }) => {
 
   const itemPriceIdValue = itemPriceTypes
     .filter(priceType => priceType.value == item.priceTypeID)[0] //eslint-disable-line eqeqeq
@@ -13,38 +13,38 @@ const ItemDetailForm = ({item, errors, onChange, onDrop}) => {
   return (
     <div className="ibox-content">
       <div className="row">
-        <div className="col-md-offset-1 col-sm-3">
-          <TextInput
+        <div className="col-md-offset-1 col-sm-4">
+          <TextField
+            fullWidth
             name="name"
             value={item.name}
-            placeholder="Name"
+            floatingLabelText="Name"
             onChange={onChange}
-            pattern={stringPattern}
-            error={errors.name}
-            />
-          <TextInput
+            errorText={errors.name}
+          />
+          <TextField
+            fullWidth
             name="label"
             value={item.label}
-            placeholder="Item Label"
+            floatingLabelText="Label"
             onChange={onChange}
-            pattern={stringPattern}
-            error={errors.label}
-            />
-          <TextInput
+            errorText={errors.label}
+          />
+          <TextField
+            fullWidth
             name="price"
             value={item.price}
-            placeholder="Price"
+            floatingLabelText="Price"
             onChange={onChange}
-            pattern={numberPattern}
-            error={errors.price}
-            />
+            errorText={errors.price}
+          />
           <SelectList
             onChange={onChange}
             options={itemPriceTypes}
             name="priceTypeID"
             label="Price Type"
             value={itemPriceIdValue}
-            />
+          />
         </div>
         <div className="col-md-offset-4 col-md-3">
           <ItemImage
