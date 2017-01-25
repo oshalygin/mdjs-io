@@ -11,6 +11,7 @@ const ItemDetailForm = ({ item, errors, onChange, onDrop }) => {
   const itemPriceIdValue = itemPriceTypes
     .filter(priceType => priceType.value == item.priceTypeID)[0] //eslint-disable-line eqeqeq
     .label;
+  
   return (
     <div className="ibox-content">
       <div className="row">
@@ -50,7 +51,7 @@ const ItemDetailForm = ({ item, errors, onChange, onDrop }) => {
               return (
                 <MenuItem value={itemPrice.value} primaryText={itemPrice.label} key={itemPrice.value} />
               );
-          })}
+            })}
           </SelectList>
         </div>
         <div className="col-md-offset-4 col-md-3">

@@ -36,7 +36,7 @@ class ItemDetailPage extends React.Component {
   }
 
   onChange(event) {
-    const {item} = this.props;
+    const { item } = this.props;
 
     if (event.target.tagName === 'LI') {
       const property = event.target.attributes.getNamedItem('name').value;
@@ -57,7 +57,7 @@ class ItemDetailPage extends React.Component {
       return;
     }
 
-    this.props.itemActions.createOrUpdateItem(item)
+    this.props.itemActions.createOrUpdateItem(...item)
       .then(() => this.redirect())
       .catch(error => toastr.error(error));
 
@@ -68,7 +68,7 @@ class ItemDetailPage extends React.Component {
   }
 
   propertyIsValid(property, value, pattern) {
-    const {errors} = this.props;
+    const { errors } = this.props;
     const regexPattern = pattern.replace("\"", ""); //eslint-disable-line quotes
     const patternTest = new RegExp(regexPattern);
 
@@ -77,14 +77,14 @@ class ItemDetailPage extends React.Component {
   }
 
   onDrop(files) {
-    const {item} = this.props;
+    const { item } = this.props;
     const file = files[0];
     item.file = file;
     this.props.itemActions.itemImageUpdated(item, file);
   }
 
   formIsValid() {
-    const {errors, item} = this.props;
+    const { errors, item } = this.props;
 
     for (const property in errors) {
       if (errors.hasOwnProperty(property)) {
@@ -97,7 +97,7 @@ class ItemDetailPage extends React.Component {
   }
 
   render() {
-    const {itemHeading, item, errors, loading} = this.props;
+    const { itemHeading, item, errors, loading } = this.props;
 
     const formComponent = !loading.createUpdateItem
       ? (<ItemDetailForm item={item} onDrop={this.onDrop} onChange={this.onChange} errors={errors} />)
@@ -162,7 +162,7 @@ function mapStateToProps(state, ownProps) {
     priceTypeID: itemPriceTypes[0].value
   };
 
-  const {items} = state;
+  const { items } = state;
   const existingItem = items
     .filter(stateItem => stateItem.itemID == ownProps.params.id || stateItem.itemID === item.itemID)[0]; //eslint-disable-line eqeqeq
 
