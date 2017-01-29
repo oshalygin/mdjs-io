@@ -1,5 +1,8 @@
 /* eslint-disable no-process-env */
-require('babel-register')();
+require('babel-register')({
+  plugins: ['rewire']
+});
+
 const cssHook = require('css-modules-require-hook');
 
 // Setting NODE_ENV to test instead of production because setting it to production will suppress error messaging
