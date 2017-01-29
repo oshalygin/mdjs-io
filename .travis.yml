@@ -6,7 +6,7 @@ branches:
 
 language: node_js
 node_js:
-  - "7.2.1"
+  - 7.2.1
 
 cache:
   yarn: true
