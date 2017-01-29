@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React from 'react';
 
-class DashboardPage extends React.Component {
+class Dashboard extends React.Component {
 
   componentDidMount() {
     componentHandler.upgradeDom(); //eslint-disable-line no-undef
@@ -21,4 +21,4 @@ class DashboardPage extends React.Component {
   }
 }
 
-export default DashboardPage;
+export default Dashboard;

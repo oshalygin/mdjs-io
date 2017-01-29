@@ -26,15 +26,6 @@ class ItemDetailPage extends React.Component {
     this.onDrop = this.onDrop.bind(this);
   }
 
-  componentDidMount() {
-    componentHandler.upgradeDom(); //eslint-disable-line no-undef
-
-  }
-
-  componentDidUpdate() {
-    componentHandler.upgradeDom(); //eslint-disable-line no-undef
-  }
-
   onChange(event) {
     const { item } = this.props;
 

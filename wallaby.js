@@ -3,10 +3,12 @@ module.exports = function (wallaby) {
   return {
     files: [
       'client/**/*.js*',
+      'client/**/*.css',
       'server/**/*.js',
       '!client/**/*.json',
       '!client/**/*.spec.js*',
       '!server/**/*.spec.js*',
+      'utilities/logger.js',
       { pattern: '/**/*.png', load: 'null' }
     ],
 
@@ -26,6 +28,12 @@ module.exports = function (wallaby) {
         presets: ['react', 'es2015'],
         plugins: ['transform-object-rest-spread']
       })
+    },
+
+     // Toggle when you experience caching issues
+
+    workers: {
+      recycle: true
     },
 
     setup: function () { //eslint-disable-line object-shorthand

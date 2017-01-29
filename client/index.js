@@ -44,7 +44,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 import Application from './components/Application.jsx';
-import DashboardPage from './components/dashboard/DashboardPage.jsx';
+import Dashboard from './components/dashboard';
 import ItemPage from './components/item';
 import ItemDetailPage from './components/itemDetail';
 
@@ -76,17 +76,17 @@ render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={Application} onEnter={(nextState, replace, callback) => isAuthorized(nextState, replace, callback)}>
-        <IndexRoute component={DashboardPage} />
+        <IndexRoute component={Dashboard} />
         <Route path="login" component={LoginPage} />
-        <Route path="dashboard" component={DashboardPage} />
+        <Route path="dashboard" component={Dashboard} />
         <Route path="items" component={ItemPage} />
         <Route path="item(/:id)" component={ItemDetailPage} />
-        <Route path="item-categories" component={DashboardPage} />
-        <Route path="modifiers" component={DashboardPage} />
-        <Route path="taxes" component={DashboardPage} />
-        <Route path="discounts" component={DashboardPage} />
-        <Route path="orders" component={DashboardPage} />
-        <Route path="users" component={DashboardPage} />
+        <Route path="item-categories" component={Dashboard} />
+        <Route path="modifiers" component={Dashboard} />
+        <Route path="taxes" component={Dashboard} />
+        <Route path="discounts" component={Dashboard} />
+        <Route path="orders" component={Dashboard} />
+        <Route path="users" component={Dashboard} />
         <Redirect to="dashboard" from="*" />
       </Route>
     </Router>

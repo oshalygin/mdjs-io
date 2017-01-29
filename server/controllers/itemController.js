@@ -2,7 +2,7 @@
 import express from 'express'; //eslint-disable-line no-unused-vars
 import axios from 'axios';
 
-import logger from '../../utilities/logger';
+import logger from '../../utilities/logger.js';
 import { ITEM_ENDPOINT } from '../routes/httpEndpoints';
 
 const itemController = {

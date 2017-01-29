@@ -1,6 +1,9 @@
 import React, { PropTypes } from 'react';
+import CSSModules from 'react-css-modules';
 import toastr from 'toastr';
-import { Link } from 'react-router';
+import { browserHistory } from 'react-router';
+import RaisedButton from 'material-ui/RaisedButton';
+
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as itemActions from '../../actions/itemActions';
@@ -9,9 +12,11 @@ import * as itemActions from '../../actions/itemActions';
 import TextField from '../common/TextField.jsx';
 import ItemTable from './ItemTable.jsx';
 
+import styles from './item.css';
+
 const fullWidth = { width: '100%' };
 
-class ItemPage extends React.Component {
+class Item extends React.Component {
   constructor(props, context) {
     super(props, context);
 
@@ -22,14 +27,11 @@ class ItemPage extends React.Component {
 
     this.checkboxChangeHandler = this.checkboxChangeHandler.bind(this);
     this.deactivate = this.deactivate.bind(this);
+    this.navigateToNewItemPage = this.navigateToNewItemPage.bind(this);
   }
 
-  componentDidMount() {
-    componentHandler.upgradeDom(); //eslint-disable-line no-undef
-  }
-
-  componentDidUpdate() {
-    componentHandler.upgradeDom(); //eslint-disable-line no-undef
+  navigateToNewItemPage() {
+    browserHistory.push('item');
   }
 
   checkboxChangeHandler(event) {
@@ -53,19 +55,16 @@ class ItemPage extends React.Component {
 
   render() {
     const { items } = this.props;
-
-    const newItemButtonDecorationAndOffset = {
-      textDecoration: 'none',
-      marginBottom: '1.2em'
-    };
-
+    
     return (
       <div className="row">
         <div className="col-lg-12">
-          <Link to="item" className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
-            style={newItemButtonDecorationAndOffset}>
-            New Item
-          </Link>
+          <RaisedButton
+            label="New Item"
+            className={styles.newItemButton}
+            primary
+            onClick={this.navigateToNewItemPage}
+          />
         </div>
         <div className="col-lg-12">
           <div className="ibox float-e-margins">
@@ -96,7 +95,7 @@ class ItemPage extends React.Component {
   }
 }
 
-ItemPage.propTypes = {
+Item.propTypes = {
   items: PropTypes.array.isRequired,
   itemActions: PropTypes.object.isRequired
 };
@@ -112,4 +111,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ItemPage);
+export default CSSModules(connect(mapStateToProps, mapDispatchToProps)(Item), styles);
