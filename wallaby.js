@@ -26,11 +26,11 @@ module.exports = function (wallaby) {
     compilers: {
       '**/*.js*': wallaby.compilers.babel({
         presets: ['react', 'es2015'],
-        plugins: ['transform-object-rest-spread']
+        plugins: ['transform-object-rest-spread', 'rewire']
       })
     },
 
-     // Toggle when you experience caching issues
+    // Toggle when you experience caching issues
 
     workers: {
       recycle: true
@@ -38,8 +38,7 @@ module.exports = function (wallaby) {
 
     setup: function () { //eslint-disable-line object-shorthand
 
-      const cssHook = require('css-modules-require-hook');
-      cssHook({
+      require('css-modules-require-hook')({
         generateScopedName: '[path]___[name]__[local]___[hash:base64:5]'
       });
 

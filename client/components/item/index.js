@@ -16,7 +16,7 @@ import styles from './item.css';
 
 const fullWidth = { width: '100%' };
 
-class Item extends React.Component {
+export class Item extends React.Component {
   constructor(props, context) {
     super(props, context);
 
@@ -55,7 +55,7 @@ class Item extends React.Component {
 
   render() {
     const { items } = this.props;
-    
+
     return (
       <div className="row">
         <div className="col-lg-12">

@@ -1,9 +1,11 @@
+/* eslint-disable no-process-env */
 require('babel-register')();
 const cssHook = require('css-modules-require-hook');
 
 // Setting NODE_ENV to test instead of production because setting it to production will suppress error messaging
 // and propType validation warnings.
-process.env.NODE_ENV = 'test'; //eslint-disable-line no-process-env
+process.env.NODE_ENV = 'test'; 
+process.env.DOMAIN_ENDPOINT = 'http://www.foobar.com';
 
 cssHook({
   generateScopedName: '[path]___[name]__[local]___[hash:base64:5]'
