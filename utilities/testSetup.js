@@ -1,8 +1,13 @@
 require('babel-register')();
+const cssHook = require('css-modules-require-hook');
 
 // Setting NODE_ENV to test instead of production because setting it to production will suppress error messaging
 // and propType validation warnings.
 process.env.NODE_ENV = 'test'; //eslint-disable-line no-process-env
+
+cssHook({
+  generateScopedName: '[path]___[name]__[local]___[hash:base64:5]'
+});
 
 ['.scss', '.png', '.jpg'].forEach((extension) => {
   require.extensions[extension] = () => null;

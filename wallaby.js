@@ -30,6 +30,11 @@ module.exports = function (wallaby) {
 
     setup: function () { //eslint-disable-line object-shorthand
 
+      const cssHook = require('css-modules-require-hook');
+      cssHook({
+        generateScopedName: '[path]___[name]__[local]___[hash:base64:5]'
+      });
+
       const noop = () => { };
 
       require.extensions['.css'] = noop;

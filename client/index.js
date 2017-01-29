@@ -9,22 +9,18 @@ import { Router, Route, IndexRoute, browserHistory, Redirect } from 'react-route
 import { Provider } from 'react-redux';
 import { retrieveUser } from './reducers/initialState';
 
-import './styles/material.icons.css';
-import './styles/material.style.min.css';
-import '../node_modules/material-design-lite/material.min.js';
+// To load styles globally without CSS modules, use the !style!css!{{path}} format.
+// https://github.com/css-modules/css-modules/pull/65#issuecomment-248280248
+import '!style!css!../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import '!style!css!../node_modules/font-awesome/css/font-awesome.min.css';
+import '!style!css!../node_modules/toastr/build/toastr.min.css';
 
-import '../node_modules/getmdl-select/getmdl-select.min.css';
-
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import '../node_modules/font-awesome/css/font-awesome.min.css';
-import '../node_modules/toastr/build/toastr.min.css';
-
-import '../node_modules/animate.css/animate.min.css';
+import '!style!css!../node_modules/animate.css/animate.min.css';
 import './styles/toastrOptions';
 
-import './styles/style.css';
-import './styles/spinner.css';
-import './styles/dashboard.style.css';
+import '!style!css!./styles/style.css';
+import '!style!css!./styles/spinner.css';
+import '!style!css!./styles/dashboard.style.css';
 
 import './images/favicon.ico';
 import './images/apple-touch-icon.png';
@@ -49,8 +45,8 @@ injectTapEventPlugin();
 
 import Application from './components/Application.jsx';
 import DashboardPage from './components/dashboard/DashboardPage.jsx';
-import ItemPage from './components/item/ItemPage.jsx';
-import ItemDetailPage from './components/itemDetail/ItemDetailPage.jsx';
+import ItemPage from './components/item';
+import ItemDetailPage from './components/itemDetail';
 
 import LoginPage from './components/login/LoginPage.jsx';
 

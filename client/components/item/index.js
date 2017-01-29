@@ -22,7 +22,6 @@ class ItemPage extends React.Component {
 
     this.checkboxChangeHandler = this.checkboxChangeHandler.bind(this);
     this.deactivate = this.deactivate.bind(this);
-
   }
 
   componentDidMount() {
@@ -66,7 +65,7 @@ class ItemPage extends React.Component {
           <Link to="item" className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
             style={newItemButtonDecorationAndOffset}>
             New Item
-                    </Link>
+          </Link>
         </div>
         <div className="col-lg-12">
           <div className="ibox float-e-margins">
