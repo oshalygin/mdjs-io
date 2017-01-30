@@ -18,9 +18,8 @@ import '!style!css!../node_modules/toastr/build/toastr.min.css';
 import '!style!css!../node_modules/animate.css/animate.min.css';
 import './styles/toastrOptions';
 
-import '!style!css!./styles/style.css';
+import '!style!css!../node_modules/dashboard-styles/dist/dashboard.min.css';
 import '!style!css!./styles/spinner.css';
-import '!style!css!./styles/dashboard.style.css';
 
 import './images/favicon.ico';
 import './images/apple-touch-icon.png';
