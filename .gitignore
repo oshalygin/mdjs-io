@@ -1,7 +1,16 @@
+# Node modules
 node_modules
-dist
-npm-debug.log
-coverage
-.vscode/chrome
 
+# distribution folder
+dist
+
+# Logging
+npm-debug.log
+yarn-error.log
+
+# Code coverage
+coverage
+
+# Editor specific components
+.vscode/chrome
 .idea/
