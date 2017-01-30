@@ -1,9 +1,9 @@
-image: node:7.2.1
+image: oshalygin/yarn-node:7.2
 
 pipelines:
   default:
     - step:
         script:
-          - npm install
+          - yarn
           - npm run lint
           - npm run test:cover
