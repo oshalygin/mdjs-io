@@ -1,24 +1,19 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-underscore-dangle */
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import RaisedButton from 'material-ui/RaisedButton';
 import sinon from 'sinon';
 
 import React from 'react';
-import Item from './index.js';
+import Item from './index';
 
 import { expect } from 'chai';
 
 describe('<Item />', () => {
 
-  let mainModuleInjector;
   const props = {
     items: []
   };
-
-  beforeEach(() => {
-
-  });
 
   it('should contain a button component that is titled "New Item"', () => {
 

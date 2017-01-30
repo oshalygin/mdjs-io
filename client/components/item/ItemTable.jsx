@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import ItemTableRow from './itemTableRow.jsx';
+import ItemTableRow from './ItemTableRow.jsx';
 
 const ItemTable = ({items, checked, deactivate}) => {
   const centeredHeaders = {
