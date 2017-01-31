@@ -47,7 +47,7 @@ import Dashboard from './components/dashboard';
 import ItemPage from './components/item';
 import ItemDetailPage from './components/itemDetail';
 
-import LoginPage from './components/login/LoginPage.jsx';
+import Login from './components/login';
 
 const store = configureStore();
 
@@ -76,7 +76,7 @@ render(
     <Router history={browserHistory}>
       <Route path="/" component={Application} onEnter={(nextState, replace, callback) => isAuthorized(nextState, replace, callback)}>
         <IndexRoute component={Dashboard} />
-        <Route path="login" component={LoginPage} />
+        <Route path="login" component={Login} />
         <Route path="dashboard" component={Dashboard} />
         <Route path="items" component={ItemPage} />
         <Route path="item(/:id)" component={ItemDetailPage} />

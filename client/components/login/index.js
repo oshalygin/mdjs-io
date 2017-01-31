@@ -22,7 +22,7 @@ class LoginPage extends React.Component {
 
   login(event) {
     event.preventDefault();
-    const {user} = this.state;
+    const { user } = this.state;
     this.props.userActions.login({ ...user })
       .then(() => this.redirect())
       .catch(error => toastr.error(error));
@@ -34,13 +34,13 @@ class LoginPage extends React.Component {
 
   onChange(event) {
     const property = event.target.name;
-    const {user} = this.state;
+    const { user } = this.state;
     user[property] = event.target.value;
 
   }
 
   render() {
-    const {loading} = this.props;
+    const { loading } = this.props;
     const formComponent = !loading.loadingUser
       ? (<LoginForm onChange={this.onChange} login={this.login} />)
       : (<Spinner />);

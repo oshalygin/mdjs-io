@@ -13,9 +13,9 @@ class Application extends React.Component {
     const currentPath = this.props.location.pathname.replace('/', '');
     if (currentPath === 'login') {
       return (
-        <div>
+        <MuiThemeProvider muiTheme={muiTheme}>
           {this.props.children}
-        </div>
+        </MuiThemeProvider>
       );
     }
     return (

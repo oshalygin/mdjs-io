@@ -28,5 +28,3 @@ webpack(webpackConfig).run((error, stats) => {
   return 0;
 
 });
-
-
