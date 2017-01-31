@@ -4,8 +4,8 @@ import path from 'path';
 import bodyParser from 'body-parser';
 import webpack from 'webpack';
 import configuration from '../webpack.config.dev';
-import colors from 'colors'; //eslint-disable-line no-unused-vars
 import open from 'open';
+import logger from '../utilities/logger';
 
 import router from './routes/routes-v1';
 
@@ -23,6 +23,7 @@ application.use(require('webpack-dev-middleware')(applicationCompiler, {
 
 application.use(require('webpack-hot-middleware')(applicationCompiler));
 
+application.use(logger.requestLogger);
 application.use('/api/v1', router);
 application.use('/client', express.static(path.join(__dirname, '../client')));
 
@@ -34,10 +35,10 @@ application.get('*', (request, response) => {
 
 application.listen(port, (error) => {
   if (!!error) {
-    console.log(error.bold.red);
+    logger.error(error);
   }
   open(`http://localhost:${port}`);
-  console.log(`Serving API AT http://localhost:${port}`.blue);
+  logger.info(`Serving API AT http://localhost:${port}`);
 });
 
 export default application;
