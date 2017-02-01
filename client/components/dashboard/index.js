@@ -3,10 +3,6 @@ import React from 'react';
 
 class Dashboard extends React.Component {
 
-  componentDidMount() {
-    componentHandler.upgradeDom(); //eslint-disable-line no-undef
-  }
-
   render() {
     return (
       <div className="text-center m-t-lg">
