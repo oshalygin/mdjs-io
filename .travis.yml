@@ -15,4 +15,6 @@ script:
   - npm run lint
   - npm run test:cover
   - npm run codacy:coverage
-  
+
+after_success:
+  - bash ./.travis/tag-version.sh
