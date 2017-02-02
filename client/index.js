@@ -14,6 +14,7 @@ import { retrieveUser } from './reducers/initialState';
 import '!style!css!../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '!style!css!../node_modules/font-awesome/css/font-awesome.min.css';
 import '!style!css!../node_modules/toastr/build/toastr.min.css';
+import '!style!css!sass!./styles/colors.scss';
 
 import '!style!css!../node_modules/animate.css/animate.min.css';
 import './styles/toastrOptions';

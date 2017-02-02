@@ -60,10 +60,12 @@ export default {
       { test: /\.js$/, include: path.join(__dirname, 'client'), loaders: ['babel'] },
       { test: /\.jsx$/, include: path.join(__dirname, 'client'), loader: 'babel', query: { presets: ['es2015', 'react'] } },
       {
-        test: /\.css$/,
+        test: /(\.css|\.scss)$/,
         loaders: [
           'style?sourceMap',
-          'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]'
+          'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+          
+          'sass'
         ]
       },
       { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file' },
