@@ -12,7 +12,7 @@ import * as itemActions from '../../actions/itemActions';
 import TextField from '../common/TextField.jsx';
 import ItemTable from './ItemTable.jsx';
 
-import styles from './item.css';
+import styles from './item.scss';
 
 const fullWidth = { width: '100%' };
 
@@ -22,12 +22,14 @@ export class Item extends React.Component {
 
     this.state = {
       items: [],
-      query: ''
+      query: '',
+      filter: ''
     };
 
     this.checkboxChangeHandler = this.checkboxChangeHandler.bind(this);
     this.deactivate = this.deactivate.bind(this);
     this.navigateToNewItemPage = this.navigateToNewItemPage.bind(this);
+    this.searchOnChange = this.searchOnChange.bind(this);
   }
 
   navigateToNewItemPage() {
@@ -40,17 +42,22 @@ export class Item extends React.Component {
     this.props.itemActions.itemChecked(checkedItem);
   }
 
-  deactivate(event) {
+  deactivate(itemId) {
     const deactivatedItem = this.props.items
-      .filter(item => item.itemID == event.target.name)[0]; //eslint-disable-line eqeqeq
+      .filter(item => item.itemID == itemId)[0]; //eslint-disable-line eqeqeq
 
     this.props.itemActions.deactivateItem(deactivatedItem)
       .then(() => {
-
+        //TODO: Handle this
       })
       .catch(() => {
         toastr.error(`could not deactivate the item, ${deactivatedItem.label}`);
       });
+  }
+
+  searchOnChange(event) {
+    const newFilter = event.target.value;
+    this.setState({filter: newFilter}); //TODO:  #16 - Filter functionality
   }
 
   render() {
@@ -75,9 +82,9 @@ export class Item extends React.Component {
               <div className="row">
                 <div className="col-sm-3">
                   <TextField
-                    name="username"
+                    name="filter"
                     type="text"
-                    onChange={this.onChange}
+                    onChange={this.searchOnChange}
                     errorText={this.state.error}
                     style={fullWidth}
                     floatingLabelText="Filter" />

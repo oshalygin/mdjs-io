@@ -1,0 +1,12 @@
+.newItemButton {
+  margin-bottom: 1.2em;
+}
+
+.inline-button {
+  display: inline-block;
+  
+  &:not(:last-child){
+    margin-right: 1em;
+  }
+  
+}

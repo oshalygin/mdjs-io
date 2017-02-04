@@ -1,7 +1,13 @@
+/* eslint-disable react/jsx-no-bind */
 import React, { PropTypes } from 'react';
+import CSSModules from 'react-css-modules';
 import { TableRow, TableRowColumn } from 'material-ui/Table';
-import { Link } from 'react-router';
+import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
+import { browserHistory } from 'react-router';
 import moment from 'moment';
+
+import styles from './item.scss';
 
 export function disabledText(itemDisabledState) {
   return itemDisabledState
@@ -9,31 +15,26 @@ export function disabledText(itemDisabledState) {
     : '';
 }
 
-const ItemTableRow = ({ item, checked, deactivate }) => { //eslint-disable-line
-  const tableRowAlignment = {
-    verticalAlign: 'middle',
-    textAlign: 'center'
-  };
-  const alignLeft = {
-    ...tableRowAlignment,
-    textAlign: 'left'
-  };
+function navigateToEditLink(itemId) {
+  browserHistory.push(`item/${itemId}`);
+}
+
+const ItemTableRow = ({ key, item, checked, deactivate }) => { //eslint-disable-line
 
   const parsedLastUpdatedDate = moment(item.lastUpdatedDate).format('MMM DD, YYYY - hh:mm A');
-  const editLink = `item/${item.itemID}`;
   return (
-    <TableRow key={item.itemID}>
-      <TableRowColumn>{item.photoURL}</TableRowColumn>
+    <TableRow key={key} selected={item.checked}>
+      <TableRowColumn>{item.itemID}</TableRowColumn>
       <TableRowColumn className={disabledText(item.disabled)}>{item.label}</TableRowColumn>
       <TableRowColumn className={disabledText(item.disabled)}>$ {item.price}</TableRowColumn>
       <TableRowColumn className={disabledText(item.disabled)}>{parsedLastUpdatedDate}</TableRowColumn>
-      <TableRowColumn style={alignLeft}>
-        <Link to={editLink} disabled={item.disabled} className="mdl-button mdl-js-button mdl-button--primary">
-          Edit
-                </Link>
-        <button disabled={item.disabled} className="mdl-button mdl-js-button mdl-button--accent" onClick={deactivate} name={item.itemID}>
-          Deactivate
-                </button>
+      <TableRowColumn>
+        <div className={styles['inline-button']}>
+          <FlatButton label="Edit" onClick={() => navigateToEditLink(item.itemID)} />
+        </div>
+        <div className={styles['inline-button']}>
+          <RaisedButton label="Deactivate" secondary onClick={() => deactivate(item.itemID)} />
+        </div>
       </TableRowColumn>
     </TableRow>
   );
@@ -45,4 +46,4 @@ ItemTableRow.propTypes = {
   deactivate: PropTypes.func.isRequired
 };
 
-export default ItemTableRow;
+export default CSSModules(ItemTableRow, styles);

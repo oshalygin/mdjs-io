@@ -11,21 +11,25 @@ import ItemTableRow from './ItemTableRow.jsx';
 const ItemTable = ({ items, checked, deactivate }) => {
   return (
     <div className="table-responsive">
-      <Table selectable>
-        <TableHeader adjustForCheckbox>
+      <Table selectable multiSelectable>
+        <TableHeader>
           <TableRow>
-            <TableHeaderColumn />
+            <TableHeaderColumn>Image</TableHeaderColumn>
             <TableHeaderColumn>Name</TableHeaderColumn>
             <TableHeaderColumn>Price</TableHeaderColumn>
-            <TableHeaderColumn />
             <TableHeaderColumn>Date Updated</TableHeaderColumn>
+            <TableHeaderColumn>Foobar</TableHeaderColumn>
           </TableRow>
         </TableHeader>
-        <TableBody displayRowCheckbox showRowHover stripedRows>
-          {items.map(item => {
+        <TableBody
+          showRowHover
+          stripedRows
+          displayRowCheckbox
+        >
+          {items.map((item, index) => {
             return (
               <ItemTableRow
-                key={item.itemID}
+                key={index}
                 item={item}
                 checked={checked}
                 deactivate={deactivate}

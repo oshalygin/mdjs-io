@@ -11,10 +11,9 @@ set -o errexit -o errtrace
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/common.sh"
 
+
 function push_tag
 {
-  git config credential.helper "store --file=.git/credentials"
-  echo "https://${GITHUB_TOKEN}:@github.com" > .git/credentials
   git push origin --tags
   Log_Success "Successfully pushed the new tag: ${current_version}"
 }
