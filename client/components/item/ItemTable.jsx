@@ -1,24 +1,27 @@
 import React, { PropTypes } from 'react';
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableRow,
+  TableHeaderColumn
+} from 'material-ui/Table';
 import ItemTableRow from './ItemTableRow.jsx';
 
-const ItemTable = ({items, checked, deactivate}) => {
-  const centeredHeaders = {
-    textAlign: 'center'
-  };
+const ItemTable = ({ items, checked, deactivate }) => {
   return (
     <div className="table-responsive">
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th />
-            <th style={centeredHeaders} />
-            <th style={centeredHeaders}>Name </th>
-            <th style={centeredHeaders}>Price</th>
-            <th style={centeredHeaders}>Date Updated</th>
-            <th />
-          </tr>
-        </thead>
-        <tbody>
+      <Table selectable>
+        <TableHeader adjustForCheckbox>
+          <TableRow>
+            <TableHeaderColumn />
+            <TableHeaderColumn>Name</TableHeaderColumn>
+            <TableHeaderColumn>Price</TableHeaderColumn>
+            <TableHeaderColumn />
+            <TableHeaderColumn>Date Updated</TableHeaderColumn>
+          </TableRow>
+        </TableHeader>
+        <TableBody displayRowCheckbox showRowHover stripedRows>
           {items.map(item => {
             return (
               <ItemTableRow
@@ -26,11 +29,11 @@ const ItemTable = ({items, checked, deactivate}) => {
                 item={item}
                 checked={checked}
                 deactivate={deactivate}
-                />
+              />
             );
           })}
-        </tbody>
-      </table>
+        </TableBody>
+      </Table>
     </div>
   );
 };
