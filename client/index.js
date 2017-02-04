@@ -20,7 +20,7 @@ import '!style!css!../node_modules/animate.css/animate.min.css';
 import './styles/toastrOptions';
 
 import '!style!css!../node_modules/dashboard-styles/dist/dashboard.min.css';
-import '!style!css!./styles/spinner.css';
+import '!style!css!sass!./styles/spinner.scss';
 
 import './images/favicon.ico';
 import './images/apple-touch-icon.png';

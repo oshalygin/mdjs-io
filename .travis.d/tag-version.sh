@@ -11,6 +11,14 @@ set -o errexit -o errtrace
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/common.sh"
 
+function push_tag
+{
+  git config credential.helper "store --file=.git/credentials"
+  echo "https://${GITHUB_TOKEN}:@github.com" > .git/credentials
+  git push origin --tags
+  Log_Success "Successfully pushed the new tag: ${current_version}"
+}
+
 function get_current_version
 {
   current_version="v$(node -p -e "require('${SCRIPT_DIR}/../package.json').version")"
@@ -45,3 +53,4 @@ Display_Banner "Processing and setting the git tag version on the latest commit.
 
 get_current_version
 set_tag
+push_tag
