@@ -9,37 +9,47 @@ import moment from 'moment';
 
 import styles from './item.scss';
 
-export function disabledText(itemDisabledState) {
-  return itemDisabledState
-    ? 'mdl-color-text--grey'
-    : '';
+class ItemTableRow extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.navigateToEditLink = this.navigateToEditLink.bind(this);
+    this.disabledText = this.disabledText.bind(this);
+  }
+
+  navigateToEditLink(itemId) {
+    browserHistory.push(`item/${itemId}`);
+  }
+
+  disabledText(itemDisabledState) {
+    return itemDisabledState
+      ? 'mdl-color-text--grey'
+      : '';
+  }
+
+  render() {
+    const { item, checked, deactivate, ...otherProps } = this.props; //eslint-disable-line
+    const parsedLastUpdatedDate = moment(item.lastUpdatedDate).format('MMM DD, YYYY - hh:mm A');
+    //  = ({ key, item, checked, deactivate }) => { //eslint-disable-line
+    return (
+      <TableRow selected={item.checked} {...otherProps}>
+        {otherProps.children[0] /* checkbox passed down from Table-Body*/}
+        <TableRowColumn>{item.itemID}</TableRowColumn>
+        <TableRowColumn className={this.disabledText(item.disabled)}>{item.label}</TableRowColumn>
+        <TableRowColumn className={this.disabledText(item.disabled)}>$ {item.price}</TableRowColumn>
+        <TableRowColumn className={this.disabledText(item.disabled)}>{parsedLastUpdatedDate}</TableRowColumn>
+        <TableRowColumn>
+          <div className={styles['inline-button']}>
+            <FlatButton label="Edit" onClick={() => this.navigateToEditLink(item.itemID)} />
+          </div>
+          <div className={styles['inline-button']}>
+            <RaisedButton label="Deactivate" secondary onClick={() => deactivate(item.itemID)} />
+          </div>
+        </TableRowColumn>
+      </TableRow>
+    );
+  }
 }
-
-function navigateToEditLink(itemId) {
-  browserHistory.push(`item/${itemId}`);
-}
-
-const ItemTableRow = ({ key, item, checked, deactivate }) => { //eslint-disable-line
-
-  const parsedLastUpdatedDate = moment(item.lastUpdatedDate).format('MMM DD, YYYY - hh:mm A');
-  return (
-    <TableRow key={key} selected={item.checked}>
-      <TableRowColumn>{item.itemID}</TableRowColumn>
-      <TableRowColumn className={disabledText(item.disabled)}>{item.label}</TableRowColumn>
-      <TableRowColumn className={disabledText(item.disabled)}>$ {item.price}</TableRowColumn>
-      <TableRowColumn className={disabledText(item.disabled)}>{parsedLastUpdatedDate}</TableRowColumn>
-      <TableRowColumn>
-        <div className={styles['inline-button']}>
-          <FlatButton label="Edit" onClick={() => navigateToEditLink(item.itemID)} />
-        </div>
-        <div className={styles['inline-button']}>
-          <RaisedButton label="Deactivate" secondary onClick={() => deactivate(item.itemID)} />
-        </div>
-      </TableRowColumn>
-    </TableRow>
-  );
-};
-
 ItemTableRow.propTypes = {
   item: PropTypes.object.isRequired,
   checked: PropTypes.func.isRequired,

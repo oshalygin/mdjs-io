@@ -18,7 +18,7 @@ const ItemTable = ({ items, checked, deactivate }) => {
             <TableHeaderColumn>Name</TableHeaderColumn>
             <TableHeaderColumn>Price</TableHeaderColumn>
             <TableHeaderColumn>Date Updated</TableHeaderColumn>
-            <TableHeaderColumn>Foobar</TableHeaderColumn>
+            <TableHeaderColumn />
           </TableRow>
         </TableHeader>
         <TableBody
