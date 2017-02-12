@@ -17,6 +17,11 @@ script:
   - npm run codacy:coverage
 
 after_success:
-  - git config credential.helper "store --file=.git/credentials"
-  - echo "https://${GITHUB_TOKEN}:@github.com" > .git/credentials
-  - bash ./.travis.d/tag-version.sh
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+      git config credential.helper "store --file=.git/credentials";
+      echo "https://${GITHUB_TOKEN}:@github.com" > .git/credentials;
+      bash ./.travis.d/tag-version.sh;
+      docker build --build-arg version=$(node -p -e "require('./package.json').version") -t index.docker.io/oshalygin/olegjs:$(node -p -e "require('./package.json').version") .;
+      docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+      docker push oshalygin/merchant-dashboard:$(node -p -e "require('./package.json').version");
+    fi

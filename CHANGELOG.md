@@ -1,3 +1,8 @@
+## 1.1.0 (February 11, 2017)
+
+- Add Docker deployment
+
+
 ## 1.0.2 (January 15, 2017)
 
 - Add initial utility functionality:
