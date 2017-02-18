@@ -7,7 +7,7 @@ import configuration from '../webpack.config.dev';
 import open from 'open';
 import logger from '../utilities/logger';
 
-import router from './routes/routes-v1';
+import v1router from './routes/routes-v1';
 
 const application = express();
 application.use(bodyParser.urlencoded({ extended: true }));
@@ -24,7 +24,7 @@ application.use(require('webpack-dev-middleware')(applicationCompiler, {
 application.use(require('webpack-hot-middleware')(applicationCompiler));
 
 application.use(logger.requestLogger);
-application.use('/api/v1', router);
+application.use('/api/v1', v1router);
 application.use('/client', express.static(path.join(__dirname, '../client')));
 
 application.get('*', (request, response) => {
