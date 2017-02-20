@@ -4,7 +4,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import RaisedButton from 'material-ui/RaisedButton';
 import LoginForm from './LoginForm.jsx';
-import Spinner from '../common/Spinner.jsx';
+import Spinner from '../common/spinner';
 
 import Login from './index';
 
@@ -39,19 +39,6 @@ describe('<Login />', () => {
     expect(actual).equals(expected);
   });
 
-  it('should NOT display the LoginForm component when the loadingUser flag is true', () => {
-    const loading = {
-      loadingUser: true
-    };
-    const updatedProps = { ...props, loading };
-    const expected = 0;
-    const wrapper = shallow(<Login.WrappedComponent {...updatedProps} />);
-
-    const actual = wrapper.find(LoginForm).length;
-
-    expect(actual).equals(expected);
-  });
-
   it('should display the Spinner component when the loadingUser flag is true', () => {
     const loading = {
       loadingUser: true
@@ -65,13 +52,4 @@ describe('<Login />', () => {
     expect(actual).equals(expected);
   });
 
-  it('should NOT display the spinner component when the loadingUser flag is false', () => {
-
-    const expected = 0;
-    const wrapper = shallow(<Login.WrappedComponent {...props} />);
-
-    const actual = wrapper.find(Spinner).length;
-
-    expect(actual).equals(expected);
-  });
 });

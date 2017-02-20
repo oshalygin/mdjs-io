@@ -1,10 +1,13 @@
 import React, { PropTypes } from 'react';
+import CSSModules from 'react-css-modules';
 import toastr from 'toastr';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as userActions from '../../actions/userActions.js';
 
-import Spinner from '../common/Spinner.jsx';
+import styles from './login.css';
+
+import Spinner from '../common/spinner/';
 import LoginForm from './LoginForm.jsx';
 
 class LoginPage extends React.Component {
@@ -13,7 +16,8 @@ class LoginPage extends React.Component {
     super(props, context);
     this.state = {
       user: {},
-      loading: {}
+      loading: false,
+      formErrors: false
     };
     this.login = this.login.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -23,9 +27,15 @@ class LoginPage extends React.Component {
   login(event) {
     event.preventDefault();
     const { user } = this.state;
-    this.props.userActions.login({ ...user })
+    const { login, loginValidationErrors } = this.props.userActions;
+
+    login(user)
       .then(() => this.redirect())
-      .catch(error => toastr.error(error));
+      .catch((error) => {
+        toastr.error(error);
+        loginValidationErrors();
+        this.setState({ formErrors: true });
+      });
   }
 
   redirect() {
@@ -36,15 +46,11 @@ class LoginPage extends React.Component {
     const property = event.target.name;
     const { user } = this.state;
     user[property] = event.target.value;
-
   }
 
   render() {
     const { loading } = this.props;
-    const formComponent = !loading.loadingUser
-      ? (<LoginForm onChange={this.onChange} login={this.login} />)
-      : (<Spinner />);
-
+    const { formErrors } = this.state;
     return (
       <div className="middle-box text-center loginscreen animated fadeInDown">
         <div>
@@ -52,13 +58,10 @@ class LoginPage extends React.Component {
             <h1 className="logo-name">WR</h1>
           </div>
           <h3>Welcome to Western Register</h3>
-          <p>
-            The ultimate merchant dashboard experience
-                </p>
+          <p>The ultimate merchant dashboard experience</p>
           <p>Login to get started</p>
-
-          {formComponent}
-
+          <LoginForm hidden={loading} errors={formErrors} onChange={this.onChange} login={this.login} />
+          <Spinner hidden={!loading} />
           <p className="m-t"> <small>Western Register is a registered trademark of Western Register, LLC.</small> </p>
         </div>
       </div>
@@ -69,7 +72,7 @@ class LoginPage extends React.Component {
 
 LoginPage.propTypes = {
   user: PropTypes.object.isRequired,
-  loading: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired,
   userActions: PropTypes.object.isRequired
 };
 
@@ -80,7 +83,7 @@ LoginPage.contextTypes = {
 function mapStateToProps(state) {
   return {
     user: state.user,
-    loading: state.loading
+    loading: state.loading.loadingUser
   };
 }
 
@@ -90,4 +93,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
+export default CSSModules(connect(mapStateToProps, mapDispatchToProps)(LoginPage), styles);

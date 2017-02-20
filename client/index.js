@@ -14,13 +14,13 @@ import { retrieveUser } from './reducers/initialState';
 import '!style!css!../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '!style!css!../node_modules/font-awesome/css/font-awesome.min.css';
 import '!style!css!../node_modules/toastr/build/toastr.min.css';
-import '!style!css!sass!./styles/colors.scss';
+import '!style!css!./styles/colors.css';
 
 import '!style!css!../node_modules/animate.css/animate.min.css';
 import './styles/toastrOptions';
 
 import '!style!css!../node_modules/dashboard-styles/dist/dashboard.min.css';
-import '!style!css!sass!./styles/spinner.scss';
+import '!style!css!./styles/spinner.css';
 
 import './images/favicon.ico';
 import './images/apple-touch-icon.png';

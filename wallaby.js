@@ -20,7 +20,7 @@ module.exports = function (wallaby) {
     env: {
       type: 'node',
       params: {
-        env: 'NODE_ENV=test'
+        env: 'NODE_ENV=test;DOMAIN_ENDPOINT=http://www.foobar.com;'
       }
     },
     compilers: {
@@ -39,7 +39,7 @@ module.exports = function (wallaby) {
     setup: function () { //eslint-disable-line object-shorthand
 
       require('css-modules-require-hook')({
-        generateScopedName: '[path]___[name]__[local]___[hash:base64:5]'
+        generateScopedName: '[local]'
       });
 
       const noop = () => { };

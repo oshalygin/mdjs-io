@@ -1,7 +1,13 @@
-.loginFieldContainer {
+.login-field-container {
   margin-bottom: 4em;
 }
 
-.loginContainer {
+.login-container {
   margin-bottom: 6em;
+}
+
+.error-text {
+  color: #F44336;
+  text-align: center;
+  font-weight: 400;
 }

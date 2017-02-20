@@ -27,4 +27,52 @@ describe('<LoginForm />', () => {
     const actual = wrapper.find(RaisedButton).props().label;
     expect(actual).equals(expected);
   });
+
+  it('should set the display to none on the form if the hidden prop is passed in as true', () => {
+    const updatedProps = {
+      ...props,
+      hidden: true
+    };
+    
+    const wrapper = shallow(<LoginForm {...updatedProps} />);
+    const expected = 'none';
+
+    const actual = wrapper.first()
+      .props()
+      .style
+      .display;
+    
+    expect(actual).equals(expected);
+  });
+
+  it('should set the display to initial on the form if the hidden prop is passed in as true', () => {
+    const updatedProps = {
+      ...props,
+      hidden: false
+    };
+
+    const wrapper = shallow(<LoginForm {...updatedProps} />);
+    const expected = 'initial';
+
+    const actual = wrapper.first()
+      .props()
+      .style
+      .display;
+
+    expect(actual).equals(expected);
+  });
+
+  // it('should display the error text if the errors prop is passed in as true', () => {
+  //   const updatedProps = {
+  //     ...props,
+  //     errors: true
+  //   };
+
+  //   const wrapper = shallow(<LoginForm {...updatedProps} />);
+  //   const expected = 'initial';
+
+  //   const actual = wrapper.find('.error-text');
+  //   console.log(actual);
+  //   expect(actual).equals(expected);
+  // });
 });

@@ -7,7 +7,7 @@ import { itemPriceTypes } from '../../utilities/constants';
 import toastr from 'toastr';
 
 import ItemDetailForm from './ItemDetailForm.jsx';
-import Spinner from '../common/Spinner.jsx';
+import Spinner from '../common/spinner/';
 
 class ItemDetailPage extends React.Component {
   constructor(props, context) {

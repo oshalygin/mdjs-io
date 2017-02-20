@@ -103,9 +103,14 @@ export function loginWithToken(dispatch, tokenKey) {
         persistUserToken(userResponse.data.data.token);
       })
       .catch(error => { //eslint-disable-line no-unused-vars
-        dispatch(loadedUserFailure());
         throw (error);
       });
+  };
+}
+
+export function loginValidationErrors() {
+  return function (dispatch) {
+    dispatch(loadedUserFailure());
   };
 }
 

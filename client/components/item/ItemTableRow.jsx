@@ -7,7 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { browserHistory } from 'react-router';
 import moment from 'moment';
 
-import styles from './item.scss';
+import styles from './item.css';
 
 class ItemTableRow extends React.Component {
 

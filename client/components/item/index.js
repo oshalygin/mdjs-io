@@ -12,7 +12,7 @@ import * as itemActions from '../../actions/itemActions';
 import TextField from '../common/TextField.jsx';
 import ItemTable from './ItemTable.jsx';
 
-import styles from './item.scss';
+import styles from './item.css';
 
 const fullWidth = { width: '100%' };
 

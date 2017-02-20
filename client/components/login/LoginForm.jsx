@@ -6,14 +6,24 @@ import RaisedButton from 'material-ui/RaisedButton';
 import styles from './login.css';
 
 const textFieldLoginStyles = {
-  color: '#337ab7'
+  color: 'rgba(255,255,255, 0.90)'
 };
 
-const LoginForm = ({ onChange, login }) => {
+const LoginForm = ({ hidden, errors, onChange, login }) => {
+
+  const formDisplay = hidden ?
+    { display: 'none' }
+    : { display: 'initial' };
+
+  const errorTextDisplay = errors ?
+    { display: 'initial' }
+    : { display: 'none' };
+
   return (
-    <form className="m-t">
-      <div className={styles.loginContainer}>
-        <div className={styles.loginFieldContainer}>
+    <form style={formDisplay} className="m-t">
+      <div className={styles['login-container']}>
+        <div className={styles['login-field-container']}>
+          <div style={errorTextDisplay} className={styles['error-text']}>Invalid username or password</div>
           <TextField
             floatingLabelText="Username"
             name="email"
@@ -45,6 +55,8 @@ const LoginForm = ({ onChange, login }) => {
 };
 
 LoginForm.propTypes = {
+  hidden: PropTypes.bool.isRequired,
+  errors: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired
 };

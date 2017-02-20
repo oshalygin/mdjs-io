@@ -60,11 +60,10 @@ export default {
       { test: /\.js$/, include: path.join(__dirname, 'client'), loaders: ['babel'] },
       { test: /\.jsx$/, include: path.join(__dirname, 'client'), loader: 'babel', query: { presets: ['es2015', 'react'] } },
       {
-        test: /(\.css|\.scss)$/,
+        test: /\.css$/,
         loaders: [
           'style?sourceMap',
-          'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
-          'sass'
+          'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]'
         ]
       },
       { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file' },
@@ -86,5 +85,9 @@ export default {
         ]
       }
     ]
-  }
+  },
+  postcss: () => [
+    require('postcss-import')(),
+    require('postcss-cssnext')()
+  ]
 };

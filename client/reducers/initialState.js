@@ -20,7 +20,9 @@ export function retrieveUser(dispatch, callback) {
 
 export default {
   user: {},
-  loading: {},
+  loading: {
+    loadingUser: false
+  },
   categories: [],
   discounts: [],
   modifiers: [],
