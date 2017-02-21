@@ -1,5 +1,5 @@
 module.exports = function (wallaby) {
-
+  'use strict';
   return {
     files: [
       'client/**/*.js*',
@@ -15,7 +15,6 @@ module.exports = function (wallaby) {
     tests: [
       'client/**/*.spec.js',
       'server/**/*.spec.js'
-
     ],
     env: {
       type: 'node',
@@ -44,7 +43,6 @@ module.exports = function (wallaby) {
 
       const noop = () => { };
 
-      require.extensions['.css'] = noop;
       require.extensions['.ico'] = noop;
       require.extensions['.png'] = noop;
       require.extensions['.svg'] = noop;

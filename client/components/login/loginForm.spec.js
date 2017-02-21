@@ -62,17 +62,20 @@ describe('<LoginForm />', () => {
     expect(actual).equals(expected);
   });
 
-  // it('should display the error text if the errors prop is passed in as true', () => {
-  //   const updatedProps = {
-  //     ...props,
-  //     errors: true
-  //   };
+  it('should display the error text if the errors prop is passed in as true', () => {
+    const updatedProps = {
+      ...props,
+      errors: true
+    };
 
-  //   const wrapper = shallow(<LoginForm {...updatedProps} />);
-  //   const expected = 'initial';
+    const wrapper = shallow(<LoginForm {...updatedProps} />);
+    const expected = 'initial';
 
-  //   const actual = wrapper.find('.error-text');
-  //   console.log(actual);
-  //   expect(actual).equals(expected);
-  // });
+    const actual = wrapper.find('.error-text')
+      .props()
+      .style
+      .display;
+    
+    expect(actual).equals(expected);
+  });
 });

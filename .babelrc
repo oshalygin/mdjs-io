@@ -1,20 +1,28 @@
 {
   "presets": [
+    "latest",
     "react",
-    "es2015"
-  ],
-  "plugins": [
-    "transform-object-rest-spread"
+    "stage-1"
   ],
   "env": {
     "development": {
       "presets": [
         "react-hmre"
+      ],
+      "plugins": [
+        "transform-object-rest-spread"
       ]
     },
     "test": {
       "plugins": [
         "rewire"
+      ]
+    },
+    "production": {
+      "plugins": [
+        "transform-react-constant-elements",
+        "transform-react-remove-prop-types",
+        "transform-object-rest-spread"
       ]
     }
   }
