@@ -1,3 +1,4 @@
-.test-color {
-  background-color: #3498db;
+:root {
+  --blue: #3498DB;
+  --error: #F44336;
 }

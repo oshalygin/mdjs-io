@@ -1,6 +1,6 @@
 {
   "name": "merchant-dashboard",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Merchant Dashboard built with React and Redux",
   "scripts": {
     "prestart": "babel-node utilities/startingDisplayMessage.js",
@@ -111,8 +111,9 @@
     "mocha": "^3.0.2",
     "mocha-lcov-reporter": "^1.2.0",
     "moxios": "^0.3.0",
-    "node-sass": "^4.5.0",
     "npm-run-all": "4.0.1",
+    "postcss-cssnext": "^2.9.0",
+    "postcss-import": "^9.1.0",
     "postcss-loader": "^1.2.2",
     "react-addons-test-utils": "15.4.2",
     "redux-immutable-state-invariant": "^1.2.4",
@@ -120,7 +121,6 @@
     "redux-mock-store": "^1.2.0",
     "resolve-url": "^0.2.1",
     "rimraf": "^2.5.4",
-    "sass-loader": "^4.1.1",
     "sinon": "^1.17.7",
     "wallaby-webpack": "0.0.32",
     "webpack": "^1.14.0",
