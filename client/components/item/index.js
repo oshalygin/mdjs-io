@@ -37,6 +37,7 @@ export class Item extends React.Component {
   }
 
   checkboxChangeHandler(event) {
+    //handle
     const checkedItem = this.props.items
       .filter(item => item.itemID == event.target.id)[0]; //eslint-disable-line eqeqeq
     this.props.itemActions.itemChecked(checkedItem);

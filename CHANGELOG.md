@@ -1,3 +1,7 @@
+## 1.2.1 (February 22, 2017)
+
+- Add tests and robust support around the itemTableRow component.
+
 ## 1.2.0 (February 20, 2017)
 
 - Remove SASS

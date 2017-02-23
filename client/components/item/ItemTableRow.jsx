@@ -13,6 +13,7 @@ class ItemTableRow extends React.Component {
 
   constructor(props) {
     super(props);
+
     this.navigateToEditLink = this.navigateToEditLink.bind(this);
     this.disabledText = this.disabledText.bind(this);
   }
@@ -28,9 +29,9 @@ class ItemTableRow extends React.Component {
   }
 
   render() {
-    const { item, checked, deactivate, ...otherProps } = this.props; //eslint-disable-line
+    const { item, checked, deactivate, ...otherProps } = this.props; // eslint-disable-line
     const parsedLastUpdatedDate = moment(item.lastUpdatedDate).format('MMM DD, YYYY - hh:mm A');
-    //  = ({ key, item, checked, deactivate }) => { //eslint-disable-line
+    
     return (
       <TableRow selected={item.checked} {...otherProps}>
         {otherProps.children[0] /* checkbox passed down from Table-Body*/}
@@ -50,6 +51,7 @@ class ItemTableRow extends React.Component {
     );
   }
 }
+
 ItemTableRow.propTypes = {
   item: PropTypes.object.isRequired,
   checked: PropTypes.func.isRequired,
