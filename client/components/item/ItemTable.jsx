@@ -23,9 +23,7 @@ const ItemTable = ({ items, checked, deactivate }) => {
         </TableHeader>
         <TableBody
           showRowHover
-          stripedRows
-          displayRowCheckbox
-        >
+          displayRowCheckbox >
           {items.map((item, index) => {
             return (
               <ItemTableRow
