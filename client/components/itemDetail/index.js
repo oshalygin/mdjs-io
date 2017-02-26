@@ -1,10 +1,13 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
+import RaisedButton from 'material-ui/RaisedButton';
+import CSSModules from 'react-css-modules';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as itemActions from '../../actions/itemActions';
 import { itemPriceTypes } from '../../utilities/constants';
 import toastr from 'toastr';
+
+import styles from './itemDetail.css';
 
 import ItemDetailForm from './ItemDetailForm.jsx';
 import Spinner from '../common/spinner/';
@@ -103,24 +106,33 @@ class ItemDetailPage extends React.Component {
       );
 
     return (
-      <div className="row">
-        <div className="col-lg-offset-3 col-lg-6">
-          <div className="ibox float-e-margins">
-            <div className="ibox-title">
-              <h5>{itemHeading}</h5>
+      <div>
+        <div className="row">
+          <div className="col-sm-offset-3 col-sm-6">
+            <div className="ibox float-e-margins">
+              <div className="ibox-title">
+                <h5>{itemHeading}</h5>
+              </div>
+              {formComponent}
             </div>
-            {formComponent}
           </div>
         </div>
-        <div className="col-lg-offset-3 col-lg-3">
-          <button className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onClick={this.onSave}>
-            Save Item
-                    </button>
-        </div>
-        <div className="col-lg-offset-1 col-lg-2 text-right">
-          <Link to="items" className="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">
-            View All Items
-                    </Link>
+
+        <div className="row">
+          <div className="col-sm-offset-3 col-sm-6">
+            <div className={styles['controls-wrapper']}>
+              <RaisedButton
+                className={styles['left-control']}
+                label="Save Item"
+                primary
+                onClick={this.onSave} />
+            </div>
+            <RaisedButton
+              className={styles['right-control']}  
+              label="View All Items"
+              secondary
+              onClick={this.onSave} />
+          </div>
         </div>
       </div>
     );

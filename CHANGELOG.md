@@ -1,3 +1,8 @@
+## 1.2.2 (February 22, 2017)
+
+- Refactor ItemDetail controls to utilize Material-UI components.
+- Added additional styling
+
 ## 1.2.1 (February 22, 2017)
 
 - Add tests and robust support around the itemTableRow component.

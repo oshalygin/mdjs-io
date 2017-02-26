@@ -1,0 +1,11 @@
+.controls-wrapper {
+  margin: 0 auto;
+}
+
+.left-control {
+  float: left;
+}
+
+.right-control {
+  float: right;
+}
