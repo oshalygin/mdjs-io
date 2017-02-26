@@ -1,4 +1,8 @@
-## 1.2.2 (February 22, 2017)
+## 1.2.3 (February 25, 2017)
+
+- Fix CSSModules not wrapping itemDetail component.
+
+## 1.2.2 (February 25, 2017)
 
 - Refactor ItemDetail controls to utilize Material-UI components.
 - Added additional styling

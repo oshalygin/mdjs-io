@@ -128,7 +128,7 @@ class ItemDetailPage extends React.Component {
                 onClick={this.onSave} />
             </div>
             <RaisedButton
-              className={styles['right-control']}  
+              className={styles['right-control']}
               label="View All Items"
               secondary
               onClick={this.onSave} />
@@ -195,4 +195,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ItemDetailPage);
+export default CSSModules(connect(mapStateToProps, mapDispatchToProps)(ItemDetailPage), styles);
