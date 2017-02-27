@@ -70,6 +70,7 @@ export function createOrUpdateItem(item) {
 
     const token = loadUserToken();
     const data = new FormData();
+    
     data.append('item', JSON.stringify(itemToPersist));
     data.append('file', item.file);
 
@@ -133,16 +134,5 @@ export function itemChecked(item) {
   };
   return function (dispatch) {
     dispatch(itemCheckedSuccess(checkedItem));
-  };
-}
-
-export function itemImageUpdated(item, file) {
-  const updatedImageItem = Object.assign({}, {
-    ...item,
-    photoURL: file.preview,
-    file
-  });
-  return function (dispatch) {
-    dispatch(itemPhotoUpdatedSuccess(updatedImageItem));
   };
 }

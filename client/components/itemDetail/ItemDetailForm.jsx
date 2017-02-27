@@ -3,15 +3,13 @@ import React, { PropTypes } from 'react';
 import TextField from '../common/TextField.jsx';
 import SelectList from '../common/SelectList.jsx';
 import MenuItem from 'material-ui/MenuItem';
-import ItemImage from './itemImage.jsx';
+import ItemImage from './ItemImage.jsx';
 import { itemPriceTypes } from '../../utilities/constants';
 
 const ItemDetailForm = ({ item, errors, onChange, onDrop }) => {
+  const itemPriceType = itemPriceTypes
+    .filter(priceType => priceType.value == item.priceTypeID)[0] //eslint-disable-line
 
-  const itemPriceIdValue = itemPriceTypes
-    .filter(priceType => priceType.value == item.priceTypeID)[0] //eslint-disable-line eqeqeq
-    .label;
-  
   return (
     <div className="ibox-content">
       <div className="row">
@@ -40,18 +38,21 @@ const ItemDetailForm = ({ item, errors, onChange, onDrop }) => {
             onChange={onChange}
             errorText={errors.price}
           />
-
           <SelectList
             onChange={onChange}
             fullWidth
             floatingLabelText="Price Type"
-            value={itemPriceIdValue}
-          >
+            value={itemPriceType} >
+
             {itemPriceTypes.map(itemPrice => {
               return (
-                <MenuItem value={itemPrice.value} primaryText={itemPrice.label} key={itemPrice.value} />
+                <MenuItem
+                  value={itemPrice}
+                  primaryText={itemPrice.label}
+                  key={itemPrice.value} />
               );
             })}
+
           </SelectList>
         </div>
         <div className="col-md-offset-4 col-md-3">

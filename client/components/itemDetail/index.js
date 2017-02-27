@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
+import { browserHistory } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import CSSModules from 'react-css-modules';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as itemActions from '../../actions/itemActions';
+import * as actionCreators from '../../actions/itemActions';
 import { itemPriceTypes } from '../../utilities/constants';
 import toastr from 'toastr';
 
@@ -17,7 +18,7 @@ class ItemDetailPage extends React.Component {
     super(props, context);
     this.state = {
       errors: {},
-      item: {},
+      item: props.item,
       heading: ''
     };
 
@@ -29,56 +30,63 @@ class ItemDetailPage extends React.Component {
     this.onDrop = this.onDrop.bind(this);
   }
 
-  onChange(event) {
-    const { item } = this.props;
+  onChange(event, index, payload) {
 
-    if (event.target.tagName === 'LI') {
-      const property = event.target.attributes.getNamedItem('name').value;
-      item[property] = event.target.attributes.getNamedItem('data-value').value;
-      this.setState({});
-    } else {
-      const property = event.target.name;
-      const pattern = event.target.pattern;
-      item[property] = event.target.value;
-      this.propertyIsValid(property, item[property], pattern);
+    const { item, errors } = this.state;
+    let property;
+
+    if (payload) {
+      property = payload.name;
+      item[property] = payload.value;
+
+      return this.setState({ item });
     }
+
+    property = event.target.name;
+    item[property] = event.target.value;
+
+    this.propertyIsValid(property, item[property], errors);
+    return this.setState({ item });
+
   }
 
   onSave() {
     const { item } = this.state;
+    const { itemActions } = this.props;
     if (!this.formIsValid()) {
       toastr.error('Form Validation Errors!');
       return;
     }
 
-    this.props.itemActions.createOrUpdateItem(...item)
+    itemActions.createOrUpdateItem(item)
       .then(() => this.redirect())
       .catch(error => toastr.error(error));
-
   }
 
   redirect() {
-    this.context.router.push('/items');
+    browserHistory.push('items');
   }
 
-  propertyIsValid(property, value, pattern) {
-    const { errors } = this.props;
-    const regexPattern = pattern.replace("\"", ""); //eslint-disable-line quotes
-    const patternTest = new RegExp(regexPattern);
+  propertyIsValid(property, value, errors) {
+    const patternTest = property === 'name' || property === 'label'
+      ? new RegExp(/^[a-zA-Z]*$/)
+      : new RegExp(/^[0-9]+([,.][0-9]+)?$/g);
 
-    errors[property] = !patternTest.exec(value)[0];
-    this.setState({});
+    errors[property] = !patternTest.test(value) ? ' ' : false;
+    
+    this.setState({ errors });
   }
 
   onDrop(files) {
-    const { item } = this.props;
-    const file = files[0];
-    item.file = file;
-    this.props.itemActions.itemImageUpdated(item, file);
+    const { item } = this.state;
+
+    item.file = files[0];
+    item.photoURL = files[0].preview;
+    this.setState({ item });
   }
 
   formIsValid() {
-    const { errors, item } = this.props;
+    const { errors, item } = this.state;
 
     for (const property in errors) {
       if (errors.hasOwnProperty(property)) {
@@ -91,10 +99,17 @@ class ItemDetailPage extends React.Component {
   }
 
   render() {
-    const { itemHeading, item, errors, loading } = this.props;
+    const { itemHeading, loading } = this.props;
+    const { item, errors } = this.state;
 
     const formComponent = !loading.createUpdateItem
-      ? (<ItemDetailForm item={item} onDrop={this.onDrop} onChange={this.onChange} errors={errors} />)
+      ? (
+        <ItemDetailForm
+          item={item}
+          onDrop={this.onDrop}
+          onChange={this.onChange}
+          errors={errors} />
+      )
       : (
         <div className="ibox-content">
           <div className="row">
@@ -117,20 +132,19 @@ class ItemDetailPage extends React.Component {
             </div>
           </div>
         </div>
-
         <div className="row">
           <div className="col-sm-offset-3 col-sm-6">
             <div className={styles['controls-wrapper']}>
               <RaisedButton
                 className={styles['left-control']}
-                label="Save Item"
-                primary
-                onClick={this.onSave} />
+                label="Back"
+                secondary
+                onClick={this.redirect} />
             </div>
             <RaisedButton
               className={styles['right-control']}
-              label="View All Items"
-              secondary
+              label="Save Item"
+              primary
               onClick={this.onSave} />
           </div>
         </div>
@@ -151,7 +165,9 @@ ItemDetailPage.contextTypes = {
   router: PropTypes.object
 };
 
-function mapStateToProps(state, ownProps) {
+export function mapStateToProps(state, ownProps) {
+
+  const defaultPriceType = itemPriceTypes[0].value; // Each, value = 0
   let item = {
     itemID: 0,
     name: '',
@@ -162,7 +178,7 @@ function mapStateToProps(state, ownProps) {
     file: null,
     itemCategoryID: 0,
     isActive: 1,
-    priceTypeID: itemPriceTypes[0].value
+    priceTypeID: defaultPriceType
   };
 
   const { items } = state;
@@ -170,7 +186,7 @@ function mapStateToProps(state, ownProps) {
     .filter(stateItem => stateItem.itemID == ownProps.params.id || stateItem.itemID === item.itemID)[0]; //eslint-disable-line eqeqeq
 
   if (!!existingItem) {
-    item = Object.assign({}, existingItem);
+    item = { ...existingItem };
   }
 
   const itemHeading = (existingItem && existingItem.itemID !== 0)
@@ -191,7 +207,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    itemActions: bindActionCreators(itemActions, dispatch)
+    itemActions: bindActionCreators(actionCreators, dispatch)
   };
 }
 

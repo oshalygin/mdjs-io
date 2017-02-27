@@ -1,8 +1,8 @@
 export const itemPriceTypes = [
-  { label: 'Each', value: 0 },
-  { label: 'oz', value: 1 },
-  { label: 'lb', value: 2 },
-  { label: 'mg', value: 3 }
+  { name: 'priceTypeID', label: 'Each', value: 0 },
+  { name: 'priceTypeID', label: 'oz', value: 1 },
+  { name: 'priceTypeID', label: 'lb', value: 2 },
+  { name: 'priceTypeID', label: 'mg', value: 3 }
 ];
 
 export const stringPattern = '[A-Z, a-z, ]*';

@@ -2,8 +2,7 @@
 import React, { PropTypes } from 'react';
 import DropZone from 'react-dropzone';
 
-
-const ItemImage = ({itemPreview, onDrop}) => {
+const ItemImage = ({ itemPreview, onDrop }) => {
   const imageBoxLength = 10;
   const unitOfMeasure = 'em';
   const imageBorderColor = 'rgb(33,150,243)';
@@ -14,6 +13,7 @@ const ItemImage = ({itemPreview, onDrop}) => {
     height: '25em',
     float: 'right'
   };
+
   const imageContainer = {
     position: 'absolute',
     margin: `-${imageBoxLength / 2}${unitOfMeasure} auto`,
@@ -53,7 +53,7 @@ const ItemImage = ({itemPreview, onDrop}) => {
 
 ItemImage.propTypes = {
   onDrop: PropTypes.func.isRequired,
-  itemPreview: PropTypes.string.isRequired
+  itemPreview: PropTypes.string
 };
 
 export default ItemImage;
