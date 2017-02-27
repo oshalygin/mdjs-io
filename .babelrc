@@ -10,19 +10,40 @@
         "react-hmre"
       ],
       "plugins": [
-        "transform-object-rest-spread"
+        "transform-object-rest-spread",
+        [
+          "transform-runtime",
+          {
+            "polyfill": false,
+            "regenerator": true
+          }
+        ]
       ]
     },
     "test": {
       "plugins": [
-        "rewire"
+        "rewire",
+        [
+          "transform-runtime",
+          {
+            "polyfill": false,
+            "regenerator": true
+          }
+        ]
       ]
     },
     "production": {
       "plugins": [
         "transform-react-constant-elements",
         "transform-react-remove-prop-types",
-        "transform-object-rest-spread"
+        "transform-object-rest-spread",
+        [
+          "transform-runtime",
+          {
+            "polyfill": false,
+            "regenerator": true
+          }
+        ]
       ]
     }
   }

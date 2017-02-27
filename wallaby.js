@@ -24,8 +24,13 @@ module.exports = function (wallaby) {
     },
     compilers: {
       '**/*.js*': wallaby.compilers.babel({
-        presets: ['react', 'es2015'],
-        plugins: ['transform-object-rest-spread', 'rewire']
+        presets: ['latest', 'react', 'stage-1'],
+        plugins: ['transform-object-rest-spread', 'rewire', [
+          'transform-runtime',
+          {
+            polyfill: false
+          }
+        ]]
       })
     },
 

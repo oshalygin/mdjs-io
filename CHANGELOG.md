@@ -1,3 +1,8 @@
+## 1.2.4 (February 26, 2017)
+
+- Add async/await support
+- Fix bug related to invalid passed in token causing the spinner to stay active
+
 ## 1.2.3 (February 25, 2017)
 
 - Fix CSSModules not wrapping itemDetail component.

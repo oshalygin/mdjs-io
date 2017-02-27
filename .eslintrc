@@ -7,7 +7,7 @@
     "mocha": true
   },
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": 2017,
     "sourceType": "module",
     "ecmaFeatures": {
       "arrowFunctions": true,
@@ -139,7 +139,10 @@
     "no-unused-vars": 2,
     "no-use-before-define": 2,
     "no-const-assign": 2,
-    "indent": ["warn", 2],
+    "indent": [
+      "warn",
+      2
+    ],
     "brace-style": 2,
     "camelcase": 1,
     "comma-spacing": [

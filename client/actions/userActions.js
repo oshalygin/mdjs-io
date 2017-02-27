@@ -1,8 +1,16 @@
-import * as actionTypes from './actionTypes';
+import {
+  LOGIN_SUCCESS,
+  LOGOUT_SUCCESS,
+  LOADING_USER,
+  LOADED_USER_SUCCESS,
+  LOADED_USER_FAILURE
+
+} from './actionTypes';
 import {
   LOGIN_ENDPOINT,
   LOGIN_TOKEN_ENDPOINT
 } from './httpEndpoints';
+import { getJsonHeaders } from '../utilities/requestUtilities';
 import { persistUserToken, removeUserToken } from '../utilities/localStorage';
 import { loadCategoriesSuccess } from './categoryActions';
 import { loadDiscountsSuccess } from './discountActions';
@@ -15,32 +23,32 @@ import axios from 'axios';
 
 export function loginSuccess(user) {
   return {
-    type: actionTypes.LOGIN_SUCCESS,
+    type: LOGIN_SUCCESS,
     user
   };
 }
 
 export function logoutSuccess() {
   return {
-    type: actionTypes.LOGOUT_SUCCESS
+    type: LOGOUT_SUCCESS
   };
 }
 
 export function loadingUser() {
   return {
-    type: actionTypes.LOADING_USER
+    type: LOADING_USER
   };
 }
 
 export function loadedUserSuccess() {
   return {
-    type: actionTypes.LOADED_USER_SUCCESS
+    type: LOADED_USER_SUCCESS
   };
 }
 
 export function loadedUserFailure() {
   return {
-    type: actionTypes.LOADED_USER_FAILURE
+    type: LOADED_USER_FAILURE
   };
 }
 
@@ -53,11 +61,7 @@ export function login(user) {
         email: user.email,
         password: user.password
       },
-      {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
+      getJsonHeaders())
       .then(userResponse => {
         if (!userResponse.data.success) {
           throw (userResponse.data.message);
@@ -73,6 +77,7 @@ export function login(user) {
         persistUserToken(userResponse.data.data.token);
       })
       .catch(error => {
+        dispatch(loadedUserFailure());
         throw (error);
       });
   };
@@ -86,11 +91,7 @@ export function loginWithToken(dispatch, tokenKey) {
       {
         token: tokenKey
       },
-      {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
+      getJsonHeaders())
       .then(userResponse => {
         dispatch(loginSuccess(userResponse.data.data));
         dispatch(loadCategoriesSuccess(userResponse.data.data.companyData.categories));
@@ -102,20 +103,21 @@ export function loginWithToken(dispatch, tokenKey) {
         dispatch(loadedUserSuccess());
         persistUserToken(userResponse.data.data.token);
       })
-      .catch(error => { //eslint-disable-line no-unused-vars
+      .catch((error) => {
+        dispatch(loadedUserFailure());
         throw (error);
       });
   };
 }
 
 export function loginValidationErrors() {
-  return function (dispatch) {
+  return async function (dispatch) {
     dispatch(loadedUserFailure());
   };
 }
 
 export function logout() {
-  return function (dispatch) {
+  return async function (dispatch) {
     removeUserToken();
     dispatch(logoutSuccess());
   };
