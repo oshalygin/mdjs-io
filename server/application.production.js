@@ -2,18 +2,18 @@
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
-import colors from 'colors'; //eslint-disable-line no-unused-vars
 import open from 'open';
+import logger from '../utilities/logger';
 
-import router from './routes/routes-v1';
+import v1router from './routes/routes-v1';
 
 const application = express();
 application.use(bodyParser.urlencoded({ extended: true }));
 application.use(bodyParser.json());
 
-const port = process.env.PORT || 8888; //eslint-disable-line no-process-env
+const port = process.env.PORT || 8080; //eslint-disable-line no-process-env
 
-application.use('/api', router);
+application.use('/api/v1', v1router);
 application.use(express.static(path.join(__dirname, '../dist')));
 
 application.get('*', (request, response) => {
@@ -23,10 +23,10 @@ application.get('*', (request, response) => {
 
 application.listen(port, (error) => {
   if (!!error) {
-    console.log(error.bold.red);
+    logger.error(error);
   }
   open(`http://localhost:${port}`);
-  console.log(`Serving API AT http://localhost:${port}`.blue);
+  logger.info(`Serving API AT http://localhost:${port}`);
 });
 
 export default application;

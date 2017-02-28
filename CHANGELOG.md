@@ -1,3 +1,8 @@
+## 1.3.0 (February 27, 2017)
+
+- Add Docker image to the end of the build task
+  - Remove reference to Windows support, it is dropped at this time.
+
 ## 1.2.7 (February 27, 2017)
 
 - Update package dependencies.
