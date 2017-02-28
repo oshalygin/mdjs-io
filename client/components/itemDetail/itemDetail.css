@@ -9,3 +9,16 @@
 .right-control {
   float: right;
 }
+
+.spinner-container {
+  width: 20em;
+  height: 20em;
+  left: calc(50% - 40px);
+  position: relative;
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}

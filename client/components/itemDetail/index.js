@@ -73,7 +73,7 @@ class ItemDetailPage extends React.Component {
       : new RegExp(/^[0-9]+([,.][0-9]+)?$/g);
 
     errors[property] = !patternTest.test(value) ? ' ' : false;
-    
+
     this.setState({ errors });
   }
 
@@ -102,7 +102,7 @@ class ItemDetailPage extends React.Component {
     const { itemHeading, loading } = this.props;
     const { item, errors } = this.state;
 
-    const formComponent = !loading.createUpdateItem
+    const formComponent = loading.createUpdateItem
       ? (
         <ItemDetailForm
           item={item}
@@ -113,8 +113,10 @@ class ItemDetailPage extends React.Component {
       : (
         <div className="ibox-content">
           <div className="row">
-            <div className="col-md-12">
-              <Spinner />
+            <div className={styles['spinner-container']}>
+              <div className={styles.spinner}>
+                <Spinner />
+              </div>
             </div>
           </div>
         </div>

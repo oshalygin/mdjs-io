@@ -1,3 +1,7 @@
+## 1.2.6 (February 27, 2017)
+
+- Update Spinner position within itemDetail page when updating or creating a new item.
+
 ## 1.2.5 (February 27, 2017)
 
 - Refactor ItemDetail component and add tests over from HOC to all presentational components.
