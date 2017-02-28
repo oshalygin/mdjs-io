@@ -102,7 +102,7 @@ class ItemDetailPage extends React.Component {
     const { itemHeading, loading } = this.props;
     const { item, errors } = this.state;
 
-    const formComponent = loading.createUpdateItem
+    const formComponent = !loading.createUpdateItem
       ? (
         <ItemDetailForm
           item={item}

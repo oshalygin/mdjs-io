@@ -1,3 +1,8 @@
+## 1.2.7 (February 27, 2017)
+
+- Update package dependencies.
+  - Leaving webpack and extract-text-webpack-plugin on v1.
+
 ## 1.2.6 (February 27, 2017)
 
 - Update Spinner position within itemDetail page when updating or creating a new item.
