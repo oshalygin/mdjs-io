@@ -1,3 +1,8 @@
+## 1.3.2 (March 01, 2017)
+
+- Fix build tasks to not run the server during build.
+  - This resolves the issues related to creating a docker image as well.
+
 ## 1.3.1 (March 01, 2017)
 
 - Add a colors.js file to be used as part of inline styles.
