@@ -1,3 +1,7 @@
+## 1.3.1 (March 01, 2017)
+
+- Add a colors.js file to be used as part of inline styles.
+
 ## 1.3.0 (February 27, 2017)
 
 - Add Docker image to the end of the build task
