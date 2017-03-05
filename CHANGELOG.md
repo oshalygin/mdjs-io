@@ -1,3 +1,8 @@
+## 1.4.0 (March 05, 2017)
+
+- Add Item removal functionality
+- Remove dead code surrounding item selection.
+
 ## 1.3.4 (March 04, 2017)
 
 - Migrate back to `react-dropzone` 3.10.0.  The new version introduces various deprecation warnings that are nothing more than noise for the upcoming release.  When the package is updated and the new API is provided, this application will migrate accordingly.

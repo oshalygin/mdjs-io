@@ -29,17 +29,7 @@ export default function itemReducer(state = initialState.items, action) {
       }
     case actionTypes.ITEM_DEACTIVATED_SUCCESS:
       {
-        const items = [...state];
-        const reducedItemList = items.filter(item => item.itemID !== action.item.itemID);
-        return [...reducedItemList];
-      }
-    case actionTypes.ITEM_DEACTIVATED:
-    case actionTypes.ITEM_CHECKED:
-      {
-        const items = [...state];
-        const selectedItemIndex = items.findIndex(item => item.itemID === action.item.itemID);
-        items.splice(selectedItemIndex, 1, action.item);
-        return [...items];
+        return state.filter(item => item.itemID !== action.item.itemID);
       }
     default:
       {

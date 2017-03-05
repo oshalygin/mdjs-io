@@ -14,13 +14,6 @@ export function loadItemsSuccess(items) {
   };
 }
 
-export function itemCheckedSuccess(item) {
-  return {
-    type: actionTypes.ITEM_CHECKED,
-    item
-  };
-}
-
 export function itemPhotoUpdatedSuccess(item) {
   return {
     type: actionTypes.ITEM_PREVIEW_UPDATED,
@@ -35,10 +28,9 @@ export function itemDeactivatedSuccess(item) {
   };
 }
 
-export function itemDeactivated(item) {
+export function itemDeactivated() {
   return {
-    type: actionTypes.ITEM_DEACTIVATED,
-    item
+    type: actionTypes.ITEM_DEACTIVATED
   };
 }
 
@@ -70,7 +62,7 @@ export function createOrUpdateItem(item) {
 
     const token = loadUserToken();
     const data = new FormData();
-    
+
     data.append('item', JSON.stringify(itemToPersist));
     data.append('file', item.file);
 
@@ -96,7 +88,7 @@ export function createOrUpdateItem(item) {
 }
 
 export function deactivateItem(item) {
-  return function (dispatch) {
+  return async function (dispatch) {
 
     const deactivatedItem = {
       ...item,
@@ -104,35 +96,25 @@ export function deactivateItem(item) {
       disabled: true
     };
 
-    dispatch(itemDeactivated(deactivatedItem));
+    dispatch(itemDeactivated());
 
     const token = loadUserToken();
     const endpoint = `${ITEM_ENDPOINT}/${deactivatedItem.itemID}`;
-    return axios
-      .delete(endpoint, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: token
-        }
-      })
-      .then(() => {
-        dispatch(itemDeactivatedSuccess({
-          ...deactivatedItem
-        }));
-      })
-      .catch(errorResponse => {
-        throw (errorResponse);
-      });
 
-  };
-}
+    try {
+      await axios
+        .delete(endpoint, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: token
+          }
+        });
 
-export function itemChecked(item) {
-  const checkedItem = {
-    ...item,
-    checked: !item.checked
-  };
-  return function (dispatch) {
-    dispatch(itemCheckedSuccess(checkedItem));
+      dispatch(itemDeactivatedSuccess(deactivatedItem));
+
+    } catch (error) {
+      throw (error);
+    }
+
   };
 }

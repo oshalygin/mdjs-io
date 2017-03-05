@@ -39,6 +39,20 @@ export default function loadingReducer(state = initialState.loading, action) {
           loadingUser: false
         };
       }
+    case actionTypes.ITEM_DEACTIVATED:
+      {
+        return {
+          ...state,
+          loadingItems: true
+        };
+      }
+    case actionTypes.ITEM_DEACTIVATED_SUCCESS:
+      {
+        return {
+          ...state,
+          loadingItems: false
+        };
+      }
     default:
       {
         return state;

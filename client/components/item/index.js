@@ -1,12 +1,11 @@
 import React, { PropTypes } from 'react';
 import CSSModules from 'react-css-modules';
-import toastr from 'toastr';
 import { browserHistory } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as itemActions from '../../actions/itemActions';
+import * as actionCreators from '../../actions/itemActions';
 
 
 import TextField from '../common/TextField.jsx';
@@ -21,7 +20,7 @@ export class Item extends React.Component {
     super(props, context);
 
     this.state = {
-      items: [],
+      items: props.items,
       query: '',
       filter: ''
     };
@@ -36,23 +35,23 @@ export class Item extends React.Component {
     browserHistory.push('item');
   }
 
-  checkboxChangeHandler(event) {
-    //handle
-    const checkedItem = this.props.items
-      .filter(item => item.itemID == event.target.id)[0]; //eslint-disable-line eqeqeq
-    this.props.itemActions.itemChecked(checkedItem);
+  checkboxChangeHandler(event) { //eslint-disable-line no-unused-vars
+    //TODO: #17 - Handle Bulk Item Actions
   }
 
   deactivate(itemId) {
-    const deactivatedItem = this.props.items
-      .filter(item => item.itemID == itemId)[0]; //eslint-disable-line eqeqeq
-
-    this.props.itemActions.deactivateItem(deactivatedItem)
+    const { items } = this.state;
+    const { itemActions } = this.props;
+    
+    const deactivatedItem = items
+      .filter(item => item.itemID === itemId)[0];
+    
+    itemActions.deactivateItem(deactivatedItem)
       .then(() => {
-        //TODO: Handle this
+        //TODO: #68 - Add Snackbar control that indicates success
       })
       .catch(() => {
-        toastr.error(`could not deactivate the item, ${deactivatedItem.label}`);
+        //TODO: #68 - Add Snackbar control that indicates failure
       });
   }
 
@@ -115,7 +114,7 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
   return {
-    itemActions: bindActionCreators(itemActions, dispatch)
+    itemActions: bindActionCreators(actionCreators, dispatch)
   };
 }
 
