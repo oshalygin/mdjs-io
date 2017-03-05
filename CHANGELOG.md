@@ -1,4 +1,8 @@
-## 1.3.3 (March 01, 2017)
+## 1.3.4 (March 04, 2017)
+
+- Migrate back to `react-dropzone` 3.10.0.  The new version introduces various deprecation warnings that are nothing more than noise for the upcoming release.  When the package is updated and the new API is provided, this application will migrate accordingly.
+
+## 1.3.3 (March 04, 2017)
 
 - Remove jQuery slimscroll.  Unused in the application.
 - Cleanup and removal of unncessary functionality in inspinia.
