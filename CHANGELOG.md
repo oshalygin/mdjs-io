@@ -1,3 +1,7 @@
+## 1.4.2 (March 05, 2017)
+
+- Add Redux devtools store configuration.
+
 ## 1.4.1 (March 05, 2017)
 
 - Replace `Array.prototype.filter()` with `Array.prototype.find()` when selecting a single element.
