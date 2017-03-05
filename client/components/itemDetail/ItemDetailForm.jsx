@@ -8,7 +8,7 @@ import { itemPriceTypes } from '../../utilities/constants';
 
 const ItemDetailForm = ({ item, errors, onChange, onDrop }) => {
   const itemPriceType = itemPriceTypes
-    .filter(priceType => priceType.value == item.priceTypeID)[0] //eslint-disable-line
+    .find(priceType => priceType.value == item.priceTypeID); //eslint-disable-line
 
   return (
     <div className="ibox-content">

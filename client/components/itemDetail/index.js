@@ -185,7 +185,7 @@ export function mapStateToProps(state, ownProps) {
 
   const { items } = state;
   const existingItem = items
-    .filter(stateItem => stateItem.itemID == ownProps.params.id || stateItem.itemID === item.itemID)[0]; //eslint-disable-line eqeqeq
+    .find(stateItem => stateItem.itemID == ownProps.params.id || stateItem.itemID === item.itemID); //eslint-disable-line eqeqeq
 
   if (!!existingItem) {
     item = { ...existingItem };

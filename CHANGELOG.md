@@ -1,3 +1,7 @@
+## 1.4.1 (March 05, 2017)
+
+- Replace `Array.prototype.filter()` with `Array.prototype.find()` when selecting a single element.
+
 ## 1.4.0 (March 05, 2017)
 
 - Add Item removal functionality

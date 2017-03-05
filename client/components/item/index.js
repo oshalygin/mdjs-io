@@ -44,7 +44,7 @@ export class Item extends React.Component {
     const { itemActions } = this.props;
     
     const deactivatedItem = items
-      .filter(item => item.itemID === itemId)[0];
+      .find(item => item.itemID === itemId);
     
     itemActions.deactivateItem(deactivatedItem)
       .then(() => {
