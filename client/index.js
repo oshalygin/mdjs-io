@@ -32,7 +32,6 @@ import './images/safari-pinned-tab.svg';
 import '../node_modules/jquery/dist/jquery.min';
 import '../node_modules/bootstrap/dist/js/bootstrap.min';
 import '../node_modules/metismenu/dist/metisMenu.min';
-import '../node_modules/jquery-slimscroll/jquery.slimscroll.min';
 
 import './inspinia.js';
 

@@ -1,3 +1,8 @@
+## 1.3.3 (March 01, 2017)
+
+- Remove jQuery slimscroll.  Unused in the application.
+- Cleanup and removal of unncessary functionality in inspinia.
+
 ## 1.3.2 (March 01, 2017)
 
 - Fix build tasks to not run the server during build.
