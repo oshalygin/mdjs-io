@@ -1,3 +1,7 @@
+## 1.5.1 (March 05, 2017)
+
+- Disable global search and fix hamburger menu.
+
 ## 1.5.0 (March 05, 2017)
 
 - Add display of images to the item list and refactor itemDetail page to properly render the image.
