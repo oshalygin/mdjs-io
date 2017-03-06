@@ -1,4 +1,6 @@
 :root {
+  --white: #FFF;
+  --gray: #DDD;
   --blue: #3498DB;
   --error: #F44336;
 }

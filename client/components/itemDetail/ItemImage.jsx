@@ -1,11 +1,24 @@
 /* eslint-disable react/jsx-no-bind */
 import React, { PropTypes } from 'react';
+import { IMAGE_ENDPOINT } from '../../actions/httpEndpoints';
 import DropZone from 'react-dropzone';
+
+export function getImageUrl(itemPreview) {
+  if (!itemPreview) {
+    return null;
+  }
+
+  return itemPreview.includes('blob')
+    ? itemPreview
+    : `${IMAGE_ENDPOINT}/${itemPreview}`;
+}
 
 const ItemImage = ({ itemPreview, onDrop }) => {
   const imageBoxLength = 10;
   const unitOfMeasure = 'em';
   const imageBorderColor = 'rgb(33,150,243)';
+
+  const imageUrl = getImageUrl(itemPreview);
 
   const imagePlaceholderContainer = {
     position: 'relative',
@@ -32,9 +45,9 @@ const ItemImage = ({ itemPreview, onDrop }) => {
     textAlign: 'center',
     verticalAlign: 'middle',
     cursor: 'pointer',
-    backgroundImage: `url(${itemPreview})`,
+    backgroundImage: `url(${imageUrl})`,
     backgroundRepeat: 'no-repeat',
-    backgroundSize: 'contain',
+    backgroundSize: 'cover',
     lineHeight: `${imageBoxLength - imageBoxLength / 10}${unitOfMeasure}`
   };
 

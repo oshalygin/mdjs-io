@@ -7,6 +7,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { browserHistory } from 'react-router';
 import moment from 'moment';
 
+import ItemImage from './ItemImage.jsx';
+
 import styles from './item.css';
 
 class ItemTableRow extends React.Component {
@@ -31,11 +33,11 @@ class ItemTableRow extends React.Component {
   render() {
     const { item, checked, deactivate, ...otherProps } = this.props; // eslint-disable-line
     const parsedLastUpdatedDate = moment(item.lastUpdatedDate).format('MMM DD, YYYY - hh:mm A');
-    
+
     return (
       <TableRow selected={item.checked} {...otherProps}>
         {otherProps.children[0] /* checkbox passed down from Table-Body*/}
-        <TableRowColumn>{item.itemID}</TableRowColumn>
+        <TableRowColumn><ItemImage imageId={item.photoURL} label={item.label} /></TableRowColumn>
         <TableRowColumn className={this.disabledText(item.disabled)}>{item.label}</TableRowColumn>
         <TableRowColumn className={this.disabledText(item.disabled)}>$ {item.price}</TableRowColumn>
         <TableRowColumn className={this.disabledText(item.disabled)}>{parsedLastUpdatedDate}</TableRowColumn>
@@ -43,6 +45,8 @@ class ItemTableRow extends React.Component {
           <div className={styles['inline-button']}>
             <FlatButton label="Edit" onClick={() => this.navigateToEditLink(item.itemID)} />
           </div>
+        </TableRowColumn>
+        <TableRowColumn>
           <div className={styles['inline-button']}>
             <RaisedButton label="Deactivate" secondary onClick={() => deactivate(item.itemID)} />
           </div>

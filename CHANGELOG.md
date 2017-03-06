@@ -1,3 +1,7 @@
+## 1.5.0 (March 05, 2017)
+
+- Add display of images to the item list and refactor itemDetail page to properly render the image.
+
 ## 1.4.2 (March 05, 2017)
 
 - Add Redux devtools store configuration.

@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import { shallow } from 'enzyme';
-import ItemImage from './ItemImage.jsx';
+import { IMAGE_ENDPOINT } from '../../actions/httpEndpoints';
+import ItemImage, { getImageUrl } from './ItemImage.jsx';
 import DropZone from 'react-dropzone';
 
 import React from 'react';
@@ -10,7 +11,7 @@ import { expect } from 'chai';
 describe('<ItemImage />', () => {
 
   const props = {
-    itemPreview: 'http://foobar.com/images/filename.jpg',
+    itemPreview: '187141ee-d6e7-472d-9173-2ff9f6b88d6e',
     onDrop() { }
   };
 
@@ -29,7 +30,7 @@ describe('<ItemImage />', () => {
 
     const wrapper = shallow(<ItemImage {...props} />);
 
-    const expected = 'url(http://foobar.com/images/filename.jpg)';
+    const expected = `url(${IMAGE_ENDPOINT}/${props.itemPreview})`;
     const actual = wrapper.find(DropZone)
       .childAt(0)
       .props()
@@ -52,6 +53,54 @@ describe('<ItemImage />', () => {
     const actual = wrapper.find(DropZone)
       .childAt(0)
       .text();
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should return null for the imageUrl if nothing was passed in', () => {
+
+    const expected = null;
+    const actual = getImageUrl();
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should return null for the imageUrl if nothing was passed in', () => {
+
+    const expected = null;
+    const actual = getImageUrl();
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should return the exact argument if it contains "blob" in the string', () => {
+
+    const itemPreview = 'blob:http://localhost:8080/foobar.jpg';
+    const expected = itemPreview;
+    const actual = getImageUrl(itemPreview);
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should return the exact argument if it contains "blob" at the end of the string', () => {
+
+    const itemPreview = 'http://localhost:8080/foobar.jpgblob';
+    const expected = itemPreview;
+    const actual = getImageUrl(itemPreview);
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should return the image path at the api if the preview is a uuid', () => {
+
+    const itemPreview = '187141ee-d6e7-472d-9173-2ff9f6b88d6e';
+    const expected = `${IMAGE_ENDPOINT}/${itemPreview}`;
+    const actual = getImageUrl(itemPreview);
 
     expect(actual).equals(expected);
 
