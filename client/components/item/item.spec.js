@@ -115,4 +115,70 @@ describe('<Item />', () => {
 
   });
 
+  it('should filter the list to only include the items from the searchCriteria', () => {
+
+    const searchCriteria = 'B';
+    const expected = 1;
+    const wrapper = shallow(<Item.WrappedComponent {...props} />);
+
+    const event = {
+      target: {
+        name: 'filter',
+        value: searchCriteria
+      }
+    };
+
+    const instance = wrapper.instance();
+    instance.searchOnChange(event);
+
+    const actual = instance.state
+      .items.length;
+
+    expect(actual).equals(expected);
+  });
+
+  it('should filter the list and match on lowercase as well', () => {
+
+    const searchCriteria = 'b';
+    const expected = 1;
+    const wrapper = shallow(<Item.WrappedComponent {...props} />);
+
+    const event = {
+      target: {
+        name: 'filter',
+        value: searchCriteria
+      }
+    };
+
+    const instance = wrapper.instance();
+    instance.searchOnChange(event);
+
+    const actual = instance.state
+      .items.length;
+
+    expect(actual).equals(expected);
+  });
+
+  it('should set the filter object appropriately on the local state', () => {
+
+    const searchCriteria = 'b';
+    const expected = searchCriteria;
+    const wrapper = shallow(<Item.WrappedComponent {...props} />);
+
+    const event = {
+      target: {
+        name: 'filter',
+        value: searchCriteria
+      }
+    };
+
+    const instance = wrapper.instance();
+    instance.searchOnChange(event);
+
+    const actual = instance.state
+      .filter;
+
+    expect(actual).equals(expected);
+  });
+
 });

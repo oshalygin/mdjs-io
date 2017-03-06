@@ -1,3 +1,7 @@
+## 1.6.0 (March 05, 2017)
+
+- Add Item search filter functionality.
+
 ## 1.5.1 (March 05, 2017)
 
 - Disable global search and fix hamburger menu.

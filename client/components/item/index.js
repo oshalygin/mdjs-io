@@ -42,10 +42,10 @@ export class Item extends React.Component {
   deactivate(itemId) {
     const { items } = this.state;
     const { itemActions } = this.props;
-    
+
     const deactivatedItem = items
       .find(item => item.itemID === itemId);
-    
+
     itemActions.deactivateItem(deactivatedItem)
       .then(() => {
         //TODO: #68 - Add Snackbar control that indicates success
@@ -56,12 +56,20 @@ export class Item extends React.Component {
   }
 
   searchOnChange(event) {
-    const newFilter = event.target.value;
-    this.setState({filter: newFilter}); //TODO:  #16 - Filter functionality
+    const { items } = this.props;
+    
+    const filter = event.target.value
+      .toLowerCase();
+    const filteredItems = items.filter(item => item.label.toLowerCase().includes(filter));
+    
+    this.setState({
+      filter,
+      items: filteredItems
+    });
   }
 
   render() {
-    const { items } = this.props;
+    const { items } = this.state;
 
     return (
       <div className="row">
