@@ -15,6 +15,13 @@
 4.  Run `npm test` to explicitly run the tests in the solution.
 5.  The build steps are also available and are in development mode. It is recommended that you run `npm start` to experience HMR and other development level features.  For production deployment builds, the command is `npm build`.
 
-### Application Infrastructure
+
 ![image](/docs/infrastructure-diagram.png?raw=true "Infrastructure")
 
+## Contributing
+
+The main purpose of this repository is to continue to evolve Merchant Dashboard. 
+
+### License
+
+Merchant Dashboard is [AGPLv3 licensed](./LICENSE).

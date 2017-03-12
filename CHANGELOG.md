@@ -1,3 +1,7 @@
+## 1.6.5 (March 12, 2017)
+
+- Update license to AGPLv3.
+
 ## 1.6.4 (March 11, 2017)
 
 - Abstract away docker image creation and push to separate script
