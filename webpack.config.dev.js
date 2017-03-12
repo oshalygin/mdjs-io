@@ -3,6 +3,9 @@ import webpack from 'webpack';
 import path from 'path';
 
 export default {
+  resolve: {
+    extensions: ['', '.js', '.jsx', '.json']
+  },
   debug: true,
   devtool: '#source-map',
   noInfo: true,
@@ -56,9 +59,11 @@ export default {
   },
   module: {
     loaders: [
-      { test: /\.js$/, include: path.join(__dirname, 'server'), loaders: ['babel'] },
-      { test: /\.js$/, include: path.join(__dirname, 'client'), loaders: ['babel'] },
-      { test: /\.jsx$/, include: path.join(__dirname, 'client'), loader: 'babel', query: { presets: ['es2015', 'react'] } },
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loaders: ['babel']
+      },
       {
         test: /\.css$/,
         loaders: [

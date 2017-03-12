@@ -1,7 +1,8 @@
 import winston from 'winston';
 import expressWinston from 'express-winston';
+import configuration from '../utilities/configuration';
 
-const colorize = process.env.NODE_ENV !== 'production'; //eslint-disable-line no-process-env
+const colorize = configuration.environment !== 'production'; //eslint-disable-line no-process-env
 
 // Logger to capture all requests and output them to the console.
 const requestLogger = expressWinston.logger({

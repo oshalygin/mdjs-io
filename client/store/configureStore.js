@@ -1,5 +1,7 @@
+import configuration from '../../utilities/configuration';
+
 (() => {
-  if (process.env.NODE_ENV === 'production') { //eslint-disable-line no-process-env
+  if (configuration.environment === 'production') { //eslint-disable-line no-process-env
     module.exports = require('./store.production.js');
   } else {
     module.exports = require('./store.dev.js');

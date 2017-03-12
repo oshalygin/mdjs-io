@@ -1,9 +1,9 @@
-/* eslint-disable no-console */
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
 import webpack from 'webpack';
-import configuration from '../webpack.config.dev';
+import configuration from '../utilities/configuration';
+import webpackConfiguration from '../webpack.config.dev';
 import open from 'open';
 import logger from '../utilities/logger';
 
@@ -13,12 +13,12 @@ const application = express();
 application.use(bodyParser.urlencoded({ extended: true }));
 application.use(bodyParser.json());
 
-const port = process.env.PORT || 8080; //eslint-disable-line no-process-env
+const port = configuration.port;
 
-const applicationCompiler = webpack(configuration);
+const applicationCompiler = webpack(webpackConfiguration);
 application.use(require('webpack-dev-middleware')(applicationCompiler, {
   noInfo: true,
-  publicPath: configuration.output.publicPath
+  publicPath: webpackConfiguration.output.publicPath
 }));
 
 application.use(require('webpack-hot-middleware')(applicationCompiler));
@@ -34,11 +34,11 @@ application.get('*', (request, response) => {
 
 
 application.listen(port, (error) => {
-  if (!!error) {
+  if (error) {
     logger.error(error);
   }
   open(`http://localhost:${port}`);
-  logger.info(`Serving API AT http://localhost:${port}`);
+  logger.info(`Serving Application at http://localhost:${port}`);
 });
 
 export default application;
