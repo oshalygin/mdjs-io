@@ -1,3 +1,7 @@
+## 1.6.4 (March 11, 2017)
+
+- Abstract away docker image creation and push to separate script
+
 ## 1.6.3 (March 11, 2017)
 
 - Fix webpack babel loader in production.
