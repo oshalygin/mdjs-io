@@ -20,7 +20,7 @@
 
 ## Contributing
 
-The main purpose of this repository is to continue to evolve Merchant Dashboard. 
+The main purpose of this repository is to continue to evolve Merchant Dashboard, making it a robust dashboard experience.
 
 ### License
 
