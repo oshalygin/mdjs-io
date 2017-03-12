@@ -1,3 +1,7 @@
+## 1.6.3 (March 11, 2017)
+
+- Fix webpack babel loader in production.
+
 ## 1.6.2 (March 11, 2017)
 
 - Fix webpack babel loader to only load once based for `js` and `jsx` extensions.  
