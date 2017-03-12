@@ -1,3 +1,12 @@
+## 1.6.7 (March 12, 2017)
+
+- Refactor common bash file to be more consistent with Bash best practices.
+- Break out docker image creation into a more readable format.
+
+## 1.6.6 (March 12, 2017)
+
+- Clean up the license file to fix the formatting issues.
+
 ## 1.6.5 (March 12, 2017)
 
 - Update license to AGPLv3.

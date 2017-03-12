@@ -24,4 +24,4 @@ The main purpose of this repository is to continue to evolve Merchant Dashboard,
 
 ### License
 
-Merchant Dashboard is [AGPLv3 licensed](./LICENSE).
+Merchant Dashboard is [AGPLv3 licensed](./LICENSE.md).

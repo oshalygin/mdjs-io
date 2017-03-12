@@ -15,40 +15,38 @@ source "${SCRIPT_DIR}/common.sh"
 function push_tag
 {
   git push origin --tags
-  Log_Success "Successfully pushed the new tag: ${current_version}"
+  success "Successfully pushed the new tag: ${current_version}"
 }
 
 function get_current_version
 {
   current_version="v$(node -p -e "require('${SCRIPT_DIR}/../package.json').version")"
-  Log_Info "Project Version: ${current_version}";
+  info "Project Version: ${current_version}";
 }
 
 function remove_existing_tag
 {
   result=$(git tag --delete "${current_version}")
-  Log_Warn "${current_version} removed"
+  warning "${current_version} removed"
 }
 
 function add_tag
 {
-  Log_Info "Setting new tag: ${current_version}"
+  info "Setting new tag: ${current_version}"
   $(git tag "${current_version}")
-  Log_Success "Successfully set the new tag: ${current_version}"
+  success "Successfully set the new tag: ${current_version}"
 }
 
 function set_tag
 {
  if [[ `git tag -l $current_version` == $current_version ]]; then
-    Log_Warn "Version, ${current_version}, already exists, deleting ${current_version}"
+    warning "Version, ${current_version}, already exists, deleting ${current_version}"
     remove_existing_tag
     add_tag
   else
     add_tag
   fi
 }
-
-Display_Banner "Processing and setting the git tag version on the latest commit." \
 
 get_current_version
 set_tag
