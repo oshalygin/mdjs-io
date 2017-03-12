@@ -1,3 +1,7 @@
+## 1.6.1 (March 11, 2017)
+
+- Add Infrastructure Diagram which provides a high level overview of what the infrastructure goals are for the application.
+
 ## 1.6.0 (March 05, 2017)
 
 - Add Item search filter functionality.

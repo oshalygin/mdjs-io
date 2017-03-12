@@ -15,30 +15,6 @@
 4.  Run `npm test` to explicitly run the tests in the solution.
 5.  The build steps are also available and are in development mode. It is recommended that you run `npm start` to experience HMR and other development level features.  For production deployment builds, the command is `npm build`.
 
-### OSX/Linux
-```sh
-npm install
-npm start
-npm test
-npm build
-```
+### Application Infrastructure
+![image](/docs/infrastructure-diagram.png?raw=true "Infrastructure")
 
-####Primary Technology Used in this application:
-* ExpressJs
-* ReactJs
-* Redux
-* ES2015(ES6) JavaScript
-* WebPack
-* ESLint
-* PhantomJS
-* Axios
-* Babel
-* TypeScript definitions
-* Mocha
-* Expect
-* Redux Mock Store
-* Nock
-* JSDOM
-* Toastr
-* Enzyme
-* Istanbul
