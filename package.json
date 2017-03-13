@@ -1,6 +1,6 @@
 {
   "name": "merchant-dashboard",
-  "version": "1.9.3",
+  "version": "1.9.4",
   "description": "Merchant Dashboard built with React and Redux",
   "scripts": {
     "prestart": "babel-node utilities/startingDisplayMessage.js",

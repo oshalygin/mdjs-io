@@ -1,3 +1,7 @@
+## 1.9.4 (March 13, 2017)
+
+- Elevate service account permissions.
+
 ## 1.9.3 (March 13, 2017)
 
 - Update gcloud command to elevated permissions.
