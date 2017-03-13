@@ -1,3 +1,7 @@
+## 1.8.3 (March 13, 2017)
+
+- Add environment variable to disable all GCP prompts via Travis.
+
 ## 1.8.2 (March 13, 2017)
 
 - Disable prompts for gcloud component `kubectl`:

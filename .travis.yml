@@ -14,6 +14,9 @@ node_js:
 cache:
   yarn: true
 
+env:
+  - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+  
 before_install:
   openssl aes-256-cbc -K $encrypted_b022ca59054f_key -iv $encrypted_b022ca59054f_iv -in ./infrastructure/service-account.json.enc -out ./infrastructure/service-account.json -d
 
