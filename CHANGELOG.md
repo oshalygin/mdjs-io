@@ -1,6 +1,6 @@
-## 1.7.2 (March 13, 2017)
+## 1.8.0 (March 13, 2017)
 
-- Fix spacing in `docker-push.sh`
+- Add GCP authentication script to authenticate, install the kubectl CLI and setup the GCLOUD SDK.
 
 ## 1.7.1 (March 13, 2017)
 
