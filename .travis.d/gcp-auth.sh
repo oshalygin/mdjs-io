@@ -18,7 +18,7 @@ function install_cloud_sdk
   # This is necessary because there is already an older(2014)
   # installation of the GCP SDK which conflicts with the latest release.
   rm -rf ${HOME}/google-cloud-sdk
-  curl https://sdk.cloud.google.com | bash
+  sudo curl https://sdk.cloud.google.com | bash -s -- --disable-prompts
   sudo gcloud auth activate-service-account --key-file ./infrastructure/service-account.json
 }
 

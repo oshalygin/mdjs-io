@@ -1,3 +1,9 @@
+## 1.8.1 (March 13, 2017)
+
+- Disable prompts, the default directory is ${HOME}:
+  - Non-interactive (silent) deployment:
+    - `--disable-prompts - disables prompts.`
+
 ## 1.8.0 (March 13, 2017)
 
 - Add GCP authentication script to authenticate, install the kubectl CLI and setup the GCLOUD SDK.
