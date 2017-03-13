@@ -1,3 +1,7 @@
+## 1.9.0 (March 13, 2017)
+
+- Orchestrate pushing docker images from CI to GCP Container Registry
+
 ## 1.8.3 (March 13, 2017)
 
 - Add environment variable to disable all GCP prompts via Travis.
