@@ -1,3 +1,9 @@
+## 1.8.2 (March 13, 2017)
+
+- Disable prompts for gcloud component `kubectl`:
+  - Non-interactive (silent) deployment:
+    - `--quiet`
+
 ## 1.8.1 (March 13, 2017)
 
 - Disable prompts, the default directory is ${HOME}:

@@ -45,7 +45,7 @@ function setup_kubernetes
     #   setting GOOGLE_APPLICATION_CREDENTIALS before calling kubectl.
     export GOOGLE_APPLICATION_CREDENTIALS="${PWD}/infrastructure/service-account.json"
     # Update the kubernetes component once more
-    ${HOME}/google-cloud-sdk/bin/gcloud components update kubectl
+    ${HOME}/google-cloud-sdk/bin/gcloud components update kubectl --quiet
     # Print out the cluster information
     sudo ${HOME}/google-cloud-sdk/bin/kubectl cluster-info
 }
