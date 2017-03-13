@@ -1,3 +1,7 @@
+## 1.7.2 (March 13, 2017)
+
+- Fix spacing in `docker-push.sh`
+
 ## 1.7.1 (March 13, 2017)
 
 - Fix bash variable not properly being passed in to the `docker-push` script.

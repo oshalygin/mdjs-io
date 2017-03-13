@@ -1,6 +1,6 @@
 {
   "name": "merchant-dashboard",
-  "version": "1.7.2",
+  "version": "1.7.3",
   "description": "Merchant Dashboard built with React and Redux",
   "scripts": {
     "prestart": "babel-node utilities/startingDisplayMessage.js",
@@ -18,7 +18,7 @@
     "build": "babel-node utilities/build.js"
   },
   "author": "Oleg Shalygin",
-  "license": "AGPLv3",
+  "license": "AGPL-3.0",
   "dependencies": {
     "animate.css": "3.5.2",
     "axios": "0.15.1",
