@@ -1,3 +1,7 @@
+## 1.9.2 (March 13, 2017)
+
+- Update gcloud command path
+
 ## 1.9.1 (March 13, 2017)
 
 - Update Service Account to grant it access to GCR buckets.
