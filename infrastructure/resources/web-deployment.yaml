@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: fe-web
+  namespace: default
+  labels:
+    version: v1
+    date: 20170311T222958Z
+spec:
+  replicas: 2
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: fe-web
+    spec:
+      containers:
+        - name: fe-web
+          image: 'us.gcr.io/merchant-dash/merchant-dashboard:1.9.4'
+          env:
+            - name: MONGO_IP
+              valueFrom:
+                secretKeyRef:
+                  name: env-variables-secret
+                  key: mongo_ip
+            - name: MONGO_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: env-variables-secret
+                  key: mongo_port
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080

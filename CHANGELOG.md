@@ -1,3 +1,7 @@
+## 2.0.0 (March 13, 2017)
+
+- Orchetrate a rolling deployment on all of the services, deployments and secrets in the application on success master branch builds.
+
 ## 1.9.4 (March 13, 2017)
 
 - Elevate service account permissions.

@@ -1,0 +1,11 @@
+# Note that all values are base64 encoded
+# http://kubernetes.io/docs/user-guide/secrets/
+apiVersion: v1
+kind: Secret
+metadata:
+  name: env-variables-secret
+  namespace: default
+data:
+  mongo_ip: d3d3LmZvb2Jhci5jb20=
+  mongo_port: MjcwMTc=
+type: Opaque

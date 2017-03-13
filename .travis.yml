@@ -32,4 +32,5 @@ after_success:
       bash ./.travis.d/tag-version.sh;
       bash ./.travis.d/gcp-auth.sh;
       bash ./.travis.d/docker-push.sh;
+      bash ./.travis.d/update-infra.sh;
     fi
