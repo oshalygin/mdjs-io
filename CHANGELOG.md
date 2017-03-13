@@ -1,3 +1,7 @@
+## 1.9.1 (March 13, 2017)
+
+- Update Service Account to grant it access to GCR buckets.
+
 ## 1.9.0 (March 13, 2017)
 
 - Orchestrate pushing docker images from CI to GCP Container Registry
