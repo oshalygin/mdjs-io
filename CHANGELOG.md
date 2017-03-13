@@ -1,3 +1,8 @@
+## 1.7.0 (March 12, 2017)
+
+- Codify GKE `cluster.yaml` which is used to stand up the cluster in GCP.
+  - Note that the minimum nodes when using `f1-micro` machineTypes is 3.
+
 ## 1.6.7 (March 12, 2017)
 
 - Refactor common bash file to be more consistent with Bash best practices.

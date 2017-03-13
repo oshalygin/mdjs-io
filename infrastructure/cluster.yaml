@@ -1,0 +1,52 @@
+resources:
+- name: merchant-dashboard-kube
+  type: container.v1.cluster
+  properties:
+    zone: us-central1-f
+    cluster:
+      description: Merchant Dashboard Cluster
+      initialClusterVersion: 1.5.3
+      nodePools:
+        - name: merchant-dashboard-pool
+          initialNodeCount: 3
+          autoscaling: 
+            enabled: true
+            minNodeCount: 3 # Minimum number required if using 'f1-micro' on GKE.
+            maxNodeCount: 5
+          config:
+            machineType: f1-micro
+            diskSizeGb: 50
+            serviceAccount: default
+            oauthScopes:
+              - https://www.googleapis.com/auth/compute
+              - https://www.googleapis.com/auth/devstorage.read_only
+              - https://www.googleapis.com/auth/service.management.readonly
+              - https://www.googleapis.com/auth/servicecontrol
+              - https://www.googleapis.com/auth/logging.write
+              - https://www.googleapis.com/auth/monitoring
+            labels:
+              env: dev
+      loggingService: logging.googleapis.com
+      monitoringService: monitoring.googleapis.com
+      network: default
+      addonsConfig:
+          horizontalPodAutoscaling:
+            disabled: false
+          httpLoadBalancing:
+            disabled: false
+      network: default
+
+# Configuration File Documentation
+# https://cloud.google.com/container-engine/reference/rest/v1/projects.zones.clusters#Cluster
+
+# Node Configuration
+# https://cloud.google.com/container-engine/reference/rest/v1/NodeConfig
+
+# Machine Types
+# https://cloud.google.com/compute/docs/machine-types
+
+# Node Pools
+# https://cloud.google.com/container-engine/reference/rest/v1/projects.zones.clusters.nodePools#NodePool
+
+# Deploying via DeploymentManager(running from the root):
+# gcloud deployment-manager deployments create merchant-dashboard-kube --config ./infrastructure/cluster.yaml
