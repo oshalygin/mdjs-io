@@ -1,3 +1,7 @@
+## 1.7.1 (March 13, 2017)
+
+- Fix bash variable not properly being passed in to the `docker-push` script.
+
 ## 1.7.1 (March 12, 2017)
 
 - Add encrypted service account to GCP.
