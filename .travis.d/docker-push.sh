@@ -18,4 +18,6 @@ docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
 docker push oshalygin/merchant-dashboard:${current_version};
 
 # Push to Google Container Registry
-${HOME}/google-cloud-sdk/bin/gcloud docker -- push us.gcr.io/merchant-dash/merchant-dashboard:${current_version};
+export GOOGLE_APPLICATION_CREDENTIALS="${PWD}/infrastructure/service-account.json"
+
+sudo ${HOME}/google-cloud-sdk/bin/gcloud docker -- push us.gcr.io/merchant-dash/merchant-dashboard:${current_version};

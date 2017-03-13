@@ -1,6 +1,10 @@
+## 1.9.3 (March 13, 2017)
+
+- Update gcloud command to elevated permissions.
+
 ## 1.9.2 (March 13, 2017)
 
-- Update gcloud command path
+- Update gcloud command path.
 
 ## 1.9.1 (March 13, 2017)
 
