@@ -14,10 +14,13 @@ node_js:
 cache:
   yarn: true
 
+before_install:
+  openssl aes-256-cbc -K $encrypted_b022ca59054f_key -iv $encrypted_b022ca59054f_iv -in ./infrastructure/service-account.json.enc -out ./infrastructure/service-account.json -d
+
 script:
   - npm run lint
-  - npm run test
-  - npm run codacy:coverage
+   - npm run test
+   - npm run codacy:coverage
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then

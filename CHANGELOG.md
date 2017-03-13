@@ -1,3 +1,7 @@
+## 1.7.1 (March 12, 2017)
+
+- Add encrypted service account to GCP.
+
 ## 1.7.0 (March 12, 2017)
 
 - Codify GKE `cluster.yaml` which is used to stand up the cluster in GCP.

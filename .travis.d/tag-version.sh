@@ -11,7 +11,6 @@ set -o errexit -o errtrace
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/common.sh"
 
-
 function push_tag
 {
   git push origin --tags
