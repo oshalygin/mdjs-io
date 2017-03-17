@@ -1,3 +1,7 @@
+## 2.0.1 (March 13, 2017)
+
+- Fix deployment configuration to match the latest release.
+
 ## 2.0.0 (March 13, 2017)
 
 - Orchetrate a rolling deployment on all of the services, deployments and secrets in the application on success master branch builds.
