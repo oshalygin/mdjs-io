@@ -1,3 +1,7 @@
+## 2.0.2 (March 16, 2017)
+
+- Update landing login page styles.
+
 ## 2.0.1 (March 13, 2017)
 
 - Fix deployment configuration to match the latest release.

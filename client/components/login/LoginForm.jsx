@@ -6,7 +6,11 @@ import RaisedButton from 'material-ui/RaisedButton';
 import styles from './login.css';
 
 const textFieldLoginStyles = {
-  color: 'rgba(255,255,255, 0.90)'
+  color: '#CCC'
+};
+
+const textFieldInputStyle = {
+  color: '#F5F5F5'
 };
 
 const LoginForm = ({ hidden, errors, onChange, login }) => {
@@ -26,6 +30,7 @@ const LoginForm = ({ hidden, errors, onChange, login }) => {
           <div style={errorTextDisplay} className={styles['error-text']}>Invalid username or password</div>
           <TextField
             floatingLabelText="Username"
+            inputStyle={textFieldInputStyle}
             name="email"
             type="text"
             fullWidth
@@ -33,6 +38,7 @@ const LoginForm = ({ hidden, errors, onChange, login }) => {
             onChange={onChange} />
           <TextField
             floatingLabelText="Password"
+            inputStyle={textFieldInputStyle}
             name="password"
             type="password"
             fullWidth
