@@ -6,5 +6,4 @@ data:
   lego.email: "oshalygin@gmail.com"
   # Production endpoint
   lego.url: "https://acme-v01.api.letsencrypt.org/directory"
-  # Staging endpoint
-  lego.url: "https://acme-staging.api.letsencrypt.org/directory"
+kind: ConfigMap

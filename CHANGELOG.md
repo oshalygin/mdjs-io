@@ -1,3 +1,7 @@
+## 2.1.1 (March 19, 2017)
+
+- Configure SSL cert retrieval from LetsEncrypts production endpoint.
+
 ## 2.1.0 (March 18, 2017)
 
 - Add Kube-Lego configuration for TLS.

@@ -6,4 +6,5 @@ set -o nounset
 set -o errexit -o errtrace
 
 # Apply an update to all resources in the current infrastructure
+sudo ${HOME}/google-cloud-sdk/bin/kubectl apply -f ${PWD}/infrastructure/resources/kube-lego
 sudo ${HOME}/google-cloud-sdk/bin/kubectl apply -f ${PWD}/infrastructure/resources
