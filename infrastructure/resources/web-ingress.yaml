@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: fe-web
+  namespace: default
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    kubernetes.io/ingress.class: "gce"
+spec:
+  tls:
+  - hosts:
+    - merchantdash.com
+    secretName: default-tls
+  rules:
+  - host: merchantdash.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: fe-web
+          servicePort: 80
+      - path: /*
+        backend:
+          serviceName: fe-web
+          servicePort: 80

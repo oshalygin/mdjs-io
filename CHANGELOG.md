@@ -1,3 +1,7 @@
+## 2.1.0 (March 18, 2017)
+
+- Add Kube-Lego configuration for TLS.
+
 ## 2.0.2 (March 16, 2017)
 
 - Update landing login page styles.

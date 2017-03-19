@@ -4,8 +4,9 @@ metadata:
     labels:
       app: fe-web
     name: fe-web
+    namespace: default
 spec:
-    type: LoadBalancer
+    type: NodePort
     ports:
       - port: 80
         targetPort: 8080
