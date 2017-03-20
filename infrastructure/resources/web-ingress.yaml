@@ -9,10 +9,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - merchantdash.com
+    - mdjs.io
     secretName: default-tls
   rules:
-  - host: merchantdash.com
+  - host: mdjs.io
     http:
       paths:
       - path: /

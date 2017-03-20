@@ -1,3 +1,7 @@
+## 2.2.0 (March 19, 2017)
+
+- Switch hosted domain to `mdjs.io`.
+
 ## 2.1.1 (March 19, 2017)
 
 - Configure SSL cert retrieval from LetsEncrypts production endpoint.
