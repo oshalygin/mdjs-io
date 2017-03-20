@@ -31,8 +31,9 @@ class LoginPage extends React.Component {
 
     login(user)
       .then(() => this.redirect())
-      .catch((error) => {
-        toastr.error(error);
+      .catch(() => {
+        toastr.error('Invalid username or password');
+        
         loginValidationErrors();
         this.setState({ formErrors: true });
       });

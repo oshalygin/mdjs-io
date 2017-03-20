@@ -1,13 +1,7 @@
-/* eslint-disable no-use-before-define */
-import express from 'express'; //eslint-disable-line no-unused-vars
 import axios from 'axios';
 
 import logger from '../../utilities/logger.js';
-import { ITEM_ENDPOINT } from '../routes/httpEndpoints';
-
-const itemController = {
-  get
-};
+import { ITEM_ENDPOINT } from '../utilities/endpoints';
 
 function getItemById(itemId) {
 
@@ -38,4 +32,6 @@ function get(request, response) {
 }
 
 
-export default itemController;
+export default {
+  get
+};

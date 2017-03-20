@@ -3,7 +3,8 @@
 import { expect } from 'chai';
 import {
   ITEM_DEACTIVATED,
-  ITEM_DEACTIVATED_SUCCESS
+  ITEM_DEACTIVATED_SUCCESS,
+  LOGOUT_SUCCESS
 } from '../actions/actionTypes';
 import reducer from './loadingReducer';
 
@@ -51,6 +52,21 @@ describe('Reducer - Loading', () => {
     const expected = false;
     const actual = reducer(getInitialState(), action)
       .loadingItems;
+
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should set the loadingUser flag to false on a LOGOUT_SUCCESS dispatch', () => {
+
+    const action = {
+      type: LOGOUT_SUCCESS
+    };
+
+    const expected = false;
+    const actual = reducer(getInitialState(), action)
+      .loadingUser;
 
 
     expect(actual).equals(expected);

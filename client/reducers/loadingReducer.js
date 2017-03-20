@@ -33,6 +33,7 @@ export default function loadingReducer(state = initialState.loading, action) {
         };
       }
     case actionTypes.LOADED_USER_FAILURE:
+    case actionTypes.LOGOUT_SUCCESS:
       {
         return {
           ...state,
@@ -59,3 +60,4 @@ export default function loadingReducer(state = initialState.loading, action) {
       }
   }
 }
+

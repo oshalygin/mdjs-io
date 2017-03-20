@@ -1,7 +1,9 @@
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 import webpack from 'webpack';
+
 import configuration from '../utilities/configuration';
 import webpackConfiguration from '../webpack.config.dev';
 import open from 'open';
@@ -12,6 +14,7 @@ import v1router from './routes/routes-v1';
 const application = express();
 application.use(bodyParser.urlencoded({ extended: true }));
 application.use(bodyParser.json());
+application.use(cookieParser());
 
 const port = configuration.port;
 

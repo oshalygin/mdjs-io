@@ -2,6 +2,8 @@ import express from 'express';
 import path from 'path';
 import configuration from '../utilities/configuration';
 import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
+
 import hsts from 'hsts';
 import hstsMiddleware from './utilities/middleware/hsts';
 import logger from '../utilities/logger';
@@ -20,6 +22,7 @@ application.use(hstsMiddleware());
 
 application.use(bodyParser.urlencoded({ extended: true }));
 application.use(bodyParser.json());
+application.use(cookieParser());
 
 const port = configuration.port;
 

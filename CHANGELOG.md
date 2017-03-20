@@ -1,3 +1,9 @@
+## 2.4.0 (March 20, 2017)
+
+- Add AccountController routes and refactor login component
+  - Currently all of the calls from the front end React application are making outbound calls over unsecure channels(HTTP), to rectify this, the calls should be going strictly to the middletier(Express layer). This is a first in a step of refactor sessions to migrate the calls appropriately.
+  - Login component refactored to utilize async/await
+
 ## 2.3.1 (March 19, 2017)
 
 - Fix sidenav not collapsing.
