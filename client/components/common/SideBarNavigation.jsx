@@ -14,7 +14,7 @@ export function setPath(pathName) {
   };
 }
 
-const SideBarNavigation = ({pathName}) => {
+const SideBarNavigation = ({ pathName }) => {
   const path = setPath(pathName);
   return (
     <nav className="navbar-default navbar-static-side" role="navigation">
@@ -36,7 +36,7 @@ const SideBarNavigation = ({pathName}) => {
             </div>
             <div className="logo-element">
               WR+
-                        </div>
+            </div>
           </li>
           <li className={path.dashboard}>
             <Link to="dashboard">

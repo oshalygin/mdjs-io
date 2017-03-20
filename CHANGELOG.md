@@ -1,3 +1,7 @@
+## 2.3.1 (March 19, 2017)
+
+- Fix sidenav not collapsing.
+
 ## 2.3.0 (March 19, 2017)
 
 - Add HSTS and set routes to only call HTTPs endpoints.

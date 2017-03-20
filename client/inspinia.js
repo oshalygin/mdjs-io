@@ -86,6 +86,8 @@ $(document).ready(() => {
     SmoothlyMenu();
   });
 
+  // $('body.canvas-menu .sidebar-collapse')
+
   // Open close right sidebar
   $('.right-sidebar-toggle').on('click', () => {
     $('#right-sidebar').toggleClass('sidebar-open');
@@ -112,7 +114,6 @@ $(document).ready(() => {
   $('.navbar-minimalize').on('click', () => {
     $('body').toggleClass('mini-navbar');
     SmoothlyMenu();
-
   });
 
   // Tooltips demo
