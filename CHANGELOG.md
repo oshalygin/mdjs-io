@@ -1,3 +1,10 @@
+## 2.5.1 (March 20, 2017)
+
+- Upgrade cluster nodes to `n1-standard-1`
+  - Initial node quantity: 1
+  - Max node quantity: 3
+- Add readiness probe check to the deployment.
+
 ## 2.5.0 (March 20, 2017)
 
 - Configure GCP tracing and change cluster name

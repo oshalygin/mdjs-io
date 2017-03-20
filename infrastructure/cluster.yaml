@@ -2,20 +2,20 @@ resources:
 - name: mdjs-kube
   type: container.v1.cluster
   properties:
-    zone: us-central1-f
+    zone: us-central1-a
     cluster:
       description: Merchant Dashboard Cluster
       initialClusterVersion: 1.5.3
       nodePools:
         - name: merchant-dashboard-pool
-          initialNodeCount: 3
+          initialNodeCount: 1
           autoscaling: 
             enabled: true
-            minNodeCount: 3 # Minimum number required if using 'f1-micro' on GKE.
-            maxNodeCount: 5
+            minNodeCount: 1 
+            maxNodeCount: 3
           config:
-            machineType: f1-micro
-            diskSizeGb: 50
+            machineType: n1-standard-1
+            diskSizeGb: 100
             serviceAccount: default
             oauthScopes:
               - https://www.googleapis.com/auth/compute
@@ -50,4 +50,4 @@ resources:
 # https://cloud.google.com/container-engine/reference/rest/v1/projects.zones.clusters.nodePools#NodePool
 
 # Deploying via DeploymentManager(running from the root):
-# gcloud deployment-manager deployments create merchant-dashboard-kube --config ./infrastructure/cluster.yaml
+# gcloud deployment-manager deployments create mdjs-kube-deployment --config ./infrastructure/cluster.yaml

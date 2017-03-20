@@ -7,7 +7,7 @@ set -o errexit -o errtrace
 
 readonly GOOGLE_PROJECT=merchant-dash
 readonly CLUSTER=mdjs-kube
-readonly ZONE=us-central1-f
+readonly ZONE=us-central1-a
 
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/common.sh"
