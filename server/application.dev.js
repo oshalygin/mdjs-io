@@ -37,8 +37,8 @@ application.listen(port, (error) => {
   if (error) {
     logger.error(error);
   }
-  open(`http://localhost:${port}`);
   logger.info(`Serving Application at http://localhost:${port}`);
+  open(`http://localhost:${port}`);
 });
 
 export default application;

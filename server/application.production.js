@@ -2,11 +2,22 @@ import express from 'express';
 import path from 'path';
 import configuration from '../utilities/configuration';
 import bodyParser from 'body-parser';
+import hsts from 'hsts';
+import hstsMiddleware from './utilities/middleware/hsts';
 import logger from '../utilities/logger';
 
 import v1router from './routes/routes-v1';
 
 const application = express();
+
+application.use(hsts({
+  maxAge: 3153600, // 1 year
+  includeSubdomains: true
+}));
+
+application.enable('trust proxy');
+application.use(hstsMiddleware());
+
 application.use(bodyParser.urlencoded({ extended: true }));
 application.use(bodyParser.json());
 
@@ -24,7 +35,7 @@ application.listen(port, (error) => {
   if (error) {
     logger.error(error);
   }
-  logger.info(`Serving API AT http://localhost:${port}`);
+  logger.info(`Serving application over port ${port}`);
 });
 
 export default application;

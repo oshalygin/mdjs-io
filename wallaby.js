@@ -9,6 +9,7 @@ module.exports = function (wallaby) {
       '!client/**/*.spec.js*',
       '!server/**/*.spec.js*',
       'utilities/logger.js',
+      'utilities/configuration.js',
       { pattern: '/**/*.png', load: 'null' }
     ],
 

@@ -7,11 +7,16 @@ const formControlUnderlineFocus = {
   color: primaryBlue
 };
 
+const formFloatingLabelStyle = {
+  fontWeight: 500
+};
+
 class TextField extends React.Component {
   constructor() {
     super();
     this.state = {
-      underlineFocusStyle: formControlUnderlineFocus
+      underlineFocusStyle: formControlUnderlineFocus,
+      floatingLabelStyle: formFloatingLabelStyle
     };
   }
 

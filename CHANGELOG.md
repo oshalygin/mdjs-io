@@ -1,3 +1,10 @@
+## 2.3.0 (March 19, 2017)
+
+- Add HSTS and set routes to only call HTTPs endpoints.
+  - Local development will point to non-secure routes.
+  - Automatic redirect and security upgrade if connecting over HTTP.
+  - Once the domain is accessed over HTTPS, headers will be set that will persist on the users browser.
+
 ## 2.2.0 (March 19, 2017)
 
 - Switch hosted domain to `mdjs.io`.
