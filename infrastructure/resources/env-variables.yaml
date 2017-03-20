@@ -8,4 +8,5 @@ metadata:
 data:
   mongo_ip: d3d3LmZvb2Jhci5jb20=
   mongo_port: MjcwMTc=
+  gcloud_project: bWVyY2hhbnQtZGFzaA==
 type: Opaque

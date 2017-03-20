@@ -6,7 +6,7 @@ set -o nounset
 set -o errexit -o errtrace
 
 readonly GOOGLE_PROJECT=merchant-dash
-readonly CLUSTER=merchant-dashboard-kube
+readonly CLUSTER=mdjs-kube
 readonly ZONE=us-central1-f
 
 readonly SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

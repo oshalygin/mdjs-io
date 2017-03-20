@@ -3,7 +3,6 @@ import path from 'path';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import webpack from 'webpack';
-
 import configuration from '../utilities/configuration';
 import webpackConfiguration from '../webpack.config.dev';
 import open from 'open';

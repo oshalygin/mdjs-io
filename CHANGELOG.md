@@ -1,3 +1,7 @@
+## 2.5.0 (March 20, 2017)
+
+- Configure GCP tracing and change cluster name
+
 ## 2.4.0 (March 20, 2017)
 
 - Add AccountController routes and refactor login component
