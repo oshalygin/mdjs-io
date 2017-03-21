@@ -1,8 +1,16 @@
 import winston from 'winston';
 import expressWinston from 'express-winston';
-import configuration from '../utilities/configuration';
+import configuration from '../../../utilities/configuration';
 
 const colorize = configuration.environment !== 'production'; //eslint-disable-line no-process-env
+
+export function parseSuccessfulHealthChecks(request, response) { //eslint-disable-line
+  const healthCheckUrl = '/healthz';
+  const skipLogging = request.url === healthCheckUrl
+    && response.statusCode < 400;
+
+  return skipLogging;
+}
 
 // Logger to capture all requests and output them to the console.
 const requestLogger = expressWinston.logger({
@@ -12,6 +20,7 @@ const requestLogger = expressWinston.logger({
       colorize
     })
   ],
+  ignoreRoute: parseSuccessfulHealthChecks,
   expressFormat: true,
   meta: false
 });

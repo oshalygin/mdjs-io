@@ -6,7 +6,7 @@ import webpack from 'webpack';
 import configuration from '../utilities/configuration';
 import webpackConfiguration from '../webpack.config.dev';
 import open from 'open';
-import logger from '../utilities/logger';
+import logger from './utilities/middleware/logger';
 
 import v1router from './routes/routes-v1';
 

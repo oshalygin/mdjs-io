@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import logger from '../../utilities/logger.js';
+import logger from '../utilities/middleware/logger';
 import { ITEM_ENDPOINT } from '../utilities/endpoints';
 
 function getItemById(itemId) {
@@ -30,7 +30,6 @@ function get(request, response) {
       response.sendStatus(400);
     });
 }
-
 
 export default {
   get

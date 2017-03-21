@@ -1,3 +1,7 @@
+## 2.7.1 (March 21, 2017)
+
+- Parse logging to exclude /healthz.
+
 ## 2.7.0 (March 21, 2017)
 
 - Proxy login with token requests through Express application.

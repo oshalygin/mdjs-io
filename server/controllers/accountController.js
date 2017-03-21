@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { getJsonHeaders } from '../utilities/requestUtilities';
-import logger from '../../utilities/logger.js';
+import logger from '../utilities/middleware/logger';
 import { LOGIN_ENDPOINT, LOGIN_TOKEN_ENDPOINT } from '../utilities/endpoints';
 
 export async function post(request, response) {
