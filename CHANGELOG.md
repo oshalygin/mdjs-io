@@ -1,3 +1,7 @@
+## 2.6.0 (March 20, 2017)
+
+- Fix tracing and add new entry point production
+
 ## 2.5.1 (March 20, 2017)
 
 - Upgrade cluster nodes to `n1-standard-1`

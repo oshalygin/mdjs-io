@@ -1,5 +1,3 @@
-require('@google-cloud/trace-agent').start();
-
 import express from 'express';
 import path from 'path';
 import configuration from '../utilities/configuration';

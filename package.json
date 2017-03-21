@@ -1,11 +1,11 @@
 {
   "name": "mdjs",
-  "version": "2.5.1",
+  "version": "2.6.0",
   "description": "Merchant Dashboard built with React and Redux",
   "scripts": {
     "prestart": "babel-node utilities/startingDisplayMessage.js",
     "start": "npm-run-all --parallel open:server",
-    "open:dist": "NODE_ENV=production babel-node server/application.production.js",
+    "open:dist": "node ./server/index.js",
     "open:server": "babel-watch ./server/application.dev.js",
     "lint": "eslint webpack.config.* \"client/**/*.js\" \"client/**/*.jsx\" \"server/**\" utilities/** --color ",
     "lint:watch": "npm run lint -- --watch",
@@ -14,7 +14,7 @@
     "clean-dist": "npm run remove-dist && mkdir dist",
     "remove-dist": "node_modules/.bin/rimraf ./dist",
     "build:html": "babel-node utilities/buildHtml.js",
-    "prebuild": "npm-run-all clean-dist test lint build:html",
+    "prebuild": "npm-run-all clean-dist build:html",
     "build": "babel-node utilities/build.js"
   },
   "author": "Oleg Shalygin",
