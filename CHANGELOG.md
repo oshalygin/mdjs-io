@@ -1,3 +1,7 @@
+## 2.7.0 (March 21, 2017)
+
+- Proxy login with token requests through Express application.
+
 ## 2.6.1 (March 20, 2017)
 
 - Add production request logging.

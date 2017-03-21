@@ -1,6 +1,6 @@
 {
   "name": "mdjs",
-  "version": "2.6.1",
+  "version": "2.7.0",
   "description": "Merchant Dashboard built with React and Redux",
   "scripts": {
     "prestart": "babel-node utilities/startingDisplayMessage.js",

@@ -9,7 +9,7 @@ export function retrieveUser(dispatch, callback) {
     return;
   }
 
-  loginWithToken(dispatch, token)()
+  loginWithToken(dispatch, token)
     .then(() => {
       callback();
     })

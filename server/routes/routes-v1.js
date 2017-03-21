@@ -13,6 +13,7 @@ router
 // {api/v1/account}
 router
   .route('/account')
+  .get(accountController.get)
   .post(accountController.post);
 
 export default router;

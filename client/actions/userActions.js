@@ -4,11 +4,9 @@ import {
   LOADING_USER,
   LOADED_USER_SUCCESS,
   LOADED_USER_FAILURE
-
 } from './actionTypes';
 import {
-  ACCOUNT_ENDPOINT,
-  LOGIN_TOKEN_ENDPOINT
+  ACCOUNT_ENDPOINT
 } from './httpEndpoints';
 import { getJsonHeaders } from '../utilities/requestUtilities';
 import { persistUserToken, removeUserToken } from '../utilities/localStorage';
@@ -52,31 +50,31 @@ export function loadedUserFailure() {
   };
 }
 
-export function loginWithToken(dispatch, tokenKey) {
-  return function () {
-    dispatch(loadingUser());
-    return axios
-      .post(LOGIN_TOKEN_ENDPOINT,
-      {
-        token: tokenKey
-      },
-      getJsonHeaders())
-      .then(userResponse => {
-        dispatch(loginSuccess(userResponse.data.data));
-        dispatch(loadCategoriesSuccess(userResponse.data.data.companyData.categories));
-        dispatch(loadDiscountsSuccess(userResponse.data.data.companyData.discounts));
-        dispatch(loadItemsSuccess(userResponse.data.data.companyData.items));
-        dispatch(loadTaxesSuccess(userResponse.data.data.companyData.taxes));
-        dispatch(loadModifiersSuccess(userResponse.data.data.companyData.modifiers));
-        dispatch(loadRefundReasonsSuccess(userResponse.data.data.companyData.refundReasons));
-        dispatch(loadedUserSuccess());
-        persistUserToken(userResponse.data.data.token);
-      })
-      .catch((error) => {
-        dispatch(loadedUserFailure());
-        throw (error);
-      });
-  };
+export async function loginWithToken(dispatch, tokenKey) {
+
+  dispatch(loadingUser());
+
+  try {
+    const headers = getJsonHeaders();
+    const endpoint = `${ACCOUNT_ENDPOINT}?token=${tokenKey}`;
+
+    const userAccountResponse = await axios.get(endpoint, headers);
+
+    dispatch(loginSuccess(userAccountResponse.data));
+    dispatch(loadCategoriesSuccess(userAccountResponse.data.companyData.categories));
+    dispatch(loadDiscountsSuccess(userAccountResponse.data.companyData.discounts));
+    dispatch(loadItemsSuccess(userAccountResponse.data.companyData.items));
+    dispatch(loadTaxesSuccess(userAccountResponse.data.companyData.taxes));
+    dispatch(loadModifiersSuccess(userAccountResponse.data.companyData.modifiers));
+    dispatch(loadRefundReasonsSuccess(userAccountResponse.data.companyData.refundReasons));
+    dispatch(loadedUserSuccess());
+    persistUserToken(userAccountResponse.data.token);
+
+  } catch (error) {
+    removeUserToken();
+    dispatch(loadedUserFailure());
+    throw (error);
+  }
 }
 
 export function login(user) {
@@ -85,7 +83,7 @@ export function login(user) {
     dispatch(loadingUser());
     try {
       const headers = getJsonHeaders();
-      const token = await axios.post(ACCOUNT_ENDPOINT,
+      const accountResponse = await axios.post(ACCOUNT_ENDPOINT,
         {
           username: user.email,
           password: user.password
@@ -93,8 +91,10 @@ export function login(user) {
         headers
       );
 
+      const token = accountResponse.data.token;
+
       persistUserToken(token);
-      loginWithToken(dispatch, token);
+      await loginWithToken(dispatch, token);
 
     } catch (error) {
       dispatch(loadedUserFailure());
