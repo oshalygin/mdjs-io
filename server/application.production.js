@@ -26,6 +26,7 @@ application.use(cookieParser());
 
 const port = configuration.port;
 
+application.use(logger.requestLogger);
 application.use('/api/v1', v1router);
 application.use(express.static(path.join(__dirname, '../dist')));
 

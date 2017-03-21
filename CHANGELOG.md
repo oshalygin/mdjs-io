@@ -1,6 +1,10 @@
+## 2.6.1 (March 20, 2017)
+
+- Add production request logging.
+
 ## 2.6.0 (March 20, 2017)
 
-- Fix tracing and add new entry point production
+- Fix tracing and add new entry point production.
 
 ## 2.5.1 (March 20, 2017)
 
@@ -11,7 +15,7 @@
 
 ## 2.5.0 (March 20, 2017)
 
-- Configure GCP tracing and change cluster name
+- Configure GCP tracing and change cluster name.
 
 ## 2.4.0 (March 20, 2017)
 
