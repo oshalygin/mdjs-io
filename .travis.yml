@@ -22,8 +22,8 @@ before_install:
 
 script:
   - npm run lint
-   - npm run test
-   - npm run codacy:coverage
+  - npm run test
+  - npm run codacy:coverage
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
