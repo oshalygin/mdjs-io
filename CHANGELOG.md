@@ -1,3 +1,7 @@
+## 2.7.4 (March 22, 2017)
+
+- Parse tracing to exclude /healthz.
+
 ## 2.7.3 (March 22, 2017)
 
 - Add `lcov` reporter as well as Travis README badge.
