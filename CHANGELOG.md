@@ -1,3 +1,7 @@
+## 2.7.2 (March 22, 2017)
+
+- Add code coverage with `nyc`.
+
 ## 2.7.1 (March 21, 2017)
 
 - Parse logging to exclude /healthz.

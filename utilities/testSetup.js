@@ -3,6 +3,8 @@ require('babel-register')({
   plugins: ['rewire']
 });
 
+require('source-map-support').install();
+
 require('css-modules-require-hook')({
   generateScopedName: '[local]'
 });
