@@ -5,6 +5,7 @@ const protocol = window.location.protocol;
 const baseEndpoint = `${protocol}//${hostLocation}`;
 
 export const ACCOUNT_ENDPOINT = `${baseEndpoint}/api/v1/account`;
+export const VERSION_ENDPOINT = `${baseEndpoint}/api/v1/version`;
 
 export const DOMAIN_ENDPOINT = configuration.domainEndpoint;
 export const LOGIN_ENDPOINT = `${DOMAIN_ENDPOINT}/api/dashboard/security`;

@@ -3,12 +3,13 @@ import CSSModules from 'react-css-modules';
 import toastr from 'toastr';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as userActions from '../../actions/userActions.js';
+import * as actionCreators from '../../actions/userActions';
 
 import styles from './login.css';
 
 import Spinner from '../common/spinner/';
 import LoginForm from './LoginForm.jsx';
+import Version from '../common/version';
 
 class LoginPage extends React.Component {
 
@@ -33,7 +34,7 @@ class LoginPage extends React.Component {
       .then(() => this.redirect())
       .catch(() => {
         toastr.error('Invalid username or password');
-        
+
         loginValidationErrors();
         this.setState({ formErrors: true });
       });
@@ -53,18 +54,21 @@ class LoginPage extends React.Component {
     const { loading } = this.props;
     const { formErrors } = this.state;
     return (
-      <div className="middle-box text-center loginscreen animated fadeInDown">
-        <div>
+      <div>
+        <div className="middle-box text-center loginscreen animated fadeInDown">
           <div>
-            <h1 className="logo-name">MD</h1>
+            <div>
+              <h1 className="logo-name">MD</h1>
+            </div>
+            <h3>Welcome to Merchant Dashboard</h3>
+            <p>The ultimate merchant dashboard experience</p>
+            <p>Login to get started</p>
+            <LoginForm hidden={loading} errors={formErrors} onChange={this.onChange} login={this.login} />
+            <Spinner hidden={!loading} />
+            <p className="m-t"> <small>Merchant Dashboard is a registered trademark of Merchant Dashboard, LLC.</small> </p>
           </div>
-          <h3>Welcome to Merchant Dashboard</h3>
-          <p>The ultimate merchant dashboard experience</p>
-          <p>Login to get started</p>
-          <LoginForm hidden={loading} errors={formErrors} onChange={this.onChange} login={this.login} />
-          <Spinner hidden={!loading} />
-          <p className="m-t"> <small>Merchant Dashboard is a registered trademark of Merchant Dashboard, LLC.</small> </p>
         </div>
+        <Version />
       </div>
     );
   }
@@ -90,7 +94,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    userActions: bindActionCreators(userActions, dispatch)
+    userActions: bindActionCreators(actionCreators, dispatch)
   };
 }
 

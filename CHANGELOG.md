@@ -1,3 +1,7 @@
+## 2.7.5 (March 22, 2017)
+
+- Add application version to login landing page and dashboard
+
 ## 2.7.4 (March 22, 2017)
 
 - Parse tracing to exclude /healthz.

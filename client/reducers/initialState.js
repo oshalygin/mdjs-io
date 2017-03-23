@@ -28,5 +28,6 @@ export default {
   modifiers: [],
   items: [],
   taxes: [],
-  refundReasons: []
+  refundReasons: [],
+  version: ''
 };

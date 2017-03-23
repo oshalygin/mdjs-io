@@ -7,6 +7,7 @@ import discounts from './discountReducer';
 import taxes from './taxReducer';
 import refundReasons from './refundReasonReducer';
 import loading from './loadingReducer';
+import version from './versionReducer';
 
 const rootReducer = combineReducers({
   user,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   discounts,
   taxes,
   refundReasons,
-  loading
+  loading,
+  version
 });
 
 export default rootReducer;

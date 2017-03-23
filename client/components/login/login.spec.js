@@ -1,10 +1,9 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { shallow } from 'enzyme';
-import RaisedButton from 'material-ui/RaisedButton';
+
 import LoginForm from './LoginForm.jsx';
 import Spinner from '../common/spinner';
+import Version from '../common/version';
 
 import Login from './index';
 
@@ -48,6 +47,16 @@ describe('<Login />', () => {
     const wrapper = shallow(<Login.WrappedComponent {...updatedProps} />);
 
     const actual = wrapper.find(Spinner).length;
+
+    expect(actual).equals(expected);
+  });
+
+  it('should contain a version component', () => {
+    
+    const expected = 1;
+    const wrapper = shallow(<Login.WrappedComponent {...props} />);
+
+    const actual = wrapper.find(Version).length;
 
     expect(actual).equals(expected);
   });

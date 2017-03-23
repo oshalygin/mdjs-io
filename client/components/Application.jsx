@@ -1,13 +1,20 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actionCreators from '../actions/versionActions';
 
 import SideBarNavigation from './common/SideBarNavigation.jsx';
+import Version from './common/version';
 import SearchBar from './common/SearchBar.jsx';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import muiTheme from '../utilities/muiTheme.js';
 
 class Application extends React.Component {
 
+  componentWillMount() {
+    const { versionActions } = this.props;
+    versionActions.getVersion();
+  }
 
   render() {
     const currentPath = this.props.location.pathname.replace('/', '');
@@ -18,6 +25,7 @@ class Application extends React.Component {
         </MuiThemeProvider>
       );
     }
+
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div id="wrapper">
@@ -32,16 +40,27 @@ class Application extends React.Component {
               </div>
             </div>
           </div>
+          <Version />
         </div>
       </MuiThemeProvider>
     );
   }
-
 }
 
 Application.propTypes = {
   children: PropTypes.object.isRequired,
-  location: PropTypes.object
+  location: PropTypes.object,
+  versionActions: PropTypes.object.isRequired
 };
 
-export default connect()(Application);
+function mapStateToProps(state) {
+  return state;
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    versionActions: bindActionCreators(actionCreators, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Application);
