@@ -1,4 +1,4 @@
-@import '../../styles/colors.css';
+@import "../../styles/colors.css";
 
 .newItemButton {
   margin-bottom: 1.2em;
@@ -18,4 +18,21 @@
   font-size: 1rem;
   font-weight: lighter;
   margin: 0 auto;
+}
+
+.item-image {
+  border: 1px solid black;
+  white-space: normal;
+  padding: 0.5em;
+  display: flex;
+  align-items: center;
+  word-break: break-all;
+  border-radius: 5px;
+  object-fit: contain;
+  height: 4em;
+  width: 4em;
+  background-color: var(--darkGray);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }

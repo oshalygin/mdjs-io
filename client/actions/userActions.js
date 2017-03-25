@@ -7,7 +7,7 @@ import {
 } from './actionTypes';
 import {
   ACCOUNT_ENDPOINT
-} from './httpEndpoints';
+} from '../utilities/endpoints.js';
 import { getJsonHeaders } from '../utilities/requestUtilities';
 import { persistUserToken, removeUserToken } from '../utilities/localStorage';
 import { loadCategoriesSuccess } from './categoryActions';

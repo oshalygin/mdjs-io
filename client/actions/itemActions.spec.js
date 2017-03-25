@@ -6,7 +6,7 @@ import {
 } from './actionTypes';
 import {
   ITEM_ENDPOINT
-} from './httpEndpoints';
+} from '../utilities/endpoints';
 import moxios from 'moxios';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';

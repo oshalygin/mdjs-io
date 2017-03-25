@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
 
-import { IMAGE_ENDPOINT } from '../../actions/httpEndpoints';
+import { IMAGE_ENDPOINT } from '../../utilities/endpoints.js';
 import ItemImage, { getImageStyle } from './ItemImage.jsx';
 
 describe('<ItemImage />', () => {

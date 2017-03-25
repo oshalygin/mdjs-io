@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import { shallow } from 'enzyme';
-import { IMAGE_ENDPOINT } from '../../actions/httpEndpoints';
+import { IMAGE_ENDPOINT } from '../../utilities/endpoints';
 import ItemImage, { getImageUrl } from './ItemImage.jsx';
 import DropZone from 'react-dropzone';
 

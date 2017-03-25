@@ -15,10 +15,10 @@ describe('http endpoints', () => {
   it('should set the DOMAIN_ENDPOINT to the environment variable if it is set', () => {
 
 
-    const httpEndpoints = require('./httpEndpoints.js');
+    const endpoints = require('./endpoints.js');
     const expected = 'http://www.foobar.com';
 
-    const actual = httpEndpoints.DOMAIN_ENDPOINT;
+    const actual = endpoints.DOMAIN_ENDPOINT;
 
     expect(actual).equals(expected);
 
@@ -26,10 +26,10 @@ describe('http endpoints', () => {
 
   it('should set the LOGIN_ENDPOINT to the full path including the domain', () => {
 
-    const httpEndpoints = require('./httpEndpoints.js');
+    const endpoints = require('./endpoints.js');
     const expected = 'http://www.foobar.com/api/dashboard/item';
 
-    const actual = httpEndpoints.ITEM_ENDPOINT;
+    const actual = endpoints.ITEM_ENDPOINT;
 
     expect(actual).equals(expected);
   });

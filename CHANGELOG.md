@@ -1,3 +1,7 @@
+## 2.7.6 (March 22, 2017)
+
+- Refactor itemImage to utilize CSSModules and move `httpEndpoints` to utilities.
+
 ## 2.7.5 (March 22, 2017)
 
 - Add application version to login landing page and dashboard

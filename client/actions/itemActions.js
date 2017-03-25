@@ -1,7 +1,7 @@
 import * as actionTypes from './actionTypes';
 import {
   ITEM_ENDPOINT
-} from './httpEndpoints';
+} from '../utilities/endpoints';
 import {
   loadUserToken
 } from '../utilities/localStorage';

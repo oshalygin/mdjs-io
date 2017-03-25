@@ -6,7 +6,7 @@ import {
   LOAD_VERSION_SUCCESS
 } from './actionTypes';
 
-import { VERSION_ENDPOINT } from './httpEndpoints';
+import { VERSION_ENDPOINT } from '../utilities/endpoints';
 
 import moxios from 'moxios';
 import thunk from 'redux-thunk';

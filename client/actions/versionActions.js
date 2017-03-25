@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {
   VERSION_ENDPOINT
-} from './httpEndpoints';
+} from '../utilities/endpoints';
 import * as actionTypes from './actionTypes';
 import { getJsonHeaders } from '../utilities/requestUtilities';
 
