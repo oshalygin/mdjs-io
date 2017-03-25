@@ -1,3 +1,7 @@
+## 2.7.7 (March 24, 2017)
+
+- Proxy all image retrieval through express gateway.
+
 ## 2.7.6 (March 22, 2017)
 
 - Refactor itemImage to utilize CSSModules and move `httpEndpoints` to utilities.
