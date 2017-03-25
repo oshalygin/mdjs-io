@@ -1,3 +1,7 @@
+## 2.7.8 (March 25, 2017)
+
+- Update ingress to include the `www.` subdomain.
+
 ## 2.7.7 (March 24, 2017)
 
 - Proxy all image retrieval through express gateway.

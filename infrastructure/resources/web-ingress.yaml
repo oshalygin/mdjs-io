@@ -10,9 +10,21 @@ spec:
   tls:
   - hosts:
     - mdjs.io
+    - www.mdjs.io
     secretName: default-tls
   rules:
   - host: mdjs.io
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: fe-web
+          servicePort: 80
+      - path: /*
+        backend:
+          serviceName: fe-web
+          servicePort: 80
+  - host: www.mdjs.io
     http:
       paths:
       - path: /
