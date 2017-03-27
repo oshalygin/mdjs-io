@@ -1,11 +1,10 @@
-import * as actionTypes from './actionTypes';
-import {
-  ITEM_ENDPOINT
-} from '../utilities/endpoints';
-import {
-  loadUserToken
-} from '../utilities/localStorage';
 import axios from 'axios';
+
+import { getHeaders } from '../utilities/requestUtilities';
+import * as actionTypes from './actionTypes';
+import { ITEM_ENDPOINT } from '../utilities/endpoints';
+import { loadUserToken } from '../utilities/localStorage';
+
 
 export function loadItemsSuccess(items) {
   return {
@@ -54,36 +53,30 @@ export function loadingItemCreationOrUpdates() {
 }
 
 export function createOrUpdateItem(item) {
-  return function (dispatch) {
+  return async function (dispatch) {
+
     dispatch(loadingItemCreationOrUpdates());
-    const itemToPersist = { ...item };
-    delete itemToPersist.photoURL;
-    delete itemToPersist.file;
 
-    const token = loadUserToken();
-    const data = new FormData();
+    try {
+      const itemToPersist = { ...item };
+      delete itemToPersist.photoURL;
+      delete itemToPersist.file;
 
-    data.append('item', JSON.stringify(itemToPersist));
-    data.append('file', item.file);
+      const token = loadUserToken();
+      const data = new FormData();
+      data.append('item', JSON.stringify(itemToPersist));
+      data.append('file', item.file);
 
-    return axios
-      .post(ITEM_ENDPOINT,
-      data, {
-        headers: {
-          'Content-Type': false,
-          Authorization: token
-        }
-      })
-      .then((response) => {
-        dispatch(itemCreatedOrUpdatedSuccess({
-          ...response.data
-        }));
-        dispatch(loadingItemCreationOrUpdatesSuccess());
-      })
-      .catch(errorResponse => {
-        throw (errorResponse);
-      });
+      const headers = getHeaders(token);
+      const createdOrUpdatedItemResponse = await axios.post(ITEM_ENDPOINT, data, headers);
+      const createdOrUpdatedItem = createdOrUpdatedItemResponse.data;
 
+      dispatch(itemCreatedOrUpdatedSuccess({ ...createdOrUpdatedItem }));
+      dispatch(loadingItemCreationOrUpdatesSuccess());
+
+    } catch (error) {
+      throw (error);
+    }
   };
 }
 

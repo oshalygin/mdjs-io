@@ -10,7 +10,7 @@ export async function get(request, response) { //eslint-disable-line consistent-
   if (!imageName) {
     return response
       .status(400)
-      .send('This resource excepts an image id');
+      .send('This resource expects an image id');
   }
 
   try {

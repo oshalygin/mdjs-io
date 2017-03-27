@@ -3,14 +3,31 @@ import itemController from '../controllers/itemController';
 import accountController from '../controllers/accountController';
 import versionController from '../controllers/versionController';
 import imagesController from '../controllers/imageController';
+import multer from 'multer';
+
+import path from 'path';
+
+const storage = multer.diskStorage({
+  destination(request, file, callback) {
+    callback(null, path.join(__dirname, '../../temp-images'));
+  },
+  filename(request, file, callback) {
+    callback(null, file.originalname);
+  }
+});
+
+const uploads = multer({ storage });
 
 // v1
 const router = express.Router();
 
-// {api/v1/item}
+// {api/v1/items}
 router
-  .route('/items/:id')
-  .get(itemController.get);
+  .route('/items/:id?')
+  .get(itemController.get)
+  .put(uploads.single('file'), itemController.put)
+  .post(uploads.single('file'), itemController.post)
+  .delete(itemController.deleteItem);
 
 // {api/v1/account}
 router
@@ -23,7 +40,7 @@ router
   .route('/version')
   .get(versionController.get);
 
-// {api/v1/version}
+// {api/v1/images}
 router
   .route('/images/:id')
   .get(imagesController.get);

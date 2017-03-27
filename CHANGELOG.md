@@ -1,3 +1,10 @@
+## 2.8.0 (March 26, 2017)
+
+- Proxy Item creation through express gateway.
+  - Multer was brought into to handle multipart form upload and proxy it accordingly.
+  - ItemController received major refactoring to properly proxy the request and pass the file through accordingly.
+  - Updates will be handled through the put request which is still WIP.
+
 ## 2.7.8 (March 25, 2017)
 
 - Update ingress to include the `www.` subdomain.

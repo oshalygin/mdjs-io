@@ -21,7 +21,7 @@ export async function post(request, response) {
     };
 
     const accountDetails = await axios.post(LOGIN_ENDPOINT, requestBody, options);
-    
+
     if (!accountDetails.data.data) {
 
       logger.info(`Invalid request: username: ${username}, password: ${password}`);
@@ -45,7 +45,7 @@ export async function post(request, response) {
 
 export async function get(request, response) {
   const { token } = request.query;
-  
+
   if (!token) {
     return response
       .status(400)
@@ -60,14 +60,14 @@ export async function get(request, response) {
     };
 
     const accountDetails = await axios.post(LOGIN_TOKEN_ENDPOINT, requestBody, options);
-    
+
     if (!accountDetails.data.data) {
       logger.info(`Invalid token: token: ${token}`);
       return response
         .status(400)
         .send('Invalid token');
     }
-    
+
     const accountData = accountDetails.data.data;
 
     return response
