@@ -1,3 +1,10 @@
+## 2.10.0 (March 27, 2017)
+
+- Add user context to sidenav
+  - Users first and last name are now displayed on the sidenav in the top left corner.  If the name isn't set during registration, it will not be set.
+  - Users role is mapped to the top left sidenav.  Roles are Owner, Administrator and User.
+  - Add logout link to the side navigation when clicking on the users role.
+
 ## 2.9.1 (March 26, 2017)
 
 - Update item `DELETE` call to properly end the stream.

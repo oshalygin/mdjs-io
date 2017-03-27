@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../actions/versionActions';
 
-import SideBarNavigation from './common/SideBarNavigation.jsx';
+import SideBarNavigation from './common/sidenav';
 import Version from './common/version';
 import SearchBar from './common/SearchBar.jsx';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
