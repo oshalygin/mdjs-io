@@ -300,13 +300,13 @@ describe('<ItemDetail />', () => {
     expect(actual).deep.equals(expected);
   });
 
-  it('should call "createOrUpdateItem" with the item that was passed in to onSave', () => {
+  it('should call "updateItem" with the item that was passed in to onSave', () => {
     const redirectSpy = sinon.spy();
     ItemDetail.__Rewire__('browserHistory', {
       push: redirectSpy
     });
 
-    const createOrUpdateItemSpy = sinon.stub().returns({
+    const createItemSpy = sinon.stub().returns({
       then(foobar) { //eslint-disable-line no-unused-vars
         return {
           catch() { }
@@ -314,13 +314,13 @@ describe('<ItemDetail />', () => {
       }
     });
 
-    createOrUpdateItemSpy.then = function () { };
+    createItemSpy.then = function () { };
 
     const updatedProps = {
       ...props,
       item: items[0],
       itemActions: {
-        createOrUpdateItem: createOrUpdateItemSpy
+        updateItem: createItemSpy
       }
     };
 
@@ -330,7 +330,7 @@ describe('<ItemDetail />', () => {
     const instance = wrapper.instance();
     instance.onSave();
 
-    const actual = createOrUpdateItemSpy.calledWith(items[0]);
+    const actual = createItemSpy.calledWith(items[0]);
 
     expect(actual).equals(expected);
     ItemDetail.__ResetDependency__('browserHistory');

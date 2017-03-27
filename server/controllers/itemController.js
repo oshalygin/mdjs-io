@@ -80,14 +80,13 @@ export async function deleteItem(request, response) {
 export async function put(request, response) {
 
   const itemId = request.params.id;
-  const itemBody = request.body;
-
+  const itemBody = request.body.item;
   if (request.params.id && isNaN(request.params.id)) {
     return response
       .status(400)
       .send('The item {id} must be a number representing the itemId');
   }
-
+  
   if (!itemBody) {
     logger.error(`The request {body} cannot be null, ${request.originalUrl}`);
     return response
@@ -96,28 +95,53 @@ export async function put(request, response) {
   }
 
   try {
+
+    let file;
     const token = request.headers.authorization;
     const headers = getHeaders(token);
-    const itemEndpoint = `${ITEM_ENDPOINT}/${request.params.id}`;
+    headers.headers['Content-Type'] = false;
+    headers.headers.Accept = 'application/json'; //Refactor into standard headers
 
-    await axios.post(itemEndpoint, headers);
+    const formData = {
+      item: itemBody
+    };
+
+    if (!request.file) {
+      file = null;
+    } else {
+      file = path.join(__dirname, `../../temp-images/${request.file.originalname}`);
+      formData.file = fs.createReadStream(file);
+    }
+
+    const postedResponse = await rp.post({ url: ITEM_ENDPOINT, formData, headers: headers.headers });
+    const newItem = JSON.parse(postedResponse);
+
+    if (file) {
+      fs.unlink(file);
+    }
 
     return response
-      .status(200);
+      .status(200)
+      .json(newItem);
 
   } catch (error) {
+    if (request.file) {
+      const file = path.join(__dirname, `../../temp-images/${request.file.originalname}`);
+      fs.unlink(file);
+    }
 
     logger.info(error);
     logger.info(`Error updating: ${itemId}`);
-    logger.info(`Error updating: ${itemBody}`);
+    logger.info(`Error updating: ${JSON.stringify(itemBody)}`);
     return response
       .status(400)
       .send('Failed to update the item');
   }
+  
 }
 
 export async function post(request, response) {
-
+  
   const itemBody = request.body.item;
 
   if (request.params.id) {

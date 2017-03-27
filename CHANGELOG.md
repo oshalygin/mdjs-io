@@ -1,3 +1,10 @@
+## 2.9.0 (March 26, 2017)
+
+- Proxy Item updates through express gateway.
+  - Nearly the same procedural calls as the `POST` endpoint, except that an id param is expected.
+  - If the file is not sent, the photoURL is passed along to persist the current image.
+- Any failed backend calls for `POST` or `PUT` in regards to items, will properly stop the spinner.
+
 ## 2.8.0 (March 26, 2017)
 
 - Proxy Item creation through express gateway.

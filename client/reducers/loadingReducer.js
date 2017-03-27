@@ -11,14 +11,18 @@ export default function loadingReducer(state = initialState.loading, action) {
           loadingUser: true
         };
       }
-    case actionTypes.LOADING_ITEM_CREATED_OR_UPDATED:
+    case actionTypes.LOADING_ITEM_CREATION:
+    case actionTypes.LOADING_ITEM_UPDATE:
       {
         return {
           ...state,
           createUpdateItem: true
         };
       }
-    case actionTypes.LOADING_ITEM_CREATED_OR_UPDATED_SUCCESS:
+    case actionTypes.LOADING_ITEM_CREATION_SUCCESS:
+    case actionTypes.LOADING_ITEM_UPDATE_SUCCESS:
+    case actionTypes.ITEM_CREATION_FAILURE:
+    case actionTypes.ITEM_UPDATE_FAILURE:
       {
         return {
           ...state,

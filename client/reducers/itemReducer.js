@@ -14,7 +14,8 @@ export default function itemReducer(state = initialState.items, action) {
           }];
         }, []);
       }
-    case actionTypes.ITEM_CREATED_OR_UPDATED:
+    case actionTypes.ITEM_CREATED:
+    case actionTypes.ITEM_UPDATED:  
     case actionTypes.ITEM_PREVIEW_UPDATED:
       {
         const items = [...state];

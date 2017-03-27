@@ -11,7 +11,7 @@ require('css-modules-require-hook')({
 
 // Setting NODE_ENV to test instead of production because setting it to production will suppress error messaging
 // and propType validation warnings.
-process.env.NODE_ENV = 'test'; 
+process.env.NODE_ENV = 'test';
 process.env.DOMAIN_ENDPOINT = 'http://www.foobar.com';
 
 ['.ico', '.png', '.svg'].forEach((extension) => {
@@ -31,10 +31,12 @@ Object.keys(document.defaultView).forEach((property) => {
 });
 
 global.localStorage = {
-  getItem() {
-  },
-  setItem() {
-  }
+  getItem() { },
+  setItem() { }
+};
+
+global.FormData = function () {
+  this.append = function () { };
 };
 
 global.navigator = {

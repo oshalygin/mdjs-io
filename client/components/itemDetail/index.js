@@ -58,9 +58,15 @@ class ItemDetailPage extends React.Component {
       return;
     }
 
-    itemActions.createOrUpdateItem(item)
-      .then(() => this.redirect())
-      .catch(error => toastr.error(error));
+    if (item.itemID) {
+      itemActions.updateItem(item)
+        .then(() => this.redirect())
+        .catch(error => toastr.error(error));
+    } else {
+      itemActions.createItem(item)
+        .then(() => this.redirect())
+        .catch(error => toastr.error(error));
+    }
   }
 
   redirect() {

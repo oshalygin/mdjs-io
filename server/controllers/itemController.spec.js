@@ -451,13 +451,14 @@ describe('Item Controller: /api/item', () => {
     const request = {
       params: {
         id: 'foobar'
-      }
+      },
+      body: {}
     };
 
-    ItemController.put(request, response);
-
-    const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    return ItemController.put(request, response).then(() => {
+      const actual = statusStub.calledWith(400);
+      expect(actual).equals(expected);
+    });
 
   });
 
@@ -479,7 +480,8 @@ describe('Item Controller: /api/item', () => {
     const request = {
       params: {
         id: itemId
-      }
+      },
+      body: {}
     };
 
 
@@ -490,23 +492,97 @@ describe('Item Controller: /api/item', () => {
 
   });
 
-  it('should return a 200 status code on a successful put call', () => {
+  it('should return a 200 status code on a successful put call to update a new item', () => {
 
-    const itemId = 3;
-    const itemEndpoint = `${ITEM_ENDPOINT}/${itemId}`;
+    const expected = true;
 
-    const serverResponse = {
-      response: {
-        data: {
-          message: 'OK'
+    const jsonSpy = sinon.spy();
+    const statusStub = sinon.stub().returns({
+      json: jsonSpy
+    });
+
+    const response = {
+      status: statusStub
+    };
+
+    const ItemControllerProxy = proxyquire('./itemController.js', {
+      path: {},
+      fs: {
+        unlink() { },
+        createReadStream() { }
+      },
+      'request-promise': {
+        post() {
+          return Promise.resolve(JSON.stringify(items[0]));
         }
+      }
+    });
+
+    const request = {
+      headers: {
+        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
+      },
+      params: {},
+      file,
+      body: {
+        item: items[0]
       }
     };
 
-    moxios.stubRequest(itemEndpoint, {
-      status: 200,
-      response: serverResponse
+    return ItemControllerProxy.put(request, response).then(() => {
+      const actual = statusStub.calledWith(200);
+      expect(actual).equals(expected);
     });
+
+  });
+
+  it('should unlink the file on a successful put request', () => {
+
+    const expected = true;
+
+    const jsonSpy = sinon.spy();
+    const statusStub = sinon.stub().returns({
+      json: jsonSpy
+    });
+
+    const response = {
+      status: statusStub
+    };
+
+    const unlinkSpy = sinon.spy();
+
+    const ItemControllerProxy = proxyquire('./itemController.js', {
+      path: {},
+      fs: {
+        unlink: unlinkSpy,
+        createReadStream() { }
+      },
+      'request-promise': {
+        post() {
+          return Promise.resolve(JSON.stringify(items[0]));
+        }
+      }
+    });
+
+    const request = {
+      headers: {
+        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
+      },
+      params: {},
+      file,
+      body: {
+        item: items[0]
+      }
+    };
+
+    return ItemControllerProxy.put(request, response).then(() => {
+      const actual = unlinkSpy.called;
+      expect(actual).equals(expected);
+    });
+
+  });
+
+  it('should unlink the file on an unsuccessful PUT request', () => {
 
     const expected = true;
 
@@ -519,21 +595,79 @@ describe('Item Controller: /api/item', () => {
       status: statusStub
     };
 
+    const unlinkSpy = sinon.spy();
+
+    const ItemControllerProxy = proxyquire('./itemController.js', {
+      path: {},
+      fs: {
+        unlink: unlinkSpy,
+        createReadStream() { }
+      },
+      'request-promise': {
+        post() {
+          return Promise.reject({});
+        }
+      }
+    });
+
     const request = {
       headers: {
         authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
       },
-      params: {
-        id: itemId
-      },
+      params: {},
+      file,
       body: {
-        ...items[0]
+        item: items[0]
       }
     };
 
+    return ItemControllerProxy.put(request, response).then(() => {
+      const actual = unlinkSpy.called;
+      expect(actual).equals(expected);
+    });
 
-    return ItemController.put(request, response).then(() => {
-      const actual = statusStub.calledWith(200);
+  });
+
+  it('should set the file to null and thus not call unlink if the file was not part of the PUT request', () => {
+
+    const expected = true;
+
+    const sendSpy = sinon.spy();
+    const statusStub = sinon.stub().returns({
+      send: sendSpy
+    });
+
+    const response = {
+      status: statusStub
+    };
+
+    const unlinkSpy = sinon.spy();
+
+    const ItemControllerProxy = proxyquire('./itemController.js', {
+      path: {},
+      fs: {
+        unlink: unlinkSpy,
+        createReadStream() { }
+      },
+      'request-promise': {
+        post() {
+          return Promise.reject({});
+        }
+      }
+    });
+
+    const request = {
+      headers: {
+        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
+      },
+      params: {},
+      body: {
+        item: items[0]
+      }
+    };
+
+    return ItemControllerProxy.put(request, response).then(() => {
+      const actual = unlinkSpy.notCalled;
       expect(actual).equals(expected);
     });
 

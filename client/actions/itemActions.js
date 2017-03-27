@@ -13,13 +13,6 @@ export function loadItemsSuccess(items) {
   };
 }
 
-export function itemPhotoUpdatedSuccess(item) {
-  return {
-    type: actionTypes.ITEM_PREVIEW_UPDATED,
-    item
-  };
-}
-
 export function itemDeactivatedSuccess(item) {
   return {
     type: actionTypes.ITEM_DEACTIVATED_SUCCESS,
@@ -33,29 +26,61 @@ export function itemDeactivated() {
   };
 }
 
-export function itemCreatedOrUpdatedSuccess(item) {
+export function itemUpdatedSuccess(item) {
   return {
-    type: actionTypes.ITEM_CREATED_OR_UPDATED,
+    type: actionTypes.ITEM_UPDATED,
     item
   };
 }
 
-export function loadingItemCreationOrUpdatesSuccess() {
+export function itemCreatedSuccess(item) {
+
   return {
-    type: actionTypes.LOADING_ITEM_CREATED_OR_UPDATED_SUCCESS
+    type: actionTypes.ITEM_CREATED,
+    item
   };
 }
 
-export function loadingItemCreationOrUpdates() {
+export function loadingItemCreation() {
   return {
-    type: actionTypes.LOADING_ITEM_CREATED_OR_UPDATED
+    type: actionTypes.LOADING_ITEM_CREATION
   };
 }
 
-export function createOrUpdateItem(item) {
+export function loadingItemCreationSuccess() {
+  return {
+    type: actionTypes.LOADING_ITEM_CREATION_SUCCESS
+  };
+}
+
+export function loadingItemUpdate() {
+  return {
+    type: actionTypes.LOADING_ITEM_UPDATE
+  };
+}
+
+export function loadingItemUpdateSuccess() {
+  return {
+    type: actionTypes.LOADING_ITEM_UPDATE_SUCCESS
+  };
+}
+
+export function itemUpdateFailure() {
+  return {
+    type: actionTypes.ITEM_UPDATE_FAILURE
+  };
+}
+
+export function itemCreatedFailure() {
+  return {
+    type: actionTypes.ITEM_CREATION_FAILURE
+  };
+}
+
+export function createItem(item) {
   return async function (dispatch) {
 
-    dispatch(loadingItemCreationOrUpdates());
+    dispatch(loadingItemCreation());
 
     try {
       const itemToPersist = { ...item };
@@ -68,13 +93,46 @@ export function createOrUpdateItem(item) {
       data.append('file', item.file);
 
       const headers = getHeaders(token);
-      const createdOrUpdatedItemResponse = await axios.post(ITEM_ENDPOINT, data, headers);
-      const createdOrUpdatedItem = createdOrUpdatedItemResponse.data;
+      const createdItemResponse = await axios.post(ITEM_ENDPOINT, data, headers);
+      const createdItem = createdItemResponse.data;
 
-      dispatch(itemCreatedOrUpdatedSuccess({ ...createdOrUpdatedItem }));
-      dispatch(loadingItemCreationOrUpdatesSuccess());
+      dispatch(itemCreatedSuccess(createdItem));
+      dispatch(loadingItemCreationSuccess());
 
     } catch (error) {
+      dispatch(itemCreatedFailure());
+      throw (error);
+    }
+  };
+}
+
+export function updateItem(item) {
+  return async function (dispatch) {
+
+    dispatch(loadingItemUpdate());
+
+    try {
+      const itemToPersist = { ...item };
+      delete itemToPersist.file;
+
+      const data = new FormData();
+      data.append('item', JSON.stringify(itemToPersist));
+
+      if (item.file) {
+        delete itemToPersist.photoURL;
+        data.append('file', item.file);
+      }
+
+      const token = loadUserToken();
+      const headers = getHeaders(token);
+      const updatedItemResponse = await axios.put(ITEM_ENDPOINT, data, headers);
+      const updatedItem = updatedItemResponse.data;
+
+      dispatch(itemUpdatedSuccess(updatedItem));
+      dispatch(loadingItemUpdateSuccess());
+
+    } catch (error) {
+      dispatch(itemUpdateFailure());
       throw (error);
     }
   };

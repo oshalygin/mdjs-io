@@ -65,10 +65,13 @@ module.exports = function (wallaby) {
         }
       });
 
-
       global.localStorage = {
         getItem() { },
         setItem() { }
+      };
+
+      global.FormData = function () {
+        this.append = function () { };
       };
 
       global.navigator = {
