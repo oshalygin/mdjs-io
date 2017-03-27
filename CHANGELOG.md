@@ -1,3 +1,8 @@
+## 2.9.1 (March 26, 2017)
+
+- Update item `DELETE` call to properly end the stream.
+  - General cleanup around items being pulled from `props` and not `state`.
+
 ## 2.9.0 (March 26, 2017)
 
 - Proxy Item updates through express gateway.

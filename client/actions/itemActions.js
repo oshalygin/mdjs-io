@@ -153,13 +153,8 @@ export function deactivateItem(item) {
     const endpoint = `${ITEM_ENDPOINT}/${deactivatedItem.itemID}`;
 
     try {
-      await axios
-        .delete(endpoint, {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: token
-          }
-        });
+      const headers = getHeaders(token);
+      await axios.delete(endpoint, headers);
 
       dispatch(itemDeactivatedSuccess(deactivatedItem));
 

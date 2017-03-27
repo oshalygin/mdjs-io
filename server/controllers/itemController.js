@@ -65,7 +65,8 @@ export async function deleteItem(request, response) {
     await axios.delete(itemEndpoint, headers);
 
     return response
-      .status(200);
+      .status(200)
+      .send('OK');
 
   } catch (error) {
 
@@ -81,6 +82,7 @@ export async function put(request, response) {
 
   const itemId = request.params.id;
   const itemBody = request.body.item;
+
   if (request.params.id && isNaN(request.params.id)) {
     return response
       .status(400)
@@ -143,7 +145,7 @@ export async function put(request, response) {
 export async function post(request, response) {
   
   const itemBody = request.body.item;
-
+  
   if (request.params.id) {
     return response
       .status(400)

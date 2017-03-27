@@ -30,7 +30,8 @@ export default function itemReducer(state = initialState.items, action) {
       }
     case actionTypes.ITEM_DEACTIVATED_SUCCESS:
       {
-        return state.filter(item => item.itemID !== action.item.itemID);
+        return state
+          .filter(item => item.itemID !== action.item.itemID);
       }
     default:
       {

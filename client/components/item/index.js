@@ -69,7 +69,7 @@ export class Item extends React.Component {
   }
 
   render() {
-    const { items } = this.state;
+    const { items } = this.props;
 
     return (
       <div className="row">
