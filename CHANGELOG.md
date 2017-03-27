@@ -1,3 +1,8 @@
+## 2.10.1 (March 27, 2017)
+
+- Update logging verbosity
+  - Root / calls will no longer be logged if they return 200 status codes.
+
 ## 2.10.0 (March 27, 2017)
 
 - Add user context to sidenav

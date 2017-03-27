@@ -4,12 +4,18 @@ import configuration from '../../../utilities/configuration';
 
 const colorize = configuration.environment !== 'production'; //eslint-disable-line no-process-env
 
-export function parseSuccessfulHealthChecks(request, response) { //eslint-disable-line
+export function parseIgnoredRoutes(request, response) { //eslint-disable-line
   const healthCheckUrl = '/healthz';
-  const skipLogging = request.url === healthCheckUrl
-    && response.statusCode < 400;
+  if (request.url === healthCheckUrl
+    && response.statusCode < 400) {
+    return true;
+  }
 
-  return skipLogging;
+  if (request.url === '/' && response.statusCode === 200) {
+    return true;
+  }
+
+  return false;
 }
 
 // Logger to capture all requests and output them to the console.
@@ -20,7 +26,7 @@ const requestLogger = expressWinston.logger({
       colorize
     })
   ],
-  ignoreRoute: parseSuccessfulHealthChecks,
+  ignoreRoute: parseIgnoredRoutes,
   expressFormat: true,
   meta: false
 });
