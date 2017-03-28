@@ -6,7 +6,7 @@
 [![Dependency Status](https://www.versioneye.com/user/projects/57df8885037c20002d0da5ac/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/57df8885037c20002d0da5ac)
 
 
-####To run this application follow these steps:
+### To run this application follow these steps:
 1.  Clone this repository.
 2.  Run  `npm install`  to pull in the project dependencies.
 3.  Run  `npm start`  to kick off the application.
@@ -18,7 +18,10 @@
 
 ![image](/docs/infrastructure-diagram.png?raw=true "Infrastructure")
 
-## Contributing
+### Temporary Images Folder
+During the migration, there is a short term solution to proxying the images from the client to the Express API and on back to the backend.  This solution involves temporarily saving images to the `/temp-images` folder, streaming from there as the file is pushed to the backend, and subsequently deleting it once the cycle is complete.  The `.gitkeep` file indicates that this file needs to live in source countrol and be created in the runtime environment.
+
+### Contributing
 
 The main purpose of this repository is to continue to evolve Merchant Dashboard, making it a robust dashboard experience.
 

@@ -17,9 +17,13 @@ spec:
       labels:
         app: fe-web
     spec:
+    
       containers:
         - name: fe-web
           image: 'us.gcr.io/merchant-dash/merchant-dashboard:2.10.1'
+          volumeMounts:
+            - mountPath: /cache
+              name: temp-volume
           env:
             - name: MONGO_IP
               valueFrom:
@@ -47,3 +51,6 @@ spec:
             timeoutSeconds: 5
             successThreshold: 1
             failureThreshold: 10
+      volumes:
+        - name: temp-volume
+          emptyDir: {}

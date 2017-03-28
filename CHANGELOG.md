@@ -1,3 +1,8 @@
+## 2.10.2 (March 27, 2017)
+
+- Update deployment configuration to include an `emptyDir` volume which is used as part of temporary image storage.
+- A `.gitkeep` file is added to source control to make sure that the folder isn't deleted
+
 ## 2.10.1 (March 27, 2017)
 
 - Update logging verbosity
