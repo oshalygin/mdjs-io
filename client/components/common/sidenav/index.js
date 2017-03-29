@@ -10,7 +10,7 @@ export function setPath(pathName) {
   return {
     dashboard: pathName.toLowerCase() === 'dashboard' || pathName === '' ? 'active' : null,
     items: pathName.toLowerCase() === 'items' ? 'active' : null,
-    itemCategories: pathName.toLowerCase() === 'item-categories' ? 'active' : null,
+    itemCategories: pathName.toLowerCase() === 'categories' ? 'active' : null,
     modifiers: pathName.toLowerCase() === 'modifiers' ? 'active' : null,
     taxes: pathName.toLowerCase() === 'taxes' ? 'active' : null,
     discounts: pathName.toLowerCase() === 'discounts' ? 'active' : null,
@@ -61,7 +61,7 @@ class SideBarNavigation extends React.Component {
               </Link>
             </li>
             <li className={path.itemCategories}>
-              <Link to="item-categories">
+              <Link to="categories">
                 <i className="fa fa-folder-open-o" /> <span className="nav-label">Item Categories</span>
               </Link>
             </li>

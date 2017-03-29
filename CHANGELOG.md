@@ -1,3 +1,10 @@
+## 2.11.0 (March 28, 2017)
+
+- Add Initial Item Categories Portal
+  - The initial portal includes a list of item Categories.
+  - None of the functionality to interact with item categories is part of this release.
+  - Item Categories do not have a multi select or select option.
+
 ## 2.10.2 (March 27, 2017)
 
 - Update deployment configuration to include an `emptyDir` volume which is used as part of temporary image storage.

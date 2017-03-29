@@ -1,0 +1,12 @@
+@import "../../styles/colors.css";
+.newCategoryButton {
+  margin-bottom: 1.2em;
+}
+
+.inline-button {
+  display: inline-block;
+}
+
+.inline-button:not(:last-child) {
+  margin-right: 1em;
+}

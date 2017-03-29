@@ -5,7 +5,7 @@ export function setPath(pathName) {
   return {
     dashboard: pathName.toLowerCase() === 'dashboard' || pathName === '' ? 'active' : null,
     items: pathName.toLowerCase() === 'items' ? 'active' : null,
-    itemCategories: pathName.toLowerCase() === 'item-categories' ? 'active' : null,
+    itemCategories: pathName.toLowerCase() === 'categories' ? 'active' : null,
     modifiers: pathName.toLowerCase() === 'modifiers' ? 'active' : null,
     taxes: pathName.toLowerCase() === 'taxes' ? 'active' : null,
     discounts: pathName.toLowerCase() === 'discounts' ? 'active' : null,
