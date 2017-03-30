@@ -1,3 +1,8 @@
+## 2.12.0 (March 30, 2017)
+
+- Replace toastr with Snackbar
+  - Refactored components utilizing toastr and replaced them with Material-UI's Snackbar
+
 ## 2.11.2 (March 29, 2017)
 
 - Add DOMAIN_ENDPOINT environment variable secret

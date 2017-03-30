@@ -13,11 +13,9 @@ import { retrieveUser } from './reducers/initialState';
 // https://github.com/css-modules/css-modules/pull/65#issuecomment-248280248
 import '!style!css!../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '!style!css!../node_modules/font-awesome/css/font-awesome.min.css';
-import '!style!css!../node_modules/toastr/build/toastr.min.css';
 import '!style!css!./styles/colors.css';
 
 import '!style!css!../node_modules/animate.css/animate.min.css';
-import './styles/toastrOptions';
 
 import '!style!css!../node_modules/dashboard-styles/dist/dashboard.min.css';
 import '!style!css!./styles/spinner.css';

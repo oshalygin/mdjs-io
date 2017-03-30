@@ -1,9 +1,12 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { shallow } from 'enzyme';
 
 import LoginForm from './LoginForm.jsx';
 import Spinner from '../common/spinner';
 import Version from '../common/version';
+import Snackbar from '../common/snackbar';
+import sinon from 'sinon';
 
 import Login from './index';
 
@@ -52,11 +55,53 @@ describe('<Login />', () => {
   });
 
   it('should contain a version component', () => {
-    
+
     const expected = 1;
     const wrapper = shallow(<Login.WrappedComponent {...props} />);
 
     const actual = wrapper.find(Version).length;
+
+    expect(actual).equals(expected);
+  });
+
+  it('should contain a <Snackbar /> component', () => {
+
+    const expected = 1;
+    const wrapper = shallow(<Login.WrappedComponent {...props} />);
+
+    const actual = wrapper.find(Snackbar).length;
+
+    expect(actual).equals(expected);
+  });
+
+  it('should turn off the notification when calling closeNotification', () => {
+
+    const expected = false;
+    const instance = shallow(<Login.WrappedComponent {...props} />)
+      .instance();
+
+    instance.setState({ notification: true });
+    instance.closeNotification();
+
+    const actual = instance.state.notification;
+
+    expect(actual).equals(expected);
+  });
+
+  it('should redirect to the dashboard if the redirect function is called', () => {
+
+    const redirectSpy = sinon.spy();
+    Login.__Rewire__('browserHistory', {
+      push: redirectSpy
+    });
+
+    const expected = false;
+    const instance = shallow(<Login.WrappedComponent {...props} />)
+      .instance();
+
+    instance.redirect();
+
+    const actual = instance.state.notification;
 
     expect(actual).equals(expected);
   });

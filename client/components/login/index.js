@@ -1,8 +1,10 @@
 import React, { PropTypes } from 'react';
 import CSSModules from 'react-css-modules';
-import toastr from 'toastr';
+import Snackbar from '../common/snackbar';
+
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import * as actionCreators from '../../actions/userActions';
 
 import styles from './login.css';
@@ -18,11 +20,14 @@ class LoginPage extends React.Component {
     this.state = {
       user: {},
       loading: false,
-      formErrors: false
+      formErrors: false,
+      notification: false,
+      notificationMessage: ''
     };
     this.login = this.login.bind(this);
     this.onChange = this.onChange.bind(this);
     this.redirect = this.redirect.bind(this);
+    this.closeNotification = this.closeNotification.bind(this);
   }
 
   login(event) {
@@ -33,15 +38,22 @@ class LoginPage extends React.Component {
     login(user)
       .then(() => this.redirect())
       .catch(() => {
-        toastr.error('Invalid username or password');
+        this.setState({
+          notification: true,
+          notificationMessage: 'Invalid Username or Password'
+        });
 
         loginValidationErrors();
         this.setState({ formErrors: true });
       });
   }
 
+  closeNotification() {
+    this.setState({ notification: false });
+  }
+
   redirect() {
-    this.context.router.push('/dashboard');
+    browserHistory.push('/dashboard');
   }
 
   onChange(event) {
@@ -68,6 +80,12 @@ class LoginPage extends React.Component {
             <p className="m-t"> <small>Merchant Dashboard is a registered trademark of Merchant Dashboard, LLC.</small> </p>
           </div>
         </div>
+        <Snackbar
+          open={this.state.notification}
+          action="OK"
+          message={this.state.notificationMessage}
+          onActionTouchTap={this.closeNotification}
+          onRequestClose={this.closeNotification} />
         <Version />
       </div>
     );

@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../actions/itemActions';
 import { itemPriceTypes } from '../../utilities/constants';
-import toastr from 'toastr';
+import Snackbar from '../common/snackbar';
 
 import styles from './itemDetail.css';
 
@@ -19,7 +19,9 @@ class ItemDetailPage extends React.Component {
     this.state = {
       errors: {},
       item: props.item,
-      heading: ''
+      heading: '',
+      notification: false,
+      notificationMessage: ''
     };
 
     this.onChange = this.onChange.bind(this);
@@ -28,6 +30,8 @@ class ItemDetailPage extends React.Component {
     this.propertyIsValid = this.propertyIsValid.bind(this);
     this.formIsValid = this.formIsValid.bind(this);
     this.onDrop = this.onDrop.bind(this);
+    this.closeNotification = this.closeNotification.bind(this);
+    this.displayNotification = this.displayNotification.bind(this);
   }
 
   onChange(event, index, payload) {
@@ -38,7 +42,6 @@ class ItemDetailPage extends React.Component {
     if (payload) {
       property = payload.name;
       item[property] = payload.value;
-
       return this.setState({ item });
     }
 
@@ -50,23 +53,38 @@ class ItemDetailPage extends React.Component {
 
   }
 
+  closeNotification() {
+    this.setState({ notification: false });
+  }
+
   onSave() {
     const { item } = this.state;
     const { itemActions } = this.props;
     if (!this.formIsValid()) {
-      toastr.error('Form Validation Errors!');
+      this.displayNotification('Form validation errors');
       return;
     }
 
     if (item.itemID) {
       itemActions.updateItem(item)
         .then(() => this.redirect())
-        .catch(error => toastr.error(error));
+        .catch((error) => {
+          this.displayNotification(error.response.data);
+        });
     } else {
       itemActions.createItem(item)
         .then(() => this.redirect())
-        .catch(error => toastr.error(error));
+        .catch((error) => {
+          this.displayNotification(error.response.data);
+        });
     }
+  }
+
+  displayNotification(message) {
+    this.setState({
+      notification: true,
+      notificationMessage: message
+    });
   }
 
   redirect() {
@@ -108,15 +126,15 @@ class ItemDetailPage extends React.Component {
     const { itemHeading, loading } = this.props;
     const { item, errors } = this.state;
 
-    const formComponent = !loading.createUpdateItem
-      ? (
+    const formComponent = !loading.createUpdateItem ?
+      (
         <ItemDetailForm
           item={item}
           onDrop={this.onDrop}
           onChange={this.onChange}
           errors={errors} />
-      )
-      : (
+      ) :
+      (
         <div className="ibox-content">
           <div className="row">
             <div className={styles['spinner-container']}>
@@ -156,6 +174,12 @@ class ItemDetailPage extends React.Component {
               onClick={this.onSave} />
           </div>
         </div>
+        <Snackbar
+          open={this.state.notification}
+          action="OK"
+          message={this.state.notificationMessage}
+          onActionTouchTap={this.closeNotification}
+          onRequestClose={this.closeNotification} />
       </div>
     );
   }
