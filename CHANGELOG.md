@@ -1,3 +1,7 @@
+## 2.11.2 (March 29, 2017)
+
+- Add DOMAIN_ENDPOINT environment variable secret
+
 ## 2.11.1 (March 29, 2017)
 
 - Throttle down tracing verbosity at the root

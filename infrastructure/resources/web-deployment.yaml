@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: fe-web
-          image: 'us.gcr.io/merchant-dash/merchant-dashboard:2.11.1'
+          image: 'us.gcr.io/merchant-dash/merchant-dashboard:2.11.2'
           volumeMounts:
             - mountPath: /cache
               name: temp-volume
@@ -39,6 +39,11 @@ spec:
                 secretKeyRef:
                   name: env-variables-secret
                   key: gcloud_project
+            - name: DOMAIN_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  name: env-variables-secret
+                  key: domain_endpoint
           imagePullPolicy: Always
           ports:
             - containerPort: 8080

@@ -1,6 +1,6 @@
 {
   "name": "mdjs",
-  "version": "2.11.1",
+  "version": "2.11.2",
   "description": "Merchant Dashboard built with React and Redux",
   "scripts": {
     "prestart": "babel-node utilities/startingDisplayMessage.js",
@@ -21,7 +21,6 @@
   "license": "AGPL-3.0",
   "dependencies": {
     "@google-cloud/trace-agent": "1.0.1",
-    
     "animate.css": "3.5.2",
     "axios": "0.15.3",
     "babel-polyfill": "6.23.0",
