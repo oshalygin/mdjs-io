@@ -1,3 +1,8 @@
+## 2.11.1 (March 29, 2017)
+
+- Throttle down tracing verbosity at the root
+  - `/` will no longer be traced as this route is hit repeatedly.
+
 ## 2.11.0 (March 28, 2017)
 
 - Add Initial Item Categories Portal
