@@ -1,5 +1,6 @@
 import express from 'express';
 import itemController from '../controllers/itemController';
+import categoriesController from '../controllers/categoriesController';
 import accountController from '../controllers/accountController';
 import versionController from '../controllers/versionController';
 import imagesController from '../controllers/imageController';
@@ -28,6 +29,14 @@ router
   .put(uploads.single('file'), itemController.put)
   .post(uploads.single('file'), itemController.post)
   .delete(itemController.deleteItem);
+
+// {api/v1/categories}
+router
+  .route('/categories/:id?')
+  .get(categoriesController.get)
+  .put(categoriesController.put)
+  .post(categoriesController.post)
+  .delete(categoriesController.deleteCategory);
 
 // {api/v1/account}
 router

@@ -44,6 +44,7 @@ import Application from './components/Application.jsx';
 import Dashboard from './components/dashboard';
 import ItemPage from './components/item';
 import ItemDetailPage from './components/itemDetail';
+import CategoryDetailPage from './components/categoryDetail';
 import CategoriesPage from './components/categories';
 
 import Login from './components/login';
@@ -79,6 +80,7 @@ render(
         <Route path="dashboard" component={Dashboard} />
         <Route path="items" component={ItemPage} />
         <Route path="item(/:id)" component={ItemDetailPage} />
+        <Route path="category(/:id)" component={CategoryDetailPage} />
         <Route path="categories" component={CategoriesPage} />
         <Route path="modifiers" component={Dashboard} />
         <Route path="taxes" component={Dashboard} />

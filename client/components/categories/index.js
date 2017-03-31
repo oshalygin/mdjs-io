@@ -54,7 +54,11 @@ export class Categories extends React.Component {
     const filter = event.target.value
       .toLowerCase();
     
-    const filteredCategories = categories.filter(category => category.categoryName.toLowerCase().includes(filter));
+    const filteredCategories = categories
+      .filter(category => category
+        .categoryName
+        .toLowerCase()
+        .includes(filter));
 
     this.setState({
       filter,
@@ -63,7 +67,7 @@ export class Categories extends React.Component {
   }
 
   render() {
-    const { categories } = this.state;
+    const { categories } = this.props;
     
     return (
       <div className="row">

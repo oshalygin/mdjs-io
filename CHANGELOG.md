@@ -1,3 +1,11 @@
+## 2.13.0 (March 31, 2017)
+
+- Add Category Detail Form
+  - The category detail form allows users to create and edit categories
+  - Numerous components were migrated from the item display to quickly scaffold these views.
+  - The `PUT` request is not functional on the backend, but once its enabled it should properly
+    work as intended.
+
 ## 2.12.0 (March 30, 2017)
 
 - Replace toastr with Snackbar

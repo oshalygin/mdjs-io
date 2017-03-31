@@ -1,5 +1,3 @@
-/* eslint-disable indent */
-
 import { expect } from 'chai';
 import {
   ITEM_DEACTIVATED_SUCCESS,
@@ -119,7 +117,6 @@ describe('Reducer - Item', () => {
     const expected = resultingItems;
     const actual = reducer(undefined, action); //eslint-disable-line no-undefined
 
-
     expect(actual).deep.equals(expected);
 
   });
@@ -134,7 +131,6 @@ describe('Reducer - Item', () => {
     const expected = 2;
     const actual = reducer(items, action)
       .length; 
-
 
     expect(actual).equals(expected);
 

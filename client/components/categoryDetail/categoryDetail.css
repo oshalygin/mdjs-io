@@ -1,0 +1,29 @@
+.controls-wrapper {
+  margin: 0 auto;
+}
+
+.left-control {
+  float: left;
+}
+
+.right-control {
+  float: right;
+}
+
+.spinner-container {
+  width: 20em;
+  height: 7em;
+  left: calc(50% - 40px);
+  position: relative;
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.category-controls {
+  margin: 0 auto;
+  width: 50%;
+}
