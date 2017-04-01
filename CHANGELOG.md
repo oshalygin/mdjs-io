@@ -1,3 +1,8 @@
+## 2.16.0 (April 1, 2017)
+
+- Add Taxes Page
+  - Base implementation of the taxes page which displays the taxes on the application.  None of the functionality with edit, deactivate or creation are developed yet.
+
 ## 2.15.0 (April 1, 2017)
 
 - Add Item Category selection
