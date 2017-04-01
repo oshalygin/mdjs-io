@@ -1,3 +1,9 @@
+## 2.14.0 (April 1, 2017)
+
+- Add tests and fix Category updates
+  - The `PUT` request will now properly pass through to the backend.  The issue was related to the backend not properly handling calls with a resource {id}
+  - Test coverage added around `CategoriesController`
+
 ## 2.13.0 (March 31, 2017)
 
 - Add Category Detail Form

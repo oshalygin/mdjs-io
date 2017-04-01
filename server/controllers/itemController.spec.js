@@ -6,7 +6,7 @@ import proxyquire from 'proxyquire';
 import { ITEM_ENDPOINT } from '../utilities/endpoints';
 import ItemController from './itemController';
 
-describe('Item Controller: /api/item', () => {
+describe('Item Controller', () => {
 
   const items = [
     {
