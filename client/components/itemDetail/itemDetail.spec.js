@@ -8,11 +8,13 @@ import sinon from 'sinon';
 import { expect } from 'chai';
 
 describe('<ItemDetail />', () => {
+  
   const errors = {
     name: false,
     label: false,
     price: false
   };
+
   const props = {
     item: {
       itemID: 0,
@@ -26,6 +28,7 @@ describe('<ItemDetail />', () => {
       isActive: 1,
       priceTypeID: 0
     },
+    categories: [],
     itemHeading: 'New Item',
     loading: {
       createUpdateItem: false
@@ -70,6 +73,45 @@ describe('<ItemDetail />', () => {
       itemCategoryID: 2,
       isActive: 1,
       priceTypeID: 1
+    }
+  ];
+
+  const categories = [
+    {
+      categoryID: 1,
+      categoryName: 'Foo',
+      companyID: 1,
+      createdBy: 1,
+      createdDate: '2017-03-31T01:09:34.3905613-07:00',
+      facilityID: 0,
+      isActive: true,
+      items: [],
+      lastUpdatedBy: 1,
+      lastUpdatedDate: '2017-03-31T01:09:34.3905613-07:00'
+    },
+    {
+      categoryID: 2,
+      categoryName: 'Qux',
+      companyID: 1,
+      createdBy: 1,
+      createdDate: '2017-03-31T01:09:34.3905613-07:00',
+      facilityID: 0,
+      isActive: true,
+      items: [],
+      lastUpdatedBy: 1,
+      lastUpdatedDate: '2017-03-31T01:09:34.3905613-07:00'
+    },
+    {
+      categoryID: 3,
+      categoryName: 'Bar',
+      companyID: 1,
+      createdBy: 1,
+      createdDate: '2017-03-31T01:09:34.3905613-07:00',
+      facilityID: 0,
+      isActive: true,
+      items: [],
+      lastUpdatedBy: 1,
+      lastUpdatedDate: '2017-03-31T01:09:34.3905613-07:00'
     }
   ];
 
@@ -154,6 +196,25 @@ describe('<ItemDetail />', () => {
     const expected = props.item;
     const actual = mapStateToProps(state, ownProps)
       .item;
+
+    expect(actual).deep.equals(expected);
+  });
+
+  it('should return the categories from state when mapping', () => {
+
+    const state = {
+      items,
+      categories
+    };
+    const ownProps = {
+      params: {
+        id: null
+      }
+    };
+
+    const expected = categories;
+    const actual = mapStateToProps(state, ownProps)
+      .categories;
 
     expect(actual).deep.equals(expected);
   });

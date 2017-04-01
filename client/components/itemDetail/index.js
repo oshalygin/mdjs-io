@@ -35,7 +35,6 @@ class ItemDetailPage extends React.Component {
   }
 
   onChange(event, index, payload) {
-
     const { item, errors } = this.state;
     let property;
 
@@ -123,13 +122,14 @@ class ItemDetailPage extends React.Component {
   }
 
   render() {
-    const { itemHeading, loading } = this.props;
+    const { itemHeading, loading, categories } = this.props;
     const { item, errors } = this.state;
 
     const formComponent = !loading.createUpdateItem ?
       (
         <ItemDetailForm
           item={item}
+          categories={categories}
           onDrop={this.onDrop}
           onChange={this.onChange}
           errors={errors} />
@@ -187,6 +187,7 @@ class ItemDetailPage extends React.Component {
 
 ItemDetailPage.propTypes = {
   item: PropTypes.object.isRequired,
+  categories: PropTypes.array.isRequired,
   loading: PropTypes.object.isRequired,
   itemHeading: PropTypes.string.isRequired,
   itemActions: PropTypes.object.isRequired,
@@ -233,7 +234,8 @@ export function mapStateToProps(state, ownProps) {
       name: false,
       label: false,
       price: false
-    }
+    },
+    categories: state.categories
   };
 }
 

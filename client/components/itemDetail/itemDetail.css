@@ -22,3 +22,14 @@
   top: 50%;
   transform: translateY(-50%);
 }
+
+.additional-items-heading {
+  padding: 1em 1em;
+  width: 100%;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.additional-items-container {
+  margin-top: 1em;
+}

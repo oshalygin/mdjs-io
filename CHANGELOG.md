@@ -1,3 +1,8 @@
+## 2.15.0 (April 1, 2017)
+
+- Add Item Category selection
+  - Users can now select an Item Category that is a higher level container over the item.
+
 ## 2.14.0 (April 1, 2017)
 
 - Add tests and fix Category updates
