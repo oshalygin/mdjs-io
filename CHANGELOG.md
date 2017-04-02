@@ -1,3 +1,10 @@
+## 2.16.1 (April 2, 2017)
+
+- Add Taxes Detail Page
+  - The detail page includes the ability to Edit and Create a new Tax.
+  - The actual functionality to add and edit a tax item will come in a future release.
+  - Users must select an `Apply To` field to proceed.  If _Everything_ is selected, items will not have to be chosen, however, if _Individual Items_ is chosen, then at least 1 item needs to be selected from the multi SelectField.
+
 ## 2.16.0 (April 1, 2017)
 
 - Add Taxes Page

@@ -111,7 +111,6 @@ describe('<TaxTableRow />', () => {
   it('should render "3 Items" if the tax typeID is 1 and the length of items is 3', () => {
 
     const expected = '3 Items';
-
     const updatedProps = {
       ...props,
       tax: {
@@ -124,6 +123,26 @@ describe('<TaxTableRow />', () => {
     const wrapper = shallow(<TaxTableRow {...updatedProps} />);
 
     const actual = wrapper.find(TableRowColumn).at(2)
+      .props().children;
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should render the price toFixed with 2 decimal places', () => {
+
+    const expected = '50.00 %';
+    const updatedProps = {
+      ...props,
+      tax: {
+        ...props.tax,
+        value: 50
+      }
+    };
+
+    const wrapper = shallow(<TaxTableRow {...updatedProps} />);
+
+    const actual = wrapper.find(TableRowColumn).at(1)
       .props().children;
 
     expect(actual).equals(expected);

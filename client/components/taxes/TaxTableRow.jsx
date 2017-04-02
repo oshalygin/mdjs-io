@@ -42,7 +42,7 @@ class TaxTableRow extends React.Component {
     return (
       <TableRow>
         <TableRowColumn className={this.disabledText(tax.disabled)}>{tax.taxName}</TableRowColumn>
-        <TableRowColumn className={this.disabledText(tax.disabled)}>{`${tax.value} %`}</TableRowColumn>
+        <TableRowColumn className={this.disabledText(tax.disabled)}>{`${tax.value.toFixed(2)} %`}</TableRowColumn>
         <TableRowColumn className={this.disabledText(tax.disabled)}>{appliedTo}</TableRowColumn>
         <TableRowColumn className={this.disabledText(tax.disabled)}>{parsedCreatedDate}</TableRowColumn>
         <TableRowColumn className={this.disabledText(tax.disabled)}>{parsedLastUpdatedDate}</TableRowColumn>

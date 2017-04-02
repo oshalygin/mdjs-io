@@ -31,7 +31,6 @@ export function loadingCategoryCreationSuccess() {
   };
 }
 
-
 export function loadingCategoryCreation() {
   return {
     type: actionTypes.LOADING_CATEGORY_CREATION
@@ -76,7 +75,6 @@ export function categoryUpdateFailure() {
     type: actionTypes.CATEGORY_UPDATE_FAILURE
   };
 }
-
 
 export function createCategory(category) {
   return async function (dispatch) {
