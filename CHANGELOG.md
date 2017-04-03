@@ -1,5 +1,10 @@
 ## 2.17.0 (April 3, 2017)
 
+- Add Category Table Tests
+  - In an effort to maintain code quality, tests were added to the `CategoriesTable` component to ensure that any future changes are intentional.
+
+## 2.17.0 (April 3, 2017)
+
 - Add functionality for tax items
   - This release allows users to modify a tax, create a new tax, and delete a tax item.
 
