@@ -27,9 +27,9 @@ const TaxDetailForm = ({ tax, items, errors, onChange }) => {
 
   return (
     <div className="ibox-content">
-      <div className={styles['control-container']}>
-        <div className="row">
-          <div className={styles['tax-name-control']}>
+      <div className="row">
+        <div className="col-md-offset-1 col-sm-4">
+          <div className="row">
             <TextField
               fullWidth
               name="taxName"
@@ -38,67 +38,72 @@ const TaxDetailForm = ({ tax, items, errors, onChange }) => {
               onChange={onChange}
               errorText={errors.taxName} />
           </div>
-        </div>
-        <div className="row">
-          <div>
-            <TextField
-              fullWidth
-              name="value"
-              value={tax.value}
-              floatingLabelText="Tax Rate"
-              onChange={onChange}
-              style={{ display: 'inline-block', width: '10%' }}
-              errorText={errors.value} />
-            <span className={styles['percent-text']}>
-              %
-            </span>
-          </div>
-        </div>
-        <div className={styles['tax-option-control']}>
           <div className="row">
-            <div className={styles['tax-name-control']}>
-              <SelectField
-                floatingLabelText="Apply To"
-                value={selectedTaxOption}
+            <div>
+              <TextField
+                fullWidth
+                name="value"
+                value={tax.value}
+                floatingLabelText="Tax Rate"
                 onChange={onChange}
-              >
-                {taxOptions.map(option => {
-                  return (
-                    <MenuItem
-                      key={option.value}
-                      primaryText={option.label}
-                      value={option} />
-                  );
-                })}
-              </SelectField>
+                style={{ display: 'inline-block', width: '30%' }}
+                errorText={errors.value} />
+              <span className={styles['percent-text']}>
+                %
+            </span>
             </div>
           </div>
-        </div>
-        <div className={styles['tax-option-control']}>
-          <div className="row">
-            {displayItemSelection &&
-              (<div className={styles['tax-name-control']}>
+          <div className={styles['tax-option-control']}>
+            <div className="row">
+              <div className={styles['tax-name-control']}>
                 <SelectField
-                  multiple
-                  floatingLabelText="Items"
-                  value={tax.items}
+                  floatingLabelText="Apply To"
+                  value={selectedTaxOption}
                   onChange={onChange}
                 >
-                  {displayItems.map(item => {
+                  {taxOptions.map(option => {
                     return (
                       <MenuItem
-                        key={item.value}
-                        insetChildren
-                        checked={tax.items
-                          && tax.items.includes(item.value)}
-                        value={item.value}
-                        primaryText={item.label}
-                      />
+                        key={option.value}
+                        primaryText={option.label}
+                        value={option} />
                     );
                   })}
                 </SelectField>
               </div>
-              )}
+            </div>
+          </div>
+          <div className={styles['tax-option-control']}>
+            <div className="row">
+              {displayItemSelection &&
+                (<div className={styles['tax-name-control']}>
+                  <SelectField
+                    multiple
+                    floatingLabelText="Items"
+                    value={tax.items}
+                    onChange={onChange}
+                  >
+                    {displayItems.map(item => {
+                      return (
+                        <MenuItem
+                          key={item.value}
+                          insetChildren
+                          checked={tax.items
+                            && tax.items.includes(item.value)}
+                          value={item.value}
+                          primaryText={item.label}
+                        />
+                      );
+                    })}
+                  </SelectField>
+                </div>
+                )}
+            </div>
+          </div>
+        </div>
+        <div className="col-md-offset-1 col-sm-4">
+          <div className={styles['detail-icon']}>
+            <i className="material-icons" style={{ fontSize: '124px' }}>account_balance</i>
           </div>
         </div>
       </div>

@@ -15,6 +15,7 @@ import Spinner from '../common/spinner/';
 class TaxDetail extends React.Component {
   constructor(props, context) {
     super(props, context);
+    
     this.state = {
       errors: {},
       tax: props.tax,
@@ -96,7 +97,7 @@ class TaxDetail extends React.Component {
 
   propertyIsValid(property, value, errors) {
     const patternTest = property === 'taxName'
-      ? new RegExp(/^[a-zA-Z]*$/)
+      ? new RegExp(/^[a-zA-Z\s]*$/)
       : new RegExp(/^[0-9]+([,.][0-9]+)?$/g);
 
     errors[property] = !patternTest.test(value) ? ' ' : false;

@@ -1,3 +1,10 @@
+## 2.16.2 (April 2, 2017)
+
+- Update Tax Detail Page
+  - Add Tax Icon to the Tax Detail Page
+  - Rearrange the content to properly account for the icon
+- Add Material Icons to the project
+  
 ## 2.16.1 (April 2, 2017)
 
 - Add Taxes Detail Page

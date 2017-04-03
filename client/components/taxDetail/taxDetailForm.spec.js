@@ -155,4 +155,15 @@ describe('<TaxDetailForm />', () => {
 
   });
 
+  it('should contain a material icon "account_balance" that helps identify the page', () => {
+    
+    const wrapper = shallow(<TaxDetailForm {...props} />);
+
+    const expected = 'account_balance';
+    const actual = wrapper.find('.material-icons').text();
+
+    expect(actual).equals(expected);
+
+  });
+
 });
