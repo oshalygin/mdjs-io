@@ -1,6 +1,7 @@
 import express from 'express';
 import itemController from '../controllers/itemController';
 import categoriesController from '../controllers/categoriesController';
+import taxController from '../controllers/taxController';
 import accountController from '../controllers/accountController';
 import versionController from '../controllers/versionController';
 import imagesController from '../controllers/imageController';
@@ -37,6 +38,14 @@ router
   .put(categoriesController.put)
   .post(categoriesController.post)
   .delete(categoriesController.deleteCategory);
+
+// {api/v1/taxes}
+router
+  .route('/taxes/:id?')
+  .get(taxController.get)
+  .put(taxController.put)
+  .post(taxController.post)
+  .delete(taxController.deleteTax);
 
 // {api/v1/account}
 router

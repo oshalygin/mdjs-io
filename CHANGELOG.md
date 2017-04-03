@@ -1,3 +1,8 @@
+## 2.17.0 (April 3, 2017)
+
+- Add functionality for tax items
+  - This release allows users to modify a tax, create a new tax, and delete a tax item.
+
 ## 2.16.2 (April 2, 2017)
 
 - Update Tax Detail Page

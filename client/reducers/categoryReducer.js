@@ -1,5 +1,5 @@
 /* eslint-disable indent */
-import * as actionTypes from '../actions/actionTypes'; //eslint-disable-line no-unused-vars
+import * as actionTypes from '../actions/actionTypes';
 import initialState from './initialState';
 
 export default function categoryReducer(state = initialState.categories, action) {
