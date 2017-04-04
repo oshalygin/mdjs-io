@@ -1,4 +1,9 @@
-## 2.17.0 (April 3, 2017)
+## 2.18.0 (April 3, 2017)
+
+- Add Modifier Page
+  - Base implementation of the modifiers page which displays the modifiers on the application.  None of the functionality with edit, deactivate or creation are developed yet.
+
+## 2.17.1 (April 3, 2017)
 
 - Add Category Table Tests
   - In an effort to maintain code quality, tests were added to the `CategoriesTable` component to ensure that any future changes are intentional.
