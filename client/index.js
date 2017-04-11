@@ -49,6 +49,7 @@ import CategoriesPage from './components/categories';
 import TaxesPage from './components/taxes';
 import TaxDetailPage from './components/taxDetail';
 import ModifiersPage from './components/modifiers';
+import ModifierDetailPage from './components/modifierDetail';
 
 import Login from './components/login';
 
@@ -86,6 +87,7 @@ render(
         <Route path="categories" component={CategoriesPage} />
         <Route path="taxes" component={TaxesPage} />
         <Route path="modifiers" component={ModifiersPage} />
+        <Route path="modifier(/:id)" component={ModifierDetailPage} />
         <Route path="tax(/:id)" component={TaxDetailPage} />
         <Route path="discounts" component={Dashboard} />
         <Route path="orders" component={Dashboard} />

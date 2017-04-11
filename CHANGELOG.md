@@ -1,3 +1,8 @@
+## 2.18.1 (April 10, 2017)
+
+- Add Modifier Detail Page
+  - Base implementation of the detail page to view an existing modifier or create a new one.  None of the functionality is tied to actions.
+
 ## 2.18.0 (April 3, 2017)
 
 - Add Modifier Page
