@@ -27,6 +27,22 @@ export default function loadingReducer(state = initialState.loading, action) {
           createUpdateCategory: true
         };
       }
+    case actionTypes.LOADING_MODIFIER_CREATION:
+    case actionTypes.LOADING_MODIFIER_UPDATE:
+      {
+        return {
+          ...state,
+          createUpdateModifier: true
+        };
+      }
+    case actionTypes.LOADING_TAX_CREATION:
+    case actionTypes.LOADING_TAX_UPDATE:
+      {
+        return {
+          ...state,
+          createUpdateTax: true
+        };
+      }
     case actionTypes.LOADING_ITEM_CREATION_SUCCESS:
     case actionTypes.LOADING_ITEM_UPDATE_SUCCESS:
     case actionTypes.ITEM_CREATION_FAILURE:
@@ -35,6 +51,26 @@ export default function loadingReducer(state = initialState.loading, action) {
         return {
           ...state,
           createUpdateItem: false
+        };
+      }
+    case actionTypes.LOADING_TAX_CREATION_SUCCESS:
+    case actionTypes.LOADING_TAX_UPDATE_SUCCESS:
+    case actionTypes.TAX_CREATION_FAILURE:
+    case actionTypes.TAX_UPDATE_FAILURE:
+      {
+        return {
+          ...state,
+          createUpdateTax: false
+        };
+      }
+    case actionTypes.LOADING_MODIFIER_CREATION_SUCCESS:
+    case actionTypes.LOADING_MODIFIER_UPDATE_SUCCESS:
+    case actionTypes.MODIFIER_CREATION_FAILURE:
+    case actionTypes.MODIFIER_UPDATE_FAILURE:
+      {
+        return {
+          ...state,
+          createUpdateModifier: false
         };
       }
     case actionTypes.LOADING_CATEGORY_CREATION_SUCCESS:
@@ -69,11 +105,25 @@ export default function loadingReducer(state = initialState.loading, action) {
           loadingItems: true
         };
       }
+    case actionTypes.MODIFIER_DEACTIVATED:
+      {
+        return {
+          ...state,
+          loadingModifiers: true
+        };
+      }
     case actionTypes.CATEGORY_DEACTIVATED:
       {
         return {
           ...state,
           loadingCategories: true
+        };
+      }
+    case actionTypes.TAX_DEACTIVATED:
+      {
+        return {
+          ...state,
+          loadingTaxes: true
         };
       }
     case actionTypes.ITEM_DEACTIVATED_SUCCESS:
@@ -83,11 +133,25 @@ export default function loadingReducer(state = initialState.loading, action) {
           loadingItems: false
         };
       }
+    case actionTypes.MODIFIER_DEACTIVATED_SUCCESS:
+      {
+        return {
+          ...state,
+          loadingModifiers: false
+        };
+      }
     case actionTypes.CATEGORY_DEACTIVATED_SUCCESS:
       {
         return {
           ...state,
           loadingCategories: false
+        };
+      }
+    case actionTypes.TAX_DEACTIVATED_SUCCESS:
+      {
+        return {
+          ...state,
+          loadingTaxes: false
         };
       }
     default:

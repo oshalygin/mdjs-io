@@ -1,3 +1,8 @@
+## 2.20.0 (April 12, 2017)
+
+- Add Spinner to Tax Updates and Creation
+- Add Spinner to Modifier updates and Creation
+
 ## 2.19.0 (April 12, 2017)
 
 - Update Modifier Detail Page
