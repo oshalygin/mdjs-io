@@ -1,3 +1,8 @@
+## 2.21.0 (April 12, 2017)
+
+- Remove Item checkbox
+- Reposition Item Image within the table
+
 ## 2.20.0 (April 12, 2017)
 
 - Add Spinner to Tax Updates and Creation

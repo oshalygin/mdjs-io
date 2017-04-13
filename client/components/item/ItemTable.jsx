@@ -8,11 +8,13 @@ import {
 } from 'material-ui/Table';
 import ItemTableRow from './ItemTableRow.jsx';
 
-const ItemTable = ({ items, checked, deactivate }) => {
+const ItemTable = ({ items, deactivate }) => {
   return (
     <div className="table-responsive">
       <Table selectable multiSelectable>
-        <TableHeader>
+        <TableHeader
+          displaySelectAll={false}
+          adjustForCheckbox={false}>
           <TableRow>
             <TableHeaderColumn>Image</TableHeaderColumn>
             <TableHeaderColumn>Name</TableHeaderColumn>
@@ -22,15 +24,12 @@ const ItemTable = ({ items, checked, deactivate }) => {
             <TableHeaderColumn />
           </TableRow>
         </TableHeader>
-        <TableBody
-          showRowHover
-          displayRowCheckbox >
+        <TableBody showRowHover>
           {items.map((item, index) => {
             return (
               <ItemTableRow
                 key={index}
                 item={item}
-                checked={checked}
                 deactivate={deactivate}
               />
             );
@@ -43,7 +42,6 @@ const ItemTable = ({ items, checked, deactivate }) => {
 
 ItemTable.propTypes = {
   items: PropTypes.array.isRequired,
-  checked: PropTypes.func.isRequired,
   deactivate: PropTypes.func.isRequired
 };
 

@@ -31,13 +31,12 @@ class ItemTableRow extends React.Component {
   }
 
   render() {
-    const { item, checked, deactivate, ...otherProps } = this.props; // eslint-disable-line
+    const { item, deactivate, ...otherProps } = this.props; // eslint-disable-line
     const parsedLastUpdatedDate = moment(item.lastUpdatedDate).format('MMM DD, YYYY - hh:mm A');
 
     return (
-      <TableRow selected={item.checked} {...otherProps}>
-        {otherProps.children[0] /* checkbox passed down from Table-Body*/}
-        <TableRowColumn><ItemImage imageId={item.photoURL} label={item.label} /></TableRowColumn>
+      <TableRow>
+        <TableRowColumn style={{ paddingLeft: '1.25em' }}><ItemImage imageId={item.photoURL} label={item.label} /></TableRowColumn>
         <TableRowColumn className={this.disabledText(item.disabled)}>{item.label}</TableRowColumn>
         <TableRowColumn className={this.disabledText(item.disabled)}>$ {item.price}</TableRowColumn>
         <TableRowColumn className={this.disabledText(item.disabled)}>{parsedLastUpdatedDate}</TableRowColumn>
@@ -58,7 +57,6 @@ class ItemTableRow extends React.Component {
 
 ItemTableRow.propTypes = {
   item: PropTypes.object.isRequired,
-  checked: PropTypes.func.isRequired,
   deactivate: PropTypes.func.isRequired
 };
 

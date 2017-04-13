@@ -25,7 +25,6 @@ export class Item extends React.Component {
       filter: ''
     };
 
-    this.checkboxChangeHandler = this.checkboxChangeHandler.bind(this);
     this.deactivate = this.deactivate.bind(this);
     this.navigateToNewItemPage = this.navigateToNewItemPage.bind(this);
     this.searchOnChange = this.searchOnChange.bind(this);
@@ -33,10 +32,6 @@ export class Item extends React.Component {
 
   navigateToNewItemPage() {
     browserHistory.push('item');
-  }
-
-  checkboxChangeHandler(event) { //eslint-disable-line no-unused-vars
-    //TODO: #17 - Handle Bulk Item Actions
   }
 
   deactivate(itemId) {
@@ -100,7 +95,6 @@ export class Item extends React.Component {
               </div>
               <ItemTable
                 items={items}
-                checked={this.checkboxChangeHandler}
                 deactivate={this.deactivate} />
             </div>
           </div>
