@@ -1,3 +1,9 @@
+## 2.19.0 (April 12, 2017)
+
+- Update Modifier Detail Page
+  - Implemention around modifier actions in relation to creation, updates and deactivation.
+  - UI modified to contain a separate label from the TextField.
+
 ## 2.18.1 (April 10, 2017)
 
 - Add Modifier Detail Page

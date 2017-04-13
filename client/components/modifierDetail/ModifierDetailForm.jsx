@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import CSSModules from 'react-css-modules';
 
 import TextField from '../common/TextField.jsx';
-
 import styles from './modifierDetail.css';
 
 const ModifierDetialForm = ({ modifier, errors, onChange }) => {
@@ -10,13 +9,32 @@ const ModifierDetialForm = ({ modifier, errors, onChange }) => {
     <div className="ibox-content">
       <div className="row">
         <div className={styles['modifier-controls']}>
-          <TextField
-            fullWidth
-            name="modifierName"
-            value={modifier.modifierName}
-            floatingLabelText="Modifier Name"
-            onChange={onChange}
-            errorText={errors.modifierName} />
+          <div className={styles['control-group']}>
+            <div className={styles['extended-control-label']}>
+              Modifier Name
+            </div>
+            <div className={styles['extended-control-input']}>
+              <TextField
+                fullWidth
+                name="modifierName"
+                value={modifier.modifierName}
+                onChange={onChange}
+                errorText={errors.modifierName} />
+            </div>
+          </div>
+          <div className={styles['control-group']}>
+            <div className={styles['control-label']}>
+              Price ($)
+            </div>
+            <div className={styles['control-input']}>
+              <TextField
+                fullWidth
+                name="modifierPrice"
+                value={modifier.modifierPrice}
+                onChange={onChange}
+                errorText={errors.modifierPrice} />
+            </div>
+          </div>
         </div>
       </div>
     </div>

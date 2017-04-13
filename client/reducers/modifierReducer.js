@@ -7,6 +7,24 @@ export default function modifierReducer(state = initialState.modifiers, action) 
     case actionTypes.LOAD_MODIFIERS_SUCCESS: {
       return [...action.modifiers];
     }
+    case actionTypes.MODIFIER_CREATED:
+    case actionTypes.MODIFIER_UPDATED:
+      {
+        const modifiers = [...state];
+        const currentModifierIndex = modifiers.findIndex(modifier => modifier.modifierID === action.modifier.modifierID);
+
+        if (currentModifierIndex === -1) {
+          return [...state, action.modifier];
+        } else { //eslint-disable-line no-else-return
+          modifiers.splice(currentModifierIndex, 1, action.modifier);
+          return [...modifiers];
+        }
+      }
+    case actionTypes.MODIFIER_DEACTIVATED_SUCCESS:
+      {
+        return state
+          .filter(modifier => modifier.modifierID !== action.modifier.modifierID);
+      }  
     default: {
       return state;
     }

@@ -1,7 +1,10 @@
 :root {
   --white: #FFF;
-  --gray: #DDD;
+  --gray: #999;
   --blue: #3498DB;
   --error: #F44336;
   --darkGray: #778088;
+  --dark: #333;
+  --black: #000;
+  --typhoon: #EEE;
 }

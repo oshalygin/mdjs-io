@@ -108,7 +108,7 @@ class ModifierDetail extends React.Component {
         }
       }
     }
-    return !!modifier.modifierName;
+    return !!modifier.modifierName && !!modifier.modifierPrice;
   }
 
   render() {
@@ -189,7 +189,8 @@ export function mapStateToProps(state, ownProps) {
 
   let modifier = {
     modifierID: 0,
-    modifierName: ''
+    modifierName: '',
+    modifierPrice: ''
   };
 
   const { modifiers } = state;

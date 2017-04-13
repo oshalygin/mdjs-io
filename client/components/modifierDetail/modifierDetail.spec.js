@@ -16,7 +16,8 @@ describe('<ModifierDetail />', () => {
   const props = {
     modifier: {
       modifierID: 0,
-      modifierName: ''
+      modifierName: '',
+      modifierPrice: ''
     },
     modifierHeading: 'New Modifier',
     loading: {

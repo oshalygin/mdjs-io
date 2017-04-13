@@ -20,11 +20,11 @@ describe('<ModifierDetailForm />', () => {
     onChange() { }
   };
 
-  it('should contain one text fields on the form', () => {
+  it('should contain two text fields on the form', () => {
 
     const wrapper = shallow(<ModifierDetailForm {...props} />);
 
-    const expected = 1;
+    const expected = 2;
     const actual = wrapper.find(TextField).length;
 
     expect(actual).equals(expected);

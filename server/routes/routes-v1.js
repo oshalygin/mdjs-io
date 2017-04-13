@@ -1,10 +1,13 @@
 import express from 'express';
+
 import itemController from '../controllers/itemController';
 import categoriesController from '../controllers/categoriesController';
 import taxController from '../controllers/taxController';
 import accountController from '../controllers/accountController';
 import versionController from '../controllers/versionController';
 import imagesController from '../controllers/imageController';
+import modifierController from '../controllers/modifierController';
+
 import multer from 'multer';
 
 import path from 'path';
@@ -46,6 +49,14 @@ router
   .put(taxController.put)
   .post(taxController.post)
   .delete(taxController.deleteTax);
+
+// {api/v1/taxes}
+router
+  .route('/modifiers/:id?')
+  .get(modifierController.get)
+  .put(modifierController.put)
+  .post(modifierController.post)
+  .delete(modifierController.deleteModifier);
 
 // {api/v1/account}
 router
