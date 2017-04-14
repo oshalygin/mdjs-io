@@ -1,3 +1,7 @@
+## 2.22.1 (April 12, 2017)
+
+- Add Discount List View
+
 ## 2.21.0 (April 12, 2017)
 
 - Remove Item checkbox

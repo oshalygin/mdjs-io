@@ -4,21 +4,22 @@ import RaisedButton from 'material-ui/RaisedButton';
 import sinon from 'sinon';
 
 import React from 'react';
-import Taxes from './index';
+import Discounts from './index';
 
 import { expect } from 'chai';
 
-describe('<Taxes />', () => {
+describe('<Discounts />', () => {
 
-  const taxes = [
+  const discounts = [
     {
-      taxID: 19,
-      taxName: 'Texas',
-      taxTypeID: 0,
+      discountID: 31,
+      discountTypeID: 0,
+      discountName: 'Neighbor Discount',
+      value: 10,
+      applyTypeID: 0,
       items: [],
-      value: 80,
-      lastUpdatedDate: '2017-04-01T13:35:21.583',
-      createdDate: '2017-04-01T13:35:21.583',
+      lastUpdatedDate: '2017-04-13T21:33:36.087',
+      createdDate: '2017-04-13T21:33:36.087',
       lastUpdatedBy: 1,
       createdBy: 1,
       isActive: true,
@@ -26,13 +27,14 @@ describe('<Taxes />', () => {
       facilityID: 0
     },
     {
-      taxID: 20,
-      taxName: 'CA',
-      taxTypeID: 0,
+      discountID: 32,
+      discountTypeID: 1,
+      discountName: 'Best Friend',
+      value: 5,
+      applyTypeID: 0,
       items: [],
-      value: 10,
-      lastUpdatedDate: '2017-04-01T13:35:21.583',
-      createdDate: '2017-04-01T13:35:21.583',
+      lastUpdatedDate: '2017-04-13T21:44:51.023',
+      createdDate: '2017-04-13T21:44:51.023',
       lastUpdatedBy: 1,
       createdBy: 1,
       isActive: true,
@@ -42,43 +44,43 @@ describe('<Taxes />', () => {
   ];
 
   const props = {
-    taxes,
+    discounts,
     query: '',
     filter: '',
-    taxActions() { }
+    discountActions() { }
   };
 
-  it('should contain a button component that is titled "New Tax"', () => {
+  it('should contain a button component that is titled "New Discount"', () => {
 
-    const expected = 'New Tax';
-    const wrapper = shallow(<Taxes.WrappedComponent {...props} />);
+    const expected = 'New Discount';
+    const wrapper = shallow(<Discounts.WrappedComponent {...props} />);
 
     const actual = wrapper.find(RaisedButton).props().label;
 
     expect(actual).equals(expected);
   });
 
-  it('should navigate to the "tax" route when navigateToNewTaxPage is called', () => {
+  it('should navigate to the "discount" route when navigateToNewDiscountPage is called', () => {
     const redirectSpy = sinon.spy();
-    Taxes.__Rewire__('browserHistory', {
+    Discounts.__Rewire__('browserHistory', {
       push: redirectSpy
     });
 
     const expected = true;
-    const wrapper = shallow(<Taxes.WrappedComponent {...props} />);
+    const wrapper = shallow(<Discounts.WrappedComponent {...props} />);
 
     const instance = wrapper.instance();
-    instance.navigateToNewTaxPage();
+    instance.navigateToNewDiscountPage();
 
-    const actual = redirectSpy.calledWith('tax');
+    const actual = redirectSpy.calledWith('discount');
 
     expect(actual).equals(expected);
-    Taxes.__ResetDependency__('browserHistory');
+    Discounts.__ResetDependency__('browserHistory');
   });
 
-  it('should dispatch the deactivate action with the passed in id that matches the tax in the list', () => {
+  it('should dispatch the deactivate action with the passed in id that matches the discount in the list', () => {
 
-    const deactivatedTaxSpy = sinon.stub().returns({
+    const deactivatedDiscountSpy = sinon.stub().returns({
       then(foobar) { //eslint-disable-line no-unused-vars
         return {
           catch() { }
@@ -86,31 +88,31 @@ describe('<Taxes />', () => {
       }
     });
 
-    deactivatedTaxSpy.then = function () { };
+    deactivatedDiscountSpy.then = function () { };
 
     const updatedProps = {
       ...props,
-      taxActions: {
-        deactivateTax: deactivatedTaxSpy
+      discountActions: {
+        deactivateDiscount: deactivatedDiscountSpy
       }
     };
 
     const expected = true;
-    const wrapper = shallow(<Taxes.WrappedComponent {...updatedProps} />);
+    const wrapper = shallow(<Discounts.WrappedComponent {...updatedProps} />);
 
     const instance = wrapper.instance();
-    instance.deactivate(19);
+    instance.deactivate(31);
 
-    const actual = deactivatedTaxSpy.calledWith(taxes[0]);
+    const actual = deactivatedDiscountSpy.calledWith(discounts[0]);
     expect(actual).equals(expected);
 
   });
 
-  it('should filter the list to only include the taxes from the searchCriteria', () => {
+  it('should filter the list to only include the discounts from the searchCriteria', () => {
 
     const searchCriteria = 'T';
-    const expected = 1;
-    const wrapper = shallow(<Taxes.WrappedComponent {...props} />);
+    const expected = 2;
+    const wrapper = shallow(<Discounts.WrappedComponent {...props} />);
 
     const event = {
       target: {
@@ -123,7 +125,7 @@ describe('<Taxes />', () => {
     instance.searchOnChange(event);
 
     const actual = instance.state
-      .taxes.length;
+      .discounts.length;
 
     expect(actual).equals(expected);
   });
@@ -131,8 +133,8 @@ describe('<Taxes />', () => {
   it('should filter the list and match on lowercase as well', () => {
 
     const searchCriteria = 't';
-    const expected = 1;
-    const wrapper = shallow(<Taxes.WrappedComponent {...props} />);
+    const expected = 2;
+    const wrapper = shallow(<Discounts.WrappedComponent {...props} />);
 
     const event = {
       target: {
@@ -145,7 +147,7 @@ describe('<Taxes />', () => {
     instance.searchOnChange(event);
 
     const actual = instance.state
-      .taxes.length;
+      .discounts.length;
 
     expect(actual).equals(expected);
   });
@@ -154,7 +156,7 @@ describe('<Taxes />', () => {
 
     const searchCriteria = 'b';
     const expected = searchCriteria;
-    const wrapper = shallow(<Taxes.WrappedComponent {...props} />);
+    const wrapper = shallow(<Discounts.WrappedComponent {...props} />);
 
     const event = {
       target: {
