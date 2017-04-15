@@ -1,3 +1,8 @@
+## 2.22.2 (April 14, 2017)
+
+- Add Discount Detail Page
+  - Base implementation of the detail page to view an existing discount or create a new one.  None of the functionality is tied to actions.
+
 ## 2.22.1 (April 12, 2017)
 
 - Add Discount List View

@@ -1,0 +1,53 @@
+.controls-wrapper {
+  margin: 0 auto;
+}
+
+.left-control {
+  float: left;
+}
+
+.right-control {
+  float: right;
+}
+
+.spinner-container {
+  width: 20em;
+  height: 7em;
+  left: calc(50% - 40px);
+  position: relative;
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.control-container {
+  padding-left: 2em;
+}
+
+.discount-name-control {
+  width: 30%;
+}
+
+.discount-value-control {
+  width: 10%;
+}
+
+.percent-text {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.discount-option-control {
+  margin-top: 1em;
+}
+
+.detail-icon {
+  text-align: center;
+  position: absolute;
+  top: 50px;
+  left: 40%;
+  bottom: 0;
+}

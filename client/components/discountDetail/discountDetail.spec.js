@@ -1,16 +1,16 @@
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { shallow } from 'enzyme';
-import TaxDetail, { mapStateToProps } from './index';
+import DiscountDetail, { mapStateToProps } from './index';
 import Spinner from '../common/spinner';
 import sinon from 'sinon';
 
 import { expect } from 'chai';
 
-describe('<TaxDetail />', () => {
+describe('<DiscountDetail />', () => {
 
   const errors = {
-    taxName: false
+    discountName: false
   };
 
   const items = [
@@ -53,28 +53,29 @@ describe('<TaxDetail />', () => {
   ];
 
   const props = {
-    tax: {
-      taxID: 0,
-      taxName: ''
+    discount: {
+      discountID: 0,
+      discountName: ''
     },
-    taxHeading: 'New Tax',
+    discountHeading: 'New Discount',
     loading: {
-      createUpdateTax: false
+      createUpdateDiscount: false
     },
     errors,
     items,
-    taxActions: {}
+    discountActions: {}
   };
 
-  const taxes = [
+  const discounts = [
     {
-      taxID: 19,
-      taxName: 'Texas',
-      taxTypeID: 0,
+      discountID: 31,
+      discountTypeID: 0,
+      discountName: 'Neighbor Discount',
+      value: 10,
+      applyTypeID: 0,
       items: [],
-      value: 80,
-      lastUpdatedDate: '2017-04-01T13:35:21.583',
-      createdDate: '2017-04-01T13:35:21.583',
+      lastUpdatedDate: '2017-04-13T21:33:36.087',
+      createdDate: '2017-04-13T21:33:36.087',
       lastUpdatedBy: 1,
       createdBy: 1,
       isActive: true,
@@ -82,13 +83,14 @@ describe('<TaxDetail />', () => {
       facilityID: 0
     },
     {
-      taxID: 20,
-      taxName: 'CA',
-      taxTypeID: 0,
+      discountID: 32,
+      discountTypeID: 1,
+      discountName: 'Best Friend',
+      value: 5,
+      applyTypeID: 0,
       items: [],
-      value: 10,
-      lastUpdatedDate: '2017-04-01T13:35:21.583',
-      createdDate: '2017-04-01T13:35:21.583',
+      lastUpdatedDate: '2017-04-13T21:44:51.023',
+      createdDate: '2017-04-13T21:44:51.023',
       lastUpdatedBy: 1,
       createdBy: 1,
       isActive: true,
@@ -97,10 +99,10 @@ describe('<TaxDetail />', () => {
     }
   ];
 
-  it('should render the component with the taxDetail heading of "New Tax"', () => {
+  it('should render the component with the discount detail heading of "New Discount"', () => {
 
-    const expected = 'New Tax';
-    const wrapper = shallow(<TaxDetail.WrappedComponent {...props} />);
+    const expected = 'New Discount';
+    const wrapper = shallow(<DiscountDetail.WrappedComponent {...props} />);
 
     const actual = wrapper.find('h5')
       .props().children;
@@ -108,10 +110,10 @@ describe('<TaxDetail />', () => {
     expect(actual).equals(expected);
   });
 
-  it('should return the heading as "New Tax" if the passed in props is null', () => {
+  it('should return the heading as "New Discount" if the passed in props is null', () => {
 
     const state = {
-      taxes
+      discounts
     };
     const ownProps = {
       params: {
@@ -119,55 +121,55 @@ describe('<TaxDetail />', () => {
       }
     };
 
-    const expected = 'New Tax';
+    const expected = 'New Discount';
     const actual = mapStateToProps(state, ownProps)
-      .taxHeading;
+      .discountHeading;
 
     expect(actual).equals(expected);
 
   });
 
-  it('should return the heading as "Update Tax" if the passed in id prop matches the state categories', () => {
+  it('should return the heading as "Update Discount" if the passed in id prop matches the state categories', () => {
 
     const state = {
-      taxes
+      discounts
     };
     const ownProps = {
       params: {
-        id: 19
+        id: 31
       }
     };
 
-    const expected = 'Update Tax';
+    const expected = 'Update Discount';
     const actual = mapStateToProps(state, ownProps)
-      .taxHeading;
+      .discountHeading;
 
     expect(actual).equals(expected);
 
   });
 
-  it('should return the existing tax properties if the passed in id prop matches the state taxes', () => {
+  it('should return the existing discount properties if the passed in id prop matches the state discounts', () => {
 
     const state = {
-      taxes
+      discounts
     };
     const ownProps = {
       params: {
-        id: 19
+        id: 31
       }
     };
 
-    const expected = taxes[0];
+    const expected = discounts[0];
     const actual = mapStateToProps(state, ownProps)
-      .tax;
+      .discount;
 
     expect(actual).deep.equals(expected);
   });
 
-  it('should return the an empty tax if the passed in id prop is null', () => {
+  it('should return the an empty discount if the passed in id prop is null', () => {
 
     const state = {
-      taxes
+      discounts
     };
     const ownProps = {
       params: {
@@ -175,24 +177,30 @@ describe('<TaxDetail />', () => {
       }
     };
 
-    const expected = props.category;
-    const actual = mapStateToProps(state, ownProps)
-      .category;
+    const expected = {
+      discountID: 0,
+      discountName: '',
+      value: 0,
+      items: []
+    };
 
+    const actual = mapStateToProps(state, ownProps)
+      .discount;
+    
     expect(actual).deep.equals(expected);
   });
 
-  it('should render a spinner if the "createUpdateTax" loading flag is set', () => {
+  it('should render a spinner if the "createUpdateDiscount" loading flag is set', () => {
 
     const updatedProps = {
       ...props,
       loading: {
-        createUpdateTax: true
+        createUpdateDiscount: true
       }
     };
 
     const expected = 1;
-    const wrapper = shallow(<TaxDetail.WrappedComponent {...updatedProps} />);
+    const wrapper = shallow(<DiscountDetail.WrappedComponent {...updatedProps} />);
 
     const actual = wrapper.find(Spinner)
       .length;
@@ -200,39 +208,38 @@ describe('<TaxDetail />', () => {
     expect(actual).equals(expected);
   });
 
-  it('should navigate back to the "taxes" page if the back button is clicked', () => {
+  it('should navigate back to the "discounts" page if the back button is clicked', () => {
 
     const redirectSpy = sinon.spy();
-    TaxDetail.__Rewire__('browserHistory', {
+    DiscountDetail.__Rewire__('browserHistory', {
       push: redirectSpy
     });
 
     const expected = true;
-    const wrapper = shallow(<TaxDetail.WrappedComponent {...props} />);
+    const wrapper = shallow(<DiscountDetail.WrappedComponent {...props} />);
 
     const instance = wrapper.instance();
     instance.redirect();
 
-    const actual = redirectSpy.calledWith('taxes');
-
+    const actual = redirectSpy.calledWith('discounts');
 
     expect(actual).equals(expected);
-    TaxDetail.__ResetDependency__('browserHistory');
+    DiscountDetail.__ResetDependency__('browserHistory');
 
   });
 
-  it('should set the new state of the tax based on the form field that was changed', () => {
+  it('should set the new state of the discount based on the form field that was changed', () => {
 
     const updatedProps = {
       ...props,
-      tax: taxes[0]
+      discount: discounts[0]
     };
 
     const expected = 'Foobar';
 
     const event = {
       target: {
-        name: 'taxName',
+        name: 'discountName',
         value: 'Foobar'
       }
     };
@@ -240,13 +247,13 @@ describe('<TaxDetail />', () => {
     const index = null;
     const payload = null;
 
-    const wrapper = shallow(<TaxDetail.WrappedComponent {...updatedProps} />);
+    const wrapper = shallow(<DiscountDetail.WrappedComponent {...updatedProps} />);
 
     const instance = wrapper.instance();
     instance.onChange(event, index, payload);
     const actual = instance.state
-      .tax
-      .taxName;
+      .discount
+      .discountName;
 
     expect(actual).deep.equals(expected);
   });
@@ -255,7 +262,7 @@ describe('<TaxDetail />', () => {
 
     const updatedProps = {
       ...props,
-      tax: taxes[0]
+      discount: discounts[0]
     };
 
     const event = {};
@@ -264,12 +271,12 @@ describe('<TaxDetail />', () => {
     const payload = [1, 3, 79];
     const expected = payload;
 
-    const wrapper = shallow(<TaxDetail.WrappedComponent {...updatedProps} />);
+    const wrapper = shallow(<DiscountDetail.WrappedComponent {...updatedProps} />);
 
     const instance = wrapper.instance();
     instance.onChange(event, index, payload);
     const actual = instance.state
-      .tax
+      .discount
       .items;
 
     expect(actual).deep.equals(expected);
@@ -279,26 +286,26 @@ describe('<TaxDetail />', () => {
 
     const updatedProps = {
       ...props,
-      tax: taxes[0]
+      discount: discounts[0]
     };
 
     const event = {};
 
     const index = null;
     const payload = {
-      name: 'taxTypeID',
+      name: 'applyTypeID',
       value: 0
     };
 
     const expected = 0;
 
-    const wrapper = shallow(<TaxDetail.WrappedComponent {...updatedProps} />);
+    const wrapper = shallow(<DiscountDetail.WrappedComponent {...updatedProps} />);
 
     const instance = wrapper.instance();
     instance.onChange(event, index, payload);
     const actual = instance.state
-      .tax
-      .taxTypeID;
+      .discount
+      .applyTypeID;
 
     expect(actual).deep.equals(expected);
   });
@@ -307,11 +314,11 @@ describe('<TaxDetail />', () => {
 
     const expected = false;
 
-    const wrapper = shallow(<TaxDetail.WrappedComponent {...props} />);
+    const wrapper = shallow(<DiscountDetail.WrappedComponent {...props} />);
 
     const instance = wrapper.instance();
     instance.setState({ notification: true });
-    
+
     instance.closeNotification();
     const actual = instance.state
       .notification;
@@ -319,13 +326,13 @@ describe('<TaxDetail />', () => {
     expect(actual).deep.equals(expected);
   });
 
-  it('should call "updateTax" with the category that was passed in to onSave', () => {
+  it('should call "updateDiscount" with the category that was passed in to onSave', () => {
     const redirectSpy = sinon.spy();
-    TaxDetail.__Rewire__('browserHistory', {
+    DiscountDetail.__Rewire__('browserHistory', {
       push: redirectSpy
     });
 
-    const createTaxSpy = sinon.stub().returns({
+    const updateDiscountSpy = sinon.stub().returns({
       then(foobar) { //eslint-disable-line no-unused-vars
         return {
           catch() { }
@@ -333,81 +340,81 @@ describe('<TaxDetail />', () => {
       }
     });
 
-    createTaxSpy.then = function () { };
+    updateDiscountSpy.then = function () { };
 
     const updatedProps = {
       ...props,
-      tax: taxes[0],
-      taxActions: {
-        updateTax: createTaxSpy
+      discount: discounts[0],
+      discountActions: {
+        updateDiscount: updateDiscountSpy
       }
     };
 
     const expected = true;
-    const wrapper = shallow(<TaxDetail.WrappedComponent {...updatedProps} />);
+    const wrapper = shallow(<DiscountDetail.WrappedComponent {...updatedProps} />);
 
     const instance = wrapper.instance();
     instance.onSave();
 
-    const actual = createTaxSpy.calledWith(taxes[0]);
+    const actual = updateDiscountSpy.calledWith(discounts[0]);
 
     expect(actual).equals(expected);
-    TaxDetail.__ResetDependency__('browserHistory');
+    DiscountDetail.__ResetDependency__('browserHistory');
   });
 
-  it('should return false if the tax taxName is empty when calling formIsValid', () => {
+  it('should return false if the discount discountName is empty when calling formIsValid', () => {
 
     const updatedProps = {
       ...props,
-      tax: taxes[0]
+      discount: discounts[0]
     };
 
     const expected = false;
-    const wrapper = shallow(<TaxDetail.WrappedComponent {...updatedProps} />);
+    const wrapper = shallow(<DiscountDetail.WrappedComponent {...updatedProps} />);
 
     const instance = wrapper.instance();
-    instance.state.tax.taxName = '';
+    instance.state.discount.discountName = '';
     const actual = instance.formIsValid();
-    instance.state.tax.taxName = 'Foo'; //reset back to the original state.
+    instance.state.discount.discountName = 'Foo'; //reset back to the original state.
     expect(actual).equals(expected);
   });
 
-  it('should return false from formIsValid if the taxTypeID value is not set', () => {
+  it('should return false from formIsValid if the applyTypeID value is not set', () => {
 
     const updatedProps = {
       ...props,
-      tax: {
-        taxName: 'Foobar',
+      discount: {
+        discountName: 'Foobar',
         value: 30
       }
     };
 
     const expected = false;
-    const wrapper = shallow(<TaxDetail.WrappedComponent {...updatedProps} />);
+    const wrapper = shallow(<DiscountDetail.WrappedComponent {...updatedProps} />);
 
     const instance = wrapper.instance();
-    instance.state.tax.taxName = 'Foobar';
+    instance.state.discount.discountName = 'Foobar';
     const actual = instance.formIsValid();
     expect(actual).equals(expected);
   });
 
-  it('should return false from formIsValid if the taxTypeID is greater than 0 and the items array is empty', () => {
+  it('should return false from formIsValid if the applyTypeID is greater than 0 and the items array is empty', () => {
 
     const updatedProps = {
       ...props,
-      tax: {
-        taxName: 'Foobar',
+      discount: {
+        discountName: 'Foobar',
         value: 30,
-        taxTypeID: 1,
+        applyTypeID: 1,
         items: []
       }
     };
 
     const expected = false;
-    const wrapper = shallow(<TaxDetail.WrappedComponent {...updatedProps} />);
+    const wrapper = shallow(<DiscountDetail.WrappedComponent {...updatedProps} />);
 
     const instance = wrapper.instance();
-    instance.state.tax.taxName = 'Foobar';
+    instance.state.discount.discountName = 'Foobar';
     const actual = instance.formIsValid();
     expect(actual).equals(expected);
   });
@@ -416,16 +423,16 @@ describe('<TaxDetail />', () => {
 
     const updatedProps = {
       ...props,
-      tax: taxes[0]
+      discount: discounts[0]
     };
 
     const errorState = {
       ...errors,
-      taxName: true
+      discountName: true
     };
 
     const expected = false;
-    const wrapper = shallow(<TaxDetail.WrappedComponent {...updatedProps} />);
+    const wrapper = shallow(<DiscountDetail.WrappedComponent {...updatedProps} />);
 
     const instance = wrapper.instance();
     instance.state.errors = errorState;
@@ -435,42 +442,42 @@ describe('<TaxDetail />', () => {
     expect(actual).equals(expected);
   });
 
-  it('should set the error object property taxName to false if it passes the regex test', () => {
+  it('should set the error object property discountName to false if it passes the regex test', () => {
 
     const updatedProps = {
       ...props,
-      tax: taxes[0]
+      discount: discounts[0]
     };
 
-    const property = 'taxName';
+    const property = 'discountName';
     const value = 'Foobaz';
 
     const expected = false;
-    const wrapper = shallow(<TaxDetail.WrappedComponent {...updatedProps} />);
+    const wrapper = shallow(<DiscountDetail.WrappedComponent {...updatedProps} />);
 
     const instance = wrapper.instance();
     instance.propertyIsValid(property, value, errors);
-    const actual = instance.state.errors.taxName;
+    const actual = instance.state.errors.discountName;
 
     expect(actual).equals(expected);
   });
 
-  it('should set the error object property taxName to whitespace if it DOES NOT pass the regex test', () => {
+  it('should set the error object property discountName to whitespace if it DOES NOT pass the regex test', () => {
 
     const updatedProps = {
       ...props,
-      tax: taxes[0]
+      discount: discounts[0]
     };
 
-    const property = 'taxName';
+    const property = 'discountName';
     const value = '1234';
 
     const expected = ' ';
-    const wrapper = shallow(<TaxDetail.WrappedComponent {...updatedProps} />);
+    const wrapper = shallow(<DiscountDetail.WrappedComponent {...updatedProps} />);
 
     const instance = wrapper.instance();
     instance.propertyIsValid(property, value, errors);
-    const actual = instance.state.errors.taxName;
+    const actual = instance.state.errors.discountName;
 
     expect(actual).equals(expected);
   });
@@ -479,14 +486,14 @@ describe('<TaxDetail />', () => {
 
     const updatedProps = {
       ...props,
-      tax: taxes[0]
+      discount: discounts[0]
     };
 
     const property = 'price';
     const value = 13.55;
 
     const expected = false;
-    const wrapper = shallow(<TaxDetail.WrappedComponent {...updatedProps} />);
+    const wrapper = shallow(<DiscountDetail.WrappedComponent {...updatedProps} />);
 
     const instance = wrapper.instance();
     instance.propertyIsValid(property, value, errors);
@@ -494,6 +501,5 @@ describe('<TaxDetail />', () => {
 
     expect(actual).equals(expected);
   });
-
 
 });
