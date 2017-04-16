@@ -42,6 +42,7 @@ const DiscountDetailForm = ({ discount, items, errors, onChange }) => {
               name="discountName"
               value={discount.discountName}
               floatingLabelText="Discount Name"
+              floatingLabelStyle={{ fontWeight: 500 }}
               onChange={onChange}
               errorText={errors.discountName} />
           </div>
@@ -83,9 +84,9 @@ const DiscountDetailForm = ({ discount, items, errors, onChange }) => {
               <div className={styles['discount-name-control']}>
                 <SelectField
                   floatingLabelText="Apply To"
+                  floatingLabelStyle={{ fontWeight: 500 }}
                   value={selectedDiscountOption}
-                  onChange={onChange}
-                >
+                  onChange={onChange}>
                   {discountOptions.map(option => {
                     return (
                       <MenuItem
@@ -98,7 +99,6 @@ const DiscountDetailForm = ({ discount, items, errors, onChange }) => {
               </div>
             </div>
           </div>
-
           <div className={styles['discount-option-control']}>
             <div className="row">
               {displayItemSelection &&
@@ -106,9 +106,9 @@ const DiscountDetailForm = ({ discount, items, errors, onChange }) => {
                   <SelectField
                     multiple
                     floatingLabelText="Items"
+                    floatingLabelStyle={{ fontWeight: 500 }}
                     value={discount.items}
-                    onChange={onChange}
-                  >
+                    onChange={onChange}>
                     {displayItems.map(item => {
                       return (
                         <MenuItem

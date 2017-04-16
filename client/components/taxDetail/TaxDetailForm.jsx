@@ -59,8 +59,8 @@ const TaxDetailForm = ({ tax, items, errors, onChange }) => {
                 <SelectField
                   floatingLabelText="Apply To"
                   value={selectedTaxOption}
-                  onChange={onChange}
-                >
+                  floatingLabelStyle={{ fontWeight: 500 }}
+                  onChange={onChange}>
                   {taxOptions.map(option => {
                     return (
                       <MenuItem
@@ -80,9 +80,9 @@ const TaxDetailForm = ({ tax, items, errors, onChange }) => {
                   <SelectField
                     multiple
                     floatingLabelText="Items"
+                    floatingLabelStyle={{ fontWeight: 500 }}
                     value={tax.items}
-                    onChange={onChange}
-                  >
+                    onChange={onChange}>
                     {displayItems.map(item => {
                       return (
                         <MenuItem

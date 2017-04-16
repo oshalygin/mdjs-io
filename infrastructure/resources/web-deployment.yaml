@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: fe-web
-          image: 'us.gcr.io/merchant-dash/merchant-dashboard:2.23.0'
+          image: 'us.gcr.io/merchant-dash/merchant-dashboard:2.23.1'
           volumeMounts:
             - mountPath: /cache
               name: temp-volume

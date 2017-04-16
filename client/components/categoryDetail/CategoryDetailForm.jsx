@@ -9,14 +9,20 @@ const CategoryDetailForm = ({ category, errors, onChange }) => {
   return (
     <div className="ibox-content">
       <div className="row">
-        <div className={styles['category-controls']}>
-          <TextField
-            fullWidth
-            name="categoryName"
-            value={category.categoryName}
-            floatingLabelText="Category Name"
-            onChange={onChange}
-            errorText={errors.categoryName} />
+        <div className={styles['form-controls']}>
+          <div className={styles['control-group']}>
+            <div className={styles['extended-control-label']}>
+              Category Name
+            </div>
+            <div className={styles['extended-control-input']}>
+              <TextField
+                fullWidth
+                name="categoryName"
+                value={category.categoryName}
+                onChange={onChange}
+                errorText={errors.categoryName} />
+            </div>
+          </div>
         </div>
       </div>
     </div>

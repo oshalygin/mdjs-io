@@ -57,7 +57,8 @@ const ItemDetailForm = ({ item, categories, errors, onChange, onDrop }) => {
             onChange={onChange}
             fullWidth
             floatingLabelText="Price Type"
-            value={itemPriceType} >
+            
+            value={itemPriceType}>
 
             {itemPriceTypes.map(itemPrice => {
               return (
@@ -94,6 +95,7 @@ const ItemDetailForm = ({ item, categories, errors, onChange, onDrop }) => {
               onChange={onChange}
               fullWidth
               floatingLabelText="Item Category"
+              floatingLabelStyle={{fontWeight: 500 }}
               value={selectedCategory} >
 
               {itemCategories.map(category => {

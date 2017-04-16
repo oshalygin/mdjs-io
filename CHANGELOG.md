@@ -1,3 +1,8 @@
+## 2.23.1 (April 16, 2017)
+
+- Update detail portal styling
+  - Consistency across the board in regards to styling.
+
 ## 2.23.0 (April 15, 2017)
 
 - Update Discount Detail Page
