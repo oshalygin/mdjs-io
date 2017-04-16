@@ -5,13 +5,15 @@ import MenuItem from 'material-ui/MenuItem';
 
 import React from 'react';
 import DiscountDetailForm from './DiscountDetailForm.jsx';
+import DiscountValueField from './DiscountValueField.jsx';
 
 import { expect } from 'chai';
 
 describe('<DiscountDetailForm />', () => {
 
   const errors = {
-    discountName: false
+    discountName: false,
+    value: false
   };
 
   const items = [
@@ -56,19 +58,32 @@ describe('<DiscountDetailForm />', () => {
   const props = {
     discount: {
       discountID: 0,
-      discountName: ''
+      discountName: '',
+      discountTypeID: 0,
+      value: 0
     },
     items,
     errors,
     onChange() { }
   };
 
-  it('should contain two text fields on the form', () => {
+  it('should contain one text fields on the form', () => {
 
     const wrapper = shallow(<DiscountDetailForm {...props} />);
 
-    const expected = 2;
+    const expected = 1;
     const actual = wrapper.find(TextField).length;
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should contain one <DiscountValueField /> on the form', () => {
+
+    const wrapper = shallow(<DiscountDetailForm {...props} />);
+
+    const expected = 1;
+    const actual = wrapper.find(DiscountValueField).length;
 
     expect(actual).equals(expected);
 
@@ -79,57 +94,68 @@ describe('<DiscountDetailForm />', () => {
 
     const wrapper = shallow(<DiscountDetailForm {...props} />);
 
-    const expected = 'Apply To';
-    const actual = wrapper.find(SelectField).props()
-      .floatingLabelText;
+    const expected = 1;
+    const actual = wrapper
+      .find(SelectField)
+      .nodes
+      .filter(node => node.props.floatingLabelText === 'Apply To')
+      .length;
 
     expect(actual).equals(expected);
 
   });
 
-  it('the dropdown for "Apply To" has two menu items', () => {
+  it('should contain a SelectField dropdown which has an "Value Type" property', () => {
 
     const wrapper = shallow(<DiscountDetailForm {...props} />);
 
-    const expected = 2;
-    const actual = wrapper.find(MenuItem).length;
+    const expected = 1;
+    const actual = wrapper
+      .find(SelectField)
+      .nodes
+      .filter(node => node.props.floatingLabelText === 'Value Type')
+      .length;
 
     expect(actual).equals(expected);
 
   });
 
-  it('should still render only a single SelectField if the discountOption selected is 0 for applyTypeID', () => {
+  it('should still render only a two SelectField controls if the discountOption selected is 0 for applyTypeID', () => {
     const updatedProps = {
       ...props,
       discount: {
         discountID: 0,
         applyTypeID: 0,
-        discountName: ''
+        discountName: '',
+        discountTypeID: 0,
+        value: 0
       }
     };
 
     const wrapper = shallow(<DiscountDetailForm {...updatedProps} />);
 
-    const expected = 1;
+    const expected = 2;
     const actual = wrapper.find(SelectField).length;
 
     expect(actual).equals(expected);
 
   });
 
-  it('should render two SelectFields if the discountOption selected is 1 for applyTypeID', () => {
+  it('should render three SelectFields if the discountOption selected is 1 for applyTypeID', () => {
     const updatedProps = {
       ...props,
       discount: {
         discountID: 0,
         applyTypeID: 1,
-        discountName: ''
+        discountName: '',
+        discountTypeID: 0,
+        value: 0
       }
     };
 
     const wrapper = shallow(<DiscountDetailForm {...updatedProps} />);
 
-    const expected = 2;
+    const expected = 3;
     const actual = wrapper.find(SelectField).length;
 
     expect(actual).equals(expected);
@@ -142,24 +168,26 @@ describe('<DiscountDetailForm />', () => {
       discount: {
         discountID: 0,
         applyTypeID: 1,
-        discountName: ''
+        discountName: '',
+        discountTypeID: 0,
+        value: 0
       }
     };
 
     const wrapper = shallow(<DiscountDetailForm {...updatedProps} />);
 
-    const expected = 2 + items.length;
+    const expected = 4 + items.length;
     const actual = wrapper.find(MenuItem).length;
 
     expect(actual).equals(expected);
 
   });
 
-  it('should contain a material icon "account_balance" that helps identify the page', () => {
+  it('should contain a material icon "play_for_work" that helps identify the page', () => {
 
     const wrapper = shallow(<DiscountDetailForm {...props} />);
 
-    const expected = 'account_balance';
+    const expected = 'play_for_work';
     const actual = wrapper.find('.material-icons').text();
 
     expect(actual).equals(expected);

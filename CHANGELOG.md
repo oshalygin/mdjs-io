@@ -1,3 +1,8 @@
+## 2.22.3 (April 15, 2017)
+
+- Update Discount Detail Page
+  - Addition of a SelectList which allows the user to select the value type(_Percent_ or _Currency_)
+
 ## 2.22.2 (April 14, 2017)
 
 - Add Discount Detail Page
