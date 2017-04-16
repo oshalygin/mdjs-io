@@ -7,6 +7,7 @@ import accountController from '../controllers/accountController';
 import versionController from '../controllers/versionController';
 import imagesController from '../controllers/imageController';
 import modifierController from '../controllers/modifierController';
+import discountController from '../controllers/discountController';
 
 import multer from 'multer';
 
@@ -50,7 +51,15 @@ router
   .post(taxController.post)
   .delete(taxController.deleteTax);
 
-// {api/v1/taxes}
+// {api/v1/discounts}
+router
+  .route('/discounts/:id?')
+  .get(discountController.get)
+  .put(discountController.put)
+  .post(discountController.post)
+  .delete(discountController.deleteDiscount);
+
+// {api/v1/modifiers}
 router
   .route('/modifiers/:id?')
   .get(modifierController.get)

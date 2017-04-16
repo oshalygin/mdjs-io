@@ -1,3 +1,8 @@
+## 2.23.0 (April 15, 2017)
+
+- Update Discount Detail Page
+  - Implemention around discount actions in relation to creation, updates and deactivation.
+
 ## 2.22.3 (April 15, 2017)
 
 - Update Discount Detail Page

@@ -181,6 +181,7 @@ describe('<DiscountDetail />', () => {
       discountID: 0,
       discountName: '',
       value: 0,
+      discountTypeID: 0,
       items: []
     };
 

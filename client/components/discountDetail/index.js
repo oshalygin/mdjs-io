@@ -211,6 +211,7 @@ export function mapStateToProps(state, ownProps) {
   let discount = {
     discountID: 0,
     discountName: '',
+    discountTypeID: 0,
     value: 0,
     items: []
   };
