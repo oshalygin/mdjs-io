@@ -1,3 +1,8 @@
+## 2.25.1 (April 16, 2017)
+
+- Add Order Status Description Utility
+  - Return a human readable version of the orderStatusId
+
 ## 2.25.0 (April 16, 2017)
 
 - Add an Orders Controller to pull down all and orders by id
