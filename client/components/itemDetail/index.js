@@ -36,15 +36,20 @@ class ItemDetailPage extends React.Component {
 
   onChange(event, index, payload) {
     const { item, errors } = this.state;
-    let property;
 
-    if (payload) {
-      property = payload.name;
-      item[property] = payload.value;
+    if (Array.isArray(payload)) {
+      item.modifiers = payload;
       return this.setState({ item });
     }
 
-    property = event.target.name;
+    if (payload) {
+      const property = payload.name;
+      item[property] = payload.value;
+
+      return this.setState({ item });
+    }
+
+    const property = event.target.name;
     item[property] = event.target.value;
 
     this.propertyIsValid(property, item[property], errors);
@@ -122,7 +127,8 @@ class ItemDetailPage extends React.Component {
   }
 
   render() {
-    const { itemHeading, loading, categories } = this.props;
+    const { itemHeading, loading, categories, modifiers } = this.props;
+    
     const { item, errors } = this.state;
 
     const formComponent = !loading.createUpdateItem ?
@@ -130,6 +136,7 @@ class ItemDetailPage extends React.Component {
         <ItemDetailForm
           item={item}
           categories={categories}
+          modifiers={modifiers}
           onDrop={this.onDrop}
           onChange={this.onChange}
           errors={errors} />
@@ -188,6 +195,7 @@ class ItemDetailPage extends React.Component {
 ItemDetailPage.propTypes = {
   item: PropTypes.object.isRequired,
   categories: PropTypes.array.isRequired,
+  modifiers: PropTypes.array.isRequired,
   loading: PropTypes.object.isRequired,
   itemHeading: PropTypes.string.isRequired,
   itemActions: PropTypes.object.isRequired,
@@ -228,6 +236,7 @@ export function mapStateToProps(state, ownProps) {
 
   return {
     item,
+    
     itemHeading,
     loading: state.loading,
     errors: {
@@ -235,7 +244,8 @@ export function mapStateToProps(state, ownProps) {
       label: false,
       price: false
     },
-    categories: state.categories
+    categories: state.categories,
+    modifiers: state.modifiers
   };
 }
 

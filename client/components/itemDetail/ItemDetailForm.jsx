@@ -10,7 +10,14 @@ import { itemPriceTypes } from '../../utilities/constants';
 
 import styles from './itemDetail.css';
 
-const ItemDetailForm = ({ item, categories, errors, onChange, onDrop }) => {
+export function getModifierLabel(modifier) {
+  const name = modifier.modifierName;
+  const price = modifier.modifierPrice;
+
+  return `${name} - $${price.toFixed(2)}`;
+}
+
+const ItemDetailForm = ({ item, categories, modifiers, errors, onChange, onDrop }) => {
   const itemPriceType = itemPriceTypes
     .find(priceType => priceType.value == item.priceTypeID); //eslint-disable-line
 
@@ -22,6 +29,14 @@ const ItemDetailForm = ({ item, categories, errors, onChange, onDrop }) => {
         label: category.categoryName
       };
     });
+
+  const displayModifiers = modifiers.map(modifier => {
+    return {
+      name: 'modifiers',
+      value: modifier.modifierID,
+      label: getModifierLabel(modifier)
+    };
+  });
 
   const selectedCategory = itemCategories.find(category => category.value === item.itemCategoryID);
 
@@ -57,7 +72,7 @@ const ItemDetailForm = ({ item, categories, errors, onChange, onDrop }) => {
             onChange={onChange}
             fullWidth
             floatingLabelText="Price Type"
-            
+
             value={itemPriceType}>
 
             {itemPriceTypes.map(itemPrice => {
@@ -90,23 +105,48 @@ const ItemDetailForm = ({ item, categories, errors, onChange, onDrop }) => {
       </div>
       <div className="row">
         <div className={styles['additional-items-container']}>
-          <div className="col-md-offset-4 col-sm-4">
-            <SelectList
-              onChange={onChange}
-              fullWidth
-              floatingLabelText="Item Category"
-              floatingLabelStyle={{fontWeight: 500 }}
-              value={selectedCategory} >
-
-              {itemCategories.map(category => {
-                return (
-                  <MenuItem
-                    value={category}
-                    primaryText={category.label}
-                    key={category.value} />
-                );
-              })}
-            </SelectList>
+          <div className="row">
+            <div className="col-md-offset-4 col-sm-4">
+              <SelectList
+                onChange={onChange}
+                fullWidth
+                floatingLabelText="Item Category"
+                floatingLabelStyle={{ fontWeight: 500 }}
+                value={selectedCategory}>
+                {itemCategories.map(category => {
+                  return (
+                    <MenuItem
+                      value={category}
+                      primaryText={category.label}
+                      key={category.value} />
+                  );
+                })}
+              </SelectList>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-offset-4 col-sm-4">
+              <SelectList
+                multiple
+                fullWidth
+                floatingLabelText="Modifiers"
+                floatingLabelStyle={{ fontWeight: 500 }}
+                value={item.modifiers}
+                onChange={onChange}>
+                {displayModifiers.map(modifier => {
+                  return (
+                    <MenuItem
+                      key={modifier.value}
+                      insetChildren
+                      checked={item.modifiers
+                        && item.modifiers.includes(modifier.value)}
+                      value={modifier.value}
+                      primaryText={modifier.label}
+                    />
+                  );
+                })}
+              </SelectList>
+            </div>
           </div>
         </div>
       </div>
@@ -118,6 +158,7 @@ ItemDetailForm.propTypes = {
   errors: PropTypes.object.isRequired,
   item: PropTypes.object.isRequired,
   categories: PropTypes.array.isRequired,
+  modifiers: PropTypes.array.isRequired,
   onChange: PropTypes.func.isRequired,
   onDrop: PropTypes.func.isRequired
 };

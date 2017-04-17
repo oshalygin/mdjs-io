@@ -1,3 +1,8 @@
+## 2.24.0 (April 16, 2017)
+
+- Add Modifiers to Item Detail View
+  - Users can now add modifiers to an item.
+
 ## 2.23.1 (April 16, 2017)
 
 - Update detail portal styling

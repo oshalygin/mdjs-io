@@ -5,7 +5,7 @@ import SelectList from '../common/SelectList.jsx';
 import ItemImage from './ItemImage.jsx';
 
 import React from 'react';
-import ItemDetailForm from './ItemDetailForm.jsx';
+import ItemDetailForm, { getModifierLabel } from './ItemDetailForm.jsx';
 
 import { expect } from 'chai';
 
@@ -56,6 +56,37 @@ describe('<ItemDetailForm />', () => {
     }
   ];
 
+  const modifiers = [
+    {
+      modifierID: 3,
+      modifierName: 'test',
+      modifierPrice: 30.99,
+      items: [
+        85
+      ],
+      lastUpdatedDate: '2017-03-27T17:58:37.11',
+      createdDate: '2016-12-12T22:16:55.28',
+      lastUpdatedBy: 1,
+      createdBy: 1,
+      isActive: true,
+      companyID: 1,
+      facilityID: 0
+    },
+    {
+      modifierID: 12,
+      modifierName: 'Foobar',
+      modifierPrice: 79,
+      items: [],
+      lastUpdatedDate: '2017-04-01T00:43:08.577',
+      createdDate: '2017-04-01T00:43:08.577',
+      lastUpdatedBy: 1,
+      createdBy: 1,
+      isActive: true,
+      companyID: 1,
+      facilityID: 0
+    }
+  ];
+
   const props = {
     item: {
       itemID: 0,
@@ -70,6 +101,7 @@ describe('<ItemDetailForm />', () => {
       priceTypeID: 0
     },
     categories,
+    modifiers,
     errors,
     onChange() { },
     onDrop() { }
@@ -98,11 +130,11 @@ describe('<ItemDetailForm />', () => {
 
   });
 
-  it('should render two SelectList components', () => {
+  it('should render three SelectList components', () => {
 
     const wrapper = shallow(<ItemDetailForm {...props} />);
 
-    const expected = 2;
+    const expected = 3;
     const actual = wrapper.find(SelectList).length;
 
     expect(actual).equals(expected);
@@ -152,6 +184,28 @@ describe('<ItemDetailForm />', () => {
     const expected = 'Additional Configuration';
     const actual = wrapper.find('.additional-items-heading')
       .text();
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should set the modifier label to include the label name and the price in dollars', () => {
+    
+    const modifier = modifiers[0];
+
+    const expected = 'test - $30.99';
+    const actual = getModifierLabel(modifier);
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should set the modifier price to two decimal places', () => {
+
+    const modifier = modifiers[1];
+
+    const expected = 'Foobar - $79.00';
+    const actual = getModifierLabel(modifier);
 
     expect(actual).equals(expected);
 
