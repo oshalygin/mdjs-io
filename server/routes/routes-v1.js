@@ -8,6 +8,7 @@ import versionController from '../controllers/versionController';
 import imagesController from '../controllers/imageController';
 import modifierController from '../controllers/modifierController';
 import discountController from '../controllers/discountController';
+import ordersController from '../controllers/ordersController';
 
 import multer from 'multer';
 
@@ -34,6 +35,11 @@ router
   .put(uploads.single('file'), itemController.put)
   .post(uploads.single('file'), itemController.post)
   .delete(itemController.deleteItem);
+
+// {api/v1/orders}
+router
+  .route('/orders/:id?')
+  .get(ordersController.get);
 
 // {api/v1/categories}
 router

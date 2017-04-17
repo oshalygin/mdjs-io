@@ -1,3 +1,9 @@
+## 2.25.0 (April 16, 2017)
+
+- Add an Orders Controller to pull down all and orders by id
+  - Initial implementation involves pulling down ALL orders and orders by id.
+  - No consumption on the FrontEnd at this time.
+
 ## 2.24.0 (April 16, 2017)
 
 - Add Modifiers to Item Detail View

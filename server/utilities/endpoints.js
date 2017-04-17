@@ -9,3 +9,4 @@ export const CATEGORY_ENDPOINT = `${DOMAIN_ENDPOINT}/api/dashboard/itemcategorie
 export const TAX_ENDPOINT = `${DOMAIN_ENDPOINT}/api/dashboard/taxes`;
 export const MODIFIER_ENDPOINT = `${DOMAIN_ENDPOINT}/api/dashboard/modifiers`;
 export const DISCOUNT_ENDPOINT = `${DOMAIN_ENDPOINT}/api/dashboard/discounts`;
+export const ORDERS_ENDPOINT = `${DOMAIN_ENDPOINT}/api/dashboard/orders`;
