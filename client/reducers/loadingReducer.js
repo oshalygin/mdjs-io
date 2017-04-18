@@ -154,6 +154,20 @@ export default function loadingReducer(state = initialState.loading, action) {
           loadingTaxes: false
         };
       }
+    case actionTypes.LOADING_ORDERS:
+      {
+        return {
+          ...state,
+          loadingOrders: true
+        };
+      }
+    case actionTypes.LOAD_ORDERS_SUCCESS:
+      {
+        return {
+          ...state,
+          loadingOrders: false
+        };
+      }
     default:
       {
         return state;

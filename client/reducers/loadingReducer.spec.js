@@ -13,7 +13,8 @@ describe('Reducer - Loading', () => {
 
   const getInitialState = () => {
     return {
-      loadingUser: false
+      loadingUser: false,
+      loadingOrders: true
     };
   };
 

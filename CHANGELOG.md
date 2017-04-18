@@ -1,3 +1,8 @@
+## 2.26.0 (April 17, 2017)
+
+- Add Order List View
+- Add Currency Utility to handle display of money
+
 ## 2.25.1 (April 16, 2017)
 
 - Add Order Status Description Utility

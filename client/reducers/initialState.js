@@ -21,13 +21,15 @@ export function retrieveUser(dispatch, callback) {
 export default {
   user: {},
   loading: {
-    loadingUser: false
+    loadingUser: false,
+    loadingOrders: true
   },
   categories: [],
   discounts: [],
   modifiers: [],
   items: [],
   taxes: [],
+  orders: [],
   refundReasons: [],
   version: ''
 };

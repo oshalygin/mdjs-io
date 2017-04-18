@@ -1,0 +1,21 @@
+@import "../../styles/colors.css";
+.inline-button {
+  display: inline-block;
+}
+
+.inline-button:not(:last-child) {
+  margin-right: 1em;
+}
+
+.spinner-container {
+  position: absolute;
+  height: 400px;
+  width: 100%;
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  transform: translateY(-50%);
+}

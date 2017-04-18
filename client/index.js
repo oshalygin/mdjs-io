@@ -52,6 +52,7 @@ import ModifiersPage from './components/modifiers';
 import ModifierDetailPage from './components/modifierDetail';
 import DiscountPage from './components/discounts';
 import DiscountDetailPage from './components/discountDetail';
+import OrderPage from './components/orders';
 
 import Login from './components/login';
 
@@ -93,7 +94,7 @@ render(
         <Route path="tax(/:id)" component={TaxDetailPage} />
         <Route path="discounts" component={DiscountPage} />
         <Route path="discount(/:id)" component={DiscountDetailPage} />
-        <Route path="orders" component={Dashboard} />
+        <Route path="orders" component={OrderPage} />
         <Route path="users" component={Dashboard} />
         <Redirect to="dashboard" from="*" />
       </Route>
