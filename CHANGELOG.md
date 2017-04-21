@@ -1,3 +1,8 @@
+## 2.26.2 (April 20, 2017)
+
+- Update `domain_endpoint` environment variable secret back to `http://www.westernregister.com`
+  - This resolves various issues around uploading items.
+
 ## 2.26.1 (April 20, 2017)
 
 - Update RegEx to allow for spaces, numbers, comas and periods in label and name fields for various components.
