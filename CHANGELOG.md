@@ -1,3 +1,8 @@
+## 2.26.1 (April 20, 2017)
+
+- Update RegEx to allow for spaces, numbers, comas and periods in label and name fields for various components.
+- Update item list view to reflect `name` ipo `label`
+
 ## 2.26.0 (April 17, 2017)
 
 - Add Order List View

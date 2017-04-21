@@ -37,7 +37,7 @@ class ItemTableRow extends React.Component {
     return (
       <TableRow>
         <TableRowColumn style={{ paddingLeft: '1.25em' }}><ItemImage imageId={item.photoURL} label={item.label} /></TableRowColumn>
-        <TableRowColumn className={this.disabledText(item.disabled)}>{item.label}</TableRowColumn>
+        <TableRowColumn className={this.disabledText(item.disabled)}>{item.name}</TableRowColumn>
         <TableRowColumn className={this.disabledText(item.disabled)}>$ {item.price}</TableRowColumn>
         <TableRowColumn className={this.disabledText(item.disabled)}>{parsedLastUpdatedDate}</TableRowColumn>
         <TableRowColumn>
