@@ -1,3 +1,7 @@
+## 2.26.3 (April 20, 2017)
+
+- Update all detail pages that refrence an item to display the name instead of the label.
+
 ## 2.26.2 (April 20, 2017)
 
 - Update `domain_endpoint` environment variable secret back to `http://www.westernregister.com`

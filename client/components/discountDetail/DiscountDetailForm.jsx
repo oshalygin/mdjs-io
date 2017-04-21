@@ -117,7 +117,7 @@ const DiscountDetailForm = ({ discount, items, errors, onChange }) => {
                           checked={discount.items
                             && discount.items.includes(item.value)}
                           value={item.value}
-                          primaryText={item.label}
+                          primaryText={item.name}
                         />
                       );
                     })}

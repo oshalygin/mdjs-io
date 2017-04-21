@@ -91,7 +91,7 @@ const TaxDetailForm = ({ tax, items, errors, onChange }) => {
                           checked={tax.items
                             && tax.items.includes(item.value)}
                           value={item.value}
-                          primaryText={item.label}
+                          primaryText={item.name}
                         />
                       );
                     })}
