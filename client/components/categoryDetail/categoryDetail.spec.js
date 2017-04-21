@@ -323,7 +323,7 @@ describe('<CategoryDetail />', () => {
     };
 
     const property = 'categoryName';
-    const value = '1234';
+    const value = '1234!?';
 
     const expected = ' ';
     const wrapper = shallow(<CategoryDetail.WrappedComponent {...updatedProps} />);

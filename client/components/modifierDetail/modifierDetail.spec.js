@@ -317,7 +317,7 @@ describe('<ModifierDetail />', () => {
     };
 
     const property = 'modifierName';
-    const value = '1234';
+    const value = '1234?!';
 
     const expected = ' ';
     const wrapper = shallow(<ModifierDetail.WrappedComponent {...updatedProps} />);

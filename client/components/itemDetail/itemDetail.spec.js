@@ -498,7 +498,7 @@ describe('<ItemDetail />', () => {
     };
 
     const property = 'name';
-    const value = '1234';
+    const value = '1234?!';
 
     const expected = ' ';
     const wrapper = shallow(<ItemDetail.WrappedComponent {...updatedProps} />);
@@ -521,26 +521,6 @@ describe('<ItemDetail />', () => {
     const value = 'Foobaz';
 
     const expected = false;
-    const wrapper = shallow(<ItemDetail.WrappedComponent {...updatedProps} />);
-
-    const instance = wrapper.instance();
-    instance.propertyIsValid(property, value, errors);
-    const actual = instance.state.errors.label;
-
-    expect(actual).equals(expected);
-  });
-
-  it('should set the error object property label to whitespace if it DOES NOT pass the regex test', () => {
-
-    const updatedProps = {
-      ...props,
-      item: items[0]
-    };
-
-    const property = 'label';
-    const value = '1234';
-
-    const expected = ' ';
     const wrapper = shallow(<ItemDetail.WrappedComponent {...updatedProps} />);
 
     const instance = wrapper.instance();

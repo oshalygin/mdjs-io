@@ -1,3 +1,7 @@
+## 2.26.4 (April 20, 2017)
+
+- Update tests for the RegEx changes.
+
 ## 2.26.3 (April 20, 2017)
 
 - Update all detail pages that refrence an item to display the name instead of the label.
