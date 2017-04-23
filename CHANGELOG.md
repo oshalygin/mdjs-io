@@ -1,3 +1,7 @@
+## 2.27.4 (April 23, 2017)
+
+- Update Item Detail Image container location.
+
 ## 2.27.3 (April 23, 2017)
 
 - Update Item Detail UI/UX.

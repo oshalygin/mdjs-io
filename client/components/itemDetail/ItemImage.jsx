@@ -22,8 +22,8 @@ const ItemImage = ({ itemPreview, onDrop }) => {
 
   const imagePlaceholderContainer = {
     position: 'relative',
-    width: '25em',
-    height: '25em',
+    width: '30em',
+    height: '15em',
     float: 'right'
   };
 
