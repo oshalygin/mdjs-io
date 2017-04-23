@@ -3,7 +3,6 @@ module.exports = function (wallaby) {
   return {
     debug: true,
     files: [
-      'jest.json',
       'client/**/*.js*',
       'client/**/*.css',
       'server/**/*.js',
@@ -31,7 +30,7 @@ module.exports = function (wallaby) {
     compilers: {
       '**/*.js*': wallaby.compilers.babel({
         presets: ['latest', 'react', 'stage-1'],
-        plugins: ['transform-object-rest-spread', 'rewire', [
+        plugins: ['transform-object-rest-spread', [
           'transform-runtime',
           {
             polyfill: false

@@ -131,14 +131,15 @@ describe('<DiscountTableRow />', () => {
 
   });
 
-  it('should render the price toFixed with 2 decimal places as a dollar value', () => {
+  it('should render the price toFixed with 2 decimal places as a dollar value when the discountTypeID is 1', () => {
 
     const expected = '$ 50.00';
     const updatedProps = {
       ...props,
       discount: {
         ...props.discount,
-        value: 50
+        value: 50,
+        discountTypeID: 1
       }
     };
 
@@ -159,7 +160,7 @@ describe('<DiscountTableRow />', () => {
       discount: {
         ...props.discount,
         value: 50,
-        discountTypeID: 1
+        discountTypeID: 0
       }
     };
 

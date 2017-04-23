@@ -39,7 +39,7 @@ class DiscountTableRow extends React.Component {
         `${discount.items.length} Items` :
         `${discount.items.length} Item`;
     
-    const value = discount.discountTypeID ?
+    const value = !discount.discountTypeID ?
       `${discount.value.toFixed(2)} %` :
       `$ ${discount.value.toFixed(2)}`;
 

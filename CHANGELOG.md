@@ -1,3 +1,7 @@
+## 2.27.2 (April 23, 2017)
+
+- Fix discount type to properly display percentage and the dollar amount based on the user input.
+
 ## 2.27.1 (April 23, 2017)
 
 - Fix item name to properly display on Discounts and Taxes MultiSelect.
