@@ -1,3 +1,7 @@
+## 2.26.6 (April 22, 2017)
+
+- Relax naming restriction on modifiers and discounts to allow for percentages.
+
 ## 2.26.5 (April 22, 2017)
 
 - Add OrderAction tests and clean up redundant `LOADING` action dispatches

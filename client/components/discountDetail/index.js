@@ -97,7 +97,7 @@ class DiscountDetail extends React.Component {
 
   propertyIsValid(property, value, errors) {
     const patternTest = property === 'discountName'
-      ? new RegExp(/^[a-zA-Z\s]*$/)
+      ? new RegExp(/^[a-zA-Z0-9,.% ]*$/)
       : new RegExp(/^[0-9]+([,.][0-9]+)?$/g);
 
     errors[property] = !patternTest.test(value) ? ' ' : false;

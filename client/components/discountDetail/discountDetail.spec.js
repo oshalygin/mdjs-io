@@ -471,7 +471,7 @@ describe('<DiscountDetail />', () => {
     };
 
     const property = 'discountName';
-    const value = '1234';
+    const value = '1234!';
 
     const expected = ' ';
     const wrapper = shallow(<DiscountDetail.WrappedComponent {...updatedProps} />);
