@@ -22,7 +22,7 @@
     },
     "test": {
       "plugins": [
-        "rewire",
+        
         [
           "transform-runtime",
           {

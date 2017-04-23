@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import { shallow } from 'enzyme';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
@@ -9,6 +8,7 @@ import sinon from 'sinon';
 import React from 'react';
 import DiscountTableRow from './DiscountTableRow.jsx';
 
+jest.dontMock('react-router');
 import { expect } from 'chai';
 
 describe('<DiscountTableRow />', () => {
@@ -38,9 +38,9 @@ describe('<DiscountTableRow />', () => {
     const expected = true;
 
     const redirectSpy = sinon.spy();
-    DiscountTableRow.__Rewire__('browserHistory', {
-      push: redirectSpy
-    });
+    const browserHistory = require('react-router').browserHistory;
+    browserHistory.push = redirectSpy;
+
     const wrapper = shallow(<DiscountTableRow {...props} />);
 
     wrapper.find(FlatButton)
@@ -61,9 +61,8 @@ describe('<DiscountTableRow />', () => {
     };
 
     const redirectSpy = sinon.spy();
-    DiscountTableRow.__Rewire__('browserHistory', {
-      push: redirectSpy
-    });
+    const browserHistory = require('react-router').browserHistory;
+    browserHistory.push = redirectSpy;
 
     const wrapper = shallow(<DiscountTableRow {...updatedProps} />);
 

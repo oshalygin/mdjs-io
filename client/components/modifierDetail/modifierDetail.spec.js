@@ -1,10 +1,10 @@
-/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { shallow } from 'enzyme';
 import ModifierDetail, { mapStateToProps } from './index';
 import Spinner from '../common/spinner';
 import sinon from 'sinon';
 
+jest.dontMock('react-router');
 import { expect } from 'chai';
 
 describe('<ModifierDetail />', () => {
@@ -165,9 +165,8 @@ describe('<ModifierDetail />', () => {
   it('should navigate back to the "modifiers" page if the back button is clicked', () => {
 
     const redirectSpy = sinon.spy();
-    ModifierDetail.__Rewire__('browserHistory', {
-      push: redirectSpy
-    });
+    const browserHistory = require('react-router').browserHistory;
+    browserHistory.push = redirectSpy;
 
     const expected = true;
     const wrapper = shallow(<ModifierDetail.WrappedComponent {...props} />);
@@ -179,8 +178,6 @@ describe('<ModifierDetail />', () => {
 
 
     expect(actual).equals(expected);
-    ModifierDetail.__ResetDependency__('browserHistory');
-
   });
 
   it('should set the new state of the modifier based on the form field that was changed', () => {
@@ -214,10 +211,10 @@ describe('<ModifierDetail />', () => {
   });
 
   it('should call "updateModifier" with the modifer that was passed in to onSave', () => {
+    
     const redirectSpy = sinon.spy();
-    ModifierDetail.__Rewire__('browserHistory', {
-      push: redirectSpy
-    });
+    const browserHistory = require('react-router').browserHistory;
+    browserHistory.push = redirectSpy;
 
     const createModifierSpy = sinon.stub().returns({
       then(foobar) { //eslint-disable-line no-unused-vars
@@ -246,7 +243,6 @@ describe('<ModifierDetail />', () => {
     const actual = createModifierSpy.calledWith(modifiers[0]);
 
     expect(actual).equals(expected);
-    ModifierDetail.__ResetDependency__('browserHistory');
   });
 
   it('should return false if the modifierName is empty when calling formIsValid', () => {

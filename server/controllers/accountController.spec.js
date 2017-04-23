@@ -336,7 +336,7 @@ describe('Account Controller', () => {
 
   });
 
-  it('should return a the token from a successful response', () => {
+  it('should return a the token from a successful response on a POST call', () => {
 
     moxios.stubRequest(loginEndpoint, {
       status: 200,
@@ -373,7 +373,7 @@ describe('Account Controller', () => {
 
   });
 
-  it('should return a the token from a successful response', () => {
+  it('should return a the token from a successful response on a GET call', () => {
 
     moxios.stubRequest(loginTokenEndpoint, {
       status: 200,

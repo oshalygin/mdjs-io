@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import { shallow } from 'enzyme';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
@@ -9,6 +8,7 @@ import sinon from 'sinon';
 import React from 'react';
 import ModifierTableRow from './ModifierTableRow.jsx';
 
+jest.dontMock('react-router');
 import { expect } from 'chai';
 
 describe('<ModifierTableRow />', () => {
@@ -36,9 +36,9 @@ describe('<ModifierTableRow />', () => {
     const expected = true;
 
     const redirectSpy = sinon.spy();
-    ModifierTableRow.__Rewire__('browserHistory', {
-      push: redirectSpy
-    });
+    const browserHistory = require('react-router').browserHistory;
+    browserHistory.push = redirectSpy;
+
     const wrapper = shallow(<ModifierTableRow {...props} />);
 
     wrapper.find(FlatButton)
@@ -59,9 +59,8 @@ describe('<ModifierTableRow />', () => {
     };
 
     const redirectSpy = sinon.spy();
-    ModifierTableRow.__Rewire__('browserHistory', {
-      push: redirectSpy
-    });
+    const browserHistory = require('react-router').browserHistory;
+    browserHistory.push = redirectSpy;
 
     const wrapper = shallow(<ModifierTableRow {...updatedProps} />);
 

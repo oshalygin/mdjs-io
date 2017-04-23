@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-/* eslint-disable no-underscore-dangle */
 import { shallow } from 'enzyme';
 import RaisedButton from 'material-ui/RaisedButton';
 import sinon from 'sinon';
@@ -7,6 +6,7 @@ import sinon from 'sinon';
 import React from 'react';
 import Categories from './index';
 
+jest.dontMock('react-router');
 import { expect } from 'chai';
 
 describe('<Categories />', () => {
@@ -56,10 +56,10 @@ describe('<Categories />', () => {
   });
 
   it('should navigate to the "category" route when navigateToNewCategoryPage is called', () => {
+
     const redirectSpy = sinon.spy();
-    Categories.__Rewire__('browserHistory', {
-      push: redirectSpy
-    });
+    const browserHistory = require('react-router').browserHistory;
+    browserHistory.push = redirectSpy;
 
     const expected = true;
     const wrapper = shallow(<Categories.WrappedComponent {...props} />);
@@ -70,7 +70,6 @@ describe('<Categories />', () => {
     const actual = redirectSpy.calledWith('category');
 
     expect(actual).equals(expected);
-    Categories.__ResetDependency__('browserHistory');
   });
 
   it('should dispatch the deactivate action with the passed in id that matches the categories in the list', () => {

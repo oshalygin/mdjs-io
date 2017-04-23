@@ -1,5 +1,0 @@
---compilers babel-register
---require source-map-support/register
---full-trace
---bail
-client/**/*.spec.js server/**/*.spec.js

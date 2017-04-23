@@ -1,6 +1,6 @@
 {
   "name": "mdjs",
-  "version": "2.26.6",
+  "version": "2.27.0",
   "description": "Merchant Dashboard built with React and Redux",
   "scripts": {
     "prestart": "babel-node utilities/startingDisplayMessage.js",
@@ -9,7 +9,8 @@
     "open:server": "babel-watch ./server/application.dev.js",
     "lint": "eslint webpack.config.* \"client/**/*.js\" \"client/**/*.jsx\" \"server/**\" utilities/** --color ",
     "lint:watch": "npm run lint -- --watch",
-    "test": "nyc --all mocha",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
     "codacy:coverage": "cat ./coverage/lcov.info | codacy-coverage",
     "clean-dist": "npm run remove-dist && mkdir dist",
     "remove-dist": "node_modules/.bin/rimraf ./dist",
@@ -74,10 +75,9 @@
     "babel-cli": "6.23.0",
     "babel-core": "6.23.1",
     "babel-eslint": "7.1.1",
+    "babel-jest": "^19.0.0",
     "babel-loader": "6.3.2",
-    "babel-plugin-istanbul": "^4.0.0",
     "babel-plugin-react-display-name": "2.0.0",
-    "babel-plugin-rewire": "1.0.0",
     "babel-plugin-transform-decorators-legacy": "1.3.4",
     "babel-plugin-transform-object-rest-spread": "6.23.0",
     "babel-plugin-transform-react-constant-elements": "6.23.0",
@@ -102,23 +102,20 @@
     "enzyme": "2.7.1",
     "eslint": "3.16.1",
     "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-jest": "^19.0.1",
     "eslint-plugin-react": "6.10.0",
     "eslint-watch": "3.0.0",
     "eventsource-polyfill": "0.9.6",
     "extract-text-webpack-plugin": "1.0.1",
-    "isparta": "4.0.0",
-    "istanbul": "0.4.5",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^19.0.2",
     "jsdom": "9.11.0",
     "jsdom-global": "2.0.0",
-    "mocha": "3.0.2",
-    "mocha-lcov-reporter": "1.3.0",
     "moxios": "0.3.0",
     "npm-run-all": "4.0.2",
-    "nyc": "^10.1.2",
     "postcss-cssnext": "2.9.0",
     "postcss-import": "9.1.0",
     "postcss-loader": "1.3.2",
-    "proxyquire": "^1.7.11",
     "react-addons-test-utils": "15.4.2",
     "redux-immutable-state-invariant": "1.2.4",
     "redux-logger": "2.8.1",
@@ -135,5 +132,33 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/oshalygin/mdjs.git"
+  },
+  "jest": {
+    "testRegex": ".*?(\\.spec).js",
+    "transformIgnorePatterns": [
+      "node_modules"
+    ],
+    "collectCoverageFrom": [
+      "client/**/*.js",
+      "client/**/*.jsx",
+      "server/**/*.js*"
+    ],
+    "transform": {
+      ".*": "<rootDir>/node_modules/babel-jest/build/index.js"
+    },
+    "setupFiles": [
+      "./utilities/testSetup.js"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/utilities/fileMock.js",
+      "\\.(css|less)$": "identity-obj-proxy"
+    },
+    "coverageReporters": [
+      "json",
+      "html",
+      "text",
+      "lcov",
+      "clover"
+    ]
   }
 }

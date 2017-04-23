@@ -1,11 +1,11 @@
-/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import sinon from 'sinon';
 
 import { shallow } from 'enzyme';
-import { expect } from 'chai';
-
 import SearchBar from './SearchBar.jsx';
+
+jest.dontMock('react-router');
+import { expect } from 'chai';
 
 describe('<SearchBar />', () => {
 
@@ -44,9 +44,8 @@ describe('<SearchBar />', () => {
     };
 
     const redirectSpy = sinon.spy();
-    SearchBar.__Rewire__('browserHistory', {
-      push: redirectSpy
-    });
+    const browserHistory = require('react-router').browserHistory;
+    browserHistory.push = redirectSpy;
 
     const expected = true;
     shallow(<SearchBar.WrappedComponent {...updatedProps} />)
@@ -69,9 +68,8 @@ describe('<SearchBar />', () => {
     };
 
     const redirectSpy = sinon.spy();
-    SearchBar.__Rewire__('browserHistory', {
-      push: redirectSpy
-    });
+    const browserHistory = require('react-router').browserHistory;
+    browserHistory.push = redirectSpy;
 
     const expected = true;
     shallow(<SearchBar.WrappedComponent {...updatedProps} />)

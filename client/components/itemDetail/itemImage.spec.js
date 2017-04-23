@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import { shallow } from 'enzyme';
 import { IMAGE_ENDPOINT } from '../../utilities/endpoints';
 import ItemImage, { getImageUrl } from './ItemImage.jsx';
@@ -53,15 +52,6 @@ describe('<ItemImage />', () => {
     const actual = wrapper.find(DropZone)
       .childAt(0)
       .text();
-
-    expect(actual).equals(expected);
-
-  });
-
-  it('should return null for the imageUrl if nothing was passed in', () => {
-
-    const expected = null;
-    const actual = getImageUrl();
 
     expect(actual).equals(expected);
 

@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import { shallow } from 'enzyme';
 import FlatButton from 'material-ui/FlatButton';
 import { TableRowColumn } from 'material-ui/Table';
@@ -8,6 +7,7 @@ import sinon from 'sinon';
 import React from 'react';
 import OrderTableRow from './OrderTableRow.jsx';
 
+jest.dontMock('react-router');
 import { expect } from 'chai';
 
 describe('<OrderTableRow />', () => {
@@ -33,9 +33,10 @@ describe('<OrderTableRow />', () => {
     const expected = true;
 
     const redirectSpy = sinon.spy();
-    OrderTableRow.__Rewire__('browserHistory', {
-      push: redirectSpy
-    });
+
+    const browserHistory = require('react-router').browserHistory;
+    browserHistory.push = redirectSpy;
+    
     const wrapper = shallow(<OrderTableRow {...props} />);
 
     wrapper.find(FlatButton)

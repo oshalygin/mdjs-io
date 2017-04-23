@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { shallow } from 'enzyme';
 
@@ -10,6 +9,7 @@ import sinon from 'sinon';
 
 import Login from './index';
 
+jest.dontMock('react-router');
 import { expect } from 'chai';
 
 describe('<Login />', () => {
@@ -91,9 +91,8 @@ describe('<Login />', () => {
   it('should redirect to the dashboard if the redirect function is called', () => {
 
     const redirectSpy = sinon.spy();
-    Login.__Rewire__('browserHistory', {
-      push: redirectSpy
-    });
+    const browserHistory = require('react-router').browserHistory;
+    browserHistory.push = redirectSpy;
 
     const expected = false;
     const instance = shallow(<Login.WrappedComponent {...props} />)

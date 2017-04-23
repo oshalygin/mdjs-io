@@ -1,10 +1,10 @@
-/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { shallow } from 'enzyme';
 import ItemDetail, { mapStateToProps } from './index';
 import Spinner from '../common/spinner';
 import sinon from 'sinon';
 
+jest.dontMock('react-router');
 import { expect } from 'chai';
 
 describe('<ItemDetail />', () => {
@@ -238,10 +238,10 @@ describe('<ItemDetail />', () => {
   });
 
   it('should navigate back to the "items" page if the back button is clicked', () => {
+   
     const redirectSpy = sinon.spy();
-    ItemDetail.__Rewire__('browserHistory', {
-      push: redirectSpy
-    });
+    const browserHistory = require('react-router').browserHistory;
+    browserHistory.push = redirectSpy;
 
     const expected = true;
     const wrapper = shallow(<ItemDetail.WrappedComponent {...props} />);
@@ -253,7 +253,6 @@ describe('<ItemDetail />', () => {
 
 
     expect(actual).equals(expected);
-    ItemDetail.__ResetDependency__('browserHistory');
   });
 
   it('should set the item state to include the file property onDrop', () => {
@@ -362,10 +361,10 @@ describe('<ItemDetail />', () => {
   });
 
   it('should call "updateItem" with the item that was passed in to onSave', () => {
+    
     const redirectSpy = sinon.spy();
-    ItemDetail.__Rewire__('browserHistory', {
-      push: redirectSpy
-    });
+    const browserHistory = require('react-router').browserHistory;
+    browserHistory.push = redirectSpy;
 
     const createItemSpy = sinon.stub().returns({
       then(foobar) { //eslint-disable-line no-unused-vars
@@ -394,7 +393,6 @@ describe('<ItemDetail />', () => {
     const actual = createItemSpy.calledWith(items[0]);
 
     expect(actual).equals(expected);
-    ItemDetail.__ResetDependency__('browserHistory');
   });
 
   it('should return false if the item name is empty when calling formIsValid', () => {
@@ -570,7 +568,7 @@ describe('<ItemDetail />', () => {
     expect(actual).equals(expected);
   });
 
-  it('should set the error object property price to false if it passes the regex test', () => {
+  it('should set the error object property price to false if it passes the regex test with a number', () => {
 
     const updatedProps = {
       ...props,
@@ -590,7 +588,7 @@ describe('<ItemDetail />', () => {
     expect(actual).equals(expected);
   });
 
-  it('should set the error object property price to false if it passes the regex test', () => {
+  it('should set the error object property price to false if it passes the regex test with a number represented as a string', () => {
 
     const updatedProps = {
       ...props,

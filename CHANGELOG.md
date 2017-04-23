@@ -1,3 +1,11 @@
+## 2.27.0 (April 23, 2017)
+
+- Migrate to Jest
+- Remove Istanbul, Isparta, Mocha and nyc
+- General test file cleanup
+- Addition of `jest` to eslint
+- Removal of rewire
+
 ## 2.26.6 (April 22, 2017)
 
 - Relax naming restriction on modifiers and discounts to allow for percentages.

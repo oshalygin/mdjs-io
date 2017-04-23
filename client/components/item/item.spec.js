@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-/* eslint-disable no-underscore-dangle */
 import { shallow } from 'enzyme';
 import RaisedButton from 'material-ui/RaisedButton';
 import sinon from 'sinon';
@@ -69,9 +68,8 @@ describe('<Item />', () => {
 
   it('should navigate to the "item" route when navigateToNewItemPage is called', () => {
     const redirectSpy = sinon.spy();
-    Item.__Rewire__('browserHistory', {
-      push: redirectSpy
-    });
+    const browserHistory = require('react-router').browserHistory;
+    browserHistory.push = redirectSpy;
 
     const expected = true;
     const wrapper = shallow(<Item.WrappedComponent {...props} />);
@@ -82,7 +80,6 @@ describe('<Item />', () => {
     const actual = redirectSpy.calledWith('item');
 
     expect(actual).equals(expected);
-    Item.__ResetDependency__('browserHistory');
   });
 
   it('should dispatch the deactivate action with the passed in id that matches the items in the list', () => {

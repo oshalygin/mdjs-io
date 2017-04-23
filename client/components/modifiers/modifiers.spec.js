@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import { shallow } from 'enzyme';
 import RaisedButton from 'material-ui/RaisedButton';
 import sinon from 'sinon';
@@ -6,6 +5,7 @@ import sinon from 'sinon';
 import React from 'react';
 import Modifiers from './index';
 
+jest.dontMock('react-router');
 import { expect } from 'chai';
 
 describe('<Modifiers />', () => {
@@ -59,10 +59,10 @@ describe('<Modifiers />', () => {
   });
 
   it('should navigate to the "modifier" route when navigateToNewModifierPage is called', () => {
+    
     const redirectSpy = sinon.spy();
-    Modifiers.__Rewire__('browserHistory', {
-      push: redirectSpy
-    });
+    const browserHistory = require('react-router').browserHistory;
+    browserHistory.push = redirectSpy;
 
     const expected = true;
     const wrapper = shallow(<Modifiers.WrappedComponent {...props} />);
@@ -73,7 +73,6 @@ describe('<Modifiers />', () => {
     const actual = redirectSpy.calledWith('modifier');
 
     expect(actual).equals(expected);
-    Modifiers.__ResetDependency__('browserHistory');
   });
 
   it('should dispatch the deactivate action with the passed in id that matches the modifier in the list', () => {

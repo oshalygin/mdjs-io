@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import { shallow } from 'enzyme';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
@@ -9,6 +8,7 @@ import sinon from 'sinon';
 import React from 'react';
 import TaxTableRow from './TaxTableRow.jsx';
 
+jest.dontMock('react-router');
 import { expect } from 'chai';
 
 describe('<TaxTableRow />', () => {
@@ -37,9 +37,9 @@ describe('<TaxTableRow />', () => {
     const expected = true;
 
     const redirectSpy = sinon.spy();
-    TaxTableRow.__Rewire__('browserHistory', {
-      push: redirectSpy
-    });
+    const browserHistory = require('react-router').browserHistory;
+    browserHistory.push = redirectSpy;
+
     const wrapper = shallow(<TaxTableRow {...props} />);
 
     wrapper.find(FlatButton)
@@ -60,9 +60,8 @@ describe('<TaxTableRow />', () => {
     };
 
     const redirectSpy = sinon.spy();
-    TaxTableRow.__Rewire__('browserHistory', {
-      push: redirectSpy
-    });
+    const browserHistory = require('react-router').browserHistory;
+    browserHistory.push = redirectSpy;
 
     const wrapper = shallow(<TaxTableRow {...updatedProps} />);
 

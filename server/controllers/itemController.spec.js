@@ -1,10 +1,12 @@
 import { expect } from 'chai';
 import moxios from 'moxios';
 import sinon from 'sinon';
-import proxyquire from 'proxyquire';
 
 import { ITEM_ENDPOINT } from '../utilities/endpoints';
 import ItemController from './itemController';
+
+jest.dontMock('fs');
+jest.dontMock('request-promise');
 
 describe('Item Controller', () => {
 
@@ -505,18 +507,14 @@ describe('Item Controller', () => {
       status: statusStub
     };
 
-    const ItemControllerProxy = proxyquire('./itemController.js', {
-      path: {},
-      fs: {
-        unlink() { },
-        createReadStream() { }
-      },
-      'request-promise': {
-        post() {
-          return Promise.resolve(JSON.stringify(items[0]));
-        }
-      }
-    });
+    const fs = require('fs');
+    fs.unlink = () => { };
+    fs.createReadStream = () => { };
+
+    const rp = require('request-promise');
+    rp.post = () => {
+      return Promise.resolve(JSON.stringify(items[0]));
+    };
 
     const request = {
       headers: {
@@ -529,7 +527,7 @@ describe('Item Controller', () => {
       }
     };
 
-    return ItemControllerProxy.put(request, response).then(() => {
+    return ItemController.put(request, response).then(() => {
       const actual = statusStub.calledWith(200);
       expect(actual).equals(expected);
     });
@@ -551,18 +549,14 @@ describe('Item Controller', () => {
 
     const unlinkSpy = sinon.spy();
 
-    const ItemControllerProxy = proxyquire('./itemController.js', {
-      path: {},
-      fs: {
-        unlink: unlinkSpy,
-        createReadStream() { }
-      },
-      'request-promise': {
-        post() {
-          return Promise.resolve(JSON.stringify(items[0]));
-        }
-      }
-    });
+    const fs = require('fs');
+    fs.unlink = unlinkSpy;
+    fs.createReadStream = () => { };
+
+    const rp = require('request-promise');
+    rp.post = () => {
+      return Promise.resolve(JSON.stringify(items[0]));
+    };
 
     const request = {
       headers: {
@@ -575,7 +569,7 @@ describe('Item Controller', () => {
       }
     };
 
-    return ItemControllerProxy.put(request, response).then(() => {
+    return ItemController.put(request, response).then(() => {
       const actual = unlinkSpy.called;
       expect(actual).equals(expected);
     });
@@ -596,20 +590,11 @@ describe('Item Controller', () => {
     };
 
     const unlinkSpy = sinon.spy();
-
-    const ItemControllerProxy = proxyquire('./itemController.js', {
-      path: {},
-      fs: {
-        unlink: unlinkSpy,
-        createReadStream() { }
-      },
-      'request-promise': {
-        post() {
-          return Promise.reject({});
-        }
-      }
-    });
-
+ 
+    const fs = require('fs');
+    fs.unlink = unlinkSpy;
+    fs.createReadStream = () => { };
+    
     const request = {
       headers: {
         authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
@@ -621,7 +606,7 @@ describe('Item Controller', () => {
       }
     };
 
-    return ItemControllerProxy.put(request, response).then(() => {
+    return ItemController.put(request, response).then(() => {
       const actual = unlinkSpy.called;
       expect(actual).equals(expected);
     });
@@ -643,18 +628,15 @@ describe('Item Controller', () => {
 
     const unlinkSpy = sinon.spy();
 
-    const ItemControllerProxy = proxyquire('./itemController.js', {
-      path: {},
-      fs: {
-        unlink: unlinkSpy,
-        createReadStream() { }
-      },
-      'request-promise': {
-        post() {
-          return Promise.reject({});
-        }
-      }
-    });
+
+    const fs = require('fs');
+    fs.unlink = unlinkSpy;
+    fs.createReadStream = () => { };
+
+    const rp = require('request-promise');
+    rp.post = () => {
+      return Promise.reject({});
+    };
 
     const request = {
       headers: {
@@ -666,7 +648,7 @@ describe('Item Controller', () => {
       }
     };
 
-    return ItemControllerProxy.put(request, response).then(() => {
+    return ItemController.put(request, response).then(() => {
       const actual = unlinkSpy.notCalled;
       expect(actual).equals(expected);
     });
@@ -777,18 +759,10 @@ describe('Item Controller', () => {
       status: statusStub
     };
 
-    const ItemControllerProxy = proxyquire('./itemController.js', {
-      path: {},
-      fs: {
-        unlink() { },
-        createReadStream() { }
-      },
-      'request-promise': {
-        post() {
-          return Promise.resolve(JSON.stringify(items[0]));
-        }
-      }
-    });
+    const rp = require('request-promise');
+    rp.post = () => {
+      return Promise.resolve(JSON.stringify(items[0]));
+    };
 
     const request = {
       headers: {
@@ -801,7 +775,7 @@ describe('Item Controller', () => {
       }
     };
 
-    return ItemControllerProxy.post(request, response).then(() => {
+    return ItemController.post(request, response).then(() => {
       const actual = statusStub.calledWith(200);
       expect(actual).equals(expected);
     });
@@ -823,18 +797,15 @@ describe('Item Controller', () => {
 
     const unlinkSpy = sinon.spy();
 
-    const ItemControllerProxy = proxyquire('./itemController.js', {
-      path: {},
-      fs: {
-        unlink: unlinkSpy,
-        createReadStream() { }
-      },
-      'request-promise': {
-        post() {
-          return Promise.resolve(JSON.stringify(items[0]));
-        }
-      }
-    });
+    const fs = require('fs');
+    fs.unlink = unlinkSpy;
+    fs.createReadStream = () => { };
+
+    const rp = require('request-promise');
+    rp.post = () => {
+      return Promise.resolve(JSON.stringify(items[0]));
+    };
+
 
     const request = {
       headers: {
@@ -847,7 +818,7 @@ describe('Item Controller', () => {
       }
     };
 
-    return ItemControllerProxy.post(request, response).then(() => {
+    return ItemController.post(request, response).then(() => {
       const actual = unlinkSpy.called;
       expect(actual).equals(expected);
     });
@@ -869,18 +840,14 @@ describe('Item Controller', () => {
 
     const unlinkSpy = sinon.spy();
 
-    const ItemControllerProxy = proxyquire('./itemController.js', {
-      path: {},
-      fs: {
-        unlink: unlinkSpy,
-        createReadStream() { }
-      },
-      'request-promise': {
-        post() {
-          return Promise.reject({});
-        }
-      }
-    });
+    const fs = require('fs');
+    fs.unlink = unlinkSpy;
+    fs.createReadStream = () => { };
+
+    const rp = require('request-promise');
+    rp.post = () => {
+      return Promise.reject({});
+    };
 
     const request = {
       headers: {
@@ -893,7 +860,7 @@ describe('Item Controller', () => {
       }
     };
 
-    return ItemControllerProxy.post(request, response).then(() => {
+    return ItemController.post(request, response).then(() => {
       const actual = unlinkSpy.called;
       expect(actual).equals(expected);
     });
@@ -915,18 +882,14 @@ describe('Item Controller', () => {
 
     const unlinkSpy = sinon.spy();
 
-    const ItemControllerProxy = proxyquire('./itemController.js', {
-      path: {},
-      fs: {
-        unlink: unlinkSpy,
-        createReadStream() { }
-      },
-      'request-promise': {
-        post() {
-          return Promise.reject({});
-        }
-      }
-    });
+    const fs = require('fs');
+    fs.unlink = unlinkSpy;
+    fs.createReadStream = () => { };
+
+    const rp = require('request-promise');
+    rp.post = () => {
+      return Promise.reject({});
+    };
 
     const request = {
       headers: {
@@ -938,7 +901,7 @@ describe('Item Controller', () => {
       }
     };
 
-    return ItemControllerProxy.post(request, response).then(() => {
+    return ItemController.post(request, response).then(() => {
       const actual = unlinkSpy.notCalled;
       expect(actual).equals(expected);
     });

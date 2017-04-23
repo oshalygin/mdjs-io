@@ -1,10 +1,10 @@
-/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { shallow } from 'enzyme';
 import TaxDetail, { mapStateToProps } from './index';
 import Spinner from '../common/spinner';
 import sinon from 'sinon';
 
+jest.dontMock('react-router');
 import { expect } from 'chai';
 
 describe('<TaxDetail />', () => {
@@ -203,9 +203,8 @@ describe('<TaxDetail />', () => {
   it('should navigate back to the "taxes" page if the back button is clicked', () => {
 
     const redirectSpy = sinon.spy();
-    TaxDetail.__Rewire__('browserHistory', {
-      push: redirectSpy
-    });
+    const browserHistory = require('react-router').browserHistory;
+    browserHistory.push = redirectSpy;
 
     const expected = true;
     const wrapper = shallow(<TaxDetail.WrappedComponent {...props} />);
@@ -217,8 +216,6 @@ describe('<TaxDetail />', () => {
 
 
     expect(actual).equals(expected);
-    TaxDetail.__ResetDependency__('browserHistory');
-
   });
 
   it('should set the new state of the tax based on the form field that was changed', () => {
@@ -321,9 +318,8 @@ describe('<TaxDetail />', () => {
 
   it('should call "updateTax" with the category that was passed in to onSave', () => {
     const redirectSpy = sinon.spy();
-    TaxDetail.__Rewire__('browserHistory', {
-      push: redirectSpy
-    });
+    const browserHistory = require('react-router').browserHistory;
+    browserHistory.push = redirectSpy;
 
     const createTaxSpy = sinon.stub().returns({
       then(foobar) { //eslint-disable-line no-unused-vars
@@ -352,7 +348,6 @@ describe('<TaxDetail />', () => {
     const actual = createTaxSpy.calledWith(taxes[0]);
 
     expect(actual).equals(expected);
-    TaxDetail.__ResetDependency__('browserHistory');
   });
 
   it('should return false if the tax taxName is empty when calling formIsValid', () => {

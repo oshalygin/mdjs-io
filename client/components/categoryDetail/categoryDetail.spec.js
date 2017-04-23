@@ -1,10 +1,10 @@
-/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { shallow } from 'enzyme';
 import CategoryDetail, { mapStateToProps } from './index';
 import Spinner from '../common/spinner';
 import sinon from 'sinon';
 
+jest.dontMock('react-router');
 import { expect } from 'chai';
 
 describe('<CategoryDetail />', () => {
@@ -171,9 +171,8 @@ describe('<CategoryDetail />', () => {
   it('should navigate back to the "categories" page if the back button is clicked', () => {
    
     const redirectSpy = sinon.spy();
-    CategoryDetail.__Rewire__('browserHistory', {
-      push: redirectSpy
-    });
+    const browserHistory = require('react-router').browserHistory;
+    browserHistory.push = redirectSpy;
 
     const expected = true;
     const wrapper = shallow(<CategoryDetail.WrappedComponent {...props} />);
@@ -185,8 +184,6 @@ describe('<CategoryDetail />', () => {
 
 
     expect(actual).equals(expected);
-    CategoryDetail.__ResetDependency__('browserHistory');
-
   });
 
   it('should set the new state of the category based on the form field that was changed', () => {
@@ -220,10 +217,10 @@ describe('<CategoryDetail />', () => {
   });
 
   it('should call "updateCategory" with the category that was passed in to onSave', () => {
+    
     const redirectSpy = sinon.spy();
-    CategoryDetail.__Rewire__('browserHistory', {
-      push: redirectSpy
-    });
+    const browserHistory = require('react-router').browserHistory;
+    browserHistory.push = redirectSpy;
 
     const createCategorySpy = sinon.stub().returns({
       then(foobar) { //eslint-disable-line no-unused-vars
@@ -252,7 +249,6 @@ describe('<CategoryDetail />', () => {
     const actual = createCategorySpy.calledWith(categories[0]);
 
     expect(actual).equals(expected);
-    CategoryDetail.__ResetDependency__('browserHistory');
   });
 
   it('should return false if the category categoryName is empty when calling formIsValid', () => {

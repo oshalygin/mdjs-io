@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import { shallow } from 'enzyme';
 import RaisedButton from 'material-ui/RaisedButton';
 import sinon from 'sinon';
@@ -6,6 +5,7 @@ import sinon from 'sinon';
 import React from 'react';
 import Taxes from './index';
 
+jest.dontMock('react-router');
 import { expect } from 'chai';
 
 describe('<Taxes />', () => {
@@ -59,10 +59,10 @@ describe('<Taxes />', () => {
   });
 
   it('should navigate to the "tax" route when navigateToNewTaxPage is called', () => {
+
     const redirectSpy = sinon.spy();
-    Taxes.__Rewire__('browserHistory', {
-      push: redirectSpy
-    });
+    const browserHistory = require('react-router').browserHistory;
+    browserHistory.push = redirectSpy;
 
     const expected = true;
     const wrapper = shallow(<Taxes.WrappedComponent {...props} />);
@@ -73,7 +73,6 @@ describe('<Taxes />', () => {
     const actual = redirectSpy.calledWith('tax');
 
     expect(actual).equals(expected);
-    Taxes.__ResetDependency__('browserHistory');
   });
 
   it('should dispatch the deactivate action with the passed in id that matches the tax in the list', () => {

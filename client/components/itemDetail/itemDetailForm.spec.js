@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import { shallow } from 'enzyme';
 import TextField from '../common/TextField.jsx';
 import SelectList from '../common/SelectList.jsx';

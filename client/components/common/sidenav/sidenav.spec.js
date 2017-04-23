@@ -1,12 +1,13 @@
-/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import sinon from 'sinon';
 
 import { shallow } from 'enzyme';
-import { expect } from 'chai';
 
 import SideNav from './index';
 import SideBarUser from './SideBarUser.jsx';
+
+jest.dontMock('react-router');
+import { expect } from 'chai';
 
 describe('<SideNav />', () => {
 
@@ -39,9 +40,8 @@ describe('<SideNav />', () => {
     };
 
     const redirectSpy = sinon.spy();
-    SideNav.__Rewire__('browserHistory', {
-      push: redirectSpy
-    });
+    const browserHistory = require('react-router').browserHistory;
+    browserHistory.push = redirectSpy;
 
     const expected = true;
     const instance = shallow(<SideNav.WrappedComponent {...updatedProps} />)
@@ -65,9 +65,8 @@ describe('<SideNav />', () => {
     };
 
     const redirectSpy = sinon.spy();
-    SideNav.__Rewire__('browserHistory', {
-      push: redirectSpy
-    });
+    const browserHistory = require('react-router').browserHistory;
+    browserHistory.push = redirectSpy;
 
     const expected = true;
     const instance = shallow(<SideNav.WrappedComponent {...updatedProps} />)

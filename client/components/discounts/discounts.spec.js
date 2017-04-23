@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import { shallow } from 'enzyme';
 import RaisedButton from 'material-ui/RaisedButton';
 import sinon from 'sinon';
@@ -6,6 +5,7 @@ import sinon from 'sinon';
 import React from 'react';
 import Discounts from './index';
 
+jest.dontMock('react-router');
 import { expect } from 'chai';
 
 describe('<Discounts />', () => {
@@ -61,10 +61,10 @@ describe('<Discounts />', () => {
   });
 
   it('should navigate to the "discount" route when navigateToNewDiscountPage is called', () => {
+    
     const redirectSpy = sinon.spy();
-    Discounts.__Rewire__('browserHistory', {
-      push: redirectSpy
-    });
+    const browserHistory = require('react-router').browserHistory;
+    browserHistory.push = redirectSpy;
 
     const expected = true;
     const wrapper = shallow(<Discounts.WrappedComponent {...props} />);
@@ -75,7 +75,6 @@ describe('<Discounts />', () => {
     const actual = redirectSpy.calledWith('discount');
 
     expect(actual).equals(expected);
-    Discounts.__ResetDependency__('browserHistory');
   });
 
   it('should dispatch the deactivate action with the passed in id that matches the discount in the list', () => {

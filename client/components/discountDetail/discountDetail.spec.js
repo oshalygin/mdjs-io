@@ -1,10 +1,10 @@
-/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { shallow } from 'enzyme';
 import DiscountDetail, { mapStateToProps } from './index';
 import Spinner from '../common/spinner';
 import sinon from 'sinon';
 
+jest.dontMock('react-router');
 import { expect } from 'chai';
 
 describe('<DiscountDetail />', () => {
@@ -212,9 +212,8 @@ describe('<DiscountDetail />', () => {
   it('should navigate back to the "discounts" page if the back button is clicked', () => {
 
     const redirectSpy = sinon.spy();
-    DiscountDetail.__Rewire__('browserHistory', {
-      push: redirectSpy
-    });
+    const browserHistory = require('react-router').browserHistory;
+    browserHistory.push = redirectSpy;
 
     const expected = true;
     const wrapper = shallow(<DiscountDetail.WrappedComponent {...props} />);
@@ -225,8 +224,6 @@ describe('<DiscountDetail />', () => {
     const actual = redirectSpy.calledWith('discounts');
 
     expect(actual).equals(expected);
-    DiscountDetail.__ResetDependency__('browserHistory');
-
   });
 
   it('should set the new state of the discount based on the form field that was changed', () => {
@@ -328,10 +325,10 @@ describe('<DiscountDetail />', () => {
   });
 
   it('should call "updateDiscount" with the category that was passed in to onSave', () => {
+    
     const redirectSpy = sinon.spy();
-    DiscountDetail.__Rewire__('browserHistory', {
-      push: redirectSpy
-    });
+    const browserHistory = require('react-router').browserHistory;
+    browserHistory.push = redirectSpy;
 
     const updateDiscountSpy = sinon.stub().returns({
       then(foobar) { //eslint-disable-line no-unused-vars
@@ -360,7 +357,6 @@ describe('<DiscountDetail />', () => {
     const actual = updateDiscountSpy.calledWith(discounts[0]);
 
     expect(actual).equals(expected);
-    DiscountDetail.__ResetDependency__('browserHistory');
   });
 
   it('should return false if the discount discountName is empty when calling formIsValid', () => {

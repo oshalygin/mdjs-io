@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import { shallow } from 'enzyme';
 import { TableHeaderColumn, TableHeader } from 'material-ui/Table';
 import OrderTableRow from './OrderTableRow.jsx';
