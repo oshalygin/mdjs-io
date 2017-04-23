@@ -86,7 +86,6 @@ describe('<Orders />', () => {
       totalTip: 0.0
     }];
 
-
   const props = {
     orders,
     query: '',

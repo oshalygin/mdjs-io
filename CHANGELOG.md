@@ -1,3 +1,7 @@
+## 2.26.5 (April 22, 2017)
+
+- Add OrderAction tests and clean up redundant `LOADING` action dispatches
+
 ## 2.26.4 (April 20, 2017)
 
 - Update tests for the RegEx changes.

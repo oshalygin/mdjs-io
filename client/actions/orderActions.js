@@ -17,12 +17,6 @@ export function loadingOrders() {
   };
 }
 
-export function loadingOrdersSuccess() {
-  return {
-    type: actionTypes.LOADING_ORDERS_SUCCESS
-  };
-}
-
 export function loadingOrdersFailure() {
   return {
     type: actionTypes.LOADING_ORDERS_FAILURE
@@ -44,7 +38,6 @@ export function getAllOrders() {
       const orders = ordersResponse.data;
 
       dispatch(loadOrdersSuccess(orders));
-      dispatch(loadingOrdersSuccess());
 
     } catch (error) {
       dispatch(loadingOrdersFailure());
