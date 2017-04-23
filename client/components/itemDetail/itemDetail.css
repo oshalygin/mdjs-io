@@ -1,3 +1,5 @@
+@import '../../styles/fonts.css';
+@import '../../styles/colors.css';
 .controls-wrapper {
   margin: 0 auto;
 }
@@ -32,4 +34,57 @@
 
 .additional-items-container {
   margin-top: 1em;
+}
+
+.item-value-text {
+  font-size: 16px;
+  font-weight: 600;
+  padding-right: 0.5rem;
+}
+
+.modifier-controls {
+  margin: 0 auto;
+  width: 50%;
+}
+
+.control-group {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 100%;
+}
+
+.control-label {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 35%;
+  font-size: var(--font-md);
+  color: var(--dark);
+}
+
+.control-input {
+  box-sizing: border-box;
+  display: inline-block;
+  padding-left: 1em;
+  width: 20%;
+}
+
+.extended-control-label {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 25%;
+  font-size: var(--font-md);
+  color: var(--dark);
+}
+
+.extended-control-input {
+  box-sizing: border-box;
+  display: inline-block;
+  padding-left: 1em;
+  width: 40%;
+}
+
+.extended-select-input {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 65%;
 }

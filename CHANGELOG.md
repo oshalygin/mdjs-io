@@ -1,3 +1,7 @@
+## 2.27.3 (April 23, 2017)
+
+- Update Item Detail UI/UX.
+
 ## 2.27.2 (April 23, 2017)
 
 - Fix discount type to properly display percentage and the dollar amount based on the user input.

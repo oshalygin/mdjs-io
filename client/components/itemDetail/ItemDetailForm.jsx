@@ -43,50 +43,66 @@ const ItemDetailForm = ({ item, categories, modifiers, errors, onChange, onDrop 
   return (
     <div className="ibox-content">
       <div className="row">
-        <div className="col-md-offset-1 col-sm-4">
-          <TextField
-            fullWidth
-            name="name"
-            value={item.name}
-            floatingLabelText="Name"
-            onChange={onChange}
-            errorText={errors.name}
-          />
-          <TextField
-            fullWidth
-            name="label"
-            value={item.label}
-            floatingLabelText="Label"
-            onChange={onChange}
-            errorText={errors.label}
-          />
-          <TextField
-            fullWidth
-            name="price"
-            value={item.price}
-            floatingLabelText="Price"
-            onChange={onChange}
-            errorText={errors.price}
-          />
-          <SelectList
-            onChange={onChange}
-            fullWidth
-            floatingLabelText="Price Type"
-
-            value={itemPriceType}>
-
-            {itemPriceTypes.map(itemPrice => {
-              return (
-                <MenuItem
-                  value={itemPrice}
-                  primaryText={itemPrice.label}
-                  key={itemPrice.value} />
-              );
-            })}
-          </SelectList>
-
+        <div className="col-sm-offset-1 col-sm-6">
+          <div className={styles['control-group']}>
+            <div className={styles['extended-control-label']}>
+              Name
+            </div>
+            <div className={styles['extended-control-input']}>
+              <TextField
+                fullWidth
+                name="name"
+                value={item.name}
+                onChange={onChange}
+                errorText={errors.name} />
+            </div>
+          </div>
+          <div className={styles['control-group']}>
+            <div className={styles['extended-control-label']}>
+              Label
+            </div>
+            <div className={styles['extended-control-input']}>
+              <TextField
+                fullWidth
+                name="label"
+                value={item.label}
+                onChange={onChange}
+                errorText={errors.label} />
+            </div>
+          </div>
+          <div className={styles['control-group']}>
+            <div className={styles['extended-control-label']}>
+              Price ($)
+            </div>
+            <div className={styles['extended-control-input']}>
+              <TextField
+                fullWidth
+                name="price"
+                value={item.price}
+                onChange={onChange}
+                errorText={errors.price} />
+            </div>
+          </div>
+          <div className={styles['control-group']}>
+            <div className={styles['extended-select-input']}>
+              <SelectList
+                onChange={onChange}
+                fullWidth
+                floatingLabelText="Price Type"
+                value={itemPriceType}>
+                {itemPriceTypes.map(itemPrice => {
+                  return (
+                    <MenuItem
+                      value={itemPrice}
+                      primaryText={itemPrice.label}
+                      key={itemPrice.value} />
+                  );
+                })}
+              </SelectList>
+            </div>
+          </div>
         </div>
-        <div className="col-md-offset-4 col-md-3">
+        <div className="col-md-offset-2 col-md-3">
           <ItemImage
             onDrop={onDrop}
             itemPreview={item.photoURL} />
