@@ -1,3 +1,7 @@
+## 2.27.1 (April 23, 2017)
+
+- Fix item name to properly display on Discounts and Taxes MultiSelect.
+
 ## 2.27.0 (April 23, 2017)
 
 - Migrate to Jest

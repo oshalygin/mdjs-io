@@ -18,7 +18,7 @@ const TaxDetailForm = ({ tax, items, errors, onChange }) => {
     return {
       name: 'items',
       value: item.itemID,
-      label: item.label
+      label: item.name
     };
   });
 
@@ -91,7 +91,7 @@ const TaxDetailForm = ({ tax, items, errors, onChange }) => {
                           checked={tax.items
                             && tax.items.includes(item.value)}
                           value={item.value}
-                          primaryText={item.name}
+                          primaryText={item.label}
                         />
                       );
                     })}

@@ -24,7 +24,7 @@ const DiscountDetailForm = ({ discount, items, errors, onChange }) => {
     return {
       name: 'items',
       value: item.itemID,
-      label: item.label
+      label: item.name
     };
   });
 
@@ -117,7 +117,7 @@ const DiscountDetailForm = ({ discount, items, errors, onChange }) => {
                           checked={discount.items
                             && discount.items.includes(item.value)}
                           value={item.value}
-                          primaryText={item.name}
+                          primaryText={item.label}
                         />
                       );
                     })}
