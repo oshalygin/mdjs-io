@@ -1,5 +1,6 @@
+/* eslint-disable react/jsx-no-bind */
 import React, { PropTypes } from 'react';
-import { Link, browserHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -24,7 +25,12 @@ class SideBarNavigation extends React.Component {
     super();
 
     this.state = {};
+    this.navigateToPortal = this.navigateToPortal.bind(this);
     this.logout = this.logout.bind(this);
+  }
+
+  navigateToPortal(portal) {
+    browserHistory.push(`/${portal}`);
   }
 
   logout() {
@@ -51,44 +57,44 @@ class SideBarNavigation extends React.Component {
             </div>
             </li>
             <li className={path.dashboard}>
-              <Link to="dashboard">
+              <a onClick={() => this.navigateToPortal('dashboard')}>
                 <i className="fa fa-th-large" /> <span className="nav-label">Dashboard</span>
-              </Link>
+              </a>
             </li>
             <li className={path.items}>
-              <Link to="items">
+              <a onClick={() => this.navigateToPortal('items')}>
                 <i className="fa fa-tasks" /> <span className="nav-label">Items</span>
-              </Link>
+              </a>
             </li>
             <li className={path.itemCategories}>
-              <Link to="categories">
+              <a onClick={() => this.navigateToPortal('categories')}>
                 <i className="fa fa-folder-open-o" /> <span className="nav-label">Item Categories</span>
-              </Link>
+              </a>
             </li>
             <li className={path.modifiers}>
-              <Link to="modifiers">
+              <a onClick={() => this.navigateToPortal('modifiers')}>
                 <i className="fa fa-pencil-square-o" /> <span className="nav-label">Modifiers</span>
-              </Link>
+              </a>
             </li>
             <li className={path.taxes}>
-              <Link to="taxes">
+              <a onClick={() => this.navigateToPortal('taxes')}>
                 <i className="fa fa-percent" /> <span className="nav-label">Taxes</span>
-              </Link>
+              </a>
             </li>
             <li className={path.discounts}>
-              <Link to="discounts">
+              <a onClick={() => this.navigateToPortal('discounts')}>
                 <i className="fa fa-download" /> <span className="nav-label">Discounts</span>
-              </Link>
+              </a>
             </li>
             <li className={path.orders}>
-              <Link to="orders">
+              <a onClick={() => this.navigateToPortal('orders')}>
                 <i className="fa fa-shopping-cart" /> <span className="nav-label">Orders</span>
-              </Link>
+              </a>
             </li>
             <li className={path.users}>
-              <Link to="users">
+              <a onClick={() => this.navigateToPortal('users')}>
                 <i className="fa fa-users" /> <span className="nav-label">Users</span>
-              </Link>
+              </a>
             </li>
           </ul>
         </div>

@@ -1,3 +1,8 @@
+## 2.27.5 (April 23, 2017)
+
+- Update routes in the left nav to properly display the route path to the user.
+- Update default item value to be empty.
+
 ## 2.27.4 (April 23, 2017)
 
 - Update Item Detail Image container location.

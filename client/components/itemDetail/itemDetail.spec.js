@@ -20,7 +20,7 @@ describe('<ItemDetail />', () => {
       itemID: 0,
       name: '',
       label: '',
-      price: 0,
+      price: '',
       color: 0,
       photoURL: '',
       file: null,

@@ -125,7 +125,7 @@ class ItemDetailPage extends React.Component {
     }
     return !!item.name && !!item.price;
   }
-
+  
   render() {
     const { itemHeading, loading, categories, modifiers } = this.props;
     
@@ -213,7 +213,7 @@ export function mapStateToProps(state, ownProps) {
     itemID: 0,
     name: '',
     label: '',
-    price: 0,
+    price: '',
     color: 0,
     photoURL: '',
     file: null,
