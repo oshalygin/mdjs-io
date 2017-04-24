@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 import React, { PropTypes } from 'react';
 import CSSModules from 'react-css-modules';
 
@@ -15,12 +16,13 @@ export function getImageStyle(imageId) {
   };
 }
 
-const ItemImage = ({ imageId, label }) => {
+const ItemImage = ({ itemId, imageId, label, onClick }) => {
   const labelImage = (<div className={styles['image-label']}>{label}</div>);
   const imageStyle = getImageStyle(imageId);
 
   return (
-    <div className={styles['image-container']}>
+    <div className={styles['image-container']}
+      onClick={() => onClick(itemId)}>
       <div className={styles['item-image']} style={imageStyle}>
         {!imageId && labelImage}
       </div>
@@ -29,8 +31,10 @@ const ItemImage = ({ imageId, label }) => {
 };
 
 ItemImage.propTypes = {
+  itemId: PropTypes.number.isRequired,
   imageId: PropTypes.string,
-  label: PropTypes.string.isRequired
+  label: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired
 };
 
 export default CSSModules(ItemImage, styles);

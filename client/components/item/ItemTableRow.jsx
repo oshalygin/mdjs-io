@@ -31,12 +31,17 @@ class ItemTableRow extends React.Component {
   }
 
   render() {
-    const { item, deactivate, ...otherProps } = this.props; // eslint-disable-line
+    const { item, deactivate } = this.props;
     const parsedLastUpdatedDate = moment(item.lastUpdatedDate).format('MMM DD, YYYY - hh:mm A');
 
     return (
       <TableRow>
-        <TableRowColumn style={{ paddingLeft: '1.25em' }}><ItemImage imageId={item.photoURL} label={item.label} /></TableRowColumn>
+        <TableRowColumn style={{ paddingLeft: '1.25em' }}><ItemImage
+          itemId={item.itemID}
+          imageId={item.photoURL}
+          label={item.label}
+          onClick={this.navigateToEditLink} />
+        </TableRowColumn>
         <TableRowColumn className={this.disabledText(item.disabled)}>{item.name}</TableRowColumn>
         <TableRowColumn className={this.disabledText(item.disabled)}>$ {item.price}</TableRowColumn>
         <TableRowColumn className={this.disabledText(item.disabled)}>{parsedLastUpdatedDate}</TableRowColumn>

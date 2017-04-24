@@ -1,9 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { expect } from 'chai';
 
 import { IMAGE_ENDPOINT } from '../../utilities/endpoints.js';
 import ItemImage, { getImageStyle } from './ItemImage.jsx';
+
+import sinon from 'sinon';
+import { expect } from 'chai';
 
 describe('<ItemImage />', () => {
 
@@ -69,6 +71,24 @@ describe('<ItemImage />', () => {
     const wrapper = shallow(<ItemImage {...props} />);
     const actual = wrapper.find('.image-label').length;
 
+    expect(actual).equals(expected);
+  });
+
+  it('should properly call the onClick callback when the image container is clicked', () => {
+
+    const onClickSpy = sinon.spy();    
+    const props = {
+      imageId: '',
+      label: 'apples',
+      onClick: onClickSpy
+    };
+
+    const expected = true;
+
+    const wrapper = shallow(<ItemImage {...props} />);
+    wrapper.find('.image-container').simulate('click');
+
+    const actual = onClickSpy.called;
     expect(actual).equals(expected);
   });
 

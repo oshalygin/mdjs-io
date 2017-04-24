@@ -1,3 +1,8 @@
+## 2.27.6 (April 23, 2017)
+
+- Add item image flag that will be properly set to true if the user uploaded an image.
+- Clicking on an icon image will now navigate to the detail page.
+
 ## 2.27.5 (April 23, 2017)
 
 - Update routes in the left nav to properly display the route path to the user.

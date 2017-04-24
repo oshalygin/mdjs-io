@@ -68,6 +68,8 @@ class ItemDetailPage extends React.Component {
       this.displayNotification('Form validation errors');
       return;
     }
+    
+    item.isShowPhoto = !!item.photoURL;
 
     if (item.itemID) {
       itemActions.updateItem(item)
@@ -110,6 +112,7 @@ class ItemDetailPage extends React.Component {
 
     item.file = files[0];
     item.photoURL = files[0].preview;
+
     this.setState({ item });
   }
 
@@ -125,7 +128,7 @@ class ItemDetailPage extends React.Component {
     }
     return !!item.name && !!item.price;
   }
-  
+
   render() {
     const { itemHeading, loading, categories, modifiers } = this.props;
     

@@ -84,6 +84,7 @@ export function createItem(item) {
 
     try {
       const itemToPersist = { ...item };
+      
       delete itemToPersist.photoURL;
       delete itemToPersist.file;
 
