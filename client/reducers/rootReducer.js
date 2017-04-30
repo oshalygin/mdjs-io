@@ -6,6 +6,7 @@ import modifiers from './modifierReducer';
 import discounts from './discountReducer';
 import taxes from './taxReducer';
 import orders from './orderReducer';
+import orderDetail from './orderDetailReducer';
 import refundReasons from './refundReasonReducer';
 import loading from './loadingReducer';
 import version from './versionReducer';
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   discounts,
   taxes,
   orders,
+  orderDetail,
   refundReasons,
   loading,
   version

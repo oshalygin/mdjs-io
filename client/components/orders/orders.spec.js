@@ -1,7 +1,8 @@
 import { shallow } from 'enzyme';
 
 import React from 'react';
-import Orders from './index';
+import Orders, { mapStateToProps } from './index';
+import Spinner from '../common/spinner/';
 
 import { expect } from 'chai';
 
@@ -159,6 +160,96 @@ describe('<Orders />', () => {
       .filter;
 
     expect(actual).equals(expected);
+  });
+
+  it('should map loading to false for every order object', () => {
+
+    const expected = true;
+    const state = {
+      orders,
+      orderDetail: {},
+      loading: {
+        loadingOrders: false
+      }
+    };
+
+    const mappedOrders = mapStateToProps(state)
+      .orders;
+
+    const actual = mappedOrders.every(order => !order.loading);
+    expect(actual).equals(expected);
+
+  });
+
+  it('should set the notification property to false if closeNotification is called', () => {
+
+    const expected = false;
+
+    const instance = shallow(<Orders.WrappedComponent {...props} />)
+      .instance();
+
+    instance.closeNotification();
+    const actual = instance.state.notification;
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should set the notification property to true if displayNotification is called', () => {
+
+    const expected = true;
+
+    const instance = shallow(<Orders.WrappedComponent {...props} />)
+      .instance();
+
+    instance.displayNotification();
+    const actual = instance.state.notification;
+    instance.closeNotification();
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should set the notification message to the value that the message was called with', () => {
+
+    const message = 'something went wrong';
+    const expected = message;
+
+    const instance = shallow(<Orders.WrappedComponent {...props} />)
+      .instance();
+
+    instance.displayNotification(message);
+    const actual = instance.state.notificationMessage;
+    instance.closeNotification();
+
+    expect(actual).equals(expected);
+    
+  });
+
+  it('should NOT display the spinner if the loading prop is false', () => {
+
+    const expected = 0;
+    const updatedProps = { ...props, loading: false };
+
+    const wrapper = shallow(<Orders.WrappedComponent {...updatedProps} />);
+
+    const actual = wrapper.find(Spinner).length;
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should display the spinner if the loading prop is true', () => {
+
+    const expected = 1;
+    const updatedProps = { ...props, loading: true };
+
+    const wrapper = shallow(<Orders.WrappedComponent {...updatedProps} />);
+
+    const actual = wrapper.find(Spinner).length;
+
+    expect(actual).equals(expected);
+
   });
 
 });

@@ -1,13 +1,12 @@
 import { shallow } from 'enzyme';
-import { TableHeaderColumn, TableHeader } from 'material-ui/Table';
-import OrderTableRow from './OrderTableRow.jsx';
 
 import React from 'react';
-import OrderTable from './OrderTable.jsx';
+import OrderList from './OrderList.jsx';
+import OrderListCard from './OrderListCard.jsx';
 
 import { expect } from 'chai';
 
-describe('<OrderTable />', () => {
+describe('<OrderList />', () => {
 
   const props = {
     orders: [
@@ -92,34 +91,78 @@ describe('<OrderTable />', () => {
     children: []
   };
 
-  it('should contain (7) Headers that identify the order', () => {
+  it('should contain a column with the "Date" heading', () => {
 
-    const expected = 7;
+    const expected = 'Date';
 
-    const wrapper = shallow(<OrderTable {...props} />);
-    const actual = wrapper.find(TableHeaderColumn).length;
-
-    expect(actual).equals(expected);
-
-  });
-
-  it('should set the displaySelectAll to false on the table to not render the checkboxes', () => {
-
-    const expected = false;
-
-    const wrapper = shallow(<OrderTable {...props} />);
-    const actual = wrapper.find(TableHeader).props().displaySelectAll;
+    const wrapper = shallow(<OrderList {...props} />);
+    const actual = wrapper.find('.first-section').text();
 
     expect(actual).equals(expected);
 
   });
 
-  it('should render an equivalent number of rows to the number of orders in props', () => {
+  it('should contain a column with the "Status" heading', () => {
+
+    const expected = 'Status';
+
+    const wrapper = shallow(<OrderList {...props} />);
+    const actual = wrapper.find('.second-section').text();
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should contain a column with the "Total" heading', () => {
+
+    const expected = 'Total';
+
+    const wrapper = shallow(<OrderList {...props} />);
+    const actual = wrapper.find('.third-section').text();
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should contain a column with the "Tax Amount" heading', () => {
+
+    const expected = 'Tax Amount';
+
+    const wrapper = shallow(<OrderList {...props} />);
+    const actual = wrapper.find('.fourth-section').text();
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should contain a column with the "Customer Email" heading', () => {
+
+    const expected = 'Customer Email';
+
+    const wrapper = shallow(<OrderList {...props} />);
+    const actual = wrapper.find('.fifth-section').text();
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should contain a column with the "Customer Phone" heading', () => {
+
+    const expected = 'Customer Phone';
+
+    const wrapper = shallow(<OrderList {...props} />);
+    const actual = wrapper.find('.sixth-section').text();
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should list the number of <OrderListCard /> that match the total number of orders', () => {
 
     const expected = props.orders.length;
 
-    const wrapper = shallow(<OrderTable {...props} />);
-    const actual = wrapper.find(OrderTableRow).length;
+    const wrapper = shallow(<OrderList {...props} />);
+    const actual = wrapper.find(OrderListCard).length;
 
     expect(actual).equals(expected);
 

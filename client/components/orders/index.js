@@ -7,7 +7,8 @@ import * as actionCreators from '../../actions/orderActions';
 
 import TextField from '../common/TextField.jsx';
 import Spinner from '../common/spinner/';
-import OrderTable from './OrderTable.jsx';
+import Snackbar from '../common/snackbar';
+import OrderList from './OrderList.jsx';
 
 import styles from './orders.css';
 
@@ -19,15 +20,48 @@ export class Orders extends React.Component {
 
     this.state = {
       orders: props.orders,
-      filter: ''
+      filter: '',
+      notification: false,
+      notificationMessage: ''
     };
 
     this.searchOnChange = this.searchOnChange.bind(this);
+    this.onExpandChange = this.onExpandChange.bind(this);
+    this.closeNotification = this.closeNotification.bind(this);
+    this.displayNotification = this.displayNotification.bind(this);
   }
 
   componentWillMount() {
     const { orderActions } = this.props;
     orderActions.getAllOrders();
+  }
+
+
+  closeNotification() {
+    this.setState({ notification: false });
+  }
+
+  displayNotification(message) {
+    this.setState({
+      notification: true,
+      notificationMessage: message
+    });
+  }
+
+  onExpandChange(orderId) {
+    const { orderActions, orderDetail } = this.props;
+
+    if (orderId === orderDetail.orderID) {
+      return orderActions.hideOrderDetail()
+        .catch((error) => {
+          this.displayNotification(error);
+        });
+    }
+
+    return orderActions.getOrderDetails(orderId)
+      .catch((error) => {
+        this.displayNotification(error.response.data);
+      });
   }
 
   searchOnChange(event) {
@@ -49,7 +83,7 @@ export class Orders extends React.Component {
   }
 
   render() {
-    const { orders, loading } = this.props;
+    const { orders, orderDetail, loading } = this.props;
 
     const component = loading ?
       (
@@ -78,10 +112,19 @@ export class Orders extends React.Component {
                       floatingLabelText="Filter Status" />
                   </div>
                 </div>
-                <OrderTable orders={orders} />
+                <OrderList
+                  onExpandChange={this.onExpandChange}
+                  orderDetail={orderDetail}
+                  orders={orders} />
               </div>
             </div>
           </div>
+          <Snackbar
+            open={this.state.notification}
+            action="OK"
+            message={this.state.notificationMessage}
+            onActionTouchTap={this.closeNotification}
+            onRequestClose={this.closeNotification} />
         </div>
       );
 
@@ -91,14 +134,23 @@ export class Orders extends React.Component {
 
 Orders.propTypes = {
   orders: PropTypes.array,
+  orderDetail: PropTypes.object,
   loading: PropTypes.bool.isRequired,
   orderActions: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state) {
-  
+export function mapStateToProps(state) {
+
+  const orders = state.orders.map(order => {
+    return {
+      ...order,
+      loading: false
+    };
+  });
+
   return {
-    orders: state.orders,
+    orders,
+    orderDetail: state.orderDetail,
     loading: state.loading.loadingOrders
   };
 }

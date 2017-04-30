@@ -12,7 +12,7 @@ yarn-error.log
 coverage
 
 # Editor specific components
-.vscode/chrome
+.vscode/
 .idea/
 
 .nyc_output

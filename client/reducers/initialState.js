@@ -30,6 +30,7 @@ export default {
   items: [],
   taxes: [],
   orders: [],
+  orderDetail: {},
   refundReasons: [],
   version: ''
 };

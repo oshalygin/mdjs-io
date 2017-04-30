@@ -1,3 +1,9 @@
+## 2.27.7 (April 29, 2017)
+
+- Clicking on an order in the list view will pull down the orderDetails.
+- Wire up of the reducer and actions.
+- Cascade orderDetail down to individual card component.
+
 ## 2.27.6 (April 23, 2017)
 
 - Add item image flag that will be properly set to true if the user uploaded an image.
@@ -46,7 +52,7 @@
 
 ## 2.26.3 (April 20, 2017)
 
-- Update all detail pages that refrence an item to display the name instead of the label.
+- Update all detail pages that reference an item to display the name instead of the label.
 
 ## 2.26.2 (April 20, 2017)
 
@@ -87,7 +93,7 @@
 ## 2.23.0 (April 15, 2017)
 
 - Update Discount Detail Page
-  - Implemention around discount actions in relation to creation, updates and deactivation.
+  - Implementation around discount actions in relation to creation, updates and deactivation.
 
 ## 2.22.3 (April 15, 2017)
 
@@ -116,7 +122,7 @@
 ## 2.19.0 (April 12, 2017)
 
 - Update Modifier Detail Page
-  - Implemention around modifier actions in relation to creation, updates and deactivation.
+  - Implementation around modifier actions in relation to creation, updates and deactivation.
   - UI modified to contain a separate label from the TextField.
 
 ## 2.18.1 (April 10, 2017)
@@ -292,7 +298,7 @@
 ## 2.4.0 (March 20, 2017)
 
 - Add AccountController routes and refactor login component
-  - Currently all of the calls from the front end React application are making outbound calls over unsecure channels(HTTP), to rectify this, the calls should be going strictly to the middletier(Express layer). This is a first in a step of refactor sessions to migrate the calls appropriately.
+  - Currently all of the calls from the front end React application are making outbound calls over insecure channels(HTTP), to rectify this, the calls should be going strictly to the middletier(Express layer). This is a first in a step of refactor sessions to migrate the calls appropriately.
   - Login component refactored to utilize async/await
 
 ## 2.3.1 (March 19, 2017)
@@ -328,7 +334,7 @@
 
 ## 2.0.0 (March 13, 2017)
 
-- Orchetrate a rolling deployment on all of the services, deployments and secrets in the application on success master branch builds.
+- Orchestrate a rolling deployment on all of the services, deployments and secrets in the application on success master branch builds.
 
 ## 1.9.4 (March 13, 2017)
 
@@ -445,7 +451,7 @@
 ## 1.3.3 (March 04, 2017)
 
 - Remove jQuery slimscroll.  Unused in the application.
-- Cleanup and removal of unncessary functionality in inspinia.
+- Cleanup and removal of unnecessary functionality in inspinia.
 
 ## 1.3.2 (March 01, 2017)
 
