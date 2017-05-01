@@ -2,8 +2,8 @@
 import React, { PropTypes } from 'react';
 import CSSModules from 'react-css-modules';
 
-import { IMAGE_ENDPOINT } from '../../utilities/endpoints';
-import styles from './item.css';
+import { IMAGE_ENDPOINT } from '../../../utilities/endpoints';
+import styles from './itemImage.css';
 
 export function getImageStyle(imageId) {
 
@@ -34,7 +34,7 @@ ItemImage.propTypes = {
   itemId: PropTypes.number.isRequired,
   imageId: PropTypes.string,
   label: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func
 };
 
 export default CSSModules(ItemImage, styles);

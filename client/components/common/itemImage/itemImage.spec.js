@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import { IMAGE_ENDPOINT } from '../../utilities/endpoints.js';
-import ItemImage, { getImageStyle } from './ItemImage.jsx';
+import { IMAGE_ENDPOINT } from '../../../utilities/endpoints';
+import ItemImage, { getImageStyle } from './index.js';
 
 import sinon from 'sinon';
 import { expect } from 'chai';
@@ -76,7 +76,7 @@ describe('<ItemImage />', () => {
 
   it('should properly call the onClick callback when the image container is clicked', () => {
 
-    const onClickSpy = sinon.spy();    
+    const onClickSpy = sinon.spy();
     const props = {
       imageId: '',
       label: 'apples',

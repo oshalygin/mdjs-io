@@ -7,7 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { browserHistory } from 'react-router';
 import moment from 'moment';
 
-import ItemImage from './ItemImage.jsx';
+import ItemImage from '../common/itemImage';
 
 import styles from './item.css';
 

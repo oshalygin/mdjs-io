@@ -1,5 +1,4 @@
 @import "../../styles/colors.css";
-
 .newItemButton {
   margin-bottom: 1.2em;
 }
@@ -10,34 +9,4 @@
 
 .inline-button:not(:last-child) {
   margin-right: 1em;
-}
-
-.image-container {
-  cursor: pointer;
-}
-
-.image-label {
-  display: inline;
-  color: var(--white);
-  font-size: 1rem;
-  font-weight: lighter;
-  margin: 0 auto;
-}
-
-.item-image {
-  border: 1px solid black;
-  white-space: normal;
-  padding: 0.5em;
-  display: flex;
-  align-items: center;
-  word-break: break-all;
-  hyphens: auto;
-  border-radius: 5px;
-  object-fit: contain;
-  height: 4em;
-  width: 4em;
-  background-color: var(--darkGray);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
 }

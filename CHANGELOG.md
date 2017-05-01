@@ -1,3 +1,9 @@
+## 2.27.8 (April 30, 2017)
+
+- Migrate ItemImage to common components.
+- Update ItemImage to display as a circle in list views with no border
+- Update consumers of ItemImage to reference the proper filepath.
+
 ## 2.27.7 (April 29, 2017)
 
 - Clicking on an order in the list view will pull down the orderDetails.

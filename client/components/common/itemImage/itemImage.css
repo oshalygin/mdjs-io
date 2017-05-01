@@ -1,0 +1,31 @@
+@import "../../../styles/colors.css";
+
+.image-container {
+  cursor: pointer;
+}
+
+.image-label {
+  display: inline;
+  color: var(--white);
+  font-size: 0.9rem;
+  font-weight: lighter;
+  margin: 0 auto;
+}
+
+.item-image {
+  border: 1px solid var(--white);
+  white-space: normal;
+  padding: 0.5em;
+  display: flex;
+  align-items: center;
+  word-break: break-all;
+  hyphens: auto;
+  border-radius: 50%;
+  object-fit: contain;
+  height: 3.5em;
+  width: 3.5em;
+  background-color: var(--darkGray);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
