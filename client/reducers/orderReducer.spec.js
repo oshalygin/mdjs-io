@@ -1,7 +1,5 @@
 import { expect } from 'chai';
-import {
-  LOAD_ORDERS_SUCCESS
-} from '../actions/actionTypes';
+import * as actionTypes from '../actions/actionTypes';
 import reducer from './orderReducer';
 
 
@@ -105,12 +103,82 @@ describe('Reducer - Orders', () => {
   it('should hydrate the state with all of the orders in the action', () => {
 
     const action = {
-      type: LOAD_ORDERS_SUCCESS,
+      type: actionTypes.LOAD_ORDERS_SUCCESS,
       orders
     };
 
-    const expected = orders;
+    const expected = orders.map(order => {
+      return {
+        ...order,
+        expanded: false
+      };
+    });
     const actual = reducer(undefined, action); //eslint-disable-line no-undefined
+
+    expect(actual).deep.equals(expected);
+
+  });
+
+  it('should set the expanded flag to true on the order that has the same orderID as the detail', () => {
+
+    const selectedOrder = orders[0];
+    const action = {
+      type: actionTypes.LOADING_ORDER_DETAIL,
+      orderID: 954
+    };
+
+    const state = orders.map(order => {
+      return {
+        ...order,
+        expanded: false
+      };
+    });
+
+    const expected = true;
+    const actual = reducer(state, action).find(order => order.orderID === selectedOrder.orderID)
+      .expanded;
+    
+    expect(actual).deep.equals(expected);
+
+  });
+
+  it('should set the expanded flag to false if the orderID does not match the orders', () => {
+
+    const action = {
+      type: actionTypes.HIDE_ORDER_DETAIL,
+      orderID: 70
+    };
+
+    const state = orders.map(order => {
+      return {
+        ...order,
+        expanded: false
+      };
+    });
+
+    const expected = true;
+    const actual = reducer(state, action).every(order => !order.expanded);
+
+    expect(actual).deep.equals(expected);
+
+  });
+
+  it('should leave the order untouched with the expanded flag to true if the orderID does match the order', () => {
+
+    const action = {
+      type: actionTypes.HIDE_ORDER_DETAIL,
+      orderID: 70
+    };
+
+    const state = orders.map(order => {
+      return {
+        ...order,
+        expanded: true
+      };
+    });
+
+    const expected = true;
+    const actual = reducer(state, action)[0].expanded;
 
     expect(actual).deep.equals(expected);
 

@@ -11,12 +11,6 @@ export default function orderReducer(state = initialState.orderDetail, action) {
         orderStatusDescription: getOrderStatusDescription(action.order.orderStatusID)
       };
     }
-    case actionTypes.HIDE_ORDER_DETAIL: {
-      return {
-        ...state,
-        orderID: -1
-      };
-    }
     default: {
       return state;
     }

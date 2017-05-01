@@ -23,12 +23,12 @@ describe('<OrderListRow />', () => {
     children: []
   };
 
-  it('should list the status description within the second section', () => {
+  it('should list the status description within the sixth section', () => {
 
     const expected = 'Fulfilled';
 
     const wrapper = shallow(<OrderListRow {...props} />);
-    const actual = wrapper.find('.second-section').text();
+    const actual = wrapper.find('.sixth-section').text();
 
     expect(actual).equals(expected);
 
@@ -39,7 +39,7 @@ describe('<OrderListRow />', () => {
     const expected = '$ 9.87';
 
     const wrapper = shallow(<OrderListRow {...props} />);
-    const actual = wrapper.find('.third-section').text();
+    const actual = wrapper.find('.fifth-section').text();
 
     expect(actual).equals(expected);
 

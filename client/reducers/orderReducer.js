@@ -9,8 +9,32 @@ export default function orderReducer(state = initialState.orders, action) {
       return action.orders.map(order => {
         return {
           ...order,
-          orderStatusDescription: getOrderStatusDescription(order.orderStatusID)
+          orderStatusDescription: getOrderStatusDescription(order.orderStatusID),
+          expanded: false
         };
+      });
+    }
+    case actionTypes.LOADING_ORDER_DETAIL: {
+      return state.map(order => {
+
+        return {
+          ...order,
+          expanded: order.orderID === action.orderID
+        };
+
+      });
+    }
+    case actionTypes.HIDE_ORDER_DETAIL: {
+      return state.map(order => {
+        if (order.orderID !== action.orderID) {
+          return order;
+        }
+
+        return {
+          ...order,
+          expanded: false
+        };
+
       });
     }
     default: {

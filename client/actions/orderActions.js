@@ -18,9 +18,10 @@ export function loadOrderDetailSuccess(order) {
   };
 }
 
-export function hideOrderDetailSuccess() {
+export function hideOrderDetailSuccess(orderID) {
   return {
-    type: actionTypes.HIDE_ORDER_DETAIL
+    type: actionTypes.HIDE_ORDER_DETAIL,
+    orderID
   };
 }
 
@@ -30,9 +31,10 @@ export function loadingOrders() {
   };
 }
 
-export function loadingOrderDetail() {
+export function loadingOrderDetail(orderID) {
   return {
-    type: actionTypes.LOADING_ORDER_DETAIL
+    type: actionTypes.LOADING_ORDER_DETAIL,
+    orderID
   };
 }
 
@@ -74,7 +76,7 @@ export function getAllOrders() {
 export function getOrderDetails(orderId) {
   return async function (dispatch) {
 
-    dispatch(loadingOrderDetail());
+    dispatch(loadingOrderDetail(orderId));
 
     try {
 
@@ -94,11 +96,11 @@ export function getOrderDetails(orderId) {
   };
 }
 
-export function hideOrderDetail() {
+export function hideOrderDetail(orderID) {
   return async function (dispatch) {
 
     try {
-      dispatch(hideOrderDetailSuccess());
+      dispatch(hideOrderDetailSuccess(orderID));
     } catch (error) {
       throw (error);
     }

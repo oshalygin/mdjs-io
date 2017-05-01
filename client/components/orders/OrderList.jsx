@@ -4,17 +4,17 @@ import OrderListCard from './OrderListCard.jsx';
 
 import styles from './orders.css';
 
-const OrderTable = ({ orders, orderDetail, onExpandChange }) => {
+const OrderList = ({ orders, onExpandChange }) => {
 
   return (
     <div className="table-responsive">
       <div className={styles['headers-container']}>
-        <div className={styles['first-section']}>Date</div>
-        <div className={styles['second-section']}>Status</div>
-        <div className={styles['third-section']}>Total</div>
-        <div className={styles['fourth-section']}>Tax Amount</div>
-        <div className={styles['fifth-section']}>Customer Email</div>
-        <div className={styles['sixth-section']}>Customer Phone</div>
+        <div className={styles['first-section']}>OrderID</div>
+        <div className={styles['second-section']}>Date</div>
+        <div className={styles['third-section']}>Discounts</div>
+        <div className={styles['fourth-section']}>Taxes</div>
+        <div className={styles['fifth-section']}>Total</div>
+        <div className={styles['sixth-section']}>Status</div>
       </div>
 
       <div>
@@ -24,7 +24,6 @@ const OrderTable = ({ orders, orderDetail, onExpandChange }) => {
               <OrderListCard
                 key={order.orderID}
                 onExpandChange={onExpandChange}
-                orderDetail={orderDetail}
                 order={order} />);
           })}
       </div>
@@ -32,10 +31,9 @@ const OrderTable = ({ orders, orderDetail, onExpandChange }) => {
   );
 };
 
-OrderTable.propTypes = {
+OrderList.propTypes = {
   orders: PropTypes.array.isRequired,
-  orderDetail: PropTypes.object.isRequired,
   onExpandChange: PropTypes.func.isRequired
 };
 
-export default OrderTable;
+export default OrderList;

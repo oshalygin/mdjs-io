@@ -91,9 +91,9 @@ describe('<OrderList />', () => {
     children: []
   };
 
-  it('should contain a column with the "Date" heading', () => {
+  it('should contain a column with the "OrderID" heading', () => {
 
-    const expected = 'Date';
+    const expected = 'OrderID';
 
     const wrapper = shallow(<OrderList {...props} />);
     const actual = wrapper.find('.first-section').text();
@@ -102,12 +102,34 @@ describe('<OrderList />', () => {
 
   });
 
-  it('should contain a column with the "Status" heading', () => {
+  it('should contain a column with the "Date" heading', () => {
 
-    const expected = 'Status';
+    const expected = 'Date';
 
     const wrapper = shallow(<OrderList {...props} />);
     const actual = wrapper.find('.second-section').text();
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should contain a column with the "Discounts" heading', () => {
+
+    const expected = 'Discounts';
+
+    const wrapper = shallow(<OrderList {...props} />);
+    const actual = wrapper.find('.third-section').text();
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should contain a column with the "Taxes" heading', () => {
+
+    const expected = 'Taxes';
+
+    const wrapper = shallow(<OrderList {...props} />);
+    const actual = wrapper.find('.fourth-section').text();
 
     expect(actual).equals(expected);
 
@@ -118,37 +140,15 @@ describe('<OrderList />', () => {
     const expected = 'Total';
 
     const wrapper = shallow(<OrderList {...props} />);
-    const actual = wrapper.find('.third-section').text();
-
-    expect(actual).equals(expected);
-
-  });
-
-  it('should contain a column with the "Tax Amount" heading', () => {
-
-    const expected = 'Tax Amount';
-
-    const wrapper = shallow(<OrderList {...props} />);
-    const actual = wrapper.find('.fourth-section').text();
-
-    expect(actual).equals(expected);
-
-  });
-
-  it('should contain a column with the "Customer Email" heading', () => {
-
-    const expected = 'Customer Email';
-
-    const wrapper = shallow(<OrderList {...props} />);
     const actual = wrapper.find('.fifth-section').text();
 
     expect(actual).equals(expected);
 
   });
 
-  it('should contain a column with the "Customer Phone" heading', () => {
+  it('should contain a column with the "Status" heading', () => {
 
-    const expected = 'Customer Phone';
+    const expected = 'Status';
 
     const wrapper = shallow(<OrderList {...props} />);
     const actual = wrapper.find('.sixth-section').text();

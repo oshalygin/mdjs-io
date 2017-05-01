@@ -157,26 +157,4 @@ describe('Reducer - OrderDetail', () => {
 
   });
 
-  it('should set the orderDetailID to -1 on a HIDE_ORDER_DETAIL dispatch', () => {
-
-    const detailViewAction = {
-      type: actionTypes.LOAD_ORDER_DETAIL_SUCCESS,
-      order
-    };
-
-    const hideOrderAction = {
-      type: actionTypes.HIDE_ORDER_DETAIL
-    };
-
-    const expected = {
-      ...order,
-      orderID: -1
-    };
-    const state = reducer(undefined, detailViewAction); //eslint-disable-line no-undefined
-    const actual = reducer(state, hideOrderAction);
-
-    expect(actual).deep.equals(expected);
-
-  });
-
 });

@@ -1,34 +1,14 @@
 import { shallow } from 'enzyme';
-import {
-  Card,
-  CardHeader,
-  CardText
-} from 'material-ui/Card';
-
-import sinon from 'sinon';
 
 import React from 'react';
-import OrderListCard from './OrderListCard.jsx';
+import OrderDetail from './index.js';
+import Spinner from '../../common/spinner';
 
 import { expect } from 'chai';
 
-describe('<OrderListCard />', () => {
+describe('<OrderDetail />', () => {
 
   const props = {
-    order: {
-      orderID: 1,
-      total: 9.87,
-      createdDate: '2017-04-14T15:54:42',
-      orderStatusID: 40,
-      orderStatusDescription: 'Fulfilled',
-      transactionTypeID: 1,
-      totalDiscount: 0.0,
-      totalSub: 8.98,
-      totalTax: 0.89,
-      totalTip: 0.0,
-      expanded: true
-    },
-    onExpandChange() { },
     orderDetail: {
       companyID: 1,
       orderID: 1,
@@ -89,10 +69,10 @@ describe('<OrderListCard />', () => {
       orderStatusID: 110,
       orderTypeID: 0,
       phoneNumber: '',
-      total: 0,
+      total: 75,
       totalDiscount: 0,
-      totalSub: 0,
-      totalTax: 0,
+      totalSub: 30,
+      totalTax: 40,
       totalTip: 0,
       transactions: [
         {
@@ -149,89 +129,115 @@ describe('<OrderListCard />', () => {
           createdBy: 1
         }
       ]
-    }
+    },
+    loading: false
   };
 
-  it('should contain a root <Card /> component', () => {
+  it('should contain a <Spinner /> component if the loading prop is true', () => {
 
     const expected = 1;
-
-    const wrapper = shallow(<OrderListCard {...props} />);
-    const actual = wrapper.find(Card).length;
-
-    expect(actual).equals(expected);
-
-  });
-
-  it('should contain a <CardHeader /> component', () => {
-
-    const expected = 1;
-
-    const wrapper = shallow(<OrderListCard {...props} />);
-    const actual = wrapper.find(CardHeader).length;
-
-    expect(actual).equals(expected);
-
-  });
-
-  it('should contain a <CardText /> component', () => {
-
-    const expected = 1;
-
-    const wrapper = shallow(<OrderListCard {...props} />);
-    const actual = wrapper.find(CardText).length;
-
-    expect(actual).equals(expected);
-
-  });
-
-  it('should call the onExpandedChange callback with the orderID', () => {
-
-    const expected = true;
-    const onExpandchangeSpy = sinon.spy();
-
     const updatedProps = {
       ...props,
-      onExpandChange: onExpandchangeSpy
+      loading: true
     };
 
-    const wrapper = shallow(<OrderListCard {...updatedProps} />);
-    wrapper.find(Card)
-      .props()
-      .onExpandChange();
-
-    const actual = onExpandchangeSpy
-      .calledWith(props.order.orderID);
+    const wrapper = shallow(<OrderDetail.WrappedComponent {...updatedProps} />);
+    const actual = wrapper.find(Spinner).length;
 
     expect(actual).equals(expected);
 
   });
 
-  it('should set the expanded prop to true if the order expanded flag is true', () => {
+  it('should contain the orderID on the page', () => {
 
-    const expected = true;
+    const expected = `${props.orderDetail.orderID}`;
 
-    const wrapper = shallow(<OrderListCard {...props} />);
-    const actual = wrapper.find(Card).props().expanded;
+    const wrapper = shallow(<OrderDetail.WrappedComponent {...props} />);
+    const actual = wrapper.find('.order-number').text();
 
     expect(actual).equals(expected);
 
   });
 
-  it('should set the expanded prop to false if the order expanded flag is false', () => {
+  it('should persist the status based on the orderStatusID', () => {
 
-    const expected = false;
+    const expected = 'Refunded';
+
+    const wrapper = shallow(<OrderDetail.WrappedComponent {...props} />);
+    const actual = wrapper.find('.status-value').text();
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should persist the status color as red if its "Refunded"', () => {
+
+    const expected = '#F44336';
+
+    const wrapper = shallow(<OrderDetail.WrappedComponent {...props} />);
+    const actual = wrapper.find('.status-value').props().style.color;
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should persist the status color as green if its "Fulfilled"', () => {
+
+    const expected = '#5CB85C';
 
     const updatedProps = {
       ...props,
-      order: {
-        ...props.order,
-        expanded: false
+      orderDetail: {
+        ...props.orderDetail,
+        orderStatusID: 10
       }
     };
 
-    const wrapper = shallow(<OrderListCard {...updatedProps} />);
-    const actual = wrapper.find(Card).props().expanded;
+    const wrapper = shallow(<OrderDetail.WrappedComponent {...updatedProps} />);
+    const actual = wrapper.find('.status-value').props().style.color;
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should list the customer name as "No name provided" if the customerName flag is empty', () => {
+
+    const expected = 'No name provided';
+
+    const wrapper = shallow(<OrderDetail.WrappedComponent {...props} />);
+    const actual = wrapper.find('.customer-name').text();
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should list the customer name as is if the customerName exists', () => {
+
+    const expected = 'Oleg';
+
+    const updatedProps = {
+      ...props,
+      orderDetail: {
+        ...props.orderDetail,
+        customerName: 'Oleg'
+      }
+    };
+
+    const wrapper = shallow(<OrderDetail.WrappedComponent {...updatedProps} />);
+    const actual = wrapper.find('.customer-name').text();
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should display the total amount on the page', () => {
+
+    const expected = '$ 75.00';
+
+    const wrapper = shallow(<OrderDetail.WrappedComponent {...props} />);
+    const actual = wrapper.find('.order-summary-value')
+      .last()
+      .text();
 
     expect(actual).equals(expected);
 

@@ -1,3 +1,8 @@
+## 2.28.0 (May 01, 2017)
+
+- Add Order Detail as an expandable subsection in the order list view.
+- Refactor the styling and display of the order history page.
+
 ## 2.27.9 (May 01, 2017)
 
 - Add item color display functionality via a color utility mapper.

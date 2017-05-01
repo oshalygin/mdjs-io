@@ -1,0 +1,239 @@
+@import "../../../styles/colors.css";
+.spinner-container {
+  display: flex;
+  height: 10em;
+  border-top: 1px solid #E7EAEC;
+}
+
+.spinner {
+  margin: auto;
+}
+
+.order-detail-container {
+  box-sizing: border-box;
+  border-top: 1px solid #E7EAEC;
+  padding: 1rem;
+}
+
+.order-detail-background-container {
+  box-sizing: border-box;
+  position: relative;
+  height: 100rem;
+  width: 100%;
+  background-image: linear-gradient(to top, var(--typhoon) 80%, var(--darkBlue) 20%);
+}
+
+.order-detail-inner-container {
+  box-sizing: border-box;
+  position: absolute;
+  top: 9rem;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 90%;
+  padding: 4rem 2rem 2rem 2rem;
+  background-color: var(--white);
+  border: 1px solid var(--typhoon);
+}
+
+.order-number-label {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 50%;
+  color: var(--deepGray);
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.order-date-label {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 50%;
+  color: var(--deepGray);
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.order-number {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 50%;
+  color: var(--blue);
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.order-date {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 50%;
+  color: var(--deepGray);
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.customer-label {
+  padding-top: 5rem;
+  box-sizing: border-box;
+  display: inline-block;
+  width: 50%;
+  color: var(--deepGray);
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.customer-name {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 50%;
+  color: var(--deepGray);
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.status-label {
+  padding-top: 5rem;
+  box-sizing: border-box;
+  display: inline-block;
+  width: 50%;
+  color: var(--deepGray);
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.status-value {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 50%;
+  color: var(--deepGray);
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 16px;
+}
+
+.item-container {
+  padding-top: 5rem;
+  box-sizing: border-box;
+}
+
+.item-heading {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 14%;
+  color: var(--deepGray);
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.item-price-heading {
+  box-sizing: border-box;
+  display: inline-block;
+  text-align: right;
+  width: 16%;
+  color: var(--deepGray);
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 16px;
+  padding-right: 10rem;
+}
+
+.item-list-row-container {
+  box-sizing: border-box;
+  padding-top: 2rem;
+}
+
+.item-list-row-image {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 14%;
+  line-height: 16px;
+}
+
+.item-list-row-name {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 14%;
+  color: var(--deepGray);
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.item-list-row-discount-container {
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+  width: 14%;
+  height: 1em;
+  color: var(--error);
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.item-list-row-tax-container {
+  box-sizing: border-box;
+  display: inline-block;
+  position: relative;
+  width: 14%;
+  height: 1em;
+  color: var(--deepGray);
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.item-price {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 16%;
+  color: var(--deepGray);
+  font-size: 12px;
+  line-height: 16px;
+  padding-right: 10rem;
+  text-align: right;
+}
+
+.order-summary-pre {
+  box-sizing: border-box;
+  display: inline-block;
+  margin-top: 15rem;
+  width: 50%;
+}
+
+.order-summary-container {
+  box-sizing: border-box;
+  display: inline-block;
+  width: 50%;
+  color: var(--deepGray);
+  font-size: 12px;
+  line-height: 16px;
+  padding-right: 10rem;
+  text-align: right;
+}
+
+.order-summary-label {
+  box-sizing: border-box;
+  display: inline-block;
+  color: var(--deepGray);
+  font-weight: bold;
+  line-height: 24px;
+  width: 70%;
+}
+
+.order-summary-value {
+  box-sizing: border-box;
+  display: inline-block;
+  line-height: 24px;
+  width: 30%;
+}
+
+.order-summary-discount-value {
+  box-sizing: border-box;
+  display: inline-block;
+  color: var(--error);
+  line-height: 20px;
+  width: 30%;
+}

@@ -49,10 +49,11 @@ export class Orders extends React.Component {
   }
 
   onExpandChange(orderId) {
-    const { orderActions, orderDetail } = this.props;
-
-    if (orderId === orderDetail.orderID) {
-      return orderActions.hideOrderDetail()
+    const { orderActions, orders } = this.props;
+    const selectedOrder = orders.find(order => order.orderID === orderId);
+    
+    if (selectedOrder.expanded) {
+      return orderActions.hideOrderDetail(orderId)
         .catch((error) => {
           this.displayNotification(error);
         });
@@ -83,7 +84,7 @@ export class Orders extends React.Component {
   }
 
   render() {
-    const { orders, orderDetail, loading } = this.props;
+    const { orders, loading } = this.props;
 
     const component = loading ?
       (
@@ -114,7 +115,6 @@ export class Orders extends React.Component {
                 </div>
                 <OrderList
                   onExpandChange={this.onExpandChange}
-                  orderDetail={orderDetail}
                   orders={orders} />
               </div>
             </div>
@@ -134,23 +134,14 @@ export class Orders extends React.Component {
 
 Orders.propTypes = {
   orders: PropTypes.array,
-  orderDetail: PropTypes.object,
   loading: PropTypes.bool.isRequired,
   orderActions: PropTypes.object.isRequired
 };
 
 export function mapStateToProps(state) {
 
-  const orders = state.orders.map(order => {
-    return {
-      ...order,
-      loading: false
-    };
-  });
-
   return {
-    orders,
-    orderDetail: state.orderDetail,
+    orders: state.orders,
     loading: state.loading.loadingOrders
   };
 }
