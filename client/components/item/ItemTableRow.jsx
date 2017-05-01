@@ -36,11 +36,13 @@ class ItemTableRow extends React.Component {
 
     return (
       <TableRow>
-        <TableRowColumn style={{ paddingLeft: '1.25em' }}><ItemImage
-          itemId={item.itemID}
-          imageId={item.photoURL}
-          label={item.label}
-          onClick={this.navigateToEditLink} />
+        <TableRowColumn style={{ paddingLeft: '1.25em' }}>
+          <ItemImage
+            itemId={item.itemID}
+            imageId={item.photoURL}
+            label={item.label}
+            color={item.color}
+            onClick={this.navigateToEditLink} />
         </TableRowColumn>
         <TableRowColumn className={this.disabledText(item.disabled)}>{item.name}</TableRowColumn>
         <TableRowColumn className={this.disabledText(item.disabled)}>$ {item.price}</TableRowColumn>

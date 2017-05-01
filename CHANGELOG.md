@@ -1,3 +1,9 @@
+## 2.27.9 (May 01, 2017)
+
+- Add item color display functionality via a color utility mapper.
+- Update `<ItemImage />` to accept a `color` prop and set it accordingly based on a an enum map.
+- Add date-fns to the project.
+
 ## 2.27.8 (April 30, 2017)
 
 - Migrate ItemImage to common components.
