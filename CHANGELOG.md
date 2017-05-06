@@ -1,3 +1,7 @@
+## 2.29.0 (May 06, 2017)
+
+- Add startDate and endDate queryString params to the `/orders` API endpoint.
+
 ## 2.28.0 (May 01, 2017)
 
 - Add Order Detail as an expandable subsection in the order list view.
