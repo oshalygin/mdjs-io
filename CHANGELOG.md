@@ -1,3 +1,8 @@
+## 2.29.1 (May 06, 2017)
+
+- Addition of a date and time utility that produces the underlying base for chart results.
+- Add `recharts` to the project.
+
 ## 2.29.0 (May 06, 2017)
 
 - Add startDate and endDate queryString params to the `/orders` API endpoint.

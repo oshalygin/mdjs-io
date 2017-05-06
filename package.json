@@ -1,6 +1,6 @@
 {
   "name": "mdjs",
-  "version": "2.29.0",
+  "version": "2.29.1",
   "description": "Merchant Dashboard built with React and Redux",
   "scripts": {
     "prestart": "babel-node utilities/startingDisplayMessage.js",
@@ -61,6 +61,7 @@
     "react-router": "3.0.2",
     "react-router-redux": "4.0.8",
     "react-tap-event-plugin": "2.0.1",
+    "recharts": "0.22.4",
     "redux": "3.6.0",
     "redux-devtools-extension": "2.13.0",
     "redux-thunk": "2.2.0",
