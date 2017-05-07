@@ -1,3 +1,8 @@
+## 2.29.2 (May 06, 2017)
+
+- Add initial sales summary chart which will house the sales data.
+- Add additional colors to the root `colors.css` file.
+
 ## 2.29.1 (May 06, 2017)
 
 - Addition of a date and time utility that produces the underlying base for chart results.
