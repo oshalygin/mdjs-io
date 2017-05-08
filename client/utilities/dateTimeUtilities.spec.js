@@ -1,5 +1,5 @@
 import dateFns from 'date-fns';
-import { getLastNumberOfMonthsArray } from './dateTimeUtilities';
+import { getLastNumberOfMonthsArray, getDateFromRequestUrl } from './dateTimeUtilities';
 
 import { expect } from 'chai';
 
@@ -61,6 +61,16 @@ describe('http endpoints', () => {
     const months = 7;
     const expected = new Date().getMonth();
     const actual = getLastNumberOfMonthsArray(months)[1].monthDisplayValue;
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should extract the date out of the requestUrl', () => {
+
+    const requestUrl = 'http://localhost:8080/api/v1/orders?startDate=12-1-2016&endDate=1-1-2017';
+    const expected = '12-1-2016';
+    const actual = getDateFromRequestUrl(requestUrl);
 
     expect(actual).equals(expected);
 

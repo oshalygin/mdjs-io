@@ -1,20 +1,13 @@
 /* eslint-disable max-nested-callbacks */
-import { getAllOrders, getOrderDetails, hideOrderDetail } from './orderActions';
-import {
-  LOAD_ORDERS_SUCCESS,
-  LOADING_ORDERS,
-  LOADING_ORDERS_FAILURE,
-  LOADING_ORDER_DETAIL,
-  LOAD_ORDER_DETAIL_SUCCESS,
-  LOADING_ORDER_DETAIL_FAILURE,
-  HIDE_ORDER_DETAIL
-} from './actionTypes';
-import {
-  ORDERS_ENDPOINT
-} from '../utilities/endpoints';
+import { getAllOrders, getOrderDetails, hideOrderDetail, getMonthlySummary } from './orderActions';
+import * as actionTypes from './actionTypes';
+import { ORDERS_ENDPOINT } from '../utilities/endpoints';
+import { getLastNumberOfMonthsArray } from '../utilities/dateTimeUtilities';
+
 import moxios from 'moxios';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
+
 import { expect } from 'chai';
 
 describe('Order Actions', () => {
@@ -235,9 +228,11 @@ describe('Order Actions', () => {
       totalTip: 0.0
     }];
 
+  const months = getLastNumberOfMonthsArray(2);
+
   it('should dispatch the "LOADING_ORDERS" action on a getAllOrders() call', () => {
 
-    const expected = LOADING_ORDERS;
+    const expected = actionTypes.LOADING_ORDERS;
     moxios.stubRequest(ORDERS_ENDPOINT, {
       status: 200,
       response: orders
@@ -254,7 +249,7 @@ describe('Order Actions', () => {
 
   it('should dispatch the "LOADING_ORDER_DETAIL" action on a getOrderDetails(orderId) call', () => {
 
-    const expected = LOADING_ORDER_DETAIL;
+    const expected = actionTypes.LOADING_ORDER_DETAIL;
 
     const orderId = 1;
     const orderDetailEndpoint = `${ORDERS_ENDPOINT}/${orderId}`;
@@ -274,7 +269,7 @@ describe('Order Actions', () => {
 
   it('should dispatch the "LOAD_ORDER_DETAIL_SUCCESS" action on a getOrderDetails(orderId) call', () => {
 
-    const expected = LOAD_ORDER_DETAIL_SUCCESS;
+    const expected = actionTypes.LOAD_ORDER_DETAIL_SUCCESS;
 
     const orderId = 1;
     const orderDetailEndpoint = `${ORDERS_ENDPOINT}/${orderId}`;
@@ -293,7 +288,7 @@ describe('Order Actions', () => {
 
   it('should dispatch the "LOADING_ORDER_DETAIL_FAILURE" action on a getOrderDetails(orderId) call', () => {
 
-    const expected = LOADING_ORDER_DETAIL_FAILURE;
+    const expected = actionTypes.LOADING_ORDER_DETAIL_FAILURE;
 
     const orderId = 1;
     const orderDetailEndpoint = `${ORDERS_ENDPOINT}/${orderId}`;
@@ -312,7 +307,7 @@ describe('Order Actions', () => {
 
   it('should dispatch the "LOAD_ORDERS_SUCCESS" action on a completed getAllOrders() call', () => {
 
-    const expected = LOAD_ORDERS_SUCCESS;
+    const expected = actionTypes.LOAD_ORDERS_SUCCESS;
     moxios.stubRequest(ORDERS_ENDPOINT, {
       status: 200,
       response: orders
@@ -329,7 +324,7 @@ describe('Order Actions', () => {
 
   it('should dispatch the "LOADING_ORDERS_FAILURE" action on a failed getAllOrders() call', () => {
 
-    const expected = LOADING_ORDERS_FAILURE;
+    const expected = actionTypes.LOADING_ORDERS_FAILURE;
 
     moxios.stubRequest(ORDERS_ENDPOINT, {
       status: 500,
@@ -347,7 +342,7 @@ describe('Order Actions', () => {
 
   it('should dispatch the "HIDE_ORDER_DETAIL" action on a call to hideOrderDetail', () => {
 
-    const expected = HIDE_ORDER_DETAIL;
+    const expected = actionTypes.HIDE_ORDER_DETAIL;
 
     return store.dispatch(hideOrderDetail())
       .then(() => {
@@ -356,6 +351,87 @@ describe('Order Actions', () => {
         expect(actual).equals(expected);
       });
 
+  });
+
+  it('should dispatch the "LOADING_MONTHLY_SUMMARY" action on a completed getMonthlySummary(months) call', () => {
+
+    const expected = actionTypes.LOADING_MONTHLY_SUMMARY;
+
+    months.forEach(month => {
+      const startDate = `${month.monthDisplayValue}-1-${month.year}`;
+      const endDate = month.monthValue < 11 ?
+        `${month.monthDisplayValue + 1}-1-${month.year}` :
+        `1-1-${month.year + 1}`;
+
+      const endpoint = `${ORDERS_ENDPOINT}?startDate=${startDate}&endDate=${endDate}`;
+
+      moxios.stubRequest(endpoint, {
+        status: 200,
+        response: orders
+      });
+    });
+
+    const dateTimeUtilities = require('../utilities/dateTimeUtilities');
+    dateTimeUtilities.getDateFromRequestUrl = () => '2-1-17';
+
+    return store.dispatch(getMonthlySummary(months))
+      .then(() => {
+        const actual = store.getActions()[0].type;
+        expect(actual).equals(expected);
+      });
+  });
+
+  it('should dispatch the "LOAD_MONTHLY_SUMMARY_SUCCESS" action on a completed getMonthlySummary(months) call', () => {
+
+    const expected = actionTypes.LOAD_MONTHLY_SUMMARY_SUCCESS;
+
+    months.forEach(month => {
+      const startDate = `${month.monthDisplayValue}-1-${month.year}`;
+      const endDate = month.monthValue < 11 ?
+        `${month.monthDisplayValue + 1}-1-${month.year}` :
+        `1-1-${month.year + 1}`;
+
+      const endpoint = `${ORDERS_ENDPOINT}?startDate=${startDate}&endDate=${endDate}`;
+
+      moxios.stubRequest(endpoint, {
+        status: 200,
+        response: orders
+      });
+    });
+
+    const dateTimeUtilities = require('../utilities/dateTimeUtilities');
+    dateTimeUtilities.getDateFromRequestUrl = () => '2-1-17';
+
+    return store.dispatch(getMonthlySummary(months))
+      .then(() => {
+        const actual = store.getActions()[1].type;
+        expect(actual).equals(expected);
+      });
+  });
+
+  it('should dispatch the "LOADING_MONTHLY_SUMMARY_FAILURE" action on a failed getMonthlySummary(months) call', () => {
+
+    const expected = actionTypes.LOADING_MONTHLY_SUMMARY_FAILURE;
+
+    months.forEach(month => {
+      const startDate = `${month.monthDisplayValue}-1-${month.year}`;
+      const endDate = month.monthValue < 11 ?
+        `${month.monthDisplayValue + 1}-1-${month.year}` :
+        `1-1-${month.year + 1}`;
+
+      const endpoint = `${ORDERS_ENDPOINT}?startDate=${startDate}&endDate=${endDate}`;
+
+      moxios.stubRequest(endpoint, {
+        status: 500,
+        response: null
+      });
+    });
+
+    return store.dispatch(getMonthlySummary(months))
+      .catch(() => {
+        const actual = store.getActions()[1].type;
+        expect(actual).equals(expected);
+      });
   });
 
 });

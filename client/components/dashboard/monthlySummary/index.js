@@ -7,6 +7,7 @@ import * as actionCreators from '../../../actions/orderActions';
 import { getLastNumberOfMonthsArray } from '../../../utilities/dateTimeUtilities';
 
 import MonthlyChart from './MonthlyChart.jsx';
+import Spinner from '../../common/spinner';
 
 import styles from './monthlySummary.css';
 
@@ -20,11 +21,21 @@ class MonthlySummary extends React.Component {
   }
 
   componentWillMount() {
-    const months = getLastNumberOfMonthsArray(defaultNumberOfMonths); //eslint-disable-line no-unused-vars
+    const { orderActions } = this.props;
+    const months = getLastNumberOfMonthsArray(defaultNumberOfMonths);
+    orderActions.getMonthlySummary(months);
   }
 
   render() {
-    const { data } = this.props;
+    const { data, loading } = this.props;
+
+    const monthlyChart = loading ?
+      (<div className={styles['chart-spinner-container']}>
+        <Spinner />
+      </div>
+      ) :
+      (<MonthlyChart data={data} />);
+
     return (
       <div className={styles['sales-volume-container']}>
         <div className={styles['summary-container-heading']}>
@@ -47,47 +58,47 @@ class MonthlySummary extends React.Component {
         </div>
         <div className={styles['sales-summary-chart-container']}>
           <div className={styles['sales-summary-chart']}>
-            <MonthlyChart data={data} />
+            {monthlyChart}
           </div>
           <div className={styles['sales-summary-chart-legend']}>
             Line graphs
           </div>
         </div>
       </div>
-
     );
   }
 }
 
 MonthlySummary.propTypes = {
-  data: PropTypes.array.isRequired,
+  data: PropTypes.array,
+  loading: PropTypes.bool.isRequired,
   orderActions: PropTypes.object.isRequired
 };
 
-function mapStateToProps() {
-  const months = getLastNumberOfMonthsArray(defaultNumberOfMonths); //eslint-disable-line no-unused-vars
+export function mapStateToProps(state) {
 
-  const data = months
-    .slice()
-    .reverse()
-    .map(month => {
-      return {
-        name: month.displayName,
-        'sales volume': Math.floor(Math.random() * 10000),
-        'sales total': Math.floor(Math.random() * 10000)
-      };
-    });
+  const data = !state.orders.monthlySummary.length ?
+    null :
+    state.orders.monthlySummary
+      .slice()
+      .reverse()
+      .map(month => {
+        return {
+          name: month.monthDisplayName,
+          'sales volume': Number(Number(month.total).toFixed(2)),
+          'sales total': Number(month.orderCount)
+        };
+      });
 
   return {
-    data
+    data,
+    loading: state.loading.loadingMonthlySummary
   };
 }
 function mapDispatchToProps(dispatch) {
-
   return {
     orderActions: bindActionCreators(actionCreators, dispatch)
   };
 }
-
 
 export default CSSModules(connect(mapStateToProps, mapDispatchToProps)(MonthlySummary), styles);

@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import CSSModules from 'react-css-modules';
 import dateFns from 'date-fns';
 import { numberToLocaleString } from '../../../utilities/currencyUtility';
-import { getOrderStatusDescription } from '../../../utilities/orderStatusUtility';
+import { getOrderStatusDescription } from '../../../utilities/ordersUtility';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';

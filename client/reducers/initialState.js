@@ -22,14 +22,18 @@ export default {
   user: {},
   loading: {
     loadingUser: false,
-    loadingOrders: true
+    loadingOrders: true,
+    loadingMonthlySummary: true
   },
   categories: [],
   discounts: [],
   modifiers: [],
   items: [],
   taxes: [],
-  orders: [],
+  orders: {
+    orderList: [],
+    monthlySummary: []
+  },
   orderDetail: {},
   refundReasons: [],
   version: ''

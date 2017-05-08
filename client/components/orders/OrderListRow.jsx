@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import CSSModules from 'react-css-modules';
 import moment from 'moment';
 
-import { getOrderStatusDescription } from '../../utilities/orderStatusUtility';
+import { getOrderStatusDescription } from '../../utilities/ordersUtility';
 import { numberToLocaleString } from '../../utilities/currencyUtility';
 
 import styles from './orders.css';

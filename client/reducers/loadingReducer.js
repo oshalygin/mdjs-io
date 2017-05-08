@@ -181,7 +181,21 @@ export default function loadingReducer(state = initialState.loading, action) {
           ...state,
           loadingOrders: false
         };
-      } 
+      }
+    case actionTypes.LOADING_MONTHLY_SUMMARY:
+      {
+        return {
+          ...state,
+          loadingMonthlySummary: true
+        };
+      }
+    case actionTypes.LOAD_MONTHLY_SUMMARY_SUCCESS:
+      {
+        return {
+          ...state,
+          loadingMonthlySummary: false
+        };
+      }
     default:
       {
         return state;

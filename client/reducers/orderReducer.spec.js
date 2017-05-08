@@ -2,11 +2,13 @@ import { expect } from 'chai';
 import * as actionTypes from '../actions/actionTypes';
 import reducer from './orderReducer';
 
-
 describe('Reducer - Orders', () => {
 
   const getInitialState = () => {
-    return [];
+    return {
+      orderList: [],
+      monthlySummary: []
+    };
   };
 
   const orders = [
@@ -88,6 +90,28 @@ describe('Reducer - Orders', () => {
       totalTip: 0.0
     }];
 
+  const monthlySummary = [
+    {
+      monthDisplayName: 'Jan',
+      monthValue: 0,
+      orderCount: 3,
+      year: 2017,
+      total: 50.44,
+      totalDiscount: 0,
+      totalTax: 0,
+      totalTip: 0
+    },
+    {
+      monthDisplayName: 'Feb',
+      monthValue: 0,
+      orderCount: 1,
+      year: 2017,
+      total: 10.44,
+      totalDiscount: 0,
+      totalTax: 0,
+      totalTip: 0
+    }];
+
   it('should retrieve the initial state if the action type is not registered with the reducer', () => {
 
     const action = {
@@ -107,14 +131,19 @@ describe('Reducer - Orders', () => {
       orders
     };
 
-    const expected = orders.map(order => {
+    const orderList = orders.map(order => {
       return {
         ...order,
         expanded: false
       };
     });
-    const actual = reducer(undefined, action); //eslint-disable-line no-undefined
 
+    const expected = {
+      orderList,
+      monthlySummary: []
+    };
+
+    const actual = reducer(undefined, action); //eslint-disable-line no-undefined
     expect(actual).deep.equals(expected);
 
   });
@@ -127,17 +156,24 @@ describe('Reducer - Orders', () => {
       orderID: 954
     };
 
-    const state = orders.map(order => {
+    const orderList = orders.map(order => {
       return {
         ...order,
         expanded: false
       };
     });
 
+    const state = {
+      orderList,
+      monthlySummary: []
+    };
+
     const expected = true;
-    const actual = reducer(state, action).find(order => order.orderID === selectedOrder.orderID)
+    const actual = reducer(state, action)
+      .orderList
+      .find(order => order.orderID === selectedOrder.orderID)
       .expanded;
-    
+
     expect(actual).deep.equals(expected);
 
   });
@@ -149,15 +185,22 @@ describe('Reducer - Orders', () => {
       orderID: 70
     };
 
-    const state = orders.map(order => {
+    const orderList = orders.map(order => {
       return {
         ...order,
         expanded: false
       };
     });
 
+    const state = {
+      orderList,
+      monthlySummary: []
+    };
+
     const expected = true;
-    const actual = reducer(state, action).every(order => !order.expanded);
+    const actual = reducer(state, action)
+      .orderList
+      .every(order => !order.expanded);
 
     expect(actual).deep.equals(expected);
 
@@ -170,15 +213,42 @@ describe('Reducer - Orders', () => {
       orderID: 70
     };
 
-    const state = orders.map(order => {
+    const orderList = orders.map(order => {
       return {
         ...order,
         expanded: true
       };
     });
 
+    const state = {
+      orderList,
+      monthlySummary: []
+    };
+
     const expected = true;
-    const actual = reducer(state, action)[0].expanded;
+    const actual = reducer(state, action)
+      .orderList[0].expanded;
+
+
+    expect(actual).deep.equals(expected);
+
+  });
+
+  it('should set the monthlySummary property in the reducer accordingly with the data from the dispatch', () => {
+
+    const action = {
+      type: actionTypes.LOAD_MONTHLY_SUMMARY_SUCCESS,
+      data: monthlySummary
+    };
+
+    const state = {
+      orderList: [],
+      monthlySummary: []
+    };
+
+    const expected = monthlySummary;
+    const actual = reducer(state, action)
+      .monthlySummary;
 
     expect(actual).deep.equals(expected);
 

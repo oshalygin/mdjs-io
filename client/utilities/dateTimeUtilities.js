@@ -28,3 +28,9 @@ export function getLastNumberOfMonthsArray(numberOfMonths) {
   return months;
 
 }
+
+export function getDateFromRequestUrl(requestUrl) {
+  const matchedUrl = requestUrl.match('=(.*)&');
+  const date = matchedUrl[1];
+  return date;
+}

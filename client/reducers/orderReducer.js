@@ -1,21 +1,23 @@
 /* eslint-disable indent */
 import * as actionTypes from '../actions/actionTypes';
 import initialState from './initialState';
-import { getOrderStatusDescription } from '../utilities/orderStatusUtility';
+import { getOrderStatusDescription } from '../utilities/ordersUtility';
 
 export default function orderReducer(state = initialState.orders, action) {
   switch (action.type) {
     case actionTypes.LOAD_ORDERS_SUCCESS: {
-      return action.orders.map(order => {
+      const orderList = action.orders.map(order => {
         return {
           ...order,
           orderStatusDescription: getOrderStatusDescription(order.orderStatusID),
           expanded: false
         };
       });
+
+      return { ...state, orderList };
     }
     case actionTypes.LOADING_ORDER_DETAIL: {
-      return state.map(order => {
+      const orderList = state.orderList.map(order => {
 
         return {
           ...order,
@@ -23,9 +25,11 @@ export default function orderReducer(state = initialState.orders, action) {
         };
 
       });
+
+      return { ...state, orderList };
     }
     case actionTypes.HIDE_ORDER_DETAIL: {
-      return state.map(order => {
+      const orderList = state.orderList.map(order => {
         if (order.orderID !== action.orderID) {
           return order;
         }
@@ -36,6 +40,14 @@ export default function orderReducer(state = initialState.orders, action) {
         };
 
       });
+
+      return { ...state, orderList };
+    }
+    case actionTypes.LOAD_MONTHLY_SUMMARY_SUCCESS: {
+      return {
+        ...state,
+        monthlySummary: action.data
+      };
     }
     default: {
       return state;

@@ -1,7 +1,7 @@
 /* eslint-disable indent */
 import * as actionTypes from '../actions/actionTypes';
 import initialState from './initialState';
-import { getOrderStatusDescription } from '../utilities/orderStatusUtility';
+import { getOrderStatusDescription } from '../utilities/ordersUtility';
 
 export default function orderReducer(state = initialState.orderDetail, action) {
   switch (action.type) {

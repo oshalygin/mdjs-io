@@ -1,13 +1,24 @@
 import axios from 'axios';
-import { getHeaders } from '../utilities/requestUtilities';
 import * as actionTypes from './actionTypes';
+
+import { getHeaders } from '../utilities/requestUtilities';
+
 import { ORDERS_ENDPOINT } from '../utilities/endpoints';
 import { loadUserToken } from '../utilities/localStorage';
+import { getDateFromRequestUrl } from '../utilities/dateTimeUtilities';
+import { mapOrderSummary } from '../utilities/ordersUtility';
 
 export function loadOrdersSuccess(orders) {
   return {
     type: actionTypes.LOAD_ORDERS_SUCCESS,
     orders
+  };
+}
+
+export function loadMonthlySummarySuccess(data) {
+  return {
+    type: actionTypes.LOAD_MONTHLY_SUMMARY_SUCCESS,
+    data
   };
 }
 
@@ -31,6 +42,12 @@ export function loadingOrders() {
   };
 }
 
+export function loadingMonthlySummary() {
+  return {
+    type: actionTypes.LOADING_MONTHLY_SUMMARY
+  };
+}
+
 export function loadingOrderDetail(orderID) {
   return {
     type: actionTypes.LOADING_ORDER_DETAIL,
@@ -41,6 +58,12 @@ export function loadingOrderDetail(orderID) {
 export function loadingOrdersFailure() {
   return {
     type: actionTypes.LOADING_ORDERS_FAILURE
+  };
+}
+
+export function loadingMonthlySummaryFailure() {
+  return {
+    type: actionTypes.LOADING_MONTHLY_SUMMARY_FAILURE
   };
 }
 
@@ -104,6 +127,50 @@ export function hideOrderDetail(orderID) {
     } catch (error) {
       throw (error);
     }
+  };
+}
 
+export function getMonthlySummary(months) {
+  return async function (dispatch) {
+
+    dispatch(loadingMonthlySummary());
+
+    try {
+
+      const token = loadUserToken();
+      const headers = getHeaders(token);
+
+      let promises = [];
+
+      months.forEach(month => {
+        const startDate = `${month.monthDisplayValue}-1-${month.year}`;
+        const endDate = month.monthValue < 11 ?
+          `${month.monthDisplayValue + 1}-1-${month.year}` :
+          `1-1-${month.year + 1}`;
+
+        const endpoint = `${ORDERS_ENDPOINT}?startDate=${startDate}&endDate=${endDate}`;
+        promises = [...promises, axios.get(endpoint, headers)];
+      });
+
+      await axios.all(promises).then((results) => {
+
+        const data = results.map((orders) => {
+
+          const dateString = getDateFromRequestUrl(orders.request.responseURL);
+          const orderData = orders.data;
+          const monthSummary = mapOrderSummary(orderData, dateString);
+
+          return monthSummary;
+
+        });
+
+        dispatch(loadMonthlySummarySuccess(data));
+
+      });
+
+    } catch (error) {
+      dispatch(loadingMonthlySummaryFailure());
+      throw (error);
+    }
   };
 }

@@ -166,7 +166,9 @@ describe('<Orders />', () => {
 
     const expected = true;
     const state = {
-      orders,
+      orders: {
+        orderList: orders
+      },
       orderDetail: {},
       loading: {
         loadingOrders: false

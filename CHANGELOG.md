@@ -1,3 +1,7 @@
+## 2.29.3 (May 07, 2017)
+
+- The dashboard now makes proper API calls to pull down merchant data and display it on the main page.
+
 ## 2.29.2 (May 06, 2017)
 
 - Add initial sales summary chart which will house the sales data.

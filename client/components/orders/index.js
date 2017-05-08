@@ -141,7 +141,7 @@ Orders.propTypes = {
 export function mapStateToProps(state) {
 
   return {
-    orders: state.orders,
+    orders: state.orders.orderList,
     loading: state.loading.loadingOrders
   };
 }
