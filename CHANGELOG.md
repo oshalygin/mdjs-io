@@ -1,3 +1,8 @@
+## 2.29.5 (May 08, 2017)
+
+- Add initial Daily Sales Widget
+  - Mock data in the widget at the moment, however, all functionality around percentages and display values has been implemented.
+
 ## 2.29.4 (May 07, 2017)
 
 - Update dashboard chart to have consistent styling with the previous design.

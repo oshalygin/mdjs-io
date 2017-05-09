@@ -1,0 +1,82 @@
+@import "../../styles/colors.css";
+@import "../../styles/fonts.css";
+.widget-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.sales-widget-container {
+  display: flex;
+  background-color: var(--white);
+  height: 14rem;
+  width: 16%;
+  box-shadow: inset 0 3px 0 0 var(--silver), 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+.widget-content {
+  width: 100%;
+}
+
+.widget-heading-container {
+  border-bottom: 1px solid;
+  border-color: var(--silver);
+  height: 4rem;
+  width: 100%;
+  padding: 1.5rem 1.5rem 3rem 1.5rem;
+}
+
+.widget-title {
+  float: left;
+  font-size: var(--font-md);
+  font-weight: 600;
+}
+
+.date-pill {
+  float: right;
+  padding-top: 0.1rem;
+}
+
+.widget-details {
+  display: inline-block;
+  width: 100%;
+  padding: 1.5rem;
+}
+
+.widget-content-value {
+  font-size: 2.4rem;
+  font-weight: 300;
+}
+
+.widget-content-subtext {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 75%;
+  font-size: var(--font-sm);
+}
+
+.percent-change-subtext {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 5%;
+  font-size: var(--font-sm);
+  font-weight: 500;
+  position: relative;
+}
+
+.trending-arrow-container {
+  display: inline-block;
+  box-sizing: border-box;
+  padding-left: 1rem;
+  position: absolute;
+}
+
+.trending-arrow {
+  position: absolute;
+  top: -3px;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 5%;
+  padding-left: 0.50rem;
+  padding-bottom: 1rem;
+}

@@ -1,0 +1,16 @@
+@import "../../../styles/colors.css";
+@import "../../../styles/fonts.css";
+
+.pill-container {
+  background-color: var(--blue);
+  color: var(--white);
+  border-radius: 2px;
+  user-select: none;
+  cursor: default;
+}
+
+.pill-label {
+  font-size: var(--font-xs);
+  padding: 0.1em 0.75em;
+  font-weight: 600;
+}

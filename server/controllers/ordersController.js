@@ -64,7 +64,6 @@ export async function get(request, response) {
       .send('Resource not found');
 
   }
-
 }
 
 export default {

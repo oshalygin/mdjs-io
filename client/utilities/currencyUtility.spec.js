@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { numberToLocaleString } from './currencyUtility';
+import { numberToLocaleString, numberToLocaleStringWithoutDecimals } from './currencyUtility';
 
 describe('Currency Utilities', () => {
 
@@ -43,5 +43,36 @@ describe('Currency Utilities', () => {
     expect(actual).equals(expected);
 
   });
+
+  it('should return "$ 0" when passing a raw number of 0 to the non-decimal utility', () => {
+
+    const expected = '$ 0';
+    const number = 0;
+    const actual = numberToLocaleStringWithoutDecimals(number);
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should return "$ 79" when passing a raw number of 79.13 to the non-decimal utility', () => {
+
+    const expected = '$ 79';
+    const number = 79.13;
+    const actual = numberToLocaleStringWithoutDecimals(number);
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should return "$ 3,401" when passing a raw number of 3401.13 to the non-decimal utility', () => {
+
+    const expected = '$ 3,401';
+    const number = 3401.13;
+    const actual = numberToLocaleStringWithoutDecimals(number);
+
+    expect(actual).equals(expected);
+
+  });
+
 
 });
