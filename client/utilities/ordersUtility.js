@@ -27,7 +27,7 @@ export function mapOrderSummary(orderData, dateString) {
   const date = new Date(dateString);
   const monthValue = date.getMonth();
   const year = date.getFullYear();
-  const monthDisplayName = dateFns.format(new Date(year, monthValue, 1), 'MMM');
+  const monthDisplayName = dateFns.format(new Date(year, monthValue, 1), 'MMMM');
   const orderCount = orderData.length;
 
   const monthSummary = orderData.reduce((previous, next) => {

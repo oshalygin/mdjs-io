@@ -1,3 +1,11 @@
+## 2.29.4 (May 07, 2017)
+
+- Update dashboard chart to have consistent styling with the previous design.
+  - The X-Axis now spells out the full string of the month, eg: January, February, etc.
+  - Horizontal and Vertical lines to represent the ticks.
+  - Visible data points on the actual graph.
+- Finer grained ticks are pending a library update of `recharts`.
+
 ## 2.29.3 (May 07, 2017)
 
 - The dashboard now makes proper API calls to pull down merchant data and display it on the main page.

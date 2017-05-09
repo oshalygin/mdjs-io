@@ -190,9 +190,10 @@ describe('Order Status Utility', () => {
 
   });
 
-  it('should map the order summary with the monthly display value of "Feb"', () => {
+  it('should map the order summary with the monthly display value of "February"', () => {
 
-    const expected = 'Feb';
+    const expected = 'February';
+
     const actual = mapOrderSummary(orderData, dateString)
       .monthDisplayName;
     expect(actual).equals(expected);
