@@ -23,6 +23,12 @@ During the migration, there is a short term solution to proxying the images from
 
 ### Development
 
+#### Running locally
+The application can be started locally with the following command:
+```bash
+$ npm start -s # Run the application, kick off the test watch command along with the lint watcher.
+```
+
 #### Running tests
 Tests can be executed with the following test command:
 ```bash

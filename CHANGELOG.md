@@ -1,3 +1,8 @@
+## 2.29.10 (May 10, 2017)
+
+- Add development lint and test watchers.
+  - Running `npm start` will now run `test:watch`, `lint:watch` and `open:server` accordingly.
+
 ## 2.29.9 (May 09, 2017)
 
 - Add npm test watch command, `test:watch`.
