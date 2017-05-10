@@ -13,6 +13,10 @@
   height: 100%;
   width: 16%;
   box-shadow: inset 0 3px 0 0 var(--silver), 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  
+  @media(max-width: 1000px) {
+    width: 100%;
+  }
 }
 
 .widget-content {
@@ -31,23 +35,11 @@
   float: left;
   font-size: var(--font-md);
   font-weight: 600;
-  
-  @media(max-width: 1000px) {
-    width: 100%;
-    float: clear;
-    text-align: center;
-  }
 }
 
 .date-pill {
   float: right;
   padding-top: 0.1rem;
-
-  @media(max-width: 1000px) {
-    width: 100%;
-    float: clear;
-    text-align: center;
-  }
 }
 
 .widget-details {
@@ -66,10 +58,7 @@
   box-sizing: border-box;
   width: 50%;
   font-size: var(--font-sm);
-  
-  @media(max-width: 1000px) {
-    width: 100%;
-  }
+
 }
 
 .percent-change-subtext {
@@ -80,9 +69,6 @@
   text-align: right;
   font-size: var(--font-sm);
   font-weight: 500;
-  @media(max-width: 1000px) {
-    width: 50%;
-  }
 }
 
 .trending-arrow {
@@ -92,7 +78,4 @@
   padding-left: 0.25rem;
   vertical-align: middle;
   line-height: 20px;
-  @media(max-width: 1000px) {
-    width: 50%;
-  }
 }

@@ -1,3 +1,8 @@
+## 2.29.7 (May 09, 2017)
+
+- Update Sales Widget styling once more to be 100% container width when the window is resized.
+  - This gives a more uniform UX to the application.
+
 ## 2.29.6 (May 09, 2017)
 
 - Update Sales Widget styling to accommodate varying page widths.
