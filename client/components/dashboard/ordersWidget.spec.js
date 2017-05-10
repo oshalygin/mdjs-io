@@ -1,38 +1,38 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 
-import SalesWidget from './SalesWidget.jsx';
+import OrdersWidget from './OrdersWidget.jsx';
 import Pill from '../common/pill';
 import colors from '../../styles/colors';
 
 import { expect } from 'chai';
 
-describe('<SalesWidget />', () => {
+describe('<OrdersWidget />', () => {
   const props = {
-    yesterdaysSales: 1500,
-    currentSales: 1304
+    yesterdaysOrders: 1500,
+    currentOrders: 1304
   };
 
   it('should contain a "trending_down" material-icon when the current sales are less than yesterdays sales', () => {
 
     const expected = 'trending_down';
-    const wrapper = shallow(<SalesWidget {...props} />);
+    const wrapper = shallow(<OrdersWidget {...props} />);
     const actual = wrapper.find('.material-icons')
       .text();
-    
+
     expect(actual).equals(expected);
 
   });
 
   it('should contain a "trending_up" material-icon when the current sales are greater than yesterdays sales', () => {
-    
+
     const updatedProps = {
-      yesterdaysSales: 1100,
-      currentSales: 1304
+      yesterdaysOrders: 1100,
+      currentOrders: 1304
     };
-    
+
     const expected = 'trending_up';
-    const wrapper = shallow(<SalesWidget {...updatedProps} />);
+    const wrapper = shallow(<OrdersWidget {...updatedProps} />);
     const actual = wrapper.find('.material-icons')
       .text();
 
@@ -43,7 +43,7 @@ describe('<SalesWidget />', () => {
   it('should contain a <Pill /> component with a label of "Today"', () => {
 
     const expected = 'Today';
-    const wrapper = shallow(<SalesWidget {...props} />);
+    const wrapper = shallow(<OrdersWidget {...props} />);
     const actual = wrapper.find(Pill)
       .props()
       .label;
@@ -52,10 +52,10 @@ describe('<SalesWidget />', () => {
 
   });
 
-  it('should contain a heading of "Sales"', () => {
+  it('should contain a heading of "Orders"', () => {
 
-    const expected = 'Sales';
-    const wrapper = shallow(<SalesWidget {...props} />);
+    const expected = 'Orders';
+    const wrapper = shallow(<OrdersWidget {...props} />);
     const actual = wrapper.find('.widget-title')
       .text();
 
@@ -66,7 +66,7 @@ describe('<SalesWidget />', () => {
   it('should set the percentage difference accordingly as "14%"', () => {
 
     const expected = '14%';
-    const wrapper = shallow(<SalesWidget {...props} />);
+    const wrapper = shallow(<OrdersWidget {...props} />);
     const actual = wrapper.find('.percent-change-subtext')
       .text();
 
@@ -74,10 +74,10 @@ describe('<SalesWidget />', () => {
 
   });
 
-  it('should set the sales volume value accordingly as "$ 1,304"', () => {
+  it('should set the order count accordingly as "1304"', () => {
 
-    const expected = '$ 1,304';
-    const wrapper = shallow(<SalesWidget {...props} />);
+    const expected = '1304';
+    const wrapper = shallow(<OrdersWidget {...props} />);
     const actual = wrapper.find('.widget-content-value')
       .text();
 
@@ -88,12 +88,12 @@ describe('<SalesWidget />', () => {
   it('should set the color of the trending arrow to the error color if the trend is down', () => {
 
     const expected = colors.error;
-    const wrapper = shallow(<SalesWidget {...props} />);
+    const wrapper = shallow(<OrdersWidget {...props} />);
     const actual = wrapper.find('.trending-arrow')
       .props()
       .style
       .color;
-    
+
     expect(actual).equals(expected);
 
   });
@@ -101,12 +101,12 @@ describe('<SalesWidget />', () => {
   it('should set the color of the trending arrow to blue if the trend is up', () => {
 
     const updatedProps = {
-      yesterdaysSales: 1100,
-      currentSales: 1304
+      yesterdaysOrders: 1100,
+      currentOrders: 1304
     };
 
     const expected = colors.blue;
-    const wrapper = shallow(<SalesWidget {...updatedProps} />);
+    const wrapper = shallow(<OrdersWidget {...updatedProps} />);
     const actual = wrapper.find('.trending-arrow')
       .props()
       .style

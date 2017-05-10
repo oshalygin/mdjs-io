@@ -19,6 +19,19 @@
   }
 }
 
+.orders-widget-container {
+  display: flex;
+  background-color: var(--white);
+  height: 100%;
+  width: 16%;
+  box-shadow: inset 0 3px 0 0 var(--silver), 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  
+  @media(max-width: 1000px) {
+    width: 100%;
+  }
+}
+
+
 .widget-content {
   width: 100%;
 }

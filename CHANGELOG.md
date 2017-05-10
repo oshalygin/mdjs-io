@@ -1,3 +1,8 @@
+## 2.29.8 (May 09, 2017)
+
+- Add initial Daily Orders Widget
+  - Mock data in the widget at the moment, however, all functionality around percentages and display values has been implemented.
+
 ## 2.29.7 (May 09, 2017)
 
 - Update Sales Widget styling once more to be 100% container width when the window is resized.

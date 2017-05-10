@@ -3,6 +3,7 @@ import CSSModules from 'react-css-modules';
 
 import MonthlySummary from './monthlySummary';
 import SalesWidget from './SalesWidget.jsx';
+import OrdersWidget from './OrdersWidget.jsx';
 
 import styles from './dashboard.css';
 
@@ -15,6 +16,10 @@ class Dashboard extends React.Component {
           <SalesWidget
             currentSales={1304}
             yesterdaysSales={1500}
+          />
+          <OrdersWidget
+            currentOrders={152}
+            yesterdaysOrders={80}
           />
         </div>
         <div className="m-t-lg">
