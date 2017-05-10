@@ -1,6 +1,6 @@
 {
   "name": "mdjs",
-  "version": "2.29.8",
+  "version": "2.29.9",
   "description": "Merchant Dashboard built with React and Redux",
   "scripts": {
     "prestart": "babel-node utilities/startingDisplayMessage.js",
@@ -9,7 +9,8 @@
     "open:server": "babel-watch ./server/application.dev.js",
     "lint": "eslint webpack.config.* \"client/**/*.js\" \"client/**/*.jsx\" \"server/**\" utilities/** --color ",
     "lint:watch": "npm run lint -- --watch",
-    "test": "jest",
+    "test": "jest --silent",
+    "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "codacy:coverage": "cat ./coverage/lcov.info | codacy-coverage",
     "clean-dist": "npm run remove-dist && mkdir dist",

@@ -1,3 +1,7 @@
+## 2.29.9 (May 09, 2017)
+
+- Add npm test watch command, `test:watch`.
+
 ## 2.29.8 (May 09, 2017)
 
 - Add initial Daily Orders Widget

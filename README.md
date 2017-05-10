@@ -19,7 +19,23 @@
 ![image](/docs/infrastructure-diagram.png?raw=true "Infrastructure")
 
 ### Temporary Images Folder
-During the migration, there is a short term solution to proxying the images from the client to the Express API and on back to the backend.  This solution involves temporarily saving images to the `/temp-images` folder, streaming from there as the file is pushed to the backend, and subsequently deleting it once the cycle is complete.  The `.gitkeep` file indicates that this file needs to live in source countrol and be created in the runtime environment.
+During the migration, there is a short term solution to proxying the images from the client to the Express API and on back to the backend.  This solution involves temporarily saving images to the `/temp-images` folder, streaming from there as the file is pushed to the backend, and subsequently deleting it once the cycle is complete.  The `.gitkeep` file indicates that this file needs to live in source control and be created in the runtime environment.
+
+### Development
+
+#### Running tests
+Tests can be executed with the following test command:
+```bash
+$ npm test # Run tests
+$ npm run test:coverage # Run tests with coverage
+```
+
+#### Running tests with `--watch`
+In order to properly run the the tests in watch mode you may need to install `watchman` via homebrew on OSX.
+```bash
+$ brew install watchman # Install watchman via homebrew
+$ npm run test:watch # Run the tests and watch the source code for changes, re-running tests accordingly
+```
 
 ### Contributing
 
