@@ -1,5 +1,6 @@
 @import "../../styles/colors.css";
 @import "../../styles/fonts.css";
+
 .widget-container {
   display: flex;
   justify-content: space-between;
@@ -9,7 +10,7 @@
 .sales-widget-container {
   display: flex;
   background-color: var(--white);
-  height: 14rem;
+  height: 100%;
   width: 16%;
   box-shadow: inset 0 3px 0 0 var(--silver), 0 1px 3px 0 rgba(0, 0, 0, 0.2);
 }
@@ -21,7 +22,7 @@
 .widget-heading-container {
   border-bottom: 1px solid;
   border-color: var(--silver);
-  height: 4rem;
+  height: 30%;
   width: 100%;
   padding: 1.5rem 1.5rem 3rem 1.5rem;
 }
@@ -30,11 +31,23 @@
   float: left;
   font-size: var(--font-md);
   font-weight: 600;
+  
+  @media(max-width: 1000px) {
+    width: 100%;
+    float: clear;
+    text-align: center;
+  }
 }
 
 .date-pill {
   float: right;
   padding-top: 0.1rem;
+
+  @media(max-width: 1000px) {
+    width: 100%;
+    float: clear;
+    text-align: center;
+  }
 }
 
 .widget-details {
@@ -51,32 +64,35 @@
 .widget-content-subtext {
   display: inline-block;
   box-sizing: border-box;
-  width: 75%;
+  width: 50%;
   font-size: var(--font-sm);
+  
+  @media(max-width: 1000px) {
+    width: 100%;
+  }
 }
 
 .percent-change-subtext {
   display: inline-block;
   box-sizing: border-box;
-  width: 5%;
+  width: 35%;
+  padding-left: 0.5rem;
+  text-align: right;
   font-size: var(--font-sm);
   font-weight: 500;
-  position: relative;
-}
-
-.trending-arrow-container {
-  display: inline-block;
-  box-sizing: border-box;
-  padding-left: 1rem;
-  position: absolute;
+  @media(max-width: 1000px) {
+    width: 50%;
+  }
 }
 
 .trending-arrow {
-  position: absolute;
-  top: -3px;
   display: inline-block;
   box-sizing: border-box;
-  width: 5%;
-  padding-left: 0.50rem;
-  padding-bottom: 1rem;
+  width: 10%;
+  padding-left: 0.25rem;
+  vertical-align: middle;
+  line-height: 20px;
+  @media(max-width: 1000px) {
+    width: 50%;
+  }
 }

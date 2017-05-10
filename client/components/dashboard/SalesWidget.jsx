@@ -45,10 +45,8 @@ const SalesWidget = ({ currentSales, yesterdaysSales }) => {
           <div className={styles['percent-change-subtext']} style={trendingStyle}>
             {percentageDifference}
           </div>
-          <div className={styles['trending-arrow-container']} style={trendingStyle}>
-            <div className={styles['trending-arrow']}>
-              {trendingArrowComponent}
-            </div>
+          <div className={styles['trending-arrow']} style={trendingStyle}>
+            {trendingArrowComponent}
           </div>
         </div>
       </div>

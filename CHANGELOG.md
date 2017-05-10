@@ -1,3 +1,7 @@
+## 2.29.6 (May 09, 2017)
+
+- Update Sales Widget styling to accommodate varying page widths.
+
 ## 2.29.5 (May 08, 2017)
 
 - Add initial Daily Sales Widget
