@@ -1,3 +1,7 @@
+## 2.29.11 (May 11, 2017)
+
+- Update index page to fit within the screen vertically
+
 ## 2.29.10 (May 10, 2017)
 
 - Add development lint and test watchers.
