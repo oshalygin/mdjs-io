@@ -98,14 +98,14 @@ describe('<SalesWidget />', () => {
 
   });
 
-  it('should set the color of the trending arrow to blue if the trend is up', () => {
+  it('should set the color of the trending arrow to green if the trend is up', () => {
 
     const updatedProps = {
       yesterdaysSales: 1100,
       currentSales: 1304
     };
 
-    const expected = colors.blue;
+    const expected = colors.green;
     const wrapper = shallow(<SalesWidget {...updatedProps} />);
     const actual = wrapper.find('.trending-arrow')
       .props()
