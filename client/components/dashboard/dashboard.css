@@ -1,36 +1,75 @@
 @import "../../styles/colors.css";
 @import "../../styles/fonts.css";
 
+:root {
+  --minHeight: 170px;
+}
+
 .widget-container {
   display: flex;
   justify-content: space-between;
   width: 100%;
+
+  @media(max-width: 1000px) {
+    display: initial;
+  }
 }
 
 .sales-widget-container {
-  display: flex;
+  
   background-color: var(--white);
+  min-height: var(--minHeight);
   height: 100%;
-  width: 16%;
+  width: 20%;
   box-shadow: inset 0 3px 0 0 var(--silver), 0 1px 3px 0 rgba(0, 0, 0, 0.2);
   
   @media(max-width: 1000px) {
     width: 100%;
+    margin-bottom: 2rem;
   }
 }
 
 .orders-widget-container {
   display: flex;
   background-color: var(--white);
+  min-height: var(--minHeight);
   height: 100%;
-  width: 16%;
+  width: 20%;
   box-shadow: inset 0 3px 0 0 var(--silver), 0 1px 3px 0 rgba(0, 0, 0, 0.2);
   
   @media(max-width: 1000px) {
     width: 100%;
+    margin-bottom: 2rem;
   }
 }
 
+.transactions-widget-container {
+  display: flex;
+  background-color: var(--white);
+  min-height: var(--minHeight);
+  height: 100%;
+  width: 30%;
+  box-shadow: inset 0 3px 0 0 var(--silver), 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  
+  @media(max-width: 1000px) {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+}
+
+.inventory-widget-container {
+  display: flex;
+  background-color: var(--white);
+  min-height: var(--minHeight);
+  height: 100%;
+  width: 20%;
+  box-shadow: inset 0 3px 0 0 var(--silver), 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+  
+  @media(max-width: 1000px) {
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+}
 
 .widget-content {
   width: 100%;
@@ -71,7 +110,6 @@
   box-sizing: border-box;
   width: 50%;
   font-size: var(--font-sm);
-
 }
 
 .percent-change-subtext {
@@ -81,7 +119,7 @@
   padding-left: 0.5rem;
   text-align: right;
   font-size: var(--font-sm);
-  font-weight: 500;
+  font-weight: bold;
 }
 
 .trending-arrow {
@@ -91,4 +129,21 @@
   padding-left: 0.25rem;
   vertical-align: middle;
   line-height: 20px;
+}
+
+.transaction-widget-content-value {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 50%;
+  font-size: 2.4rem;
+  font-weight: 300;
+}
+
+.transaction-content-subtext {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 50%;
+  color: var(--blue);
+  box-sizing: border-box;
+  font-size: var(--font-sm);
 }

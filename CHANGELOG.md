@@ -1,3 +1,8 @@
+## 2.29.16 (May 11, 2017)
+
+- Addition of a stub inventory widget on the dashboard
+  - The inventory widget does not contain any content at the moment, but in the future will be expanded to maintain a cash value of the current inventory at hand.
+
 ## 2.29.15 (May 11, 2017)
 
 - Addition of a Transactions Widget on the main dashboard which displays the total number of cash and credit card transactions from the current day along with the percentage breakdown.
