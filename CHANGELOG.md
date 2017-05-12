@@ -1,3 +1,7 @@
+## 2.29.12 (May 11, 2017)
+
+- Updated orders widget on the dashboard with a green icon and arrow to indicate a positive increase in orders.
+
 ## 2.29.11 (May 11, 2017)
 
 - Update index page to fit within the screen vertically

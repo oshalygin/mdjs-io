@@ -14,7 +14,7 @@ const OrdersWidget = ({ currentOrders, yesterdaysOrders }) => {
 
   const trendingStyle = isTrendingDown ?
     { color: colors.error } :
-    { color: colors.blue };
+    { color: colors.green };
 
   const trendingArrowComponent = isTrendingDown ?
     (<i className="material-icons">trending_down</i>) :
