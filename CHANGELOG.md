@@ -1,3 +1,7 @@
+## 2.29.17 (May 11, 2017)
+
+- Remove left padding from monthly summary X-Axis.
+
 ## 2.29.16 (May 11, 2017)
 
 - Addition of a stub inventory widget on the dashboard

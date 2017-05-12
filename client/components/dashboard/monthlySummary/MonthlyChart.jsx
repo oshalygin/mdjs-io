@@ -34,7 +34,6 @@ const MonthlyChart = ({ data }) => {
         </defs>
         <XAxis
           tickLine={false}
-          padding={{ left: 10 }}
           dataKey="name" />
         <YAxis
           tickLine={false}
