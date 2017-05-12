@@ -1,3 +1,7 @@
+## 2.29.14 (May 11, 2017)
+
+- Addition of green and teal to the color pallet, `colors.css` and `colors.js`.
+
 ## 2.29.13 (May 11, 2017)
 
 - Updated sales widget on the dashboard with a green icon and arrow to indicate a positive increase in orders.
