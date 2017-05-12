@@ -1,3 +1,7 @@
+## 2.29.15 (May 11, 2017)
+
+- Addition of a Transactions Widget on the main dashboard which displays the total number of cash and credit card transactions from the current day along with the percentage breakdown.
+
 ## 2.29.14 (May 11, 2017)
 
 - Addition of green and teal to the color pallet, `colors.css` and `colors.js`.

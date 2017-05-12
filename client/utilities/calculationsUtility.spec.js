@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { percentDifference } from './calculationsUtility';
+import { percentDifference, percentageOf } from './calculationsUtility';
 
 describe('Calculations Utilities', () => {
 
@@ -26,6 +26,47 @@ describe('Calculations Utilities', () => {
     const decimalPlaces = 0;
 
     const actual = percentDifference(firstValue, secondValue, decimalPlaces);
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should return 40% as the percentage of when calling percentageOf', () => {
+
+    const expected = '40%';
+
+    const numerator = 200;
+    const total = 500;
+    const decimalPlaces = 0;
+
+    const actual = percentageOf(numerator, total, decimalPlaces);
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should return 22% as the percentage of when calling percentageOf without a decimalPlace value', () => {
+
+    const expected = '22%';
+
+    const numerator = 200;
+    const total = 900;
+
+    const actual = percentageOf(numerator, total);
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should return 22.222% as the percentage of when calling percentageOf with 3 decimal places', () => {
+
+    const expected = '22.222%';
+
+    const numerator = 200;
+    const total = 900;
+    const decimalPlaces = 3;
+
+    const actual = percentageOf(numerator, total, decimalPlaces);
 
     expect(actual).equals(expected);
 
