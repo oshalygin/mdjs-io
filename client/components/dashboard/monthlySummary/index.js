@@ -8,6 +8,7 @@ import { getLastNumberOfMonthsArray } from '../../../utilities/dateTimeUtilities
 
 import MonthlyChart from './MonthlyChart.jsx';
 import Spinner from '../../common/spinner';
+import ProgressBar from '../../common/progressBar';
 
 import styles from './monthlySummary.css';
 
@@ -61,7 +62,11 @@ class MonthlySummary extends React.Component {
             {monthlyChart}
           </div>
           <div className={styles['sales-summary-chart-legend']}>
-            Line graphs
+            <ProgressBar
+              min={0}
+              max={100}
+              value={40}
+            />
           </div>
         </div>
       </div>

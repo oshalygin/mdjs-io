@@ -1,3 +1,7 @@
+## 2.29.18 (May 11, 2017)
+
+- Add common `<ProgressBar />` control.
+
 ## 2.29.17 (May 11, 2017)
 
 - Remove left padding from monthly summary X-Axis.
