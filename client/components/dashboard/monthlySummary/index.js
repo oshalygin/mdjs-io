@@ -62,11 +62,42 @@ class MonthlySummary extends React.Component {
             {monthlyChart}
           </div>
           <div className={styles['sales-summary-chart-legend']}>
-            <ProgressBar
-              min={0}
-              max={100}
-              value={40}
-            />
+            <div className={styles['current-monthly-sales-container']}>
+              <div className={styles['progress-bar-text-container']}>
+                <div className={styles['progress-bar-primary-text']}>
+                  $ 42,399.30
+                </div>
+                <div className={styles['progress-bar-subtext']}>
+                  Total sales this month
+                </div>
+              </div>
+              <ProgressBar
+                min={0}
+                max={100}
+                value={78}
+              />
+            </div>
+            <div className={styles['current-monthly-sales-container']}>
+              <div className={styles['progress-bar-text-container']}>
+                <div className={styles['progress-bar-primary-text']}>
+                  482
+                </div>
+                <div className={styles['progress-bar-subtext']}>
+                  Number of orders this month
+                </div>
+              </div>
+              <ProgressBar
+                min={0}
+                max={100}
+                value={40}
+              />
+            </div>
+            <div className={styles['date-container']}>
+              <div className={styles['date-icon']}>
+                <i className="material-icons" style={{ fontSize: '18px' }}>schedule</i>
+              </div>
+              Updated on 01/01/2017
+            </div>
           </div>
         </div>
       </div>

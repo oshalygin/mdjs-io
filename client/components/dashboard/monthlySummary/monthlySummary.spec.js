@@ -3,7 +3,9 @@ import React from 'react';
 
 import MonthlySummary, { mapStateToProps } from './index';
 import MonthlyChart from './MonthlyChart.jsx';
+
 import Spinner from '../../common/spinner';
+import ProgressBar from '../../common/progressBar';
 
 import { expect } from 'chai';
 
@@ -34,6 +36,28 @@ describe('<MonthlySummary />', () => {
     const wrapper = shallow(<MonthlySummary.WrappedComponent {...props} />);
     const actual = wrapper.find('.title-subheading')
       .text();
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should contain a material icon, "schedule" which represents the updated date', () => {
+
+    const expected = 'schedule';
+    const wrapper = shallow(<MonthlySummary.WrappedComponent {...props} />);
+    const actual = wrapper.find('.material-icons')
+      .text();
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should contain two <ProgressBar />  components to represent the monthly sales summary', () => {
+
+    const expected = 2;
+    const wrapper = shallow(<MonthlySummary.WrappedComponent {...props} />);
+    const actual = wrapper.find(ProgressBar)
+      .length;
 
     expect(actual).equals(expected);
 

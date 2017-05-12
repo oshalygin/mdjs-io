@@ -1,3 +1,7 @@
+## 2.29.19 (May 11, 2017)
+
+- Add Progress bars and general stub information on the dashboard monthly summary.
+
 ## 2.29.18 (May 11, 2017)
 
 - Add common `<ProgressBar />` control.
