@@ -1,3 +1,7 @@
+## 2.29.20 (May 13, 2017)
+
+- Updates to the Sales and Order widgets on the dashboard to have the percentage change value be more visible.
+
 ## 2.29.19 (May 11, 2017)
 
 - Add Progress bars and general stub information on the dashboard monthly summary.

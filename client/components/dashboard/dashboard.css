@@ -118,8 +118,7 @@
   width: 35%;
   padding-left: 0.5rem;
   text-align: right;
-  font-size: var(--font-sm);
-  font-weight: bold;
+  font-size: 24px;
 }
 
 .trending-arrow {

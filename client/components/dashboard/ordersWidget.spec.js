@@ -13,9 +13,9 @@ describe('<OrdersWidget />', () => {
     currentOrders: 1304
   };
 
-  it('should contain a "trending_down" material-icon when the current sales are less than yesterdays sales', () => {
+  it('should contain a "arrow_downward" material-icon when the current sales are less than yesterdays sales', () => {
 
-    const expected = 'trending_down';
+    const expected = 'arrow_downward';
     const wrapper = shallow(<OrdersWidget {...props} />);
     const actual = wrapper.find('.material-icons')
       .text();
@@ -24,14 +24,14 @@ describe('<OrdersWidget />', () => {
 
   });
 
-  it('should contain a "trending_up" material-icon when the current sales are greater than yesterdays sales', () => {
+  it('should contain a "arrow_upward" material-icon when the current sales are greater than yesterdays sales', () => {
 
     const updatedProps = {
       yesterdaysOrders: 1100,
       currentOrders: 1304
     };
 
-    const expected = 'trending_up';
+    const expected = 'arrow_upward';
     const wrapper = shallow(<OrdersWidget {...updatedProps} />);
     const actual = wrapper.find('.material-icons')
       .text();

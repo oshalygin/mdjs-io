@@ -17,8 +17,8 @@ const OrdersWidget = ({ currentOrders, yesterdaysOrders }) => {
     { color: colors.green };
 
   const trendingArrowComponent = isTrendingDown ?
-    (<i className="material-icons">trending_down</i>) :
-    (<i className="material-icons">trending_up</i>);
+    (<i className="material-icons">arrow_downward</i>) :
+    (<i className="material-icons">arrow_upward</i>);
 
   const decimalPlaces = 0;
   const percentageDifference = percentDifference(currentOrders, yesterdaysOrders, decimalPlaces);
@@ -44,12 +44,15 @@ const OrdersWidget = ({ currentOrders, yesterdaysOrders }) => {
           <div className={styles['percent-change-subtext']} style={trendingStyle}>
             {percentageDifference}
           </div>
-          <div className={styles['trending-arrow']} style={trendingStyle}>
+          <div className={styles['trending-arrow']} style={{
+            ...trendingStyle,
+            lineHeight: '3.4rem'
+          }}>
             {trendingArrowComponent}
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
