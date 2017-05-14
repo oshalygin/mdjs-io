@@ -203,6 +203,7 @@ describe('Order Status Utility', () => {
   it('should calculate the monthly average based on the monthly summary passed in', () => {
 
     const expected = 60.38;
+    const property = 'total';
 
     const monthlySummary = [{
       monthDisplayName: 'Jan',
@@ -215,7 +216,7 @@ describe('Order Status Utility', () => {
       orderCount: 8
     }];
 
-    const actual = monthlyAverage(monthlySummary);
+    const actual = monthlyAverage(monthlySummary, property);
       
     expect(actual).equals(expected);
 
@@ -224,6 +225,7 @@ describe('Order Status Utility', () => {
   it('should calculate the monthly average based on the monthly summary with a single item passed in', () => {
 
     const expected = 40.38;
+    const property = 'total';
 
     const monthlySummary = [{
       monthDisplayName: 'Jan',
@@ -231,7 +233,7 @@ describe('Order Status Utility', () => {
       orderCount: 4
     }];
 
-    const actual = monthlyAverage(monthlySummary);
+    const actual = monthlyAverage(monthlySummary, property);
 
     expect(actual).equals(expected);
 
@@ -240,10 +242,11 @@ describe('Order Status Utility', () => {
   it('should calculate the monthly average as 0 if there was an empty array passed in', () => {
 
     const expected = 0.00;
+    const property = 'total';
 
     const monthlySummary = [];
 
-    const actual = monthlyAverage(monthlySummary);
+    const actual = monthlyAverage(monthlySummary, property);
 
     expect(actual).equals(expected);
 

@@ -55,7 +55,7 @@ export function mapOrderSummary(orderData, dateString) {
   return monthSummary;
 }
 
-export function monthlyAverage(monthlySummary) {
+export function monthlyAverage(monthlySummary, property) {
 
   const size = monthlySummary.length;
   
@@ -65,7 +65,7 @@ export function monthlyAverage(monthlySummary) {
 
   const totalSales = monthlySummary
     .reduce((previous, next) => {
-      return previous + next.total;
+      return previous + next[property];
     }, 0);
 
   const monthlyAverageValue = totalSales / size;

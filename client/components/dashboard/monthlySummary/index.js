@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 import CSSModules from 'react-css-modules';
+import dateFns from 'date-fns';
+
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../../actions/orderActions';
@@ -20,9 +22,11 @@ class MonthlySummary extends React.Component {
 
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      currentDate: dateFns.format(new Date(), 'MM/DD/YYYY')
+    };
 
-    this.getSalesProgressBarPercentage = this.getSalesProgressBarPercentage.bind(this);
+    this.getProgressBarPercentage = this.getProgressBarPercentage.bind(this);
   }
 
   componentWillMount() {
@@ -31,10 +35,9 @@ class MonthlySummary extends React.Component {
     orderActions.getMonthlySummary(months);
   }
 
-  getSalesProgressBarPercentage() {
+  getProgressBarPercentage(current, total) {
 
-    const { currentMonthSales, monthAverage } = this.props;
-    const salesProgressBarPercentageValue = (currentMonthSales / monthAverage) * 100;
+    const salesProgressBarPercentageValue = (current / total) * 100;
     const salesProgressBarPercentage = Number(salesProgressBarPercentageValue.toFixed(0));
 
     if (salesProgressBarPercentage > 100) {
@@ -46,8 +49,18 @@ class MonthlySummary extends React.Component {
 
 
   render() {
-    const { data, loading, currentMonthSales } = this.props;
-    const salesBarPercentage = this.getSalesProgressBarPercentage();
+
+    const {
+      data,
+      loading,
+      currentMonthSales,
+      currentMonthCount,
+      monthAverage,
+      monthAverageCount
+    } = this.props;
+    const { currentDate } = this.state;
+    const salesBarPercentage = this.getProgressBarPercentage(currentMonthSales, monthAverage);
+    const salesCountBarPercentage = this.getProgressBarPercentage(currentMonthCount, monthAverageCount);
 
     const monthlyChart = loading ?
       (
@@ -100,7 +113,7 @@ class MonthlySummary extends React.Component {
             <div className={styles['current-monthly-sales-container']}>
               <div className={styles['progress-bar-text-container']}>
                 <div className={styles['progress-bar-primary-text']}>
-                  482
+                  {currentMonthCount}
                 </div>
                 <div className={styles['progress-bar-subtext']}>
                   Number of orders this month
@@ -109,14 +122,14 @@ class MonthlySummary extends React.Component {
               <ProgressBar
                 min={0}
                 max={100}
-                value={40}
+                value={salesCountBarPercentage}
               />
             </div>
             <div className={styles['date-container']}>
               <div className={styles['date-icon']}>
                 <i className="material-icons" style={{ fontSize: '18px' }}>schedule</i>
               </div>
-              Updated on 01/01/2017
+              Updated on {currentDate}
             </div>
           </div>
         </div>
@@ -129,42 +142,60 @@ MonthlySummary.propTypes = {
   data: PropTypes.array,
   currentMonthSales: PropTypes.number.isRequired,
   monthAverage: PropTypes.number.isRequired,
+  monthAverageCount: PropTypes.number.isRequired,
+  currentMonthCount: PropTypes.number.isRequired,
   loading: PropTypes.bool.isRequired,
   orderActions: PropTypes.object.isRequired
 };
 
 export function mapStateToProps(state) {
 
-  const monthlySalesExist = !state.orders.monthlySummary.length;
-  const data = monthlySalesExist ?
-    null :
-    state.orders.monthlySummary
-      .slice()
-      .reverse()
-      .map(month => {
-        return {
-          name: month.monthDisplayName,
-          'sales volume': Number(Number(month.total).toFixed(2)),
-          'sales total': Number(month.orderCount)
-        };
-      });
+  const monthlySalesExist = state.orders.monthlySummary.length;
 
-  const currentMonthSalesValue = monthlySalesExist ?
-    0 :
-    state.orders
-      .monthlySummary[0]
+  if (monthlySalesExist) {
+
+    const currentMonthIndex = 0;
+
+    const currentMonthSalesValue = state.orders
+      .monthlySummary[currentMonthIndex]
       .total;
 
-  const currentMonthSales = Number(Number(currentMonthSalesValue).toFixed(2));
+    const currentMonthSales = Number(Number(currentMonthSalesValue).toFixed(2));
 
-  const monthAverage = monthlyAverage(state.orders.monthlySummary);
+    const monthAverage = monthlyAverage(state.orders.monthlySummary, 'total');
+    const monthAverageCount = monthlyAverage(state.orders.monthlySummary, 'orderCount');
+
+
+    return {
+      data: state.orders.monthlySummary
+        .slice()
+        .reverse()
+        .map(month => {
+          return {
+            name: month.monthDisplayName,
+            'sales volume': Number(Number(month.total).toFixed(2)),
+            'sales total': Number(month.orderCount)
+          };
+        }),
+      currentMonthCount: state.orders
+        .monthlySummary[currentMonthIndex]
+        .orderCount,
+      currentMonthSales,
+      monthAverage,
+      monthAverageCount,
+      loading: state.loading.loadingMonthlySummary
+    };
+  }
 
   return {
-    data,
-    currentMonthSales,
-    monthAverage,
+    data: null,
+    currentMonthCount: 0,
+    currentMonthSales: 0,
+    monthAverage: 0,
+    monthAverageCount: 0,
     loading: state.loading.loadingMonthlySummary
   };
+
 }
 
 function mapDispatchToProps(dispatch) {

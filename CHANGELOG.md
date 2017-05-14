@@ -1,3 +1,8 @@
+## 2.31.0 (May 13, 2017)
+
+- Add Order Count progress bar functionality.
+  - The total amount of the progress bar(100%) is based on the average order count over the past 8 months.  In the future this value will be configurable.
+
 ## 2.30.1 (May 13, 2017)
 
 - Add Order Sales Volume progress bar functionality.
