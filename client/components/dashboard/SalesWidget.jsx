@@ -39,9 +39,6 @@ const SalesWidget = ({ currentSales, yesterdaysSales }) => {
           <div className={styles['widget-content-value']}>
             {numberToLocaleStringWithoutDecimals(currentSales)}
           </div>
-          <div className={styles['widget-content-subtext']}>
-            Change from yesterday
-          </div>
           <div className={styles['percent-change-subtext']} style={trendingStyle}>
             {percentageDifference}
           </div>
@@ -50,6 +47,9 @@ const SalesWidget = ({ currentSales, yesterdaysSales }) => {
             lineHeight: '3.4rem'
           }}>
             {trendingArrowComponent}
+          </div>
+          <div className={styles['widget-content-subtext']}>
+            Change from yesterday
           </div>
         </div>
       </div>

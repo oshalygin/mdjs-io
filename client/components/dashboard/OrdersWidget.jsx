@@ -38,9 +38,6 @@ const OrdersWidget = ({ currentOrders, yesterdaysOrders }) => {
           <div className={styles['widget-content-value']}>
             {currentOrders}
           </div>
-          <div className={styles['widget-content-subtext']}>
-            Change from yesterday
-          </div>
           <div className={styles['percent-change-subtext']} style={trendingStyle}>
             {percentageDifference}
           </div>
@@ -50,9 +47,12 @@ const OrdersWidget = ({ currentOrders, yesterdaysOrders }) => {
           }}>
             {trendingArrowComponent}
           </div>
+          <div className={styles['widget-content-subtext']}>
+            Change from yesterday
+          </div>
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 

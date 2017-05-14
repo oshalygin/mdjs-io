@@ -2,7 +2,7 @@
 @import "../../styles/fonts.css";
 
 :root {
-  --minHeight: 170px;
+  --minHeight: 140px;
 }
 
 .widget-container {
@@ -10,7 +10,7 @@
   justify-content: space-between;
   width: 100%;
 
-  @media(max-width: 1000px) {
+  @media(max-width: 1230px) {
     display: initial;
   }
 }
@@ -23,7 +23,7 @@
   width: 20%;
   box-shadow: inset 0 3px 0 0 var(--silver), 0 1px 3px 0 rgba(0, 0, 0, 0.2);
   
-  @media(max-width: 1000px) {
+  @media(max-width: 1230px) {
     width: 100%;
     margin-bottom: 2rem;
   }
@@ -37,7 +37,7 @@
   width: 20%;
   box-shadow: inset 0 3px 0 0 var(--silver), 0 1px 3px 0 rgba(0, 0, 0, 0.2);
   
-  @media(max-width: 1000px) {
+  @media(max-width: 1230px) {
     width: 100%;
     margin-bottom: 2rem;
   }
@@ -51,7 +51,7 @@
   width: 30%;
   box-shadow: inset 0 3px 0 0 var(--silver), 0 1px 3px 0 rgba(0, 0, 0, 0.2);
   
-  @media(max-width: 1000px) {
+  @media(max-width: 1230px) {
     width: 100%;
     margin-bottom: 2rem;
   }
@@ -65,7 +65,7 @@
   width: 20%;
   box-shadow: inset 0 3px 0 0 var(--silver), 0 1px 3px 0 rgba(0, 0, 0, 0.2);
   
-  @media(max-width: 1000px) {
+  @media(max-width: 1230px) {
     width: 100%;
     margin-bottom: 2rem;
   }
@@ -101,14 +101,18 @@
 }
 
 .widget-content-value {
+  display: inline-block;
+  box-sizing: border-box;
   font-size: 2.4rem;
+  width: 50%;
   font-weight: 300;
 }
 
 .widget-content-subtext {
   display: inline-block;
   box-sizing: border-box;
-  width: 50%;
+  text-align: right;
+  width: 100%;
   font-size: var(--font-sm);
 }
 
@@ -116,9 +120,8 @@
   display: inline-block;
   box-sizing: border-box;
   width: 35%;
-  padding-left: 0.5rem;
   text-align: right;
-  font-size: 24px;
+  font-size: 2.4rem;
 }
 
 .trending-arrow {
@@ -130,19 +133,22 @@
   line-height: 20px;
 }
 
+.transaction-widget-details {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .transaction-widget-content-value {
-  display: inline-block;
-  box-sizing: border-box;
   width: 50%;
+  text-align: center;
   font-size: 2.4rem;
   font-weight: 300;
 }
 
 .transaction-content-subtext {
-  display: inline-block;
-  box-sizing: border-box;
   width: 50%;
+  text-align: center;
   color: var(--blue);
-  box-sizing: border-box;
   font-size: var(--font-sm);
 }

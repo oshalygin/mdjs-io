@@ -1,3 +1,7 @@
+## 2.31.1 (May 13, 2017)
+
+- Update dashboard widget styling
+
 ## 2.31.0 (May 13, 2017)
 
 - Add Order Count progress bar functionality.

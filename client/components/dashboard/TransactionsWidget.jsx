@@ -28,17 +28,21 @@ const TransactionsWidget = ({ creditCardTransactions, cashTransactions }) => {
           </div>
         </div>
         <div className={styles['widget-details']}>
-          <div className={styles['transaction-widget-content-value']}>
-            {numberToLocaleStringWithoutDecimals(creditCardTransactions)}
+          <div className={styles['transaction-widget-details']}>
+            <div className={styles['transaction-widget-content-value']}>
+              {numberToLocaleStringWithoutDecimals(creditCardTransactions)}
+            </div>
+            <div className={styles['transaction-widget-content-value']}>
+              {numberToLocaleStringWithoutDecimals(cashTransactions)}
+            </div>
           </div>
-          <div className={styles['transaction-widget-content-value']}>
-            {numberToLocaleStringWithoutDecimals(cashTransactions)}
-          </div>
-          <div className={styles['transaction-content-subtext']}>
-           <strong>{creditCardPercentage}</strong> Credit Card
-          </div>
-          <div className={styles['transaction-content-subtext']}>
-            <strong>{cashPercentage}</strong> Cash
+          <div className={styles['transaction-widget-details']}>
+            <div className={styles['transaction-content-subtext']}>
+              <strong>{creditCardPercentage}</strong> Credit Card
+            </div>
+            <div className={styles['transaction-content-subtext']}>
+              <strong>{cashPercentage}</strong> Cash
+            </div>
           </div>
         </div>
       </div>
