@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import CSSModules from 'react-css-modules';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as actionCreators from '../../actions/orderActions';
 
 import MonthlySummary from './monthlySummary';
 import SalesWidget from './SalesWidget.jsx';
@@ -39,4 +42,17 @@ class Dashboard extends React.Component {
   }
 }
 
-export default CSSModules(Dashboard, styles);
+Dashboard.propTypes = {
+  orderActions: PropTypes.object.isRequired
+};
+
+export function mapStateToProps() {
+  return {};
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    orderActions: bindActionCreators(actionCreators, dispatch)
+  };
+}
+
+export default CSSModules(connect(mapStateToProps, mapDispatchToProps)(Dashboard), styles);

@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../../../actions/orderActions';
 
 import { getLastNumberOfMonthsArray } from '../../../utilities/dateTimeUtilities';
+import { numberToLocaleString } from '../../../utilities/currencyUtility';
+import { monthlyAverage } from '../../../utilities/ordersUtility';
 
 import MonthlyChart from './MonthlyChart.jsx';
 import Spinner from '../../common/spinner';
@@ -19,6 +21,8 @@ class MonthlySummary extends React.Component {
   constructor() {
     super();
     this.state = {};
+
+    this.getSalesProgressBarPercentage = this.getSalesProgressBarPercentage.bind(this);
   }
 
   componentWillMount() {
@@ -27,13 +31,29 @@ class MonthlySummary extends React.Component {
     orderActions.getMonthlySummary(months);
   }
 
+  getSalesProgressBarPercentage() {
+
+    const { currentMonthSales, monthAverage } = this.props;
+    const salesProgressBarPercentageValue = (currentMonthSales / monthAverage) * 100;
+    const salesProgressBarPercentage = Number(salesProgressBarPercentageValue.toFixed(0));
+
+    if (salesProgressBarPercentage > 100) {
+      return 100;
+    }
+
+    return salesProgressBarPercentage || 0;
+  }
+
+
   render() {
-    const { data, loading } = this.props;
+    const { data, loading, currentMonthSales } = this.props;
+    const salesBarPercentage = this.getSalesProgressBarPercentage();
 
     const monthlyChart = loading ?
-      (<div className={styles['chart-spinner-container']}>
-        <Spinner />
-      </div>
+      (
+        <div className={styles['chart-spinner-container']}>
+          <Spinner />
+        </div>
       ) :
       (<MonthlyChart data={data} />);
 
@@ -65,7 +85,7 @@ class MonthlySummary extends React.Component {
             <div className={styles['current-monthly-sales-container']}>
               <div className={styles['progress-bar-text-container']}>
                 <div className={styles['progress-bar-primary-text']}>
-                  $ 42,399.30
+                  {numberToLocaleString(currentMonthSales)}
                 </div>
                 <div className={styles['progress-bar-subtext']}>
                   Total sales this month
@@ -74,7 +94,7 @@ class MonthlySummary extends React.Component {
               <ProgressBar
                 min={0}
                 max={100}
-                value={78}
+                value={salesBarPercentage}
               />
             </div>
             <div className={styles['current-monthly-sales-container']}>
@@ -107,13 +127,16 @@ class MonthlySummary extends React.Component {
 
 MonthlySummary.propTypes = {
   data: PropTypes.array,
+  currentMonthSales: PropTypes.number.isRequired,
+  monthAverage: PropTypes.number.isRequired,
   loading: PropTypes.bool.isRequired,
   orderActions: PropTypes.object.isRequired
 };
 
 export function mapStateToProps(state) {
 
-  const data = !state.orders.monthlySummary.length ?
+  const monthlySalesExist = !state.orders.monthlySummary.length;
+  const data = monthlySalesExist ?
     null :
     state.orders.monthlySummary
       .slice()
@@ -126,11 +149,24 @@ export function mapStateToProps(state) {
         };
       });
 
+  const currentMonthSalesValue = monthlySalesExist ?
+    0 :
+    state.orders
+      .monthlySummary[0]
+      .total;
+
+  const currentMonthSales = Number(Number(currentMonthSalesValue).toFixed(2));
+
+  const monthAverage = monthlyAverage(state.orders.monthlySummary);
+
   return {
     data,
+    currentMonthSales,
+    monthAverage,
     loading: state.loading.loadingMonthlySummary
   };
 }
+
 function mapDispatchToProps(dispatch) {
   return {
     orderActions: bindActionCreators(actionCreators, dispatch)

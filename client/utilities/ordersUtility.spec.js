@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { getOrderStatusDescription, mapOrderSummary } from './ordersUtility';
+import { getOrderStatusDescription, mapOrderSummary, monthlyAverage } from './ordersUtility';
 
 describe('Order Status Utility', () => {
 
@@ -196,6 +196,55 @@ describe('Order Status Utility', () => {
 
     const actual = mapOrderSummary(orderData, dateString)
       .monthDisplayName;
+    expect(actual).equals(expected);
+
+  });
+
+  it('should calculate the monthly average based on the monthly summary passed in', () => {
+
+    const expected = 60.38;
+
+    const monthlySummary = [{
+      monthDisplayName: 'Jan',
+      total: 40.38,
+      orderCount: 4
+    },
+    {
+      monthDisplayName: 'Feb',
+      total: 80.38,
+      orderCount: 8
+    }];
+
+    const actual = monthlyAverage(monthlySummary);
+      
+    expect(actual).equals(expected);
+
+  });
+
+  it('should calculate the monthly average based on the monthly summary with a single item passed in', () => {
+
+    const expected = 40.38;
+
+    const monthlySummary = [{
+      monthDisplayName: 'Jan',
+      total: 40.38,
+      orderCount: 4
+    }];
+
+    const actual = monthlyAverage(monthlySummary);
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should calculate the monthly average as 0 if there was an empty array passed in', () => {
+
+    const expected = 0.00;
+
+    const monthlySummary = [];
+
+    const actual = monthlyAverage(monthlySummary);
+
     expect(actual).equals(expected);
 
   });

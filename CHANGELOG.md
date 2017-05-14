@@ -1,3 +1,8 @@
+## 2.30.1 (May 13, 2017)
+
+- Add Order Sales Volume progress bar functionality.
+  - The total amount of the progress bar(100%) is based on the average sales volume over the past 8 months.  In the future this value will be configurable.
+
 ## 2.29.20 (May 13, 2017)
 
 - Updates to the Sales and Order widgets on the dashboard to have the percentage change value be more visible.

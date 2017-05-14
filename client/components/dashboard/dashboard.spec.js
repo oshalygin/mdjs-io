@@ -12,7 +12,7 @@ describe('<Dashboard />', () => {
   it('should contain a <MonthlySummary /> component on the dashboard', () => {
 
     const expected = 1;
-    const wrapper = shallow(<Dashboard />);
+    const wrapper = shallow(<Dashboard.WrappedComponent />);
     const actual = wrapper.find(MonthlySummary)
       .length;
 
@@ -23,7 +23,7 @@ describe('<Dashboard />', () => {
   it('should contain a <SalesWidget /> component on the dashboard', () => {
 
     const expected = 1;
-    const wrapper = shallow(<Dashboard />);
+    const wrapper = shallow(<Dashboard.WrappedComponent />);
     const actual = wrapper.find(SalesWidget)
       .length;
 
