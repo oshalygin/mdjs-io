@@ -7,6 +7,7 @@ describe('Reducer - Orders', () => {
   const getInitialState = () => {
     return {
       orderList: [],
+      orderAverage: 0,
       monthlySummary: []
     };
   };
@@ -139,6 +140,7 @@ describe('Reducer - Orders', () => {
     });
 
     const expected = {
+      orderAverage: 0,
       orderList,
       monthlySummary: []
     };
@@ -249,6 +251,26 @@ describe('Reducer - Orders', () => {
     const expected = monthlySummary;
     const actual = reducer(state, action)
       .monthlySummary;
+
+    expect(actual).deep.equals(expected);
+
+  });
+
+  it('should set the orderAverage property in the reducer accordingly with the data from the dispatch', () => {
+
+    const action = {
+      type: actionTypes.LOAD_ORDER_AVERAGE_SUCCESS,
+      average: 35.44
+    };
+
+    const state = {
+      orderList: [],
+      monthlySummary: []
+    };
+
+    const expected = action.average;
+    const actual = reducer(state, action)
+      .orderAverage;
 
     expect(actual).deep.equals(expected);
 

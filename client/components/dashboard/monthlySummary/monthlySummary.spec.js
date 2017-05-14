@@ -16,11 +16,13 @@ describe('<MonthlySummary />', () => {
     orderActions: {
       getMonthlySummary() { }
     },
+    orderAverage: 10.22,
     loading: false,
     currentMonthSales: 60.34,
     monthAverage: 480.33,
     currentMonthCount: 5,
-    monthAverageCount: 48
+    monthAverageCount: 48,
+    yearToDate: 30.99
   };
 
   it('should set the title heading to "Monthly Sales Volume"', () => {
@@ -440,6 +442,32 @@ describe('<MonthlySummary />', () => {
 
     const actual = wrapper
       .find('.date-container')
+      .text();
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should set the year to date sales amount from props', () => {
+
+    const expected = 'Year-To-Date Sales: $ 30.99';
+    const wrapper = shallow(<MonthlySummary.WrappedComponent {...props} />);
+    const actual = wrapper
+      .find('.sales-summary-total-text')
+      .at(0)
+      .text();
+
+    expect(actual).equals(expected);
+
+  });
+
+  it('should set the average sales amount from props', () => {
+
+    const expected = 'Average Sale Amount: $ 10.22';
+    const wrapper = shallow(<MonthlySummary.WrappedComponent {...props} />);
+    const actual = wrapper
+      .find('.sales-summary-total-text')
+      .at(1)
       .text();
 
     expect(actual).equals(expected);

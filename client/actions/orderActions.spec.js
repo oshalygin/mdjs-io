@@ -409,6 +409,34 @@ describe('Order Actions', () => {
       });
   });
 
+  it('should dispatch the "LOAD_ORDER_AVERAGE_SUCCESS" action on a completed getMonthlySummary(months) call', () => {
+
+    const expected = actionTypes.LOAD_ORDER_AVERAGE_SUCCESS;
+
+    months.forEach(month => {
+      const startDate = `${month.monthDisplayValue}-1-${month.year}`;
+      const endDate = month.monthValue < 11 ?
+        `${month.monthDisplayValue + 1}-1-${month.year}` :
+        `1-1-${month.year + 1}`;
+
+      const endpoint = `${ORDERS_ENDPOINT}?startDate=${startDate}&endDate=${endDate}`;
+
+      moxios.stubRequest(endpoint, {
+        status: 200,
+        response: orders
+      });
+    });
+
+    const dateTimeUtilities = require('../utilities/dateTimeUtilities');
+    dateTimeUtilities.getDateFromRequestUrl = () => '2-1-17';
+
+    return store.dispatch(getMonthlySummary(months))
+      .then(() => {
+        const actual = store.getActions()[2].type;
+        expect(actual).equals(expected);
+      });
+  });
+
   it('should dispatch the "LOADING_MONTHLY_SUMMARY_FAILURE" action on a failed getMonthlySummary(months) call', () => {
 
     const expected = actionTypes.LOADING_MONTHLY_SUMMARY_FAILURE;

@@ -49,6 +49,12 @@ export default function orderReducer(state = initialState.orders, action) {
         monthlySummary: action.data
       };
     }
+    case actionTypes.LOAD_ORDER_AVERAGE_SUCCESS: {
+      return {
+        ...state,
+        orderAverage: action.average
+      };
+    }  
     default: {
       return state;
     }

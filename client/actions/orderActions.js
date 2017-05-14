@@ -6,12 +6,19 @@ import { getHeaders } from '../utilities/requestUtilities';
 import { ORDERS_ENDPOINT } from '../utilities/endpoints';
 import { loadUserToken } from '../utilities/localStorage';
 import { getDateFromRequestUrl } from '../utilities/dateTimeUtilities';
-import { mapOrderSummary } from '../utilities/ordersUtility';
+import { mapOrderSummary, orderAverage, flattenOrders } from '../utilities/ordersUtility';
 
 export function loadOrdersSuccess(orders) {
   return {
     type: actionTypes.LOAD_ORDERS_SUCCESS,
     orders
+  };
+}
+
+export function loadOrderAverageSuccess(average) {
+  return {
+    type: actionTypes.LOAD_ORDER_AVERAGE_SUCCESS,
+    average
   };
 }
 
@@ -86,8 +93,10 @@ export function getAllOrders() {
 
       const ordersResponse = await axios.get(endpoint, headers);
       const orders = ordersResponse.data;
+      
 
       dispatch(loadOrdersSuccess(orders));
+      
 
     } catch (error) {
       dispatch(loadingOrdersFailure());
@@ -164,7 +173,12 @@ export function getMonthlySummary(months) {
 
         });
 
+        const orders = flattenOrders(results);
+        
+        const average = orderAverage(orders);
+        
         dispatch(loadMonthlySummarySuccess(data));
+        dispatch(loadOrderAverageSuccess(average));
 
       });
 

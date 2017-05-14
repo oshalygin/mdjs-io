@@ -1,3 +1,8 @@
+## 2.32.0 (May 14, 2017)
+
+- Add Order Average Display and Functionality
+  - Reducer, Actions and Utilities implemented to calculate and parse the order average amount.
+
 ## 2.31.2 (May 13, 2017)
 
 - Update Dashboard Summary chart to display the past 12 months instead of 8.

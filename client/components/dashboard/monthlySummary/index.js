@@ -8,7 +8,7 @@ import * as actionCreators from '../../../actions/orderActions';
 
 import { getLastNumberOfMonthsArray } from '../../../utilities/dateTimeUtilities';
 import { numberToLocaleString } from '../../../utilities/currencyUtility';
-import { monthlyAverage } from '../../../utilities/ordersUtility';
+import { monthlyAverage, yearToDateTotal } from '../../../utilities/ordersUtility';
 
 import MonthlyChart from './MonthlyChart.jsx';
 import Spinner from '../../common/spinner';
@@ -47,16 +47,17 @@ class MonthlySummary extends React.Component {
     return salesProgressBarPercentage || 0;
   }
 
-
   render() {
 
     const {
       data,
+      orderAverage,
       loading,
       currentMonthSales,
       currentMonthCount,
       monthAverage,
-      monthAverageCount
+      monthAverageCount,
+      yearToDate
     } = this.props;
     const { currentDate } = this.state;
     const salesBarPercentage = this.getProgressBarPercentage(currentMonthSales, monthAverage);
@@ -83,10 +84,10 @@ class MonthlySummary extends React.Component {
           </div>
           <div className={styles['sales-summary-totals']}>
             <div className={styles['sales-summary-total-text']}>
-              Year-To-Date Sales: <strong>$153,300.00</strong>
+              Year-To-Date Sales: <strong>{numberToLocaleString(yearToDate)}</strong>
             </div>
             <div className={styles['sales-summary-total-text']}>
-              Average Sale Amount: <strong>$32.30</strong>
+              Average Sale Amount: <strong>{numberToLocaleString(orderAverage)}</strong>
             </div>
           </div>
         </div>
@@ -140,6 +141,8 @@ class MonthlySummary extends React.Component {
 
 MonthlySummary.propTypes = {
   data: PropTypes.array,
+  orderAverage: PropTypes.number.isRequired,
+  yearToDate: PropTypes.number.isRequired,
   currentMonthSales: PropTypes.number.isRequired,
   monthAverage: PropTypes.number.isRequired,
   monthAverageCount: PropTypes.number.isRequired,
@@ -154,6 +157,7 @@ export function mapStateToProps(state) {
 
   if (monthlySalesExist) {
 
+    const monthlySummary = state.orders.monthlySummary;
     const currentMonthIndex = 0;
 
     const currentMonthSalesValue = state.orders
@@ -162,12 +166,12 @@ export function mapStateToProps(state) {
 
     const currentMonthSales = Number(Number(currentMonthSalesValue).toFixed(2));
 
-    const monthAverage = monthlyAverage(state.orders.monthlySummary, 'total');
-    const monthAverageCount = monthlyAverage(state.orders.monthlySummary, 'orderCount');
-
+    const monthAverage = monthlyAverage(monthlySummary, 'total');
+    const monthAverageCount = monthlyAverage(monthlySummary, 'orderCount');
+    const yearToDate = yearToDateTotal(monthlySummary);
 
     return {
-      data: state.orders.monthlySummary
+      data: monthlySummary
         .slice()
         .reverse()
         .map(month => {
@@ -177,21 +181,25 @@ export function mapStateToProps(state) {
             'sales total': Number(month.orderCount)
           };
         }),
+      yearToDate,
       currentMonthCount: state.orders
         .monthlySummary[currentMonthIndex]
         .orderCount,
       currentMonthSales,
       monthAverage,
       monthAverageCount,
+      orderAverage: state.orders.orderAverage,
       loading: state.loading.loadingMonthlySummary
     };
   }
 
   return {
     data: null,
+    orderAverage: state.orders.orderAverage,
     currentMonthCount: 0,
     currentMonthSales: 0,
     monthAverage: 0,
+    yearToDate: 0,
     monthAverageCount: 0,
     loading: state.loading.loadingMonthlySummary
   };

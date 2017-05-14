@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 import dateFns from 'date-fns';
 
 export function getOrderStatusDescription(orderStatusId) {
@@ -42,23 +41,55 @@ export function mapOrderSummary(orderData, dateString) {
       totalTip: previous.totalTip + next.totalTip
     };
   }, {
-      monthDisplayName,
-      monthValue,
-      orderCount,
-      year,
-      total: 0,
-      totalDiscount: 0,
-      totalTax: 0,
-      totalTip: 0
-    });
+      monthDisplayName, //eslint-disable-line indent
+      monthValue, //eslint-disable-line indent
+      orderCount, //eslint-disable-line indent
+      year, //eslint-disable-line indent
+      total: 0, //eslint-disable-line indent
+      totalDiscount: 0, //eslint-disable-line indent
+      totalTax: 0, //eslint-disable-line indent
+      totalTip: 0 //eslint-disable-line indent
+    }); //eslint-disable-line indent
 
   return monthSummary;
+}
+
+export function flattenOrders(results) {
+  
+  const orders = [];
+
+  results.forEach(result => {
+    orders.push(...result.data);
+  });
+
+  return orders;
+}
+
+export function orderAverage(orders) {
+
+  const size = orders.length;
+  if (!size) {
+    return 0;
+  }
+
+  const total = orders
+    .reduce((previous, next) => {
+      return previous + next.total;
+    }, 0);
+  
+  const sizeExcludingZeros = orders
+    .filter(order => order.total)
+    .length;
+  
+  const average = (total / sizeExcludingZeros).toFixed(2);
+  return Number(average);
+
 }
 
 export function monthlyAverage(monthlySummary, property) {
 
   const size = monthlySummary.length;
-  
+
   if (!size) {
     return 0;
   }
@@ -70,25 +101,20 @@ export function monthlyAverage(monthlySummary, property) {
 
   const monthlyAverageValue = totalSales / size;
   const average = Number(monthlyAverageValue.toFixed(2));
-  
+
   return average;
 }
 
-// export function yearToDateTotal(monthlySummary) {
+export function yearToDateTotal(monthlySummary) {
 
-//   const size = monthlySummary.length;
+  const currentYear = (new Date()).getFullYear();
+  const monthlySummaryForCurrentYear = monthlySummary
+    .filter(month => month.year === currentYear);
 
-//   if (!size) {
-//     return 0;
-//   }
+  const yearToDateAmount = monthlySummaryForCurrentYear
+    .reduce((previous, next) => {
+      return previous + next.total;
+    }, 0);
 
-//   const totalSales = monthlySummary
-//     .reduce((previous, next) => {
-//       return previous + next[property];
-//     }, 0);
-
-//   const monthlyAverageValue = totalSales / size;
-//   const average = Number(monthlyAverageValue.toFixed(2));
-
-//   return average;
-// }
+  return yearToDateAmount;
+}
