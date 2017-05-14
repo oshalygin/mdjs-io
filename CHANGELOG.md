@@ -1,3 +1,7 @@
+## 2.32.1 (May 14, 2017)
+
+- Addition of order utilities to extract yesterdays and todays orders.
+
 ## 2.32.0 (May 14, 2017)
 
 - Add Order Average Display and Functionality

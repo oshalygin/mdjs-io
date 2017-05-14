@@ -174,7 +174,6 @@ export function getMonthlySummary(months) {
         });
 
         const orders = flattenOrders(results);
-        
         const average = orderAverage(orders);
         
         dispatch(loadMonthlySummarySuccess(data));

@@ -55,7 +55,7 @@ export function mapOrderSummary(orderData, dateString) {
 }
 
 export function flattenOrders(results) {
-  
+
   const orders = [];
 
   results.forEach(result => {
@@ -76,11 +76,11 @@ export function orderAverage(orders) {
     .reduce((previous, next) => {
       return previous + next.total;
     }, 0);
-  
+
   const sizeExcludingZeros = orders
     .filter(order => order.total)
     .length;
-  
+
   const average = (total / sizeExcludingZeros).toFixed(2);
   return Number(average);
 
@@ -118,3 +118,24 @@ export function yearToDateTotal(monthlySummary) {
 
   return yearToDateAmount;
 }
+
+export function todaysOrders(orders) {
+
+  const today = dateFns.startOfToday();
+  const ordersFromToday = orders
+    .filter(order => order.createdDate >= today);
+
+  return ordersFromToday;
+}
+
+export function yesterdaysOrders(orders) {
+
+  const yesterday = dateFns.startOfYesterday();
+  const today = dateFns.startOfToday();
+
+  const ordersFromToday = orders
+    .filter(order => order.createdDate >= yesterday && order.createdDate < today);
+
+  return ordersFromToday;
+}
+
