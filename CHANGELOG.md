@@ -1,6 +1,11 @@
+## 2.31.2 (May 13, 2017)
+
+- Update Dashboard Summary chart to display the past 12 months instead of 8.
+- Dashboard Summary chart styling updates(Y-Axis pushed down to the bottom).
+
 ## 2.31.1 (May 13, 2017)
 
-- Update dashboard widget styling
+- Update dashboard widget styling.
 
 ## 2.31.0 (May 13, 2017)
 

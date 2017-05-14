@@ -73,3 +73,22 @@ export function monthlyAverage(monthlySummary, property) {
   
   return average;
 }
+
+// export function yearToDateTotal(monthlySummary) {
+
+//   const size = monthlySummary.length;
+
+//   if (!size) {
+//     return 0;
+//   }
+
+//   const totalSales = monthlySummary
+//     .reduce((previous, next) => {
+//       return previous + next[property];
+//     }, 0);
+
+//   const monthlyAverageValue = totalSales / size;
+//   const average = Number(monthlyAverageValue.toFixed(2));
+
+//   return average;
+// }

@@ -40,7 +40,7 @@ const MonthlyChart = ({ data }) => {
           dataKey="sales volume"
           width={100}
           tickFormatter={currencyFormatter}
-          padding={{ bottom: 10 }}
+          padding={{ bottom: 2 }}
           name="sales volume" />
         <CartesianGrid
           strokeDasharray="0 0" />

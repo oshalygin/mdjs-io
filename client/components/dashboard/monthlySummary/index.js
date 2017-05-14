@@ -16,7 +16,7 @@ import ProgressBar from '../../common/progressBar';
 
 import styles from './monthlySummary.css';
 
-const defaultNumberOfMonths = 8;
+const defaultNumberOfMonths = 12;
 
 class MonthlySummary extends React.Component {
 
