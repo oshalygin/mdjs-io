@@ -1,3 +1,7 @@
+## 2.32.3 (May 14, 2017)
+
+- Updates to the calculation utility to handle 0 value edge cases.
+
 ## 2.32.2 (May 14, 2017)
 
 - Mapping utility from the TransactionTypeId to a user readable description.
