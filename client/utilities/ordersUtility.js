@@ -21,6 +21,9 @@ export function getOrderStatusDescription(orderStatusId) {
     '';
 }
 
+export const cashTransactionTypeId = 1;
+export const creditCardTransactionTypeId = 3;
+
 export function getTransactionType(transactionTypeId) {
 
   const transactionTypeEnum = [
@@ -149,20 +152,16 @@ export function yearToDateTotal(monthlySummary) {
 
 export function todaysOrders(orders) {
 
-  const today = dateFns.startOfToday();
   const ordersFromToday = orders
-    .filter(order => order.createdDate >= today);
+    .filter(order => dateFns.isToday(new Date(order.createdDate)));
 
   return ordersFromToday;
 }
 
 export function yesterdaysOrders(orders) {
 
-  const yesterday = dateFns.startOfYesterday();
-  const today = dateFns.startOfToday();
-
   const ordersFromToday = orders
-    .filter(order => order.createdDate >= yesterday && order.createdDate < today);
+    .filter(order => dateFns.isYesterday(new Date(order.createdDate)));
 
   return ordersFromToday;
 }

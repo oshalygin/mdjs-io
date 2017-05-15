@@ -1,3 +1,7 @@
+## 2.32.4 (May 14, 2017)
+
+- Update order utility to leverage `date-fns` to determine yesterdays and today dates.
+
 ## 2.32.3 (May 14, 2017)
 
 - Updates to the calculation utility to handle 0 value edge cases.
