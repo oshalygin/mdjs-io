@@ -2,6 +2,7 @@ import dateFns from 'date-fns';
 
 import {
   getOrderStatusDescription,
+  getTransactionType,
   mapOrderSummary,
   monthlyAverage,
   yearToDateTotal,
@@ -225,6 +226,151 @@ describe('Order Status Utility', () => {
 
   });
 
+
+  it('should return "None" when passing in a transactionTypeId of 0', () => {
+
+    const transactionTypeId = 0;
+    const expected = 'None';
+    const actual = getTransactionType(transactionTypeId);
+    expect(actual).equals(expected);
+
+  });
+
+  it('should return "Cash" when passing in a transactionTypeId of 1', () => {
+
+    const transactionTypeId = 1;
+    const expected = 'Cash';
+    const actual = getTransactionType(transactionTypeId);
+    expect(actual).equals(expected);
+
+  });
+
+  it('should return "Check" when passing in a transactionTypeId of 2', () => {
+
+    const transactionTypeId = 2;
+    const expected = 'Check';
+    const actual = getTransactionType(transactionTypeId);
+    expect(actual).equals(expected);
+
+  });
+
+  it('should return "Credit Card Sale" when passing in a transactionTypeId of 3', () => {
+
+    const transactionTypeId = 3;
+    const expected = 'Credit Card Sale';
+    const actual = getTransactionType(transactionTypeId);
+    expect(actual).equals(expected);
+
+  });
+
+  it('should return "Debit" when passing in a transactionTypeId of 4', () => {
+
+    const transactionTypeId = 4;
+    const expected = 'Debit';
+    const actual = getTransactionType(transactionTypeId);
+    expect(actual).equals(expected);
+
+  });
+
+  it('should return "Refund Credit Card" when passing in a transactionTypeId of 5', () => {
+
+    const transactionTypeId = 5;
+    const expected = 'Refund Credit Card';
+    const actual = getTransactionType(transactionTypeId);
+    expect(actual).equals(expected);
+
+  });
+
+  it('should return "Authorize" when passing in a transactionTypeId of 6', () => {
+
+    const transactionTypeId = 6;
+    const expected = 'Authorize';
+    const actual = getTransactionType(transactionTypeId);
+    expect(actual).equals(expected);
+
+  });
+
+  it('should return "Capture" when passing in a transactionTypeId of 7', () => {
+
+    const transactionTypeId = 7;
+    const expected = 'Capture';
+    const actual = getTransactionType(transactionTypeId);
+    expect(actual).equals(expected);
+
+  });
+
+  it('should return "Void" when passing in a transactionTypeId of 8', () => {
+
+    const transactionTypeId = 8;
+    const expected = 'Void';
+    const actual = getTransactionType(transactionTypeId);
+    expect(actual).equals(expected);
+
+  });
+
+  it('should return "Timeout Reversal" when passing in a transactionTypeId of 9', () => {
+
+    const transactionTypeId = 9;
+    const expected = 'Timeout Reversal';
+    const actual = getTransactionType(transactionTypeId);
+    expect(actual).equals(expected);
+
+  });
+
+  it('should return "Refund" when passing in a transactionTypeId of 10', () => {
+
+    const transactionTypeId = 10;
+    const expected = 'Refund';
+    const actual = getTransactionType(transactionTypeId);
+    expect(actual).equals(expected);
+
+  });
+  
+  it('should return "Sale" when passing in a transactionTypeId of 11', () => {
+
+    const transactionTypeId = 11;
+    const expected = 'Sale';
+    const actual = getTransactionType(transactionTypeId);
+    expect(actual).equals(expected);
+
+  });
+
+  it('should return "Repeat Sale" when passing in a transactionTypeId of 12', () => {
+
+    const transactionTypeId = 12;
+    const expected = 'Repeat Sale';
+    const actual = getTransactionType(transactionTypeId);
+    expect(actual).equals(expected);
+
+  });
+
+  it('should return "Adjustment" when passing in a transactionTypeId of 13', () => {
+
+    const transactionTypeId = 13;
+    const expected = 'Adjustment';
+    const actual = getTransactionType(transactionTypeId);
+    expect(actual).equals(expected);
+
+  });
+
+  it('should return "Force" when passing in a transactionTypeId of 14', () => {
+
+    const transactionTypeId = 14;
+    const expected = 'Force';
+    const actual = getTransactionType(transactionTypeId);
+    expect(actual).equals(expected);
+
+  });
+
+  it('should set an empty string if the transactionTypeId does not match anything in the enum', () => {
+
+    const transactionTypeId = 999;
+    const expected = '';
+    const actual = getTransactionType(transactionTypeId);
+    expect(actual).equals(expected);
+
+  });
+
   it('should map the order summary with a total amount thats a sum of all of the orders', () => {
 
     const expected = 95;
@@ -233,6 +379,8 @@ describe('Order Status Utility', () => {
     expect(actual).equals(expected);
 
   });
+
+
 
   it('should map the order summary with a total tax amount thats a sum of all of the orders taxes', () => {
 

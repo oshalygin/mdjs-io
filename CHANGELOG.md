@@ -1,3 +1,7 @@
+## 2.32.2 (May 14, 2017)
+
+- Mapping utility from the TransactionTypeId to a user readable description.
+
 ## 2.32.1 (May 14, 2017)
 
 - Addition of order utilities to extract yesterdays and todays orders.

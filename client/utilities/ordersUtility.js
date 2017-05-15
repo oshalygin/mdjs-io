@@ -21,6 +21,34 @@ export function getOrderStatusDescription(orderStatusId) {
     '';
 }
 
+export function getTransactionType(transactionTypeId) {
+
+  const transactionTypeEnum = [
+    { id: 0, description: 'None' },
+    { id: 1, description: 'Cash' },
+    { id: 2, description: 'Check' },
+    { id: 3, description: 'Credit Card Sale' },
+    { id: 4, description: 'Debit' },
+    { id: 5, description: 'Refund Credit Card' },
+    { id: 6, description: 'Authorize' },
+    { id: 7, description: 'Capture' },
+    { id: 8, description: 'Void' },
+    { id: 9, description: 'Timeout Reversal' },
+    { id: 10, description: 'Refund' },
+    { id: 11, description: 'Sale' },
+    { id: 12, description: 'Repeat Sale' },
+    { id: 13, description: 'Adjustment' },
+    { id: 14, description: 'Force' }
+  ];
+
+  const transactionType = transactionTypeEnum.find(status => status.id === transactionTypeId);
+
+  return transactionType ?
+    transactionType.description :
+    '';
+
+}
+
 export function mapOrderSummary(orderData, dateString) {
 
   const date = new Date(dateString);
