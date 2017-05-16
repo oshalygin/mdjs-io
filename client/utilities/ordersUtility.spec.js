@@ -380,8 +380,6 @@ describe('Order Status Utility', () => {
 
   });
 
-
-
   it('should map the order summary with a total tax amount thats a sum of all of the orders taxes', () => {
 
     const expected = 25;

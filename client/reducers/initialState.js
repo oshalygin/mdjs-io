@@ -32,6 +32,8 @@ export default {
   taxes: [],
   orders: {
     orderAverage: 0,
+    yesterdaysOrders: [],
+    todaysOrders: [],
     orderList: [],
     monthlySummary: []
   },

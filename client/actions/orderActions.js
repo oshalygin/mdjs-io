@@ -6,7 +6,13 @@ import { getHeaders } from '../utilities/requestUtilities';
 import { ORDERS_ENDPOINT } from '../utilities/endpoints';
 import { loadUserToken } from '../utilities/localStorage';
 import { getDateFromRequestUrl } from '../utilities/dateTimeUtilities';
-import { mapOrderSummary, orderAverage, flattenOrders } from '../utilities/ordersUtility';
+import {
+  mapOrderSummary,
+  orderAverage,
+  flattenOrders,
+  yesterdaysOrders,
+  todaysOrders
+} from '../utilities/ordersUtility';
 
 export function loadOrdersSuccess(orders) {
   return {
@@ -19,6 +25,20 @@ export function loadOrderAverageSuccess(average) {
   return {
     type: actionTypes.LOAD_ORDER_AVERAGE_SUCCESS,
     average
+  };
+}
+
+export function loadYesterdaysOrdersSuccess(orders) {
+  return {
+    type: actionTypes.LOAD_YESTERDAYS_ORDERS_SUCCESS,
+    orders
+  };
+}
+
+export function loadTodaysOrdersSuccess(orders) {
+  return {
+    type: actionTypes.LOAD_TODAYS_ORDERS_SUCCESS,
+    orders
   };
 }
 
@@ -175,9 +195,13 @@ export function getMonthlySummary(months) {
 
         const orders = flattenOrders(results);
         const average = orderAverage(orders);
+        const yesterdays = yesterdaysOrders(orders);
+        const todays = todaysOrders(orders);
         
         dispatch(loadMonthlySummarySuccess(data));
         dispatch(loadOrderAverageSuccess(average));
+        dispatch(loadYesterdaysOrdersSuccess(yesterdays));
+        dispatch(loadTodaysOrdersSuccess(todays));
 
       });
 

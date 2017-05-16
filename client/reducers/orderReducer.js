@@ -54,7 +54,19 @@ export default function orderReducer(state = initialState.orders, action) {
         ...state,
         orderAverage: action.average
       };
-    }  
+    }
+    case actionTypes.LOAD_YESTERDAYS_ORDERS_SUCCESS: {
+      return {
+        ...state,
+        yesterdaysOrders: action.orders
+      };
+    }
+    case actionTypes.LOAD_TODAYS_ORDERS_SUCCESS: {
+      return {
+        ...state,
+        todaysOrders: action.orders
+      };
+    }
     default: {
       return state;
     }

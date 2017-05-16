@@ -1,3 +1,11 @@
+## 2.33.0 (May 14, 2017)
+
+- Providing functionality to dashboard widgets
+  - Sales Widget now handles real data from the order summary sales.
+  - Orders Widget now handles real data from the order summary count.
+  - Transactions now handles real data from todays orders and displays the values accordingly.
+  - Reducers, actions and the associated components updated to cascade the changes throughout the application.
+
 ## 2.32.4 (May 14, 2017)
 
 - Update order utility to leverage `date-fns` to determine yesterdays and today dates.

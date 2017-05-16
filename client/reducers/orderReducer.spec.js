@@ -8,6 +8,8 @@ describe('Reducer - Orders', () => {
     return {
       orderList: [],
       orderAverage: 0,
+      yesterdaysOrders: [],
+      todaysOrders: [],
       monthlySummary: []
     };
   };
@@ -142,6 +144,8 @@ describe('Reducer - Orders', () => {
     const expected = {
       orderAverage: 0,
       orderList,
+      yesterdaysOrders: [],
+      todaysOrders: [],
       monthlySummary: []
     };
 
@@ -272,6 +276,48 @@ describe('Reducer - Orders', () => {
     const actual = reducer(state, action)
       .orderAverage;
 
+    expect(actual).deep.equals(expected);
+
+  });
+
+  it('should hydrate the store with the orders in the payload of "LOAD_YESTERDAYS_ORDERS_SUCCESS"', () => {
+
+    const action = {
+      type: actionTypes.LOAD_YESTERDAYS_ORDERS_SUCCESS,
+      orders
+    };
+
+
+    const expected = {
+      orderAverage: 0,
+      orderList: [],
+      yesterdaysOrders: orders,
+      todaysOrders: [],
+      monthlySummary: []
+    };
+
+    const actual = reducer(undefined, action); //eslint-disable-line no-undefined
+    expect(actual).deep.equals(expected);
+
+  });
+
+  it('should hydrate the store with the orders in the payload of "LOAD_TODAYS_ORDERS_SUCCESS"', () => {
+
+    const action = {
+      type: actionTypes.LOAD_TODAYS_ORDERS_SUCCESS,
+      orders
+    };
+
+
+    const expected = {
+      orderAverage: 0,
+      orderList: [],
+      todaysOrders: orders,
+      yesterdaysOrders: [],
+      monthlySummary: []
+    };
+
+    const actual = reducer(undefined, action); //eslint-disable-line no-undefined
     expect(actual).deep.equals(expected);
 
   });
