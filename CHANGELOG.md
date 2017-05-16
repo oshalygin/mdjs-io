@@ -1,3 +1,7 @@
+## 2.33.2 (May 16, 2017)
+
+- Move manual exception to the entrypoint of the application to allow all tests to continue to pass.
+
 ## 2.33.1 (May 15, 2017)
 
 - Instrument client-side logging through the Stackdriver API, leveraging the `stackdriver-error-js` project.

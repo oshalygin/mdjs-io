@@ -69,6 +69,8 @@ if (environment === 'production') {
 
 }
 
+(function testErrorReporting() { window.onerror(null, null, null, null, new Error('Test: Something broke!')); })(); //eslint-disable-line
+
 const store = configureStore();
 
 function isAuthorized(nextState, replace, callback) {

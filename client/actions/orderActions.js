@@ -203,8 +203,6 @@ export function getMonthlySummary(months) {
         dispatch(loadYesterdaysOrdersSuccess(yesterdays));
         dispatch(loadTodaysOrdersSuccess(todays));
 
-        throw (new Error('testing error reporting'));
-
       });
 
     } catch (error) {
