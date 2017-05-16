@@ -1,4 +1,12 @@
-## 2.33.0 (May 14, 2017)
+## 2.33.1 (May 15, 2017)
+
+- Instrument client-side logging through the Stackdriver API, leveraging the `stackdriver-error-js` project.
+  - The root index file now pre-loads the stackdriver error logging package.
+  - The stackdriver error reporter is initialized in the entrypoint, `index.js`.  This only occurs in the production build.
+  - For testing purposes, the orderAction receives an erroneous error that will be picked up if everything deploys and functions accordingly.  This will be removed in a subsequent release.
+- The development webpack bundle is updated to reflect the `NODE_ENV`.  Although this is not necessary at this time, it should be consistent with the production configuration.
+
+## 2.33.0 (May 15, 2017)
 
 - Providing functionality to dashboard widgets
   - Sales Widget now handles real data from the order summary sales.

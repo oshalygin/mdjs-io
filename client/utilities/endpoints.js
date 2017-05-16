@@ -1,6 +1,6 @@
 import configuration from '../../utilities/configuration';
 
-const hostLocation = window.location.host;
+export const hostLocation = window.location.host;
 const protocol = window.location.protocol;
 const baseEndpoint = `${protocol}//${hostLocation}`;
 

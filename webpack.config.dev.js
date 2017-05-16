@@ -2,6 +2,10 @@
 import webpack from 'webpack';
 import path from 'path';
 
+const GLOBALS = {
+  'process.env.NODE_ENV': JSON.stringify('development')
+};
+
 export default {
   resolve: {
     extensions: ['', '.js', '.jsx', '.json']
@@ -23,6 +27,7 @@ export default {
     contentBase: './client'
   },
   plugins: [
+    new webpack.DefinePlugin(GLOBALS),
     new webpack.ProvidePlugin({
       $: 'jquery', //eslint-disable-line id-length
       jQuery: 'jquery',

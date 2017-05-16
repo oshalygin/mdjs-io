@@ -8,6 +8,7 @@ import configureStore from './store/configureStore';
 import { Router, Route, IndexRoute, browserHistory, Redirect } from 'react-router';
 import { Provider } from 'react-redux';
 import { retrieveUser } from './reducers/initialState';
+import { hostLocation } from './utilities/endpoints';
 
 // To load styles globally without CSS modules, use the !style!css!{{path}} format.
 // https://github.com/css-modules/css-modules/pull/65#issuecomment-248280248
@@ -55,6 +56,18 @@ import DiscountDetailPage from './components/discountDetail';
 import OrderPage from './components/orders';
 
 import Login from './components/login';
+
+const environment = process.env.NODE_ENV; // eslint-disable-line no-process-env
+if (environment === 'production') {
+
+  const errorHandler = new StackdriverErrorReporter(); //eslint-disable-line no-undef
+  errorHandler.start({
+    key: 'AIzaSyBsQeaYpBv6U-axYGImjX6yUTaZ7LACDxQ',
+    projectId: 'merchant-dash',
+    service: hostLocation
+  });
+
+}
 
 const store = configureStore();
 
