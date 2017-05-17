@@ -17,23 +17,28 @@ application.use(cookieParser());
 
 const port = configuration.port;
 
-const applicationCompiler = webpack(webpackConfiguration);
-application.use(require('webpack-dev-middleware')(applicationCompiler, {
+const compiler = webpack(webpackConfiguration);
+application.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
   publicPath: webpackConfiguration.output.publicPath
 }));
 
-application.use(require('webpack-hot-middleware')(applicationCompiler));
+application.use(require('webpack-hot-middleware')(compiler));
 
 application.use(logger.requestLogger);
 application.use('/api/v1', v1router);
 application.use('/client', express.static(path.join(__dirname, '../client')));
 
 application.get('*', (request, response) => {
-  const clientEntryPoint = path.join(__dirname, '../client/index.html');
-  response.sendFile(clientEntryPoint);
-});
+  const fileName = path.join(compiler.outputPath, 'index.html');
 
+  compiler.outputFileSystem.readFile(fileName, (error, result) => {
+    response.set('content-type', 'text/html');
+    response.send(result);
+    response.end();
+  });
+
+});
 
 application.listen(port, (error) => {
   if (error) {

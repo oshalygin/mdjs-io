@@ -1,9 +1,14 @@
 /* eslint-disable max-len */
 import webpack from 'webpack';
+import path from 'path';
+
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import WebpackMd5Hash from 'webpack-md5-hash';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 const GLOBALS = {
-  'process.env.NODE_ENV': JSON.stringify('production')
+  'process.env.NODE_ENV': JSON.stringify('production'),
+  __DEV__: false
 };
 
 export default {
@@ -11,19 +16,15 @@ export default {
     extensions: ['', '.js', '.jsx', '.json']
   },
   debug: true,
-  devtool: 'source-map',
-  noInfo: false,
+  noInfo: true,
   entry: [
     './client/index.js'
   ],
   target: 'web',
   output: {
-    path: __dirname + '/dist', //eslint-disable-line
+    path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
-    filename: 'bundle.js'
-  },
-  devServer: {
-    contentBase: './dist'
+    filename: '[name].[chunkhash].js'
   },
   plugins: [
     new webpack.ProvidePlugin({
@@ -32,10 +33,26 @@ export default {
       'windows.jQuery': 'jquery',
       'window.$': 'jquery'
     }),
+    new WebpackMd5Hash(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin(GLOBALS),
-    new ExtractTextPlugin('material.icons.css'),
-    new ExtractTextPlugin('material.style.css'),
+    new ExtractTextPlugin('[name].[contenthash].css'),
+    new HtmlWebpackPlugin({
+      template: 'client/index.html',
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        useShortDoctype: true,
+        removeEmptyAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        keepClosingSlash: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true
+      },
+      inject: true
+    }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin()
   ],

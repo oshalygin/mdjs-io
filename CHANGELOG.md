@@ -1,3 +1,14 @@
+## 2.35.0 (May 16, 2017)
+
+- Updates to Webpack configuration files(`webpack.config.dev.js` and `wbpack.config.production.js`) to reflect the following changes:
+  - Hash all files using MD5
+  - Generate a HTML along with the bundle dynamically.
+  - Set the `__DEV__` flag to true in the dev build
+- Updates to the local development express layer to properly persist bundle changes across all routes.
+- Addition of `webpack-public-path.js` to properly set the public path when generating the bundle.
+- Drastic reduction in the minified javascript bundle size
+  - Removal of sourcemaps
+
 ## 2.34.0 (May 16, 2017)
 
 - Removal of erroneous error and validation that error reporting to stackdriver is functional.

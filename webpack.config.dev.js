@@ -1,9 +1,11 @@
 /* eslint-disable max-len */
 import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
 
 const GLOBALS = {
-  'process.env.NODE_ENV': JSON.stringify('development')
+  'process.env.NODE_ENV': JSON.stringify('development'),
+  __DEV__: true
 };
 
 export default {
@@ -14,17 +16,15 @@ export default {
   devtool: '#source-map',
   noInfo: true,
   entry: [
-    'webpack-hot-middleware/client?reload=true',
-    './client/index'
+    // must be first entry to properly set public path
+    './client/webpack-public-path', 'webpack-hot-middleware/client?reload=true',
+    path.resolve(__dirname, 'client/index.js') // Defining path seems necessary for this to work consistently on Windows machines.
   ],
   target: 'web',
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist'), // Note: Physical files are only output by the production build task `npm run build`.
     publicPath: '/',
     filename: 'bundle.js'
-  },
-  devServer: {
-    contentBase: './client'
   },
   plugins: [
     new webpack.DefinePlugin(GLOBALS),
@@ -35,7 +35,14 @@ export default {
       'window.$': 'jquery'
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new HtmlWebpackPlugin({
+      template: 'client/index.html',
+      minify: {
+        removeComments: true
+      },
+      inject: true
+    })
   ],
   imageWebpackLoader: {
     mozjpeg: {
