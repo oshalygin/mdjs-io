@@ -1,3 +1,7 @@
+## 2.33.4 (May 16, 2017)
+
+- Add documentation around authenticating with GCP and bringing in the `kubectl` component.
+
 ## 2.33.3 (May 16, 2017)
 
 - Add documentation on how to get started with GCP.

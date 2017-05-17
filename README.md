@@ -18,8 +18,9 @@ This project is intended to run within a Docker container, preferably in Kuberne
   - Start the Trial.
 2. When you start your account, create a new project.
 
-<a href="/oshalygin/mdjs/blob/master/docs/gcp_registration.png?raw=true" target="_blank">
-<img src="/oshalygin/mdjs/raw/master/docs/gcp_registration.png?raw=true" alt="image" title="GCP Registration" style="max-width:75%;"></a>
+<a href="/docs/gcp_registration.png?raw=true" target="_blank">
+  <img src="/docs/gcp_registration.png?raw=true" alt="image" title="GCP Registration" style="max-width:75%;margin:0 auto;">
+</a>
 
 ### Instal the Google Cloud SDK
 
@@ -32,6 +33,37 @@ You will need the Google Cloud SDK to be able to deploy and manage your cloud re
 ./google-cloud-sdk/install.sh
 ```
 4. Call `gcloud init` and go through the initialization steps.
+
+### Installing the `kubectl` Google Cloud SDK Component
+
+```bash
+# Install the kubernetes component
+sudo gcloud components install kubectl
+```
+
+### Authenticating with GCP
+
+Some of these steps may seem redundant, but they are necessary to make sure things are running smoothly.  Run them in sequence.
+
+```bash
+# A browser window will launch and you will authenticate with your google account.
+# Once everything is successful, you will be navigated back to your terminal
+gcloud auth login 
+
+# gcloud auth login doesn't write application-default credentials as you'll see from this message:
+# "WARNING: `gcloud auth login` no longer writes application default credentials."
+# Run the following command:
+gcloud auth application-default login
+
+# Retrieving and setting credentials on your cluster
+gcloud container clusters get-credentials <your_cluster_name>
+
+# Configure the local gcloud service to point to the cluster
+gcloud config set container/cluster <your_cluster_name>
+gcloud config set compute/zone <your_cluster_name>
+gcloud config set project <your_PROJECT_name>
+
+```
 
 ### To run this application locally follow these steps:
 
