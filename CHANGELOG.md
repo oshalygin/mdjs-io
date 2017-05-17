@@ -1,3 +1,7 @@
+## 2.33.5 (May 16, 2017)
+
+- Update Kubernetes deployment configuration with a ReplicaSet revision history of `2`.
+
 ## 2.33.4 (May 16, 2017)
 
 - Add documentation around authenticating with GCP and bringing in the `kubectl` component.

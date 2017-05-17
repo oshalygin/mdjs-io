@@ -8,6 +8,7 @@ metadata:
     date: 20170311T222958Z
 spec:
   replicas: 2
+  revisionHistoryLimit: 2
   strategy:
     rollingUpdate:
       maxUnavailable: 0
@@ -19,7 +20,7 @@ spec:
     spec:
       containers:
         - name: fe-web
-          image: 'us.gcr.io/merchant-dash/merchant-dashboard:2.33.4'
+          image: 'us.gcr.io/merchant-dash/merchant-dashboard:2.33.5'
           volumeMounts:
             - mountPath: /cache
               name: temp-volume
