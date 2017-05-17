@@ -1,3 +1,7 @@
+## 2.34.0 (May 16, 2017)
+
+- Removal of erroneous error and validation that error reporting to stackdriver is functional.
+
 ## 2.33.5 (May 16, 2017)
 
 - Update Kubernetes deployment configuration with a ReplicaSet revision history of `2`.
