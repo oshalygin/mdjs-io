@@ -1,3 +1,7 @@
+## 2.33.3 (May 16, 2017)
+
+- Add documentation on how to get started with GCP.
+
 ## 2.33.2 (May 16, 2017)
 
 - Move manual exception to the entrypoint of the application to allow all tests to continue to pass.

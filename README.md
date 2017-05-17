@@ -6,7 +6,35 @@
 [![Dependency Status](https://www.versioneye.com/user/projects/57df8885037c20002d0da5ac/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/57df8885037c20002d0da5ac)
 
 
-### To run this application follow these steps:
+## Deployment
+
+This project is intended to run within a Docker container, preferably in Kubernetes.  The `/infrastructure` folder contains all of the necessary configuration files to deploy accordingly to Google Cloud Platform.  While in theory you could host this in Azure or AWS, you're really getting a 1st class experience in GCP.  At this time the instructions are all aimed at GCP.
+
+### Registration
+
+1. Register an account with Google Cloud Platform at http://console.cloud.google.com
+  - Agree to the Terms.
+  - Add a Credit Card (You will not be charged initially, there's a $300 or 1 yr credit).
+  - Start the Trial.
+2. When you start your account, create a new project.
+
+<a href="/oshalygin/mdjs/blob/master/docs/gcp_registration.png?raw=true" target="_blank">
+<img src="/oshalygin/mdjs/raw/master/docs/gcp_registration.png?raw=true" alt="image" title="GCP Registration" style="max-width:75%;"></a>
+
+### Instal the Google Cloud SDK
+
+You will need the Google Cloud SDK to be able to deploy and manage your cloud resources.
+
+1. Download the Google Cloud SDK from https://cloud.google.com/sdk/ 
+2. You must have Python 2.7 installed.  There are a million ways to accomplish this, the simplest on OSX is homebrew.
+3. After you have downloaded the package, extract it and run the following command in your shell
+```bash
+./google-cloud-sdk/install.sh
+```
+4. Call `gcloud init` and go through the initialization steps.
+
+### To run this application locally follow these steps:
+
 1.  Clone this repository.
 2.  Run  `npm install`  to pull in the project dependencies.
 3.  Run  `npm start`  to kick off the application.
@@ -15,38 +43,37 @@
 4.  Run `npm test` to explicitly run the tests in the solution.
 5.  The build steps are also available and are in development mode. It is recommended that you run `npm start` to experience HMR and other development level features.  For production deployment builds, the command is `npm build`.
 
-
 ![image](/docs/infrastructure-diagram.png?raw=true "Infrastructure")
 
 ### Temporary Images Folder
 During the migration, there is a short term solution to proxying the images from the client to the Express API and on back to the backend.  This solution involves temporarily saving images to the `/temp-images` folder, streaming from there as the file is pushed to the backend, and subsequently deleting it once the cycle is complete.  The `.gitkeep` file indicates that this file needs to live in source control and be created in the runtime environment.
 
-### Development
+## Development
 
-#### Running locally
+### Running locally
 The application can be started locally with the following command:
 ```bash
 $ npm start -s # Run the application, kick off the test watch command along with the lint watcher.
 ```
 
-#### Running tests
+### Running tests
 Tests can be executed with the following test command:
 ```bash
 $ npm test # Run tests
 $ npm run test:coverage # Run tests with coverage
 ```
 
-#### Running tests with `--watch`
+### Running tests with `--watch`
 In order to properly run the the tests in watch mode you may need to install `watchman` via homebrew on OSX.
 ```bash
 $ brew install watchman # Install watchman via homebrew
 $ npm run test:watch # Run the tests and watch the source code for changes, re-running tests accordingly
 ```
 
-### Contributing
+## Contributing
 
 The main purpose of this repository is to continue to evolve Merchant Dashboard, making it a robust dashboard experience.
 
-### License
+## License
 
 Merchant Dashboard is [AGPLv3 licensed](./LICENSE.md).
