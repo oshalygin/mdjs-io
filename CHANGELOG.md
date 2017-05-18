@@ -1,3 +1,13 @@
+## 2.37.0 (May 16, 2017)
+
+- Package dependency upgrades:
+  - **@google-cloud/trace-agent@2.0.0** - Mainly dropping support for node < 4.0.  Otherwise performance improvements
+  - **material-ui@0.18.1** - New features and bug fixes.
+  - Removal of lodash, not used in the project
+  - **moxios** - latest release with bug fixes and performance improvements.
+  - **axios** - stability improvements.
+  - **postcss-cssnext** - New peer dependency, caniuse-db.
+
 ## 2.36.0 (May 16, 2017)
 
 - Upgrade React to `15.5.4`.
