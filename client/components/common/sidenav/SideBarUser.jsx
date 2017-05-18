@@ -1,5 +1,6 @@
 /* eslint-disable indent */
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 export function getRole(roleId) {
   switch (roleId) {

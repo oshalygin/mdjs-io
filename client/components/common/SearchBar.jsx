@@ -1,4 +1,6 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+
 import $ from 'jquery'; //eslint-disable-line
 import { browserHistory } from 'react-router';
 import { bindActionCreators } from 'redux';

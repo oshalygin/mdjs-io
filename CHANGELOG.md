@@ -1,6 +1,13 @@
+## 2.36.0 (May 16, 2017)
+
+- Upgrade React to `15.5.4`.
+  - This change mostly involves an extraction of `PropTypes` into its own npm dependency, `prop-types`.
+  - Migration and documentation on the latest React release:
+  https://facebook.github.io/react/blog/2017/04/07/react-v15.5.0.html
+
 ## 2.35.0 (May 16, 2017)
 
-- Updates to Webpack configuration files(`webpack.config.dev.js` and `wbpack.config.production.js`) to reflect the following changes:
+- Updates to Webpack configuration files(`webpack.config.dev.js` and `webpack.config.production.js`) to reflect the following changes:
   - Hash all files using MD5
   - Generate a HTML along with the bundle dynamically.
   - Set the `__DEV__` flag to true in the dev build

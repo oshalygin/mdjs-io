@@ -1,7 +1,9 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import CSSModules from 'react-css-modules';
+
 import { browserHistory } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
-import CSSModules from 'react-css-modules';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../actions/taxActions';
