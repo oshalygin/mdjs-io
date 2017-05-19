@@ -1,3 +1,8 @@
+## 2.38.0 (May 16, 2017)
+
+- Package dependency upgrades.
+- Removal of all wildcard flags in `package.json`.
+
 ## 2.37.0 (May 16, 2017)
 
 - Package dependency upgrades:
