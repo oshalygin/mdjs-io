@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 
 import { browserHistory } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -12,7 +12,7 @@ import * as actionCreators from '../../actions/modifierActions';
 import TextField from '../common/TextField.jsx';
 import ModifierTable from './ModifierTable.jsx';
 
-import styles from './modifiers.css';
+import './modifiers.css';
 
 const fullWidth = { width: '100%' };
 
@@ -76,7 +76,7 @@ export class Modifiers extends React.Component {
         <div className="col-lg-12">
           <RaisedButton
             label="New Modifier"
-            className={styles['new-modifier-button']}
+            styleName="new-modifier-button"
             primary
             onClick={this.navigateToNewModifierPage}
           />
@@ -125,4 +125,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default CSSModules(connect(mapStateToProps, mapDispatchToProps)(Modifiers), styles);
+export default connect(mapStateToProps, mapDispatchToProps)(Modifiers);

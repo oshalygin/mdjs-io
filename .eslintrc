@@ -7,6 +7,9 @@
     "mocha": true,
     "jest": true
   },
+  "extends": [
+    "plugin:css-modules/recommended"
+  ],
   "parserOptions": {
     "ecmaVersion": 2017,
     "sourceType": "module",
@@ -39,7 +42,8 @@
   },
   "plugins": [
     "react",
-    "jest"
+    "jest",
+    "css-modules"
   ],
   "rules": {
     "comma-dangle": 2,

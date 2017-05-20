@@ -78,10 +78,18 @@ export default {
       },
       {
         test: /\.css$/,
+        exclude: /\.min\.css$/,
         loaders: [
-          'style-loader',
-          'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]?sourceMap',
+          'style-loader?sourceMap',
+          'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
           'postcss-loader'
+        ]
+      },
+      {
+        test: /\.min\.css$/,
+        loaders: [
+          'style-loader?sourceMap',
+          'css-loader'
         ]
       },
       { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file' },

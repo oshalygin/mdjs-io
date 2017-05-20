@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 
 import TextField from '../common/TextField.jsx';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import styles from './login.css';
+import './login.css';
 
 const textFieldLoginStyles = {
   color: '#CCC'
@@ -27,9 +27,9 @@ const LoginForm = ({ hidden, errors, onChange, login }) => {
 
   return (
     <form style={formDisplay} className="m-t">
-      <div className={styles['login-container']}>
-        <div className={styles['login-field-container']}>
-          <div style={errorTextDisplay} className={styles['error-text']}>Invalid username or password</div>
+      <div styleName="login-container">
+        <div styleName="login-field-container">
+          <div style={errorTextDisplay} styleName="error-text">Invalid username or password</div>
           <TextField
             floatingLabelText="Username"
             inputStyle={textFieldInputStyle}
@@ -69,4 +69,4 @@ LoginForm.propTypes = {
   login: PropTypes.func.isRequired
 };
 
-export default CSSModules(LoginForm, styles);
+export default LoginForm;

@@ -1,20 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 
 import TextField from '../common/TextField.jsx';
-import styles from './modifierDetail.css';
+import './modifierDetail.css';
 
 const ModifierDetialForm = ({ modifier, errors, onChange }) => {
   return (
     <div className="ibox-content">
       <div className="row">
-        <div className={styles['modifier-controls']}>
-          <div className={styles['control-group']}>
-            <div className={styles['extended-control-label']}>
+        <div styleName="modifier-controls">
+          <div styleName="control-group">
+            <div styleName="extended-control-label">
               Modifier Name
             </div>
-            <div className={styles['extended-control-input']}>
+            <div styleName="extended-control-input">
               <TextField
                 fullWidth
                 name="modifierName"
@@ -23,11 +23,11 @@ const ModifierDetialForm = ({ modifier, errors, onChange }) => {
                 errorText={errors.modifierName} />
             </div>
           </div>
-          <div className={styles['control-group']}>
-            <div className={styles['control-label']}>
+          <div styleName="control-group">
+            <div styleName="control-label">
               Price ($)
             </div>
-            <div className={styles['control-input']}>
+            <div styleName="control-input">
               <TextField
                 fullWidth
                 name="modifierPrice"
@@ -48,4 +48,4 @@ ModifierDetialForm.propTypes = {
   onChange: PropTypes.func.isRequired
 };
 
-export default CSSModules(ModifierDetialForm, styles);
+export default ModifierDetialForm;

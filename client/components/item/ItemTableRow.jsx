@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import CSSModules from 'react-css-modules';
+
 import { TableRow, TableRowColumn } from 'material-ui/Table';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -11,7 +11,7 @@ import moment from 'moment';
 
 import ItemImage from '../common/itemImage';
 
-import styles from './item.css';
+import './item.css';
 
 class ItemTableRow extends React.Component {
 
@@ -50,12 +50,12 @@ class ItemTableRow extends React.Component {
         <TableRowColumn className={this.disabledText(item.disabled)}>$ {item.price}</TableRowColumn>
         <TableRowColumn className={this.disabledText(item.disabled)}>{parsedLastUpdatedDate}</TableRowColumn>
         <TableRowColumn>
-          <div className={styles['inline-button']}>
+          <div styleName="inline-button">
             <FlatButton label="Edit" onClick={() => this.navigateToEditLink(item.itemID)} />
           </div>
         </TableRowColumn>
         <TableRowColumn>
-          <div className={styles['inline-button']}>
+          <div styleName="inline-button">
             <RaisedButton label="Deactivate" secondary onClick={() => deactivate(item.itemID)} />
           </div>
         </TableRowColumn>
@@ -69,4 +69,4 @@ ItemTableRow.propTypes = {
   deactivate: PropTypes.func.isRequired
 };
 
-export default CSSModules(ItemTableRow, styles);
+export default ItemTableRow;

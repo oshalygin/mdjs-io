@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 
 import Pill from '../common/pill';
 
 import { numberToLocaleStringWithoutDecimals } from '../../utilities/currencyUtility';
 import { percentDifference } from '../../utilities/calculationsUtility';
 
-import styles from './dashboard.css';
+import './dashboard.css';
 import colors from '../../styles/colors';
 
 const SalesWidget = ({ currentSales, yesterdaysSales }) => {
@@ -26,30 +26,30 @@ const SalesWidget = ({ currentSales, yesterdaysSales }) => {
   const percentageDifference = percentDifference(currentSales, yesterdaysSales, decimalPlaces);
 
   return (
-    <div className={styles['sales-widget-container']}>
-      <div className={styles['widget-content']}>
-        <div className={styles['widget-heading-container']}>
-          <div className={styles['widget-title']}>
+    <div styleName="sales-widget-container">
+      <div styleName="widget-content">
+        <div styleName="widget-heading-container">
+          <div styleName="widget-title">
             Sales
         </div>
-          <div className={styles['date-pill']}>
+          <div styleName="date-pill">
             <Pill label="Today" />
           </div>
         </div>
-        <div className={styles['widget-details']}>
-          <div className={styles['widget-content-value']}>
+        <div styleName="widget-details">
+          <div styleName="widget-content-value">
             {numberToLocaleStringWithoutDecimals(currentSales)}
           </div>
-          <div className={styles['percent-change-subtext']} style={trendingStyle}>
+          <div styleName="percent-change-subtext" style={trendingStyle}>
             {percentageDifference}
           </div>
-          <div className={styles['trending-arrow']} style={{
+          <div styleName="trending-arrow" style={{
             ...trendingStyle,
             lineHeight: '3.4rem'
           }}>
             {trendingArrowComponent}
           </div>
-          <div className={styles['widget-content-subtext']}>
+          <div styleName="widget-content-subtext">
             Change from yesterday
           </div>
         </div>
@@ -63,4 +63,4 @@ SalesWidget.propTypes = {
   yesterdaysSales: PropTypes.number
 };
 
-export default CSSModules(SalesWidget, styles);
+export default SalesWidget;

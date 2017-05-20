@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 import React from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 
 import {
   Card,
@@ -12,7 +12,7 @@ import {
 import OrderListRow from './OrderListRow.jsx';
 import OrderDetail from './orderDetail';
 
-import styles from './orders.css';
+import './orders.css';
 
 const OrderListCard = ({ order, onExpandChange }) => {
 
@@ -49,4 +49,4 @@ OrderListCard.propTypes = {
   onExpandChange: PropTypes.func.isRequired
 };
 
-export default CSSModules(OrderListCard, styles);
+export default OrderListCard;

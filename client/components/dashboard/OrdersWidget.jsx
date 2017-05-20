@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 
 import Pill from '../common/pill';
 
 import { percentDifference } from '../../utilities/calculationsUtility';
 
-import styles from './dashboard.css';
+import './dashboard.css';
 import colors from '../../styles/colors';
 
 const OrdersWidget = ({ currentOrders, yesterdaysOrders }) => {
@@ -25,30 +25,30 @@ const OrdersWidget = ({ currentOrders, yesterdaysOrders }) => {
   const percentageDifference = percentDifference(currentOrders, yesterdaysOrders, decimalPlaces);
 
   return (
-    <div className={styles['orders-widget-container']}>
-      <div className={styles['widget-content']}>
-        <div className={styles['widget-heading-container']}>
-          <div className={styles['widget-title']}>
+    <div styleName="orders-widget-container">
+      <div styleName="widget-content">
+        <div styleName="widget-heading-container">
+          <div styleName="widget-title">
             Orders
         </div>
-          <div className={styles['date-pill']}>
+          <div styleName="date-pill">
             <Pill label="Today" />
           </div>
         </div>
-        <div className={styles['widget-details']}>
-          <div className={styles['widget-content-value']}>
+        <div styleName="widget-details">
+          <div styleName="widget-content-value">
             {currentOrders}
           </div>
-          <div className={styles['percent-change-subtext']} style={trendingStyle}>
+          <div styleName="percent-change-subtext" style={trendingStyle}>
             {percentageDifference}
           </div>
-          <div className={styles['trending-arrow']} style={{
+          <div styleName="trending-arrow" style={{
             ...trendingStyle,
             lineHeight: '3.4rem'
           }}>
             {trendingArrowComponent}
           </div>
-          <div className={styles['widget-content-subtext']}>
+          <div styleName="widget-content-subtext">
             Change from yesterday
           </div>
         </div>
@@ -62,4 +62,4 @@ OrdersWidget.propTypes = {
   yesterdaysOrders: PropTypes.number
 };
 
-export default CSSModules(OrdersWidget, styles);
+export default OrdersWidget;

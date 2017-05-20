@@ -1,22 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import CSSModules from 'react-css-modules';
-
 import TextField from '../common/TextField.jsx';
 
-import styles from './categoryDetail.css';
+import './categoryDetail.css';
 
 const CategoryDetailForm = ({ category, errors, onChange }) => {
   return (
     <div className="ibox-content">
       <div className="row">
-        <div className={styles['form-controls']}>
-          <div className={styles['control-group']}>
-            <div className={styles['extended-control-label']}>
+        <div styleName="form-controls">
+          <div styleName="control-group">
+            <div styleName="extended-control-label">
               Category Name
             </div>
-            <div className={styles['extended-control-input']}>
+            <div styleName="extended-control-input">
               <TextField
                 fullWidth
                 name="categoryName"
@@ -37,4 +35,4 @@ CategoryDetailForm.propTypes = {
   onChange: PropTypes.func.isRequired
 };
 
-export default CSSModules(CategoryDetailForm, styles);
+export default CategoryDetailForm;

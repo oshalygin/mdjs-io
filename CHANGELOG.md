@@ -1,3 +1,14 @@
+## 2.39.0 (May 19, 2017)
+
+- Migrate to `babel-react-css-modules`
+  - Notably migration from react-css-modules to babel-react-css-modules as a babel plugin instead of as a strict package dependency.
+  - This allows a few nice wins in terms of code reuse and staying DRY:
+    - No need to camelcase the class name.
+    - No need to wrap in CSSModules
+    - No need to explicitly import a styles object.
+  - Addition of configuration within webpack which will properly bundle the global style dependencies.
+  - Removal of unused stylesheets from the entrypoint. 
+
 ## 2.38.0 (May 16, 2017)
 
 - Package dependency upgrades.

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 import Snackbar from '../common/snackbar';
 
 import { bindActionCreators } from 'redux';
@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import * as actionCreators from '../../actions/userActions';
 
-import styles from './login.css';
+import './login.css';
 
 import Spinner from '../common/spinner/';
 import LoginForm from './LoginForm.jsx';
@@ -117,4 +117,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default CSSModules(connect(mapStateToProps, mapDispatchToProps)(LoginPage), styles);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

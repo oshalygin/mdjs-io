@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import TextField from '../common/TextField.jsx';
 
-import styles from './taxDetail.css';
+import './taxDetail.css';
 
 const TaxDetailForm = ({ tax, items, errors, onChange }) => {
 
@@ -49,14 +49,14 @@ const TaxDetailForm = ({ tax, items, errors, onChange }) => {
                 onChange={onChange}
                 style={{ display: 'inline-block', width: '30%' }}
                 errorText={errors.value} />
-              <span className={styles['percent-text']}>
+              <span styleName="percent-text">
                 %
             </span>
             </div>
           </div>
-          <div className={styles['tax-option-control']}>
+          <div styleName="tax-option-control">
             <div className="row">
-              <div className={styles['tax-name-control']}>
+              <div styleName="tax-name-control">
                 <SelectField
                   floatingLabelText="Apply To"
                   value={selectedTaxOption}
@@ -74,10 +74,10 @@ const TaxDetailForm = ({ tax, items, errors, onChange }) => {
               </div>
             </div>
           </div>
-          <div className={styles['tax-option-control']}>
+          <div styleName="tax-option-control">
             <div className="row">
               {displayItemSelection &&
-                (<div className={styles['tax-name-control']}>
+                (<div styleName="tax-name-control">
                   <SelectField
                     multiple
                     floatingLabelText="Items"
@@ -103,7 +103,7 @@ const TaxDetailForm = ({ tax, items, errors, onChange }) => {
           </div>
         </div>
         <div className="col-md-offset-1 col-sm-4">
-          <div className={styles['detail-icon']}>
+          <div styleName="detail-icon">
             <i className="material-icons" style={{ fontSize: '124px' }}>account_balance</i>
           </div>
         </div>
@@ -119,4 +119,4 @@ TaxDetailForm.propTypes = {
   onChange: PropTypes.func.isRequired
 };
 
-export default CSSModules(TaxDetailForm, styles);
+export default TaxDetailForm;

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
 
 import { browserHistory } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -12,7 +11,7 @@ import * as actionCreators from '../../actions/categoryActions';
 import TextField from '../common/TextField.jsx';
 import CategoriesTable from './CategoriesTable.jsx';
 
-import styles from './categories.css';
+import './categories.css';
 
 const fullWidth = { width: '100%' };
 
@@ -76,7 +75,7 @@ export class Categories extends React.Component {
         <div className="col-lg-12">
           <RaisedButton
             label="New Category"
-            className={styles.newCategoryButton}
+            styleName="newCategoryButton"
             primary
             onClick={this.navigateToNewCategoryPage}
           />
@@ -125,4 +124,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default CSSModules(connect(mapStateToProps, mapDispatchToProps)(Categories), styles);
+export default connect(mapStateToProps, mapDispatchToProps)(Categories);

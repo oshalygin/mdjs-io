@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -11,7 +11,7 @@ import Spinner from '../common/spinner/';
 import Snackbar from '../common/snackbar';
 import OrderList from './OrderList.jsx';
 
-import styles from './orders.css';
+import './orders.css';
 
 const fullWidth = { width: '100%' };
 
@@ -89,8 +89,8 @@ export class Orders extends React.Component {
 
     const component = loading ?
       (
-        <div className={styles['spinner-container']}>
-          <div className={styles.spinner}>
+        <div styleName="spinner-container">
+          <div styleName="spinner">
             <Spinner size={130} />
           </div>
         </div>
@@ -152,4 +152,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default CSSModules(connect(mapStateToProps, mapDispatchToProps)(Orders), styles);
+export default connect(mapStateToProps, mapDispatchToProps)(Orders);

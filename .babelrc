@@ -12,6 +12,12 @@
       "plugins": [
         "transform-object-rest-spread",
         [
+          "react-css-modules",
+          {
+            "generateScopedName": "[path]___[name]__[local]___[hash:base64:5]"
+          }
+        ],
+        [
           "transform-runtime",
           {
             "polyfill": false,
@@ -22,7 +28,12 @@
     },
     "test": {
       "plugins": [
-        
+        [
+          "react-css-modules",
+          {
+            "generateScopedName": "[local]"
+          }
+        ],
         [
           "transform-runtime",
           {
@@ -37,6 +48,12 @@
         "transform-react-constant-elements",
         "transform-react-remove-prop-types",
         "transform-object-rest-spread",
+        [
+          "react-css-modules",
+          {
+            "generateScopedName": "[path]___[name]__[local]___[hash:base64:5]"
+          }
+        ],
         [
           "transform-runtime",
           {

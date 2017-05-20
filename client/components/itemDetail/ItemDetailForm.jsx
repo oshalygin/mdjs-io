@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 
 import TextField from '../common/TextField.jsx';
 import SelectList from '../common/SelectList.jsx';
@@ -9,7 +9,7 @@ import Divider from 'material-ui/Divider';
 import ItemImage from './ItemImage.jsx';
 import { itemPriceTypes } from '../../utilities/constants';
 
-import styles from './itemDetail.css';
+import './itemDetail.css';
 
 export function getModifierLabel(modifier) {
   const name = modifier.modifierName;
@@ -45,11 +45,11 @@ const ItemDetailForm = ({ item, categories, modifiers, errors, onChange, onDrop 
     <div className="ibox-content">
       <div className="row">
           <div className="col-sm-offset-1 col-sm-6">
-            <div className={styles['control-group']}>
-              <div className={styles['extended-control-label']}>
+            <div styleName="control-group">
+              <div styleName="extended-control-label">
                 Name
             </div>
-              <div className={styles['extended-control-input']}>
+              <div styleName="extended-control-input">
                 <TextField
                   fullWidth
                   name="name"
@@ -58,11 +58,11 @@ const ItemDetailForm = ({ item, categories, modifiers, errors, onChange, onDrop 
                   errorText={errors.name} />
               </div>
             </div>
-            <div className={styles['control-group']}>
-              <div className={styles['extended-control-label']}>
+            <div styleName="control-group">
+              <div styleName="extended-control-label">
                 Label
             </div>
-              <div className={styles['extended-control-input']}>
+              <div styleName="extended-control-input">
                 <TextField
                   fullWidth
                   name="label"
@@ -71,11 +71,11 @@ const ItemDetailForm = ({ item, categories, modifiers, errors, onChange, onDrop 
                   errorText={errors.label} />
               </div>
             </div>
-            <div className={styles['control-group']}>
-              <div className={styles['extended-control-label']}>
+            <div styleName="control-group">
+              <div styleName="extended-control-label">
                 Price ($)
             </div>
-              <div className={styles['extended-control-input']}>
+              <div styleName="extended-control-input">
                 <TextField
                   fullWidth
                   name="price"
@@ -84,8 +84,8 @@ const ItemDetailForm = ({ item, categories, modifiers, errors, onChange, onDrop 
                   errorText={errors.price} />
               </div>
             </div>
-            <div className={styles['control-group']}>
-              <div className={styles['extended-select-input']}>
+            <div styleName="control-group">
+              <div styleName="extended-select-input">
                 <SelectList
                   onChange={onChange}
                   fullWidth
@@ -113,7 +113,7 @@ const ItemDetailForm = ({ item, categories, modifiers, errors, onChange, onDrop 
           <Divider />
         </div>
         <div className="row">
-          <div className={styles['additional-items-heading']}>
+          <div styleName="additional-items-heading">
             Additional Configuration
         </div>
         </div>
@@ -121,7 +121,7 @@ const ItemDetailForm = ({ item, categories, modifiers, errors, onChange, onDrop 
           <Divider />
         </div>
         <div className="row">
-          <div className={styles['additional-items-container']}>
+          <div styleName="additional-items-container">
             <div className="row">
               <div className="col-md-offset-4 col-sm-4">
                 <SelectList
@@ -180,4 +180,4 @@ ItemDetailForm.propTypes = {
   onDrop: PropTypes.func.isRequired
 };
 
-export default CSSModules(ItemDetailForm, styles);
+export default ItemDetailForm;

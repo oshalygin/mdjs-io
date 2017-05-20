@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 import React from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 
 import { TableRow, TableRowColumn } from 'material-ui/Table';
 import FlatButton from 'material-ui/FlatButton';
@@ -9,7 +9,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { browserHistory } from 'react-router';
 import moment from 'moment';
 
-import styles from './modifiers.css';
+import './modifiers.css';
 
 class ModifierTableRow extends React.Component {
 
@@ -49,12 +49,12 @@ class ModifierTableRow extends React.Component {
         <TableRowColumn className={this.disabledText(modifier.disabled)}>{parsedCreatedDate}</TableRowColumn>
         <TableRowColumn className={this.disabledText(modifier.disabled)}>{parsedLastUpdatedDate}</TableRowColumn>
         <TableRowColumn>
-          <div className={styles['inline-button']}>
+          <div styleName="inline-button">
             <FlatButton label="Edit" onClick={() => this.navigateToEditLink(modifier.modifierID)} />
           </div>
         </TableRowColumn>
         <TableRowColumn>
-          <div className={styles['inline-button']}>
+          <div styleName="inline-button">
             <RaisedButton label="Deactivate" secondary onClick={() => deactivate(modifier.modifierID)} />
           </div>
         </TableRowColumn>
@@ -68,4 +68,4 @@ ModifierTableRow.propTypes = {
   deactivate: PropTypes.func.isRequired
 };
 
-export default CSSModules(ModifierTableRow, styles);
+export default ModifierTableRow;

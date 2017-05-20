@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 import dateFns from 'date-fns';
 
 import { bindActionCreators } from 'redux';
@@ -15,7 +15,7 @@ import MonthlyChart from './MonthlyChart.jsx';
 import Spinner from '../../common/spinner';
 import ProgressBar from '../../common/progressBar';
 
-import styles from './monthlySummary.css';
+import './monthlySummary.css';
 
 const defaultNumberOfMonths = 12;
 
@@ -66,43 +66,43 @@ class MonthlySummary extends React.Component {
 
     const monthlyChart = loading ?
       (
-        <div className={styles['chart-spinner-container']}>
+        <div styleName="chart-spinner-container">
           <Spinner />
         </div>
       ) :
       (<MonthlyChart data={data} />);
 
     return (
-      <div className={styles['sales-volume-container']}>
-        <div className={styles['summary-container-heading']}>
-          <div className={styles['sales-summary-title']}>
-            <div className={styles['title-heading']}>
+      <div styleName="sales-volume-container">
+        <div styleName="summary-container-heading">
+          <div styleName="sales-summary-title">
+            <div styleName="title-heading">
               Monthly Sales Volume
             </div>
-            <div className={styles['title-subheading']}>
+            <div styleName="title-subheading">
               Number of orders
             </div>
           </div>
-          <div className={styles['sales-summary-totals']}>
-            <div className={styles['sales-summary-total-text']}>
+          <div styleName="sales-summary-totals">
+            <div styleName="sales-summary-total-text">
               Year-To-Date Sales: <strong>{numberToLocaleString(yearToDate)}</strong>
             </div>
-            <div className={styles['sales-summary-total-text']}>
+            <div styleName="sales-summary-total-text">
               Average Sale Amount: <strong>{numberToLocaleString(orderAverage)}</strong>
             </div>
           </div>
         </div>
-        <div className={styles['sales-summary-chart-container']}>
-          <div className={styles['sales-summary-chart']}>
+        <div styleName="sales-summary-chart-container">
+          <div styleName="sales-summary-chart">
             {monthlyChart}
           </div>
-          <div className={styles['sales-summary-chart-legend']}>
-            <div className={styles['current-monthly-sales-container']}>
-              <div className={styles['progress-bar-text-container']}>
-                <div className={styles['progress-bar-primary-text']}>
+          <div styleName="sales-summary-chart-legend">
+            <div styleName="current-monthly-sales-container">
+              <div styleName="progress-bar-text-container">
+                <div styleName="progress-bar-primary-text">
                   {numberToLocaleString(currentMonthSales)}
                 </div>
-                <div className={styles['progress-bar-subtext']}>
+                <div styleName="progress-bar-subtext">
                   Total sales this month
                 </div>
               </div>
@@ -112,12 +112,12 @@ class MonthlySummary extends React.Component {
                 value={salesBarPercentage}
               />
             </div>
-            <div className={styles['current-monthly-sales-container']}>
-              <div className={styles['progress-bar-text-container']}>
-                <div className={styles['progress-bar-primary-text']}>
+            <div styleName="current-monthly-sales-container">
+              <div styleName="progress-bar-text-container">
+                <div styleName="progress-bar-primary-text">
                   {currentMonthCount}
                 </div>
-                <div className={styles['progress-bar-subtext']}>
+                <div styleName="progress-bar-subtext">
                   Number of orders this month
                 </div>
               </div>
@@ -127,8 +127,8 @@ class MonthlySummary extends React.Component {
                 value={salesCountBarPercentage}
               />
             </div>
-            <div className={styles['date-container']}>
-              <div className={styles['date-icon']}>
+            <div styleName="date-container">
+              <div styleName="date-icon">
                 <i className="material-icons" style={{ fontSize: '18px' }}>schedule</i>
               </div>
               Updated on {currentDate}
@@ -213,4 +213,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default CSSModules(connect(mapStateToProps, mapDispatchToProps)(MonthlySummary), styles);
+export default connect(mapStateToProps, mapDispatchToProps)(MonthlySummary);

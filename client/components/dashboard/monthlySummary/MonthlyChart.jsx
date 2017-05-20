@@ -10,10 +10,10 @@ import {
   Tooltip,
   CartesianGrid
 } from 'recharts';
-import CSSModules from 'react-css-modules';
+
 import { numberToLocaleString } from '../../../utilities/currencyUtility';
 
-import styles from './monthlySummary.css';
+import './monthlySummary.css';
 
 export const currencyFormatter = (salesVolumeAmount) => numberToLocaleString(salesVolumeAmount);
 
@@ -76,4 +76,4 @@ MonthlyChart.propTypes = {
   data: PropTypes.array
 };
 
-export default CSSModules(MonthlyChart, styles);
+export default MonthlyChart;

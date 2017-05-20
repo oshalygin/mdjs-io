@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import TextField from '../common/TextField.jsx';
 import DiscountValueField from './DiscountValueField.jsx';
 
-import styles from './discountDetail.css';
+import './discountDetail.css';
 
 const DiscountDetailForm = ({ discount, items, errors, onChange }) => {
 
@@ -47,9 +47,9 @@ const DiscountDetailForm = ({ discount, items, errors, onChange }) => {
               onChange={onChange}
               errorText={errors.discountName} />
           </div>
-          <div className={styles['discount-option-control']}>
+          <div styleName="discount-option-control">
             <div className="row">
-              <div className={styles['discount-name-control']}>
+              <div styleName="discount-name-control">
                 <SelectField
                   floatingLabelText="Value Type"
                   value={selectedValueType}
@@ -80,9 +80,9 @@ const DiscountDetailForm = ({ discount, items, errors, onChange }) => {
                 errorText={errors.value} />
             </div>
           </div>
-          <div className={styles['discount-option-control']}>
+          <div styleName="discount-option-control">
             <div className="row">
-              <div className={styles['discount-name-control']}>
+              <div styleName="discount-name-control">
                 <SelectField
                   floatingLabelText="Apply To"
                   floatingLabelStyle={{ fontWeight: 500 }}
@@ -100,10 +100,10 @@ const DiscountDetailForm = ({ discount, items, errors, onChange }) => {
               </div>
             </div>
           </div>
-          <div className={styles['discount-option-control']}>
+          <div styleName="discount-option-control">
             <div className="row">
               {displayItemSelection &&
-                (<div className={styles['discount-name-control']}>
+                (<div styleName="discount-name-control">
                   <SelectField
                     multiple
                     floatingLabelText="Items"
@@ -129,7 +129,7 @@ const DiscountDetailForm = ({ discount, items, errors, onChange }) => {
           </div>
         </div>
         <div className="col-md-offset-1 col-sm-4">
-          <div className={styles['detail-icon']}>
+          <div styleName="detail-icon">
             <i className="material-icons" style={{ fontSize: '124px' }}>play_for_work</i>
           </div>
         </div>
@@ -145,4 +145,4 @@ DiscountDetailForm.propTypes = {
   onChange: PropTypes.func.isRequired
 };
 
-export default CSSModules(DiscountDetailForm, styles);
+export default DiscountDetailForm;

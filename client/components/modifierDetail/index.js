@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 
 import { browserHistory } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -9,7 +9,7 @@ import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../actions/modifierActions';
 import Snackbar from '../common/snackbar';
 
-import styles from './modifierDetail.css';
+import './modifierDetail.css';
 
 import ModifierDetailForm from './ModifierDetailForm.jsx';
 import Spinner from '../common/spinner/';
@@ -127,8 +127,8 @@ class ModifierDetail extends React.Component {
       (
         <div className="ibox-content">
           <div className="row">
-            <div className={styles['spinner-container']}>
-              <div className={styles.spinner}>
+            <div styleName="spinner-container">
+              <div styleName="spinner">
                 <Spinner />
               </div>
             </div>
@@ -150,15 +150,15 @@ class ModifierDetail extends React.Component {
         </div>
         <div className="row">
           <div className="col-sm-offset-3 col-sm-6">
-            <div className={styles['controls-wrapper']}>
+            <div styleName="controls-wrapper">
               <RaisedButton
-                className={styles['left-control']}
+                styleName="left-control"
                 label="Back"
                 secondary
                 onClick={this.redirect} />
             </div>
             <RaisedButton
-              className={styles['right-control']}
+              styleName="right-control"
               label="Save Modifier"
               primary
               onClick={this.onSave} />
@@ -223,4 +223,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default CSSModules(connect(mapStateToProps, mapDispatchToProps)(ModifierDetail), styles);
+export default connect(mapStateToProps, mapDispatchToProps)(ModifierDetail);

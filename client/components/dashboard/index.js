@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import CSSModules from 'react-css-modules';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/orderActions';
@@ -14,7 +13,7 @@ import OrdersWidget from './OrdersWidget.jsx';
 import TransactionsWidget from './TransactionsWidget.jsx';
 import InventoryWidget from './InventoryWidget.jsx';
 
-import styles from './dashboard.css';
+import './dashboard.css';
 
 class Dashboard extends React.Component {
 
@@ -31,7 +30,7 @@ class Dashboard extends React.Component {
     return (
       <div className="row">
         <div className="col-lg-12">
-          <div className={styles['widget-container']}>
+          <div styleName="widget-container">
             <SalesWidget
               currentSales={todaysSales}
               yesterdaysSales={yesterdaysSales}
@@ -108,4 +107,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default CSSModules(connect(mapStateToProps, mapDispatchToProps)(Dashboard), styles);
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

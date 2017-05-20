@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 
 import TextField from '../common/TextField.jsx';
-import styles from './discountDetail.css';
+import './discountDetail.css';
 
 const DiscountValueField = ({ isPercent, errorText, style, onChange, floatingLabelText, value, name, fullWidth }) => {
 
@@ -18,14 +18,14 @@ const DiscountValueField = ({ isPercent, errorText, style, onChange, floatingLab
           onChange={onChange}
           style={style}
           errorText={errorText} />
-        <span className={styles['percent-text']}>
+        <span styleName="percent-text">
           %
         </span>
       </div>
     ) :
     (
       <div>
-        <span className={styles['currency-text']}>
+        <span styleName="currency-text">
           $
         </span>
         <TextField
@@ -52,4 +52,4 @@ DiscountValueField.propTypes = {
   name: PropTypes.string.isRequired
 };
 
-export default CSSModules(DiscountValueField, styles);
+export default DiscountValueField;

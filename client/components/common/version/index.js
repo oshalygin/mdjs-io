@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
-import CSSModules from 'react-css-modules';
-import styles from './version.css';
+import './version.css';
 
 class Version extends React.Component {
   constructor() {
@@ -15,8 +14,8 @@ class Version extends React.Component {
   render() {
     const { version } = this.props;
     return (
-      <div className={styles['package-version-container']}>
-        <div className={styles['package-version']}>{version}</div>
+      <div styleName="package-version-container">
+        <div styleName="package-version">{version}</div>
       </div>
     );
   }
@@ -32,4 +31,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default CSSModules(connect(mapStateToProps)(Version, styles));
+export default connect(mapStateToProps)(Version);

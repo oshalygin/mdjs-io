@@ -2,11 +2,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import CSSModules from 'react-css-modules';
+
 import { itemColors } from '../../../utilities/constants';
 
 import { IMAGE_ENDPOINT } from '../../../utilities/endpoints';
-import styles from './itemImage.css';
+import './itemImage.css';
 
 export function getImageStyle(imageId, color) {
 
@@ -31,8 +31,8 @@ export function getImageStyle(imageId, color) {
 const ItemImage = ({ itemId, color, imageId, label, onClick }) => {
 
   const labelImage = !!label ?
-    (<div className={styles['image-label']}>{label}</div>) :
-    (<div className={styles['image-label']}
+    (<div styleName="image-label">{label}</div>) :
+    (<div styleName="image-label"
       style={{
         fontSize: '2rem'
       }}>C</div>);
@@ -40,9 +40,9 @@ const ItemImage = ({ itemId, color, imageId, label, onClick }) => {
   const imageStyle = getImageStyle(imageId, color);
 
   return (
-    <div className={styles['image-container']}
+    <div styleName="image-container"
       onClick={() => onClick(itemId)}>
-      <div className={styles['item-image']} style={imageStyle}>
+      <div styleName="item-image" style={imageStyle}>
         {!imageId && labelImage}
       </div>
     </div>
@@ -57,4 +57,4 @@ ItemImage.propTypes = {
   onClick: PropTypes.func
 };
 
-export default CSSModules(ItemImage, styles);
+export default ItemImage;

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CSSModules from 'react-css-modules';
+
 
 import { browserHistory } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -13,7 +13,7 @@ import * as actionCreators from '../../actions/itemActions';
 import TextField from '../common/TextField.jsx';
 import ItemTable from './ItemTable.jsx';
 
-import styles from './item.css';
+import './item.css';
 
 const fullWidth = { width: '100%' };
 
@@ -73,7 +73,7 @@ export class Item extends React.Component {
         <div className="col-lg-12">
           <RaisedButton
             label="New Item"
-            className={styles.newItemButton}
+            styleName="newItemButton"
             primary
             onClick={this.navigateToNewItemPage}
           />
@@ -122,4 +122,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default CSSModules(connect(mapStateToProps, mapDispatchToProps)(Item), styles);
+export default connect(mapStateToProps, mapDispatchToProps)(Item);
