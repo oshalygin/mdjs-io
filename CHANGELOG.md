@@ -1,3 +1,7 @@
+## 2.39.1 (May 19, 2017)
+
+- Removal of unnecessary `.istanbul.yml` file configuration.
+
 ## 2.39.0 (May 19, 2017)
 
 - Migrate to `babel-react-css-modules`
