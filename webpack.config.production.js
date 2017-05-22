@@ -13,10 +13,8 @@ const GLOBALS = {
 
 export default {
   resolve: {
-    extensions: ['', '.js', '.jsx', '.json']
+    extensions: ['.js', '.jsx', '.json']
   },
-  debug: true,
-  noInfo: true,
   entry: [
     './client/index.js'
   ],
@@ -27,6 +25,7 @@ export default {
     filename: '[name].[chunkhash].js'
   },
   plugins: [
+    new webpack.DefinePlugin(GLOBALS),
     new webpack.ProvidePlugin({
       $: 'jquery', //eslint-disable-line id-length
       jQuery: 'jquery',
@@ -34,8 +33,6 @@ export default {
       'window.$': 'jquery'
     }),
     new WebpackMd5Hash(),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.DefinePlugin(GLOBALS),
     new ExtractTextPlugin('[name].[contenthash].css'),
     new HtmlWebpackPlugin({
       template: 'client/index.html',
@@ -53,79 +50,77 @@ export default {
       },
       inject: true
     }),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin()
-  ],
-  imageWebpackLoader: {
-    mozjpeg: {
-      quality: 65
-    },
-    pngquant: {
-      quality: '65-90',
-      speed: 4
-    },
-    optipng: {
-      optimizationLevel: 65
-    },
-    gifsicle: {
-      interlaced: false
-    },
-    svgo: {
-      plugins: [
-        {
-          removeViewBox: false
+    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.LoaderOptionsPlugin({
+      debug: true,
+      noInfo: true,
+      imageWebpackLoader: {
+        mozjpeg: {
+          quality: 65
         },
-        {
-          removeEmptyAttrs: false
+        pngquant: {
+          quality: '65-90',
+          speed: 4
+        },
+        optipng: {
+          optimizationLevel: 65
+        },
+        gifsicle: {
+          interlaced: false
+        },
+        svgo: {
+          plugins: [
+            {
+              removeViewBox: false
+            },
+            {
+              removeEmptyAttrs: false
+            }
+          ]
         }
-      ]
-    }
-  },
+      }
+    })
+  ],
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loaders: ['babel']
+        use: ['babel-loader']
       },
       {
         test: /\.css$/,
         exclude: /\.min\.css$/,
-        loaders: [
-          'style-loader?sourceMap',
-          'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
-          'postcss-loader'
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader', options: { modules: true, importLoader: 1, localIdentName: '[path]___[name]__[local]___[hash:base64:5]' } }
         ]
       },
       {
         test: /\.min\.css$/,
-        loaders: [
-          'style-loader?sourceMap',
-          'css-loader'
+        use: [
+          { loader: 'style-loader' },
+          { loader: 'css-loader' }
         ]
       },
-      { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file' },
+      { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader' },
       {
         test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=10000&mimetype=application/font-woff'
+        loader: 'url-loader?limit=10000&mimetype=application/font-woff'
       }, {
         test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=10000&mimetype=application/font-woff'
+        loader: 'url-loader?limit=10000&mimetype=application/font-woff'
       },
-      { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream' },
-      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml' },
+      { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=application/octet-stream' },
+      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=image/svg+xml' },
       { test: /\.ico$/, loader: 'file-loader?name=[name].[ext]' },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
-        loaders: [
-          'file?hash=sha512&digest=hex&name=[hash].[ext]',
-          'image-webpack?bypassOnDebug'
+        use: [
+          'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
+          'image-webpack-loader?bypassOnDebug'
         ]
       }
     ]
-  },
-  postcss: () => [
-    require('postcss-import')(),
-    require('postcss-cssnext')()
-  ]
+  }
 };

@@ -1,3 +1,9 @@
+## 2.40.0 (May 21, 2017)
+
+- Migration to Webpack V2
+  - The changes involved to migrate from V1 to V2 involve following the migration guide closely: https://webpack.js.org/guides/migrating/
+  - The CSSModules + PostCSS configuration noted in webpack is the recommended approach after reading this thread: https://github.com/postcss/postcss-loader/issues/92
+
 ## 2.39.1 (May 19, 2017)
 
 - Removal of unnecessary `.istanbul.yml` file configuration.
