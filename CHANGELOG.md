@@ -1,3 +1,8 @@
+## 2.40.2 (May 21, 2017)
+
+- Replacement of `moment` with `date-fns` across the board
+  - moment.js is a great library, however, all of the footgun immutable side-effects need to be abolished from this project and thus, moment had to go.
+
 ## 2.40.1 (May 21, 2017)
 
 - Removal of the `/.vscode` folder

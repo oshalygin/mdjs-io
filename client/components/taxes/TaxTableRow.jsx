@@ -1,13 +1,12 @@
 /* eslint-disable react/jsx-no-bind */
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import dateFns from 'date-fns';
 
 import { TableRow, TableRowColumn } from 'material-ui/Table';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import { browserHistory } from 'react-router';
-import moment from 'moment';
 
 import './taxes.css';
 
@@ -32,8 +31,8 @@ class TaxTableRow extends React.Component {
 
   render() {
     const { tax, deactivate, ...otherProps } = this.props; // eslint-disable-line
-    const parsedLastUpdatedDate = moment(tax.lastUpdatedDate).format('MMM DD, YYYY');
-    const parsedCreatedDate = moment(tax.createdDate).format('MMM DD, YYYY');
+    const parsedLastUpdatedDate = dateFns.format(tax.lastUpdatedDate, 'MMM DD, YYYY');
+    const parsedCreatedDate = dateFns.format(tax.createdDate, 'MMM DD, YYYY');
 
     const appliedTo = !tax.taxTypeID ? //eslint-disable-line no-nested-ternary
       'Everything' :

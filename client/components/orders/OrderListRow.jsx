@@ -1,9 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 import React from 'react';
 import PropTypes from 'prop-types';
-
-
-import moment from 'moment';
+import dateFns from 'date-fns';
 
 import { getOrderStatusDescription } from '../../utilities/ordersUtility';
 import { numberToLocaleString } from '../../utilities/currencyUtility';
@@ -12,7 +10,7 @@ import './orders.css';
 
 const OrderListRow = ({ order }) => {
 
-  const parsedCreatedDate = moment(order.createdDate).format('MMM DD, YYYY');
+  const parsedCreatedDate = dateFns.format(order.createdDate, 'MMM DD, YYYY');
   const orderStatusDescription = getOrderStatusDescription(order.orderStatusID);
   const statusColor = order.orderStatusID < 100 ?
     '#5CB85C' : '#F44336';

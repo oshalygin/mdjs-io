@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-no-bind */
 import React from 'react';
 import PropTypes from 'prop-types';
+import dateFns from 'date-fns';
 
 import { TableRow, TableRowColumn } from 'material-ui/Table';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import { browserHistory } from 'react-router';
-import moment from 'moment';
 
 import './categories.css';
 
@@ -31,8 +31,8 @@ class CategoriesTableRow extends React.Component {
 
   render() {
     const { category, deactivate, ...otherProps } = this.props; // eslint-disable-line
-    const parsedLastUpdatedDate = moment(category.lastUpdatedDate).format('MMM DD, YYYY - hh:mm A');
-    const parsedCreatedDate = moment(category.createdDate).format('MMM DD, YYYY - hh:mm A');
+    const parsedLastUpdatedDate = dateFns.format(category.lastUpdatedDate, 'MMM DD, YYYY - hh:mm A');
+    const parsedCreatedDate = dateFns.format(category.createdDate, 'MMM DD, YYYY - hh:mm A');
 
     return (
       <TableRow>

@@ -1,13 +1,12 @@
 /* eslint-disable react/jsx-no-bind */
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import dateFns from 'date-fns';
 
 import { TableRow, TableRowColumn } from 'material-ui/Table';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import { browserHistory } from 'react-router';
-import moment from 'moment';
 
 import ItemImage from '../common/itemImage';
 
@@ -34,7 +33,7 @@ class ItemTableRow extends React.Component {
 
   render() {
     const { item, deactivate } = this.props;
-    const parsedLastUpdatedDate = moment(item.lastUpdatedDate).format('MMM DD, YYYY - hh:mm A');
+    const parsedLastUpdatedDate = dateFns.format(item.lastUpdatedDate, 'MMM DD, YYYY - hh:mm A');
 
     return (
       <TableRow>

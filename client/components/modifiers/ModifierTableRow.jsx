@@ -1,13 +1,12 @@
 /* eslint-disable react/jsx-no-bind */
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import dateFns from 'date-fns';
 
 import { TableRow, TableRowColumn } from 'material-ui/Table';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import { browserHistory } from 'react-router';
-import moment from 'moment';
 
 import './modifiers.css';
 
@@ -32,8 +31,8 @@ class ModifierTableRow extends React.Component {
 
   render() {
     const { modifier, deactivate, ...otherProps } = this.props; // eslint-disable-line
-    const parsedLastUpdatedDate = moment(modifier.lastUpdatedDate).format('MMM DD, YYYY');
-    const parsedCreatedDate = moment(modifier.createdDate).format('MMM DD, YYYY');
+    const parsedLastUpdatedDate = dateFns.format(modifier.lastUpdatedDate, 'MMM DD, YYYY');
+    const parsedCreatedDate = dateFns.format(modifier.createdDate, 'MMM DD, YYYY');
 
     const appliedTo = !modifier.items.length ? //eslint-disable-line no-nested-ternary
       'None' :
