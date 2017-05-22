@@ -1,3 +1,8 @@
+## 2.40.1 (May 21, 2017)
+
+- Removal of the `/.vscode` folder
+  - This folder did not contain any useful files, and had the potential to override useful configuration from other users.
+  
 ## 2.40.0 (May 21, 2017)
 
 - Migration to Webpack V2
