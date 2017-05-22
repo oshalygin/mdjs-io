@@ -1,3 +1,9 @@
+## 2.40.3 (May 21, 2017)
+
+- Update `redux-logger`
+  - The initial state of the logger is collapsed.  This is to clean up the logs upon load and as actions are dispatched.
+  - Latest version: `3.0.6`
+
 ## 2.40.2 (May 21, 2017)
 
 - Replacement of `moment` with `date-fns` across the board
