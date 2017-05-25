@@ -1,3 +1,10 @@
+## 2.40.4 (May 24, 2017)
+
+- Package dependency upgrades:
+  - **getmdl-select** - This package is no longer used, using Material-UI for SelectList.
+  - **material-design-lite** - This package is no longer used, using Material-UI holistically.
+  - **body-parser** - Updated to the latest package.  This is critical as it resolves the `Prototype Override Protection Bypass`, and `Regular Expression Denial of Service` security vulnerabilities.
+
 ## 2.40.3 (May 21, 2017)
 
 - Update `redux-logger`
