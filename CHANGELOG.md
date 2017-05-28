@@ -1,3 +1,11 @@
+## 2.40.5 (May 27, 2017)
+
+- Package dependency upgrades:
+  - **font-awesome** - Additional icons added.  In the future this library will be deprecated, but in the interest of staying current with the development here, it was updated.
+  - **form-data** - No changelog but looking at the source code, there are a few fixes around XHR-2 requests.
+  - **redux-mock-store** - Bug fixes.
+  - **caniuse-db** - Confusing version name, but mostly bug fixes.
+
 ## 2.40.4 (May 24, 2017)
 
 - Package dependency upgrades:
