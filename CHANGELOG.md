@@ -1,3 +1,12 @@
+## 2.41.0 (May 27, 2017)
+
+- Removal of build scripts in favor of Webpack's build CLI directly.
+- Removal of unnecessary packages
+  - **cherio** - This package was strictly used to inject and parse the root `index.html` file.
+  - **chalkConfiguration** - This package used chalk/colors to display messages with colors
+  - **colors** - This package was used to display logs in a colored format.  This is unnecessary as winston is used instead.
+  
+
 ## 2.40.5 (May 27, 2017)
 
 - Package dependency upgrades:
