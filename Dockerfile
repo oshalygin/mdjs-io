@@ -1,4 +1,4 @@
-FROM node:7.2.1
+FROM node:7.10.0
 
 MAINTAINER Oleg Shalygin <oshalygin@gmail.com>
 
