@@ -4,7 +4,7 @@ import path from 'path';
 import rp from 'request-promise';
 
 import { getHeaders } from '../utilities/requestUtilities';
-import logger from '../utilities/middleware/logger';
+import logger from '../middleware/logger';
 import { ITEM_ENDPOINT } from '../utilities/endpoints';
 
 export async function get(request, response) {

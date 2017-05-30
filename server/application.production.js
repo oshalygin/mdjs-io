@@ -5,8 +5,8 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 
 import hsts from 'hsts';
-import hstsMiddleware from './utilities/middleware/hsts';
-import logger from './utilities/middleware/logger';
+import hstsMiddleware from './middleware/hsts';
+import logger from './middleware/logger';
 
 import v1router from './routes/routes-v1';
 

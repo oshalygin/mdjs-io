@@ -1,6 +1,6 @@
 import winston from 'winston';
 import expressWinston from 'express-winston';
-import configuration from '../../../utilities/configuration';
+import configuration from '../../utilities/configuration';
 
 const colorize = configuration.environment !== 'production'; //eslint-disable-line no-process-env
 

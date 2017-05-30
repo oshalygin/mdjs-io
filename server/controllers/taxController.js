@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { getHeaders } from '../utilities/requestUtilities';
-import logger from '../utilities/middleware/logger';
+import logger from '../middleware/logger';
 import { TAX_ENDPOINT } from '../utilities/endpoints';
 
 

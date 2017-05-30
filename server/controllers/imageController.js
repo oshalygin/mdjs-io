@@ -1,4 +1,4 @@
-import logger from '../utilities/middleware/logger';
+import logger from '../middleware/logger';
 import fetch from 'node-fetch';
 
 import { ITEM_IMAGE_ENDPOINT } from '../utilities/endpoints';

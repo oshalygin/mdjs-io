@@ -1,3 +1,7 @@
+## 2.42.1 (May 27, 2017)
+
+- Move server `/middleware` up a folder tree to minimize unnecessary nesting.
+
 ## 2.42.0 (May 27, 2017)
 
 - Upgraded from Node 7.2.1 to 7.10.0

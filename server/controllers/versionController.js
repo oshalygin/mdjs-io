@@ -1,4 +1,4 @@
-import logger from '../utilities/middleware/logger';
+import logger from '../middleware/logger';
 import { version } from '../../package.json';
 
 export async function get(request, response) {
