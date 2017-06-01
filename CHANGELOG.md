@@ -1,3 +1,9 @@
+## 2.42.2 (May 27, 2017)
+
+- Upgraded from Node 7.10.0 to 8.0.0
+  - TravisCI node runtime updated to `8.0.0`.
+  - Docker base image updated to `8.0.0`.
+
 ## 2.42.1 (May 27, 2017)
 
 - Move server `/middleware` up a folder tree to minimize unnecessary nesting.

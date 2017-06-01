@@ -1,6 +1,6 @@
 {
   "name": "mdjs",
-  "version": "2.42.1",
+  "version": "2.42.2",
   "description": "Merchant Dashboard built with React and Redux",
   "scripts": {
     "start": "npm-run-all --parallel open:server test:watch lint:watch",
