@@ -1,3 +1,8 @@
+## 2.42.3 (May 27, 2017)
+
+- Remove unnecessary jsdom reference when running tests
+  - Ultimately this was causing a memory leak.  Until jsdom is fixed and/or used, this issue will persist in CI.
+
 ## 2.42.2 (May 27, 2017)
 
 - Upgraded from Node 7.10.0 to 8.0.0
