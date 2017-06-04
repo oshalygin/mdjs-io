@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-import { getHeaders } from '../utilities/requestUtilities';
-import logger from '../middleware/logger';
-import { DISCOUNT_ENDPOINT } from '../utilities/endpoints';
+import { getHeaders } from '../../utilities/requestUtilities';
+import logger from '../../middleware/logger';
+import { DISCOUNT_ENDPOINT } from '../../utilities/endpoints';
 
 
 export async function get(request, response) {

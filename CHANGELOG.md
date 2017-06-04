@@ -1,3 +1,7 @@
+## 2.42.4 (June 3, 2017)
+
+- Migrate controllers under `/v1` folder to make room for `/v0` which will leverage the old API.
+
 ## 2.42.3 (May 27, 2017)
 
 - Remove unnecessary jsdom reference when running tests

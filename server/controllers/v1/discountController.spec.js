@@ -2,56 +2,50 @@ import { expect } from 'chai';
 import moxios from 'moxios';
 import sinon from 'sinon';
 
-import { CATEGORY_ENDPOINT } from '../utilities/endpoints';
-import CategoriesController from './categoriesController';
+import { DISCOUNT_ENDPOINT } from '../../utilities/endpoints';
+import DiscountController from './discountController';
 
-describe('Categories Controller', () => {
+describe('Discount Controller', () => {
 
-  const categories = [
+  const discounts = [
     {
-      categoryID: 1,
-      categoryName: 'Foo',
-      companyID: 1,
-      createdBy: 1,
-      createdDate: '2017-03-31T01:09:34.3905613-07:00',
-      facilityID: 0,
-      isActive: true,
+      discountID: 31,
+      discountTypeID: 0,
+      discountName: 'Neighbor Discount',
+      value: 10,
+      applyTypeID: 0,
       items: [],
+      lastUpdatedDate: '2017-04-13T21:33:36.087',
+      createdDate: '2017-04-13T21:33:36.087',
       lastUpdatedBy: 1,
-      lastUpdatedDate: '2017-03-31T01:09:34.3905613-07:00'
+      createdBy: 1,
+      isActive: true,
+      companyID: 1,
+      facilityID: 0
     },
     {
-      categoryID: 2,
-      categoryName: 'Qux',
-      companyID: 1,
-      createdBy: 1,
-      createdDate: '2017-03-31T01:09:34.3905613-07:00',
-      facilityID: 0,
-      isActive: true,
+      discountID: 32,
+      discountTypeID: 1,
+      discountName: 'Best Friend',
+      value: 5,
+      applyTypeID: 0,
       items: [],
+      lastUpdatedDate: '2017-04-13T21:44:51.023',
+      createdDate: '2017-04-13T21:44:51.023',
       lastUpdatedBy: 1,
-      lastUpdatedDate: '2017-03-31T01:09:34.3905613-07:00'
-    },
-    {
-      categoryID: 3,
-      categoryName: 'Bar',
-      companyID: 1,
       createdBy: 1,
-      createdDate: '2017-03-31T01:09:34.3905613-07:00',
-      facilityID: 0,
       isActive: true,
-      items: [],
-      lastUpdatedBy: 1,
-      lastUpdatedDate: '2017-03-31T01:09:34.3905613-07:00'
+      companyID: 1,
+      facilityID: 0
     }
   ];
 
-  const listOfCategoriesPayload = {
-    data: categories
+  const listOfDiscountItemsPayload = {
+    data: discounts
   };
 
-  const categoryPayload = {
-    data: categories[0]
+  const discountPayload = {
+    data: discounts[0]
   };
 
   beforeEach(() => {
@@ -81,7 +75,7 @@ describe('Categories Controller', () => {
       }
     };
 
-    CategoriesController.get(request, response);
+    DiscountController.get(request, response);
 
     const actual = statusStub.calledWith(400);
     expect(actual).equals(expected);
@@ -90,9 +84,9 @@ describe('Categories Controller', () => {
 
   it('should return a 200 status code on a successful request', () => {
 
-    moxios.stubRequest(CATEGORY_ENDPOINT, {
+    moxios.stubRequest(DISCOUNT_ENDPOINT, {
       status: 200,
-      response: listOfCategoriesPayload
+      response: listOfDiscountItemsPayload
     });
 
     const expected = true;
@@ -113,18 +107,18 @@ describe('Categories Controller', () => {
       params: {}
     };
 
-    return CategoriesController.get(request, response).then(() => {
+    return DiscountController.get(request, response).then(() => {
       const actual = statusStub.calledWith(200);
       expect(actual).equals(expected);
     });
 
   });
 
-  it('should return a list of categories on a successful request', () => {
+  it('should return a list of discounts on a successful request', () => {
 
-    moxios.stubRequest(CATEGORY_ENDPOINT, {
+    moxios.stubRequest(DISCOUNT_ENDPOINT, {
       status: 200,
-      response: listOfCategoriesPayload
+      response: listOfDiscountItemsPayload
     });
 
     const expected = true;
@@ -145,21 +139,21 @@ describe('Categories Controller', () => {
       params: {}
     };
 
-    return CategoriesController.get(request, response).then(() => {
-      const actual = jsonSpy.calledWith(categories);
+    return DiscountController.get(request, response).then(() => {
+      const actual = jsonSpy.calledWith(discounts);
       expect(actual).equals(expected);
     });
 
   });
 
-  it('should return a single category on a successful request', () => {
+  it('should return a single discount item on a successful request', () => {
 
-    const categoryId = 3;
-    const categoryEndpoint = `${CATEGORY_ENDPOINT}/${categoryId}`;
+    const discountId = 19;
+    const discountEndpoint = `${DISCOUNT_ENDPOINT}/${discountId}`;
 
-    moxios.stubRequest(categoryEndpoint, {
+    moxios.stubRequest(discountEndpoint, {
       status: 200,
-      response: categoryPayload
+      response: discountPayload
     });
 
     const expected = true;
@@ -178,12 +172,12 @@ describe('Categories Controller', () => {
         authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
       },
       params: {
-        id: categoryId
+        id: discountId
       }
     };
 
-    return CategoriesController.get(request, response).then(() => {
-      const actual = jsonSpy.calledWith(categories[0]);
+    return DiscountController.get(request, response).then(() => {
+      const actual = jsonSpy.calledWith(discounts[0]);
       expect(actual).equals(expected);
     });
   });
@@ -198,7 +192,7 @@ describe('Categories Controller', () => {
       }
     };
 
-    moxios.stubRequest(CATEGORY_ENDPOINT, {
+    moxios.stubRequest(DISCOUNT_ENDPOINT, {
       status: 500,
       response: serverResponse
     });
@@ -221,7 +215,7 @@ describe('Categories Controller', () => {
       params: {}
     };
 
-    return CategoriesController.get(request, response).then(() => {
+    return DiscountController.get(request, response).then(() => {
       const actual = statusStub.calledWith(404);
       expect(actual).equals(expected);
     });
@@ -238,7 +232,7 @@ describe('Categories Controller', () => {
       }
     };
 
-    moxios.stubRequest(CATEGORY_ENDPOINT, {
+    moxios.stubRequest(DISCOUNT_ENDPOINT, {
       status: 200,
       response: serverResponse
     });
@@ -261,14 +255,14 @@ describe('Categories Controller', () => {
       params: {}
     };
 
-    return CategoriesController.get(request, response).then(() => {
+    return DiscountController.get(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });
 
   });
 
-  it('should return a 400 status code if categoryId is null on a deletion call', () => {
+  it('should return a 400 status code if discountId is null on a deletion call', () => {
     const expected = true;
 
     const sendSpy = sinon.spy();
@@ -284,17 +278,17 @@ describe('Categories Controller', () => {
       params: {}
     };
 
-    CategoriesController.deleteCategory(request, response);
+    DiscountController.deleteDiscount(request, response);
 
     const actual = statusStub.calledWith(400);
     expect(actual).equals(expected);
 
   });
 
-  it('should return 404 if the request fell through the backend on a deleteCategory call', () => {
+  it('should return 404 if the request fell through the backend on a deleteDiscount call', () => {
 
-    const categoryId = 3;
-    const categoryEndpoint = `${CATEGORY_ENDPOINT}/${categoryId}`;
+    const discountId = 19;
+    const discountEndpoint = `${DISCOUNT_ENDPOINT}/${discountId}`;
 
     const serverResponse = {
       response: {
@@ -304,7 +298,7 @@ describe('Categories Controller', () => {
       }
     };
 
-    moxios.stubRequest(categoryEndpoint, {
+    moxios.stubRequest(discountEndpoint, {
       status: 500,
       response: serverResponse
     });
@@ -325,21 +319,20 @@ describe('Categories Controller', () => {
         authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
       },
       params: {
-        id: categoryId
+        id: discountId
       }
     };
 
-    return CategoriesController.deleteCategory(request, response).then(() => {
+    return DiscountController.deleteDiscount(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });
-
   });
 
   it('should respond with a 200 on a successful deletion call', () => {
 
-    const categoryId = 3;
-    const categoryEndpoint = `${CATEGORY_ENDPOINT}/${categoryId}`;
+    const discountId = 3;
+    const discountEndpoint = `${DISCOUNT_ENDPOINT}/${discountId}`;
 
     const serverResponse = {
       response: {
@@ -349,7 +342,7 @@ describe('Categories Controller', () => {
       }
     };
 
-    moxios.stubRequest(categoryEndpoint, {
+    moxios.stubRequest(discountEndpoint, {
       status: 200,
       response: serverResponse
     });
@@ -370,11 +363,11 @@ describe('Categories Controller', () => {
         authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
       },
       params: {
-        id: categoryId
+        id: discountId
       }
     };
 
-    return CategoriesController.deleteCategory(request, response).then(() => {
+    return DiscountController.deleteDiscount(request, response).then(() => {
       const actual = statusStub.calledWith(200);
       expect(actual).equals(expected);
     });
@@ -401,7 +394,7 @@ describe('Categories Controller', () => {
       body: {}
     };
 
-    return CategoriesController.put(request, response).then(() => {
+    return DiscountController.put(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });
@@ -410,7 +403,7 @@ describe('Categories Controller', () => {
 
   it('should return a 400 status code if the body is null on an update request', () => {
 
-    const categoryId = 3;
+    const discountId = 19;
 
     const expected = true;
 
@@ -425,19 +418,19 @@ describe('Categories Controller', () => {
 
     const request = {
       params: {
-        id: categoryId
+        id: discountId
       }
     };
 
 
-    return CategoriesController.put(request, response).then(() => {
+    return DiscountController.put(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });
 
   });
 
-  it('should return a 200 status code on a successful put call to update a new category', () => {
+  it('should return a 200 status code on a successful put call to update a new discount', () => {
 
     const expected = true;
 
@@ -450,11 +443,11 @@ describe('Categories Controller', () => {
       status: statusStub
     };
 
-    const categoryId = categories[0].categoryID;
+    const discountId = discounts[0].discountID;
 
-    moxios.stubRequest(`${CATEGORY_ENDPOINT}/${categoryId}`, {
+    moxios.stubRequest(`${DISCOUNT_ENDPOINT}/${discountId}`, {
       status: 200,
-      response: categoryPayload
+      response: discountPayload
     });
 
     const request = {
@@ -462,14 +455,14 @@ describe('Categories Controller', () => {
         authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
       },
       params: {
-        id: categoryId
+        id: discountId
       },
       body: {
-        ...categories[0]
+        ...discounts[0]
       }
     };
 
-    return CategoriesController.put(request, response).then(() => {
+    return DiscountController.put(request, response).then(() => {
       const actual = statusStub.calledWith(200);
       expect(actual).equals(expected);
     });
@@ -478,7 +471,7 @@ describe('Categories Controller', () => {
 
   it('should return 400 if the request fell through the backend on a put update', () => {
 
-    const categoryId = categories[0].categoryID;
+    const discountId = discounts[0].discountID;
 
     const serverResponse = {
       response: {
@@ -488,7 +481,7 @@ describe('Categories Controller', () => {
       }
     };
 
-    moxios.stubRequest(`${CATEGORY_ENDPOINT}/${categoryId}`, {
+    moxios.stubRequest(`${DISCOUNT_ENDPOINT}/${discountId}`, {
       status: 500,
       response: serverResponse
     });
@@ -509,14 +502,14 @@ describe('Categories Controller', () => {
         authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
       },
       params: {
-        id: categoryId
+        id: discountId
       },
       body: {
-        ...categories[0]
+        ...discounts[0]
       }
     };
 
-    return CategoriesController.put(request, response).then(() => {
+    return DiscountController.put(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });
@@ -533,7 +526,7 @@ describe('Categories Controller', () => {
       }
     };
 
-    moxios.stubRequest(CATEGORY_ENDPOINT, {
+    moxios.stubRequest(DISCOUNT_ENDPOINT, {
       status: 500,
       response: serverResponse
     });
@@ -555,18 +548,18 @@ describe('Categories Controller', () => {
       },
       params: {},
       body: {
-        ...categories[0]
+        ...discounts[0]
       }
     };
 
-    return CategoriesController.post(request, response).then(() => {
+    return DiscountController.post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });
 
   });
 
-  it('should return a 200 status code on a successful post call to create a new category', () => {
+  it('should return a 200 status code on a successful post call to create a new discount item', () => {
 
     const expected = true;
 
@@ -575,9 +568,9 @@ describe('Categories Controller', () => {
       json: jsonSpy
     });
 
-    moxios.stubRequest(CATEGORY_ENDPOINT, {
+    moxios.stubRequest(DISCOUNT_ENDPOINT, {
       status: 200,
-      response: categoryPayload
+      response: discountPayload
     });
 
     const response = {
@@ -590,18 +583,18 @@ describe('Categories Controller', () => {
       },
       params: {},
       body: {
-        ...categories[0]
+        ...discounts[0]
       }
     };
 
-    return CategoriesController.post(request, response).then(() => {
+    return DiscountController.post(request, response).then(() => {
       const actual = statusStub.calledWith(200);
       expect(actual).equals(expected);
     });
 
   });
 
-  it('should return a 400 status code if the body is null on a new category creation request', () => {
+  it('should return a 400 status code if the body is null on a new discount creation request', () => {
 
     const expected = true;
 
@@ -619,7 +612,7 @@ describe('Categories Controller', () => {
     };
 
 
-    return CategoriesController.post(request, response).then(() => {
+    return DiscountController.post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });
@@ -644,11 +637,11 @@ describe('Categories Controller', () => {
         id: 3
       },
       body: {
-        ...categories[0]
+        ...discounts[0]
       }
     };
 
-    return CategoriesController.post(request, response).then(() => {
+    return DiscountController.post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });

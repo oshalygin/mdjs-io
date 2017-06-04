@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import moxios from 'moxios';
 import sinon from 'sinon';
 
-import { ITEM_ENDPOINT } from '../utilities/endpoints';
+import { ITEM_ENDPOINT } from '../../utilities/endpoints';
 import ItemController from './itemController';
 
 jest.dontMock('fs');

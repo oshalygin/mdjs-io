@@ -1,14 +1,14 @@
 import express from 'express';
 
-import itemController from '../controllers/itemController';
-import categoriesController from '../controllers/categoriesController';
-import taxController from '../controllers/taxController';
-import accountController from '../controllers/accountController';
-import versionController from '../controllers/versionController';
-import imagesController from '../controllers/imageController';
-import modifierController from '../controllers/modifierController';
-import discountController from '../controllers/discountController';
-import ordersController from '../controllers/ordersController';
+import itemController from '../controllers/v1/itemController';
+import categoriesController from '../controllers/v1/categoriesController';
+import taxController from '../controllers/v1/taxController';
+import accountController from '../controllers/v1/accountController';
+import versionController from '../controllers/v1/versionController';
+import imagesController from '../controllers/v1/imageController';
+import modifierController from '../controllers/v1/modifierController';
+import discountController from '../controllers/v1/discountController';
+import ordersController from '../controllers/v1/ordersController';
 
 import multer from 'multer';
 

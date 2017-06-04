@@ -2,48 +2,56 @@ import { expect } from 'chai';
 import moxios from 'moxios';
 import sinon from 'sinon';
 
-import { TAX_ENDPOINT } from '../utilities/endpoints';
-import TaxController from './taxController';
+import { CATEGORY_ENDPOINT } from '../../utilities/endpoints';
+import CategoriesController from './categoriesController';
 
-describe('Tax Controller', () => {
+describe('Categories Controller', () => {
 
-  const taxes = [
+  const categories = [
     {
-      taxID: 19,
-      taxName: 'Texas',
-      taxTypeID: 0,
-      items: [],
-      value: 80,
-      lastUpdatedDate: '2017-04-01T13:35:21.583',
-      createdDate: '2017-04-01T13:35:21.583',
-      lastUpdatedBy: 1,
-      createdBy: 1,
-      isActive: true,
+      categoryID: 1,
+      categoryName: 'Foo',
       companyID: 1,
-      facilityID: 0
+      createdBy: 1,
+      createdDate: '2017-03-31T01:09:34.3905613-07:00',
+      facilityID: 0,
+      isActive: true,
+      items: [],
+      lastUpdatedBy: 1,
+      lastUpdatedDate: '2017-03-31T01:09:34.3905613-07:00'
     },
     {
-      taxID: 20,
-      taxName: 'CA',
-      taxTypeID: 0,
-      items: [],
-      value: 10,
-      lastUpdatedDate: '2017-04-01T13:35:21.583',
-      createdDate: '2017-04-01T13:35:21.583',
-      lastUpdatedBy: 1,
-      createdBy: 1,
-      isActive: true,
+      categoryID: 2,
+      categoryName: 'Qux',
       companyID: 1,
-      facilityID: 0
+      createdBy: 1,
+      createdDate: '2017-03-31T01:09:34.3905613-07:00',
+      facilityID: 0,
+      isActive: true,
+      items: [],
+      lastUpdatedBy: 1,
+      lastUpdatedDate: '2017-03-31T01:09:34.3905613-07:00'
+    },
+    {
+      categoryID: 3,
+      categoryName: 'Bar',
+      companyID: 1,
+      createdBy: 1,
+      createdDate: '2017-03-31T01:09:34.3905613-07:00',
+      facilityID: 0,
+      isActive: true,
+      items: [],
+      lastUpdatedBy: 1,
+      lastUpdatedDate: '2017-03-31T01:09:34.3905613-07:00'
     }
   ];
 
-  const listOfTaxItemsPayload = {
-    data: taxes
+  const listOfCategoriesPayload = {
+    data: categories
   };
 
-  const taxPayload = {
-    data: taxes[0]
+  const categoryPayload = {
+    data: categories[0]
   };
 
   beforeEach(() => {
@@ -73,7 +81,7 @@ describe('Tax Controller', () => {
       }
     };
 
-    TaxController.get(request, response);
+    CategoriesController.get(request, response);
 
     const actual = statusStub.calledWith(400);
     expect(actual).equals(expected);
@@ -82,9 +90,9 @@ describe('Tax Controller', () => {
 
   it('should return a 200 status code on a successful request', () => {
 
-    moxios.stubRequest(TAX_ENDPOINT, {
+    moxios.stubRequest(CATEGORY_ENDPOINT, {
       status: 200,
-      response: listOfTaxItemsPayload
+      response: listOfCategoriesPayload
     });
 
     const expected = true;
@@ -105,18 +113,18 @@ describe('Tax Controller', () => {
       params: {}
     };
 
-    return TaxController.get(request, response).then(() => {
+    return CategoriesController.get(request, response).then(() => {
       const actual = statusStub.calledWith(200);
       expect(actual).equals(expected);
     });
 
   });
 
-  it('should return a list of taxes on a successful request', () => {
+  it('should return a list of categories on a successful request', () => {
 
-    moxios.stubRequest(TAX_ENDPOINT, {
+    moxios.stubRequest(CATEGORY_ENDPOINT, {
       status: 200,
-      response: listOfTaxItemsPayload
+      response: listOfCategoriesPayload
     });
 
     const expected = true;
@@ -137,21 +145,21 @@ describe('Tax Controller', () => {
       params: {}
     };
 
-    return TaxController.get(request, response).then(() => {
-      const actual = jsonSpy.calledWith(taxes);
+    return CategoriesController.get(request, response).then(() => {
+      const actual = jsonSpy.calledWith(categories);
       expect(actual).equals(expected);
     });
 
   });
 
-  it('should return a single tax item on a successful request', () => {
+  it('should return a single category on a successful request', () => {
 
-    const taxId = 19;
-    const taxEndpoint = `${TAX_ENDPOINT}/${taxId}`;
+    const categoryId = 3;
+    const categoryEndpoint = `${CATEGORY_ENDPOINT}/${categoryId}`;
 
-    moxios.stubRequest(taxEndpoint, {
+    moxios.stubRequest(categoryEndpoint, {
       status: 200,
-      response: taxPayload
+      response: categoryPayload
     });
 
     const expected = true;
@@ -170,12 +178,12 @@ describe('Tax Controller', () => {
         authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
       },
       params: {
-        id: taxId
+        id: categoryId
       }
     };
 
-    return TaxController.get(request, response).then(() => {
-      const actual = jsonSpy.calledWith(taxes[0]);
+    return CategoriesController.get(request, response).then(() => {
+      const actual = jsonSpy.calledWith(categories[0]);
       expect(actual).equals(expected);
     });
   });
@@ -190,7 +198,7 @@ describe('Tax Controller', () => {
       }
     };
 
-    moxios.stubRequest(TAX_ENDPOINT, {
+    moxios.stubRequest(CATEGORY_ENDPOINT, {
       status: 500,
       response: serverResponse
     });
@@ -213,7 +221,7 @@ describe('Tax Controller', () => {
       params: {}
     };
 
-    return TaxController.get(request, response).then(() => {
+    return CategoriesController.get(request, response).then(() => {
       const actual = statusStub.calledWith(404);
       expect(actual).equals(expected);
     });
@@ -230,7 +238,7 @@ describe('Tax Controller', () => {
       }
     };
 
-    moxios.stubRequest(TAX_ENDPOINT, {
+    moxios.stubRequest(CATEGORY_ENDPOINT, {
       status: 200,
       response: serverResponse
     });
@@ -253,14 +261,14 @@ describe('Tax Controller', () => {
       params: {}
     };
 
-    return TaxController.get(request, response).then(() => {
+    return CategoriesController.get(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });
 
   });
 
-  it('should return a 400 status code if taxId is null on a deletion call', () => {
+  it('should return a 400 status code if categoryId is null on a deletion call', () => {
     const expected = true;
 
     const sendSpy = sinon.spy();
@@ -275,18 +283,18 @@ describe('Tax Controller', () => {
     const request = {
       params: {}
     };
-    
-    TaxController.deleteTax(request, response);
+
+    CategoriesController.deleteCategory(request, response);
 
     const actual = statusStub.calledWith(400);
     expect(actual).equals(expected);
 
   });
 
-  it('should return 404 if the request fell through the backend on a deleteTax call', () => {
+  it('should return 404 if the request fell through the backend on a deleteCategory call', () => {
 
-    const taxId = 19;
-    const taxEndpoint = `${TAX_ENDPOINT}/${taxId}`;
+    const categoryId = 3;
+    const categoryEndpoint = `${CATEGORY_ENDPOINT}/${categoryId}`;
 
     const serverResponse = {
       response: {
@@ -296,7 +304,7 @@ describe('Tax Controller', () => {
       }
     };
 
-    moxios.stubRequest(taxEndpoint, {
+    moxios.stubRequest(categoryEndpoint, {
       status: 500,
       response: serverResponse
     });
@@ -307,7 +315,7 @@ describe('Tax Controller', () => {
     const statusStub = sinon.stub().returns({
       send: sendSpy
     });
-    
+
     const response = {
       status: statusStub
     };
@@ -317,21 +325,22 @@ describe('Tax Controller', () => {
         authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
       },
       params: {
-        id: taxId
+        id: categoryId
       }
-    };  
+    };
 
-    return TaxController.deleteTax(request, response).then(() => {
+    return CategoriesController.deleteCategory(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });
+
   });
 
   it('should respond with a 200 on a successful deletion call', () => {
 
-    const taxId = 3;
-    const taxEndpoint = `${TAX_ENDPOINT}/${taxId}`;
-    
+    const categoryId = 3;
+    const categoryEndpoint = `${CATEGORY_ENDPOINT}/${categoryId}`;
+
     const serverResponse = {
       response: {
         data: {
@@ -340,7 +349,7 @@ describe('Tax Controller', () => {
       }
     };
 
-    moxios.stubRequest(taxEndpoint, {
+    moxios.stubRequest(categoryEndpoint, {
       status: 200,
       response: serverResponse
     });
@@ -361,11 +370,11 @@ describe('Tax Controller', () => {
         authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
       },
       params: {
-        id: taxId
+        id: categoryId
       }
     };
 
-    return TaxController.deleteTax(request, response).then(() => {
+    return CategoriesController.deleteCategory(request, response).then(() => {
       const actual = statusStub.calledWith(200);
       expect(actual).equals(expected);
     });
@@ -392,7 +401,7 @@ describe('Tax Controller', () => {
       body: {}
     };
 
-    return TaxController.put(request, response).then(() => {
+    return CategoriesController.put(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });
@@ -401,7 +410,7 @@ describe('Tax Controller', () => {
 
   it('should return a 400 status code if the body is null on an update request', () => {
 
-    const taxId = 19;
+    const categoryId = 3;
 
     const expected = true;
 
@@ -416,19 +425,19 @@ describe('Tax Controller', () => {
 
     const request = {
       params: {
-        id: taxId
+        id: categoryId
       }
     };
 
 
-    return TaxController.put(request, response).then(() => {
+    return CategoriesController.put(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });
 
   });
 
-  it('should return a 200 status code on a successful put call to update a new tax', () => {
+  it('should return a 200 status code on a successful put call to update a new category', () => {
 
     const expected = true;
 
@@ -441,11 +450,11 @@ describe('Tax Controller', () => {
       status: statusStub
     };
 
-    const taxId = taxes[0].taxID;
+    const categoryId = categories[0].categoryID;
 
-    moxios.stubRequest(`${TAX_ENDPOINT}/${taxId}`, {
+    moxios.stubRequest(`${CATEGORY_ENDPOINT}/${categoryId}`, {
       status: 200,
-      response: taxPayload
+      response: categoryPayload
     });
 
     const request = {
@@ -453,14 +462,14 @@ describe('Tax Controller', () => {
         authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
       },
       params: {
-        id: taxId
+        id: categoryId
       },
       body: {
-        ...taxes[0]
+        ...categories[0]
       }
     };
 
-    return TaxController.put(request, response).then(() => {
+    return CategoriesController.put(request, response).then(() => {
       const actual = statusStub.calledWith(200);
       expect(actual).equals(expected);
     });
@@ -469,7 +478,7 @@ describe('Tax Controller', () => {
 
   it('should return 400 if the request fell through the backend on a put update', () => {
 
-    const taxId = taxes[0].taxID;
+    const categoryId = categories[0].categoryID;
 
     const serverResponse = {
       response: {
@@ -479,7 +488,7 @@ describe('Tax Controller', () => {
       }
     };
 
-    moxios.stubRequest(`${TAX_ENDPOINT}/${taxId}`, {
+    moxios.stubRequest(`${CATEGORY_ENDPOINT}/${categoryId}`, {
       status: 500,
       response: serverResponse
     });
@@ -500,14 +509,14 @@ describe('Tax Controller', () => {
         authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
       },
       params: {
-        id: taxId
+        id: categoryId
       },
       body: {
-        ...taxes[0]
+        ...categories[0]
       }
     };
 
-    return TaxController.put(request, response).then(() => {
+    return CategoriesController.put(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });
@@ -524,7 +533,7 @@ describe('Tax Controller', () => {
       }
     };
 
-    moxios.stubRequest(TAX_ENDPOINT, {
+    moxios.stubRequest(CATEGORY_ENDPOINT, {
       status: 500,
       response: serverResponse
     });
@@ -546,18 +555,18 @@ describe('Tax Controller', () => {
       },
       params: {},
       body: {
-        ...taxes[0]
+        ...categories[0]
       }
     };
 
-    return TaxController.post(request, response).then(() => {
+    return CategoriesController.post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });
 
   });
 
-  it('should return a 200 status code on a successful post call to create a new tax item', () => {
+  it('should return a 200 status code on a successful post call to create a new category', () => {
 
     const expected = true;
 
@@ -566,9 +575,9 @@ describe('Tax Controller', () => {
       json: jsonSpy
     });
 
-    moxios.stubRequest(TAX_ENDPOINT, {
+    moxios.stubRequest(CATEGORY_ENDPOINT, {
       status: 200,
-      response: taxPayload
+      response: categoryPayload
     });
 
     const response = {
@@ -581,18 +590,18 @@ describe('Tax Controller', () => {
       },
       params: {},
       body: {
-        ...taxes[0]
+        ...categories[0]
       }
     };
 
-    return TaxController.post(request, response).then(() => {
+    return CategoriesController.post(request, response).then(() => {
       const actual = statusStub.calledWith(200);
       expect(actual).equals(expected);
     });
 
   });
 
-  it('should return a 400 status code if the body is null on a new tax creation request', () => {
+  it('should return a 400 status code if the body is null on a new category creation request', () => {
 
     const expected = true;
 
@@ -610,7 +619,7 @@ describe('Tax Controller', () => {
     };
 
 
-    return TaxController.post(request, response).then(() => {
+    return CategoriesController.post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });
@@ -635,11 +644,11 @@ describe('Tax Controller', () => {
         id: 3
       },
       body: {
-        ...taxes[0]
+        ...categories[0]
       }
     };
 
-    return TaxController.post(request, response).then(() => {
+    return CategoriesController.post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });

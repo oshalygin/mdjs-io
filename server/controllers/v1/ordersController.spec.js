@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import moxios from 'moxios';
 import sinon from 'sinon';
 
-import { ORDERS_ENDPOINT } from '../utilities/endpoints';
+import { ORDERS_ENDPOINT } from '../../utilities/endpoints';
 import OrdersController from './ordersController';
 
 describe('Orders Controller', () => {

@@ -4,7 +4,7 @@ import moxios from 'moxios';
 import {
   LOGIN_ENDPOINT,
   LOGIN_TOKEN_ENDPOINT
-} from '../utilities/endpoints';
+} from '../../utilities/endpoints';
 
 import { expect } from 'chai';
 

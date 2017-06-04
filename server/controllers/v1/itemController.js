@@ -3,9 +3,9 @@ import fs from 'fs';
 import path from 'path';
 import rp from 'request-promise';
 
-import { getHeaders } from '../utilities/requestUtilities';
-import logger from '../middleware/logger';
-import { ITEM_ENDPOINT } from '../utilities/endpoints';
+import { getHeaders } from '../../utilities/requestUtilities';
+import logger from '../../middleware/logger';
+import { ITEM_ENDPOINT } from '../../utilities/endpoints';
 
 export async function get(request, response) {
 
@@ -111,7 +111,7 @@ export async function put(request, response) {
     if (!request.file) {
       file = null;
     } else {
-      file = path.join(__dirname, `../../temp-images/${request.file.originalname}`);
+      file = path.join(__dirname, `../../../../temp-images/${request.file.originalname}`);
       formData.file = fs.createReadStream(file);
     }
 
@@ -128,7 +128,7 @@ export async function put(request, response) {
 
   } catch (error) {
     if (request.file) {
-      const file = path.join(__dirname, `../../temp-images/${request.file.originalname}`);
+      const file = path.join(__dirname, `../../../../temp-images/${request.file.originalname}`);
       fs.unlink(file);
     }
 
@@ -174,7 +174,7 @@ export async function post(request, response) {
     if (!request.file) {
       file = null;
     } else {
-      file = path.join(__dirname, `../../temp-images/${request.file.originalname}`);
+      file = path.join(__dirname, `../../../../temp-images/${request.file.originalname}`);
       formData.file = fs.createReadStream(file);
     }
 
@@ -192,7 +192,7 @@ export async function post(request, response) {
 
   } catch (error) {
     if (request.file) {
-      const file = path.join(__dirname, `../../temp-images/${request.file.originalname}`);
+      const file = path.join(__dirname, `../../../../temp-images/${request.file.originalname}`);
       fs.unlink(file);
     }
 

@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import moxios from 'moxios';
 import sinon from 'sinon';
 
-import { MODIFIER_ENDPOINT } from '../utilities/endpoints';
+import { MODIFIER_ENDPOINT } from '../../utilities/endpoints';
 import ModifierController from './modifierController';
 
 describe('Modifiers Controller', () => {

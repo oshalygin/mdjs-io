@@ -2,21 +2,20 @@ import { expect } from 'chai';
 import moxios from 'moxios';
 import sinon from 'sinon';
 
-import { DISCOUNT_ENDPOINT } from '../utilities/endpoints';
-import DiscountController from './discountController';
+import { TAX_ENDPOINT } from '../../utilities/endpoints';
+import TaxController from './taxController';
 
-describe('Discount Controller', () => {
+describe('Tax Controller', () => {
 
-  const discounts = [
+  const taxes = [
     {
-      discountID: 31,
-      discountTypeID: 0,
-      discountName: 'Neighbor Discount',
-      value: 10,
-      applyTypeID: 0,
+      taxID: 19,
+      taxName: 'Texas',
+      taxTypeID: 0,
       items: [],
-      lastUpdatedDate: '2017-04-13T21:33:36.087',
-      createdDate: '2017-04-13T21:33:36.087',
+      value: 80,
+      lastUpdatedDate: '2017-04-01T13:35:21.583',
+      createdDate: '2017-04-01T13:35:21.583',
       lastUpdatedBy: 1,
       createdBy: 1,
       isActive: true,
@@ -24,14 +23,13 @@ describe('Discount Controller', () => {
       facilityID: 0
     },
     {
-      discountID: 32,
-      discountTypeID: 1,
-      discountName: 'Best Friend',
-      value: 5,
-      applyTypeID: 0,
+      taxID: 20,
+      taxName: 'CA',
+      taxTypeID: 0,
       items: [],
-      lastUpdatedDate: '2017-04-13T21:44:51.023',
-      createdDate: '2017-04-13T21:44:51.023',
+      value: 10,
+      lastUpdatedDate: '2017-04-01T13:35:21.583',
+      createdDate: '2017-04-01T13:35:21.583',
       lastUpdatedBy: 1,
       createdBy: 1,
       isActive: true,
@@ -40,12 +38,12 @@ describe('Discount Controller', () => {
     }
   ];
 
-  const listOfDiscountItemsPayload = {
-    data: discounts
+  const listOfTaxItemsPayload = {
+    data: taxes
   };
 
-  const discountPayload = {
-    data: discounts[0]
+  const taxPayload = {
+    data: taxes[0]
   };
 
   beforeEach(() => {
@@ -75,7 +73,7 @@ describe('Discount Controller', () => {
       }
     };
 
-    DiscountController.get(request, response);
+    TaxController.get(request, response);
 
     const actual = statusStub.calledWith(400);
     expect(actual).equals(expected);
@@ -84,9 +82,9 @@ describe('Discount Controller', () => {
 
   it('should return a 200 status code on a successful request', () => {
 
-    moxios.stubRequest(DISCOUNT_ENDPOINT, {
+    moxios.stubRequest(TAX_ENDPOINT, {
       status: 200,
-      response: listOfDiscountItemsPayload
+      response: listOfTaxItemsPayload
     });
 
     const expected = true;
@@ -107,18 +105,18 @@ describe('Discount Controller', () => {
       params: {}
     };
 
-    return DiscountController.get(request, response).then(() => {
+    return TaxController.get(request, response).then(() => {
       const actual = statusStub.calledWith(200);
       expect(actual).equals(expected);
     });
 
   });
 
-  it('should return a list of discounts on a successful request', () => {
+  it('should return a list of taxes on a successful request', () => {
 
-    moxios.stubRequest(DISCOUNT_ENDPOINT, {
+    moxios.stubRequest(TAX_ENDPOINT, {
       status: 200,
-      response: listOfDiscountItemsPayload
+      response: listOfTaxItemsPayload
     });
 
     const expected = true;
@@ -139,21 +137,21 @@ describe('Discount Controller', () => {
       params: {}
     };
 
-    return DiscountController.get(request, response).then(() => {
-      const actual = jsonSpy.calledWith(discounts);
+    return TaxController.get(request, response).then(() => {
+      const actual = jsonSpy.calledWith(taxes);
       expect(actual).equals(expected);
     });
 
   });
 
-  it('should return a single discount item on a successful request', () => {
+  it('should return a single tax item on a successful request', () => {
 
-    const discountId = 19;
-    const discountEndpoint = `${DISCOUNT_ENDPOINT}/${discountId}`;
+    const taxId = 19;
+    const taxEndpoint = `${TAX_ENDPOINT}/${taxId}`;
 
-    moxios.stubRequest(discountEndpoint, {
+    moxios.stubRequest(taxEndpoint, {
       status: 200,
-      response: discountPayload
+      response: taxPayload
     });
 
     const expected = true;
@@ -172,12 +170,12 @@ describe('Discount Controller', () => {
         authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
       },
       params: {
-        id: discountId
+        id: taxId
       }
     };
 
-    return DiscountController.get(request, response).then(() => {
-      const actual = jsonSpy.calledWith(discounts[0]);
+    return TaxController.get(request, response).then(() => {
+      const actual = jsonSpy.calledWith(taxes[0]);
       expect(actual).equals(expected);
     });
   });
@@ -192,7 +190,7 @@ describe('Discount Controller', () => {
       }
     };
 
-    moxios.stubRequest(DISCOUNT_ENDPOINT, {
+    moxios.stubRequest(TAX_ENDPOINT, {
       status: 500,
       response: serverResponse
     });
@@ -215,7 +213,7 @@ describe('Discount Controller', () => {
       params: {}
     };
 
-    return DiscountController.get(request, response).then(() => {
+    return TaxController.get(request, response).then(() => {
       const actual = statusStub.calledWith(404);
       expect(actual).equals(expected);
     });
@@ -232,7 +230,7 @@ describe('Discount Controller', () => {
       }
     };
 
-    moxios.stubRequest(DISCOUNT_ENDPOINT, {
+    moxios.stubRequest(TAX_ENDPOINT, {
       status: 200,
       response: serverResponse
     });
@@ -255,14 +253,14 @@ describe('Discount Controller', () => {
       params: {}
     };
 
-    return DiscountController.get(request, response).then(() => {
+    return TaxController.get(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });
 
   });
 
-  it('should return a 400 status code if discountId is null on a deletion call', () => {
+  it('should return a 400 status code if taxId is null on a deletion call', () => {
     const expected = true;
 
     const sendSpy = sinon.spy();
@@ -277,18 +275,18 @@ describe('Discount Controller', () => {
     const request = {
       params: {}
     };
-
-    DiscountController.deleteDiscount(request, response);
+    
+    TaxController.deleteTax(request, response);
 
     const actual = statusStub.calledWith(400);
     expect(actual).equals(expected);
 
   });
 
-  it('should return 404 if the request fell through the backend on a deleteDiscount call', () => {
+  it('should return 404 if the request fell through the backend on a deleteTax call', () => {
 
-    const discountId = 19;
-    const discountEndpoint = `${DISCOUNT_ENDPOINT}/${discountId}`;
+    const taxId = 19;
+    const taxEndpoint = `${TAX_ENDPOINT}/${taxId}`;
 
     const serverResponse = {
       response: {
@@ -298,7 +296,7 @@ describe('Discount Controller', () => {
       }
     };
 
-    moxios.stubRequest(discountEndpoint, {
+    moxios.stubRequest(taxEndpoint, {
       status: 500,
       response: serverResponse
     });
@@ -309,7 +307,7 @@ describe('Discount Controller', () => {
     const statusStub = sinon.stub().returns({
       send: sendSpy
     });
-
+    
     const response = {
       status: statusStub
     };
@@ -319,11 +317,11 @@ describe('Discount Controller', () => {
         authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
       },
       params: {
-        id: discountId
+        id: taxId
       }
-    };
+    };  
 
-    return DiscountController.deleteDiscount(request, response).then(() => {
+    return TaxController.deleteTax(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });
@@ -331,9 +329,9 @@ describe('Discount Controller', () => {
 
   it('should respond with a 200 on a successful deletion call', () => {
 
-    const discountId = 3;
-    const discountEndpoint = `${DISCOUNT_ENDPOINT}/${discountId}`;
-
+    const taxId = 3;
+    const taxEndpoint = `${TAX_ENDPOINT}/${taxId}`;
+    
     const serverResponse = {
       response: {
         data: {
@@ -342,7 +340,7 @@ describe('Discount Controller', () => {
       }
     };
 
-    moxios.stubRequest(discountEndpoint, {
+    moxios.stubRequest(taxEndpoint, {
       status: 200,
       response: serverResponse
     });
@@ -363,11 +361,11 @@ describe('Discount Controller', () => {
         authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
       },
       params: {
-        id: discountId
+        id: taxId
       }
     };
 
-    return DiscountController.deleteDiscount(request, response).then(() => {
+    return TaxController.deleteTax(request, response).then(() => {
       const actual = statusStub.calledWith(200);
       expect(actual).equals(expected);
     });
@@ -394,7 +392,7 @@ describe('Discount Controller', () => {
       body: {}
     };
 
-    return DiscountController.put(request, response).then(() => {
+    return TaxController.put(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });
@@ -403,7 +401,7 @@ describe('Discount Controller', () => {
 
   it('should return a 400 status code if the body is null on an update request', () => {
 
-    const discountId = 19;
+    const taxId = 19;
 
     const expected = true;
 
@@ -418,19 +416,19 @@ describe('Discount Controller', () => {
 
     const request = {
       params: {
-        id: discountId
+        id: taxId
       }
     };
 
 
-    return DiscountController.put(request, response).then(() => {
+    return TaxController.put(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });
 
   });
 
-  it('should return a 200 status code on a successful put call to update a new discount', () => {
+  it('should return a 200 status code on a successful put call to update a new tax', () => {
 
     const expected = true;
 
@@ -443,11 +441,11 @@ describe('Discount Controller', () => {
       status: statusStub
     };
 
-    const discountId = discounts[0].discountID;
+    const taxId = taxes[0].taxID;
 
-    moxios.stubRequest(`${DISCOUNT_ENDPOINT}/${discountId}`, {
+    moxios.stubRequest(`${TAX_ENDPOINT}/${taxId}`, {
       status: 200,
-      response: discountPayload
+      response: taxPayload
     });
 
     const request = {
@@ -455,14 +453,14 @@ describe('Discount Controller', () => {
         authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
       },
       params: {
-        id: discountId
+        id: taxId
       },
       body: {
-        ...discounts[0]
+        ...taxes[0]
       }
     };
 
-    return DiscountController.put(request, response).then(() => {
+    return TaxController.put(request, response).then(() => {
       const actual = statusStub.calledWith(200);
       expect(actual).equals(expected);
     });
@@ -471,7 +469,7 @@ describe('Discount Controller', () => {
 
   it('should return 400 if the request fell through the backend on a put update', () => {
 
-    const discountId = discounts[0].discountID;
+    const taxId = taxes[0].taxID;
 
     const serverResponse = {
       response: {
@@ -481,7 +479,7 @@ describe('Discount Controller', () => {
       }
     };
 
-    moxios.stubRequest(`${DISCOUNT_ENDPOINT}/${discountId}`, {
+    moxios.stubRequest(`${TAX_ENDPOINT}/${taxId}`, {
       status: 500,
       response: serverResponse
     });
@@ -502,14 +500,14 @@ describe('Discount Controller', () => {
         authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
       },
       params: {
-        id: discountId
+        id: taxId
       },
       body: {
-        ...discounts[0]
+        ...taxes[0]
       }
     };
 
-    return DiscountController.put(request, response).then(() => {
+    return TaxController.put(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });
@@ -526,7 +524,7 @@ describe('Discount Controller', () => {
       }
     };
 
-    moxios.stubRequest(DISCOUNT_ENDPOINT, {
+    moxios.stubRequest(TAX_ENDPOINT, {
       status: 500,
       response: serverResponse
     });
@@ -548,18 +546,18 @@ describe('Discount Controller', () => {
       },
       params: {},
       body: {
-        ...discounts[0]
+        ...taxes[0]
       }
     };
 
-    return DiscountController.post(request, response).then(() => {
+    return TaxController.post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });
 
   });
 
-  it('should return a 200 status code on a successful post call to create a new discount item', () => {
+  it('should return a 200 status code on a successful post call to create a new tax item', () => {
 
     const expected = true;
 
@@ -568,9 +566,9 @@ describe('Discount Controller', () => {
       json: jsonSpy
     });
 
-    moxios.stubRequest(DISCOUNT_ENDPOINT, {
+    moxios.stubRequest(TAX_ENDPOINT, {
       status: 200,
-      response: discountPayload
+      response: taxPayload
     });
 
     const response = {
@@ -583,18 +581,18 @@ describe('Discount Controller', () => {
       },
       params: {},
       body: {
-        ...discounts[0]
+        ...taxes[0]
       }
     };
 
-    return DiscountController.post(request, response).then(() => {
+    return TaxController.post(request, response).then(() => {
       const actual = statusStub.calledWith(200);
       expect(actual).equals(expected);
     });
 
   });
 
-  it('should return a 400 status code if the body is null on a new discount creation request', () => {
+  it('should return a 400 status code if the body is null on a new tax creation request', () => {
 
     const expected = true;
 
@@ -612,7 +610,7 @@ describe('Discount Controller', () => {
     };
 
 
-    return DiscountController.post(request, response).then(() => {
+    return TaxController.post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });
@@ -637,11 +635,11 @@ describe('Discount Controller', () => {
         id: 3
       },
       body: {
-        ...discounts[0]
+        ...taxes[0]
       }
     };
 
-    return DiscountController.post(request, response).then(() => {
+    return TaxController.post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });

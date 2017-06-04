@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-import { getJsonHeaders } from '../utilities/requestUtilities';
-import logger from '../middleware/logger';
-import { LOGIN_ENDPOINT, LOGIN_TOKEN_ENDPOINT } from '../utilities/endpoints';
+import { getJsonHeaders } from '../../utilities/requestUtilities';
+import logger from '../../middleware/logger';
+import { LOGIN_ENDPOINT, LOGIN_TOKEN_ENDPOINT } from '../../utilities/endpoints';
 
 export async function post(request, response) {
 
