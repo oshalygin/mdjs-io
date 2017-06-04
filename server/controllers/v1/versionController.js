@@ -1,5 +1,5 @@
 import logger from '../../middleware/logger';
-import { version } from '../../../../package.json';
+import { version } from '../../../package.json';
 
 export async function get(request, response) {
 

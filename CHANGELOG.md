@@ -1,3 +1,7 @@
+## 2.42.5 (June 3, 2017)
+
+- Fixed improper module reference of `package.json`.
+
 ## 2.42.4 (June 3, 2017)
 
 - Migrate controllers under `/v1` folder to make room for `/v0` which will leverage the old API.
