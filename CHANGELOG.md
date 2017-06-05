@@ -1,3 +1,8 @@
+## 2.42.6 (June 4, 2017)
+
+- Added documentation around how google cloud storage is going to be leveraged to store images in the cloud.
+- Added the necessary google cloud node package, which is the SDK necessary to communicate with the storage bucket.  We could call the API directly via HTTP, but this is preferred.
+
 ## 2.42.5 (June 3, 2017)
 
 - Fixed improper module reference of `package.json`.

@@ -41,6 +41,12 @@ You will need the Google Cloud SDK to be able to deploy and manage your cloud re
 sudo gcloud components install kubectl
 ```
 
+### Cloud Storage
+
+Google Cloud Storage is used to store images in the cloud.  In local development, images are stored to a temporary bucket, prefixed with `temp`.  
+
+A keyfile is necessary to properly authenticate against the Google Cloud project, make sure you have it in the root of the project. _Note_: This file is excluded from the repository(ala `.gitignore`), so keep it stored locally but do realize that you need it, otherwise you won't even be able to authenticate against the storage bucket.
+
 ### Authenticating with GCP
 
 Some of these steps may seem redundant, but they are necessary to make sure things are running smoothly.  Run them in sequence.
