@@ -15,6 +15,10 @@ import './itemDetail.css';
 import ItemDetailForm from './ItemDetailForm.jsx';
 import Spinner from '../common/spinner/';
 
+export function setDefaultLabel(name) {
+  return name.charAt(0).toUpperCase() + name.substring(1, 2);
+}
+
 class ItemDetailPage extends React.Component {
   constructor(props, context) {
     super(props, context);
@@ -66,25 +70,32 @@ class ItemDetailPage extends React.Component {
   onSave() {
     const { item } = this.state;
     const { itemActions } = this.props;
+
     if (!this.formIsValid()) {
       this.displayNotification('Form validation errors');
       return;
     }
-    
-    item.isShowPhoto = !!item.photoURL;
+    const updatedItem = { ...item };
+    updatedItem.isShowPhoto = !!updatedItem.photoURL;
+    updatedItem.label = updatedItem.label ? updatedItem.label : setDefaultLabel(updatedItem.name);
+    updatedItem.price = Number(updatedItem.price);
 
-    if (item.itemID) {
-      itemActions.updateItem(item)
+    if (updatedItem.itemID) {
+
+      itemActions.updateItem(updatedItem)
         .then(() => this.redirect())
         .catch((error) => {
           this.displayNotification(error.response.data);
         });
+
     } else {
-      itemActions.createItem(item)
+
+      itemActions.createItem(updatedItem)
         .then(() => this.redirect())
         .catch((error) => {
           this.displayNotification(error.response.data);
         });
+
     }
   }
 
@@ -133,7 +144,7 @@ class ItemDetailPage extends React.Component {
 
   render() {
     const { itemHeading, loading, categories, modifiers } = this.props;
-    
+
     const { item, errors } = this.state;
 
     const formComponent = !loading.createUpdateItem ?
@@ -241,7 +252,6 @@ export function mapStateToProps(state, ownProps) {
 
   return {
     item,
-    
     itemHeading,
     loading: state.loading,
     errors: {

@@ -1,3 +1,12 @@
+## 2.43.0 (June 11, 2017)
+
+- Added Google Cloud Storage Image Pipeline
+  - All images are now going to be stored in Google Cloud Storage, this means that the backend service will only get a reference to the new photoURL path.
+  - All images are downsized to PNG's with a size of 200x200.
+- Labels are automatically applied to items that do not have a label, specifically with a capital letter followed by a lowercase letter.
+- `request-promise` has been removed from the project, it is no longer necessary.
+- Significant refactoring of the itemController and the associated Web Client actions.
+
 ## 2.42.6 (June 4, 2017)
 
 - Added documentation around how google cloud storage is going to be leveraged to store images in the cloud.

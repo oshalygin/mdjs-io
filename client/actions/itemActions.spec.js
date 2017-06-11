@@ -186,12 +186,14 @@ describe('Item Actions', () => {
   it('should dispatch the "LOADING_ITEM_UPDATE" action on a updateItem(item) call', () => {
 
     const expected = LOADING_ITEM_UPDATE;
-    moxios.stubRequest(ITEM_ENDPOINT, {
+    
+    const itemEndpoint = `${ITEM_ENDPOINT}/${updatedItem.itemID}`;
+    moxios.stubRequest(itemEndpoint, {
       status: 200,
       response: {}
     });
 
-    return store.dispatch(updateItem(newItem))
+    return store.dispatch(updateItem(updatedItem))
       .then(() => {
         const actual = store.getActions()
           .map(action => action.type)[0];
@@ -203,7 +205,9 @@ describe('Item Actions', () => {
   it('should dispatch the "LOADING_ITEM_UPDATE_SUCCESS" action on a completed updateItem(item) call', () => {
 
     const expected = LOADING_ITEM_UPDATE_SUCCESS;
-    moxios.stubRequest(ITEM_ENDPOINT, {
+
+    const itemEndpoint = `${ITEM_ENDPOINT}/${updatedItem.itemID}`;
+    moxios.stubRequest(itemEndpoint, {
       status: 200,
       response: {}
     });
@@ -221,7 +225,9 @@ describe('Item Actions', () => {
   it('should dispatch the "ITEM_UPDATE_FAILURE" action on a failed updateItem(item) call', () => {
 
     const expected = ITEM_UPDATE_FAILURE;
-    moxios.stubRequest(ITEM_ENDPOINT, {
+
+    const itemEndpoint = `${ITEM_ENDPOINT}/${updatedItem.itemID}`;
+    moxios.stubRequest(itemEndpoint, {
       status: 500,
       response: {}
     });
@@ -255,7 +261,9 @@ describe('Item Actions', () => {
   it('should dispatch the "ITEM_UPDATED" action on a completed updateItem(item) call', () => {
 
     const expected = ITEM_UPDATED;
-    moxios.stubRequest(ITEM_ENDPOINT, {
+
+    const itemEndpoint = `${ITEM_ENDPOINT}/${updatedItem.itemID}`;
+    moxios.stubRequest(itemEndpoint, {
       status: 200,
       response: {}
     });
@@ -274,7 +282,8 @@ describe('Item Actions', () => {
     const partiallyUpdatedItem = { ...existingItem, name: 'foobar' };
     const expected = partiallyUpdatedItem;
 
-    moxios.stubRequest(ITEM_ENDPOINT, {
+    const itemEndpoint = `${ITEM_ENDPOINT}/${updatedItem.itemID}`;   
+    moxios.stubRequest(itemEndpoint, {
       status: 200,
       response: partiallyUpdatedItem
     });
@@ -301,7 +310,8 @@ describe('Item Actions', () => {
     
     const expected = partiallyUpdatedItem;
 
-    moxios.stubRequest(ITEM_ENDPOINT, {
+    const itemEndpoint = `${ITEM_ENDPOINT}/${updatedItem.itemID}`;    
+    moxios.stubRequest(itemEndpoint, {
       status: 200,
       response: partiallyUpdatedItem
     });

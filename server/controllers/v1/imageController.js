@@ -1,7 +1,7 @@
 import logger from '../../middleware/logger';
 import fetch from 'node-fetch';
 
-import { ITEM_IMAGE_ENDPOINT } from '../../utilities/endpoints';
+import imageService from '../../services/imageService';
 
 export async function get(request, response) { //eslint-disable-line consistent-return
 
@@ -15,7 +15,7 @@ export async function get(request, response) { //eslint-disable-line consistent-
 
   try {
 
-    const imageEndpoint = `${ITEM_IMAGE_ENDPOINT}/${imageName}`;
+    const imageEndpoint = imageService.imageUrl(imageName);
     const imageResponse = await fetch(imageEndpoint);
 
     response.writeHead(200, { 'Content-Type': 'image/png' });

@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ItemDetail, { mapStateToProps } from './index';
+import ItemDetail, { setDefaultLabel, mapStateToProps } from './index';
+
 import Spinner from '../common/spinner';
 import sinon from 'sinon';
 
@@ -8,7 +9,7 @@ jest.dontMock('react-router');
 import { expect } from 'chai';
 
 describe('<ItemDetail />', () => {
-  
+
   const errors = {
     name: false,
     label: false,
@@ -41,8 +42,8 @@ describe('<ItemDetail />', () => {
     {
       itemID: 1,
       name: 'Foo',
-      label: 'Foo',
-      price: 30.99,
+      label: '',
+      price: '30.99',
       color: 5,
       photoURL: 'http//foobar.com/images/foo.jpg',
       file: null,
@@ -238,7 +239,7 @@ describe('<ItemDetail />', () => {
   });
 
   it('should navigate back to the "items" page if the back button is clicked', () => {
-   
+
     const redirectSpy = sinon.spy();
     const browserHistory = require('react-router').browserHistory;
     browserHistory.push = redirectSpy;
@@ -360,8 +361,8 @@ describe('<ItemDetail />', () => {
     expect(actual).deep.equals(expected);
   });
 
-  it('should call "updateItem" with the item that was passed in to onSave', () => {
-    
+  it('should call "updateItem" with the item that was passed in to onSave along but with updated price and label', () => {
+
     const redirectSpy = sinon.spy();
     const browserHistory = require('react-router').browserHistory;
     browserHistory.push = redirectSpy;
@@ -385,12 +386,49 @@ describe('<ItemDetail />', () => {
     };
 
     const expected = true;
+    const updatedItem = { ...items[0], price: Number(items[0].price), label: 'Fo', isShowPhoto: true };
     const wrapper = shallow(<ItemDetail.WrappedComponent {...updatedProps} />);
 
     const instance = wrapper.instance();
     instance.onSave();
 
-    const actual = createItemSpy.calledWith(items[0]);
+    const actual = createItemSpy.calledWith(updatedItem);
+
+    expect(actual).equals(expected);
+  });
+
+  it('should call "updateItem" with the item that was passed in to onSave along but with the label that was passed in', () => {
+
+    const redirectSpy = sinon.spy();
+    const browserHistory = require('react-router').browserHistory;
+    browserHistory.push = redirectSpy;
+
+    const createItemSpy = sinon.stub().returns({
+      then(foobar) { //eslint-disable-line no-unused-vars
+        return {
+          catch() { }
+        };
+      }
+    });
+
+    createItemSpy.then = function () { };
+
+    const updatedProps = {
+      ...props,
+      item: items[1],
+      itemActions: {
+        updateItem: createItemSpy
+      }
+    };
+
+    const expected = true;
+    const updatedItem = { ...items[1], price: Number(items[1].price), isShowPhoto: true };
+    const wrapper = shallow(<ItemDetail.WrappedComponent {...updatedProps} />);
+
+    const instance = wrapper.instance();
+    instance.onSave();
+
+    const actual = createItemSpy.calledWith(updatedItem);
 
     expect(actual).equals(expected);
   });
@@ -604,6 +642,33 @@ describe('<ItemDetail />', () => {
     const instance = wrapper.instance();
     instance.propertyIsValid(property, value, errors);
     const actual = instance.state.errors.price;
+
+    expect(actual).equals(expected);
+  });
+
+  it('should set the default item label to "Ap" if the item name is "Apple"', () => {
+
+    const expected = 'Ap';
+    const itemName = 'Apple';
+    const actual = setDefaultLabel(itemName);
+
+    expect(actual).equals(expected);
+  });
+
+  it('should set the default item label to "A" if the item name is "A"', () => {
+
+    const expected = 'A';
+    const itemName = 'A';
+    const actual = setDefaultLabel(itemName);
+
+    expect(actual).equals(expected);
+  });
+
+  it('should set the default item label to "A" if the item name is "a"', () => {
+
+    const expected = 'A';
+    const itemName = 'a';
+    const actual = setDefaultLabel(itemName);
 
     expect(actual).equals(expected);
   });

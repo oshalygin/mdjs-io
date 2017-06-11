@@ -6,7 +6,18 @@ import { ITEM_ENDPOINT } from '../../utilities/endpoints';
 import ItemController from './itemController';
 
 jest.dontMock('fs');
-jest.dontMock('request-promise');
+
+jest.mock('../../services/imageService', () => {
+  return {
+    upload: () => ['foobar.jpg']
+  };
+});
+
+jest.mock('../../utilities/fsUtility', () => {
+  return {
+    unlink: () => Promise.resolve()
+  };
+});
 
 describe('Item Controller', () => {
 
@@ -494,9 +505,18 @@ describe('Item Controller', () => {
 
   });
 
-  it('should return a 200 status code on a successful put call to update a new item', () => {
+  it('should return a 200 status code on a successful put call to update an item', () => {
 
     const expected = true;
+
+    const itemId = items[0].itemID;
+
+    const itemEndpoint = `${ITEM_ENDPOINT}/${itemId}`;
+
+    moxios.stubRequest(itemEndpoint, {
+      status: 200,
+      response: itemPayload
+    });
 
     const jsonSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
@@ -511,19 +531,16 @@ describe('Item Controller', () => {
     fs.unlink = () => { };
     fs.createReadStream = () => { };
 
-    const rp = require('request-promise');
-    rp.post = () => {
-      return Promise.resolve(JSON.stringify(items[0]));
-    };
-
     const request = {
       headers: {
         authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
       },
-      params: {},
+      params: {
+        id: itemId
+      },
       file,
       body: {
-        item: items[0]
+        item: JSON.stringify(items[0])
       }
     };
 
@@ -534,51 +551,13 @@ describe('Item Controller', () => {
 
   });
 
-  it('should unlink the file on a successful put request', () => {
-
-    const expected = true;
-
-    const jsonSpy = sinon.spy();
-    const statusStub = sinon.stub().returns({
-      json: jsonSpy
-    });
-
-    const response = {
-      status: statusStub
-    };
-
-    const unlinkSpy = sinon.spy();
-
-    const fs = require('fs');
-    fs.unlink = unlinkSpy;
-    fs.createReadStream = () => { };
-
-    const rp = require('request-promise');
-    rp.post = () => {
-      return Promise.resolve(JSON.stringify(items[0]));
-    };
-
-    const request = {
-      headers: {
-        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
-      },
-      params: {},
-      file,
-      body: {
-        item: items[0]
-      }
-    };
-
-    return ItemController.put(request, response).then(() => {
-      const actual = unlinkSpy.called;
-      expect(actual).equals(expected);
-    });
-
-  });
-
   it('should unlink the file on an unsuccessful PUT request', () => {
 
     const expected = true;
+
+    moxios.stubRequest(ITEM_ENDPOINT, {
+      status: 500
+    });
 
     const sendSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
@@ -590,11 +569,11 @@ describe('Item Controller', () => {
     };
 
     const unlinkSpy = sinon.spy();
- 
+
     const fs = require('fs');
     fs.unlink = unlinkSpy;
     fs.createReadStream = () => { };
-    
+
     const request = {
       headers: {
         authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
@@ -632,11 +611,6 @@ describe('Item Controller', () => {
     const fs = require('fs');
     fs.unlink = unlinkSpy;
     fs.createReadStream = () => { };
-
-    const rp = require('request-promise');
-    rp.post = () => {
-      return Promise.reject({});
-    };
 
     const request = {
       headers: {
@@ -750,6 +724,11 @@ describe('Item Controller', () => {
 
     const expected = true;
 
+    moxios.stubRequest(ITEM_ENDPOINT, {
+      status: 200,
+      response: itemPayload
+    });
+
     const jsonSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
       json: jsonSpy
@@ -758,12 +737,7 @@ describe('Item Controller', () => {
     const response = {
       status: statusStub
     };
-
-    const rp = require('request-promise');
-    rp.post = () => {
-      return Promise.resolve(JSON.stringify(items[0]));
-    };
-
+    
     const request = {
       headers: {
         authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
@@ -771,55 +745,12 @@ describe('Item Controller', () => {
       params: {},
       file,
       body: {
-        item: items[0]
+        item: JSON.stringify(items[0])
       }
     };
 
     return ItemController.post(request, response).then(() => {
       const actual = statusStub.calledWith(200);
-      expect(actual).equals(expected);
-    });
-
-  });
-
-  it('should unlink the file on a successful post request', () => {
-
-    const expected = true;
-
-    const jsonSpy = sinon.spy();
-    const statusStub = sinon.stub().returns({
-      json: jsonSpy
-    });
-
-    const response = {
-      status: statusStub
-    };
-
-    const unlinkSpy = sinon.spy();
-
-    const fs = require('fs');
-    fs.unlink = unlinkSpy;
-    fs.createReadStream = () => { };
-
-    const rp = require('request-promise');
-    rp.post = () => {
-      return Promise.resolve(JSON.stringify(items[0]));
-    };
-
-
-    const request = {
-      headers: {
-        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
-      },
-      params: {},
-      file,
-      body: {
-        item: items[0]
-      }
-    };
-
-    return ItemController.post(request, response).then(() => {
-      const actual = unlinkSpy.called;
       expect(actual).equals(expected);
     });
 
@@ -843,11 +774,6 @@ describe('Item Controller', () => {
     const fs = require('fs');
     fs.unlink = unlinkSpy;
     fs.createReadStream = () => { };
-
-    const rp = require('request-promise');
-    rp.post = () => {
-      return Promise.reject({});
-    };
 
     const request = {
       headers: {
@@ -885,11 +811,6 @@ describe('Item Controller', () => {
     const fs = require('fs');
     fs.unlink = unlinkSpy;
     fs.createReadStream = () => { };
-
-    const rp = require('request-promise');
-    rp.post = () => {
-      return Promise.reject({});
-    };
 
     const request = {
       headers: {

@@ -35,8 +35,20 @@ module.exports = function (wallaby) {
           {
             polyfill: false
           }
-        ]]
+        ],
+          [
+            'react-css-modules',
+            {
+              generateScopedName: '[local]'
+            }
+          ]
+        ]
       })
     }
+    // Toggle when you experience caching issues
+
+    // , workers: {
+    //   recycle: true
+    // }
   };
 };

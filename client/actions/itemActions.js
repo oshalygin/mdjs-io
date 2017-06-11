@@ -83,17 +83,16 @@ export function createItem(item) {
     dispatch(loadingItemCreation());
 
     try {
-      const itemToPersist = { ...item };
-      
-      delete itemToPersist.photoURL;
-      delete itemToPersist.file;
+
+      const { photoURL, file, ...itemToPersist } = item;
 
       const token = loadUserToken();
+      const headers = getHeaders(token);
+
       const data = new FormData();
       data.append('item', JSON.stringify(itemToPersist));
       data.append('file', item.file);
 
-      const headers = getHeaders(token);
       const createdItemResponse = await axios.post(ITEM_ENDPOINT, data, headers);
       const createdItem = createdItemResponse.data;
 
@@ -113,20 +112,21 @@ export function updateItem(item) {
     dispatch(loadingItemUpdate());
 
     try {
-      const itemToPersist = { ...item };
-      delete itemToPersist.file;
+      
+      const { file, ...itemToPersist } = item;
+
+      const token = loadUserToken();
+      const headers = getHeaders(token);
+      const endpoint = `${ITEM_ENDPOINT}/${item.itemID}`;
 
       const data = new FormData();
       data.append('item', JSON.stringify(itemToPersist));
 
       if (item.file) {
-        delete itemToPersist.photoURL;
         data.append('file', item.file);
       }
 
-      const token = loadUserToken();
-      const headers = getHeaders(token);
-      const updatedItemResponse = await axios.put(ITEM_ENDPOINT, data, headers);
+      const updatedItemResponse = await axios.put(endpoint, data, headers);
       const updatedItem = updatedItemResponse.data;
 
       dispatch(itemUpdatedSuccess(updatedItem));

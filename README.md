@@ -115,3 +115,12 @@ The main purpose of this repository is to continue to evolve Merchant Dashboard,
 ## License
 
 Merchant Dashboard is [AGPLv3 licensed](./LICENSE.md).
+
+
+### Environment Variables
+| **Name** | **Description**|
+|----------|-------|
+| `GOOGLE_PROJECT` | The project that houses the infrastructure   | |
+| `NOD_ENV` | The Node environment   | |
+| `IMAGE_STORAGE_BUCKET` | The bucket name that images are stored to   | |
+| `DOMAIN_ENDPOINT` | The backend domain endpoint   | |

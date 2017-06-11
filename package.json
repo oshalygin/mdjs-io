@@ -1,6 +1,6 @@
 {
   "name": "mdjs",
-  "version": "2.42.6",
+  "version": "2.43.0",
   "description": "Merchant Dashboard built with React and Redux",
   "scripts": {
     "start": "npm-run-all --parallel open:server test:watch lint:watch",
@@ -14,6 +14,7 @@
     "codacy:coverage": "cat ./coverage/lcov.info | codacy-coverage",
     "clean-dist": "npm run remove-dist && mkdir dist",
     "remove-dist": "node_modules/.bin/rimraf ./dist",
+    "debug": "node ./server/index.dev.js",
     "build": "NODE_ENV=production babel-node ./node_modules/webpack/bin/webpack --config webpack.config.production.js --output-path='./dist' --colors --progress"
   },
   "author": "Oleg Shalygin",
@@ -60,7 +61,7 @@
     "redux-devtools-extension": "2.13.2",
     "redux-thunk": "2.2.0",
     "request": "2.81.0",
-    "request-promise": "4.2.1",
+    "sharp": "0.18.1",
     "style-loader": "0.13.2",
     "url-loader": "0.5.8",
     "uuid": "3.0.1",

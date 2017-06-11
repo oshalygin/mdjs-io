@@ -1,11 +1,12 @@
 import axios from 'axios';
 import fs from 'fs';
+import fsUtility from '../../utilities/fsUtility';
 import path from 'path';
-import rp from 'request-promise';
 
 import { getHeaders } from '../../utilities/requestUtilities';
 import logger from '../../middleware/logger';
 import { ITEM_ENDPOINT } from '../../utilities/endpoints';
+import imageService from '../../services/imageService';
 
 export async function get(request, response) {
 
@@ -78,17 +79,17 @@ export async function deleteItem(request, response) {
   }
 }
 
-export async function put(request, response) {
+export async function put(request, response) { //eslint-disable-line consistent-return
 
   const itemId = request.params.id;
   const itemBody = request.body.item;
 
-  if (request.params.id && isNaN(request.params.id)) {
+  if (itemId && isNaN(itemId)) {
     return response
       .status(400)
       .send('The item {id} must be a number representing the itemId');
   }
-  
+
   if (!itemBody) {
     logger.error(`The request {body} cannot be null, ${request.originalUrl}`);
     return response
@@ -99,53 +100,77 @@ export async function put(request, response) {
   try {
 
     let file;
+
+    const item = JSON.parse(itemBody);
     const token = request.headers.authorization;
     const headers = getHeaders(token);
-    headers.headers['Content-Type'] = false;
-    headers.headers.Accept = 'application/json'; //Refactor into standard headers
 
-    const formData = {
-      item: itemBody
-    };
+    const itemEndpoint = `${ITEM_ENDPOINT}/${itemId}`;
+
 
     if (!request.file) {
       file = null;
     } else {
-      file = path.join(__dirname, `../../../../temp-images/${request.file.originalname}`);
-      formData.file = fs.createReadStream(file);
+      file = path.join(__dirname, `../../../temp-images/${request.file.originalname}`);
+      const fileStream = fs.createReadStream(file);
+      
+      const imageNames = await imageService.upload(fileStream, request.file.originalname);
+      item.photoURL = imageNames[0];
+    }
+    
+    const postedResponse = await axios.put(itemEndpoint, item, headers);
+    const updatedItem = postedResponse.data;
+
+    if (!file) {
+
+      return response
+        .status(200)
+        .json(updatedItem);
     }
 
-    const postedResponse = await rp.post({ url: ITEM_ENDPOINT, formData, headers: headers.headers });
-    const newItem = JSON.parse(postedResponse);
-
-    if (file) {
-      fs.unlink(file);
-    }
-
-    return response
-      .status(200)
-      .json(newItem);
+    await fsUtility.unlink(file)
+      .then(() => {
+        return response
+          .status(200)
+          .json(updatedItem);
+      })
+      .catch((error) => {
+        logger.error(error);
+        return response
+          .status(200)
+          .json(updatedItem);
+      });
 
   } catch (error) {
-    if (request.file) {
-      const file = path.join(__dirname, `../../../../temp-images/${request.file.originalname}`);
-      fs.unlink(file);
-    }
-
+    
     logger.info(error);
     logger.info(`Error updating: ${itemId}`);
     logger.info(`Error updating: ${JSON.stringify(itemBody)}`);
-    return response
-      .status(400)
-      .send('Failed to update the item');
+
+    // Cleanup
+    if (!request.file) {
+      return response
+        .status(400)
+        .send('Failed to update the item');
+    }
+    const file = path.join(__dirname, `../../../temp-images/${request.file.originalname}`);
+
+    fs.unlink(file, (unlinkError) => {
+      if (unlinkError) {
+        logger.error(unlinkError);
+      }
+
+      return response
+        .status(400)
+        .send('Failed to update the item');
+    });
   }
-  
 }
 
-export async function post(request, response) {
-  
+export async function post(request, response) { //eslint-disable-line consistent-return
+
   const itemBody = request.body.item;
-  
+
   if (request.params.id) {
     return response
       .status(400)
@@ -161,46 +186,65 @@ export async function post(request, response) {
 
   try {
     let file;
+
+    const item = JSON.parse(itemBody);
     const token = request.headers.authorization;
     const headers = getHeaders(token);
-    headers.headers['Content-Type'] = false;
-    headers.headers.Accept = 'application/json'; //Refactor into standard headers
-
-    const formData = {
-      item: itemBody
-    };
-
 
     if (!request.file) {
       file = null;
     } else {
-      file = path.join(__dirname, `../../../../temp-images/${request.file.originalname}`);
-      formData.file = fs.createReadStream(file);
+      file = path.join(__dirname, `../../../temp-images/${request.file.originalname}`);
+      const fileStream = fs.createReadStream(file);
+
+      const imageNames = await imageService.upload(fileStream, request.file.originalname);
+      item.photoURL = imageNames[0];
+    }
+    const postedResponse = await axios.post(ITEM_ENDPOINT, item, headers);
+    const newItem = postedResponse.data;
+
+    if (!file) {
+
+      return response
+        .status(200)
+        .json(newItem);
     }
 
-    const postedResponse = await rp.post({ url: ITEM_ENDPOINT, formData, headers: headers.headers });
-    
-    const newItem = JSON.parse(postedResponse);
-    
-    if (file) {
-      fs.unlink(file);
-    }
-
-    return response
-      .status(200)
-      .json(newItem);
+    await fsUtility.unlink(file)
+      .then(() => {
+        return response
+          .status(200)
+          .json(newItem);
+      })
+      .catch((error) => {
+        logger.error(error);
+        return response
+          .status(200)
+          .json(newItem);
+      });
 
   } catch (error) {
-    if (request.file) {
-      const file = path.join(__dirname, `../../../../temp-images/${request.file.originalname}`);
-      fs.unlink(file);
-    }
 
     logger.info(error);
-    logger.info(`Error posting a new item: ${JSON.stringify(itemBody)}`);
-    return response
-      .status(400)
-      .send('Failed to create a new item');
+    logger.info(`Error updating: ${JSON.stringify(itemBody)}`);
+
+    // Cleanup
+    if (!request.file) {
+      return response
+        .status(400)
+        .send('Failed to update the item');
+    }
+    const file = path.join(__dirname, `../../../temp-images/${request.file.originalname}`);
+
+    fs.unlink(file, (unlinkError) => {
+      if (unlinkError) {
+        logger.error(unlinkError);
+      }
+
+      return response
+        .status(400)
+        .send('Failed to update the item');
+    });
   }
 }
 
