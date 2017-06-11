@@ -1,3 +1,7 @@
+## 2.44.0 (June 11, 2017)
+
+- Add initial stub with v0 routes.
+
 ## 2.43.0 (June 11, 2017)
 
 - Added Google Cloud Storage Image Pipeline
