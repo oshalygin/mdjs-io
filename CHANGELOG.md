@@ -1,3 +1,7 @@
+## 2.44.1 (June 11, 2017)
+
+- Update service account keys.
+
 ## 2.44.0 (June 11, 2017)
 
 - Add initial stub with v0 routes.
