@@ -13,8 +13,7 @@ COPY . /wwwroot
 WORKDIR /wwwroot
 EXPOSE $PORT
 
-RUN curl -o- -L https://yarnpkg.com/install.sh | bash
-RUN $HOME/.yarn/bin/yarn install
+RUN npm install
 RUN npm run build
 
 ENTRYPOINT  ["npm", "run", "open:dist"]

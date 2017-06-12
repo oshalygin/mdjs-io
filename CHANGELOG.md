@@ -1,3 +1,7 @@
+## 2.44.14 (June 11, 2017)
+
+- Replaced yarn with npm@5.0.0
+
 ## 2.44.13 (June 11, 2017)
 
 - Remove dockerhub push
