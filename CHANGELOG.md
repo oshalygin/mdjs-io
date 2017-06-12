@@ -1,3 +1,7 @@
+## 2.44.10 (June 11, 2017)
+
+- Updated Travis build to use the C++ binaries and use yarn explicitly
+
 ## 2.44.9 (June 11, 2017)
 
 - Add missing peer dependencies.

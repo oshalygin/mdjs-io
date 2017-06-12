@@ -13,16 +13,23 @@ branches:
 language: node_js
 node_js:
   - 8.0.0
-
-# cache:
-#   yarn: true
+ addons:
+   apt:
+     sources:
+       - ubuntu-toolchain-r-test
+      packages:
+        - g++-4.8
 
 env:
   - CLOUDSDK_CORE_DISABLE_PROMPTS=1
+  - CXX=g++-4.8
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_febce635e7df_key -iv $encrypted_febce635e7df_iv -in ./infrastructure/service-account.json.enc -out ./infrastructure/service-account.json -d
   - openssl aes-256-cbc -K $encrypted_febce635e7df_key -iv $encrypted_febce635e7df_iv -in ./infrastructure/storage-service-account.json.enc -out ./infrastructure/storage-service-account.json -d
+
+install:
+  - yarn
 
 script:
   - npm run lint
