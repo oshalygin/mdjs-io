@@ -1,3 +1,7 @@
+## 2.44.6 (June 11, 2017)
+
+- Configuring sharp dependency
+
 ## 2.44.5 (June 11, 2017)
 
 - Added sharp installation explicitly to the Dockerfile
