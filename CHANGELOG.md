@@ -1,3 +1,7 @@
+## 2.44.9 (June 11, 2017)
+
+- Add missing peer dependencies.
+
 ## 2.44.8 (June 11, 2017)
 
 - Add code coverage via codeclimate
