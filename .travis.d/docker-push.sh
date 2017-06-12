@@ -13,10 +13,6 @@ docker build --build-arg version=${current_version}\
   -t us.gcr.io/merchant-dash/merchant-dashboard:${current_version}\
   .;
 
-# Push to DockerHub
-docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
-docker push oshalygin/merchant-dashboard:${current_version};
-
 # Push to Google Container Registry
 export GOOGLE_APPLICATION_CREDENTIALS="${PWD}/infrastructure/service-account.json"
 

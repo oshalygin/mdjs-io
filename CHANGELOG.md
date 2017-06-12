@@ -1,6 +1,7 @@
-## 2.44.12 (June 11, 2017)
+## 2.44.13 (June 11, 2017)
 
-- Reorder `CXX` environment variable up to the Travis build.
+- Remove dockerhub push
+- Remove progress from Webpack build
 
 ## 2.44.11 (June 11, 2017)
 
