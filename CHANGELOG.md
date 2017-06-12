@@ -1,3 +1,7 @@
+## 2.44.8 (June 11, 2017)
+
+- Add code coverage via codeclimate
+
 ## 2.44.6 (June 11, 2017)
 
 - Configuring sharp dependency

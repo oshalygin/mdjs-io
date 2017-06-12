@@ -14,7 +14,6 @@ WORKDIR /wwwroot
 EXPOSE $PORT
 
 RUN curl -o- -L https://yarnpkg.com/install.sh | bash
-RUN npm install -g sharp
 RUN $HOME/.yarn/bin/yarn install
 RUN npm run build
 

@@ -1,6 +1,6 @@
 {
   "name": "mdjs",
-  "version": "2.44.7",
+  "version": "2.44.8",
   "description": "Merchant Dashboard built with React and Redux",
   "scripts": {
     "start": "npm-run-all --parallel open:server test:watch lint:watch",
@@ -11,6 +11,7 @@
     "test": "jest --silent",
     "test:watch": "npm run test -- --watch",
     "test:coverage": "jest --coverage",
+    "publish:coverage": "CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN codeclimate-test-reporter < ./coverage/lcov.info",
     "clean-dist": "npm run remove-dist && mkdir dist",
     "remove-dist": "node_modules/.bin/rimraf ./dist",
     "debug": "node ./server/index.dev.js",
@@ -90,6 +91,7 @@
     "babel-watch": "2.0.6",
     "caniuse-db": "1.0.30000673",
     "chai": "3.5.0",
+    "codeclimate-test-reporter": "^0.5.0",
     "compression": "1.6.2",
     "cross-env": "3.0.0",
     "css-loader": "0.28.1",

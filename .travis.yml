@@ -27,6 +27,7 @@ before_install:
 script:
   - npm run lint
   - npm run test:coverage
+  - npm run publish:coverage
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
