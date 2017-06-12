@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: fe-web
-          image: 'us.gcr.io/merchant-dash/merchant-dashboard:2.44.3'
+          image: 'us.gcr.io/merchant-dash/merchant-dashboard:2.44.4'
           volumeMounts:
             - mountPath: /cache
               name: temp-volume
@@ -40,6 +40,11 @@ spec:
                 secretKeyRef:
                   name: env-variables-secret
                   key: gcloud_project
+            - name: IMAGE_STORAGE_BUCKET
+              valueFrom:
+                secretKeyRef:
+                  name: env-variables-secret
+                  key: image_storage_bucket
             - name: DOMAIN_ENDPOINT
               valueFrom:
                 secretKeyRef:

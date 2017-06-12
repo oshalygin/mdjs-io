@@ -1,3 +1,8 @@
+## 2.44.4 (June 11, 2017)
+
+- Added `IMAGE_STORAGE_BUCKET` environment variable which houses deployed production image bucket.
+  - Note in local development the bucket name is prefixed with `temp`
+
 ## 2.44.3 (June 11, 2017)
 
 - Removed Codacy

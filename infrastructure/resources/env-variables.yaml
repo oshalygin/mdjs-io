@@ -10,4 +10,6 @@ data:
   mongo_port: MjcwMTc=
   gcloud_project: bWVyY2hhbnQtZGFzaA==
   domain_endpoint: aHR0cDovL3d3dy53ZXN0ZXJucmVnaXN0ZXIuY29t
+  domain_endpoint: aHR0cDovL3d3dy53ZXN0ZXJucmVnaXN0ZXIuY29t
+  image_storage_bucket: d3ItaXRlbS1pbWFnZXM=
 type: Opaque
