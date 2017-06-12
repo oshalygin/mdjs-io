@@ -1,3 +1,12 @@
+## 2.44.3 (June 11, 2017)
+
+- Removed Codacy
+
+## 2.44.2 (June 11, 2017)
+
+- Add Slack Integration
+- Update TravisCI badge on main README
+
 ## 2.44.1 (June 11, 2017)
 
 - Update service account keys.
