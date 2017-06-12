@@ -1,3 +1,7 @@
+## 2.44.11 (June 11, 2017)
+
+- Explicitly install yarn in Travis-CI
+
 ## 2.44.10 (June 11, 2017)
 
 - Updated Travis build to use the C++ binaries and use yarn explicitly
