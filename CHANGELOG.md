@@ -1,3 +1,8 @@
+## 2.44.5 (June 11, 2017)
+
+- Added sharp installation explicitly to the Dockerfile
+  - This is necessary as an interim step due to the way that yarn installs dependencies with binaries.
+
 ## 2.44.4 (June 11, 2017)
 
 - Added `IMAGE_STORAGE_BUCKET` environment variable which houses deployed production image bucket.
