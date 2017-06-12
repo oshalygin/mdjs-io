@@ -22,7 +22,6 @@ addons:
 
 env:
   - CLOUDSDK_CORE_DISABLE_PROMPTS=1
-  - CXX=g++-4.8
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_febce635e7df_key -iv $encrypted_febce635e7df_iv -in ./infrastructure/service-account.json.enc -out ./infrastructure/service-account.json -d

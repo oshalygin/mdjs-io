@@ -1,3 +1,7 @@
+## 2.44.12 (June 11, 2017)
+
+- Reorder `CXX` environment variable up to the Travis build.
+
 ## 2.44.11 (June 11, 2017)
 
 - Explicitly install yarn in Travis-CI
