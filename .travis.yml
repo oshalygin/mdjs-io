@@ -1,3 +1,6 @@
+notifications:
+    slack: westernregister:wfxZXrq7fWo3gPB1Cdzaw6lZ
+
 sudo: required
 
 services:
