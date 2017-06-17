@@ -1,3 +1,8 @@
+## 2.44.15 (June 11, 2017)
+
+- ESLint run command updated. 
+  - `.eslintignore` added to the project to exclude certain files from linting rules.
+
 ## 2.44.14 (June 11, 2017)
 
 - Replaced yarn with npm@5.0.0

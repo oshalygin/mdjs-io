@@ -1,12 +1,12 @@
 {
   "name": "mdjs",
-  "version": "2.44.14",
+  "version": "2.44.15",
   "description": "Merchant Dashboard built with React and Redux",
   "scripts": {
     "start": "npm-run-all --parallel open:server test:watch lint:watch",
     "open:dist": "node ./server/index.js",
     "open:server": "babel-watch ./server/application.dev.js",
-    "lint": "esw webpack.config.* client server utilities --color --ext .js --ext .jsx",
+    "lint": "eslint webpack.config.* \"client/**\" \"server/**\" utilities/** --color",
     "lint:watch": "npm run lint -- --watch",
     "test": "jest --silent",
     "test:watch": "npm run test -- --watch",
