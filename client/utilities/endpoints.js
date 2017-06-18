@@ -1,5 +1,3 @@
-import configuration from '../../utilities/configuration';
-
 export const hostLocation = window.location.host;
 const protocol = window.location.protocol;
 const baseEndpoint = `${protocol}//${hostLocation}`;
@@ -13,7 +11,3 @@ export const TAXES_ENDPOINT = `${baseEndpoint}/api/v1/taxes`;
 export const MODIFIER_ENDPOINT = `${baseEndpoint}/api/v1/modifiers`;
 export const DISCOUNTS_ENDPOINT = `${baseEndpoint}/api/v1/discounts`;
 export const ORDERS_ENDPOINT = `${baseEndpoint}/api/v1/orders`;
-
-export const DOMAIN_ENDPOINT = configuration.domainEndpoint;
-export const LOGIN_ENDPOINT = `${DOMAIN_ENDPOINT}/api/dashboard/security`;
-export const LOGIN_TOKEN_ENDPOINT = `${DOMAIN_ENDPOINT}/api/dashboard/security/token`;

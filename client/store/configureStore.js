@@ -1,4 +1,4 @@
-import configuration from '../../utilities/configuration';
+import configuration from '../../server/utilities/configuration';
 
 (() => {
   if (configuration.environment === 'production') { //eslint-disable-line no-process-env

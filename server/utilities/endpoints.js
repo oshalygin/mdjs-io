@@ -1,4 +1,4 @@
-import configuration from '../../utilities/configuration';
+import configuration from './configuration';
 
 export const DOMAIN_ENDPOINT = configuration.domainEndpoint;
 export const LOGIN_ENDPOINT = `${DOMAIN_ENDPOINT}/api/dashboard/security`;

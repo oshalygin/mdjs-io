@@ -1,3 +1,7 @@
+## 2.45.1 (June 17, 2017)
+
+- Resolve routes that point to non-compiled source code.
+
 ## 2.45.0 (June 17, 2017)
 
 - Server code is now pre-compiled prior to deployment.

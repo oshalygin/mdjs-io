@@ -1,8 +1,9 @@
 import googleCloudStorage from '@google-cloud/storage';
 import sharp from 'sharp';
-import configuration from '../../utilities/configuration';
 import uuid from 'uuid/v1';
 import path from 'path';
+
+import configuration from '../utilities/configuration';
 
 const gcs = googleCloudStorage({
   projectId: configuration.googleProject,

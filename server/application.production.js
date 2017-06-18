@@ -1,6 +1,6 @@
 import express from 'express';
 import path from 'path';
-import configuration from '../utilities/configuration';
+import configuration from './utilities/configuration';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 
