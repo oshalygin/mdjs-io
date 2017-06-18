@@ -25,3 +25,8 @@ storage-service-account.json
 # Debug container
 
 debug-server
+
+# Dist files
+
+dist-client/
+dist-server

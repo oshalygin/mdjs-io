@@ -16,4 +16,4 @@ EXPOSE $PORT
 RUN npm install
 RUN npm run build
 
-ENTRYPOINT  ["npm", "run", "open:dist"]
+ENTRYPOINT  ["npm", "run", "production"]

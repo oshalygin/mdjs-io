@@ -1,10 +1,9 @@
 {
   "name": "mdjs",
-  "version": "2.44.15",
+  "version": "2.45.0",
   "description": "Merchant Dashboard built with React and Redux",
   "scripts": {
     "start": "npm-run-all --parallel open:server test:watch lint:watch",
-    "open:dist": "node ./server/index.js",
     "open:server": "babel-watch ./server/application.dev.js",
     "lint": "eslint webpack.config.* \"client/**\" \"server/**\" utilities/** --color",
     "lint:watch": "npm run lint -- --watch",
@@ -12,10 +11,14 @@
     "test:watch": "npm run test -- --watch",
     "test:coverage": "jest --coverage",
     "publish:coverage": "CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN codeclimate-test-reporter < ./coverage/lcov.info",
-    "clean-dist": "npm run remove-dist && mkdir dist",
-    "remove-dist": "node_modules/.bin/rimraf ./dist",
     "debug": "node ./server/index.dev.js",
-    "build": "NODE_ENV=production babel-node ./node_modules/webpack/bin/webpack --config webpack.config.production.js --output-path='./dist' --colors"
+    "build": "npm-run-all build-client build-server",
+    "remove-dist": "rimraf ./dist-client && rimraf ./dist-server",
+    "clean-dist": "npm run remove-dist && mkdir dist-client && mkdir dist-server",
+    "prebuild": "npm run clean-dist",
+    "build-client": "NODE_ENV=production babel-node ./node_modules/webpack/bin/webpack --config webpack.config.production.js --output-path='./dist-client' --colors",
+    "build-server": "babel ./server --out-dir ./dist-server --ignore spec.js,./server/mocks/",
+    "production": "NODE_ENV=production node --require @google-cloud/trace-agent dist-server/application.production.js"
   },
   "author": "Oleg Shalygin",
   "license": "AGPL-3.0",

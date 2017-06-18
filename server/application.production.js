@@ -30,10 +30,10 @@ const port = configuration.port;
 application.use(logger.requestLogger);
 application.use('/api/v0', v0router);
 application.use('/api/v1', v1router);
-application.use(express.static(path.join(__dirname, '../dist')));
+application.use(express.static(path.join(__dirname, '../dist-client')));
 
 application.get('*', (request, response) => {
-  const clientEntryPoint = path.join(__dirname, '../dist/index.html');
+  const clientEntryPoint = path.join(__dirname, '../dist-client/index.html');
   response.sendFile(clientEntryPoint);
 });
 

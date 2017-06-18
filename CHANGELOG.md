@@ -1,4 +1,11 @@
-## 2.44.15 (June 11, 2017)
+## 2.45.0 (June 17, 2017)
+
+- Server code is now pre-compiled prior to deployment.
+  - `babel-node` should not be used in production and as such it was removed.
+  - Breakout from `dist` into a client and server version: `dist-client` && `dist-server`.
+- The trace agent is now initialized part of the run command instead of being included explicitly.
+
+## 2.44.15 (June 17, 2017)
 
 - ESLint run command updated. 
   - `.eslintignore` added to the project to exclude certain files from linting rules.
