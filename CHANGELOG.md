@@ -1,3 +1,7 @@
+## 2.45.2 (June 18, 2017)
+
+- Update broken test which was testing an endpoint that no longer exists.
+
 ## 2.45.1 (June 17, 2017)
 
 - Resolve routes that point to non-compiled source code.
