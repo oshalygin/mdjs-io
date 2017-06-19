@@ -1,5 +1,7 @@
 # Merchant Dashboard
-[![GitHub issues](https://img.shields.io/github/issues/oshalygin/mdjs.svg "GitHub issues")](https://github.com/oshalygin/mdjs)
+[![Code Climate](https://codeclimate.com/repos/593e287a150338028600480b/badges/d8e88772201d137ea8b7/gpa.svg)](https://codeclimate.com/repos/593e287a150338028600480b/feed)
+[![Test Coverage](https://codeclimate.com/repos/593e287a150338028600480b/badges/d8e88772201d137ea8b7/coverage.svg)](https://codeclimate.com/repos/593e287a150338028600480b/coverage)
+[![Issue Count](https://codeclimate.com/repos/593e287a150338028600480b/badges/d8e88772201d137ea8b7/issue_count.svg)](https://codeclimate.com/repos/593e287a150338028600480b/feed)
 [![Build Status](https://travis-ci.com/oshalygin/mdjs.svg?token=dsDcJ24J6wpmry92sFaJ&branch=master)](https://travis-ci.com/oshalygin/mdjs)
 
 ## Deployment

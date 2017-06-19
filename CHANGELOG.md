@@ -1,3 +1,7 @@
+## 2.45.3 (June 18, 2017)
+
+- Add CodeClimate badges and remove GitHub issues badge.
+
 ## 2.45.2 (June 18, 2017)
 
 - Update broken test which was testing an endpoint that no longer exists.
