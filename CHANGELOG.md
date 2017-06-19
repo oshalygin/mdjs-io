@@ -1,3 +1,7 @@
+## 2.45.4 (June 18, 2017)
+
+- Update Jest configuration with 4 workers as the upper bound to expedite builds in CI.
+
 ## 2.45.3 (June 18, 2017)
 
 - Add CodeClimate badges and remove GitHub issues badge.

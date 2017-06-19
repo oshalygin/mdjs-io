@@ -1,6 +1,6 @@
 {
   "name": "mdjs",
-  "version": "2.45.3",
+  "version": "2.45.4",
   "description": "Merchant Dashboard built with React and Redux",
   "scripts": {
     "start-dev-server": "babel-watch server/application.dev.js",
@@ -9,7 +9,7 @@
     "lint:watch": "npm run lint -- --watch",
     "test": "jest --silent",
     "test:watch": "npm run test -- --watch",
-    "test:coverage": "jest --coverage",
+    "test:coverage": "jest --maxWorkers=4 --coverage",
     "publish:coverage": "CODECLIMATE_REPO_TOKEN=$CODECLIMATE_REPO_TOKEN codeclimate-test-reporter < ./coverage/lcov.info",
     "debug": "node ./server/index.dev.js",
     "build": "npm-run-all build-client build-server",
