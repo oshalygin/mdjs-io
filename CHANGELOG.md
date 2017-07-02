@@ -1,3 +1,7 @@
+## 2.47.2 (July 1, 2017)
+
+- Update `kubectl` commands to no longer reference the full path
+
 ## 2.47.1 (July 1, 2017)
 
 - Update GCP and `kubectl` installation steps
