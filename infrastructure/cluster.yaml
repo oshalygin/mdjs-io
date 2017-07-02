@@ -5,7 +5,7 @@ resources:
     zone: us-central1-a
     cluster:
       description: Merchant Dashboard Cluster
-      initialClusterVersion: 1.5.3
+      initialClusterVersion: 1.6.4
       nodePools:
         - name: merchant-dashboard-pool
           initialNodeCount: 1
