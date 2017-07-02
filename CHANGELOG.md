@@ -1,3 +1,14 @@
+## 2.46.0 (July 1, 2017)
+
+- Update service accounts:
+  - Cluster service account
+  - Storage service account
+
+## 2.45.5 (July 1, 2017)
+
+- Update Cluster version to `1.6.4`
+  - This migration also migrates to another GCP account.
+
 ## 2.45.4 (June 18, 2017)
 
 - Update Jest configuration with 4 workers as the upper bound to expedite builds in CI.
