@@ -1,3 +1,9 @@
+## 2.47.3 (July 1, 2017)
+
+- Update `gcloud` command to no longer reference the full path
+  - Catching remnants.
+- Updates to the kube-lego service version
+
 ## 2.47.2 (July 1, 2017)
 
 - Update `kubectl` commands to no longer reference the full path

@@ -15,4 +15,4 @@ docker build --build-arg version=${current_version}\
 # Push to Google Container Registry
 export GOOGLE_APPLICATION_CREDENTIALS="${PWD}/infrastructure/service-account.json"
 
-sudo ${HOME}/google-cloud-sdk/bin/gcloud docker -- push us.gcr.io/mdjs-io/merchant-dashboard:${current_version};
+sudo gcloud docker -- push us.gcr.io/mdjs-io/merchant-dashboard:${current_version};
