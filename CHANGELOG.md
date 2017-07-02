@@ -1,3 +1,8 @@
+## 2.47.0 (July 1, 2017)
+
+- Update GCP project across the board to `mdjs-io`
+  - The only item not updated at this time is the ErrorReporter.  This will be done progressively.
+
 ## 2.46.0 (July 1, 2017)
 
 - Update service accounts:

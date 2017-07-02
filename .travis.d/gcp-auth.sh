@@ -5,7 +5,7 @@
 set -o nounset
 set -o errexit -o errtrace
 
-readonly GOOGLE_PROJECT=merchant-dash
+readonly GOOGLE_PROJECT=mdjs-io
 readonly CLUSTER=mdjs-kube
 readonly ZONE=us-central1-a
 
