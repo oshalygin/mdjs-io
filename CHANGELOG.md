@@ -1,3 +1,8 @@
+## 2.47.1 (July 1, 2017)
+
+- Update GCP and `kubectl` installation steps
+  - Google Cloud SDK and kubectl are now installed via a Debian package instead of directly through a bash script.
+
 ## 2.47.0 (July 1, 2017)
 
 - Update GCP project across the board to `mdjs-io`
