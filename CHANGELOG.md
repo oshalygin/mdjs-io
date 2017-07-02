@@ -1,3 +1,7 @@
+## 2.47.4 (July 1, 2017)
+
+- Add Application default credentials environment variable to Travis configuration
+
 ## 2.47.3 (July 1, 2017)
 
 - Update `gcloud` command to no longer reference the full path
