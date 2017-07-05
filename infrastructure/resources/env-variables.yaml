@@ -11,5 +11,5 @@ data:
   gcloud_project: bWRqcy1pbw==
   domain_endpoint: aHR0cDovL3d3dy53ZXN0ZXJucmVnaXN0ZXIuY29t
   domain_endpoint: aHR0cDovL3d3dy53ZXN0ZXJucmVnaXN0ZXIuY29t
-  image_storage_bucket: d3ItaXRlbS1pbWFnZXM=
+  image_storage_bucket: bWRqcy1pdGVtLWltYWdlcw==
 type: Opaque

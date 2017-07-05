@@ -1,3 +1,7 @@
+## 2.48.0 (July 4, 2017)
+
+- Update image storage buckets for local and deployed environments
+
 ## 2.47.4 (July 1, 2017)
 
 - Add Application default credentials environment variable to Travis configuration
