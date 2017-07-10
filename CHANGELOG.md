@@ -1,3 +1,8 @@
+## 2.49.0 (July 4, 2017)
+
+- Update the start command to no longer run tests and linting.
+  - This was drastically slowing down the development process with errors and issues.  These tasks should be handled prior to code commits and not during runtime.
+
 ## 2.48.0 (July 4, 2017)
 
 - Update image storage buckets for local and deployed environments
