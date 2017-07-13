@@ -1,19 +1,42 @@
-import { createStore, applyMiddleware } from 'redux';
-import rootReducer from '../reducers/rootReducer';
+import { createStore, compose, applyMiddleware } from 'redux';
 import reduxImmutableStateInvariant from 'redux-immutable-state-invariant';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import thunk from 'redux-thunk';
+import thunkMiddleware from 'redux-thunk';
+import createSagaMiddleware, { END } from 'redux-saga';
 import { createLogger } from 'redux-logger';
 
+import rootReducer from '../reducers/rootReducer';
+
 export default function configureStore(initialState) {
-  return createStore(rootReducer, initialState, composeWithDevTools(
-    applyMiddleware(
-      thunk,
-      reduxImmutableStateInvariant(),
-      createLogger({
-        collapsed: true
-      })
-    ))
-  );
+
+  const sagaMiddleware = createSagaMiddleware();
+  const middlewares = [
+    reduxImmutableStateInvariant(),
+    thunkMiddleware,
+    sagaMiddleware,
+    createLogger({
+      collapsed: true,
+      duration: true,
+      diff: true
+    })
+  ];
+
+  const store = createStore(rootReducer, initialState, compose(applyMiddleware(...middlewares), window.devToolsExtension
+    ? window.devToolsExtension()
+    : format => format // add support for Redux dev tools
+  ));
+
+
+  if (module.hot) {
+    module.hot.accept('../reducers/rootReducer', () => {
+      const nextReducer = require('../reducers/rootReducer').default; // eslint-disable-line global-require
+      store.replaceReducer(nextReducer);
+    });
+  }
+
+
+  store.runSaga = sagaMiddleware.run;
+  store.close = () => store.dispatch(END);
+
+  return store;
 }
 

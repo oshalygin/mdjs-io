@@ -40,13 +40,7 @@ export class Categories extends React.Component {
     const deactivatedCategory = categories
       .find(category => category.categoryID === categoryId);
 
-    categoryActions.deactivateCategory(deactivatedCategory)
-      .then(() => {
-        //TODO: #68 - Add Snackbar control that indicates success
-      })
-      .catch(() => {
-        //TODO: #68 - Add Snackbar control that indicates failure
-      });
+    categoryActions.triggerCategoryDeletion(deactivatedCategory);
   }
 
   searchOnChange(event) {

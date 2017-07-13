@@ -1,3 +1,11 @@
+## 2.49.1 (July 12, 2017)
+
+- Begin refactoring process to `redux-saga` from `redux-thunk`
+  - Initial step involves migration of categoryActions into categorySagas.
+    - Deprecation of redux-thunk routing
+    - Removal of associated tests, categoryActions at this point are straight forward action creators.
+  - Tests are coming in an upcoming release
+
 ## 2.49.0 (July 4, 2017)
 
 - Update the start command to no longer run tests and linting.

@@ -19,19 +19,11 @@ export function getHeaders(token) {
 }
 
 export function get(endpoint) {
-  
+
   const token = loadUserToken();
   const headers = getHeaders(token);
 
   return axios.get(endpoint, headers);
-}
-
-export function post(endpoint, data) {
-  
-  const token = loadUserToken();
-  const headers = getHeaders(token);
-
-  return axios.post(endpoint, data, headers);
 }
 
 export function put(endpoint, data) {
@@ -41,3 +33,26 @@ export function put(endpoint, data) {
 
   return axios.put(endpoint, data, headers);
 }
+
+export function post(endpoint, data) {
+
+  const token = loadUserToken();
+  const headers = getHeaders(token);
+
+  return axios.post(endpoint, data, headers);
+}
+
+export function deleteApi(endpoint) {
+
+  const token = loadUserToken();
+  const headers = getHeaders(token);
+
+  return axios.delete(endpoint, headers);
+}
+
+export default {
+  post,
+  put,
+  get,
+  delete: deleteApi
+};

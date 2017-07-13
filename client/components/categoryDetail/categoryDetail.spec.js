@@ -222,7 +222,7 @@ describe('<CategoryDetail />', () => {
     const browserHistory = require('react-router').browserHistory;
     browserHistory.push = redirectSpy;
 
-    const createCategorySpy = sinon.stub().returns({
+    const triggerCategoryUpdateSpy = sinon.stub().returns({
       then(foobar) { //eslint-disable-line no-unused-vars
         return {
           catch() { }
@@ -230,13 +230,13 @@ describe('<CategoryDetail />', () => {
       }
     });
 
-    createCategorySpy.then = function () { };
+    triggerCategoryUpdateSpy.then = function () { };
 
     const updatedProps = {
       ...props,
       category: categories[0],
       categoryActions: {
-        updateCategory: createCategorySpy
+        triggerCategoryUpdate: triggerCategoryUpdateSpy
       }
     };
 
@@ -246,7 +246,7 @@ describe('<CategoryDetail />', () => {
     const instance = wrapper.instance();
     instance.onSave();
 
-    const actual = createCategorySpy.calledWith(categories[0]);
+    const actual = triggerCategoryUpdateSpy.calledWith(categories[0]);
 
     expect(actual).equals(expected);
   });

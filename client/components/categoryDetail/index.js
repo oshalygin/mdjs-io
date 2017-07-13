@@ -66,17 +66,9 @@ class CategoryDetail extends React.Component {
     }
 
     if (category.categoryID) {
-      categoryActions.updateCategory(category)
-        .then(() => this.redirect())
-        .catch((error) => {
-          this.displayNotification(error.response.data);
-        });
+      categoryActions.triggerCategoryUpdate(category);
     } else {
-      categoryActions.createCategory(category)
-        .then(() => this.redirect())
-        .catch((error) => {
-          this.displayNotification(error.response.data);
-        });
+      categoryActions.triggerCategoryCreation(category);
     }
   }
 

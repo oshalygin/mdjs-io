@@ -10,6 +10,8 @@ import { Provider } from 'react-redux';
 import { retrieveUser } from './reducers/initialState';
 import { hostLocation } from './utilities/endpoints';
 
+import rootSaga from './sagas';
+
 // To load styles globally without CSS modules, use the !style!css!{{path}} format.
 // https://github.com/css-modules/css-modules/pull/65#issuecomment-248280248
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
@@ -66,6 +68,7 @@ if (environment === 'production') {
 }
 
 const store = configureStore();
+store.runSaga(rootSaga);
 
 function isAuthorized(nextState, replace, callback) {
   if (nextState.location.pathname === '/login') {

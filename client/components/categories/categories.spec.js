@@ -74,7 +74,7 @@ describe('<Categories />', () => {
 
   it('should dispatch the deactivate action with the passed in id that matches the categories in the list', () => {
 
-    const deactivatedCategorySpy = sinon.stub().returns({
+    const triggerCategoryDeletionSpy = sinon.stub().returns({
       then(foobar) { //eslint-disable-line no-unused-vars
         return {
           catch() { }
@@ -82,12 +82,12 @@ describe('<Categories />', () => {
       }
     });
 
-    deactivatedCategorySpy.then = function () { };
+    triggerCategoryDeletionSpy.then = function () { };
 
     const updatedProps = {
       ...props,
       categoryActions: {
-        deactivateCategory: deactivatedCategorySpy
+        triggerCategoryDeletion: triggerCategoryDeletionSpy
       }
     };
 
@@ -97,7 +97,7 @@ describe('<Categories />', () => {
     const instance = wrapper.instance();
     instance.deactivate(37);
 
-    const actual = deactivatedCategorySpy.calledWith(categories[0]);
+    const actual = triggerCategoryDeletionSpy.calledWith(categories[0]);
     expect(actual).equals(expected);
 
   });

@@ -1,151 +1,68 @@
-import axios from 'axios';
-
-import { getHeaders } from '../utilities/requestUtilities';
 import * as actionTypes from './actionTypes';
-import { CATEGORIES_ENDPOINT } from '../utilities/endpoints';
-import { loadUserToken } from '../utilities/localStorage';
 
-export function loadCategoriesSuccess(categories) {
-  return {
-    type: actionTypes.LOAD_CATEGORIES_SUCCESS,
-    categories
-  };
-}
+export const loadCategoriesSuccess = (categories) => ({
+  type: actionTypes.LOAD_CATEGORIES_SUCCESS,
+  categories
+});
 
-export function categoryDeactivated() {
-  return {
-    type: actionTypes.CATEGORY_DEACTIVATED
-  };
-}
+export const categoryDeactivated = () => ({
+  type: actionTypes.CATEGORY_DEACTIVATED
+});
 
-export function categoryDeactivatedSuccess(category) {
-  return {
-    type: actionTypes.CATEGORY_DEACTIVATED_SUCCESS,
-    category
-  };
-}
+export const categoryDeactivatedSuccess = (category) => ({
+  type: actionTypes.CATEGORY_DEACTIVATED_SUCCESS,
+  category
+});
 
-export function loadingCategoryCreationSuccess() {
-  return {
-    type: actionTypes.LOADING_CATEGORY_CREATION_SUCCESS
-  };
-}
+export const categoryDeactivatedFailure = () => ({
+  type: actionTypes.CATEGORY_DEACTIVATED_FAILURE
+});
 
-export function loadingCategoryCreation() {
-  return {
-    type: actionTypes.LOADING_CATEGORY_CREATION
-  };
-}
+export const loadingCategoryCreationSuccess = () => ({
+  type: actionTypes.LOADING_CATEGORY_CREATION_SUCCESS
+});
 
-export function categoryCreatedSuccess(category) {
+export const loadingCategoryCreation = () => ({
+  type: actionTypes.LOADING_CATEGORY_CREATION
+});
 
-  return {
-    type: actionTypes.CATEGORY_CREATED,
-    category
-  };
-}
+export const triggerCategoryCreation = (data) => ({
+  type: actionTypes.TRIGGER_CATEGORY_CREATION,
+  data
+});
 
-export function categoryCreationFailure() {
-  return {
-    type: actionTypes.CATEGORY_CREATION_FAILURE
-  };
-}
+export const triggerCategoryUpdate = (data) => ({
+  type: actionTypes.TRIGGER_CATEGORY_UPDATE,
+  data
+});
 
-export function loadingCategoryUpdate() {
-  return {
-    type: actionTypes.LOADING_CATEGORY_UPDATE
-  };
-}
+export const triggerCategoryDeletion = (data) => ({
+  type: actionTypes.TRIGGER_CATEGORY_DELETE,
+  data
+});
 
-export function categoryUpdatedSuccess(category) {
-  return {
-    type: actionTypes.CATEGORY_UPDATED,
-    category
-  };
-}
+export const categoryCreatedSuccess = (category) => ({
+  type: actionTypes.CATEGORY_CREATED,
+  category
+});
 
-export function loadingCategoryUpdateSuccess() {
-  return {
-    type: actionTypes.LOADING_CATEGORY_UPDATE_SUCCESS
-  };
-}
+export const categoryCreationFailure = () => ({
+  type: actionTypes.CATEGORY_CREATION_FAILURE
+});
 
-export function categoryUpdateFailure() {
-  return {
-    type: actionTypes.CATEGORY_UPDATE_FAILURE
-  };
-}
+export const loadingCategoryUpdate = () => ({
+  type: actionTypes.LOADING_CATEGORY_UPDATE
+});
 
-export function createCategory(category) {
-  return async function (dispatch) {
+export const categoryUpdatedSuccess = (category) => ({
+  type: actionTypes.CATEGORY_UPDATED,
+  category
+});
 
-    dispatch(loadingCategoryCreation());
+export const loadingCategoryUpdateSuccess = () => ({
+  type: actionTypes.LOADING_CATEGORY_UPDATE_SUCCESS
+});
 
-    try {
-
-      const token = loadUserToken();
-      
-      const headers = getHeaders(token);
-      const createdCategoryResponse = await axios.post(CATEGORIES_ENDPOINT, category, headers);
-      const createdCategory = createdCategoryResponse.data;
-
-      dispatch(categoryCreatedSuccess(createdCategory));
-      dispatch(loadingCategoryCreationSuccess());
-
-    } catch (error) {
-      dispatch(categoryCreationFailure());
-      throw (error);
-    }
-  };
-}
-
-export function updateCategory(category) {
-  return async function (dispatch) {
-
-    dispatch(loadingCategoryUpdate());
-
-    try {
-      
-      const token = loadUserToken();
-      const headers = getHeaders(token);
-      const endpoint = `${CATEGORIES_ENDPOINT}/${category.categoryID}`;
-
-      const updatedCategoryResponse = await axios.put(endpoint, category, headers);
-      const updatedCategory = updatedCategoryResponse.data;
-
-      dispatch(categoryUpdatedSuccess(updatedCategory));
-      dispatch(loadingCategoryUpdateSuccess());
-
-    } catch (error) {
-      dispatch(categoryUpdateFailure());
-      throw (error);
-    }
-  };
-}
-
-export function deactivateCategory(category) {
-  return async function (dispatch) {
-
-    const deactivatedCategory = {
-      ...category,
-      isActive: false,
-      disabled: true
-    };
-
-    dispatch(categoryDeactivated());
-
-    const token = loadUserToken();
-    const endpoint = `${CATEGORIES_ENDPOINT}/${deactivatedCategory.categoryID}`;
-
-    try {
-      const headers = getHeaders(token);
-      await axios.delete(endpoint, headers);
-
-      dispatch(categoryDeactivatedSuccess(deactivatedCategory));
-
-    } catch (error) {
-      throw (error);
-    }
-
-  };
-}
+export const categoryUpdateFailure = () => ({
+  type: actionTypes.CATEGORY_UPDATE_FAILURE
+});
