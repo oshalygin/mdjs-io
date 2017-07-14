@@ -1,3 +1,8 @@
+## 2.49.2 (July 13, 2017)
+
+- Add tests to api utilities
+  - These utilities are used throughout the application and it is important that they are properly tested.
+
 ## 2.49.1 (July 12, 2017)
 
 - Begin refactoring process to `redux-saga` from `redux-thunk`

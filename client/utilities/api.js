@@ -12,47 +12,40 @@ export function getJsonHeaders() {
 export function getHeaders(token) {
   return {
     headers: {
-      'Content-Type': 'application/json',
+      'content-type': 'application/json',
+      accept: 'application/json',
       Authorization: token
     }
   };
 }
 
+const token = loadUserToken();
+const headers = getHeaders(token);
+
 export function get(endpoint) {
-
-  const token = loadUserToken();
-  const headers = getHeaders(token);
-
   return axios.get(endpoint, headers);
 }
 
 export function put(endpoint, data) {
-
-  const token = loadUserToken();
-  const headers = getHeaders(token);
-
   return axios.put(endpoint, data, headers);
 }
 
 export function post(endpoint, data) {
-
-  const token = loadUserToken();
-  const headers = getHeaders(token);
-
   return axios.post(endpoint, data, headers);
 }
 
+export function patch(endpoint, data) {
+  return axios.patch(endpoint, data, headers);
+}
+
 export function deleteApi(endpoint) {
-
-  const token = loadUserToken();
-  const headers = getHeaders(token);
-
   return axios.delete(endpoint, headers);
 }
 
 export default {
-  post,
-  put,
   get,
+  put,
+  post,
+  patch,
   delete: deleteApi
 };
