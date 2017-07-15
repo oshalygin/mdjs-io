@@ -1,3 +1,7 @@
+## 2.50.0 (July 15, 2017)
+
+- Update Kubernetes cluster version to 1.7 and add debug scopes
+
 ## 2.49.2 (July 13, 2017)
 
 - Add tests to api utilities

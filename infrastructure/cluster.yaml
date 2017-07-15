@@ -5,7 +5,7 @@ resources:
     zone: us-central1-a
     cluster:
       description: Merchant Dashboard Cluster
-      initialClusterVersion: 1.6.4
+      initialClusterVersion: 1.7.0
       nodePools:
         - name: merchant-dashboard-pool
           initialNodeCount: 1
@@ -25,6 +25,7 @@ resources:
               - https://www.googleapis.com/auth/logging.write
               - https://www.googleapis.com/auth/trace.append
               - https://www.googleapis.com/auth/monitoring
+              - https://www.googleapis.com/auth/cloud_debugger
             labels:
               env: dev
       loggingService: logging.googleapis.com
