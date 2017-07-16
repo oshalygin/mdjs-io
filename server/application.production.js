@@ -1,3 +1,5 @@
+require('@google-cloud/debug-agent').start({ allowExpressions: true });
+
 import express from 'express';
 import path from 'path';
 import configuration from './utilities/configuration';

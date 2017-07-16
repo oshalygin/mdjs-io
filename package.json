@@ -1,6 +1,6 @@
 {
   "name": "mdjs",
-  "version": "2.51.0",
+  "version": "2.52.0",
   "description": "Merchant Dashboard built with React and Redux",
   "scripts": {
     "start-dev-server": "babel-watch server/application.dev.js",
@@ -17,12 +17,13 @@
     "clean-dist": "npm run remove-dist && mkdir dist-client && mkdir dist-server",
     "prebuild": "npm run clean-dist",
     "build-client": "NODE_ENV=production babel-node ./node_modules/webpack/bin/webpack --config webpack.config.production.js --output-path='./dist-client' --colors",
-    "build-server": "babel ./server --out-dir ./dist-server --ignore spec.js,./server/mocks/",
+    "build-server": "babel ./server --out-dir ./dist-server --ignore spec.js,./server/mocks/ --source-maps",
     "production": "NODE_ENV=production node --require @google-cloud/trace-agent dist-server/application.production.js"
   },
   "author": "Oleg Shalygin",
   "license": "AGPL-3.0",
   "dependencies": {
+    "@google-cloud/debug-agent": "2.1.2",
     "@google-cloud/storage": "1.1.1",
     "@google-cloud/trace-agent": "2.0.0",
     "animate.css": "3.5.2",
@@ -63,7 +64,7 @@
     "recharts": "0.22.4",
     "redux": "3.6.0",
     "redux-devtools-extension": "2.13.2",
-    "redux-saga": "^0.15.4",
+    "redux-saga": "0.15.4",
     "redux-thunk": "2.2.0",
     "request": "2.81.0",
     "sharp": "0.18.1",

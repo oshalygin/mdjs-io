@@ -1,3 +1,7 @@
+## 2.52.0 (July 15, 2017)
+
+- Addition of cloud debugger
+
 ## 2.51.0 (July 15, 2017)
 
 - Add production saga configuration
