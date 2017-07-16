@@ -1,3 +1,7 @@
+## 2.53.0 (July 15, 2017)
+
+- Update Tracing configuration to be explicitly through the the configuration file, `trace.js`.  The way that this is handled is through the environment variable `GCLOUD_DIAGNOSTICS_CONFIG`.
+
 ## 2.52.0 (July 15, 2017)
 
 - Addition of cloud debugger

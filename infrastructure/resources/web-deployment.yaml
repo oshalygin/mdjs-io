@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: fe-web
-          image: 'us.gcr.io/mdjs-io/merchant-dashboard:2.52.0'
+          image: 'us.gcr.io/mdjs-io/merchant-dashboard:2.53.0'
           volumeMounts:
             - mountPath: /cache
               name: temp-volume
@@ -50,6 +50,8 @@ spec:
                 secretKeyRef:
                   name: env-variables-secret
                   key: domain_endpoint
+            - name: GCLOUD_DIAGNOSTICS_CONFIG
+              value: ./utilities/trace.js
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
