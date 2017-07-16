@@ -9,7 +9,7 @@ import rootReducer from '../reducers/rootReducer';
 export default function configureStore(initialState) {
 
   const sagaMiddleware = createSagaMiddleware();
-  const middlewares = [
+  const middleware = [
     reduxImmutableStateInvariant(),
     thunkMiddleware,
     sagaMiddleware,
@@ -20,7 +20,7 @@ export default function configureStore(initialState) {
     })
   ];
 
-  const store = createStore(rootReducer, initialState, compose(applyMiddleware(...middlewares), window.devToolsExtension
+  const store = createStore(rootReducer, initialState, compose(applyMiddleware(...middleware), window.devToolsExtension
     ? window.devToolsExtension()
     : format => format // add support for Redux dev tools
   ));

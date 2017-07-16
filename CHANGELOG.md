@@ -1,3 +1,8 @@
+## 2.51.0 (July 15, 2017)
+
+- Add production saga configuration
+- Bump kube-lego version to `0.1.5`
+
 ## 2.50.0 (July 15, 2017)
 
 - Update Kubernetes cluster version to 1.7 and add debug scopes
