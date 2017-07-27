@@ -1,3 +1,7 @@
+## 2.54.0 (July 26, 2017)
+
+- Addition of kubernetes update script which updates the underlying tag based on the version defined in package.json
+
 ## 2.53.0 (July 15, 2017)
 
 - Update Tracing configuration to be explicitly through the the configuration file, `trace.js`.  The way that this is handled is through the environment variable `GCLOUD_DIAGNOSTICS_CONFIG`.
