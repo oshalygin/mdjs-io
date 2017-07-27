@@ -6,11 +6,12 @@ set -o nounset
 set -o errexit -o errtrace
 
 readonly utility_version="1.0.0"
+readonly utility_binary="linux_amd64_k8s_config"
 readonly k8s_utility="${PWD}/.travis.d/k8s-config"
 readonly application_version=$(node -p -e "require('./package.json').version");
 
 # Retrieve the latest binary
-wget https://github.com/oshalygin/k8s-config/releases/download/$utility_version/darwin_amd64_k8s-config \
+wget https://github.com/oshalygin/k8s-config/releases/download/$utility_version/$utility_binary \
       -O $k8s_utility
 
 # Update access permissions of the utility
