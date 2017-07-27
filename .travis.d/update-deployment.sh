@@ -6,15 +6,17 @@ set -o nounset
 set -o errexit -o errtrace
 
 readonly utility_version="1.0.0"
+readonly k8s_utility="${PWD}/.travis.d/k8s-config"
 readonly application_version=$(node -p -e "require('./package.json').version");
 
 # Retrieve the latest binary
 wget https://github.com/oshalygin/k8s-config/releases/download/$utility_version/darwin_amd64_k8s-config \
-      -O k8s-config
+      -O $k8s_utility
 
-# Set the proper version from package.json
+# Update access permissions of the utility
+chmod +x $k8s_utility
 
-sudo ./.k8s-config \
+sudo $k8s_utility \
   --type=deployment \
   --file-path=./infrastructure/resources/web-deployment.yaml \
   --tag=$application_version;
