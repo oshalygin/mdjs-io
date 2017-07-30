@@ -1,3 +1,7 @@
+## 3.0.1 (July 26, 2017)
+
+- Updates to the binary path which should be `linux_amd64_k8s-config`
+
 ## 3.0.0 (July 26, 2017)
 
 - Mass linting update to leverage `prettier`.
