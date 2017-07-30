@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 import Pill from '../common/pill';
 
 import { numberToLocaleStringWithoutDecimals } from '../../utilities/currencyUtility';
@@ -10,20 +9,21 @@ import { percentageOf } from '../../utilities/calculationsUtility';
 import './dashboard.css';
 
 const TransactionsWidget = ({ creditCardTransactions, cashTransactions }) => {
-
   const total = creditCardTransactions + cashTransactions;
   const decimalPlaces = 0;
 
-  const creditCardPercentage = percentageOf(creditCardTransactions, total, decimalPlaces);
+  const creditCardPercentage = percentageOf(
+    creditCardTransactions,
+    total,
+    decimalPlaces,
+  );
   const cashPercentage = percentageOf(cashTransactions, total, decimalPlaces);
 
   return (
     <div styleName="transactions-widget-container">
       <div styleName="widget-content">
         <div styleName="widget-heading-container">
-          <div styleName="widget-title">
-            Transactions
-        </div>
+          <div styleName="widget-title">Transactions</div>
           <div styleName="date-pill">
             <Pill label="Today" />
           </div>
@@ -53,7 +53,7 @@ const TransactionsWidget = ({ creditCardTransactions, cashTransactions }) => {
 
 TransactionsWidget.propTypes = {
   creditCardTransactions: PropTypes.number,
-  cashTransactions: PropTypes.number
+  cashTransactions: PropTypes.number,
 };
 
 export default TransactionsWidget;

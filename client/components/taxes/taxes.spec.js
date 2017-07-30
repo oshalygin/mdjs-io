@@ -9,7 +9,6 @@ jest.dontMock('react-router');
 import { expect } from 'chai';
 
 describe('<Taxes />', () => {
-
   const taxes = [
     {
       taxID: 19,
@@ -23,7 +22,7 @@ describe('<Taxes />', () => {
       createdBy: 1,
       isActive: true,
       companyID: 1,
-      facilityID: 0
+      facilityID: 0,
     },
     {
       taxID: 20,
@@ -37,19 +36,18 @@ describe('<Taxes />', () => {
       createdBy: 1,
       isActive: true,
       companyID: 1,
-      facilityID: 0
-    }
+      facilityID: 0,
+    },
   ];
 
   const props = {
     taxes,
     query: '',
     filter: '',
-    taxActions() { }
+    taxActions() {},
   };
 
   it('should contain a button component that is titled "New Tax"', () => {
-
     const expected = 'New Tax';
     const wrapper = shallow(<Taxes.WrappedComponent {...props} />);
 
@@ -59,7 +57,6 @@ describe('<Taxes />', () => {
   });
 
   it('should navigate to the "tax" route when navigateToNewTaxPage is called', () => {
-
     const redirectSpy = sinon.spy();
     const browserHistory = require('react-router').browserHistory;
     browserHistory.push = redirectSpy;
@@ -76,22 +73,21 @@ describe('<Taxes />', () => {
   });
 
   it('should dispatch the deactivate action with the passed in id that matches the tax in the list', () => {
-
     const deactivatedTaxSpy = sinon.stub().returns({
-      then(foobar) { //eslint-disable-line no-unused-vars
+      then() {
         return {
-          catch() { }
+          catch() {},
         };
-      }
+      },
     });
 
-    deactivatedTaxSpy.then = function () { };
+    deactivatedTaxSpy.then = function() {};
 
     const updatedProps = {
       ...props,
       taxActions: {
-        deactivateTax: deactivatedTaxSpy
-      }
+        deactivateTax: deactivatedTaxSpy,
+      },
     };
 
     const expected = true;
@@ -102,11 +98,9 @@ describe('<Taxes />', () => {
 
     const actual = deactivatedTaxSpy.calledWith(taxes[0]);
     expect(actual).equals(expected);
-
   });
 
   it('should filter the list to only include the taxes from the searchCriteria', () => {
-
     const searchCriteria = 'T';
     const expected = 1;
     const wrapper = shallow(<Taxes.WrappedComponent {...props} />);
@@ -114,21 +108,19 @@ describe('<Taxes />', () => {
     const event = {
       target: {
         name: 'filter',
-        value: searchCriteria
-      }
+        value: searchCriteria,
+      },
     };
 
     const instance = wrapper.instance();
     instance.searchOnChange(event);
 
-    const actual = instance.state
-      .taxes.length;
+    const actual = instance.state.taxes.length;
 
     expect(actual).equals(expected);
   });
 
   it('should filter the list and match on lowercase as well', () => {
-
     const searchCriteria = 't';
     const expected = 1;
     const wrapper = shallow(<Taxes.WrappedComponent {...props} />);
@@ -136,21 +128,19 @@ describe('<Taxes />', () => {
     const event = {
       target: {
         name: 'filter',
-        value: searchCriteria
-      }
+        value: searchCriteria,
+      },
     };
 
     const instance = wrapper.instance();
     instance.searchOnChange(event);
 
-    const actual = instance.state
-      .taxes.length;
+    const actual = instance.state.taxes.length;
 
     expect(actual).equals(expected);
   });
 
   it('should set the filter object appropriately on the local state', () => {
-
     const searchCriteria = 'b';
     const expected = searchCriteria;
     const wrapper = shallow(<Taxes.WrappedComponent {...props} />);
@@ -158,17 +148,15 @@ describe('<Taxes />', () => {
     const event = {
       target: {
         name: 'filter',
-        value: searchCriteria
-      }
+        value: searchCriteria,
+      },
     };
 
     const instance = wrapper.instance();
     instance.searchOnChange(event);
 
-    const actual = instance.state
-      .filter;
+    const actual = instance.state.filter;
 
     expect(actual).equals(expected);
   });
-
 });

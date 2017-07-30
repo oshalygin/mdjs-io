@@ -7,7 +7,6 @@ import Spinner from '../../common/spinner';
 import { expect } from 'chai';
 
 describe('<OrderDetail />', () => {
-
   const props = {
     orderDetail: {
       companyID: 1,
@@ -49,7 +48,7 @@ describe('<OrderDetail />', () => {
             createdBy: 0,
             isActive: false,
             companyID: 0,
-            facilityID: 0
+            facilityID: 0,
           },
           totalSub: 65,
           totalDiscount: 0,
@@ -59,8 +58,8 @@ describe('<OrderDetail />', () => {
           notes: '',
           modifierList: [],
           taxList: [],
-          discountList: []
-        }
+          discountList: [],
+        },
       ],
       latitude: 0,
       longitude: 0,
@@ -91,7 +90,7 @@ describe('<OrderDetail />', () => {
           parentTransaction: null,
           gatewayID: 0,
           createdDate: '2016-07-10T10:05:29.547',
-          createdBy: 1
+          createdBy: 1,
         },
         {
           transactionID: 965,
@@ -122,125 +121,106 @@ describe('<OrderDetail />', () => {
             parentTransaction: null,
             gatewayID: 0,
             createdDate: '2016-07-10T10:05:29.547',
-            createdBy: 1
+            createdBy: 1,
           },
           gatewayID: 0,
           createdDate: '2017-04-16T17:41:40.367',
-          createdBy: 1
-        }
-      ]
+          createdBy: 1,
+        },
+      ],
     },
-    loading: false
+    loading: false,
   };
 
   it('should contain a <Spinner /> component if the loading prop is true', () => {
-
     const expected = 1;
     const updatedProps = {
       ...props,
-      loading: true
+      loading: true,
     };
 
     const wrapper = shallow(<OrderDetail.WrappedComponent {...updatedProps} />);
     const actual = wrapper.find(Spinner).length;
 
     expect(actual).equals(expected);
-
   });
 
   it('should contain the orderID on the page', () => {
-
     const expected = `${props.orderDetail.orderID}`;
 
     const wrapper = shallow(<OrderDetail.WrappedComponent {...props} />);
     const actual = wrapper.find('.order-number').text();
 
     expect(actual).equals(expected);
-
   });
 
   it('should persist the status based on the orderStatusID', () => {
-
     const expected = 'Refunded';
 
     const wrapper = shallow(<OrderDetail.WrappedComponent {...props} />);
     const actual = wrapper.find('.status-value').text();
 
     expect(actual).equals(expected);
-
   });
 
   it('should persist the status color as red if its "Refunded"', () => {
-
     const expected = '#F44336';
 
     const wrapper = shallow(<OrderDetail.WrappedComponent {...props} />);
     const actual = wrapper.find('.status-value').props().style.color;
 
     expect(actual).equals(expected);
-
   });
 
   it('should persist the status color as green if its "Fulfilled"', () => {
-
     const expected = '#5CB85C';
 
     const updatedProps = {
       ...props,
       orderDetail: {
         ...props.orderDetail,
-        orderStatusID: 10
-      }
+        orderStatusID: 10,
+      },
     };
 
     const wrapper = shallow(<OrderDetail.WrappedComponent {...updatedProps} />);
     const actual = wrapper.find('.status-value').props().style.color;
 
     expect(actual).equals(expected);
-
   });
 
   it('should list the customer name as "No name provided" if the customerName flag is empty', () => {
-
     const expected = 'No name provided';
 
     const wrapper = shallow(<OrderDetail.WrappedComponent {...props} />);
     const actual = wrapper.find('.customer-name').text();
 
     expect(actual).equals(expected);
-
   });
 
   it('should list the customer name as is if the customerName exists', () => {
-
     const expected = 'Oleg';
 
     const updatedProps = {
       ...props,
       orderDetail: {
         ...props.orderDetail,
-        customerName: 'Oleg'
-      }
+        customerName: 'Oleg',
+      },
     };
 
     const wrapper = shallow(<OrderDetail.WrappedComponent {...updatedProps} />);
     const actual = wrapper.find('.customer-name').text();
 
     expect(actual).equals(expected);
-
   });
 
   it('should display the total amount on the page', () => {
-
     const expected = '$ 75.00';
 
     const wrapper = shallow(<OrderDetail.WrappedComponent {...props} />);
-    const actual = wrapper.find('.order-summary-value')
-      .last()
-      .text();
+    const actual = wrapper.find('.order-summary-value').last().text();
 
     expect(actual).equals(expected);
-
   });
-
 });

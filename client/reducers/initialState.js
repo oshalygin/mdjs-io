@@ -1,7 +1,6 @@
 import { loadUserToken } from '../utilities/localStorage';
 import { loginWithToken } from '../actions/userActions';
 
-
 export function retrieveUser(dispatch, callback) {
   const token = loadUserToken();
   if (!token) {
@@ -13,7 +12,7 @@ export function retrieveUser(dispatch, callback) {
     .then(() => {
       callback();
     })
-    .catch((error) => {
+    .catch(error => {
       callback(error);
     });
 }
@@ -23,7 +22,7 @@ export default {
   loading: {
     loadingUser: false,
     loadingOrders: true,
-    loadingMonthlySummary: true
+    loadingMonthlySummary: true,
   },
   categories: [],
   discounts: [],
@@ -35,9 +34,9 @@ export default {
     yesterdaysOrders: [],
     todaysOrders: [],
     orderList: [],
-    monthlySummary: []
+    monthlySummary: [],
   },
   orderDetail: {},
   refundReasons: [],
-  version: ''
+  version: '',
 };

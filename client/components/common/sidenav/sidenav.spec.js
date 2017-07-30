@@ -10,15 +10,14 @@ jest.dontMock('react-router');
 import { expect } from 'chai';
 
 describe('<SideNav />', () => {
-
   const defaultProps = {
     user: {
       firstName: 'Oleg',
       lastName: 'Shalygin',
-      role: 1
+      role: 1,
     },
     userActions: {},
-    pathName: 'dashboard'
+    pathName: 'dashboard',
   };
 
   it('should contain SideBarUser component', () => {
@@ -31,12 +30,11 @@ describe('<SideNav />', () => {
   });
 
   it('should properly redirect to the /login route when logout is clicked', () => {
-
     const updatedProps = {
       ...defaultProps,
       userActions: {
-        logout() { }
-      }
+        logout() {},
+      },
     };
 
     const redirectSpy = sinon.spy();
@@ -44,24 +42,22 @@ describe('<SideNav />', () => {
     browserHistory.push = redirectSpy;
 
     const expected = true;
-    const instance = shallow(<SideNav.WrappedComponent {...updatedProps} />)
-      .instance();
+    const instance = shallow(
+      <SideNav.WrappedComponent {...updatedProps} />,
+    ).instance();
     instance.logout();
-
 
     const actual = redirectSpy.calledWith('login');
     expect(actual).to.equal(expected);
-    
   });
 
   it('should call the logout userAction when clicking the logout link', () => {
-
     const logoutUserActionSpy = sinon.spy();
     const updatedProps = {
       ...defaultProps,
       userActions: {
-        logout: logoutUserActionSpy
-      }
+        logout: logoutUserActionSpy,
+      },
     };
 
     const redirectSpy = sinon.spy();
@@ -69,12 +65,12 @@ describe('<SideNav />', () => {
     browserHistory.push = redirectSpy;
 
     const expected = true;
-    const instance = shallow(<SideNav.WrappedComponent {...updatedProps} />)
-      .instance();
+    const instance = shallow(
+      <SideNav.WrappedComponent {...updatedProps} />,
+    ).instance();
     instance.logout();
 
     const actual = logoutUserActionSpy.called;
     expect(actual).to.equal(expected);
   });
-
 });

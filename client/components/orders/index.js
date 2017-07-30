@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/orderActions';
@@ -23,7 +22,7 @@ export class Orders extends React.Component {
       orders: props.orders,
       filter: '',
       notification: false,
-      notificationMessage: ''
+      notificationMessage: '',
     };
 
     this.searchOnChange = this.searchOnChange.bind(this);
@@ -37,7 +36,6 @@ export class Orders extends React.Component {
     orderActions.getAllOrders();
   }
 
-
   closeNotification() {
     this.setState({ notification: false });
   }
@@ -45,58 +43,50 @@ export class Orders extends React.Component {
   displayNotification(message) {
     this.setState({
       notification: true,
-      notificationMessage: message
+      notificationMessage: message,
     });
   }
 
   onExpandChange(orderId) {
     const { orderActions, orders } = this.props;
     const selectedOrder = orders.find(order => order.orderID === orderId);
-    
+
     if (selectedOrder.expanded) {
-      return orderActions.hideOrderDetail(orderId)
-        .catch((error) => {
-          this.displayNotification(error);
-        });
+      return orderActions.hideOrderDetail(orderId).catch(error => {
+        this.displayNotification(error);
+      });
     }
 
-    return orderActions.getOrderDetails(orderId)
-      .catch((error) => {
-        this.displayNotification(error.response.data);
-      });
+    return orderActions.getOrderDetails(orderId).catch(error => {
+      this.displayNotification(error.response.data);
+    });
   }
 
   searchOnChange(event) {
     const { orders } = this.state;
 
-    const filter = event.target.value
-      .toLowerCase();
+    const filter = event.target.value.toLowerCase();
 
-    const filteredOrders = orders
-      .filter(order => order
-        .orderStatusDescription
-        .toLowerCase()
-        .includes(filter));
+    const filteredOrders = orders.filter(order =>
+      order.orderStatusDescription.toLowerCase().includes(filter),
+    );
 
     this.setState({
       filter,
-      orders: filteredOrders
+      orders: filteredOrders,
     });
   }
 
   render() {
     const { orders, loading } = this.props;
 
-    const component = loading ?
-      (
-        <div styleName="spinner-container">
+    const component = loading
+      ? <div styleName="spinner-container">
           <div styleName="spinner">
             <Spinner size={130} />
           </div>
         </div>
-      ) :
-      (
-        <div className="row">
+      : <div className="row">
           <div className="col-lg-12">
             <div className="ibox float-e-margins">
               <div className="ibox-title">
@@ -111,12 +101,14 @@ export class Orders extends React.Component {
                       onChange={this.searchOnChange}
                       errorText={this.state.error}
                       style={fullWidth}
-                      floatingLabelText="Filter Status" />
+                      floatingLabelText="Filter Status"
+                    />
                   </div>
                 </div>
                 <OrderList
                   onExpandChange={this.onExpandChange}
-                  orders={orders} />
+                  orders={orders}
+                />
               </div>
             </div>
           </div>
@@ -125,9 +117,9 @@ export class Orders extends React.Component {
             action="OK"
             message={this.state.notificationMessage}
             onActionTouchTap={this.closeNotification}
-            onRequestClose={this.closeNotification} />
-        </div>
-      );
+            onRequestClose={this.closeNotification}
+          />
+        </div>;
 
     return component;
   }
@@ -136,19 +128,18 @@ export class Orders extends React.Component {
 Orders.propTypes = {
   orders: PropTypes.array,
   loading: PropTypes.bool.isRequired,
-  orderActions: PropTypes.object.isRequired
+  orderActions: PropTypes.object.isRequired,
 };
 
 export function mapStateToProps(state) {
-
   return {
     orders: state.orders.orderList,
-    loading: state.loading.loadingOrders
+    loading: state.loading.loadingOrders,
   };
 }
 function mapDispatchToProps(dispatch) {
   return {
-    orderActions: bindActionCreators(actionCreators, dispatch)
+    orderActions: bindActionCreators(actionCreators, dispatch),
   };
 }
 

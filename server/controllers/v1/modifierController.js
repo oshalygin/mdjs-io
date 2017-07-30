@@ -5,7 +5,6 @@ import logger from '../../middleware/logger';
 import { MODIFIER_ENDPOINT } from '../../utilities/endpoints';
 
 export async function get(request, response) {
-
   if (request.params.id && isNaN(request.params.id)) {
     return response
       .status(400)
@@ -22,36 +21,26 @@ export async function get(request, response) {
     const modifierResponse = await axios.get(modifierEndpoint, headers);
 
     if (!modifierResponse.data.data) {
-
-      logger.info(`Invalid request: token: ${token}, endpoint: ${modifierEndpoint}`);
-      return response
-        .status(400)
-        .send('Bad request');
+      logger.info(
+        `Invalid request: token: ${token}, endpoint: ${modifierEndpoint}`,
+      );
+      return response.status(400).send('Bad request');
     }
 
     const modifierData = modifierResponse.data.data;
 
-    return response
-      .status(200)
-      .json(modifierData);
-
+    return response.status(200).json(modifierData);
   } catch (error) {
-
     logger.info(error);
-    return response
-      .status(404)
-      .send('Resource not found');
+    return response.status(404).send('Resource not found');
   }
 }
 
 export async function deleteModifier(request, response) {
-
   const modifierId = request.params.id;
 
   if (!modifierId) {
-    return response
-      .status(400)
-      .send('This resource expects a modifier id');
+    return response.status(400).send('This resource expects a modifier id');
   }
 
   try {
@@ -61,22 +50,15 @@ export async function deleteModifier(request, response) {
 
     await axios.delete(modifierEndpoint, headers);
 
-    return response
-      .status(200)
-      .send('OK');
-
+    return response.status(200).send('OK');
   } catch (error) {
-
     logger.info(error);
     logger.info(`Error deleting: ${modifierId}`);
-    return response
-      .status(400)
-      .send('Failed delete the modifier item');
+    return response.status(400).send('Failed delete the modifier item');
   }
 }
 
 export async function put(request, response) {
-
   const modifierId = request.params.id;
   const modifierBody = request.body;
 
@@ -88,13 +70,10 @@ export async function put(request, response) {
 
   if (!modifierBody) {
     logger.error(`The request {body} cannot be null, ${request.originalUrl}`);
-    return response
-      .status(400)
-      .send('The modifier {body} cannot be empty');
+    return response.status(400).send('The modifier {body} cannot be empty');
   }
 
   try {
-
     const token = request.headers.authorization;
     const headers = getHeaders(token);
     const endpoint = `${MODIFIER_ENDPOINT}/${modifierId}`;
@@ -102,56 +81,44 @@ export async function put(request, response) {
     const postedResponse = await axios.put(endpoint, modifierBody, headers);
     const updatedModifier = postedResponse.data;
 
-    return response
-      .status(200)
-      .json(updatedModifier);
-
+    return response.status(200).json(updatedModifier);
   } catch (error) {
-
     logger.info(error);
     logger.info(`Error updating: ${modifierId}`);
     logger.info(`Error updating: ${JSON.stringify(modifierBody)}`);
-    return response
-      .status(400)
-      .send('Failed to update the modifier item');
+    return response.status(400).send('Failed to update the modifier item');
   }
-
 }
 
 export async function post(request, response) {
-
   const modifierBody = request.body;
   if (request.params.id) {
-    return response
-      .status(400)
-      .send('This resource does not accept an id');
+    return response.status(400).send('This resource does not accept an id');
   }
 
   if (!modifierBody) {
     logger.error(`The request {body} cannot be null, ${request.originalUrl}`);
-    return response
-      .status(400)
-      .send('The modifier {body} cannot be empty');
+    return response.status(400).send('The modifier {body} cannot be empty');
   }
 
   try {
     const token = request.headers.authorization;
     const headers = getHeaders(token);
 
-    const postedResponse = await axios.post(MODIFIER_ENDPOINT, modifierBody, headers);
+    const postedResponse = await axios.post(
+      MODIFIER_ENDPOINT,
+      modifierBody,
+      headers,
+    );
     const newModifier = postedResponse.data;
 
-    return response
-      .status(200)
-      .json(newModifier);
-
+    return response.status(200).json(newModifier);
   } catch (error) {
-
     logger.info(error);
-    logger.info(`Error posting a new modifier: ${JSON.stringify(modifierBody)}`);
-    return response
-      .status(400)
-      .send('Failed to create a new modifier');
+    logger.info(
+      `Error posting a new modifier: ${JSON.stringify(modifierBody)}`,
+    );
+    return response.status(400).send('Failed to create a new modifier');
   }
 }
 
@@ -159,5 +126,5 @@ export default {
   get,
   put,
   post,
-  deleteModifier
+  deleteModifier,
 };

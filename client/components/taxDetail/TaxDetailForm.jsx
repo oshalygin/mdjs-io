@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import TextField from '../common/TextField.jsx';
@@ -9,21 +8,22 @@ import TextField from '../common/TextField.jsx';
 import './taxDetail.css';
 
 const TaxDetailForm = ({ tax, items, errors, onChange }) => {
-
   const taxOptions = [
     { name: 'taxTypeID', value: 0, label: 'Everything' },
-    { name: 'taxTypeID', value: 1, label: 'Specific Items' }
+    { name: 'taxTypeID', value: 1, label: 'Specific Items' },
   ];
 
   const displayItems = items.map(item => {
     return {
       name: 'items',
       value: item.itemID,
-      label: item.name
+      label: item.name,
     };
   });
 
-  const selectedTaxOption = taxOptions.find(option => option.value === tax.taxTypeID);
+  const selectedTaxOption = taxOptions.find(
+    option => option.value === tax.taxTypeID,
+  );
   const displayItemSelection = selectedTaxOption && !!selectedTaxOption.value;
 
   return (
@@ -37,7 +37,8 @@ const TaxDetailForm = ({ tax, items, errors, onChange }) => {
               value={tax.taxName}
               floatingLabelText="Tax Name"
               onChange={onChange}
-              errorText={errors.taxName} />
+              errorText={errors.taxName}
+            />
           </div>
           <div className="row">
             <div>
@@ -48,10 +49,9 @@ const TaxDetailForm = ({ tax, items, errors, onChange }) => {
                 floatingLabelText="Tax Rate"
                 onChange={onChange}
                 style={{ display: 'inline-block', width: '30%' }}
-                errorText={errors.value} />
-              <span styleName="percent-text">
-                %
-            </span>
+                errorText={errors.value}
+              />
+              <span styleName="percent-text">%</span>
             </div>
           </div>
           <div styleName="tax-option-control">
@@ -61,13 +61,15 @@ const TaxDetailForm = ({ tax, items, errors, onChange }) => {
                   floatingLabelText="Apply To"
                   value={selectedTaxOption}
                   floatingLabelStyle={{ fontWeight: 500 }}
-                  onChange={onChange}>
+                  onChange={onChange}
+                >
                   {taxOptions.map(option => {
                     return (
                       <MenuItem
                         key={option.value}
                         primaryText={option.label}
-                        value={option} />
+                        value={option}
+                      />
                     );
                   })}
                 </SelectField>
@@ -77,34 +79,35 @@ const TaxDetailForm = ({ tax, items, errors, onChange }) => {
           <div styleName="tax-option-control">
             <div className="row">
               {displayItemSelection &&
-                (<div styleName="tax-name-control">
+                <div styleName="tax-name-control">
                   <SelectField
                     multiple
                     floatingLabelText="Items"
                     floatingLabelStyle={{ fontWeight: 500 }}
                     value={tax.items}
-                    onChange={onChange}>
+                    onChange={onChange}
+                  >
                     {displayItems.map(item => {
                       return (
                         <MenuItem
                           key={item.value}
                           insetChildren
-                          checked={tax.items
-                            && tax.items.includes(item.value)}
+                          checked={tax.items && tax.items.includes(item.value)}
                           value={item.value}
                           primaryText={item.label}
                         />
                       );
                     })}
                   </SelectField>
-                </div>
-                )}
+                </div>}
             </div>
           </div>
         </div>
         <div className="col-md-offset-1 col-sm-4">
           <div styleName="detail-icon">
-            <i className="material-icons" style={{ fontSize: '124px' }}>account_balance</i>
+            <i className="material-icons" style={{ fontSize: '124px' }}>
+              account_balance
+            </i>
           </div>
         </div>
       </div>
@@ -116,7 +119,7 @@ TaxDetailForm.propTypes = {
   errors: PropTypes.object.isRequired,
   tax: PropTypes.object.isRequired,
   items: PropTypes.array.isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
 };
 
 export default TaxDetailForm;

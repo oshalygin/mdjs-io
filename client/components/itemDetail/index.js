@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 import { browserHistory } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import { connect } from 'react-redux';
@@ -27,7 +26,7 @@ class ItemDetailPage extends React.Component {
       item: props.item,
       heading: '',
       notification: false,
-      notificationMessage: ''
+      notificationMessage: '',
     };
 
     this.onChange = this.onChange.bind(this);
@@ -60,7 +59,6 @@ class ItemDetailPage extends React.Component {
 
     this.propertyIsValid(property, item[property], errors);
     return this.setState({ item });
-
   }
 
   closeNotification() {
@@ -77,32 +75,32 @@ class ItemDetailPage extends React.Component {
     }
     const updatedItem = { ...item };
     updatedItem.isShowPhoto = !!updatedItem.photoURL;
-    updatedItem.label = updatedItem.label ? updatedItem.label : setDefaultLabel(updatedItem.name);
+    updatedItem.label = updatedItem.label
+      ? updatedItem.label
+      : setDefaultLabel(updatedItem.name);
     updatedItem.price = Number(updatedItem.price);
 
     if (updatedItem.itemID) {
-
-      itemActions.updateItem(updatedItem)
+      itemActions
+        .updateItem(updatedItem)
         .then(() => this.redirect())
-        .catch((error) => {
+        .catch(error => {
           this.displayNotification(error.response.data);
         });
-
     } else {
-
-      itemActions.createItem(updatedItem)
+      itemActions
+        .createItem(updatedItem)
         .then(() => this.redirect())
-        .catch((error) => {
+        .catch(error => {
           this.displayNotification(error.response.data);
         });
-
     }
   }
 
   displayNotification(message) {
     this.setState({
       notification: true,
-      notificationMessage: message
+      notificationMessage: message,
     });
   }
 
@@ -111,9 +109,10 @@ class ItemDetailPage extends React.Component {
   }
 
   propertyIsValid(property, value, errors) {
-    const patternTest = property === 'name' || property === 'label'
-      ? new RegExp(/^[a-zA-Z0-9,. ]*$/)
-      : new RegExp(/^[0-9]+([,.][0-9]+)?$/g);
+    const patternTest =
+      property === 'name' || property === 'label'
+        ? new RegExp(/^[a-zA-Z0-9,. ]*$/)
+        : new RegExp(/^[0-9]+([,.][0-9]+)?$/g);
 
     errors[property] = !patternTest.test(value) ? ' ' : false;
 
@@ -147,18 +146,16 @@ class ItemDetailPage extends React.Component {
 
     const { item, errors } = this.state;
 
-    const formComponent = !loading.createUpdateItem ?
-      (
-        <ItemDetailForm
+    const formComponent = !loading.createUpdateItem
+      ? <ItemDetailForm
           item={item}
           categories={categories}
           modifiers={modifiers}
           onDrop={this.onDrop}
           onChange={this.onChange}
-          errors={errors} />
-      ) :
-      (
-        <div className="ibox-content">
+          errors={errors}
+        />
+      : <div className="ibox-content">
           <div className="row">
             <div styleName="spinner-container">
               <div styleName="spinner">
@@ -166,8 +163,7 @@ class ItemDetailPage extends React.Component {
               </div>
             </div>
           </div>
-        </div>
-      );
+        </div>;
 
     return (
       <div>
@@ -175,7 +171,9 @@ class ItemDetailPage extends React.Component {
           <div className="col-sm-offset-3 col-sm-6">
             <div className="ibox float-e-margins">
               <div className="ibox-title">
-                <h5>{itemHeading}</h5>
+                <h5>
+                  {itemHeading}
+                </h5>
               </div>
               {formComponent}
             </div>
@@ -188,13 +186,15 @@ class ItemDetailPage extends React.Component {
                 styleName="left-control"
                 label="Back"
                 secondary
-                onClick={this.redirect} />
+                onClick={this.redirect}
+              />
             </div>
             <RaisedButton
               styleName="right-control"
               label="Save Item"
               primary
-              onClick={this.onSave} />
+              onClick={this.onSave}
+            />
           </div>
         </div>
         <Snackbar
@@ -202,7 +202,8 @@ class ItemDetailPage extends React.Component {
           action="OK"
           message={this.state.notificationMessage}
           onActionTouchTap={this.closeNotification}
-          onRequestClose={this.closeNotification} />
+          onRequestClose={this.closeNotification}
+        />
       </div>
     );
   }
@@ -215,15 +216,14 @@ ItemDetailPage.propTypes = {
   loading: PropTypes.object.isRequired,
   itemHeading: PropTypes.string.isRequired,
   itemActions: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
 };
 
 ItemDetailPage.contextTypes = {
-  router: PropTypes.object
+  router: PropTypes.object,
 };
 
 export function mapStateToProps(state, ownProps) {
-
   const defaultPriceType = itemPriceTypes[0].value; // Each, value = 0
   let item = {
     itemID: 0,
@@ -235,20 +235,23 @@ export function mapStateToProps(state, ownProps) {
     file: null,
     itemCategoryID: 0,
     isActive: 1,
-    priceTypeID: defaultPriceType
+    priceTypeID: defaultPriceType,
   };
 
   const { items } = state;
-  const existingItem = items
-    .find(stateItem => stateItem.itemID == ownProps.params.id || stateItem.itemID === item.itemID); //eslint-disable-line eqeqeq
+  const existingItem = items.find(
+    stateItem =>
+      //eslint-disable-next-line eqeqeq
+      stateItem.itemID == ownProps.params.id ||
+      stateItem.itemID === item.itemID,
+  );
 
   if (!!existingItem) {
     item = { ...existingItem };
   }
 
-  const itemHeading = (existingItem && existingItem.itemID !== 0)
-    ? 'Update Item'
-    : 'New Item';
+  const itemHeading =
+    existingItem && existingItem.itemID !== 0 ? 'Update Item' : 'New Item';
 
   return {
     item,
@@ -257,16 +260,16 @@ export function mapStateToProps(state, ownProps) {
     errors: {
       name: false,
       label: false,
-      price: false
+      price: false,
     },
     categories: state.categories,
-    modifiers: state.modifiers
+    modifiers: state.modifiers,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    itemActions: bindActionCreators(actionCreators, dispatch)
+    itemActions: bindActionCreators(actionCreators, dispatch),
   };
 }
 

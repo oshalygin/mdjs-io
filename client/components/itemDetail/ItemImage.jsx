@@ -25,7 +25,7 @@ const ItemImage = ({ itemPreview, onDrop }) => {
     position: 'relative',
     width: '30em',
     height: '15em',
-    float: 'right'
+    float: 'right',
   };
 
   const imageContainer = {
@@ -33,7 +33,7 @@ const ItemImage = ({ itemPreview, onDrop }) => {
     margin: `-${imageBoxLength / 2}${unitOfMeasure} auto`,
     width: '100%',
     height: `${imageBoxLength}${unitOfMeasure}`,
-    top: '50%'
+    top: '50%',
   };
 
   const imageItem = {
@@ -49,12 +49,12 @@ const ItemImage = ({ itemPreview, onDrop }) => {
     backgroundImage: `url(${imageUrl})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
-    lineHeight: `${imageBoxLength - imageBoxLength / 10}${unitOfMeasure}`
+    lineHeight: `${imageBoxLength - imageBoxLength / 10}${unitOfMeasure}`,
   };
 
   const imageContent = !!itemPreview
-    ? (<div style={imageItem} />)
-    : (<div style={imageItem}>Drag/Click Here</div>);
+    ? <div style={imageItem} />
+    : <div style={imageItem}>Drag/Click Here</div>;
 
   return (
     <div style={imagePlaceholderContainer}>
@@ -67,7 +67,7 @@ const ItemImage = ({ itemPreview, onDrop }) => {
 
 ItemImage.propTypes = {
   onDrop: PropTypes.func.isRequired,
-  itemPreview: PropTypes.string
+  itemPreview: PropTypes.string,
 };
 
 export default ItemImage;

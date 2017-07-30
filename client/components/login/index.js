@@ -15,7 +15,6 @@ import LoginForm from './LoginForm.jsx';
 import Version from '../common/version';
 
 class LoginPage extends React.Component {
-
   constructor(props, context) {
     super(props, context);
     this.state = {
@@ -23,7 +22,7 @@ class LoginPage extends React.Component {
       loading: false,
       formErrors: false,
       notification: false,
-      notificationMessage: ''
+      notificationMessage: '',
     };
     this.login = this.login.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -36,17 +35,15 @@ class LoginPage extends React.Component {
     const { user } = this.state;
     const { login, loginValidationErrors } = this.props.userActions;
 
-    login(user)
-      .then(() => this.redirect())
-      .catch(() => {
-        this.setState({
-          notification: true,
-          notificationMessage: 'Invalid Username or Password'
-        });
-
-        loginValidationErrors();
-        this.setState({ formErrors: true });
+    login(user).then(() => this.redirect()).catch(() => {
+      this.setState({
+        notification: true,
+        notificationMessage: 'Invalid Username or Password',
       });
+
+      loginValidationErrors();
+      this.setState({ formErrors: true });
+    });
   }
 
   closeNotification() {
@@ -76,9 +73,19 @@ class LoginPage extends React.Component {
             <h3>Welcome to Merchant Dashboard</h3>
             <p>The ultimate merchant dashboard experience</p>
             <p>Login to get started</p>
-            <LoginForm hidden={loading} errors={formErrors} onChange={this.onChange} login={this.login} />
+            <LoginForm
+              hidden={loading}
+              errors={formErrors}
+              onChange={this.onChange}
+              login={this.login}
+            />
             <Spinner hidden={!loading} />
-            <p className="m-t"> <small>Merchant Dashboard is a registered trademark of Merchant Dashboard, LLC.</small> </p>
+            <p className="m-t">
+              {' '}<small>
+                Merchant Dashboard is a registered trademark of Merchant
+                Dashboard, LLC.
+              </small>{' '}
+            </p>
           </div>
         </div>
         <Snackbar
@@ -86,34 +93,34 @@ class LoginPage extends React.Component {
           action="OK"
           message={this.state.notificationMessage}
           onActionTouchTap={this.closeNotification}
-          onRequestClose={this.closeNotification} />
+          onRequestClose={this.closeNotification}
+        />
         <Version />
       </div>
     );
   }
-
 }
 
 LoginPage.propTypes = {
   user: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
-  userActions: PropTypes.object.isRequired
+  userActions: PropTypes.object.isRequired,
 };
 
 LoginPage.contextTypes = {
-  router: React.PropTypes.object.isRequired
+  router: React.PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
     user: state.user,
-    loading: state.loading.loadingUser
+    loading: state.loading.loadingUser,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    userActions: bindActionCreators(actionCreators, dispatch)
+    userActions: bindActionCreators(actionCreators, dispatch),
   };
 }
 

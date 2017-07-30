@@ -7,7 +7,6 @@ import ItemImage from '../../common/itemImage';
 import { expect } from 'chai';
 
 describe('<OrderDetailItemListRow />', () => {
-
   const props = {
     item: {
       orderID: 4,
@@ -37,7 +36,7 @@ describe('<OrderDetailItemListRow />', () => {
         createdBy: 0,
         isActive: false,
         companyID: 0,
-        facilityID: 0
+        facilityID: 0,
       },
       totalSub: 65,
       totalDiscount: 0,
@@ -47,56 +46,43 @@ describe('<OrderDetailItemListRow />', () => {
       notes: '',
       modifierList: [],
       taxList: [],
-      discountList: []
-    }
+      discountList: [],
+    },
   };
 
   it('should contain a <ItemImage /> component', () => {
-
     const expected = 1;
 
     const wrapper = shallow(<OrderDetailItemListRow {...props} />);
     const actual = wrapper.find(ItemImage).length;
 
     expect(actual).equals(expected);
-
   });
 
   it('should properly map the price description and the price together', () => {
-
     const expected = '$ 65.00 / Each';
 
     const wrapper = shallow(<OrderDetailItemListRow {...props} />);
-    const actual = wrapper.find('.item-list-row-name')
-      .last()
-      .text();
+    const actual = wrapper.find('.item-list-row-name').last().text();
 
     expect(actual).equals(expected);
-
   });
 
   it('should display the total price', () => {
-
     const expected = '$ 65.00';
 
     const wrapper = shallow(<OrderDetailItemListRow {...props} />);
-    const actual = wrapper.find('.item-price')
-      .text();
+    const actual = wrapper.find('.item-price').text();
 
     expect(actual).equals(expected);
-
   });
 
   it('should display the total taxes', () => {
-
     const expected = '$ 0.00';
 
     const wrapper = shallow(<OrderDetailItemListRow {...props} />);
-    const actual = wrapper.find('.item-list-row-tax-container')
-      .text();
+    const actual = wrapper.find('.item-list-row-tax-container').text();
 
     expect(actual).equals(expected);
-
   });
-
 });

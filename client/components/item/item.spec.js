@@ -9,7 +9,6 @@ import Item from './index';
 import { expect } from 'chai';
 
 describe('<Item />', () => {
-
   const items = [
     {
       itemID: 1,
@@ -21,7 +20,7 @@ describe('<Item />', () => {
       file: null,
       itemCategoryID: 2,
       isActive: 1,
-      priceTypeID: 1
+      priceTypeID: 1,
     },
     {
       itemID: 2,
@@ -33,7 +32,7 @@ describe('<Item />', () => {
       file: null,
       itemCategoryID: 2,
       isActive: 1,
-      priceTypeID: 1
+      priceTypeID: 1,
     },
     {
       itemID: 3,
@@ -45,19 +44,18 @@ describe('<Item />', () => {
       file: null,
       itemCategoryID: 2,
       isActive: 1,
-      priceTypeID: 1
-    }
+      priceTypeID: 1,
+    },
   ];
 
   const props = {
     items,
     query: '',
     filter: '',
-    itemActions() { }
+    itemActions() {},
   };
 
   it('should contain a button component that is titled "New Item"', () => {
-
     const expected = 'New Item';
     const wrapper = shallow(<Item.WrappedComponent {...props} />);
 
@@ -83,22 +81,22 @@ describe('<Item />', () => {
   });
 
   it('should dispatch the deactivate action with the passed in id that matches the items in the list', () => {
-
     const deactivateItemSpy = sinon.stub().returns({
-      then(foobar) { //eslint-disable-line no-unused-vars
+      then(foobar) {
+        //eslint-disable-line no-unused-vars
         return {
-          catch() { }
+          catch() {},
         };
-      }
+      },
     });
 
-    deactivateItemSpy.then = function () { };
+    deactivateItemSpy.then = function() {};
 
     const updatedProps = {
       ...props,
       itemActions: {
-        deactivateItem: deactivateItemSpy
-      }
+        deactivateItem: deactivateItemSpy,
+      },
     };
 
     const expected = true;
@@ -109,11 +107,9 @@ describe('<Item />', () => {
 
     const actual = deactivateItemSpy.calledWith(items[0]);
     expect(actual).equals(expected);
-
   });
 
   it('should filter the list to only include the items from the searchCriteria', () => {
-
     const searchCriteria = 'B';
     const expected = 1;
     const wrapper = shallow(<Item.WrappedComponent {...props} />);
@@ -121,21 +117,19 @@ describe('<Item />', () => {
     const event = {
       target: {
         name: 'filter',
-        value: searchCriteria
-      }
+        value: searchCriteria,
+      },
     };
 
     const instance = wrapper.instance();
     instance.searchOnChange(event);
 
-    const actual = instance.state
-      .items.length;
+    const actual = instance.state.items.length;
 
     expect(actual).equals(expected);
   });
 
   it('should filter the list and match on lowercase as well', () => {
-
     const searchCriteria = 'b';
     const expected = 1;
     const wrapper = shallow(<Item.WrappedComponent {...props} />);
@@ -143,21 +137,19 @@ describe('<Item />', () => {
     const event = {
       target: {
         name: 'filter',
-        value: searchCriteria
-      }
+        value: searchCriteria,
+      },
     };
 
     const instance = wrapper.instance();
     instance.searchOnChange(event);
 
-    const actual = instance.state
-      .items.length;
+    const actual = instance.state.items.length;
 
     expect(actual).equals(expected);
   });
 
   it('should set the filter object appropriately on the local state', () => {
-
     const searchCriteria = 'b';
     const expected = searchCriteria;
     const wrapper = shallow(<Item.WrappedComponent {...props} />);
@@ -165,17 +157,15 @@ describe('<Item />', () => {
     const event = {
       target: {
         name: 'filter',
-        value: searchCriteria
-      }
+        value: searchCriteria,
+      },
     };
 
     const instance = wrapper.instance();
     instance.searchOnChange(event);
 
-    const actual = instance.state
-      .filter;
+    const actual = instance.state.filter;
 
     expect(actual).equals(expected);
   });
-
 });

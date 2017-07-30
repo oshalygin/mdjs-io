@@ -1,3 +1,7 @@
+## 3.0.0 (July 26, 2017)
+
+- Mass linting update to leverage `prettier`.
+
 ## 2.54.0 (July 26, 2017)
 
 - Addition of kubernetes update script which updates the underlying tag based on the version defined in package.json

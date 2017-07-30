@@ -10,7 +10,6 @@ jest.dontMock('react-router');
 import { expect } from 'chai';
 
 describe('<Categories />', () => {
-
   const categories = [
     {
       categoryID: 37,
@@ -22,7 +21,7 @@ describe('<Categories />', () => {
       isActive: true,
       items: [],
       lastUpdatedBy: 1,
-      lastUpdatedDate: '2017-03-27T17:54:03.22'
+      lastUpdatedDate: '2017-03-27T17:54:03.22',
     },
     {
       categoryID: 40,
@@ -34,19 +33,18 @@ describe('<Categories />', () => {
       isActive: true,
       items: [],
       lastUpdatedBy: 1,
-      lastUpdatedDate: '2017-03-27T17:54:03.22'
-    }
+      lastUpdatedDate: '2017-03-27T17:54:03.22',
+    },
   ];
 
   const props = {
     categories,
     query: '',
     filter: '',
-    categoryActions() { }
+    categoryActions() {},
   };
 
   it('should contain a button component that is titled "New Category"', () => {
-
     const expected = 'New Category';
     const wrapper = shallow(<Categories.WrappedComponent {...props} />);
 
@@ -56,7 +54,6 @@ describe('<Categories />', () => {
   });
 
   it('should navigate to the "category" route when navigateToNewCategoryPage is called', () => {
-
     const redirectSpy = sinon.spy();
     const browserHistory = require('react-router').browserHistory;
     browserHistory.push = redirectSpy;
@@ -73,22 +70,22 @@ describe('<Categories />', () => {
   });
 
   it('should dispatch the deactivate action with the passed in id that matches the categories in the list', () => {
-
     const triggerCategoryDeletionSpy = sinon.stub().returns({
-      then(foobar) { //eslint-disable-line no-unused-vars
+      then(foobar) {
+        //eslint-disable-line no-unused-vars
         return {
-          catch() { }
+          catch() {},
         };
-      }
+      },
     });
 
-    triggerCategoryDeletionSpy.then = function () { };
+    triggerCategoryDeletionSpy.then = function() {};
 
     const updatedProps = {
       ...props,
       categoryActions: {
-        triggerCategoryDeletion: triggerCategoryDeletionSpy
-      }
+        triggerCategoryDeletion: triggerCategoryDeletionSpy,
+      },
     };
 
     const expected = true;
@@ -99,11 +96,9 @@ describe('<Categories />', () => {
 
     const actual = triggerCategoryDeletionSpy.calledWith(categories[0]);
     expect(actual).equals(expected);
-
   });
 
   it('should filter the list to only include the categories from the searchCriteria', () => {
-
     const searchCriteria = 'B';
     const expected = 1;
     const wrapper = shallow(<Categories.WrappedComponent {...props} />);
@@ -111,21 +106,19 @@ describe('<Categories />', () => {
     const event = {
       target: {
         name: 'filter',
-        value: searchCriteria
-      }
+        value: searchCriteria,
+      },
     };
 
     const instance = wrapper.instance();
     instance.searchOnChange(event);
 
-    const actual = instance.state
-      .categories.length;
+    const actual = instance.state.categories.length;
 
     expect(actual).equals(expected);
   });
 
   it('should filter the list and match on lowercase as well', () => {
-
     const searchCriteria = 'b';
     const expected = 1;
     const wrapper = shallow(<Categories.WrappedComponent {...props} />);
@@ -133,21 +126,19 @@ describe('<Categories />', () => {
     const event = {
       target: {
         name: 'filter',
-        value: searchCriteria
-      }
+        value: searchCriteria,
+      },
     };
 
     const instance = wrapper.instance();
     instance.searchOnChange(event);
 
-    const actual = instance.state
-      .categories.length;
+    const actual = instance.state.categories.length;
 
     expect(actual).equals(expected);
   });
 
   it('should set the filter object appropriately on the local state', () => {
-
     const searchCriteria = 'b';
     const expected = searchCriteria;
     const wrapper = shallow(<Categories.WrappedComponent {...props} />);
@@ -155,17 +146,15 @@ describe('<Categories />', () => {
     const event = {
       target: {
         name: 'filter',
-        value: searchCriteria
-      }
+        value: searchCriteria,
+      },
     };
 
     const instance = wrapper.instance();
     instance.searchOnChange(event);
 
-    const actual = instance.state
-      .filter;
+    const actual = instance.state.filter;
 
     expect(actual).equals(expected);
   });
-
 });

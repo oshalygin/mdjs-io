@@ -20,7 +20,7 @@ const storage = multer.diskStorage({
   },
   filename(request, file, callback) {
     callback(null, file.originalname);
-  }
+  },
 });
 
 const uploads = multer({ storage });
@@ -37,9 +37,7 @@ router
   .delete(itemController.deleteItem);
 
 // {api/v1/orders}
-router
-  .route('/orders/:id?')
-  .get(ordersController.get);
+router.route('/orders/:id?').get(ordersController.get);
 
 // {api/v1/categories}
 router
@@ -80,13 +78,9 @@ router
   .post(accountController.post);
 
 // {api/v1/version}
-router
-  .route('/version')
-  .get(versionController.get);
+router.route('/version').get(versionController.get);
 
 // {api/v1/images}
-router
-  .route('/images/:id')
-  .get(imagesController.get);
+router.route('/images/:id').get(imagesController.get);
 
 export default router;

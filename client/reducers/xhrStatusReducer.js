@@ -7,7 +7,10 @@ function actionTypeContainsSuccess(actionType) {
   return actionType.includes(successSearch) || actionType.includes(errorSearch);
 }
 
-export default function xhrStatusReducer(state = initialState.numberOfXHRCallsInProgress, action) {
+export default function xhrStatusReducer(
+  state = initialState.numberOfXHRCallsInProgress,
+  action,
+) {
   if (action.type === actionTypes.XHR_CALL_START) {
     return state + 1;
   } else if (actionTypeContainsSuccess(action.type)) {

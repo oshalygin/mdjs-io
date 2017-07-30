@@ -11,21 +11,20 @@ export function getOrderStatusDescription(orderStatusId) {
     { id: 120, description: 'Payment Failed' },
     { id: 210, description: 'On Hold' },
     { id: 220, description: 'Fraud' },
-    { id: 230, description: 'Payment Review' }
+    { id: 230, description: 'Payment Review' },
   ];
 
-  const orderStatus = orderStatusEnum.find(status => status.id === orderStatusId);
+  const orderStatus = orderStatusEnum.find(
+    status => status.id === orderStatusId,
+  );
 
-  return orderStatus ?
-    orderStatus.description :
-    '';
+  return orderStatus ? orderStatus.description : '';
 }
 
 export const cashTransactionTypeId = 1;
 export const creditCardTransactionTypeId = 3;
 
 export function getTransactionType(transactionTypeId) {
-
   const transactionTypeEnum = [
     { id: 0, description: 'None' },
     { id: 1, description: 'Cash' },
@@ -41,37 +40,40 @@ export function getTransactionType(transactionTypeId) {
     { id: 11, description: 'Sale' },
     { id: 12, description: 'Repeat Sale' },
     { id: 13, description: 'Adjustment' },
-    { id: 14, description: 'Force' }
+    { id: 14, description: 'Force' },
   ];
 
-  const transactionType = transactionTypeEnum.find(status => status.id === transactionTypeId);
+  const transactionType = transactionTypeEnum.find(
+    status => status.id === transactionTypeId,
+  );
 
-  return transactionType ?
-    transactionType.description :
-    '';
-
+  return transactionType ? transactionType.description : '';
 }
 
 export function mapOrderSummary(orderData, dateString) {
-
   const date = new Date(dateString);
   const monthValue = date.getMonth();
   const year = date.getFullYear();
-  const monthDisplayName = dateFns.format(new Date(year, monthValue, 1), 'MMMM');
+  const monthDisplayName = dateFns.format(
+    new Date(year, monthValue, 1),
+    'MMMM',
+  );
   const orderCount = orderData.length;
 
-  const monthSummary = orderData.reduce((previous, next) => {
-    return {
-      monthDisplayName: previous.monthDisplayName,
-      monthValue: previous.monthValue,
-      orderCount: previous.orderCount,
-      year: previous.year,
-      total: previous.total + next.total,
-      totalDiscount: previous.totalDiscount + next.totalDiscount,
-      totalTax: previous.totalTax + next.totalTax,
-      totalTip: previous.totalTip + next.totalTip
-    };
-  }, {
+  const monthSummary = orderData.reduce(
+    (previous, next) => {
+      return {
+        monthDisplayName: previous.monthDisplayName,
+        monthValue: previous.monthValue,
+        orderCount: previous.orderCount,
+        year: previous.year,
+        total: previous.total + next.total,
+        totalDiscount: previous.totalDiscount + next.totalDiscount,
+        totalTax: previous.totalTax + next.totalTax,
+        totalTip: previous.totalTip + next.totalTip,
+      };
+    },
+    {
       monthDisplayName, //eslint-disable-line indent
       monthValue, //eslint-disable-line indent
       orderCount, //eslint-disable-line indent
@@ -79,14 +81,14 @@ export function mapOrderSummary(orderData, dateString) {
       total: 0, //eslint-disable-line indent
       totalDiscount: 0, //eslint-disable-line indent
       totalTax: 0, //eslint-disable-line indent
-      totalTip: 0 //eslint-disable-line indent
-    }); //eslint-disable-line indent
+      totalTip: 0, //eslint-disable-line indent
+    },
+  ); //eslint-disable-line indent
 
   return monthSummary;
 }
 
 export function flattenOrders(results) {
-
   const orders = [];
 
   results.forEach(result => {
@@ -97,38 +99,31 @@ export function flattenOrders(results) {
 }
 
 export function orderAverage(orders) {
-
   const size = orders.length;
   if (!size) {
     return 0;
   }
 
-  const total = orders
-    .reduce((previous, next) => {
-      return previous + next.total;
-    }, 0);
+  const total = orders.reduce((previous, next) => {
+    return previous + next.total;
+  }, 0);
 
-  const sizeExcludingZeros = orders
-    .filter(order => order.total)
-    .length;
+  const sizeExcludingZeros = orders.filter(order => order.total).length;
 
   const average = (total / sizeExcludingZeros).toFixed(2);
   return Number(average);
-
 }
 
 export function monthlyAverage(monthlySummary, property) {
-
   const size = monthlySummary.length;
 
   if (!size) {
     return 0;
   }
 
-  const totalSales = monthlySummary
-    .reduce((previous, next) => {
-      return previous + next[property];
-    }, 0);
+  const totalSales = monthlySummary.reduce((previous, next) => {
+    return previous + next[property];
+  }, 0);
 
   const monthlyAverageValue = totalSales / size;
   const average = Number(monthlyAverageValue.toFixed(2));
@@ -137,32 +132,33 @@ export function monthlyAverage(monthlySummary, property) {
 }
 
 export function yearToDateTotal(monthlySummary) {
+  const currentYear = new Date().getFullYear();
+  const monthlySummaryForCurrentYear = monthlySummary.filter(
+    month => month.year === currentYear,
+  );
 
-  const currentYear = (new Date()).getFullYear();
-  const monthlySummaryForCurrentYear = monthlySummary
-    .filter(month => month.year === currentYear);
-
-  const yearToDateAmount = monthlySummaryForCurrentYear
-    .reduce((previous, next) => {
+  const yearToDateAmount = monthlySummaryForCurrentYear.reduce(
+    (previous, next) => {
       return previous + next.total;
-    }, 0);
+    },
+    0,
+  );
 
   return yearToDateAmount;
 }
 
 export function todaysOrders(orders) {
-
-  const ordersFromToday = orders
-    .filter(order => dateFns.isToday(new Date(order.createdDate)));
+  const ordersFromToday = orders.filter(order =>
+    dateFns.isToday(new Date(order.createdDate)),
+  );
 
   return ordersFromToday;
 }
 
 export function yesterdaysOrders(orders) {
-
-  const ordersFromToday = orders
-    .filter(order => dateFns.isYesterday(new Date(order.createdDate)));
+  const ordersFromToday = orders.filter(order =>
+    dateFns.isYesterday(new Date(order.createdDate)),
+  );
 
   return ordersFromToday;
 }
-

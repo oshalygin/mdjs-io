@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 import { browserHistory } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 
@@ -22,7 +21,7 @@ export class Taxes extends React.Component {
 
     this.state = {
       taxes: props.taxes,
-      filter: ''
+      filter: '',
     };
 
     this.deactivate = this.deactivate.bind(this);
@@ -38,10 +37,10 @@ export class Taxes extends React.Component {
     const { taxes } = this.state;
     const { taxActions } = this.props;
 
-    const deactivatedTax = taxes
-      .find(tax => tax.taxID === taxId);
+    const deactivatedTax = taxes.find(tax => tax.taxID === taxId);
 
-    taxActions.deactivateTax(deactivatedTax)
+    taxActions
+      .deactivateTax(deactivatedTax)
       .then(() => {
         //TODO: #68 - Add Snackbar control that indicates success
       })
@@ -53,18 +52,15 @@ export class Taxes extends React.Component {
   searchOnChange(event) {
     const { taxes } = this.props;
 
-    const filter = event.target.value
-      .toLowerCase();
+    const filter = event.target.value.toLowerCase();
 
-    const filteredTaxes = taxes
-      .filter(tax => tax
-        .taxName
-        .toLowerCase()
-        .includes(filter));
+    const filteredTaxes = taxes.filter(tax =>
+      tax.taxName.toLowerCase().includes(filter),
+    );
 
     this.setState({
       filter,
-      taxes: filteredTaxes
+      taxes: filteredTaxes,
     });
   }
 
@@ -95,12 +91,11 @@ export class Taxes extends React.Component {
                     onChange={this.searchOnChange}
                     errorText={this.state.error}
                     style={fullWidth}
-                    floatingLabelText="Filter" />
+                    floatingLabelText="Filter"
+                  />
                 </div>
               </div>
-              <TaxTable
-                taxes={taxes}
-                deactivate={this.deactivate} />
+              <TaxTable taxes={taxes} deactivate={this.deactivate} />
             </div>
           </div>
         </div>
@@ -111,17 +106,17 @@ export class Taxes extends React.Component {
 
 Taxes.propTypes = {
   taxes: PropTypes.array.isRequired,
-  taxActions: PropTypes.object.isRequired
+  taxActions: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
-    taxes: state.taxes
+    taxes: state.taxes,
   };
 }
 function mapDispatchToProps(dispatch) {
   return {
-    taxActions: bindActionCreators(actionCreators, dispatch)
+    taxActions: bindActionCreators(actionCreators, dispatch),
   };
 }
 

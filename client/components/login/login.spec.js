@@ -13,16 +13,14 @@ jest.dontMock('react-router');
 import { expect } from 'chai';
 
 describe('<Login />', () => {
-
   const props = {
     loading: {
-      loadingUser: false
+      loadingUser: false,
     },
-    user: {}
+    user: {},
   };
 
   it('should contain a heading with a className of "logo-name"', () => {
-
     const expected = 'logo-name';
     const wrapper = shallow(<Login.WrappedComponent {...props} />);
 
@@ -32,7 +30,6 @@ describe('<Login />', () => {
   });
 
   it('should display the LoginForm component when the loadingUser flag is false', () => {
-
     const expected = 1;
     const wrapper = shallow(<Login.WrappedComponent {...props} />);
 
@@ -43,7 +40,7 @@ describe('<Login />', () => {
 
   it('should display the Spinner component when the loadingUser flag is true', () => {
     const loading = {
-      loadingUser: true
+      loadingUser: true,
     };
     const updatedProps = { ...props, loading };
     const expected = 1;
@@ -55,7 +52,6 @@ describe('<Login />', () => {
   });
 
   it('should contain a version component', () => {
-
     const expected = 1;
     const wrapper = shallow(<Login.WrappedComponent {...props} />);
 
@@ -65,7 +61,6 @@ describe('<Login />', () => {
   });
 
   it('should contain a <Snackbar /> component', () => {
-
     const expected = 1;
     const wrapper = shallow(<Login.WrappedComponent {...props} />);
 
@@ -75,10 +70,8 @@ describe('<Login />', () => {
   });
 
   it('should turn off the notification when calling closeNotification', () => {
-
     const expected = false;
-    const instance = shallow(<Login.WrappedComponent {...props} />)
-      .instance();
+    const instance = shallow(<Login.WrappedComponent {...props} />).instance();
 
     instance.setState({ notification: true });
     instance.closeNotification();
@@ -89,14 +82,12 @@ describe('<Login />', () => {
   });
 
   it('should redirect to the dashboard if the redirect function is called', () => {
-
     const redirectSpy = sinon.spy();
     const browserHistory = require('react-router').browserHistory;
     browserHistory.push = redirectSpy;
 
     const expected = false;
-    const instance = shallow(<Login.WrappedComponent {...props} />)
-      .instance();
+    const instance = shallow(<Login.WrappedComponent {...props} />).instance();
 
     instance.redirect();
 
@@ -104,5 +95,4 @@ describe('<Login />', () => {
 
     expect(actual).equals(expected);
   });
-
 });

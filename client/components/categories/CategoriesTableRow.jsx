@@ -11,7 +11,6 @@ import { browserHistory } from 'react-router';
 import './categories.css';
 
 class CategoriesTableRow extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -24,29 +23,46 @@ class CategoriesTableRow extends React.Component {
   }
 
   disabledText(categoryDisabledState) {
-    return categoryDisabledState
-      ? 'mdl-color-text--grey'
-      : '';
+    return categoryDisabledState ? 'mdl-color-text--grey' : '';
   }
 
   render() {
     const { category, deactivate, ...otherProps } = this.props; // eslint-disable-line
-    const parsedLastUpdatedDate = dateFns.format(category.lastUpdatedDate, 'MMM DD, YYYY - hh:mm A');
-    const parsedCreatedDate = dateFns.format(category.createdDate, 'MMM DD, YYYY - hh:mm A');
+    const parsedLastUpdatedDate = dateFns.format(
+      category.lastUpdatedDate,
+      'MMM DD, YYYY - hh:mm A',
+    );
+    const parsedCreatedDate = dateFns.format(
+      category.createdDate,
+      'MMM DD, YYYY - hh:mm A',
+    );
 
     return (
       <TableRow>
-        <TableRowColumn className={this.disabledText(category.disabled)}>{category.categoryName}</TableRowColumn>
-        <TableRowColumn className={this.disabledText(category.disabled)}>{parsedCreatedDate}</TableRowColumn>
-        <TableRowColumn className={this.disabledText(category.disabled)}>{parsedLastUpdatedDate}</TableRowColumn>
+        <TableRowColumn className={this.disabledText(category.disabled)}>
+          {category.categoryName}
+        </TableRowColumn>
+        <TableRowColumn className={this.disabledText(category.disabled)}>
+          {parsedCreatedDate}
+        </TableRowColumn>
+        <TableRowColumn className={this.disabledText(category.disabled)}>
+          {parsedLastUpdatedDate}
+        </TableRowColumn>
         <TableRowColumn>
           <div styleName="inline-button">
-            <FlatButton label="Edit" onClick={() => this.navigateToEditLink(category.categoryID)} />
+            <FlatButton
+              label="Edit"
+              onClick={() => this.navigateToEditLink(category.categoryID)}
+            />
           </div>
         </TableRowColumn>
         <TableRowColumn>
           <div styleName="inline-button">
-            <RaisedButton label="Deactivate" secondary onClick={() => deactivate(category.categoryID)} />
+            <RaisedButton
+              label="Deactivate"
+              secondary
+              onClick={() => deactivate(category.categoryID)}
+            />
           </div>
         </TableRowColumn>
       </TableRow>
@@ -56,7 +72,7 @@ class CategoriesTableRow extends React.Component {
 
 CategoriesTableRow.propTypes = {
   category: PropTypes.object.isRequired,
-  deactivate: PropTypes.func.isRequired
+  deactivate: PropTypes.func.isRequired,
 };
 
 export default CategoriesTableRow;

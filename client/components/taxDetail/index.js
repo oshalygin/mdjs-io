@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 import { browserHistory } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import { connect } from 'react-redux';
@@ -17,13 +16,13 @@ import Spinner from '../common/spinner/';
 class TaxDetail extends React.Component {
   constructor(props, context) {
     super(props, context);
-    
+
     this.state = {
       errors: {},
       tax: props.tax,
       heading: '',
       notification: false,
-      notificationMessage: ''
+      notificationMessage: '',
     };
 
     this.onChange = this.onChange.bind(this);
@@ -36,7 +35,6 @@ class TaxDetail extends React.Component {
   }
 
   onChange(event, index, payload) {
-
     const { tax, errors } = this.state;
 
     if (Array.isArray(payload)) {
@@ -56,7 +54,6 @@ class TaxDetail extends React.Component {
 
     this.propertyIsValid(property, tax[property], errors);
     return this.setState({ tax });
-
   }
 
   closeNotification() {
@@ -72,24 +69,20 @@ class TaxDetail extends React.Component {
     }
 
     if (tax.taxID) {
-      taxActions.updateTax(tax)
-        .then(() => this.redirect())
-        .catch((error) => {
-          this.displayNotification(error.response.data);
-        });
+      taxActions.updateTax(tax).then(() => this.redirect()).catch(error => {
+        this.displayNotification(error.response.data);
+      });
     } else {
-      taxActions.createTax(tax)
-        .then(() => this.redirect())
-        .catch((error) => {
-          this.displayNotification(error.response.data);
-        });
+      taxActions.createTax(tax).then(() => this.redirect()).catch(error => {
+        this.displayNotification(error.response.data);
+      });
     }
   }
 
   displayNotification(message) {
     this.setState({
       notification: true,
-      notificationMessage: message
+      notificationMessage: message,
     });
   }
 
@@ -98,9 +91,10 @@ class TaxDetail extends React.Component {
   }
 
   propertyIsValid(property, value, errors) {
-    const patternTest = property === 'taxName'
-      ? new RegExp(/^[a-zA-Z ]*$/)
-      : new RegExp(/^[0-9]+([,.][0-9]+)?$/g);
+    const patternTest =
+      property === 'taxName'
+        ? new RegExp(/^[a-zA-Z ]*$/)
+        : new RegExp(/^[0-9]+([,.][0-9]+)?$/g);
 
     errors[property] = !patternTest.test(value) ? ' ' : false;
     this.setState({ errors });
@@ -117,7 +111,7 @@ class TaxDetail extends React.Component {
         }
       }
     }
-    
+
     // Check to see if the user selected items after checking "Individual Items"
     if (tax.taxTypeID && !tax.items.length) {
       return false;
@@ -136,16 +130,14 @@ class TaxDetail extends React.Component {
     const { taxHeading, loading, items } = this.props;
     const { tax, errors } = this.state;
 
-    const formComponent = !loading.createUpdateTax ?
-      (
-        <TaxDetailForm
+    const formComponent = !loading.createUpdateTax
+      ? <TaxDetailForm
           tax={tax}
           items={items}
           onChange={this.onChange}
-          errors={errors} />
-      ) :
-      (
-        <div className="ibox-content">
+          errors={errors}
+        />
+      : <div className="ibox-content">
           <div className="row">
             <div styleName="spinner-container">
               <div styleName="spinner">
@@ -153,8 +145,7 @@ class TaxDetail extends React.Component {
               </div>
             </div>
           </div>
-        </div>
-      );
+        </div>;
 
     return (
       <div>
@@ -162,7 +153,9 @@ class TaxDetail extends React.Component {
           <div className="col-sm-offset-3 col-sm-6">
             <div className="ibox float-e-margins">
               <div className="ibox-title">
-                <h5>{taxHeading}</h5>
+                <h5>
+                  {taxHeading}
+                </h5>
               </div>
               {formComponent}
             </div>
@@ -175,13 +168,15 @@ class TaxDetail extends React.Component {
                 styleName="left-control"
                 label="Back"
                 secondary
-                onClick={this.redirect} />
+                onClick={this.redirect}
+              />
             </div>
             <RaisedButton
               styleName="right-control"
               label="Save Tax"
               primary
-              onClick={this.onSave} />
+              onClick={this.onSave}
+            />
           </div>
         </div>
         <Snackbar
@@ -189,7 +184,8 @@ class TaxDetail extends React.Component {
           action="OK"
           message={this.state.notificationMessage}
           onActionTouchTap={this.closeNotification}
-          onRequestClose={this.closeNotification} />
+          onRequestClose={this.closeNotification}
+        />
       </div>
     );
   }
@@ -201,33 +197,30 @@ TaxDetail.propTypes = {
   loading: PropTypes.object.isRequired,
   taxHeading: PropTypes.string.isRequired,
   taxActions: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
 };
 
 TaxDetail.contextTypes = {
-  router: PropTypes.object
+  router: PropTypes.object,
 };
 
 export function mapStateToProps(state, ownProps) {
-
   let tax = {
     taxID: 0,
     taxName: '',
     value: 0,
-    items: []
+    items: [],
   };
 
   const { taxes } = state;
-  const existingTax = taxes
-    .find(stateTax => stateTax.taxID == ownProps.params.id || stateTax.taxID === tax.taxID); //eslint-disable-line
+  const existingTax = taxes.find(stateTax => stateTax.taxID == ownProps.params.id || stateTax.taxID === tax.taxID); //eslint-disable-line
 
   if (!!existingTax) {
     tax = { ...existingTax };
   }
 
-  const taxHeading = (existingTax && existingTax.taxID !== 0)
-    ? 'Update Tax'
-    : 'New Tax';
+  const taxHeading =
+    existingTax && existingTax.taxID !== 0 ? 'Update Tax' : 'New Tax';
 
   return {
     tax,
@@ -235,14 +228,14 @@ export function mapStateToProps(state, ownProps) {
     loading: state.loading,
     items: state.items,
     errors: {
-      taxName: false
-    }
+      taxName: false,
+    },
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    taxActions: bindActionCreators(actionCreators, dispatch)
+    taxActions: bindActionCreators(actionCreators, dispatch),
   };
 }
 

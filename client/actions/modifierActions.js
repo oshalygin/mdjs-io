@@ -8,129 +8,128 @@ import { loadUserToken } from '../utilities/localStorage';
 export function loadModifiersSuccess(modifiers) {
   return {
     type: actionTypes.LOAD_MODIFIERS_SUCCESS,
-    modifiers
+    modifiers,
   };
 }
 
-
 export function modifierDeactivated() {
   return {
-    type: actionTypes.MODIFIER_DEACTIVATED
+    type: actionTypes.MODIFIER_DEACTIVATED,
   };
 }
 
 export function modifierDeactivatedSuccess(modifier) {
   return {
     type: actionTypes.MODIFIER_DEACTIVATED_SUCCESS,
-    modifier
+    modifier,
   };
 }
 
 export function loadingModifierCreationSuccess() {
   return {
-    type: actionTypes.LOADING_MODIFIER_CREATION_SUCCESS
+    type: actionTypes.LOADING_MODIFIER_CREATION_SUCCESS,
   };
 }
 
 export function loadingModifierCreation() {
   return {
-    type: actionTypes.LOADING_MODIFIER_CREATION
+    type: actionTypes.LOADING_MODIFIER_CREATION,
   };
 }
 
 export function modifierCreatedSuccess(modifier) {
-
   return {
     type: actionTypes.MODIFIER_CREATED,
-    modifier
+    modifier,
   };
 }
 
 export function modifierCreationFailure() {
   return {
-    type: actionTypes.MODIFIER_CREATION_FAILURE
+    type: actionTypes.MODIFIER_CREATION_FAILURE,
   };
 }
 
 export function loadingModifierUpdate() {
   return {
-    type: actionTypes.LOADING_MODIFIER_UPDATE
+    type: actionTypes.LOADING_MODIFIER_UPDATE,
   };
 }
 
 export function modifierUpdatedSuccess(modifier) {
   return {
     type: actionTypes.MODIFIER_UPDATED,
-    modifier
+    modifier,
   };
 }
 
 export function loadingModifierUpdateSuccess() {
   return {
-    type: actionTypes.LOADING_MODIFIER_UPDATE_SUCCESS
+    type: actionTypes.LOADING_MODIFIER_UPDATE_SUCCESS,
   };
 }
 
 export function modifierUpdateFailure() {
   return {
-    type: actionTypes.MODIFIER_UPDATE_FAILURE
+    type: actionTypes.MODIFIER_UPDATE_FAILURE,
   };
 }
 
 export function createModifier(modifier) {
-  return async function (dispatch) {
-
+  return async function(dispatch) {
     dispatch(loadingModifierCreation());
 
     try {
-
       const token = loadUserToken();
 
       const headers = getHeaders(token);
-      const createdModifierResponse = await axios.post(MODIFIER_ENDPOINT, modifier, headers);
+      const createdModifierResponse = await axios.post(
+        MODIFIER_ENDPOINT,
+        modifier,
+        headers,
+      );
       const createdModifier = createdModifierResponse.data;
 
       dispatch(modifierCreatedSuccess(createdModifier));
       dispatch(loadingModifierCreationSuccess());
-
     } catch (error) {
       dispatch(modifierCreationFailure());
-      throw (error);
+      throw error;
     }
   };
 }
 
 export function updateModifier(modifier) {
-  return async function (dispatch) {
-
+  return async function(dispatch) {
     dispatch(loadingModifierUpdate());
 
     try {
-
       const token = loadUserToken();
       const headers = getHeaders(token);
       const endpoint = `${MODIFIER_ENDPOINT}/${modifier.modifierID}`;
 
-      const updatedModifierResponse = await axios.put(endpoint, modifier, headers);
+      const updatedModifierResponse = await axios.put(
+        endpoint,
+        modifier,
+        headers,
+      );
       const updatedModifier = updatedModifierResponse.data;
 
       dispatch(modifierUpdatedSuccess(updatedModifier));
       dispatch(loadingModifierUpdateSuccess());
-
     } catch (error) {
       dispatch(modifierUpdateFailure());
-      throw (error);
+      throw error;
     }
   };
 }
 
 export function deactivateModifier(modifier) {
-  return async function (dispatch) {
-
+  return async function(dispatch) {
     const deactivatedModifier = {
       ...modifier,
       isActive: false,
-      disabled: true
+      disabled: true,
     };
 
     dispatch(modifierDeactivated());
@@ -143,10 +142,8 @@ export function deactivateModifier(modifier) {
       await axios.delete(endpoint, headers);
 
       dispatch(modifierDeactivatedSuccess(deactivatedModifier));
-
     } catch (error) {
-      throw (error);
+      throw error;
     }
-
   };
 }

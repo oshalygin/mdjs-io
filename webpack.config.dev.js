@@ -5,24 +5,24 @@ import path from 'path';
 
 const GLOBALS = {
   'process.env.NODE_ENV': JSON.stringify('development'),
-  __DEV__: true
+  __DEV__: true,
 };
 
 export default {
   resolve: {
-    extensions: ['.js', '.jsx', '.json']
+    extensions: ['.js', '.jsx', '.json'],
   },
   devtool: '#source-map',
   entry: [
     // must be first entry to properly set public path
     'webpack-hot-middleware/client?reload=true',
-    path.resolve(__dirname, 'client/index.js') // Defining path seems necessary for this to work consistently on Windows machines.
+    path.resolve(__dirname, 'client/index.js'), // Defining path seems necessary for this to work consistently on Windows machines.
   ],
   target: 'web',
   output: {
     path: path.resolve(__dirname, 'dist-client'), // Note: Physical files are only output by the production build task `npm run build`.
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   plugins: [
     new webpack.DefinePlugin(GLOBALS),
@@ -30,86 +30,97 @@ export default {
       $: 'jquery', //eslint-disable-line id-length
       jQuery: 'jquery',
       'windows.jQuery': 'jquery',
-      'window.$': 'jquery'
+      'window.$': 'jquery',
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
       template: 'client/index.html',
       minify: {
-        removeComments: true
+        removeComments: true,
       },
-      inject: true
+      inject: true,
     }),
     new webpack.LoaderOptionsPlugin({
       debug: true,
       imageWebpackLoader: {
         mozjpeg: {
-          quality: 65
+          quality: 65,
         },
         pngquant: {
           quality: '65-90',
-          speed: 4
+          speed: 4,
         },
         optipng: {
-          optimizationLevel: 65
+          optimizationLevel: 65,
         },
         gifsicle: {
-          interlaced: false
+          interlaced: false,
         },
         svgo: {
           plugins: [
             {
-              removeViewBox: false
+              removeViewBox: false,
             },
             {
-              removeEmptyAttrs: false
-            }
-          ]
-        }
-      }
-    })
+              removeEmptyAttrs: false,
+            },
+          ],
+        },
+      },
+    }),
   ],
   module: {
     rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        use: ['babel-loader'],
       },
       {
         test: /\.css$/,
         exclude: /\.min\.css$/,
         use: [
           { loader: 'style-loader' },
-          { loader: 'css-loader', options: { modules: true, importLoader: 1, localIdentName: '[path]___[name]__[local]___[hash:base64:5]' } }
-        ]
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoader: 1,
+              localIdentName: '[path]___[name]__[local]___[hash:base64:5]',
+            },
+          },
+        ],
       },
       {
         test: /\.min\.css$/,
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader' }
-        ]
+        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
       },
       { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader' },
       {
         test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader?limit=10000&mimetype=application/font-woff'
-      }, {
-        test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+        loader: 'url-loader?limit=10000&mimetype=application/font-woff',
       },
-      { test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=application/octet-stream' },
-      { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=image/svg+xml' },
+      {
+        test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader?limit=10000&mimetype=application/font-woff',
+      },
+      {
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader?limit=10000&mimetype=application/octet-stream',
+      },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url-loader?limit=10000&mimetype=image/svg+xml',
+      },
       { test: /\.ico$/, loader: 'file-loader?name=[name].[ext]' },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
         use: [
           'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
-          'image-webpack-loader?bypassOnDebug'
-        ]
-      }
-    ]
-  }
+          'image-webpack-loader?bypassOnDebug',
+        ],
+      },
+    ],
+  },
 };

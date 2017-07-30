@@ -2,7 +2,7 @@ import fs from 'fs';
 
 function unlink(path) {
   return new Promise((resolve, reject) => {
-    fs.unlink(path, (error) => {
+    fs.unlink(path, error => {
       if (error) {
         reject(error);
       }
@@ -13,5 +13,5 @@ function unlink(path) {
 }
 
 export default {
-  unlink
+  unlink,
 };

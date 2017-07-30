@@ -8,8 +8,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 describe('<LoginForm />', () => {
   const props = {
-    onChange() { },
-    login() { }
+    onChange() {},
+    login() {},
   };
 
   it('should display two input fields', () => {
@@ -31,33 +31,27 @@ describe('<LoginForm />', () => {
   it('should set the display to none on the form if the hidden prop is passed in as true', () => {
     const updatedProps = {
       ...props,
-      hidden: true
+      hidden: true,
     };
-    
+
     const wrapper = shallow(<LoginForm {...updatedProps} />);
     const expected = 'none';
 
-    const actual = wrapper.first()
-      .props()
-      .style
-      .display;
-    
+    const actual = wrapper.first().props().style.display;
+
     expect(actual).equals(expected);
   });
 
   it('should set the display to initial on the form if the hidden prop is passed in as true', () => {
     const updatedProps = {
       ...props,
-      hidden: false
+      hidden: false,
     };
 
     const wrapper = shallow(<LoginForm {...updatedProps} />);
     const expected = 'initial';
 
-    const actual = wrapper.first()
-      .props()
-      .style
-      .display;
+    const actual = wrapper.first().props().style.display;
 
     expect(actual).equals(expected);
   });
@@ -65,17 +59,14 @@ describe('<LoginForm />', () => {
   it('should display the error text if the errors prop is passed in as true', () => {
     const updatedProps = {
       ...props,
-      errors: true
+      errors: true,
     };
 
     const wrapper = shallow(<LoginForm {...updatedProps} />);
     const expected = 'initial';
 
-    const actual = wrapper.find('.error-text')
-      .props()
-      .style
-      .display;
-    
+    const actual = wrapper.find('.error-text').props().style.display;
+
     expect(actual).equals(expected);
   });
 });

@@ -9,18 +9,17 @@ jest.dontMock('fs');
 
 jest.mock('../../services/imageService', () => {
   return {
-    upload: () => ['foobar.jpg']
+    upload: () => ['foobar.jpg'],
   };
 });
 
 jest.mock('../../utilities/fsUtility', () => {
   return {
-    unlink: () => Promise.resolve()
+    unlink: () => Promise.resolve(),
   };
 });
 
 describe('Item Controller', () => {
-
   const items = [
     {
       itemID: 85,
@@ -46,7 +45,7 @@ describe('Item Controller', () => {
       createdBy: 1,
       isActive: true,
       companyID: 1,
-      facilityID: 0
+      facilityID: 0,
     },
     {
       itemID: 82,
@@ -72,7 +71,7 @@ describe('Item Controller', () => {
       createdBy: 1,
       isActive: true,
       companyID: 1,
-      facilityID: 0
+      facilityID: 0,
     },
     {
       itemID: 33,
@@ -98,8 +97,8 @@ describe('Item Controller', () => {
       createdBy: 1,
       isActive: true,
       companyID: 1,
-      facilityID: 0
-    }
+      facilityID: 0,
+    },
   ];
 
   const file = {
@@ -110,15 +109,15 @@ describe('Item Controller', () => {
     destination: '/Users/oshalygin/dev/mdjs/temp-images',
     filename: 'profile.png',
     path: '/Users/oshalygin/dev/mdjs/temp-images/profile.png',
-    size: 432401
+    size: 432401,
   };
 
   const listOfItemsPayload = {
-    data: items
+    data: items,
   };
 
   const itemPayload = {
-    data: items[0]
+    data: items[0],
   };
 
   beforeEach(() => {
@@ -130,123 +129,116 @@ describe('Item Controller', () => {
   });
 
   it('should return a 400 status code if the id is not a number', () => {
-
     const expected = true;
 
     const sendSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
-      send: sendSpy
+      send: sendSpy,
     });
 
     const response = {
-      status: statusStub
+      status: statusStub,
     };
 
     const request = {
       params: {
-        id: 'foobar'
-      }
+        id: 'foobar',
+      },
     };
 
     ItemController.get(request, response);
 
     const actual = statusStub.calledWith(400);
     expect(actual).equals(expected);
-
   });
 
   it('should return a 200 status code on a successful request', () => {
-
     moxios.stubRequest(ITEM_ENDPOINT, {
       status: 200,
-      response: listOfItemsPayload
+      response: listOfItemsPayload,
     });
 
     const expected = true;
 
     const jsonSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
-      json: jsonSpy
+      json: jsonSpy,
     });
 
     const response = {
-      status: statusStub
+      status: statusStub,
     };
 
     const request = {
       headers: {
-        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
+        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e',
       },
-      params: {}
+      params: {},
     };
 
     return ItemController.get(request, response).then(() => {
       const actual = statusStub.calledWith(200);
       expect(actual).equals(expected);
     });
-
   });
 
   it('should return a list of items on a successful request', () => {
-
     moxios.stubRequest(ITEM_ENDPOINT, {
       status: 200,
-      response: listOfItemsPayload
+      response: listOfItemsPayload,
     });
 
     const expected = true;
 
     const jsonSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
-      json: jsonSpy
+      json: jsonSpy,
     });
 
     const response = {
-      status: statusStub
+      status: statusStub,
     };
 
     const request = {
       headers: {
-        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
+        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e',
       },
-      params: {}
+      params: {},
     };
 
     return ItemController.get(request, response).then(() => {
       const actual = jsonSpy.calledWith(items);
       expect(actual).equals(expected);
     });
-
   });
 
   it('should return a single item on a successful request', () => {
-
     const itemId = 3;
     const itemEndpoint = `${ITEM_ENDPOINT}/${itemId}`;
 
     moxios.stubRequest(itemEndpoint, {
       status: 200,
-      response: itemPayload
+      response: itemPayload,
     });
 
     const expected = true;
 
     const jsonSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
-      json: jsonSpy
+      json: jsonSpy,
     });
 
     const response = {
-      status: statusStub
+      status: statusStub,
     };
 
     const request = {
       headers: {
-        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
+        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e',
       },
       params: {
-        id: itemId
-      }
+        id: itemId,
+      },
     };
 
     return ItemController.get(request, response).then(() => {
@@ -256,83 +248,79 @@ describe('Item Controller', () => {
   });
 
   it('should return 404 if the request fails on the backend for any reason', () => {
-
     const serverResponse = {
       response: {
         data: {
-          message: 'Invalid username or password'
-        }
-      }
+          message: 'Invalid username or password',
+        },
+      },
     };
 
     moxios.stubRequest(ITEM_ENDPOINT, {
       status: 500,
-      response: serverResponse
+      response: serverResponse,
     });
 
     const expected = true;
 
     const sendSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
-      send: sendSpy
+      send: sendSpy,
     });
 
     const response = {
-      status: statusStub
+      status: statusStub,
     };
 
     const request = {
       headers: {
-        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
+        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e',
       },
-      params: {}
+      params: {},
     };
 
     return ItemController.get(request, response).then(() => {
       const actual = statusStub.calledWith(404);
       expect(actual).equals(expected);
     });
-
   });
 
   it('should return 404 if the request fell through the backend', () => {
-
     const serverResponse = {
       response: {
         data: {
-          message: 'Invalid username or password'
-        }
-      }
+          message: 'Invalid username or password',
+        },
+      },
     };
 
     moxios.stubRequest(ITEM_ENDPOINT, {
       status: 200,
-      response: serverResponse
+      response: serverResponse,
     });
 
     const expected = true;
 
     const sendSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
-      send: sendSpy
+      send: sendSpy,
     });
 
     const response = {
-      status: statusStub
+      status: statusStub,
     };
 
     const request = {
       headers: {
-        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
+        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e',
       },
-      params: {}
+      params: {},
     };
 
     return ItemController.get(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });
-
   });
 
   it('should return a 400 status code if itemId is null on a deletion call', () => {
@@ -340,173 +328,162 @@ describe('Item Controller', () => {
 
     const sendSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
-      send: sendSpy
+      send: sendSpy,
     });
 
     const response = {
-      status: statusStub
+      status: statusStub,
     };
 
     const request = {
-      params: {}
+      params: {},
     };
 
     ItemController.deleteItem(request, response);
 
     const actual = statusStub.calledWith(400);
     expect(actual).equals(expected);
-
   });
 
   it('should return 404 if the request fell through the backend on a deleteItem call', () => {
-
     const itemId = 3;
     const itemEndpoint = `${ITEM_ENDPOINT}/${itemId}`;
 
     const serverResponse = {
       response: {
         data: {
-          message: 'Bad Request'
-        }
-      }
+          message: 'Bad Request',
+        },
+      },
     };
 
     moxios.stubRequest(itemEndpoint, {
       status: 500,
-      response: serverResponse
+      response: serverResponse,
     });
 
     const expected = true;
 
     const sendSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
-      send: sendSpy
+      send: sendSpy,
     });
 
     const response = {
-      status: statusStub
+      status: statusStub,
     };
 
     const request = {
       headers: {
-        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
+        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e',
       },
       params: {
-        id: itemId
-      }
+        id: itemId,
+      },
     };
 
     return ItemController.deleteItem(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });
-
   });
 
   it('should respond with a 200 on a successful deletion call', () => {
-
     const itemId = 3;
     const itemEndpoint = `${ITEM_ENDPOINT}/${itemId}`;
 
     const serverResponse = {
       response: {
         data: {
-          message: 'OK'
-        }
-      }
+          message: 'OK',
+        },
+      },
     };
 
     moxios.stubRequest(itemEndpoint, {
       status: 200,
-      response: serverResponse
+      response: serverResponse,
     });
 
     const expected = true;
 
     const sendSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
-      send: sendSpy
+      send: sendSpy,
     });
 
     const response = {
-      status: statusStub
+      status: statusStub,
     };
 
     const request = {
       headers: {
-        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
+        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e',
       },
       params: {
-        id: itemId
-      }
+        id: itemId,
+      },
     };
 
     return ItemController.deleteItem(request, response).then(() => {
       const actual = statusStub.calledWith(200);
       expect(actual).equals(expected);
     });
-
   });
 
   it('should return a 400 status code if the id is not a number on a put request', () => {
-
     const expected = true;
 
     const sendSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
-      send: sendSpy
+      send: sendSpy,
     });
 
     const response = {
-      status: statusStub
+      status: statusStub,
     };
 
     const request = {
       params: {
-        id: 'foobar'
+        id: 'foobar',
       },
-      body: {}
+      body: {},
     };
 
     return ItemController.put(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });
-
   });
 
   it('should return a 400 status code if the body is null on an update request', () => {
-
     const itemId = 3;
 
     const expected = true;
 
     const sendSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
-      send: sendSpy
+      send: sendSpy,
     });
 
     const response = {
-      status: statusStub
+      status: statusStub,
     };
 
     const request = {
       params: {
-        id: itemId
+        id: itemId,
       },
-      body: {}
+      body: {},
     };
-
 
     return ItemController.put(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });
-
   });
 
   it('should return a 200 status code on a successful put call to update an item', () => {
-
     const expected = true;
 
     const itemId = items[0].itemID;
@@ -515,374 +492,351 @@ describe('Item Controller', () => {
 
     moxios.stubRequest(itemEndpoint, {
       status: 200,
-      response: itemPayload
+      response: itemPayload,
     });
 
     const jsonSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
-      json: jsonSpy
+      json: jsonSpy,
     });
 
     const response = {
-      status: statusStub
+      status: statusStub,
     };
 
     const fs = require('fs');
-    fs.unlink = () => { };
-    fs.createReadStream = () => { };
+    fs.unlink = () => {};
+    fs.createReadStream = () => {};
 
     const request = {
       headers: {
-        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
+        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e',
       },
       params: {
-        id: itemId
+        id: itemId,
       },
       file,
       body: {
-        item: JSON.stringify(items[0])
-      }
+        item: JSON.stringify(items[0]),
+      },
     };
 
     return ItemController.put(request, response).then(() => {
       const actual = statusStub.calledWith(200);
       expect(actual).equals(expected);
     });
-
   });
 
   it('should unlink the file on an unsuccessful PUT request', () => {
-
     const expected = true;
 
     moxios.stubRequest(ITEM_ENDPOINT, {
-      status: 500
+      status: 500,
     });
 
     const sendSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
-      send: sendSpy
+      send: sendSpy,
     });
 
     const response = {
-      status: statusStub
+      status: statusStub,
     };
 
     const unlinkSpy = sinon.spy();
 
     const fs = require('fs');
     fs.unlink = unlinkSpy;
-    fs.createReadStream = () => { };
+    fs.createReadStream = () => {};
 
     const request = {
       headers: {
-        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
+        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e',
       },
       params: {},
       file,
       body: {
-        item: items[0]
-      }
+        item: items[0],
+      },
     };
 
     return ItemController.put(request, response).then(() => {
       const actual = unlinkSpy.called;
       expect(actual).equals(expected);
     });
-
   });
 
   it('should set the file to null and thus not call unlink if the file was not part of the PUT request', () => {
-
     const expected = true;
 
     const sendSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
-      send: sendSpy
+      send: sendSpy,
     });
 
     const response = {
-      status: statusStub
+      status: statusStub,
     };
 
     const unlinkSpy = sinon.spy();
 
-
     const fs = require('fs');
     fs.unlink = unlinkSpy;
-    fs.createReadStream = () => { };
+    fs.createReadStream = () => {};
 
     const request = {
       headers: {
-        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
+        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e',
       },
       params: {},
       body: {
-        item: items[0]
-      }
+        item: items[0],
+      },
     };
 
     return ItemController.put(request, response).then(() => {
       const actual = unlinkSpy.notCalled;
       expect(actual).equals(expected);
     });
-
   });
 
   it('should return 400 if the request fell through the backend on a put update', () => {
-
     const itemId = 3;
     const itemEndpoint = `${ITEM_ENDPOINT}/${itemId}`;
 
     const serverResponse = {
       response: {
         data: {
-          message: 'Bad Request'
-        }
-      }
+          message: 'Bad Request',
+        },
+      },
     };
 
     moxios.stubRequest(itemEndpoint, {
       status: 500,
-      response: serverResponse
+      response: serverResponse,
     });
 
     const expected = true;
 
     const sendSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
-      send: sendSpy
+      send: sendSpy,
     });
 
     const response = {
-      status: statusStub
+      status: statusStub,
     };
 
     const request = {
       headers: {
-        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
+        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e',
       },
       params: {
-        id: itemId
+        id: itemId,
       },
       body: {
-        ...items[0]
-      }
+        ...items[0],
+      },
     };
 
     return ItemController.put(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });
-
   });
 
   it('should return 400 if the request fell through the backend on a post update', () => {
-
     const serverResponse = {
       response: {
         data: {
-          message: 'Bad Request'
-        }
-      }
+          message: 'Bad Request',
+        },
+      },
     };
 
     moxios.stubRequest(ITEM_ENDPOINT, {
       status: 500,
-      response: serverResponse
+      response: serverResponse,
     });
 
     const expected = true;
 
     const sendSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
-      send: sendSpy
+      send: sendSpy,
     });
 
     const response = {
-      status: statusStub
+      status: statusStub,
     };
 
     const request = {
       headers: {
-        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
+        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e',
       },
       params: {},
       body: {
-        ...items[0]
-      }
+        ...items[0],
+      },
     };
 
     return ItemController.post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });
-
   });
 
   it('should return a 200 status code on a successful post call to create a new item', () => {
-
     const expected = true;
 
     moxios.stubRequest(ITEM_ENDPOINT, {
       status: 200,
-      response: itemPayload
+      response: itemPayload,
     });
 
     const jsonSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
-      json: jsonSpy
+      json: jsonSpy,
     });
 
     const response = {
-      status: statusStub
+      status: statusStub,
     };
-    
+
     const request = {
       headers: {
-        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
+        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e',
       },
       params: {},
       file,
       body: {
-        item: JSON.stringify(items[0])
-      }
+        item: JSON.stringify(items[0]),
+      },
     };
 
     return ItemController.post(request, response).then(() => {
       const actual = statusStub.calledWith(200);
       expect(actual).equals(expected);
     });
-
   });
 
   it('should unlink the file on an unsuccessful post request', () => {
-
     const expected = true;
 
     const sendSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
-      send: sendSpy
+      send: sendSpy,
     });
 
     const response = {
-      status: statusStub
+      status: statusStub,
     };
 
     const unlinkSpy = sinon.spy();
 
     const fs = require('fs');
     fs.unlink = unlinkSpy;
-    fs.createReadStream = () => { };
+    fs.createReadStream = () => {};
 
     const request = {
       headers: {
-        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
+        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e',
       },
       params: {},
       file,
       body: {
-        item: items[0]
-      }
+        item: items[0],
+      },
     };
 
     return ItemController.post(request, response).then(() => {
       const actual = unlinkSpy.called;
       expect(actual).equals(expected);
     });
-
   });
 
   it('should set the file to null and thus not call unlink if the file was not part of the request', () => {
-
     const expected = true;
 
     const sendSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
-      send: sendSpy
+      send: sendSpy,
     });
 
     const response = {
-      status: statusStub
+      status: statusStub,
     };
 
     const unlinkSpy = sinon.spy();
 
     const fs = require('fs');
     fs.unlink = unlinkSpy;
-    fs.createReadStream = () => { };
+    fs.createReadStream = () => {};
 
     const request = {
       headers: {
-        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
+        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e',
       },
       params: {},
       body: {
-        item: items[0]
-      }
+        item: items[0],
+      },
     };
 
     return ItemController.post(request, response).then(() => {
       const actual = unlinkSpy.notCalled;
       expect(actual).equals(expected);
     });
-
   });
 
   it('should return a 400 status code if the body is null on a new item creation request', () => {
-
     const expected = true;
 
     const sendSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
-      send: sendSpy
+      send: sendSpy,
     });
 
     const response = {
-      status: statusStub
+      status: statusStub,
     };
 
     const request = {
       params: {},
-      body: {}
+      body: {},
     };
-
 
     return ItemController.post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });
-
   });
 
   it('should return a 400 status code if the request comes in with an id param', () => {
-
     const expected = true;
 
     const sendSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
-      send: sendSpy
+      send: sendSpy,
     });
 
     const response = {
-      status: statusStub
+      status: statusStub,
     };
 
     const request = {
       params: {
-        id: 3
+        id: 3,
       },
       body: {
-        ...items[0]
-      }
+        ...items[0],
+      },
     };
-
 
     return ItemController.post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
       expect(actual).equals(expected);
     });
-
   });
-
 });

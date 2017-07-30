@@ -11,7 +11,6 @@ jest.dontMock('react-router');
 import { expect } from 'chai';
 
 describe('<CategoriesTableRow />', () => {
-
   const props = {
     category: {
       categoryID: 37,
@@ -23,15 +22,14 @@ describe('<CategoriesTableRow />', () => {
       isActive: true,
       items: [],
       lastUpdatedBy: 1,
-      lastUpdatedDate: '2017-03-27T17:54:03.22'
+      lastUpdatedDate: '2017-03-27T17:54:03.22',
     },
-    checked() { },
-    deactivate() { },
-    children: []
+    checked() {},
+    deactivate() {},
+    children: [],
   };
 
   it('should navigate to the category detail page when the "Edit" button is clicked', () => {
-
     const expected = true;
 
     const redirectSpy = sinon.spy();
@@ -40,21 +38,20 @@ describe('<CategoriesTableRow />', () => {
 
     const wrapper = shallow(<CategoriesTableRow {...props} />);
 
-    wrapper.find(FlatButton)
-      .simulate('click');
+    wrapper.find(FlatButton).simulate('click');
 
-    const actual = redirectSpy.calledWith(`category/${props.category.categoryID}`);
+    const actual = redirectSpy.calledWith(
+      `category/${props.category.categoryID}`,
+    );
     expect(actual).equals(expected);
-
   });
 
   it('should call the deactivate prop function when the "Deactivate" button is clicked', () => {
-
     const expected = true;
     const deactivateSpy = sinon.spy();
     const updatedProps = {
       ...props,
-      deactivate: deactivateSpy
+      deactivate: deactivateSpy,
     };
 
     const redirectSpy = sinon.spy();
@@ -63,12 +60,9 @@ describe('<CategoriesTableRow />', () => {
 
     const wrapper = shallow(<CategoriesTableRow {...updatedProps} />);
 
-    wrapper.find(RaisedButton)
-      .simulate('click');
+    wrapper.find(RaisedButton).simulate('click');
 
     const actual = deactivateSpy.called;
     expect(actual).equals(expected);
-
   });
-
 });

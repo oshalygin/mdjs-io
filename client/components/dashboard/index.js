@@ -5,7 +5,10 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/orderActions';
 
-import { cashTransactionTypeId, creditCardTransactionTypeId } from '../../utilities/ordersUtility';
+import {
+  cashTransactionTypeId,
+  creditCardTransactionTypeId,
+} from '../../utilities/ordersUtility';
 
 import MonthlySummary from './monthlySummary';
 import SalesWidget from './SalesWidget.jsx';
@@ -16,7 +19,6 @@ import InventoryWidget from './InventoryWidget.jsx';
 import './dashboard.css';
 
 class Dashboard extends React.Component {
-
   render() {
     const {
       yesterdaysSales,
@@ -24,7 +26,7 @@ class Dashboard extends React.Component {
       yesterdaysCount,
       todaysCount,
       todaysCashTransactionSales,
-      todaysCreditCardTransactionSales
+      todaysCreditCardTransactionSales,
     } = this.props;
 
     return (
@@ -61,20 +63,20 @@ Dashboard.propTypes = {
   yesterdaysCount: PropTypes.number.isRequired,
   todaysCount: PropTypes.number.isRequired,
   todaysCashTransactionSales: PropTypes.number.isRequired,
-  todaysCreditCardTransactionSales: PropTypes.number.isRequired
+  todaysCreditCardTransactionSales: PropTypes.number.isRequired,
 };
 
 export function mapStateToProps(state) {
-
-  const yesterdaysSales = state.orders.yesterdaysOrders
-    .reduce((previous, next) => {
+  const yesterdaysSales = state.orders.yesterdaysOrders.reduce(
+    (previous, next) => {
       return previous + next.total;
-    }, 0);
+    },
+    0,
+  );
 
-  const todaysSales = state.orders.todaysOrders
-    .reduce((previous, next) => {
-      return previous + next.total;
-    }, 0);
+  const todaysSales = state.orders.todaysOrders.reduce((previous, next) => {
+    return previous + next.total;
+  }, 0);
 
   const yesterdaysCount = state.orders.yesterdaysOrders.length;
   const todaysCount = state.orders.todaysOrders.length;
@@ -97,13 +99,13 @@ export function mapStateToProps(state) {
     yesterdaysCount,
     todaysCount,
     todaysCashTransactionSales,
-    todaysCreditCardTransactionSales
+    todaysCreditCardTransactionSales,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    orderActions: bindActionCreators(actionCreators, dispatch)
+    orderActions: bindActionCreators(actionCreators, dispatch),
   };
 }
 

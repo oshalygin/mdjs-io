@@ -11,7 +11,6 @@ import logger from './middleware/logger';
 import v0router from './routes/routes-v0';
 import v1router from './routes/routes-v1';
 
-
 const application = express();
 application.use(bodyParser.urlencoded({ extended: true }));
 application.use(bodyParser.json());
@@ -20,10 +19,12 @@ application.use(cookieParser());
 const port = configuration.port;
 
 const compiler = webpack(webpackConfiguration);
-application.use(require('webpack-dev-middleware')(compiler, {
-  noInfo: true,
-  publicPath: webpackConfiguration.output.publicPath
-}));
+application.use(
+  require('webpack-dev-middleware')(compiler, {
+    noInfo: true,
+    publicPath: webpackConfiguration.output.publicPath,
+  }),
+);
 
 application.use(require('webpack-hot-middleware')(compiler));
 
@@ -40,10 +41,9 @@ application.get('*', (request, response) => {
     response.send(result);
     response.end();
   });
-
 });
 
-application.listen(port, (error) => {
+application.listen(port, error => {
   if (error) {
     logger.error(error);
   }

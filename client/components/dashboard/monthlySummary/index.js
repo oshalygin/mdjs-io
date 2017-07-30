@@ -9,7 +9,10 @@ import * as actionCreators from '../../../actions/orderActions';
 
 import { getLastNumberOfMonthsArray } from '../../../utilities/dateTimeUtilities';
 import { numberToLocaleString } from '../../../utilities/currencyUtility';
-import { monthlyAverage, yearToDateTotal } from '../../../utilities/ordersUtility';
+import {
+  monthlyAverage,
+  yearToDateTotal,
+} from '../../../utilities/ordersUtility';
 
 import MonthlyChart from './MonthlyChart.jsx';
 import Spinner from '../../common/spinner';
@@ -20,11 +23,10 @@ import './monthlySummary.css';
 const defaultNumberOfMonths = 12;
 
 class MonthlySummary extends React.Component {
-
   constructor() {
     super();
     this.state = {
-      currentDate: dateFns.format(new Date(), 'MM/DD/YYYY')
+      currentDate: dateFns.format(new Date(), 'MM/DD/YYYY'),
     };
 
     this.getProgressBarPercentage = this.getProgressBarPercentage.bind(this);
@@ -37,9 +39,10 @@ class MonthlySummary extends React.Component {
   }
 
   getProgressBarPercentage(current, total) {
-
-    const salesProgressBarPercentageValue = (current / total) * 100;
-    const salesProgressBarPercentage = Number(salesProgressBarPercentageValue.toFixed(0));
+    const salesProgressBarPercentageValue = current / total * 100;
+    const salesProgressBarPercentage = Number(
+      salesProgressBarPercentageValue.toFixed(0),
+    );
 
     if (salesProgressBarPercentage > 100) {
       return 100;
@@ -49,7 +52,6 @@ class MonthlySummary extends React.Component {
   }
 
   render() {
-
     const {
       data,
       orderAverage,
@@ -58,37 +60,39 @@ class MonthlySummary extends React.Component {
       currentMonthCount,
       monthAverage,
       monthAverageCount,
-      yearToDate
+      yearToDate,
     } = this.props;
     const { currentDate } = this.state;
-    const salesBarPercentage = this.getProgressBarPercentage(currentMonthSales, monthAverage);
-    const salesCountBarPercentage = this.getProgressBarPercentage(currentMonthCount, monthAverageCount);
+    const salesBarPercentage = this.getProgressBarPercentage(
+      currentMonthSales,
+      monthAverage,
+    );
+    const salesCountBarPercentage = this.getProgressBarPercentage(
+      currentMonthCount,
+      monthAverageCount,
+    );
 
-    const monthlyChart = loading ?
-      (
-        <div styleName="chart-spinner-container">
+    const monthlyChart = loading
+      ? <div styleName="chart-spinner-container">
           <Spinner />
         </div>
-      ) :
-      (<MonthlyChart data={data} />);
+      : <MonthlyChart data={data} />;
 
     return (
       <div styleName="sales-volume-container">
         <div styleName="summary-container-heading">
           <div styleName="sales-summary-title">
-            <div styleName="title-heading">
-              Monthly Sales Volume
-            </div>
-            <div styleName="title-subheading">
-              Number of orders
-            </div>
+            <div styleName="title-heading">Monthly Sales Volume</div>
+            <div styleName="title-subheading">Number of orders</div>
           </div>
           <div styleName="sales-summary-totals">
             <div styleName="sales-summary-total-text">
-              Year-To-Date Sales: <strong>{numberToLocaleString(yearToDate)}</strong>
+              Year-To-Date Sales:{' '}
+              <strong>{numberToLocaleString(yearToDate)}</strong>
             </div>
             <div styleName="sales-summary-total-text">
-              Average Sale Amount: <strong>{numberToLocaleString(orderAverage)}</strong>
+              Average Sale Amount:{' '}
+              <strong>{numberToLocaleString(orderAverage)}</strong>
             </div>
           </div>
         </div>
@@ -106,11 +110,7 @@ class MonthlySummary extends React.Component {
                   Total sales this month
                 </div>
               </div>
-              <ProgressBar
-                min={0}
-                max={100}
-                value={salesBarPercentage}
-              />
+              <ProgressBar min={0} max={100} value={salesBarPercentage} />
             </div>
             <div styleName="current-monthly-sales-container">
               <div styleName="progress-bar-text-container">
@@ -121,15 +121,13 @@ class MonthlySummary extends React.Component {
                   Number of orders this month
                 </div>
               </div>
-              <ProgressBar
-                min={0}
-                max={100}
-                value={salesCountBarPercentage}
-              />
+              <ProgressBar min={0} max={100} value={salesCountBarPercentage} />
             </div>
             <div styleName="date-container">
               <div styleName="date-icon">
-                <i className="material-icons" style={{ fontSize: '18px' }}>schedule</i>
+                <i className="material-icons" style={{ fontSize: '18px' }}>
+                  schedule
+                </i>
               </div>
               Updated on {currentDate}
             </div>
@@ -149,21 +147,18 @@ MonthlySummary.propTypes = {
   monthAverageCount: PropTypes.number.isRequired,
   currentMonthCount: PropTypes.number.isRequired,
   loading: PropTypes.bool.isRequired,
-  orderActions: PropTypes.object.isRequired
+  orderActions: PropTypes.object.isRequired,
 };
 
 export function mapStateToProps(state) {
-
   const monthlySalesExist = state.orders.monthlySummary.length;
 
   if (monthlySalesExist) {
-
     const monthlySummary = state.orders.monthlySummary;
     const currentMonthIndex = 0;
 
-    const currentMonthSalesValue = state.orders
-      .monthlySummary[currentMonthIndex]
-      .total;
+    const currentMonthSalesValue =
+      state.orders.monthlySummary[currentMonthIndex].total;
 
     const currentMonthSales = Number(Number(currentMonthSalesValue).toFixed(2));
 
@@ -172,25 +167,21 @@ export function mapStateToProps(state) {
     const yearToDate = yearToDateTotal(monthlySummary);
 
     return {
-      data: monthlySummary
-        .slice()
-        .reverse()
-        .map(month => {
-          return {
-            name: month.monthDisplayName,
-            'sales volume': Number(Number(month.total).toFixed(2)),
-            'sales total': Number(month.orderCount)
-          };
-        }),
+      data: monthlySummary.slice().reverse().map(month => {
+        return {
+          name: month.monthDisplayName,
+          'sales volume': Number(Number(month.total).toFixed(2)),
+          'sales total': Number(month.orderCount),
+        };
+      }),
       yearToDate,
-      currentMonthCount: state.orders
-        .monthlySummary[currentMonthIndex]
-        .orderCount,
+      currentMonthCount:
+        state.orders.monthlySummary[currentMonthIndex].orderCount,
       currentMonthSales,
       monthAverage,
       monthAverageCount,
       orderAverage: state.orders.orderAverage,
-      loading: state.loading.loadingMonthlySummary
+      loading: state.loading.loadingMonthlySummary,
     };
   }
 
@@ -202,14 +193,13 @@ export function mapStateToProps(state) {
     monthAverage: 0,
     yearToDate: 0,
     monthAverageCount: 0,
-    loading: state.loading.loadingMonthlySummary
+    loading: state.loading.loadingMonthlySummary,
   };
-
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    orderActions: bindActionCreators(actionCreators, dispatch)
+    orderActions: bindActionCreators(actionCreators, dispatch),
   };
 }
 

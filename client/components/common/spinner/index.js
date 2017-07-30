@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 import CircularProgress from 'material-ui/CircularProgress';
 
 const Spinner = ({ color, thickness, size, hidden }) => {
-  const spinnerDisplay = hidden ?
-    { display: 'none' }
-    : { display: 'initial' };
+  const spinnerDisplay = hidden ? { display: 'none' } : { display: 'initial' };
 
   const spinnerThickness = thickness || 5;
   const spinnerColor = color || '#3498db';
@@ -17,7 +15,8 @@ const Spinner = ({ color, thickness, size, hidden }) => {
       style={spinnerDisplay}
       size={spinnerSize}
       thickness={spinnerThickness}
-      color={spinnerColor} />
+      color={spinnerColor}
+    />
   );
 };
 
@@ -25,7 +24,7 @@ Spinner.propTypes = {
   color: PropTypes.string,
   thickness: PropTypes.number,
   size: PropTypes.number,
-  hidden: PropTypes.bool
+  hidden: PropTypes.bool,
 };
 
 export default Spinner;

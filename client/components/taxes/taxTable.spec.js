@@ -8,7 +8,6 @@ import TaxTable from './TaxTable.jsx';
 import { expect } from 'chai';
 
 describe('<TaxTable />', () => {
-
   const props = {
     taxes: [
       {
@@ -23,7 +22,7 @@ describe('<TaxTable />', () => {
         createdBy: 1,
         isActive: true,
         companyID: 1,
-        facilityID: 0
+        facilityID: 0,
       },
       {
         taxID: 20,
@@ -37,44 +36,37 @@ describe('<TaxTable />', () => {
         createdBy: 1,
         isActive: true,
         companyID: 1,
-        facilityID: 0
-      }
+        facilityID: 0,
+      },
     ],
-    deactivate() { },
-    children: []
+    deactivate() {},
+    children: [],
   };
 
   it('should contain (7) Headers that identify the taxes', () => {
-
     const expected = 7;
 
     const wrapper = shallow(<TaxTable {...props} />);
     const actual = wrapper.find(TableHeaderColumn).length;
 
     expect(actual).equals(expected);
-
   });
 
   it('should set the displaySelectAll to false on the table to not render the checkboxes', () => {
-
     const expected = false;
 
     const wrapper = shallow(<TaxTable {...props} />);
     const actual = wrapper.find(TableHeader).props().displaySelectAll;
 
     expect(actual).equals(expected);
-
   });
 
   it('should render an equivalent number of rows to the number of taxes in props', () => {
-
     const expected = props.taxes.length;
 
     const wrapper = shallow(<TaxTable {...props} />);
     const actual = wrapper.find(TaxTableRow).length;
 
     expect(actual).equals(expected);
-
   });
-
 });

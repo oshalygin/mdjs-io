@@ -22,7 +22,7 @@ const rootReducer = combineReducers({
   orderDetail,
   refundReasons,
   loading,
-  version
+  version,
 });
 
 export default rootReducer;

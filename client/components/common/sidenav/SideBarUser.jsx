@@ -18,26 +18,33 @@ const SideBarUser = ({ firstName, lastName, roleId, logout }) => {
   return (
     <div className="dropdown profile-element">
       <a data-toggle="dropdown" className="dropdown-toggle" href="#">
-        <span className="clear"> <span className="block m-t-xs"> <strong className="font-bold">{firstName} {lastName}</strong>
-        </span>
+        <span className="clear">
+          {' '}<span className="block m-t-xs">
+            {' '}<strong className="font-bold">
+              {firstName} {lastName}
+            </strong>
+          </span>
           <span className="text-muted text-xs block">
             {role} <b className="caret" />
           </span>
         </span>
       </a>
       <ul className="dropdown-menu animated fadeInRight m-t-xs">
-        <li><a className="logout-link-side-nav" onClick={logout}>Logout</a></li>
+        <li>
+          <a className="logout-link-side-nav" onClick={logout}>
+            Logout
+          </a>
+        </li>
       </ul>
     </div>
   );
 };
 
-
 SideBarUser.propTypes = {
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
   roleId: PropTypes.number.isRequired,
-  logout: PropTypes.func.isRequired
+  logout: PropTypes.func.isRequired,
 };
 
 export default SideBarUser;

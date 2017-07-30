@@ -7,7 +7,6 @@ import { createLogger } from 'redux-logger';
 import rootReducer from '../reducers/rootReducer';
 
 export default function configureStore(initialState) {
-
   const sagaMiddleware = createSagaMiddleware();
   const middleware = [
     reduxImmutableStateInvariant(),
@@ -16,15 +15,18 @@ export default function configureStore(initialState) {
     createLogger({
       collapsed: true,
       duration: true,
-      diff: true
-    })
+      diff: true,
+    }),
   ];
 
-  const store = createStore(rootReducer, initialState, compose(applyMiddleware(...middleware), window.devToolsExtension
-    ? window.devToolsExtension()
-    : format => format // add support for Redux dev tools
-  ));
-
+  const store = createStore(
+    rootReducer,
+    initialState,
+    compose(
+      applyMiddleware(...middleware),
+      window.devToolsExtension ? window.devToolsExtension() : format => format, // add support for Redux dev tools
+    ),
+  );
 
   if (module.hot) {
     module.hot.accept('../reducers/rootReducer', () => {
@@ -33,10 +35,8 @@ export default function configureStore(initialState) {
     });
   }
 
-
   store.runSaga = sagaMiddleware.run;
   store.close = () => store.dispatch(END);
 
   return store;
 }
-

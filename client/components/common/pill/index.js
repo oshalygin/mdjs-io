@@ -14,7 +14,7 @@ const Pill = ({ label }) => {
 };
 
 Pill.propTypes = {
-  label: PropTypes.string.isRequired
+  label: PropTypes.string.isRequired,
 };
 
 export default Pill;

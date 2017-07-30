@@ -15,19 +15,21 @@ class Version extends React.Component {
     const { version } = this.props;
     return (
       <div styleName="package-version-container">
-        <div styleName="package-version">{version}</div>
+        <div styleName="package-version">
+          {version}
+        </div>
       </div>
     );
   }
 }
 
 Version.propTypes = {
-  version: PropTypes.string.isRequired
+  version: PropTypes.string.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
-    version: state.version
+    version: state.version,
   };
 }
 

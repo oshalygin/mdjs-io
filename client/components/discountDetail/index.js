@@ -22,7 +22,7 @@ class DiscountDetail extends React.Component {
       discount: props.discount,
       heading: '',
       notification: false,
-      notificationMessage: ''
+      notificationMessage: '',
     };
 
     this.onChange = this.onChange.bind(this);
@@ -35,7 +35,6 @@ class DiscountDetail extends React.Component {
   }
 
   onChange(event, index, payload) {
-
     const { discount, errors } = this.state;
 
     if (Array.isArray(payload)) {
@@ -55,7 +54,6 @@ class DiscountDetail extends React.Component {
 
     this.propertyIsValid(property, discount[property], errors);
     return this.setState({ discount });
-
   }
 
   closeNotification() {
@@ -71,15 +69,17 @@ class DiscountDetail extends React.Component {
     }
 
     if (discount.discountID) {
-      discountActions.updateDiscount(discount)
+      discountActions
+        .updateDiscount(discount)
         .then(() => this.redirect())
-        .catch((error) => {
+        .catch(error => {
           this.displayNotification(error.response.data);
         });
     } else {
-      discountActions.createDiscount(discount)
+      discountActions
+        .createDiscount(discount)
         .then(() => this.redirect())
-        .catch((error) => {
+        .catch(error => {
           this.displayNotification(error.response.data);
         });
     }
@@ -88,7 +88,7 @@ class DiscountDetail extends React.Component {
   displayNotification(message) {
     this.setState({
       notification: true,
-      notificationMessage: message
+      notificationMessage: message,
     });
   }
 
@@ -97,9 +97,10 @@ class DiscountDetail extends React.Component {
   }
 
   propertyIsValid(property, value, errors) {
-    const patternTest = property === 'discountName'
-      ? new RegExp(/^[a-zA-Z0-9,.% ]*$/)
-      : new RegExp(/^[0-9]+([,.][0-9]+)?$/g);
+    const patternTest =
+      property === 'discountName'
+        ? new RegExp(/^[a-zA-Z0-9,.% ]*$/)
+        : new RegExp(/^[0-9]+([,.][0-9]+)?$/g);
 
     errors[property] = !patternTest.test(value) ? ' ' : false;
     this.setState({ errors });
@@ -135,16 +136,14 @@ class DiscountDetail extends React.Component {
     const { discountHeading, loading, items } = this.props;
     const { discount, errors } = this.state;
 
-    const formComponent = !loading.createUpdateDiscount ?
-      (
-        <DiscountDetailForm
+    const formComponent = !loading.createUpdateDiscount
+      ? <DiscountDetailForm
           discount={discount}
           items={items}
           onChange={this.onChange}
-          errors={errors} />
-      ) :
-      (
-        <div className="ibox-content">
+          errors={errors}
+        />
+      : <div className="ibox-content">
           <div className="row">
             <div styleName="spinner-container">
               <div styleName="spinner">
@@ -152,8 +151,7 @@ class DiscountDetail extends React.Component {
               </div>
             </div>
           </div>
-        </div>
-      );
+        </div>;
 
     return (
       <div>
@@ -161,7 +159,9 @@ class DiscountDetail extends React.Component {
           <div className="col-sm-offset-3 col-sm-6">
             <div className="ibox float-e-margins">
               <div className="ibox-title">
-                <h5>{discountHeading}</h5>
+                <h5>
+                  {discountHeading}
+                </h5>
               </div>
               {formComponent}
             </div>
@@ -174,13 +174,15 @@ class DiscountDetail extends React.Component {
                 styleName="left-control"
                 label="Back"
                 secondary
-                onClick={this.redirect} />
+                onClick={this.redirect}
+              />
             </div>
             <RaisedButton
               styleName="right-control"
               label="Save Discount"
               primary
-              onClick={this.onSave} />
+              onClick={this.onSave}
+            />
           </div>
         </div>
         <Snackbar
@@ -188,7 +190,8 @@ class DiscountDetail extends React.Component {
           action="OK"
           message={this.state.notificationMessage}
           onActionTouchTap={this.closeNotification}
-          onRequestClose={this.closeNotification} />
+          onRequestClose={this.closeNotification}
+        />
       </div>
     );
   }
@@ -200,34 +203,38 @@ DiscountDetail.propTypes = {
   loading: PropTypes.object.isRequired,
   discountHeading: PropTypes.string.isRequired,
   discountActions: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
 };
 
 DiscountDetail.contextTypes = {
-  router: PropTypes.object
+  router: PropTypes.object,
 };
 
 export function mapStateToProps(state, ownProps) {
-
   let discount = {
     discountID: 0,
     discountName: '',
     discountTypeID: 0,
     value: 0,
-    items: []
+    items: [],
   };
 
   const { discounts } = state;
-  const existingDiscount = discounts
-    .find(stateDiscount => stateDiscount.discountID == ownProps.params.id || stateDiscount.discountID === discount.discountID); //eslint-disable-line
+  const existingDiscount = discounts.find(
+    stateDiscount =>
+      //eslint-disable-next-line eqeqeq
+      stateDiscount.discountID == ownProps.params.id ||
+      stateDiscount.discountID === discount.discountID,
+  );
 
   if (!!existingDiscount) {
     discount = { ...existingDiscount };
   }
 
-  const discountHeading = (existingDiscount && existingDiscount.discountID !== 0)
-    ? 'Update Discount'
-    : 'New Discount';
+  const discountHeading =
+    existingDiscount && existingDiscount.discountID !== 0
+      ? 'Update Discount'
+      : 'New Discount';
 
   return {
     discount,
@@ -235,14 +242,14 @@ export function mapStateToProps(state, ownProps) {
     loading: state.loading,
     items: state.items,
     errors: {
-      discountName: false
-    }
+      discountName: false,
+    },
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    discountActions: bindActionCreators(actionCreators, dispatch)
+    discountActions: bindActionCreators(actionCreators, dispatch),
   };
 }
 

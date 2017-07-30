@@ -7,81 +7,78 @@ import { loadUserToken } from '../utilities/localStorage';
 export function loadTaxesSuccess(taxes) {
   return {
     type: actionTypes.LOAD_TAXES_SUCCESS,
-    taxes
+    taxes,
   };
 }
 
 export function taxDeactivated() {
   return {
-    type: actionTypes.TAX_DEACTIVATED
+    type: actionTypes.TAX_DEACTIVATED,
   };
 }
 
 export function taxDeactivatedSuccess(tax) {
   return {
     type: actionTypes.TAX_DEACTIVATED_SUCCESS,
-    tax
+    tax,
   };
 }
 
 export function loadingTaxCreationSuccess() {
   return {
-    type: actionTypes.LOADING_TAX_CREATION_SUCCESS
+    type: actionTypes.LOADING_TAX_CREATION_SUCCESS,
   };
 }
 
 export function loadingTaxCreation() {
   return {
-    type: actionTypes.LOADING_TAX_CREATION
+    type: actionTypes.LOADING_TAX_CREATION,
   };
 }
 
 export function taxCreatedSuccess(tax) {
-
   return {
     type: actionTypes.TAX_CREATED,
-    tax
+    tax,
   };
 }
 
 export function taxCreationFailure() {
   return {
-    type: actionTypes.TAX_CREATION_FAILURE
+    type: actionTypes.TAX_CREATION_FAILURE,
   };
 }
 
 export function loadingTaxUpdate() {
   return {
-    type: actionTypes.LOADING_TAX_UPDATE
+    type: actionTypes.LOADING_TAX_UPDATE,
   };
 }
 
 export function taxUpdatedSuccess(tax) {
   return {
     type: actionTypes.TAX_UPDATED,
-    tax
+    tax,
   };
 }
 
 export function loadingTaxUpdateSuccess() {
   return {
-    type: actionTypes.LOADING_TAX_UPDATE_SUCCESS
+    type: actionTypes.LOADING_TAX_UPDATE_SUCCESS,
   };
 }
 
 export function taxUpdateFailure() {
   return {
-    type: actionTypes.TAX_UPDATE_FAILURE
+    type: actionTypes.TAX_UPDATE_FAILURE,
   };
 }
 
 export function createTax(tax) {
-  return async function (dispatch) {
-
+  return async function(dispatch) {
     dispatch(loadingTaxCreation());
 
     try {
-
       const token = loadUserToken();
 
       const headers = getHeaders(token);
@@ -90,21 +87,18 @@ export function createTax(tax) {
 
       dispatch(taxCreatedSuccess(createdTax));
       dispatch(loadingTaxCreationSuccess());
-
     } catch (error) {
       dispatch(taxCreationFailure());
-      throw (error);
+      throw error;
     }
   };
 }
 
 export function updateTax(tax) {
-  return async function (dispatch) {
-
+  return async function(dispatch) {
     dispatch(loadingTaxUpdate());
 
     try {
-
       const token = loadUserToken();
       const headers = getHeaders(token);
       const endpoint = `${TAXES_ENDPOINT}/${tax.taxID}`;
@@ -114,21 +108,19 @@ export function updateTax(tax) {
 
       dispatch(taxUpdatedSuccess(updatedTax));
       dispatch(loadingTaxUpdateSuccess());
-
     } catch (error) {
       dispatch(taxUpdateFailure());
-      throw (error);
+      throw error;
     }
   };
 }
 
 export function deactivateTax(tax) {
-  return async function (dispatch) {
-
+  return async function(dispatch) {
     const deactivatedTax = {
       ...tax,
       isActive: false,
-      disabled: true
+      disabled: true,
     };
 
     dispatch(taxDeactivated());
@@ -141,10 +133,8 @@ export function deactivateTax(tax) {
       await axios.delete(endpoint, headers);
 
       dispatch(taxDeactivatedSuccess(deactivatedTax));
-
     } catch (error) {
-      throw (error);
+      throw error;
     }
-
   };
 }

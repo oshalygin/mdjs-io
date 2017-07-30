@@ -6,7 +6,7 @@ import {
   TableBody,
   TableHeader,
   TableRow,
-  TableHeaderColumn
+  TableHeaderColumn,
 } from 'material-ui/Table';
 
 import TaxTableRow from './TaxTableRow.jsx';
@@ -15,9 +15,7 @@ const TaxTable = ({ taxes, deactivate }) => {
   return (
     <div className="table-responsive">
       <Table>
-        <TableHeader
-          displaySelectAll={false}
-          adjustForCheckbox={false}>
+        <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
           <TableRow>
             <TableHeaderColumn>Name</TableHeaderColumn>
             <TableHeaderColumn>Tax Rate</TableHeaderColumn>
@@ -31,11 +29,7 @@ const TaxTable = ({ taxes, deactivate }) => {
         <TableBody showRowHover>
           {taxes.map((tax, index) => {
             return (
-              <TaxTableRow
-                key={index}
-                tax={tax}
-                deactivate={deactivate}
-              />
+              <TaxTableRow key={index} tax={tax} deactivate={deactivate} />
             );
           })}
         </TableBody>
@@ -46,7 +40,7 @@ const TaxTable = ({ taxes, deactivate }) => {
 
 TaxTable.propTypes = {
   taxes: PropTypes.array.isRequired,
-  deactivate: PropTypes.func.isRequired
+  deactivate: PropTypes.func.isRequired,
 };
 
 export default TaxTable;

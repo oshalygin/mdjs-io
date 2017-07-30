@@ -13,7 +13,7 @@ export const loadState = () => {
   }
 };
 
-export const saveState = (state) => {
+export const saveState = state => {
   try {
     const serializedState = JSON.stringify(state);
     localStorage.setItem('state', serializedState);
@@ -43,7 +43,7 @@ export const removeUserToken = () => {
   }
 };
 
-export const persistUserToken = (userToken) => {
+export const persistUserToken = userToken => {
   try {
     const serializedState = JSON.stringify(userToken);
     localStorage.setItem('token', serializedState);

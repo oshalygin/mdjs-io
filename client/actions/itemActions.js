@@ -5,85 +5,81 @@ import * as actionTypes from './actionTypes';
 import { ITEM_ENDPOINT } from '../utilities/endpoints';
 import { loadUserToken } from '../utilities/localStorage';
 
-
 export function loadItemsSuccess(items) {
   return {
     type: actionTypes.LOAD_ITEMS_SUCCESS,
-    items
+    items,
   };
 }
 
 export function itemDeactivatedSuccess(item) {
   return {
     type: actionTypes.ITEM_DEACTIVATED_SUCCESS,
-    item
+    item,
   };
 }
 
 export function itemDeactivated() {
   return {
-    type: actionTypes.ITEM_DEACTIVATED
+    type: actionTypes.ITEM_DEACTIVATED,
   };
 }
 
 export function itemUpdatedSuccess(item) {
   return {
     type: actionTypes.ITEM_UPDATED,
-    item
+    item,
   };
 }
 
 export function itemCreatedSuccess(item) {
-
   return {
     type: actionTypes.ITEM_CREATED,
-    item
+    item,
   };
 }
 
 export function loadingItemCreation() {
   return {
-    type: actionTypes.LOADING_ITEM_CREATION
+    type: actionTypes.LOADING_ITEM_CREATION,
   };
 }
 
 export function loadingItemCreationSuccess() {
   return {
-    type: actionTypes.LOADING_ITEM_CREATION_SUCCESS
+    type: actionTypes.LOADING_ITEM_CREATION_SUCCESS,
   };
 }
 
 export function loadingItemUpdate() {
   return {
-    type: actionTypes.LOADING_ITEM_UPDATE
+    type: actionTypes.LOADING_ITEM_UPDATE,
   };
 }
 
 export function loadingItemUpdateSuccess() {
   return {
-    type: actionTypes.LOADING_ITEM_UPDATE_SUCCESS
+    type: actionTypes.LOADING_ITEM_UPDATE_SUCCESS,
   };
 }
 
 export function itemUpdateFailure() {
   return {
-    type: actionTypes.ITEM_UPDATE_FAILURE
+    type: actionTypes.ITEM_UPDATE_FAILURE,
   };
 }
 
 export function itemCreatedFailure() {
   return {
-    type: actionTypes.ITEM_CREATION_FAILURE
+    type: actionTypes.ITEM_CREATION_FAILURE,
   };
 }
 
 export function createItem(item) {
-  return async function (dispatch) {
-
+  return async function(dispatch) {
     dispatch(loadingItemCreation());
 
     try {
-
       const { photoURL, file, ...itemToPersist } = item;
 
       const token = loadUserToken();
@@ -93,26 +89,27 @@ export function createItem(item) {
       data.append('item', JSON.stringify(itemToPersist));
       data.append('file', item.file);
 
-      const createdItemResponse = await axios.post(ITEM_ENDPOINT, data, headers);
+      const createdItemResponse = await axios.post(
+        ITEM_ENDPOINT,
+        data,
+        headers,
+      );
       const createdItem = createdItemResponse.data;
 
       dispatch(itemCreatedSuccess(createdItem));
       dispatch(loadingItemCreationSuccess());
-
     } catch (error) {
       dispatch(itemCreatedFailure());
-      throw (error);
+      throw error;
     }
   };
 }
 
 export function updateItem(item) {
-  return async function (dispatch) {
-
+  return async function(dispatch) {
     dispatch(loadingItemUpdate());
 
     try {
-      
       const { file, ...itemToPersist } = item;
 
       const token = loadUserToken();
@@ -131,21 +128,19 @@ export function updateItem(item) {
 
       dispatch(itemUpdatedSuccess(updatedItem));
       dispatch(loadingItemUpdateSuccess());
-
     } catch (error) {
       dispatch(itemUpdateFailure());
-      throw (error);
+      throw error;
     }
   };
 }
 
 export function deactivateItem(item) {
-  return async function (dispatch) {
-
+  return async function(dispatch) {
     const deactivatedItem = {
       ...item,
       isActive: false,
-      disabled: true
+      disabled: true,
     };
 
     dispatch(itemDeactivated());
@@ -158,10 +153,8 @@ export function deactivateItem(item) {
       await axios.delete(endpoint, headers);
 
       dispatch(itemDeactivatedSuccess(deactivatedItem));
-
     } catch (error) {
-      throw (error);
+      throw error;
     }
-
   };
 }

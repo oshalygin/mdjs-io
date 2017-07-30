@@ -9,8 +9,10 @@ export default function orderReducer(state = initialState.orders, action) {
       const orderList = action.orders.map(order => {
         return {
           ...order,
-          orderStatusDescription: getOrderStatusDescription(order.orderStatusID),
-          expanded: false
+          orderStatusDescription: getOrderStatusDescription(
+            order.orderStatusID,
+          ),
+          expanded: false,
         };
       });
 
@@ -18,12 +20,10 @@ export default function orderReducer(state = initialState.orders, action) {
     }
     case actionTypes.LOADING_ORDER_DETAIL: {
       const orderList = state.orderList.map(order => {
-
         return {
           ...order,
-          expanded: order.orderID === action.orderID
+          expanded: order.orderID === action.orderID,
         };
-
       });
 
       return { ...state, orderList };
@@ -36,9 +36,8 @@ export default function orderReducer(state = initialState.orders, action) {
 
         return {
           ...order,
-          expanded: false
+          expanded: false,
         };
-
       });
 
       return { ...state, orderList };
@@ -46,25 +45,25 @@ export default function orderReducer(state = initialState.orders, action) {
     case actionTypes.LOAD_MONTHLY_SUMMARY_SUCCESS: {
       return {
         ...state,
-        monthlySummary: action.data
+        monthlySummary: action.data,
       };
     }
     case actionTypes.LOAD_ORDER_AVERAGE_SUCCESS: {
       return {
         ...state,
-        orderAverage: action.average
+        orderAverage: action.average,
       };
     }
     case actionTypes.LOAD_YESTERDAYS_ORDERS_SUCCESS: {
       return {
         ...state,
-        yesterdaysOrders: action.orders
+        yesterdaysOrders: action.orders,
       };
     }
     case actionTypes.LOAD_TODAYS_ORDERS_SUCCESS: {
       return {
         ...state,
-        todaysOrders: action.orders
+        todaysOrders: action.orders,
       };
     }
     default: {

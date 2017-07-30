@@ -1,68 +1,68 @@
 import * as actionTypes from './actionTypes';
 
-export const loadCategoriesSuccess = (categories) => ({
+export const loadCategoriesSuccess = categories => ({
   type: actionTypes.LOAD_CATEGORIES_SUCCESS,
-  categories
+  categories,
 });
 
 export const categoryDeactivated = () => ({
-  type: actionTypes.CATEGORY_DEACTIVATED
+  type: actionTypes.CATEGORY_DEACTIVATED,
 });
 
-export const categoryDeactivatedSuccess = (category) => ({
+export const categoryDeactivatedSuccess = category => ({
   type: actionTypes.CATEGORY_DEACTIVATED_SUCCESS,
-  category
+  category,
 });
 
 export const categoryDeactivatedFailure = () => ({
-  type: actionTypes.CATEGORY_DEACTIVATED_FAILURE
+  type: actionTypes.CATEGORY_DEACTIVATED_FAILURE,
 });
 
 export const loadingCategoryCreationSuccess = () => ({
-  type: actionTypes.LOADING_CATEGORY_CREATION_SUCCESS
+  type: actionTypes.LOADING_CATEGORY_CREATION_SUCCESS,
 });
 
 export const loadingCategoryCreation = () => ({
-  type: actionTypes.LOADING_CATEGORY_CREATION
+  type: actionTypes.LOADING_CATEGORY_CREATION,
 });
 
-export const triggerCategoryCreation = (data) => ({
+export const triggerCategoryCreation = data => ({
   type: actionTypes.TRIGGER_CATEGORY_CREATION,
-  data
+  data,
 });
 
-export const triggerCategoryUpdate = (data) => ({
+export const triggerCategoryUpdate = data => ({
   type: actionTypes.TRIGGER_CATEGORY_UPDATE,
-  data
+  data,
 });
 
-export const triggerCategoryDeletion = (data) => ({
+export const triggerCategoryDeletion = data => ({
   type: actionTypes.TRIGGER_CATEGORY_DELETE,
-  data
+  data,
 });
 
-export const categoryCreatedSuccess = (category) => ({
+export const categoryCreatedSuccess = category => ({
   type: actionTypes.CATEGORY_CREATED,
-  category
+  category,
 });
 
 export const categoryCreationFailure = () => ({
-  type: actionTypes.CATEGORY_CREATION_FAILURE
+  type: actionTypes.CATEGORY_CREATION_FAILURE,
 });
 
 export const loadingCategoryUpdate = () => ({
-  type: actionTypes.LOADING_CATEGORY_UPDATE
+  type: actionTypes.LOADING_CATEGORY_UPDATE,
 });
 
-export const categoryUpdatedSuccess = (category) => ({
+export const categoryUpdatedSuccess = category => ({
   type: actionTypes.CATEGORY_UPDATED,
-  category
+  category,
 });
 
 export const loadingCategoryUpdateSuccess = () => ({
-  type: actionTypes.LOADING_CATEGORY_UPDATE_SUCCESS
+  type: actionTypes.LOADING_CATEGORY_UPDATE_SUCCESS,
 });
 
 export const categoryUpdateFailure = () => ({
-  type: actionTypes.CATEGORY_UPDATE_FAILURE
+  type: actionTypes.CATEGORY_UPDATE_FAILURE,
 });

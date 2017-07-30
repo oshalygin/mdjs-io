@@ -21,7 +21,7 @@ export class Categories extends React.Component {
 
     this.state = {
       categories: props.categories,
-      filter: ''
+      filter: '',
     };
 
     this.deactivate = this.deactivate.bind(this);
@@ -37,8 +37,9 @@ export class Categories extends React.Component {
     const { categories } = this.state;
     const { categoryActions } = this.props;
 
-    const deactivatedCategory = categories
-      .find(category => category.categoryID === categoryId);
+    const deactivatedCategory = categories.find(
+      category => category.categoryID === categoryId,
+    );
 
     categoryActions.triggerCategoryDeletion(deactivatedCategory);
   }
@@ -46,24 +47,21 @@ export class Categories extends React.Component {
   searchOnChange(event) {
     const { categories } = this.props;
 
-    const filter = event.target.value
-      .toLowerCase();
-    
-    const filteredCategories = categories
-      .filter(category => category
-        .categoryName
-        .toLowerCase()
-        .includes(filter));
+    const filter = event.target.value.toLowerCase();
+
+    const filteredCategories = categories.filter(category =>
+      category.categoryName.toLowerCase().includes(filter),
+    );
 
     this.setState({
       filter,
-      categories: filteredCategories
+      categories: filteredCategories,
     });
   }
 
   render() {
     const { categories } = this.props;
-    
+
     return (
       <div className="row">
         <div className="col-lg-12">
@@ -88,12 +86,14 @@ export class Categories extends React.Component {
                     onChange={this.searchOnChange}
                     errorText={this.state.error}
                     style={fullWidth}
-                    floatingLabelText="Filter" />
+                    floatingLabelText="Filter"
+                  />
                 </div>
               </div>
               <CategoriesTable
                 categories={categories}
-                deactivate={this.deactivate} />
+                deactivate={this.deactivate}
+              />
             </div>
           </div>
         </div>
@@ -104,17 +104,17 @@ export class Categories extends React.Component {
 
 Categories.propTypes = {
   categories: PropTypes.array.isRequired,
-  categoryActions: PropTypes.object.isRequired
+  categoryActions: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
-    categories: state.categories
+    categories: state.categories,
   };
 }
 function mapDispatchToProps(dispatch) {
   return {
-    categoryActions: bindActionCreators(actionCreators, dispatch)
+    categoryActions: bindActionCreators(actionCreators, dispatch),
   };
 }
 

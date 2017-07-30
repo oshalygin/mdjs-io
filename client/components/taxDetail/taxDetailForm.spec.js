@@ -9,9 +9,8 @@ import TaxDetailForm from './TaxDetailForm.jsx';
 import { expect } from 'chai';
 
 describe('<TaxDetailForm />', () => {
-
   const errors = {
-    taxName: false
+    taxName: false,
   };
 
   const items = [
@@ -25,7 +24,7 @@ describe('<TaxDetailForm />', () => {
       file: null,
       itemCategoryID: 2,
       isActive: 1,
-      priceTypeID: 1
+      priceTypeID: 1,
     },
     {
       itemID: 2,
@@ -37,7 +36,7 @@ describe('<TaxDetailForm />', () => {
       file: null,
       itemCategoryID: 2,
       isActive: 1,
-      priceTypeID: 1
+      priceTypeID: 1,
     },
     {
       itemID: 3,
@@ -49,53 +48,45 @@ describe('<TaxDetailForm />', () => {
       file: null,
       itemCategoryID: 2,
       isActive: 1,
-      priceTypeID: 1
-    }
+      priceTypeID: 1,
+    },
   ];
 
   const props = {
     tax: {
       taxID: 0,
-      taxName: ''
+      taxName: '',
     },
     items,
     errors,
-    onChange() { }
+    onChange() {},
   };
 
   it('should contain two text fields on the form', () => {
-
     const wrapper = shallow(<TaxDetailForm {...props} />);
 
     const expected = 2;
     const actual = wrapper.find(TextField).length;
 
     expect(actual).equals(expected);
-
   });
 
-
   it('should contain a SelectField dropdown which has an "Apply To" property', () => {
-
     const wrapper = shallow(<TaxDetailForm {...props} />);
 
     const expected = 'Apply To';
-    const actual = wrapper.find(SelectField).props()
-      .floatingLabelText;
+    const actual = wrapper.find(SelectField).props().floatingLabelText;
 
     expect(actual).equals(expected);
-
   });
 
   it('the dropdown for "Apply To" has two menu items', () => {
-
     const wrapper = shallow(<TaxDetailForm {...props} />);
 
     const expected = 2;
     const actual = wrapper.find(MenuItem).length;
-      
-    expect(actual).equals(expected);
 
+    expect(actual).equals(expected);
   });
 
   it('should still render only a single SelectField if the taxOption selected is 0 for taxTypeID', () => {
@@ -104,8 +95,8 @@ describe('<TaxDetailForm />', () => {
       tax: {
         taxID: 0,
         taxTypeID: 0,
-        taxName: ''
-      }
+        taxName: '',
+      },
     };
 
     const wrapper = shallow(<TaxDetailForm {...updatedProps} />);
@@ -114,7 +105,6 @@ describe('<TaxDetailForm />', () => {
     const actual = wrapper.find(SelectField).length;
 
     expect(actual).equals(expected);
-
   });
 
   it('should render two SelectFields if the taxOption selected is 1 for taxTypeID', () => {
@@ -123,8 +113,8 @@ describe('<TaxDetailForm />', () => {
       tax: {
         taxID: 0,
         taxTypeID: 1,
-        taxName: ''
-      }
+        taxName: '',
+      },
     };
 
     const wrapper = shallow(<TaxDetailForm {...updatedProps} />);
@@ -133,7 +123,6 @@ describe('<TaxDetailForm />', () => {
     const actual = wrapper.find(SelectField).length;
 
     expect(actual).equals(expected);
-
   });
 
   it('should render the number of matching items as MenuItems to the second SelectFields with taxTypeID of 1', () => {
@@ -142,8 +131,8 @@ describe('<TaxDetailForm />', () => {
       tax: {
         taxID: 0,
         taxTypeID: 1,
-        taxName: ''
-      }
+        taxName: '',
+      },
     };
 
     const wrapper = shallow(<TaxDetailForm {...updatedProps} />);
@@ -152,18 +141,14 @@ describe('<TaxDetailForm />', () => {
     const actual = wrapper.find(MenuItem).length;
 
     expect(actual).equals(expected);
-
   });
 
   it('should contain a material icon "account_balance" that helps identify the page', () => {
-    
     const wrapper = shallow(<TaxDetailForm {...props} />);
 
     const expected = 'account_balance';
     const actual = wrapper.find('.material-icons').text();
 
     expect(actual).equals(expected);
-
   });
-
 });

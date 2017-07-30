@@ -8,26 +8,23 @@ import { expect } from 'chai';
 
 describe('<CategoryDetailForm />', () => {
   const errors = {
-    categoryName: false
+    categoryName: false,
   };
   const props = {
     category: {
       categoryID: 0,
-      categoryName: ''
+      categoryName: '',
     },
     errors,
-    onChange() { }
+    onChange() {},
   };
 
   it('should contain one text fields on the form', () => {
-
     const wrapper = shallow(<CategoryDetailForm {...props} />);
 
     const expected = 1;
     const actual = wrapper.find(TextField).length;
 
     expect(actual).equals(expected);
-
   });
-
 });

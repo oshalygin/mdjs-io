@@ -8,9 +8,8 @@ jest.dontMock('react-router');
 import { expect } from 'chai';
 
 describe('<TaxDetail />', () => {
-
   const errors = {
-    taxName: false
+    taxName: false,
   };
 
   const items = [
@@ -24,7 +23,7 @@ describe('<TaxDetail />', () => {
       file: null,
       itemCategoryID: 2,
       isActive: 1,
-      priceTypeID: 1
+      priceTypeID: 1,
     },
     {
       itemID: 2,
@@ -36,7 +35,7 @@ describe('<TaxDetail />', () => {
       file: null,
       itemCategoryID: 2,
       isActive: 1,
-      priceTypeID: 1
+      priceTypeID: 1,
     },
     {
       itemID: 3,
@@ -48,22 +47,22 @@ describe('<TaxDetail />', () => {
       file: null,
       itemCategoryID: 2,
       isActive: 1,
-      priceTypeID: 1
-    }
+      priceTypeID: 1,
+    },
   ];
 
   const props = {
     tax: {
       taxID: 0,
-      taxName: ''
+      taxName: '',
     },
     taxHeading: 'New Tax',
     loading: {
-      createUpdateTax: false
+      createUpdateTax: false,
     },
     errors,
     items,
-    taxActions: {}
+    taxActions: {},
   };
 
   const taxes = [
@@ -79,7 +78,7 @@ describe('<TaxDetail />', () => {
       createdBy: 1,
       isActive: true,
       companyID: 1,
-      facilityID: 0
+      facilityID: 0,
     },
     {
       taxID: 20,
@@ -93,115 +92,100 @@ describe('<TaxDetail />', () => {
       createdBy: 1,
       isActive: true,
       companyID: 1,
-      facilityID: 0
-    }
+      facilityID: 0,
+    },
   ];
 
   it('should render the component with the taxDetail heading of "New Tax"', () => {
-
     const expected = 'New Tax';
     const wrapper = shallow(<TaxDetail.WrappedComponent {...props} />);
 
-    const actual = wrapper.find('h5')
-      .props().children;
+    const actual = wrapper.find('h5').props().children;
 
     expect(actual).equals(expected);
   });
 
   it('should return the heading as "New Tax" if the passed in props is null', () => {
-
     const state = {
-      taxes
+      taxes,
     };
     const ownProps = {
       params: {
-        id: null
-      }
+        id: null,
+      },
     };
 
     const expected = 'New Tax';
-    const actual = mapStateToProps(state, ownProps)
-      .taxHeading;
+    const actual = mapStateToProps(state, ownProps).taxHeading;
 
     expect(actual).equals(expected);
-
   });
 
   it('should return the heading as "Update Tax" if the passed in id prop matches the state categories', () => {
-
     const state = {
-      taxes
+      taxes,
     };
     const ownProps = {
       params: {
-        id: 19
-      }
+        id: 19,
+      },
     };
 
     const expected = 'Update Tax';
-    const actual = mapStateToProps(state, ownProps)
-      .taxHeading;
+    const actual = mapStateToProps(state, ownProps).taxHeading;
 
     expect(actual).equals(expected);
-
   });
 
   it('should return the existing tax properties if the passed in id prop matches the state taxes', () => {
-
     const state = {
-      taxes
+      taxes,
     };
     const ownProps = {
       params: {
-        id: 19
-      }
+        id: 19,
+      },
     };
 
     const expected = taxes[0];
-    const actual = mapStateToProps(state, ownProps)
-      .tax;
+    const actual = mapStateToProps(state, ownProps).tax;
 
     expect(actual).deep.equals(expected);
   });
 
   it('should return the an empty tax if the passed in id prop is null', () => {
-
     const state = {
-      taxes
+      taxes,
     };
     const ownProps = {
       params: {
-        id: null
-      }
+        id: null,
+      },
     };
 
     const expected = props.category;
-    const actual = mapStateToProps(state, ownProps)
-      .category;
+    const actual = mapStateToProps(state, ownProps).category;
 
     expect(actual).deep.equals(expected);
   });
 
   it('should render a spinner if the "createUpdateTax" loading flag is set', () => {
-
     const updatedProps = {
       ...props,
       loading: {
-        createUpdateTax: true
-      }
+        createUpdateTax: true,
+      },
     };
 
     const expected = 1;
     const wrapper = shallow(<TaxDetail.WrappedComponent {...updatedProps} />);
 
-    const actual = wrapper.find(Spinner)
-      .length;
+    const actual = wrapper.find(Spinner).length;
 
     expect(actual).equals(expected);
   });
 
   it('should navigate back to the "taxes" page if the back button is clicked', () => {
-
     const redirectSpy = sinon.spy();
     const browserHistory = require('react-router').browserHistory;
     browserHistory.push = redirectSpy;
@@ -214,15 +198,13 @@ describe('<TaxDetail />', () => {
 
     const actual = redirectSpy.calledWith('taxes');
 
-
     expect(actual).equals(expected);
   });
 
   it('should set the new state of the tax based on the form field that was changed', () => {
-
     const updatedProps = {
       ...props,
-      tax: taxes[0]
+      tax: taxes[0],
     };
 
     const expected = 'Foobar';
@@ -230,8 +212,8 @@ describe('<TaxDetail />', () => {
     const event = {
       target: {
         name: 'taxName',
-        value: 'Foobar'
-      }
+        value: 'Foobar',
+      },
     };
 
     const index = null;
@@ -241,18 +223,15 @@ describe('<TaxDetail />', () => {
 
     const instance = wrapper.instance();
     instance.onChange(event, index, payload);
-    const actual = instance.state
-      .tax
-      .taxName;
+    const actual = instance.state.tax.taxName;
 
     expect(actual).deep.equals(expected);
   });
 
   it('should set the items property to the payload array if its an array', () => {
-
     const updatedProps = {
       ...props,
-      tax: taxes[0]
+      tax: taxes[0],
     };
 
     const event = {};
@@ -265,18 +244,15 @@ describe('<TaxDetail />', () => {
 
     const instance = wrapper.instance();
     instance.onChange(event, index, payload);
-    const actual = instance.state
-      .tax
-      .items;
+    const actual = instance.state.tax.items;
 
     expect(actual).deep.equals(expected);
   });
 
   it('should set the items property to the payload property value if it is passed in', () => {
-
     const updatedProps = {
       ...props,
-      tax: taxes[0]
+      tax: taxes[0],
     };
 
     const event = {};
@@ -284,7 +260,7 @@ describe('<TaxDetail />', () => {
     const index = null;
     const payload = {
       name: 'taxTypeID',
-      value: 0
+      value: 0,
     };
 
     const expected = 0;
@@ -293,25 +269,21 @@ describe('<TaxDetail />', () => {
 
     const instance = wrapper.instance();
     instance.onChange(event, index, payload);
-    const actual = instance.state
-      .tax
-      .taxTypeID;
+    const actual = instance.state.tax.taxTypeID;
 
     expect(actual).deep.equals(expected);
   });
 
   it('should set the notifications to false if closeNotification is called', () => {
-
     const expected = false;
 
     const wrapper = shallow(<TaxDetail.WrappedComponent {...props} />);
 
     const instance = wrapper.instance();
     instance.setState({ notification: true });
-    
+
     instance.closeNotification();
-    const actual = instance.state
-      .notification;
+    const actual = instance.state.notification;
 
     expect(actual).deep.equals(expected);
   });
@@ -322,21 +294,21 @@ describe('<TaxDetail />', () => {
     browserHistory.push = redirectSpy;
 
     const createTaxSpy = sinon.stub().returns({
-      then(foobar) { //eslint-disable-line no-unused-vars
+      then() {
         return {
-          catch() { }
+          catch() {},
         };
-      }
+      },
     });
 
-    createTaxSpy.then = function () { };
+    createTaxSpy.then = function() {};
 
     const updatedProps = {
       ...props,
       tax: taxes[0],
       taxActions: {
-        updateTax: createTaxSpy
-      }
+        updateTax: createTaxSpy,
+      },
     };
 
     const expected = true;
@@ -351,10 +323,9 @@ describe('<TaxDetail />', () => {
   });
 
   it('should return false if the tax taxName is empty when calling formIsValid', () => {
-
     const updatedProps = {
       ...props,
-      tax: taxes[0]
+      tax: taxes[0],
     };
 
     const expected = false;
@@ -368,13 +339,12 @@ describe('<TaxDetail />', () => {
   });
 
   it('should return false from formIsValid if the taxTypeID value is not set', () => {
-
     const updatedProps = {
       ...props,
       tax: {
         taxName: 'Foobar',
-        value: 30
-      }
+        value: 30,
+      },
     };
 
     const expected = false;
@@ -387,15 +357,14 @@ describe('<TaxDetail />', () => {
   });
 
   it('should return false from formIsValid if the taxTypeID is greater than 0 and the items array is empty', () => {
-
     const updatedProps = {
       ...props,
       tax: {
         taxName: 'Foobar',
         value: 30,
         taxTypeID: 1,
-        items: []
-      }
+        items: [],
+      },
     };
 
     const expected = false;
@@ -408,15 +377,14 @@ describe('<TaxDetail />', () => {
   });
 
   it('should return false if there are validation errors calling formIsValid', () => {
-
     const updatedProps = {
       ...props,
-      tax: taxes[0]
+      tax: taxes[0],
     };
 
     const errorState = {
       ...errors,
-      taxName: true
+      taxName: true,
     };
 
     const expected = false;
@@ -431,10 +399,9 @@ describe('<TaxDetail />', () => {
   });
 
   it('should set the error object property taxName to false if it passes the regex test', () => {
-
     const updatedProps = {
       ...props,
-      tax: taxes[0]
+      tax: taxes[0],
     };
 
     const property = 'taxName';
@@ -451,10 +418,9 @@ describe('<TaxDetail />', () => {
   });
 
   it('should set the error object property taxName to whitespace if it DOES NOT pass the regex test', () => {
-
     const updatedProps = {
       ...props,
-      tax: taxes[0]
+      tax: taxes[0],
     };
 
     const property = 'taxName';
@@ -471,10 +437,9 @@ describe('<TaxDetail />', () => {
   });
 
   it('should set the error object property price to false if it passes the regex test', () => {
-
     const updatedProps = {
       ...props,
-      tax: taxes[0]
+      tax: taxes[0],
     };
 
     const property = 'price';
@@ -489,6 +454,4 @@ describe('<TaxDetail />', () => {
 
     expect(actual).equals(expected);
   });
-
-
 });

@@ -15,10 +15,12 @@ import v1router from './routes/routes-v1';
 
 const application = express();
 
-application.use(hsts({
-  maxAge: 3153600, // 1 year
-  includeSubdomains: true
-}));
+application.use(
+  hsts({
+    maxAge: 3153600, // 1 year
+    includeSubdomains: true,
+  }),
+);
 
 application.enable('trust proxy');
 application.use(hstsMiddleware());
@@ -39,7 +41,7 @@ application.get('*', (request, response) => {
   response.sendFile(clientEntryPoint);
 });
 
-application.listen(port, (error) => {
+application.listen(port, error => {
   if (error) {
     logger.error(error);
   }

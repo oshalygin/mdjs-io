@@ -12,3 +12,5 @@
 *.xml
 *.txt
 .eslint
+
+utilities/testSetup.js

@@ -1,13 +1,11 @@
 import { expect } from 'chai';
 import {
   TAX_DEACTIVATED_SUCCESS,
-  LOAD_TAXES_SUCCESS
+  LOAD_TAXES_SUCCESS,
 } from '../actions/actionTypes';
 import reducer from './taxReducer';
 
-
 describe('Reducer - Tax', () => {
-
   const getInitialState = () => {
     return [];
   };
@@ -25,7 +23,7 @@ describe('Reducer - Tax', () => {
       createdBy: 1,
       isActive: true,
       companyID: 1,
-      facilityID: 0
+      facilityID: 0,
     },
     {
       taxID: 20,
@@ -39,13 +37,13 @@ describe('Reducer - Tax', () => {
       createdBy: 1,
       isActive: true,
       companyID: 1,
-      facilityID: 0
-    }
+      facilityID: 0,
+    },
   ];
 
   it('should retrieve the initial state if the action type is not registered with the reducer', () => {
     const action = {
-      type: 'UNKNOWN'
+      type: 'UNKNOWN',
     };
 
     const expected = getInitialState();
@@ -55,32 +53,26 @@ describe('Reducer - Tax', () => {
   });
 
   it('should hydrate the state with all of the taxes in the action in addition to the additional checked and disabled properties', () => {
-
     const action = {
       type: LOAD_TAXES_SUCCESS,
-      taxes
+      taxes,
     };
 
     const expected = taxes;
     const actual = reducer(undefined, action); //eslint-disable-line no-undefined
 
     expect(actual).deep.equals(expected);
-
   });
 
   it('should remove the tax that was passed in as part of the TAX_DEACTIVATED_SUCCESS dispatched action', () => {
-
     const action = {
       type: TAX_DEACTIVATED_SUCCESS,
-      tax: taxes[0]
+      tax: taxes[0],
     };
 
     const expected = 1;
-    const actual = reducer(taxes, action)
-      .length;
+    const actual = reducer(taxes, action).length;
 
     expect(actual).equals(expected);
-
   });
-
 });

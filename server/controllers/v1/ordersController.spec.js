@@ -6,7 +6,6 @@ import { ORDERS_ENDPOINT } from '../../utilities/endpoints';
 import OrdersController from './ordersController';
 
 describe('Orders Controller', () => {
-
   const orders = [
     {
       orderID: 4,
@@ -17,7 +16,7 @@ describe('Orders Controller', () => {
       totalDiscount: 0,
       totalSub: 0,
       totalTax: 0,
-      totalTip: 0
+      totalTip: 0,
     },
     {
       orderID: 5,
@@ -28,15 +27,13 @@ describe('Orders Controller', () => {
       totalDiscount: 0,
       totalSub: 0,
       totalTax: 0,
-      totalTip: 0
-    }
+      totalTip: 0,
+    },
   ];
 
   const listOfOrdersPayload = orders;
 
-
   const orderPayload = orders[0];
-
 
   beforeEach(() => {
     moxios.install();
@@ -47,127 +44,120 @@ describe('Orders Controller', () => {
   });
 
   it('should return a 400 status code if the id is not a number', () => {
-
     const expected = true;
 
     const sendSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
-      send: sendSpy
+      send: sendSpy,
     });
 
     const response = {
-      status: statusStub
+      status: statusStub,
     };
 
     const request = {
       params: {
-        id: 'foobar'
+        id: 'foobar',
       },
-      query: {}
+      query: {},
     };
 
     OrdersController.get(request, response);
 
     const actual = statusStub.calledWith(400);
     expect(actual).equals(expected);
-
   });
 
   it('should return a 200 status code on a successful request without an id', () => {
-
     moxios.stubRequest(ORDERS_ENDPOINT, {
       status: 200,
-      response: listOfOrdersPayload
+      response: listOfOrdersPayload,
     });
 
     const expected = true;
 
     const jsonSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
-      json: jsonSpy
+      json: jsonSpy,
     });
 
     const response = {
-      status: statusStub
+      status: statusStub,
     };
 
     const request = {
       headers: {
-        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
+        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e',
       },
       query: {},
-      params: {}
+      params: {},
     };
 
     return OrdersController.get(request, response).then(() => {
       const actual = statusStub.calledWith(200);
       expect(actual).equals(expected);
     });
-
   });
 
   it('should return a list of orders on a successful request', () => {
-
     moxios.stubRequest(ORDERS_ENDPOINT, {
       status: 200,
-      response: listOfOrdersPayload
+      response: listOfOrdersPayload,
     });
 
     const expected = true;
 
     const jsonSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
-      json: jsonSpy
+      json: jsonSpy,
     });
 
     const response = {
-      status: statusStub
+      status: statusStub,
     };
 
     const request = {
       headers: {
-        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
+        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e',
       },
       params: {},
-      query: {}
+      query: {},
     };
 
     return OrdersController.get(request, response).then(() => {
       const actual = jsonSpy.calledWith(orders);
       expect(actual).equals(expected);
     });
-
   });
 
   it('should return the order details on a successful request', () => {
-
     const orderId = 4;
     const modifierEndpoint = `${ORDERS_ENDPOINT}/${orderId}`;
 
     moxios.stubRequest(modifierEndpoint, {
       status: 200,
-      response: orderPayload
+      response: orderPayload,
     });
 
     const expected = true;
 
     const jsonSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
-      json: jsonSpy
+      json: jsonSpy,
     });
 
     const response = {
-      status: statusStub
+      status: statusStub,
     };
 
     const request = {
       headers: {
-        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
+        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e',
       },
       params: {
-        id: orderId
+        id: orderId,
       },
-      query: {}
+      query: {},
     };
 
     return OrdersController.get(request, response).then(() => {
@@ -177,54 +167,51 @@ describe('Orders Controller', () => {
   });
 
   it('should return 404 if the request fails on the backend for any reason', () => {
-
     const serverResponse = {
       response: {
         data: {
-          message: 'Invalid username or password'
-        }
-      }
+          message: 'Invalid username or password',
+        },
+      },
     };
 
     moxios.stubRequest(ORDERS_ENDPOINT, {
       status: 500,
-      response: serverResponse
+      response: serverResponse,
     });
 
     const expected = true;
 
     const sendSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
-      send: sendSpy
+      send: sendSpy,
     });
 
     const response = {
-      status: statusStub
+      status: statusStub,
     };
 
     const request = {
       headers: {
-        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
+        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e',
       },
       params: {},
-      query: {}
+      query: {},
     };
 
     return OrdersController.get(request, response).then(() => {
       const actual = statusStub.calledWith(404);
       expect(actual).equals(expected);
     });
-
   });
 
   it('should return 404 if the request fails on the backend for any reason on a request by id', () => {
-
     const serverResponse = {
       response: {
         data: {
-          message: 'Invalid username or password'
-        }
-      }
+          message: 'Invalid username or password',
+        },
+      },
     };
 
     const orderId = 3;
@@ -232,39 +219,37 @@ describe('Orders Controller', () => {
 
     moxios.stubRequest(endpoint, {
       status: 500,
-      response: serverResponse
+      response: serverResponse,
     });
 
     const expected = true;
 
     const sendSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
-      send: sendSpy
+      send: sendSpy,
     });
 
     const response = {
-      status: statusStub
+      status: statusStub,
     };
 
     const request = {
       headers: {
-        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
+        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e',
       },
       params: {
-        id: orderId
+        id: orderId,
       },
-      query: {}
+      query: {},
     };
 
     return OrdersController.get(request, response).then(() => {
       const actual = statusStub.calledWith(404);
       expect(actual).equals(expected);
     });
-
   });
 
   it('should return a 200 status code on a successful request with a startDate and endDate params', () => {
-
     const startDate = '5-1-2017';
     const endDate = '6-1-2017';
 
@@ -272,36 +257,34 @@ describe('Orders Controller', () => {
 
     moxios.stubRequest(endpoint, {
       status: 200,
-      response: listOfOrdersPayload
+      response: listOfOrdersPayload,
     });
 
     const expected = true;
 
     const jsonSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
-      json: jsonSpy
+      json: jsonSpy,
     });
 
     const response = {
-      status: statusStub
+      status: statusStub,
     };
 
     const request = {
       headers: {
-        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
+        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e',
       },
       query: {
         startDate,
-        endDate
+        endDate,
       },
-      params: {}
+      params: {},
     };
 
     return OrdersController.get(request, response).then(() => {
       const actual = statusStub.calledWith(200);
       expect(actual).equals(expected);
     });
-
   });
-
 });

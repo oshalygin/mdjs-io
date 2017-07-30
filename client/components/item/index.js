@@ -1,14 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 import { browserHistory } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/itemActions';
-
 
 import TextField from '../common/TextField.jsx';
 import ItemTable from './ItemTable.jsx';
@@ -24,7 +22,7 @@ export class Item extends React.Component {
     this.state = {
       items: props.items,
       query: '',
-      filter: ''
+      filter: '',
     };
 
     this.deactivate = this.deactivate.bind(this);
@@ -40,10 +38,10 @@ export class Item extends React.Component {
     const { items } = this.state;
     const { itemActions } = this.props;
 
-    const deactivatedItem = items
-      .find(item => item.itemID === itemId);
+    const deactivatedItem = items.find(item => item.itemID === itemId);
 
-    itemActions.deactivateItem(deactivatedItem)
+    itemActions
+      .deactivateItem(deactivatedItem)
       .then(() => {
         //TODO: #68 - Add Snackbar control that indicates success
       })
@@ -54,14 +52,15 @@ export class Item extends React.Component {
 
   searchOnChange(event) {
     const { items } = this.props;
-    
-    const filter = event.target.value
-      .toLowerCase();
-    const filteredItems = items.filter(item => item.label.toLowerCase().includes(filter));
-    
+
+    const filter = event.target.value.toLowerCase();
+    const filteredItems = items.filter(item =>
+      item.label.toLowerCase().includes(filter),
+    );
+
     this.setState({
       filter,
-      items: filteredItems
+      items: filteredItems,
     });
   }
 
@@ -92,12 +91,11 @@ export class Item extends React.Component {
                     onChange={this.searchOnChange}
                     errorText={this.state.error}
                     style={fullWidth}
-                    floatingLabelText="Filter" />
+                    floatingLabelText="Filter"
+                  />
                 </div>
               </div>
-              <ItemTable
-                items={items}
-                deactivate={this.deactivate} />
+              <ItemTable items={items} deactivate={this.deactivate} />
             </div>
           </div>
         </div>
@@ -108,17 +106,17 @@ export class Item extends React.Component {
 
 Item.propTypes = {
   items: PropTypes.array.isRequired,
-  itemActions: PropTypes.object.isRequired
+  itemActions: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
-    items: state.items
+    items: state.items,
   };
 }
 function mapDispatchToProps(dispatch) {
   return {
-    itemActions: bindActionCreators(actionCreators, dispatch)
+    itemActions: bindActionCreators(actionCreators, dispatch),
   };
 }
 

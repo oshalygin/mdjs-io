@@ -5,7 +5,7 @@ import categories from './categorySagas';
 
 const sagas = [
   // ...auth,
-  ...categories
+  ...categories,
 ];
 
 export default function* root() {

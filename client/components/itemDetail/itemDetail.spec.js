@@ -9,11 +9,10 @@ jest.dontMock('react-router');
 import { expect } from 'chai';
 
 describe('<ItemDetail />', () => {
-
   const errors = {
     name: false,
     label: false,
-    price: false
+    price: false,
   };
 
   const props = {
@@ -27,15 +26,15 @@ describe('<ItemDetail />', () => {
       file: null,
       itemCategoryID: 0,
       isActive: 1,
-      priceTypeID: 0
+      priceTypeID: 0,
     },
     categories: [],
     itemHeading: 'New Item',
     loading: {
-      createUpdateItem: false
+      createUpdateItem: false,
     },
     errors,
-    itemActions: {}
+    itemActions: {},
   };
 
   const items = [
@@ -49,7 +48,7 @@ describe('<ItemDetail />', () => {
       file: null,
       itemCategoryID: 2,
       isActive: 1,
-      priceTypeID: 1
+      priceTypeID: 1,
     },
     {
       itemID: 2,
@@ -61,7 +60,7 @@ describe('<ItemDetail />', () => {
       file: null,
       itemCategoryID: 2,
       isActive: 1,
-      priceTypeID: 1
+      priceTypeID: 1,
     },
     {
       itemID: 3,
@@ -73,8 +72,8 @@ describe('<ItemDetail />', () => {
       file: null,
       itemCategoryID: 2,
       isActive: 1,
-      priceTypeID: 1
-    }
+      priceTypeID: 1,
+    },
   ];
 
   const categories = [
@@ -88,7 +87,7 @@ describe('<ItemDetail />', () => {
       isActive: true,
       items: [],
       lastUpdatedBy: 1,
-      lastUpdatedDate: '2017-03-31T01:09:34.3905613-07:00'
+      lastUpdatedDate: '2017-03-31T01:09:34.3905613-07:00',
     },
     {
       categoryID: 2,
@@ -100,7 +99,7 @@ describe('<ItemDetail />', () => {
       isActive: true,
       items: [],
       lastUpdatedBy: 1,
-      lastUpdatedDate: '2017-03-31T01:09:34.3905613-07:00'
+      lastUpdatedDate: '2017-03-31T01:09:34.3905613-07:00',
     },
     {
       categoryID: 3,
@@ -112,134 +111,117 @@ describe('<ItemDetail />', () => {
       isActive: true,
       items: [],
       lastUpdatedBy: 1,
-      lastUpdatedDate: '2017-03-31T01:09:34.3905613-07:00'
-    }
+      lastUpdatedDate: '2017-03-31T01:09:34.3905613-07:00',
+    },
   ];
 
   it('should render the component with the itemDetail heading of "New Item"', () => {
-
     const expected = 'New Item';
     const wrapper = shallow(<ItemDetail.WrappedComponent {...props} />);
 
-    const actual = wrapper.find('h5')
-      .props().children;
+    const actual = wrapper.find('h5').props().children;
 
     expect(actual).equals(expected);
   });
 
   it('should return the heading as "New Item" if the passed in props is null', () => {
-
     const state = {
-      items
+      items,
     };
     const ownProps = {
       params: {
-        id: null
-      }
+        id: null,
+      },
     };
 
     const expected = 'New Item';
-    const actual = mapStateToProps(state, ownProps)
-      .itemHeading;
-
+    const actual = mapStateToProps(state, ownProps).itemHeading;
 
     expect(actual).equals(expected);
   });
 
   it('should return the heading as "Update Item" if the passed in id prop matches the state items', () => {
-
     const state = {
-      items
+      items,
     };
     const ownProps = {
       params: {
-        id: 1
-      }
+        id: 1,
+      },
     };
 
     const expected = 'Update Item';
-    const actual = mapStateToProps(state, ownProps)
-      .itemHeading;
-
+    const actual = mapStateToProps(state, ownProps).itemHeading;
 
     expect(actual).equals(expected);
   });
 
   it('should return the existing item properties if the passed in id prop matches the state items', () => {
-
     const state = {
-      items
+      items,
     };
     const ownProps = {
       params: {
-        id: 1
-      }
+        id: 1,
+      },
     };
 
     const expected = items[0];
-    const actual = mapStateToProps(state, ownProps)
-      .item;
+    const actual = mapStateToProps(state, ownProps).item;
 
     expect(actual).deep.equals(expected);
   });
 
   it('should return the an empty item if the passed in id prop is null', () => {
-
     const state = {
-      items
+      items,
     };
     const ownProps = {
       params: {
-        id: null
-      }
+        id: null,
+      },
     };
 
     const expected = props.item;
-    const actual = mapStateToProps(state, ownProps)
-      .item;
+    const actual = mapStateToProps(state, ownProps).item;
 
     expect(actual).deep.equals(expected);
   });
 
   it('should return the categories from state when mapping', () => {
-
     const state = {
       items,
-      categories
+      categories,
     };
     const ownProps = {
       params: {
-        id: null
-      }
+        id: null,
+      },
     };
 
     const expected = categories;
-    const actual = mapStateToProps(state, ownProps)
-      .categories;
+    const actual = mapStateToProps(state, ownProps).categories;
 
     expect(actual).deep.equals(expected);
   });
 
   it('should render a spinner if the "createUpdateItem" loading flag is set', () => {
-
     const updatedProps = {
       ...props,
       loading: {
-        createUpdateItem: true
-      }
+        createUpdateItem: true,
+      },
     };
 
     const expected = 1;
     const wrapper = shallow(<ItemDetail.WrappedComponent {...updatedProps} />);
 
-    const actual = wrapper.find(Spinner)
-      .length;
+    const actual = wrapper.find(Spinner).length;
 
     expect(actual).equals(expected);
   });
 
   it('should navigate back to the "items" page if the back button is clicked', () => {
-
     const redirectSpy = sinon.spy();
     const browserHistory = require('react-router').browserHistory;
     browserHistory.push = redirectSpy;
@@ -252,17 +234,15 @@ describe('<ItemDetail />', () => {
 
     const actual = redirectSpy.calledWith('items');
 
-
     expect(actual).equals(expected);
   });
 
   it('should set the item state to include the file property onDrop', () => {
-
     const files = [
       {
         name: 'filename.jpg',
-        preview: 'http://www.foobar.com/filename.jpg'
-      }
+        preview: 'http://www.foobar.com/filename.jpg',
+      },
     ];
 
     const expected = files[0];
@@ -270,20 +250,17 @@ describe('<ItemDetail />', () => {
 
     const instance = wrapper.instance();
     instance.onDrop(files);
-    const actual = instance.state
-      .item
-      .file;
+    const actual = instance.state.item.file;
 
     expect(actual).deep.equals(expected);
   });
 
   it('should set the item state to include the photoURL property onDrop from the files object', () => {
-
     const files = [
       {
         name: 'filename.jpg',
-        preview: 'http://www.foobar.com/filename.jpg'
-      }
+        preview: 'http://www.foobar.com/filename.jpg',
+      },
     ];
 
     const expected = files[0].preview;
@@ -291,18 +268,15 @@ describe('<ItemDetail />', () => {
 
     const instance = wrapper.instance();
     instance.onDrop(files);
-    const actual = instance.state
-      .item
-      .photoURL;
+    const actual = instance.state.item.photoURL;
 
     expect(actual).equals(expected);
   });
 
   it('should set the new state of the item based on the form field that was changed', () => {
-
     const updatedProps = {
       ...props,
-      item: items[0]
+      item: items[0],
     };
 
     const expected = 'Foobar';
@@ -310,8 +284,8 @@ describe('<ItemDetail />', () => {
     const event = {
       target: {
         name: 'name',
-        value: 'Foobar'
-      }
+        value: 'Foobar',
+      },
     };
 
     const index = null;
@@ -321,18 +295,15 @@ describe('<ItemDetail />', () => {
 
     const instance = wrapper.instance();
     instance.onChange(event, index, payload);
-    const actual = instance.state
-      .item
-      .name;
+    const actual = instance.state.item.name;
 
     expect(actual).deep.equals(expected);
   });
 
   it('should set the item based on the payload if it was passed in', () => {
-
     const updatedProps = {
       ...props,
-      item: items[0]
+      item: items[0],
     };
 
     const expected = 3;
@@ -340,53 +311,55 @@ describe('<ItemDetail />', () => {
     const event = {
       target: {
         name: 'name',
-        value: 'Foobar'
-      }
+        value: 'Foobar',
+      },
     };
 
     const index = null;
     const payload = {
       name: 'itemPriceTypeID',
-      value: 3
+      value: 3,
     };
 
     const wrapper = shallow(<ItemDetail.WrappedComponent {...updatedProps} />);
 
     const instance = wrapper.instance();
     instance.onChange(event, index, payload);
-    const actual = instance.state
-      .item
-      .itemPriceTypeID;
+    const actual = instance.state.item.itemPriceTypeID;
 
     expect(actual).deep.equals(expected);
   });
 
   it('should call "updateItem" with the item that was passed in to onSave along but with updated price and label', () => {
-
     const redirectSpy = sinon.spy();
     const browserHistory = require('react-router').browserHistory;
     browserHistory.push = redirectSpy;
 
     const createItemSpy = sinon.stub().returns({
-      then(foobar) { //eslint-disable-line no-unused-vars
+      then() {
         return {
-          catch() { }
+          catch() {},
         };
-      }
+      },
     });
 
-    createItemSpy.then = function () { };
+    createItemSpy.then = function() {};
 
     const updatedProps = {
       ...props,
       item: items[0],
       itemActions: {
-        updateItem: createItemSpy
-      }
+        updateItem: createItemSpy,
+      },
     };
 
     const expected = true;
-    const updatedItem = { ...items[0], price: Number(items[0].price), label: 'Fo', isShowPhoto: true };
+    const updatedItem = {
+      ...items[0],
+      price: Number(items[0].price),
+      label: 'Fo',
+      isShowPhoto: true,
+    };
     const wrapper = shallow(<ItemDetail.WrappedComponent {...updatedProps} />);
 
     const instance = wrapper.instance();
@@ -398,31 +371,34 @@ describe('<ItemDetail />', () => {
   });
 
   it('should call "updateItem" with the item that was passed in to onSave along but with the label that was passed in', () => {
-
     const redirectSpy = sinon.spy();
     const browserHistory = require('react-router').browserHistory;
     browserHistory.push = redirectSpy;
 
     const createItemSpy = sinon.stub().returns({
-      then(foobar) { //eslint-disable-line no-unused-vars
+      then() {
         return {
-          catch() { }
+          catch() {},
         };
-      }
+      },
     });
 
-    createItemSpy.then = function () { };
+    createItemSpy.then = function() {};
 
     const updatedProps = {
       ...props,
       item: items[1],
       itemActions: {
-        updateItem: createItemSpy
-      }
+        updateItem: createItemSpy,
+      },
     };
 
     const expected = true;
-    const updatedItem = { ...items[1], price: Number(items[1].price), isShowPhoto: true };
+    const updatedItem = {
+      ...items[1],
+      price: Number(items[1].price),
+      isShowPhoto: true,
+    };
     const wrapper = shallow(<ItemDetail.WrappedComponent {...updatedProps} />);
 
     const instance = wrapper.instance();
@@ -434,10 +410,9 @@ describe('<ItemDetail />', () => {
   });
 
   it('should return false if the item name is empty when calling formIsValid', () => {
-
     const updatedProps = {
       ...props,
-      item: items[0]
+      item: items[0],
     };
 
     const expected = false;
@@ -451,10 +426,9 @@ describe('<ItemDetail />', () => {
   });
 
   it('should return false if the item price is empty when calling formIsValid', () => {
-
     const updatedProps = {
       ...props,
-      item: items[0]
+      item: items[0],
     };
 
     const expected = false;
@@ -468,10 +442,9 @@ describe('<ItemDetail />', () => {
   });
 
   it('should return true if the item name and price are set when calling formIsValid', () => {
-
     const updatedProps = {
       ...props,
-      item: items[0]
+      item: items[0],
     };
 
     const expected = true;
@@ -484,15 +457,14 @@ describe('<ItemDetail />', () => {
   });
 
   it('should return false if there are validation errors calling formIsValid', () => {
-
     const updatedProps = {
       ...props,
-      item: items[0]
+      item: items[0],
     };
 
     const errorState = {
       ...errors,
-      name: true
+      name: true,
     };
 
     const expected = false;
@@ -507,10 +479,9 @@ describe('<ItemDetail />', () => {
   });
 
   it('should set the error object property name to false if it passes the regex test', () => {
-
     const updatedProps = {
       ...props,
-      item: items[0]
+      item: items[0],
     };
 
     const property = 'name';
@@ -527,10 +498,9 @@ describe('<ItemDetail />', () => {
   });
 
   it('should set the error object property name to whitespace if it DOES NOT pass the regex test', () => {
-
     const updatedProps = {
       ...props,
-      item: items[0]
+      item: items[0],
     };
 
     const property = 'name';
@@ -547,10 +517,9 @@ describe('<ItemDetail />', () => {
   });
 
   it('should set the error object property label to false if it passes the regex test', () => {
-
     const updatedProps = {
       ...props,
-      item: items[0]
+      item: items[0],
     };
 
     const property = 'label';
@@ -567,10 +536,9 @@ describe('<ItemDetail />', () => {
   });
 
   it('should set the error object property price to whitespace if it DOES NOT pass the regex test', () => {
-
     const updatedProps = {
       ...props,
-      item: items[0]
+      item: items[0],
     };
 
     const property = 'price';
@@ -587,10 +555,9 @@ describe('<ItemDetail />', () => {
   });
 
   it('should set the error object property price to false if it passes the regex test', () => {
-
     const updatedProps = {
       ...props,
-      item: items[0]
+      item: items[0],
     };
 
     const property = 'price';
@@ -607,10 +574,9 @@ describe('<ItemDetail />', () => {
   });
 
   it('should set the error object property price to false if it passes the regex test with a number', () => {
-
     const updatedProps = {
       ...props,
-      item: items[0]
+      item: items[0],
     };
 
     const property = 'price';
@@ -627,10 +593,9 @@ describe('<ItemDetail />', () => {
   });
 
   it('should set the error object property price to false if it passes the regex test with a number represented as a string', () => {
-
     const updatedProps = {
       ...props,
-      item: items[0]
+      item: items[0],
     };
 
     const property = 'price';
@@ -647,7 +612,6 @@ describe('<ItemDetail />', () => {
   });
 
   it('should set the default item label to "Ap" if the item name is "Apple"', () => {
-
     const expected = 'Ap';
     const itemName = 'Apple';
     const actual = setDefaultLabel(itemName);
@@ -656,7 +620,6 @@ describe('<ItemDetail />', () => {
   });
 
   it('should set the default item label to "A" if the item name is "A"', () => {
-
     const expected = 'A';
     const itemName = 'A';
     const actual = setDefaultLabel(itemName);
@@ -665,12 +628,10 @@ describe('<ItemDetail />', () => {
   });
 
   it('should set the default item label to "A" if the item name is "a"', () => {
-
     const expected = 'A';
     const itemName = 'a';
     const actual = setDefaultLabel(itemName);
 
     expect(actual).equals(expected);
   });
-
 });

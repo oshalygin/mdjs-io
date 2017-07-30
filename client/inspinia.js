@@ -1,21 +1,21 @@
 import $ from 'jquery'; //eslint-disable-line id-length
 $(document).ready(() => {
-
   function SmoothlyMenu() {
-    if (!$('body').hasClass('mini-navbar') || $('body').hasClass('body-small')) {
+    if (
+      !$('body').hasClass('mini-navbar') ||
+      $('body').hasClass('body-small')
+    ) {
       // Hide menu in order to smoothly turn on when maximize menu
       $('#side-menu').hide();
       // For smoothly turn on menu
-      setTimeout(
-        () => {
-          $('#side-menu').fadeIn(400);
-        }, 200);
+      setTimeout(() => {
+        $('#side-menu').fadeIn(400);
+      }, 200);
     } else if ($('body').hasClass('fixed-sidebar')) {
       $('#side-menu').hide();
-      setTimeout(
-        () => {
-          $('#side-menu').fadeIn(400);
-        }, 100);
+      setTimeout(() => {
+        $('#side-menu').fadeIn(400);
+      }, 100);
     } else {
       // Remove all inline style from jquery fadeIn function to reset menu state
       $('#side-menu').removeAttr('style');
@@ -23,17 +23,18 @@ $(document).ready(() => {
   }
 
   // Dragable panels
-  function WinMove() { //eslint-disable-line no-unused-vars
+  //eslint-disable-next-line no-unused-vars
+  function WinMove() {
     const element = '[class*=col]';
     const handle = '.ibox-title';
     const connect = '[class*=col]';
-    $(element).sortable(
-      {
+    $(element)
+      .sortable({
         handle,
         connectWith: connect,
         tolerance: 'pointer',
         forcePlaceholderSize: true,
-        opacity: 0.8
+        opacity: 0.8,
       })
       .disableSelection();
   }
@@ -95,9 +96,7 @@ $(document).ready(() => {
 
   // Open close small chat
   $('.open-small-chat').on('click', () => {
-    $(this).children()
-      .toggleClass('fa-comments')
-      .toggleClass('fa-remove');
+    $(this).children().toggleClass('fa-comments').toggleClass('fa-remove');
     $('.small-chat-box').toggleClass('active');
   });
 
@@ -119,7 +118,7 @@ $(document).ready(() => {
   // Tooltips demo
   $('.tooltip-demo').tooltip({
     selector: '[data-toggle=tooltip]',
-    container: 'body'
+    container: 'body',
   });
 
   // Full height of sidebar
@@ -164,9 +163,7 @@ $(document).ready(() => {
     }
   });
 
-  $('[data-toggle=popover]')
-    .popover();
-
+  $('[data-toggle=popover]').popover();
 });
 
 // Minimalize menu when screen is less than 768px
@@ -181,15 +178,12 @@ $(window).bind('resize', () => {
 // Local Storage functions
 // Set proper body class and plugins based on user configuration
 $(document).ready(() => {
-
   // check if browser support HTML5 local storage
   function localStorageSupport() {
-    return (('localStorage' in window) && window.localStorage !== null);
+    return 'localStorage' in window && window.localStorage !== null;
   }
 
-
   if (localStorageSupport()) {
-
     const collapse = localStorage.getItem('collapse_menu');
     const fixednavbar = localStorage.getItem('fixednavbar');
     const boxedlayout = localStorage.getItem('boxedlayout');
@@ -197,15 +191,16 @@ $(document).ready(() => {
 
     const body = $('body');
 
-    if (collapse == 'on') { //eslint-disable-line eqeqeq
+    //eslint-disable-next-line eqeqeq
+    if (collapse == 'on') {
       if (body.hasClass('fixed-sidebar') && !body.hasClass('body-small')) {
         body.addClass('mini-navbar');
       } else if (!body.hasClass('body-small')) {
         body.addClass('mini-navbar');
       }
     }
-
-    if (fixednavbar == 'on') { //eslint-disable-line eqeqeq
+    //eslint-disable-next-line eqeqeq
+    if (fixednavbar == 'on') {
       $('.navbar-static-top')
         .removeClass('navbar-static-top')
         .addClass('navbar-fixed-top');
@@ -213,13 +208,14 @@ $(document).ready(() => {
       body.addClass('fixed-nav');
     }
 
-    if (boxedlayout == 'on') { //eslint-disable-line eqeqeq
+    //eslint-disable-next-line eqeqeq
+    if (boxedlayout == 'on') {
       body.addClass('boxed-layout');
     }
 
-    if (fixedfooter == 'on') { //eslint-disable-line
+    //eslint-disable-next-line eqeqeq
+    if (fixedfooter == 'on') {
       $('.footer').addClass('fixed');
     }
   }
-
 });

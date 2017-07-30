@@ -9,22 +9,19 @@ jest.dontMock('react-router');
 import { expect } from 'chai';
 
 describe('<Modifiers />', () => {
-
   const modifiers = [
     {
       modifierID: 3,
       modifierName: 'test',
       modifierPrice: 30.99,
-      items: [
-        85
-      ],
+      items: [85],
       lastUpdatedDate: '2017-03-27T17:58:37.11',
       createdDate: '2016-12-12T22:16:55.28',
       lastUpdatedBy: 1,
       createdBy: 1,
       isActive: true,
       companyID: 1,
-      facilityID: 0
+      facilityID: 0,
     },
     {
       modifierID: 12,
@@ -37,19 +34,18 @@ describe('<Modifiers />', () => {
       createdBy: 1,
       isActive: true,
       companyID: 1,
-      facilityID: 0
-    }
+      facilityID: 0,
+    },
   ];
 
   const props = {
     modifiers,
     query: '',
     filter: '',
-    modifierActions() { }
+    modifierActions() {},
   };
 
   it('should contain a button component that is titled "New Modifier"', () => {
-
     const expected = 'New Modifier';
     const wrapper = shallow(<Modifiers.WrappedComponent {...props} />);
 
@@ -59,7 +55,6 @@ describe('<Modifiers />', () => {
   });
 
   it('should navigate to the "modifier" route when navigateToNewModifierPage is called', () => {
-    
     const redirectSpy = sinon.spy();
     const browserHistory = require('react-router').browserHistory;
     browserHistory.push = redirectSpy;
@@ -76,22 +71,21 @@ describe('<Modifiers />', () => {
   });
 
   it('should dispatch the deactivate action with the passed in id that matches the modifier in the list', () => {
-
     const deactivatedModifierSpy = sinon.stub().returns({
-      then(foobar) { //eslint-disable-line no-unused-vars
+      then() {
         return {
-          catch() { }
+          catch() {},
         };
-      }
+      },
     });
 
-    deactivatedModifierSpy.then = function () { };
+    deactivatedModifierSpy.then = function() {};
 
     const updatedProps = {
       ...props,
       modifierActions: {
-        deactivateModifier: deactivatedModifierSpy
-      }
+        deactivateModifier: deactivatedModifierSpy,
+      },
     };
 
     const expected = true;
@@ -102,11 +96,9 @@ describe('<Modifiers />', () => {
 
     const actual = deactivatedModifierSpy.calledWith(modifiers[0]);
     expect(actual).equals(expected);
-
   });
 
   it('should filter the list to only include the modifiers from the searchCriteria', () => {
-
     const searchCriteria = 'T';
     const expected = 1;
     const wrapper = shallow(<Modifiers.WrappedComponent {...props} />);
@@ -114,21 +106,19 @@ describe('<Modifiers />', () => {
     const event = {
       target: {
         name: 'filter',
-        value: searchCriteria
-      }
+        value: searchCriteria,
+      },
     };
 
     const instance = wrapper.instance();
     instance.searchOnChange(event);
 
-    const actual = instance.state
-      .modifiers.length;
+    const actual = instance.state.modifiers.length;
 
     expect(actual).equals(expected);
   });
 
   it('should filter the list and match on lowercase as well', () => {
-
     const searchCriteria = 't';
     const expected = 1;
     const wrapper = shallow(<Modifiers.WrappedComponent {...props} />);
@@ -136,21 +126,19 @@ describe('<Modifiers />', () => {
     const event = {
       target: {
         name: 'filter',
-        value: searchCriteria
-      }
+        value: searchCriteria,
+      },
     };
 
     const instance = wrapper.instance();
     instance.searchOnChange(event);
 
-    const actual = instance.state
-      .modifiers.length;
+    const actual = instance.state.modifiers.length;
 
     expect(actual).equals(expected);
   });
 
   it('should set the filter object appropriately on the local state', () => {
-
     const searchCriteria = 'b';
     const expected = searchCriteria;
     const wrapper = shallow(<Modifiers.WrappedComponent {...props} />);
@@ -158,17 +146,15 @@ describe('<Modifiers />', () => {
     const event = {
       target: {
         name: 'filter',
-        value: searchCriteria
-      }
+        value: searchCriteria,
+      },
     };
 
     const instance = wrapper.instance();
     instance.searchOnChange(event);
 
-    const actual = instance.state
-      .filter;
+    const actual = instance.state.filter;
 
     expect(actual).equals(expected);
   });
-
 });

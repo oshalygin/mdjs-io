@@ -1,15 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 import TextField from '../common/TextField.jsx';
 import './discountDetail.css';
 
-const DiscountValueField = ({ isPercent, errorText, style, onChange, floatingLabelText, value, name, fullWidth }) => {
-
-  return isPercent ?
-    (
-      <div>
+const DiscountValueField = ({
+  isPercent,
+  errorText,
+  style,
+  onChange,
+  floatingLabelText,
+  value,
+  name,
+  fullWidth,
+}) => {
+  return isPercent
+    ? <div>
         <TextField
           fullWidth={fullWidth}
           name={name}
@@ -17,17 +23,12 @@ const DiscountValueField = ({ isPercent, errorText, style, onChange, floatingLab
           floatingLabelText={floatingLabelText}
           onChange={onChange}
           style={style}
-          errorText={errorText} />
-        <span styleName="percent-text">
-          %
-        </span>
+          errorText={errorText}
+        />
+        <span styleName="percent-text">%</span>
       </div>
-    ) :
-    (
-      <div>
-        <span styleName="currency-text">
-          $
-        </span>
+    : <div>
+        <span styleName="currency-text">$</span>
         <TextField
           fullWidth={fullWidth}
           name={name}
@@ -35,10 +36,9 @@ const DiscountValueField = ({ isPercent, errorText, style, onChange, floatingLab
           floatingLabelText={floatingLabelText}
           onChange={onChange}
           style={style}
-          errorText={errorText} />
-      </div>
-    );
-
+          errorText={errorText}
+        />
+      </div>;
 };
 
 DiscountValueField.propTypes = {
@@ -49,7 +49,7 @@ DiscountValueField.propTypes = {
   onChange: PropTypes.func.isRequired,
   floatingLabelText: PropTypes.string,
   value: PropTypes.any,
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
 };
 
 export default DiscountValueField;

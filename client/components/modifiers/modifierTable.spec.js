@@ -8,23 +8,20 @@ import ModifierTable from './ModifierTable.jsx';
 import { expect } from 'chai';
 
 describe('<ModifierTable />', () => {
-
   const props = {
     modifiers: [
       {
         modifierID: 3,
         modifierName: 'test',
         modifierPrice: 30.99,
-        items: [
-          85
-        ],
+        items: [85],
         lastUpdatedDate: '2017-03-27T17:58:37.11',
         createdDate: '2016-12-12T22:16:55.28',
         lastUpdatedBy: 1,
         createdBy: 1,
         isActive: true,
         companyID: 1,
-        facilityID: 0
+        facilityID: 0,
       },
       {
         modifierID: 12,
@@ -37,44 +34,37 @@ describe('<ModifierTable />', () => {
         createdBy: 1,
         isActive: true,
         companyID: 1,
-        facilityID: 0
-      }
+        facilityID: 0,
+      },
     ],
-    deactivate() { },
-    children: []
+    deactivate() {},
+    children: [],
   };
 
   it('should contain (7) Headers that identify the modifier', () => {
-
     const expected = 7;
 
     const wrapper = shallow(<ModifierTable {...props} />);
     const actual = wrapper.find(TableHeaderColumn).length;
 
     expect(actual).equals(expected);
-
   });
 
   it('should set the displaySelectAll to false on the table to not render the checkboxes', () => {
-
     const expected = false;
 
     const wrapper = shallow(<ModifierTable {...props} />);
     const actual = wrapper.find(TableHeader).props().displaySelectAll;
 
     expect(actual).equals(expected);
-
   });
 
   it('should render an equivalent number of rows to the number of modifiers in props', () => {
-
     const expected = props.modifiers.length;
 
     const wrapper = shallow(<ModifierTable {...props} />);
     const actual = wrapper.find(ModifierTableRow).length;
 
     expect(actual).equals(expected);
-
   });
-
 });

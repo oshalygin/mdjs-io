@@ -11,7 +11,7 @@ class SearchBar extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      user: {}
+      user: {},
     };
 
     this.logout = this.logout.bind(this);
@@ -31,14 +31,28 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div className="row border-bottom">
-        <nav className="navbar navbar-static-top white-bg" role="navigation" style={{ marginBottom: 0 }}>
+        <nav
+          className="navbar navbar-static-top white-bg"
+          role="navigation"
+          style={{ marginBottom: 0 }}
+        >
           <div className="navbar-header">
-            <a className="navbar-minimalize minimalize-styl-2 btn btn-primary" onClick={this.toggleSideNavMenu}>
+            <a
+              className="navbar-minimalize minimalize-styl-2 btn btn-primary"
+              onClick={this.toggleSideNavMenu}
+            >
               <i className="fa fa-bars" />
             </a>
             <form role="search" className="navbar-form-custom">
               <div className="form-group">
-                <input type="text" placeholder="Search for something..." className="form-control" name="top-search" id="top-search" disabled />
+                <input
+                  type="text"
+                  placeholder="Search for something..."
+                  className="form-control"
+                  name="top-search"
+                  id="top-search"
+                  disabled
+                />
               </div>
             </form>
           </div>
@@ -58,19 +72,18 @@ class SearchBar extends React.Component {
 
 SearchBar.propTypes = {
   user: PropTypes.object.isRequired,
-  userActions: PropTypes.object.isRequired
+  userActions: PropTypes.object.isRequired,
 };
-
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    user: state.user,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    userActions: bindActionCreators(actionCreators, dispatch)
+    userActions: bindActionCreators(actionCreators, dispatch),
   };
 }
 

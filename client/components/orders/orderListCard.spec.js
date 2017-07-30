@@ -1,9 +1,5 @@
 import { shallow } from 'enzyme';
-import {
-  Card,
-  CardHeader,
-  CardText
-} from 'material-ui/Card';
+import { Card, CardHeader, CardText } from 'material-ui/Card';
 
 import sinon from 'sinon';
 
@@ -13,7 +9,6 @@ import OrderListCard from './OrderListCard.jsx';
 import { expect } from 'chai';
 
 describe('<OrderListCard />', () => {
-
   const props = {
     order: {
       orderID: 1,
@@ -26,9 +21,9 @@ describe('<OrderListCard />', () => {
       totalSub: 8.98,
       totalTax: 0.89,
       totalTip: 0.0,
-      expanded: true
+      expanded: true,
     },
-    onExpandChange() { },
+    onExpandChange() {},
     orderDetail: {
       companyID: 1,
       orderID: 1,
@@ -69,7 +64,7 @@ describe('<OrderListCard />', () => {
             createdBy: 0,
             isActive: false,
             companyID: 0,
-            facilityID: 0
+            facilityID: 0,
           },
           totalSub: 65,
           totalDiscount: 0,
@@ -79,8 +74,8 @@ describe('<OrderListCard />', () => {
           notes: '',
           modifierList: [],
           taxList: [],
-          discountList: []
-        }
+          discountList: [],
+        },
       ],
       latitude: 0,
       longitude: 0,
@@ -111,7 +106,7 @@ describe('<OrderListCard />', () => {
           parentTransaction: null,
           gatewayID: 0,
           createdDate: '2016-07-10T10:05:29.547',
-          createdBy: 1
+          createdBy: 1,
         },
         {
           transactionID: 965,
@@ -142,99 +137,83 @@ describe('<OrderListCard />', () => {
             parentTransaction: null,
             gatewayID: 0,
             createdDate: '2016-07-10T10:05:29.547',
-            createdBy: 1
+            createdBy: 1,
           },
           gatewayID: 0,
           createdDate: '2017-04-16T17:41:40.367',
-          createdBy: 1
-        }
-      ]
-    }
+          createdBy: 1,
+        },
+      ],
+    },
   };
 
   it('should contain a root <Card /> component', () => {
-
     const expected = 1;
 
     const wrapper = shallow(<OrderListCard {...props} />);
     const actual = wrapper.find(Card).length;
 
     expect(actual).equals(expected);
-
   });
 
   it('should contain a <CardHeader /> component', () => {
-
     const expected = 1;
 
     const wrapper = shallow(<OrderListCard {...props} />);
     const actual = wrapper.find(CardHeader).length;
 
     expect(actual).equals(expected);
-
   });
 
   it('should contain a <CardText /> component', () => {
-
     const expected = 1;
 
     const wrapper = shallow(<OrderListCard {...props} />);
     const actual = wrapper.find(CardText).length;
 
     expect(actual).equals(expected);
-
   });
 
   it('should call the onExpandedChange callback with the orderID', () => {
-
     const expected = true;
     const onExpandchangeSpy = sinon.spy();
 
     const updatedProps = {
       ...props,
-      onExpandChange: onExpandchangeSpy
+      onExpandChange: onExpandchangeSpy,
     };
 
     const wrapper = shallow(<OrderListCard {...updatedProps} />);
-    wrapper.find(Card)
-      .props()
-      .onExpandChange();
+    wrapper.find(Card).props().onExpandChange();
 
-    const actual = onExpandchangeSpy
-      .calledWith(props.order.orderID);
+    const actual = onExpandchangeSpy.calledWith(props.order.orderID);
 
     expect(actual).equals(expected);
-
   });
 
   it('should set the expanded prop to true if the order expanded flag is true', () => {
-
     const expected = true;
 
     const wrapper = shallow(<OrderListCard {...props} />);
     const actual = wrapper.find(Card).props().expanded;
 
     expect(actual).equals(expected);
-
   });
 
   it('should set the expanded prop to false if the order expanded flag is false', () => {
-
     const expected = false;
 
     const updatedProps = {
       ...props,
       order: {
         ...props.order,
-        expanded: false
-      }
+        expanded: false,
+      },
     };
 
     const wrapper = shallow(<OrderListCard {...updatedProps} />);
     const actual = wrapper.find(Card).props().expanded;
 
     expect(actual).equals(expected);
-
   });
-
 });

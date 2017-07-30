@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 import { browserHistory } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 
@@ -22,7 +21,7 @@ export class Modifiers extends React.Component {
 
     this.state = {
       modifiers: props.modifiers,
-      filter: ''
+      filter: '',
     };
 
     this.deactivate = this.deactivate.bind(this);
@@ -38,10 +37,12 @@ export class Modifiers extends React.Component {
     const { modifiers } = this.state;
     const { modifierActions } = this.props;
 
-    const deactivatedModifier = modifiers
-      .find(modifier => modifier.modifierID === modifierId);
+    const deactivatedModifier = modifiers.find(
+      modifier => modifier.modifierID === modifierId,
+    );
 
-    modifierActions.deactivateModifier(deactivatedModifier)
+    modifierActions
+      .deactivateModifier(deactivatedModifier)
       .then(() => {
         //TODO: #68 - Add Snackbar control that indicates success
       })
@@ -53,18 +54,15 @@ export class Modifiers extends React.Component {
   searchOnChange(event) {
     const { modifiers } = this.props;
 
-    const filter = event.target.value
-      .toLowerCase();
+    const filter = event.target.value.toLowerCase();
 
-    const filteredModifiers = modifiers
-      .filter(modifier => modifier
-        .modifierName
-        .toLowerCase()
-        .includes(filter));
+    const filteredModifiers = modifiers.filter(modifier =>
+      modifier.modifierName.toLowerCase().includes(filter),
+    );
 
     this.setState({
       filter,
-      modifiers: filteredModifiers
+      modifiers: filteredModifiers,
     });
   }
 
@@ -95,12 +93,14 @@ export class Modifiers extends React.Component {
                     onChange={this.searchOnChange}
                     errorText={this.state.error}
                     style={fullWidth}
-                    floatingLabelText="Filter" />
+                    floatingLabelText="Filter"
+                  />
                 </div>
               </div>
               <ModifierTable
                 modifiers={modifiers}
-                deactivate={this.deactivate} />
+                deactivate={this.deactivate}
+              />
             </div>
           </div>
         </div>
@@ -111,17 +111,17 @@ export class Modifiers extends React.Component {
 
 Modifiers.propTypes = {
   modifiers: PropTypes.array.isRequired,
-  modifierActions: PropTypes.object.isRequired
+  modifierActions: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
-    modifiers: state.modifiers
+    modifiers: state.modifiers,
   };
 }
 function mapDispatchToProps(dispatch) {
   return {
-    modifierActions: bindActionCreators(actionCreators, dispatch)
+    modifierActions: bindActionCreators(actionCreators, dispatch),
   };
 }
 

@@ -13,7 +13,6 @@ import ItemImage from '../common/itemImage';
 import './item.css';
 
 class ItemTableRow extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -26,14 +25,15 @@ class ItemTableRow extends React.Component {
   }
 
   disabledText(itemDisabledState) {
-    return itemDisabledState
-      ? 'mdl-color-text--grey'
-      : '';
+    return itemDisabledState ? 'mdl-color-text--grey' : '';
   }
 
   render() {
     const { item, deactivate } = this.props;
-    const parsedLastUpdatedDate = dateFns.format(item.lastUpdatedDate, 'MMM DD, YYYY - hh:mm A');
+    const parsedLastUpdatedDate = dateFns.format(
+      item.lastUpdatedDate,
+      'MMM DD, YYYY - hh:mm A',
+    );
 
     return (
       <TableRow>
@@ -43,19 +43,33 @@ class ItemTableRow extends React.Component {
             imageId={item.photoURL}
             label={item.label}
             color={item.color}
-            onClick={this.navigateToEditLink} />
+            onClick={this.navigateToEditLink}
+          />
         </TableRowColumn>
-        <TableRowColumn className={this.disabledText(item.disabled)}>{item.name}</TableRowColumn>
-        <TableRowColumn className={this.disabledText(item.disabled)}>$ {item.price}</TableRowColumn>
-        <TableRowColumn className={this.disabledText(item.disabled)}>{parsedLastUpdatedDate}</TableRowColumn>
+        <TableRowColumn className={this.disabledText(item.disabled)}>
+          {item.name}
+        </TableRowColumn>
+        <TableRowColumn className={this.disabledText(item.disabled)}>
+          $ {item.price}
+        </TableRowColumn>
+        <TableRowColumn className={this.disabledText(item.disabled)}>
+          {parsedLastUpdatedDate}
+        </TableRowColumn>
         <TableRowColumn>
           <div styleName="inline-button">
-            <FlatButton label="Edit" onClick={() => this.navigateToEditLink(item.itemID)} />
+            <FlatButton
+              label="Edit"
+              onClick={() => this.navigateToEditLink(item.itemID)}
+            />
           </div>
         </TableRowColumn>
         <TableRowColumn>
           <div styleName="inline-button">
-            <RaisedButton label="Deactivate" secondary onClick={() => deactivate(item.itemID)} />
+            <RaisedButton
+              label="Deactivate"
+              secondary
+              onClick={() => deactivate(item.itemID)}
+            />
           </div>
         </TableRowColumn>
       </TableRow>
@@ -65,7 +79,7 @@ class ItemTableRow extends React.Component {
 
 ItemTableRow.propTypes = {
   item: PropTypes.object.isRequired,
-  deactivate: PropTypes.func.isRequired
+  deactivate: PropTypes.func.isRequired,
 };
 
 export default ItemTableRow;

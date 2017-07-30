@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 import { browserHistory } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import { connect } from 'react-redux';
@@ -22,7 +21,7 @@ class ModifierDetail extends React.Component {
       modifier: props.modifier,
       heading: '',
       notification: false,
-      notificationMessage: ''
+      notificationMessage: '',
     };
 
     this.onChange = this.onChange.bind(this);
@@ -35,7 +34,6 @@ class ModifierDetail extends React.Component {
   }
 
   onChange(event, index, payload) {
-
     const { modifier, errors } = this.state;
     let property;
 
@@ -50,7 +48,6 @@ class ModifierDetail extends React.Component {
 
     this.propertyIsValid(property, modifier[property], errors);
     return this.setState({ modifier });
-
   }
 
   closeNotification() {
@@ -66,15 +63,17 @@ class ModifierDetail extends React.Component {
     }
 
     if (modifier.modifierID) {
-      modifierActions.updateModifier(modifier)
+      modifierActions
+        .updateModifier(modifier)
         .then(() => this.redirect())
-        .catch((error) => {
+        .catch(error => {
           this.displayNotification(error.response.data);
         });
     } else {
-      modifierActions.createModifier(modifier)
+      modifierActions
+        .createModifier(modifier)
         .then(() => this.redirect())
-        .catch((error) => {
+        .catch(error => {
           this.displayNotification(error.response.data);
         });
     }
@@ -83,7 +82,7 @@ class ModifierDetail extends React.Component {
   displayNotification(message) {
     this.setState({
       notification: true,
-      notificationMessage: message
+      notificationMessage: message,
     });
   }
 
@@ -92,9 +91,10 @@ class ModifierDetail extends React.Component {
   }
 
   propertyIsValid(property, value, errors) {
-    const patternTest = property === 'modifierName'
-      ? new RegExp(/^[a-zA-Z0-9,.% ]*$/)
-      : new RegExp(/^[0-9]+([,.][0-9]+)?$/g);
+    const patternTest =
+      property === 'modifierName'
+        ? new RegExp(/^[a-zA-Z0-9,.% ]*$/)
+        : new RegExp(/^[0-9]+([,.][0-9]+)?$/g);
 
     errors[property] = !patternTest.test(value) ? ' ' : false;
     this.setState({ errors });
@@ -117,15 +117,13 @@ class ModifierDetail extends React.Component {
     const { modifierHeading, loading } = this.props;
     const { modifier, errors } = this.state;
 
-    const formComponent = !loading.createUpdateModifier ?
-      (
-        <ModifierDetailForm
+    const formComponent = !loading.createUpdateModifier
+      ? <ModifierDetailForm
           modifier={modifier}
           onChange={this.onChange}
-          errors={errors} />
-      ) :
-      (
-        <div className="ibox-content">
+          errors={errors}
+        />
+      : <div className="ibox-content">
           <div className="row">
             <div styleName="spinner-container">
               <div styleName="spinner">
@@ -133,8 +131,7 @@ class ModifierDetail extends React.Component {
               </div>
             </div>
           </div>
-        </div>
-      );
+        </div>;
 
     return (
       <div>
@@ -142,7 +139,9 @@ class ModifierDetail extends React.Component {
           <div className="col-sm-offset-3 col-sm-6">
             <div className="ibox float-e-margins">
               <div className="ibox-title">
-                <h5>{modifierHeading}</h5>
+                <h5>
+                  {modifierHeading}
+                </h5>
               </div>
               {formComponent}
             </div>
@@ -155,13 +154,15 @@ class ModifierDetail extends React.Component {
                 styleName="left-control"
                 label="Back"
                 secondary
-                onClick={this.redirect} />
+                onClick={this.redirect}
+              />
             </div>
             <RaisedButton
               styleName="right-control"
               label="Save Modifier"
               primary
-              onClick={this.onSave} />
+              onClick={this.onSave}
+            />
           </div>
         </div>
         <Snackbar
@@ -169,7 +170,8 @@ class ModifierDetail extends React.Component {
           action="OK"
           message={this.state.notificationMessage}
           onActionTouchTap={this.closeNotification}
-          onRequestClose={this.closeNotification} />
+          onRequestClose={this.closeNotification}
+        />
       </div>
     );
   }
@@ -180,46 +182,50 @@ ModifierDetail.propTypes = {
   loading: PropTypes.object.isRequired,
   modifierHeading: PropTypes.string.isRequired,
   modifierActions: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
 };
 
 ModifierDetail.contextTypes = {
-  router: PropTypes.object
+  router: PropTypes.object,
 };
 
 export function mapStateToProps(state, ownProps) {
-
   let modifier = {
     modifierID: 0,
     modifierName: '',
-    modifierPrice: ''
+    modifierPrice: '',
   };
 
   const { modifiers } = state;
-  const existingModifier = modifiers
-    .find(stateModifier => stateModifier.modifierID == ownProps.params.id || stateModifier.modifierID === modifier.modifierID); //eslint-disable-line
+  const existingModifier = modifiers.find(
+    stateModifier =>
+      //eslint-disable-next-line eqeqeq
+      stateModifier.modifierID == ownProps.params.id ||
+      stateModifier.modifierID === modifier.modifierID,
+  );
 
   if (!!existingModifier) {
     modifier = { ...existingModifier };
   }
 
-  const modifierHeading = (existingModifier && existingModifier.modifierID !== 0)
-    ? 'Update Modifier'
-    : 'New Modifier';
+  const modifierHeading =
+    existingModifier && existingModifier.modifierID !== 0
+      ? 'Update Modifier'
+      : 'New Modifier';
 
   return {
     modifier,
     modifierHeading,
     loading: state.loading,
     errors: {
-      modifierName: false
-    }
+      modifierName: false,
+    },
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    modifierActions: bindActionCreators(actionCreators, dispatch)
+    modifierActions: bindActionCreators(actionCreators, dispatch),
   };
 }
 

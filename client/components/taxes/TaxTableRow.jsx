@@ -11,7 +11,6 @@ import { browserHistory } from 'react-router';
 import './taxes.css';
 
 class TaxTableRow extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -24,37 +23,55 @@ class TaxTableRow extends React.Component {
   }
 
   disabledText(taxDisabledState) {
-    return taxDisabledState
-      ? 'mdl-color-text--grey'
-      : '';
+    return taxDisabledState ? 'mdl-color-text--grey' : '';
   }
 
   render() {
     const { tax, deactivate, ...otherProps } = this.props; // eslint-disable-line
-    const parsedLastUpdatedDate = dateFns.format(tax.lastUpdatedDate, 'MMM DD, YYYY');
+    const parsedLastUpdatedDate = dateFns.format(
+      tax.lastUpdatedDate,
+      'MMM DD, YYYY',
+    );
     const parsedCreatedDate = dateFns.format(tax.createdDate, 'MMM DD, YYYY');
 
-    const appliedTo = !tax.taxTypeID ? //eslint-disable-line no-nested-ternary
-      'Everything' :
-      (tax.items.length > 1) ?
-        `${tax.items.length} Items` :
-        `${tax.items.length} Item`;
+    const appliedTo = !tax.taxTypeID //eslint-disable-line no-nested-ternary
+      ? 'Everything'
+      : tax.items.length > 1
+        ? `${tax.items.length} Items`
+        : `${tax.items.length} Item`;
 
     return (
       <TableRow>
-        <TableRowColumn className={this.disabledText(tax.disabled)}>{tax.taxName}</TableRowColumn>
-        <TableRowColumn className={this.disabledText(tax.disabled)}>{`${tax.value.toFixed(2)} %`}</TableRowColumn>
-        <TableRowColumn className={this.disabledText(tax.disabled)}>{appliedTo}</TableRowColumn>
-        <TableRowColumn className={this.disabledText(tax.disabled)}>{parsedCreatedDate}</TableRowColumn>
-        <TableRowColumn className={this.disabledText(tax.disabled)}>{parsedLastUpdatedDate}</TableRowColumn>
+        <TableRowColumn className={this.disabledText(tax.disabled)}>
+          {tax.taxName}
+        </TableRowColumn>
+        <TableRowColumn
+          className={this.disabledText(tax.disabled)}
+        >{`${tax.value.toFixed(2)} %`}</TableRowColumn>
+        <TableRowColumn className={this.disabledText(tax.disabled)}>
+          {appliedTo}
+        </TableRowColumn>
+        <TableRowColumn className={this.disabledText(tax.disabled)}>
+          {parsedCreatedDate}
+        </TableRowColumn>
+        <TableRowColumn className={this.disabledText(tax.disabled)}>
+          {parsedLastUpdatedDate}
+        </TableRowColumn>
         <TableRowColumn>
           <div styleName="inline-button">
-            <FlatButton label="Edit" onClick={() => this.navigateToEditLink(tax.taxID)} />
+            <FlatButton
+              label="Edit"
+              onClick={() => this.navigateToEditLink(tax.taxID)}
+            />
           </div>
         </TableRowColumn>
         <TableRowColumn>
           <div styleName="inline-button">
-            <RaisedButton label="Deactivate" secondary onClick={() => deactivate(tax.taxID)} />
+            <RaisedButton
+              label="Deactivate"
+              secondary
+              onClick={() => deactivate(tax.taxID)}
+            />
           </div>
         </TableRowColumn>
       </TableRow>
@@ -64,7 +81,7 @@ class TaxTableRow extends React.Component {
 
 TaxTableRow.propTypes = {
   tax: PropTypes.object.isRequired,
-  deactivate: PropTypes.func.isRequired
+  deactivate: PropTypes.func.isRequired,
 };
 
 export default TaxTableRow;

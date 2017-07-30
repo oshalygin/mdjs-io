@@ -8,10 +8,9 @@ jest.dontMock('react-router');
 import { expect } from 'chai';
 
 describe('<SearchBar />', () => {
-
   const defaultProps = {
     user: {},
-    userActions: {}
+    userActions: {},
   };
 
   it('should contain a logout link', () => {
@@ -24,23 +23,19 @@ describe('<SearchBar />', () => {
   });
 
   it('navbar contains a clickHandler to toggle the side navigation menu', () => {
-
-    const expected = true;    
+    const expected = true;
     const wrapper = shallow(<SearchBar.WrappedComponent {...defaultProps} />);
-    const actual = wrapper.find('a').first()
-      .props()
-      .onClick();
+    const actual = wrapper.find('a').first().props().onClick();
 
     expect(actual).equals(expected);
   });
 
   it('should properly redirect to the /login route when logout is clicked', () => {
-
     const updatedProps = {
       ...defaultProps,
       userActions: {
-        logout() { }
-      }
+        logout() {},
+      },
     };
 
     const redirectSpy = sinon.spy();
@@ -51,20 +46,18 @@ describe('<SearchBar />', () => {
     shallow(<SearchBar.WrappedComponent {...updatedProps} />)
       .find('.logout-link')
       .simulate('click');
-
 
     const actual = redirectSpy.calledWith('login');
     expect(actual).to.equal(expected);
   });
 
   it('should call the logout userAction when clicking the logout link', () => {
-
-    const logoutUserActionSpy = sinon.spy();    
+    const logoutUserActionSpy = sinon.spy();
     const updatedProps = {
       ...defaultProps,
       userActions: {
-        logout: logoutUserActionSpy
-      }
+        logout: logoutUserActionSpy,
+      },
     };
 
     const redirectSpy = sinon.spy();
@@ -76,9 +69,7 @@ describe('<SearchBar />', () => {
       .find('.logout-link')
       .simulate('click');
 
-
     const actual = logoutUserActionSpy.called;
     expect(actual).to.equal(expected);
   });
-
 });

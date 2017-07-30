@@ -6,14 +6,14 @@ import BaseSnackbar from 'material-ui/Snackbar';
 const autoHideDuration = 3000;
 const bodyStyle = {
   backgroundColor: 'rgba(0, 0, 0, 0.6)',
-  zIndex: 9000000
+  zIndex: 9000000,
 };
 const style = {
   top: 'auto',
   bottom: 0,
   left: 'auto',
   right: '0',
-  transform: 'translate3d(0, 0, 0)'
+  transform: 'translate3d(0, 0, 0)',
 };
 
 class Snackbar extends React.Component {
@@ -22,19 +22,16 @@ class Snackbar extends React.Component {
     this.state = {
       autoHideDuration,
       style,
-      bodyStyle
+      bodyStyle,
     };
   }
 
   render() {
     const props = { ...this.state, ...this.props };
 
-    return (
-      <BaseSnackbar {...props} />
-    );
+    return <BaseSnackbar {...props} />;
   }
 }
-
 
 Snackbar.propTypes = {
   action: PropTypes.node.isRequired,
@@ -46,7 +43,7 @@ Snackbar.propTypes = {
   onActionTouchTap: PropTypes.func,
   onRequestClose: PropTypes.func,
   open: PropTypes.bool.isRequired,
-  style: PropTypes.object
+  style: PropTypes.object,
 };
 
 export default Snackbar;

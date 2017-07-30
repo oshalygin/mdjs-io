@@ -6,9 +6,6 @@ import categoryController from '../controllers/v0/categoryController';
 const router = express.Router();
 
 // {api/v0/category/create}
-router
-  .route('/category/create')
-  .post(categoryController.create);
-
+router.route('/category/create').post(categoryController.create);
 
 export default router;

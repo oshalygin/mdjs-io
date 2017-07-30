@@ -1,5 +1,4 @@
 module.exports = {
-
   // Log levels: 0-disabled,1-error,2-warn,3-info,4-debug
   // Default: 1
   logLevel: 2,
@@ -34,10 +33,7 @@ module.exports = {
   // Paths can additionally be classified by regex in which case any path matching
   // any provided regex will be ignored.
   // We ignore the health checker probes (/_ah/health) by default.
-  ignoreUrls: [
-    '/_ah/health',
-    '/healthz'
-  ],
+  ignoreUrls: ['/_ah/health', '/healthz'],
 
   // An upper bound on the number of traces to gather each second. If set to 0,
   // sampling is disabled and all traces are recorded. Sampling rates greater
@@ -106,6 +102,6 @@ module.exports = {
   serviceContext: {
     service: 'web',
     version: null,
-    minorVersion: null
-  }
+    minorVersion: null,
+  },
 };

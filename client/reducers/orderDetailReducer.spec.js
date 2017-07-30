@@ -2,9 +2,7 @@ import { expect } from 'chai';
 import * as actionTypes from '../actions/actionTypes';
 import reducer from './orderDetailReducer';
 
-
 describe('Reducer - OrderDetail', () => {
-
   const getInitialState = () => {
     return [];
   };
@@ -49,7 +47,7 @@ describe('Reducer - OrderDetail', () => {
           createdBy: 0,
           isActive: false,
           companyID: 0,
-          facilityID: 0
+          facilityID: 0,
         },
         totalSub: 65,
         totalDiscount: 0,
@@ -59,8 +57,8 @@ describe('Reducer - OrderDetail', () => {
         notes: '',
         modifierList: [],
         taxList: [],
-        discountList: []
-      }
+        discountList: [],
+      },
     ],
     latitude: 0,
     longitude: 0,
@@ -91,7 +89,7 @@ describe('Reducer - OrderDetail', () => {
         parentTransaction: null,
         gatewayID: 0,
         createdDate: '2016-07-10T10:05:29.547',
-        createdBy: 1
+        createdBy: 1,
       },
       {
         transactionID: 965,
@@ -122,19 +120,18 @@ describe('Reducer - OrderDetail', () => {
           parentTransaction: null,
           gatewayID: 0,
           createdDate: '2016-07-10T10:05:29.547',
-          createdBy: 1
+          createdBy: 1,
         },
         gatewayID: 0,
         createdDate: '2017-04-16T17:41:40.367',
-        createdBy: 1
-      }
-    ]
+        createdBy: 1,
+      },
+    ],
   };
 
   it('should retrieve the initial state if the action type is not registered with the reducer', () => {
-
     const action = {
-      type: 'UNKNOWN'
+      type: 'UNKNOWN',
     };
 
     const expected = getInitialState();
@@ -144,17 +141,14 @@ describe('Reducer - OrderDetail', () => {
   });
 
   it('should hydrate the state with the orderDetail in the action', () => {
-
     const action = {
       type: actionTypes.LOAD_ORDER_DETAIL_SUCCESS,
-      order
+      order,
     };
 
     const expected = order;
     const actual = reducer(undefined, action); //eslint-disable-line no-undefined
 
     expect(actual).deep.equals(expected);
-
   });
-
 });

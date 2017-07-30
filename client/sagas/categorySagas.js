@@ -7,25 +7,21 @@ import api from '../utilities/api';
 import { CATEGORIES_ENDPOINT } from '../utilities/endpoints';
 
 export function* createCategory(category) {
-
   yield put(categoryActions.loadingCategoryCreation());
 
   try {
-
     const response = yield call(api.post, CATEGORIES_ENDPOINT, category);
     const data = response.data;
 
     yield put(categoryActions.categoryCreatedSuccess(data));
     yield put(categoryActions.loadingCategoryCreationSuccess());
     browserHistory.push('categories');
-
   } catch (error) {
     yield put(categoryActions.categoryCreationFailure());
   }
 }
 
 export function* updateCategory(category) {
-
   yield put(categoryActions.loadingCategoryUpdate());
 
   try {
@@ -37,33 +33,28 @@ export function* updateCategory(category) {
     yield put(categoryActions.categoryUpdatedSuccess(data));
     yield put(categoryActions.loadingCategoryUpdateSuccess());
     browserHistory.push('categories');
-
   } catch (error) {
     yield put(categoryActions.categoryUpdateFailure());
   }
 }
 
-
 export function* deleteCategory(category) {
-
   const deactivatedCategory = {
     ...category,
     isActive: false,
-    disabled: true
+    disabled: true,
   };
 
   yield put(categoryActions.categoryDeactivated());
 
   try {
-    const endpoint = `${CATEGORIES_ENDPOINT}/${deactivatedCategory.categoryID}`;  
+    const endpoint = `${CATEGORIES_ENDPOINT}/${deactivatedCategory.categoryID}`;
     yield call(api.delete, endpoint);
 
     yield put(categoryActions.categoryDeactivatedSuccess(deactivatedCategory));
-
   } catch (error) {
     yield put(categoryActions.categoryDeactivatedFailure());
   }
-
 }
 
 /* WATCHERS */
@@ -89,8 +80,4 @@ export function* categoryDeletion() {
   }
 }
 
-export default [
-  categoryCreation,
-  categoryUpdates,
-  categoryDeletion
-];
+export default [categoryCreation, categoryUpdates, categoryDeletion];

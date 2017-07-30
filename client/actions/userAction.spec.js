@@ -3,7 +3,7 @@ import {
   loginValidationErrors,
   logout,
   login,
-  loginWithToken
+  loginWithToken,
 } from './userActions';
 import {
   LOADED_USER_FAILURE,
@@ -15,7 +15,7 @@ import {
   LOAD_TAXES_SUCCESS,
   LOAD_REFUNDREASONS_SUCCESS,
   LOAD_ITEMS_SUCCESS,
-  LOAD_MODIFIERS_SUCCESS
+  LOAD_MODIFIERS_SUCCESS,
 } from './actionTypes';
 
 import { ACCOUNT_ENDPOINT } from '../utilities/endpoints';
@@ -27,12 +27,11 @@ import sinon from 'sinon';
 import { expect } from 'chai';
 
 describe('User Actions', () => {
-
   let store;
   const middlewares = [thunk];
   const mockStore = configureMockStore(middlewares);
   const tokenResponse = {
-    token: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e'
+    token: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e',
   };
 
   const companyData = {
@@ -51,7 +50,7 @@ describe('User Actions', () => {
       city: '',
       state: '',
       zip: '',
-      country: 'USA'
+      country: 'USA',
     },
     items: [
       {
@@ -78,7 +77,7 @@ describe('User Actions', () => {
         createdBy: 1,
         isActive: true,
         companyID: 1,
-        facilityID: 0
+        facilityID: 0,
       },
       {
         itemID: 82,
@@ -104,7 +103,7 @@ describe('User Actions', () => {
         createdBy: 1,
         isActive: true,
         companyID: 1,
-        facilityID: 0
+        facilityID: 0,
       },
       {
         itemID: 33,
@@ -130,14 +129,14 @@ describe('User Actions', () => {
         createdBy: 1,
         isActive: true,
         companyID: 1,
-        facilityID: 0
-      }
+        facilityID: 0,
+      },
     ],
     categories: [],
     discounts: [],
     taxes: [],
     modifiers: [],
-    refundReasons: []
+    refundReasons: [],
   };
 
   const user = {
@@ -159,7 +158,7 @@ describe('User Actions', () => {
     createdBy: 0,
     isActive: true,
     companyID: 1,
-    facilityID: 1
+    facilityID: 1,
   };
 
   const accountDetailsResponse = {
@@ -170,7 +169,7 @@ describe('User Actions', () => {
     refundCode: 1234,
     creditCardStatusID: 7,
     companyData,
-    user
+    user,
   };
 
   const accountEndpointWithToken = `${ACCOUNT_ENDPOINT}?token=${tokenResponse.token}`;
@@ -185,294 +184,250 @@ describe('User Actions', () => {
   });
 
   it('should dispatch the "LOADED_USER_FAILURE" action on validation errors when logging in', () => {
-
     const expected = LOADED_USER_FAILURE;
 
-    return store.dispatch(loginValidationErrors())
-      .then(() => {
-        const actual = store.getActions()
-          .map(action => action.type)[0];
-        expect(actual).equals(expected);
-      });
-
+    return store.dispatch(loginValidationErrors()).then(() => {
+      const actual = store.getActions().map(action => action.type)[0];
+      expect(actual).equals(expected);
+    });
   });
 
   it('should dispatch "LOGOUT_SUCCESS" when logging out', () => {
-
     const expected = LOGOUT_SUCCESS;
 
-    return store.dispatch(logout())
-      .then(() => {
-        const actual = store.getActions()
-          .map(action => action.type)[0];
-        expect(actual).equals(expected);
-      });
-
+    return store.dispatch(logout()).then(() => {
+      const actual = store.getActions().map(action => action.type)[0];
+      expect(actual).equals(expected);
+    });
   });
 
   it('should dispatch "LOADING_USER" when making a call to login', () => {
-
     moxios.stubRequest(ACCOUNT_ENDPOINT, {
       status: 200,
-      response: tokenResponse
+      response: tokenResponse,
     });
 
     moxios.stubRequest(accountEndpointWithToken, {
       status: 200,
-      response: accountDetailsResponse
+      response: accountDetailsResponse,
     });
 
     const postedUser = {
       email: 'oshalygin@gmail.com',
-      password: 'Password12345!'
+      password: 'Password12345!',
     };
 
     const expected = LOADING_USER;
 
-    return store.dispatch(login(postedUser))
-      .then(() => {
-        const actual = store.getActions()
-          .map(action => action.type)[0];
-        expect(actual).equals(expected);
-      });
-
+    return store.dispatch(login(postedUser)).then(() => {
+      const actual = store.getActions().map(action => action.type)[0];
+      expect(actual).equals(expected);
+    });
   });
 
   it('should dispatch "LOADED_USER_FAILURE" when making a call to login fails', () => {
-
     moxios.stubRequest(ACCOUNT_ENDPOINT, {
       status: 400,
-      response: {}
+      response: {},
     });
 
     moxios.stubRequest(accountEndpointWithToken, {
       status: 200,
-      response: {}
+      response: {},
     });
 
     const postedUser = {
       email: 'oshalygin@gmail.com',
-      password: ''
+      password: '',
     };
 
     const expected = LOADED_USER_FAILURE;
 
-    return store.dispatch(login(postedUser))
-      .catch(() => {
-        const actual = store.getActions()
-          .map(action => action.type)[1];
-        expect(actual).equals(expected);
-      });
-
+    return store.dispatch(login(postedUser)).catch(() => {
+      const actual = store.getActions().map(action => action.type)[1];
+      expect(actual).equals(expected);
+    });
   });
 
   it('should dispatch "LOADING_USER" when making a call to loginWithToken', () => {
-
     moxios.stubRequest(accountEndpointWithToken, {
       status: 200,
-      response: accountDetailsResponse
+      response: accountDetailsResponse,
     });
 
     const dispatchSpy = sinon.spy();
 
     const expected = true;
 
-    return loginWithToken(dispatchSpy, tokenResponse.token)
-      .then(() => {
-
-        const actual = dispatchSpy.calledWith({
-          type: LOADING_USER
-        });
-
-        expect(actual).equals(expected);
+    return loginWithToken(dispatchSpy, tokenResponse.token).then(() => {
+      const actual = dispatchSpy.calledWith({
+        type: LOADING_USER,
       });
+
+      expect(actual).equals(expected);
+    });
   });
 
   it('should dispatch "LOAD_CATEGORIES_SUCCESS" when making a call to loginWithToken', () => {
-
     moxios.stubRequest(accountEndpointWithToken, {
       status: 200,
-      response: accountDetailsResponse
+      response: accountDetailsResponse,
     });
 
     const dispatchSpy = sinon.spy();
 
     const expected = true;
 
-    return loginWithToken(dispatchSpy, tokenResponse.token)
-      .then(() => {
-
-        const actual = dispatchSpy.calledWith({
-          type: LOAD_CATEGORIES_SUCCESS,
-          categories: companyData.categories
-        });
-
-        expect(actual).equals(expected);
+    return loginWithToken(dispatchSpy, tokenResponse.token).then(() => {
+      const actual = dispatchSpy.calledWith({
+        type: LOAD_CATEGORIES_SUCCESS,
+        categories: companyData.categories,
       });
+
+      expect(actual).equals(expected);
+    });
   });
 
   it('should dispatch "LOAD_DISCOUNTS_SUCCESS" when making a call to loginWithToken', () => {
-
     moxios.stubRequest(accountEndpointWithToken, {
       status: 200,
-      response: accountDetailsResponse
+      response: accountDetailsResponse,
     });
 
     const dispatchSpy = sinon.spy();
 
     const expected = true;
 
-    return loginWithToken(dispatchSpy, tokenResponse.token)
-      .then(() => {
-
-        const actual = dispatchSpy.calledWith({
-          type: LOAD_DISCOUNTS_SUCCESS,
-          discounts: companyData.discounts
-        });
-
-        expect(actual).equals(expected);
+    return loginWithToken(dispatchSpy, tokenResponse.token).then(() => {
+      const actual = dispatchSpy.calledWith({
+        type: LOAD_DISCOUNTS_SUCCESS,
+        discounts: companyData.discounts,
       });
+
+      expect(actual).equals(expected);
+    });
   });
 
   it('should dispatch "LOAD_ITEMS_SUCCESS" when making a call to loginWithToken', () => {
-
     moxios.stubRequest(accountEndpointWithToken, {
       status: 200,
-      response: accountDetailsResponse
+      response: accountDetailsResponse,
     });
 
     const dispatchSpy = sinon.spy();
 
     const expected = true;
 
-    return loginWithToken(dispatchSpy, tokenResponse.token)
-      .then(() => {
-
-        const actual = dispatchSpy.calledWith({
-          type: LOAD_ITEMS_SUCCESS,
-          items: companyData.items
-        });
-
-        expect(actual).equals(expected);
+    return loginWithToken(dispatchSpy, tokenResponse.token).then(() => {
+      const actual = dispatchSpy.calledWith({
+        type: LOAD_ITEMS_SUCCESS,
+        items: companyData.items,
       });
+
+      expect(actual).equals(expected);
+    });
   });
 
   it('should dispatch "LOAD_TAXES_SUCCESS" when making a call to loginWithToken', () => {
-
     moxios.stubRequest(accountEndpointWithToken, {
       status: 200,
-      response: accountDetailsResponse
+      response: accountDetailsResponse,
     });
 
     const dispatchSpy = sinon.spy();
 
     const expected = true;
 
-    return loginWithToken(dispatchSpy, tokenResponse.token)
-      .then(() => {
-
-        const actual = dispatchSpy.calledWith({
-          type: LOAD_TAXES_SUCCESS,
-          taxes: companyData.taxes
-        });
-
-        expect(actual).equals(expected);
+    return loginWithToken(dispatchSpy, tokenResponse.token).then(() => {
+      const actual = dispatchSpy.calledWith({
+        type: LOAD_TAXES_SUCCESS,
+        taxes: companyData.taxes,
       });
+
+      expect(actual).equals(expected);
+    });
   });
 
   it('should dispatch "LOAD_MODIFIERS_SUCCESS" when making a call to loginWithToken', () => {
-
     moxios.stubRequest(accountEndpointWithToken, {
       status: 200,
-      response: accountDetailsResponse
+      response: accountDetailsResponse,
     });
 
     const dispatchSpy = sinon.spy();
 
     const expected = true;
 
-    return loginWithToken(dispatchSpy, tokenResponse.token)
-      .then(() => {
-
-        const actual = dispatchSpy.calledWith({
-          type: LOAD_MODIFIERS_SUCCESS,
-          modifiers: companyData.modifiers
-        });
-
-        expect(actual).equals(expected);
+    return loginWithToken(dispatchSpy, tokenResponse.token).then(() => {
+      const actual = dispatchSpy.calledWith({
+        type: LOAD_MODIFIERS_SUCCESS,
+        modifiers: companyData.modifiers,
       });
+
+      expect(actual).equals(expected);
+    });
   });
 
   it('should dispatch "LOAD_REFUNDREASONS_SUCCESS" when making a call to loginWithToken', () => {
-
     moxios.stubRequest(accountEndpointWithToken, {
       status: 200,
-      response: accountDetailsResponse
+      response: accountDetailsResponse,
     });
 
     const dispatchSpy = sinon.spy();
 
     const expected = true;
 
-    return loginWithToken(dispatchSpy, tokenResponse.token)
-      .then(() => {
-
-        const actual = dispatchSpy.calledWith({
-          type: LOAD_REFUNDREASONS_SUCCESS,
-          refundReasons: companyData.refundReasons
-        });
-
-        expect(actual).equals(expected);
+    return loginWithToken(dispatchSpy, tokenResponse.token).then(() => {
+      const actual = dispatchSpy.calledWith({
+        type: LOAD_REFUNDREASONS_SUCCESS,
+        refundReasons: companyData.refundReasons,
       });
+
+      expect(actual).equals(expected);
+    });
   });
 
   it('should dispatch "LOADED_USER_SUCCESS" when making a call to loginWithToken', () => {
-
     moxios.stubRequest(accountEndpointWithToken, {
       status: 200,
-      response: accountDetailsResponse
+      response: accountDetailsResponse,
     });
 
     const dispatchSpy = sinon.spy();
 
     const expected = true;
 
-    return loginWithToken(dispatchSpy, tokenResponse.token)
-      .then(() => {
-
-        const actual = dispatchSpy.calledWith({
-          type: LOADED_USER_SUCCESS
-        });
-
-        expect(actual).equals(expected);
+    return loginWithToken(dispatchSpy, tokenResponse.token).then(() => {
+      const actual = dispatchSpy.calledWith({
+        type: LOADED_USER_SUCCESS,
       });
+
+      expect(actual).equals(expected);
+    });
   });
 
   it('should dispatch "LOADED_USER_FAILURE" when making a call to loginWithToken that fails', () => {
-
     moxios.stubRequest(ACCOUNT_ENDPOINT, {
       status: 400,
-      response: {}
+      response: {},
     });
 
     moxios.stubRequest(accountEndpointWithToken, {
       status: 200,
-      response: {}
+      response: {},
     });
 
     const dispatchSpy = sinon.spy();
 
     const expected = true;
 
-    return loginWithToken(dispatchSpy, tokenResponse.token)
-      .catch(() => {
-        const actual = dispatchSpy.calledWith({
-          type: LOADED_USER_FAILURE
-        });
-
-        expect(actual).equals(expected);
+    return loginWithToken(dispatchSpy, tokenResponse.token).catch(() => {
+      const actual = dispatchSpy.calledWith({
+        type: LOADED_USER_FAILURE,
       });
 
+      expect(actual).equals(expected);
+    });
   });
-
 });

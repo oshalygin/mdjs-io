@@ -9,7 +9,6 @@ jest.dontMock('react-router');
 import { expect } from 'chai';
 
 describe('<Discounts />', () => {
-
   const discounts = [
     {
       discountID: 31,
@@ -24,7 +23,7 @@ describe('<Discounts />', () => {
       createdBy: 1,
       isActive: true,
       companyID: 1,
-      facilityID: 0
+      facilityID: 0,
     },
     {
       discountID: 32,
@@ -39,19 +38,18 @@ describe('<Discounts />', () => {
       createdBy: 1,
       isActive: true,
       companyID: 1,
-      facilityID: 0
-    }
+      facilityID: 0,
+    },
   ];
 
   const props = {
     discounts,
     query: '',
     filter: '',
-    discountActions() { }
+    discountActions() {},
   };
 
   it('should contain a button component that is titled "New Discount"', () => {
-
     const expected = 'New Discount';
     const wrapper = shallow(<Discounts.WrappedComponent {...props} />);
 
@@ -61,7 +59,6 @@ describe('<Discounts />', () => {
   });
 
   it('should navigate to the "discount" route when navigateToNewDiscountPage is called', () => {
-    
     const redirectSpy = sinon.spy();
     const browserHistory = require('react-router').browserHistory;
     browserHistory.push = redirectSpy;
@@ -78,22 +75,21 @@ describe('<Discounts />', () => {
   });
 
   it('should dispatch the deactivate action with the passed in id that matches the discount in the list', () => {
-
     const deactivatedDiscountSpy = sinon.stub().returns({
-      then(foobar) { //eslint-disable-line no-unused-vars
+      then() {
         return {
-          catch() { }
+          catch() {},
         };
-      }
+      },
     });
 
-    deactivatedDiscountSpy.then = function () { };
+    deactivatedDiscountSpy.then = function() {};
 
     const updatedProps = {
       ...props,
       discountActions: {
-        deactivateDiscount: deactivatedDiscountSpy
-      }
+        deactivateDiscount: deactivatedDiscountSpy,
+      },
     };
 
     const expected = true;
@@ -104,11 +100,9 @@ describe('<Discounts />', () => {
 
     const actual = deactivatedDiscountSpy.calledWith(discounts[0]);
     expect(actual).equals(expected);
-
   });
 
   it('should filter the list to only include the discounts from the searchCriteria', () => {
-
     const searchCriteria = 'T';
     const expected = 2;
     const wrapper = shallow(<Discounts.WrappedComponent {...props} />);
@@ -116,21 +110,19 @@ describe('<Discounts />', () => {
     const event = {
       target: {
         name: 'filter',
-        value: searchCriteria
-      }
+        value: searchCriteria,
+      },
     };
 
     const instance = wrapper.instance();
     instance.searchOnChange(event);
 
-    const actual = instance.state
-      .discounts.length;
+    const actual = instance.state.discounts.length;
 
     expect(actual).equals(expected);
   });
 
   it('should filter the list and match on lowercase as well', () => {
-
     const searchCriteria = 't';
     const expected = 2;
     const wrapper = shallow(<Discounts.WrappedComponent {...props} />);
@@ -138,21 +130,19 @@ describe('<Discounts />', () => {
     const event = {
       target: {
         name: 'filter',
-        value: searchCriteria
-      }
+        value: searchCriteria,
+      },
     };
 
     const instance = wrapper.instance();
     instance.searchOnChange(event);
 
-    const actual = instance.state
-      .discounts.length;
+    const actual = instance.state.discounts.length;
 
     expect(actual).equals(expected);
   });
 
   it('should set the filter object appropriately on the local state', () => {
-
     const searchCriteria = 'b';
     const expected = searchCriteria;
     const wrapper = shallow(<Discounts.WrappedComponent {...props} />);
@@ -160,17 +150,15 @@ describe('<Discounts />', () => {
     const event = {
       target: {
         name: 'filter',
-        value: searchCriteria
-      }
+        value: searchCriteria,
+      },
     };
 
     const instance = wrapper.instance();
     instance.searchOnChange(event);
 
-    const actual = instance.state
-      .filter;
+    const actual = instance.state.filter;
 
     expect(actual).equals(expected);
   });
-
 });

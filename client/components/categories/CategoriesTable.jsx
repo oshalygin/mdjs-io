@@ -5,7 +5,7 @@ import {
   TableBody,
   TableHeader,
   TableRow,
-  TableHeaderColumn
+  TableHeaderColumn,
 } from 'material-ui/Table';
 
 import CategoriesTableRow from './CategoriesTableRow.jsx';
@@ -14,9 +14,7 @@ const CategoriesTable = ({ categories, deactivate }) => {
   return (
     <div className="table-responsive">
       <Table>
-        <TableHeader
-          displaySelectAll={false}
-          adjustForCheckbox={false}>
+        <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
           <TableRow>
             <TableHeaderColumn>Name</TableHeaderColumn>
             <TableHeaderColumn>Date Created</TableHeaderColumn>
@@ -43,7 +41,7 @@ const CategoriesTable = ({ categories, deactivate }) => {
 
 CategoriesTable.propTypes = {
   categories: PropTypes.array.isRequired,
-  deactivate: PropTypes.func.isRequired
+  deactivate: PropTypes.func.isRequired,
 };
 
 export default CategoriesTable;

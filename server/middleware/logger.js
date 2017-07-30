@@ -6,8 +6,7 @@ const colorize = configuration.environment !== 'production'; //eslint-disable-li
 
 export function parseIgnoredRoutes(request, response) { //eslint-disable-line
   const healthCheckUrl = '/healthz';
-  if (request.url === healthCheckUrl
-    && response.statusCode < 400) {
+  if (request.url === healthCheckUrl && response.statusCode < 400) {
     return true;
   }
 
@@ -23,21 +22,21 @@ const requestLogger = expressWinston.logger({
   transports: [
     new winston.transports.Console({
       json: false,
-      colorize
-    })
+      colorize,
+    }),
   ],
   ignoreRoute: parseIgnoredRoutes,
   expressFormat: true,
-  meta: false
+  meta: false,
 });
 
 const errorLogger = expressWinston.errorLogger({
   transports: [
     new winston.transports.Console({
       json: true,
-      colorize
-    })
-  ]
+      colorize,
+    }),
+  ],
 });
 
 const logger = {
@@ -49,7 +48,7 @@ const logger = {
   log: winston.log,
   verbose: winston.verbose,
   debug: winston.debug,
-  silly: winston.silly
+  silly: winston.silly,
 };
 
 export default logger;

@@ -6,11 +6,11 @@ import BaseTextField from 'material-ui/TextField';
 import { primaryBlue } from '../../utilities/colors';
 
 const formControlUnderlineFocus = {
-  color: primaryBlue
+  color: primaryBlue,
 };
 
 const formFloatingLabelStyle = {
-  fontWeight: 500
+  fontWeight: 500,
 };
 
 class TextField extends React.Component {
@@ -18,15 +18,13 @@ class TextField extends React.Component {
     super();
     this.state = {
       underlineFocusStyle: formControlUnderlineFocus,
-      floatingLabelStyle: formFloatingLabelStyle
+      floatingLabelStyle: formFloatingLabelStyle,
     };
   }
 
   render() {
     const props = { ...this.state, ...this.props };
-    return (
-      <BaseTextField {...props} />
-    );
+    return <BaseTextField {...props} />;
   }
 }
 
@@ -59,7 +57,7 @@ TextField.propTypes = {
   underlineFocusStyle: PropTypes.object,
   underlineShow: PropTypes.bool,
   underlineStyle: PropTypes.object,
-  value: PropTypes.any
+  value: PropTypes.any,
 };
 
 export default TextField;

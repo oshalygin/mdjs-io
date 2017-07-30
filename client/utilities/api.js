@@ -4,8 +4,8 @@ import { loadUserToken } from '../utilities/localStorage';
 export function getJsonHeaders() {
   return {
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
   };
 }
 
@@ -14,8 +14,8 @@ export function getHeaders(token) {
     headers: {
       'content-type': 'application/json',
       accept: 'application/json',
-      Authorization: token
-    }
+      Authorization: token,
+    },
   };
 }
 
@@ -47,5 +47,5 @@ export default {
   put,
   post,
   patch,
-  delete: deleteApi
+  delete: deleteApi,
 };

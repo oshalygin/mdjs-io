@@ -8,7 +8,6 @@ import LinearProgress from 'material-ui/LinearProgress';
 import colors from '../../../styles/colors';
 
 describe('<ProgressBar />', () => {
-
   it('should contain a <LinearProgress /> component from Material-UI', () => {
     const expected = 1;
 
@@ -22,10 +21,7 @@ describe('<ProgressBar />', () => {
     const expected = '0.5rem';
 
     const wrapper = shallow(<ProgressBar />);
-    const actual = wrapper.find(LinearProgress)
-      .props()
-      .style
-      .height;
+    const actual = wrapper.find(LinearProgress).props().style.height;
 
     expect(actual).equals(expected);
   });
@@ -34,24 +30,18 @@ describe('<ProgressBar />', () => {
     const expected = colors.blue;
 
     const wrapper = shallow(<ProgressBar />);
-    
-    const actual = wrapper.find(LinearProgress)
-      .props()
-      .color;
+
+    const actual = wrapper.find(LinearProgress).props().color;
 
     expect(actual).equals(expected);
   });
 
   it('should set the min value to the passed in prop', () => {
-    
     const expected = '8';
     const wrapper = shallow(<ProgressBar min="8" />);
 
-    const actual = wrapper.find(LinearProgress)
-      .props()
-      .min;
+    const actual = wrapper.find(LinearProgress).props().min;
 
     expect(actual).equals(expected);
   });
-
 });

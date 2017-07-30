@@ -2,11 +2,11 @@ export const itemPriceTypes = [
   { name: 'priceTypeID', label: 'Each', value: 0 },
   { name: 'priceTypeID', label: 'oz', value: 1 },
   { name: 'priceTypeID', label: 'lb', value: 2 },
-  { name: 'priceTypeID', label: 'mg', value: 3 }
+  { name: 'priceTypeID', label: 'mg', value: 3 },
 ];
 
 export const stringPattern = '[A-Z, a-z, ]*';
-export const numberPattern = '-?[0-9]*(\.[0-9]+)?'; //eslint-disable-line no-useless-escape
+export const numberPattern = '-?[0-9]*(.[0-9]+)?'; //eslint-disable-line no-useless-escape
 
 export const itemColors = [
   { color: '#778088', value: 0 },
@@ -18,5 +18,5 @@ export const itemColors = [
   { color: '#0045AC', value: 6 },
   { color: '#7400B0', value: 7 },
   { color: '#E11B9F', value: 8 },
-  { color: '#804B30', value: 9 }
+  { color: '#804B30', value: 9 },
 ];

@@ -11,7 +11,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import muiTheme from '../utilities/muiTheme.js';
 
 class Application extends React.Component {
-
   componentWillMount() {
     const { versionActions } = this.props;
     versionActions.getVersion();
@@ -51,7 +50,7 @@ class Application extends React.Component {
 Application.propTypes = {
   children: PropTypes.object.isRequired,
   location: PropTypes.object,
-  versionActions: PropTypes.object.isRequired
+  versionActions: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -60,7 +59,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    versionActions: bindActionCreators(actionCreators, dispatch)
+    versionActions: bindActionCreators(actionCreators, dispatch),
   };
 }
 

@@ -6,7 +6,7 @@ import {
   TableBody,
   TableHeader,
   TableRow,
-  TableHeaderColumn
+  TableHeaderColumn,
 } from 'material-ui/Table';
 
 import DiscountTableRow from './DiscountTableRow.jsx';
@@ -15,9 +15,7 @@ const DiscountTable = ({ discounts, deactivate }) => {
   return (
     <div className="table-responsive">
       <Table>
-        <TableHeader
-          displaySelectAll={false}
-          adjustForCheckbox={false}>
+        <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
           <TableRow>
             <TableHeaderColumn>Name</TableHeaderColumn>
             <TableHeaderColumn>Value</TableHeaderColumn>
@@ -46,7 +44,7 @@ const DiscountTable = ({ discounts, deactivate }) => {
 
 DiscountTable.propTypes = {
   discounts: PropTypes.array.isRequired,
-  deactivate: PropTypes.func.isRequired
+  deactivate: PropTypes.func.isRequired,
 };
 
 export default DiscountTable;

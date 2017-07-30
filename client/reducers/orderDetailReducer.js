@@ -8,7 +8,9 @@ export default function orderReducer(state = initialState.orderDetail, action) {
     case actionTypes.LOAD_ORDER_DETAIL_SUCCESS: {
       return {
         ...action.order,
-        orderStatusDescription: getOrderStatusDescription(action.order.orderStatusID)
+        orderStatusDescription: getOrderStatusDescription(
+          action.order.orderStatusID,
+        ),
       };
     }
     default: {

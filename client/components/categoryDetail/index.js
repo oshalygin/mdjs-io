@@ -22,7 +22,7 @@ class CategoryDetail extends React.Component {
       category: props.category,
       heading: '',
       notification: false,
-      notificationMessage: ''
+      notificationMessage: '',
     };
 
     this.onChange = this.onChange.bind(this);
@@ -35,7 +35,6 @@ class CategoryDetail extends React.Component {
   }
 
   onChange(event, index, payload) {
-
     const { category, errors } = this.state;
     let property;
 
@@ -50,7 +49,6 @@ class CategoryDetail extends React.Component {
 
     this.propertyIsValid(property, category[property], errors);
     return this.setState({ category });
-
   }
 
   closeNotification() {
@@ -75,7 +73,7 @@ class CategoryDetail extends React.Component {
   displayNotification(message) {
     this.setState({
       notification: true,
-      notificationMessage: message
+      notificationMessage: message,
     });
   }
 
@@ -84,9 +82,10 @@ class CategoryDetail extends React.Component {
   }
 
   propertyIsValid(property, value, errors) {
-    const patternTest = property === 'categoryName'
-      ? new RegExp(/^[a-zA-Z0-9,. ]*$/)
-      : new RegExp(/^[0-9]+([,.][0-9]+)?$/g);
+    const patternTest =
+      property === 'categoryName'
+        ? new RegExp(/^[a-zA-Z0-9,. ]*$/)
+        : new RegExp(/^[0-9]+([,.][0-9]+)?$/g);
 
     errors[property] = !patternTest.test(value) ? ' ' : false;
     this.setState({ errors });
@@ -109,15 +108,13 @@ class CategoryDetail extends React.Component {
     const { categoryHeading, loading } = this.props;
     const { category, errors } = this.state;
 
-    const formComponent = !loading.createUpdateCategory ?
-      (
-        <CategoryDetailForm
+    const formComponent = !loading.createUpdateCategory
+      ? <CategoryDetailForm
           category={category}
           onChange={this.onChange}
-          errors={errors} />
-      ) :
-      (
-        <div className="ibox-content">
+          errors={errors}
+        />
+      : <div className="ibox-content">
           <div className="row">
             <div styleName="spinner-container">
               <div styleName="spinner">
@@ -125,8 +122,7 @@ class CategoryDetail extends React.Component {
               </div>
             </div>
           </div>
-        </div>
-      );
+        </div>;
 
     return (
       <div>
@@ -134,7 +130,9 @@ class CategoryDetail extends React.Component {
           <div className="col-sm-offset-3 col-sm-6">
             <div className="ibox float-e-margins">
               <div className="ibox-title">
-                <h5>{categoryHeading}</h5>
+                <h5>
+                  {categoryHeading}
+                </h5>
               </div>
               {formComponent}
             </div>
@@ -147,13 +145,15 @@ class CategoryDetail extends React.Component {
                 styleName="left-control"
                 label="Back"
                 secondary
-                onClick={this.redirect} />
+                onClick={this.redirect}
+              />
             </div>
             <RaisedButton
               styleName="right-control"
               label="Save Category"
               primary
-              onClick={this.onSave} />
+              onClick={this.onSave}
+            />
           </div>
         </div>
         <Snackbar
@@ -161,7 +161,8 @@ class CategoryDetail extends React.Component {
           action="OK"
           message={this.state.notificationMessage}
           onActionTouchTap={this.closeNotification}
-          onRequestClose={this.closeNotification} />
+          onRequestClose={this.closeNotification}
+        />
       </div>
     );
   }
@@ -172,45 +173,49 @@ CategoryDetail.propTypes = {
   loading: PropTypes.object.isRequired,
   categoryHeading: PropTypes.string.isRequired,
   categoryActions: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
 };
 
 CategoryDetail.contextTypes = {
-  router: PropTypes.object
+  router: PropTypes.object,
 };
 
 export function mapStateToProps(state, ownProps) {
-
   let category = {
     categoryID: 0,
-    categoryName: ''
+    categoryName: '',
   };
 
   const { categories } = state;
-  const existingCategory = categories
-    .find(stateCategory => stateCategory.categoryID == ownProps.params.id || stateCategory.categoryID === category.categoryID); //eslint-disable-line
+  const existingCategory = categories.find(
+    stateCategory =>
+      //eslint-disable-next-line eqeqeq
+      stateCategory.categoryID == ownProps.params.id ||
+      stateCategory.categoryID === category.categoryID,
+  );
 
   if (!!existingCategory) {
     category = { ...existingCategory };
   }
 
-  const categoryHeading = (existingCategory && existingCategory.categoryID !== 0)
-    ? 'Update Category'
-    : 'New Category';
+  const categoryHeading =
+    existingCategory && existingCategory.categoryID !== 0
+      ? 'Update Category'
+      : 'New Category';
 
   return {
     category,
     categoryHeading,
     loading: state.loading,
     errors: {
-      categoryName: false
-    }
+      categoryName: false,
+    },
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    categoryActions: bindActionCreators(actionCreators, dispatch)
+    categoryActions: bindActionCreators(actionCreators, dispatch),
   };
 }
 

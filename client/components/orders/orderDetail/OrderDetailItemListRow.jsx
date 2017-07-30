@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 import { numberToLocaleString } from '../../../utilities/currencyUtility';
 import { itemPriceTypes } from '../../../utilities/constants';
 
@@ -10,10 +9,9 @@ import ItemImage from '../../common/itemImage';
 import './orderDetail.css';
 
 const OrderDetailItemListRow = ({ item }) => {
-
-  const priceTypeDescription = itemPriceTypes
-    .find(priceType => priceType.value === item.item.priceTypeID)
-    .label;
+  const priceTypeDescription = itemPriceTypes.find(
+    priceType => priceType.value === item.item.priceTypeID,
+  ).label;
 
   return (
     <div styleName="item-list-row-container">
@@ -22,7 +20,8 @@ const OrderDetailItemListRow = ({ item }) => {
           itemId={item.item.itemID}
           imageId={item.item.photoURL}
           color={item.item.color}
-          label={item.item.label} />
+          label={item.item.label}
+        />
       </div>
       <div styleName="item-list-row-name">
         {item.item.name}
@@ -35,10 +34,9 @@ const OrderDetailItemListRow = ({ item }) => {
       </div>
       <div styleName="item-list-row-discount-container">
         {item.discountList.map((discount, index) => {
-
-          const discountValue = discount.discountTypeID ?
-            discount.value :
-            ((discount.value * 0.01) * item.item.price);
+          const discountValue = discount.discountTypeID
+            ? discount.value
+            : discount.value * 0.01 * item.item.price;
 
           return (
             <div
@@ -46,8 +44,9 @@ const OrderDetailItemListRow = ({ item }) => {
               style={{
                 position: 'relative',
                 left: 0,
-                top: `${16 * (item.discountList.length - 1)}`
-              }}>
+                top: `${16 * (item.discountList.length - 1)}`,
+              }}
+            >
               {`( ${numberToLocaleString(discountValue)})`}
             </div>
           );
@@ -64,7 +63,7 @@ const OrderDetailItemListRow = ({ item }) => {
 };
 
 OrderDetailItemListRow.propTypes = {
-  item: PropTypes.object.isRequired
+  item: PropTypes.object.isRequired,
 };
 
 export default OrderDetailItemListRow;

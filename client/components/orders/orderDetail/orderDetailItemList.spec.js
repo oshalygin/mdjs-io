@@ -7,7 +7,6 @@ import OrderDetailItemListRow from './OrderDetailItemListRow.jsx';
 import { expect } from 'chai';
 
 describe('<OrderDetailItemList />', () => {
-
   const props = {
     items: [
       {
@@ -38,7 +37,7 @@ describe('<OrderDetailItemList />', () => {
           createdBy: 0,
           isActive: false,
           companyID: 0,
-          facilityID: 0
+          facilityID: 0,
         },
         totalSub: 65,
         totalDiscount: 0,
@@ -48,33 +47,26 @@ describe('<OrderDetailItemList />', () => {
         notes: '',
         modifierList: [],
         taxList: [],
-        discountList: []
-      }
-    ]
+        discountList: [],
+      },
+    ],
   };
 
   it('should a root heading of "Item(s)"', () => {
-
     const expected = 'Item(s):';
 
     const wrapper = shallow(<OrderDetailItemList {...props} />);
-    const actual = wrapper.find('.item-heading')
-      .at(0)
-      .text();
+    const actual = wrapper.find('.item-heading').at(0).text();
 
     expect(actual).equals(expected);
-
   });
 
   it('should contain an equal number of <OrderDetailItemListRow /> components to the number of items', () => {
-
     const expected = props.items.length;
 
     const wrapper = shallow(<OrderDetailItemList {...props} />);
     const actual = wrapper.find(OrderDetailItemListRow).length;
 
     expect(actual).equals(expected);
-
   });
-
 });

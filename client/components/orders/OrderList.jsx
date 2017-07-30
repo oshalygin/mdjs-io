@@ -6,7 +6,6 @@ import OrderListCard from './OrderListCard.jsx';
 import './orders.css';
 
 const OrderList = ({ orders, onExpandChange }) => {
-
   return (
     <div className="table-responsive">
       <div styleName="headers-container">
@@ -19,14 +18,15 @@ const OrderList = ({ orders, onExpandChange }) => {
       </div>
 
       <div>
-        {orders
-          .map(order => {
-            return (
-              <OrderListCard
-                key={order.orderID}
-                onExpandChange={onExpandChange}
-                order={order} />);
-          })}
+        {orders.map(order => {
+          return (
+            <OrderListCard
+              key={order.orderID}
+              onExpandChange={onExpandChange}
+              order={order}
+            />
+          );
+        })}
       </div>
     </div>
   );
@@ -34,7 +34,7 @@ const OrderList = ({ orders, onExpandChange }) => {
 
 OrderList.propTypes = {
   orders: PropTypes.array.isRequired,
-  onExpandChange: PropTypes.func.isRequired
+  onExpandChange: PropTypes.func.isRequired,
 };
 
 export default OrderList;

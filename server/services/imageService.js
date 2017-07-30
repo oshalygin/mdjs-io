@@ -8,26 +8,29 @@ import configuration from '../utilities/configuration';
 const gcs = googleCloudStorage({
   projectId: configuration.googleProject,
   // This is the service account that orchestrates communication with the bucket
-  keyFilename: path.join(__dirname, '../../infrastructure/storage-service-account.json')
+  keyFilename: path.join(
+    __dirname,
+    '../../infrastructure/storage-service-account.json',
+  ),
 });
 
 const bucket = gcs.bucket(configuration.imageStorageBucket);
 
 //TODO: TEST THIS
 function uploadOriginalImage(imageStream, photoURL, originalFileName) {
-
   return new Promise((resolve, reject) => {
     try {
       const originalImageName = `${photoURL}_original_${originalFileName}`;
-      
-      const remoteOriginalWriteStream = bucket.file(originalImageName).createWriteStream();
+
+      const remoteOriginalWriteStream = bucket
+        .file(originalImageName)
+        .createWriteStream();
 
       remoteOriginalWriteStream.on('finish', () => {
         resolve(photoURL);
       });
 
       imageStream.pipe(remoteOriginalWriteStream);
-
     } catch (error) {
       reject(error);
     }
@@ -40,19 +43,16 @@ function uploadCompressedImage(imageStream, photoURL) {
     try {
       const compressedImage = `${photoURL}.png`;
 
-      const remoteCompressedWriteStream = bucket.file(compressedImage).createWriteStream();
+      const remoteCompressedWriteStream = bucket
+        .file(compressedImage)
+        .createWriteStream();
       remoteCompressedWriteStream.on('finish', () => {
         resolve(photoURL);
       });
 
-      const imageFormatter = sharp()
-        .resize(200, 200)
-        .png();
+      const imageFormatter = sharp().resize(200, 200).png();
 
-      imageStream
-        .pipe(imageFormatter)
-        .pipe(remoteCompressedWriteStream);
-
+      imageStream.pipe(imageFormatter).pipe(remoteCompressedWriteStream);
     } catch (error) {
       reject(error);
     }
@@ -60,15 +60,17 @@ function uploadCompressedImage(imageStream, photoURL) {
 }
 
 function upload(imageStream, originalFileName) {
-
   const photoURL = uuid();
-  const originalUploadPromise = uploadOriginalImage(imageStream, photoURL, originalFileName);
+  const originalUploadPromise = uploadOriginalImage(
+    imageStream,
+    photoURL,
+    originalFileName,
+  );
   const compressedUploadPromise = uploadCompressedImage(imageStream, photoURL);
   return Promise.all([originalUploadPromise, compressedUploadPromise]);
 }
 
 function setImageUrl(imageName) {
-  
   const googleBucketPrefix = 'https://storage.googleapis.com';
   const bucketName = configuration.imageStorageBucket;
   const imageFileType = 'png';
@@ -80,5 +82,5 @@ export default {
   upload,
   uploadOriginalImage,
   uploadCompressedImage,
-  imageUrl: setImageUrl
+  imageUrl: setImageUrl,
 };

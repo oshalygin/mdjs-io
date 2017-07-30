@@ -4,8 +4,8 @@ import { loadUserToken } from '../utilities/localStorage';
 export function getJsonHeaders() {
   return {
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
   };
 }
 
@@ -13,13 +13,12 @@ export function getHeaders(token) {
   return {
     headers: {
       'Content-Type': 'application/json',
-      Authorization: token
-    }
+      Authorization: token,
+    },
   };
 }
 
 export function get(endpoint) {
-  
   const token = loadUserToken();
   const headers = getHeaders(token);
 
@@ -27,7 +26,6 @@ export function get(endpoint) {
 }
 
 export function post(endpoint, data) {
-  
   const token = loadUserToken();
   const headers = getHeaders(token);
 
@@ -35,7 +33,6 @@ export function post(endpoint, data) {
 }
 
 export function put(endpoint, data) {
-
   const token = loadUserToken();
   const headers = getHeaders(token);
 

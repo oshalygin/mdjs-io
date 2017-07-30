@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-
 import { browserHistory } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 
@@ -22,7 +21,7 @@ export class Discounts extends React.Component {
 
     this.state = {
       discounts: props.discounts,
-      filter: ''
+      filter: '',
     };
 
     this.deactivate = this.deactivate.bind(this);
@@ -38,10 +37,12 @@ export class Discounts extends React.Component {
     const { discounts } = this.state;
     const { discountActions } = this.props;
 
-    const deactivatedDiscount = discounts
-      .find(discount => discount.discountID === discountId);
+    const deactivatedDiscount = discounts.find(
+      discount => discount.discountID === discountId,
+    );
 
-    discountActions.deactivateDiscount(deactivatedDiscount)
+    discountActions
+      .deactivateDiscount(deactivatedDiscount)
       .then(() => {
         //TODO: #68 - Add Snackbar control that indicates success
       })
@@ -53,18 +54,15 @@ export class Discounts extends React.Component {
   searchOnChange(event) {
     const { discounts } = this.props;
 
-    const filter = event.target.value
-      .toLowerCase();
+    const filter = event.target.value.toLowerCase();
 
-    const filteredDiscounts = discounts
-      .filter(discount => discount
-        .discountName
-        .toLowerCase()
-        .includes(filter));
+    const filteredDiscounts = discounts.filter(discount =>
+      discount.discountName.toLowerCase().includes(filter),
+    );
 
     this.setState({
       filter,
-      discounts: filteredDiscounts
+      discounts: filteredDiscounts,
     });
   }
 
@@ -95,12 +93,14 @@ export class Discounts extends React.Component {
                     onChange={this.searchOnChange}
                     errorText={this.state.error}
                     style={fullWidth}
-                    floatingLabelText="Filter" />
+                    floatingLabelText="Filter"
+                  />
                 </div>
               </div>
               <DiscountTable
                 discounts={discounts}
-                deactivate={this.deactivate} />
+                deactivate={this.deactivate}
+              />
             </div>
           </div>
         </div>
@@ -111,17 +111,17 @@ export class Discounts extends React.Component {
 
 Discounts.propTypes = {
   discounts: PropTypes.array.isRequired,
-  discountActions: PropTypes.object.isRequired
+  discountActions: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
   return {
-    discounts: state.discounts
+    discounts: state.discounts,
   };
 }
 function mapDispatchToProps(dispatch) {
   return {
-    discountActions: bindActionCreators(actionCreators, dispatch)
+    discountActions: bindActionCreators(actionCreators, dispatch),
   };
 }
 

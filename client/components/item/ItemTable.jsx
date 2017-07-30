@@ -6,7 +6,7 @@ import {
   TableBody,
   TableHeader,
   TableRow,
-  TableHeaderColumn
+  TableHeaderColumn,
 } from 'material-ui/Table';
 import ItemTableRow from './ItemTableRow.jsx';
 
@@ -14,9 +14,7 @@ const ItemTable = ({ items, deactivate }) => {
   return (
     <div className="table-responsive">
       <Table selectable multiSelectable>
-        <TableHeader
-          displaySelectAll={false}
-          adjustForCheckbox={false}>
+        <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
           <TableRow>
             <TableHeaderColumn>Image</TableHeaderColumn>
             <TableHeaderColumn>Name</TableHeaderColumn>
@@ -29,11 +27,7 @@ const ItemTable = ({ items, deactivate }) => {
         <TableBody showRowHover>
           {items.map((item, index) => {
             return (
-              <ItemTableRow
-                key={index}
-                item={item}
-                deactivate={deactivate}
-              />
+              <ItemTableRow key={index} item={item} deactivate={deactivate} />
             );
           })}
         </TableBody>
@@ -44,7 +38,7 @@ const ItemTable = ({ items, deactivate }) => {
 
 ItemTable.propTypes = {
   items: PropTypes.array.isRequired,
-  deactivate: PropTypes.func.isRequired
+  deactivate: PropTypes.func.isRequired,
 };
 
 export default ItemTable;

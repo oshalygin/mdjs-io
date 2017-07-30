@@ -5,7 +5,13 @@ import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
 import configureStore from './store/configureStore';
-import { Router, Route, IndexRoute, browserHistory, Redirect } from 'react-router';
+import {
+  Router,
+  Route,
+  IndexRoute,
+  browserHistory,
+  Redirect,
+} from 'react-router';
 import { Provider } from 'react-redux';
 import { retrieveUser } from './reducers/initialState';
 import { hostLocation } from './utilities/endpoints';
@@ -57,14 +63,12 @@ import Login from './components/login';
 
 const environment = process.env.NODE_ENV; // eslint-disable-line no-process-env
 if (environment === 'production') {
-
   const errorHandler = new StackdriverErrorReporter(); //eslint-disable-line no-undef
   errorHandler.start({
     key: 'AIzaSyBsQeaYpBv6U-axYGImjX6yUTaZ7LACDxQ',
     projectId: 'merchant-dash',
-    service: hostLocation
+    service: hostLocation,
   });
-
 }
 
 const store = configureStore();
@@ -81,7 +85,7 @@ function isAuthorized(nextState, replace, callback) {
     return;
   }
 
-  retrieveUser((store.dispatch), (error) => {
+  retrieveUser(store.dispatch, error => {
     if (!!error) {
       replace('/login');
     }
@@ -92,7 +96,12 @@ function isAuthorized(nextState, replace, callback) {
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={Application} onEnter={(nextState, replace, callback) => isAuthorized(nextState, replace, callback)}>
+      <Route
+        path="/"
+        component={Application}
+        onEnter={(nextState, replace, callback) =>
+          isAuthorized(nextState, replace, callback)}
+      >
         <IndexRoute component={Dashboard} />
         <Route path="login" component={Login} />
         <Route path="dashboard" component={Dashboard} />
@@ -112,5 +121,5 @@ render(
       </Route>
     </Router>
   </Provider>,
-  document.getElementById('application')
+  document.getElementById('application'),
 );

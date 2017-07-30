@@ -10,18 +10,15 @@ import {
   LOADING_TAX_UPDATE_SUCCESS,
   TAX_UPDATED,
   TAX_UPDATE_FAILURE,
-  TAX_CREATION_FAILURE
+  TAX_CREATION_FAILURE,
 } from './actionTypes';
-import {
-  TAXES_ENDPOINT
-} from '../utilities/endpoints';
+import { TAXES_ENDPOINT } from '../utilities/endpoints';
 import moxios from 'moxios';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
 import { expect } from 'chai';
 
 describe('Tax Actions', () => {
-
   let store;
   const middlewares = [thunk];
   const mockStore = configureMockStore(middlewares);
@@ -47,12 +44,12 @@ describe('Tax Actions', () => {
     createdBy: 1,
     isActive: true,
     companyID: 1,
-    facilityID: 0
+    facilityID: 0,
   };
 
   const newTax = {
     taxID: 0,
-    taxName: 'baz'
+    taxName: 'baz',
   };
 
   const updatedTax = {
@@ -67,228 +64,179 @@ describe('Tax Actions', () => {
     createdBy: 1,
     isActive: true,
     companyID: 1,
-    facilityID: 0
+    facilityID: 0,
   };
 
   const endpoint = `${TAXES_ENDPOINT}/${existingTax.taxID}`;
 
   it('should dispatch the "TAX_DEACTIVATED" action on a deactivateTax(tax) call', () => {
-
     const expected = TAX_DEACTIVATED;
 
     moxios.stubRequest(endpoint, {
       status: 200,
-      response: {}
+      response: {},
     });
 
-    return store.dispatch(deactivateTax(existingTax))
-      .then(() => {
-        const actual = store.getActions()
-          .map(action => action.type)[0];
-        expect(actual).equals(expected);
-      });
-
+    return store.dispatch(deactivateTax(existingTax)).then(() => {
+      const actual = store.getActions().map(action => action.type)[0];
+      expect(actual).equals(expected);
+    });
   });
 
   it('should dispatch the "TAX_DEACTIVATED_SUCCESS" action on a successful deactivateTax(tax) call', () => {
-
     const expected = TAX_DEACTIVATED_SUCCESS;
 
     moxios.stubRequest(endpoint, {
       status: 200,
-      response: {}
+      response: {},
     });
 
-    return store.dispatch(deactivateTax(existingTax))
-      .then(() => {
-        const actual = store.getActions()
-          .map(action => action.type)[1];
-        expect(actual).equals(expected);
-      });
-
+    return store.dispatch(deactivateTax(existingTax)).then(() => {
+      const actual = store.getActions().map(action => action.type)[1];
+      expect(actual).equals(expected);
+    });
   });
 
   it('should dispatch the "LOADING_TAX_CREATION" action on a createTax(newTax) call', () => {
-
     const expected = LOADING_TAX_CREATION;
     moxios.stubRequest(TAXES_ENDPOINT, {
       status: 200,
-      response: {}
+      response: {},
     });
 
-    return store.dispatch(createTax(newTax))
-      .then(() => {
-        const actual = store.getActions()
-          .map(action => action.type)[0];
-        expect(actual).equals(expected);
-      });
-
+    return store.dispatch(createTax(newTax)).then(() => {
+      const actual = store.getActions().map(action => action.type)[0];
+      expect(actual).equals(expected);
+    });
   });
 
   it('should dispatch the "LOADING_TAX_CREATION_SUCCESS" action on a completed createTax(newTax) call', () => {
-
     const expected = LOADING_TAX_CREATION_SUCCESS;
     moxios.stubRequest(TAXES_ENDPOINT, {
       status: 200,
-      response: {}
+      response: {},
     });
 
-    return store.dispatch(createTax(newTax))
-      .then(() => {
-        const actual = store.getActions()
-          .map(action => action.type)[2];
-        expect(actual).equals(expected);
-      });
-
+    return store.dispatch(createTax(newTax)).then(() => {
+      const actual = store.getActions().map(action => action.type)[2];
+      expect(actual).equals(expected);
+    });
   });
 
   it('should dispatch the "TAX_CREATED" action on a completed createTax(newTax) call', () => {
-
     const expected = TAX_CREATED;
     moxios.stubRequest(TAXES_ENDPOINT, {
       status: 200,
-      response: {}
+      response: {},
     });
 
-    return store.dispatch(createTax(newTax))
-      .then(() => {
-        const actual = store.getActions()
-          .map(action => action.type)[1];
-        expect(actual).equals(expected);
-      });
-
+    return store.dispatch(createTax(newTax)).then(() => {
+      const actual = store.getActions().map(action => action.type)[1];
+      expect(actual).equals(expected);
+    });
   });
 
   it('should dispatch the "TAX_CREATED" action with the new tax on a completed createTax(newTax) call', () => {
-
     const newlyCreatedTax = { ...newTax, taxID: 300 };
     const expected = newlyCreatedTax;
 
     moxios.stubRequest(TAXES_ENDPOINT, {
       status: 200,
-      response: newlyCreatedTax
+      response: newlyCreatedTax,
     });
 
-    return store.dispatch(createTax(newTax))
-      .then(() => {
-        const actual = store.getActions()
-          .map(action => action.tax)[1];
-        expect(actual).deep.equals(expected);
-      });
-
+    return store.dispatch(createTax(newTax)).then(() => {
+      const actual = store.getActions().map(action => action.tax)[1];
+      expect(actual).deep.equals(expected);
+    });
   });
 
   it('should dispatch the "LOADING_TAX_UPDATE" action on a updateTax(existingTax) call', () => {
-
     const expected = LOADING_TAX_UPDATE;
     const updateEndpoint = `${TAXES_ENDPOINT}/${existingTax.taxID}`;
 
     moxios.stubRequest(updateEndpoint, {
       status: 200,
-      response: {}
+      response: {},
     });
 
-    return store.dispatch(updateTax(existingTax))
-      .then(() => {
-        const actual = store.getActions()
-          .map(action => action.type)[0];
-        expect(actual).equals(expected);
-      });
-
+    return store.dispatch(updateTax(existingTax)).then(() => {
+      const actual = store.getActions().map(action => action.type)[0];
+      expect(actual).equals(expected);
+    });
   });
 
   it('should dispatch the "LOADING_TAX_UPDATE_SUCCESS" action on a completed updateTax(existingTax) call', () => {
-
     const expected = LOADING_TAX_UPDATE_SUCCESS;
     const updateEndpoint = `${TAXES_ENDPOINT}/${existingTax.taxID}`;
 
     moxios.stubRequest(updateEndpoint, {
       status: 200,
-      response: {}
+      response: {},
     });
 
-    return store.dispatch(updateTax(existingTax))
-      .then(() => {
-        const actual = store.getActions()
-          .map(action => action.type)[2];
-        expect(actual).equals(expected);
-      });
-
+    return store.dispatch(updateTax(existingTax)).then(() => {
+      const actual = store.getActions().map(action => action.type)[2];
+      expect(actual).equals(expected);
+    });
   });
 
   it('should dispatch the "TAX_UPDATE_FAILURE" action on a failed updateTax(existingTax) call', () => {
-
     const expected = TAX_UPDATE_FAILURE;
     const updateEndpoint = `${TAXES_ENDPOINT}/${existingTax.taxID}`;
 
     moxios.stubRequest(updateEndpoint, {
       status: 500,
-      response: {}
+      response: {},
     });
 
-    return store.dispatch(updateTax(existingTax))
-      .catch(() => {
-        const actual = store.getActions()
-          .map(action => action.type)[1];
-        expect(actual).equals(expected);
-      });
-
+    return store.dispatch(updateTax(existingTax)).catch(() => {
+      const actual = store.getActions().map(action => action.type)[1];
+      expect(actual).equals(expected);
+    });
   });
 
   it('should dispatch the "TAX_CREATION_FAILURE" action on a failed createTax(newTax) call', () => {
-
     const expected = TAX_CREATION_FAILURE;
     moxios.stubRequest(TAXES_ENDPOINT, {
       status: 500,
-      response: {}
+      response: {},
     });
 
-    return store.dispatch(createTax(newTax))
-      .catch(() => {
-        const actual = store.getActions()
-          .map(action => action.type)[1];
-        expect(actual).equals(expected);
-      });
-
+    return store.dispatch(createTax(newTax)).catch(() => {
+      const actual = store.getActions().map(action => action.type)[1];
+      expect(actual).equals(expected);
+    });
   });
 
   it('should dispatch the "TAX_UPDATED" action on a completed updateTax(updatedTax) call', () => {
-
     const expected = TAX_UPDATED;
     const updateEndpoint = `${TAXES_ENDPOINT}/${existingTax.taxID}`;
 
     moxios.stubRequest(updateEndpoint, {
       status: 200,
-      response: {}
+      response: {},
     });
 
-    return store.dispatch(updateTax(updatedTax))
-      .then(() => {
-        const actual = store.getActions()
-          .map(action => action.type)[1];
-        expect(actual).equals(expected);
-      });
-
+    return store.dispatch(updateTax(updatedTax)).then(() => {
+      const actual = store.getActions().map(action => action.type)[1];
+      expect(actual).equals(expected);
+    });
   });
 
   it('should dispatch the "TAX_UPDATED" action with the updated tax on a completed updateTax(updatedTax) call', () => {
-
     const partiallyUpdatedTax = { ...existingTax, taxName: 'foobar' };
     const expected = partiallyUpdatedTax;
     const updateEndpoint = `${TAXES_ENDPOINT}/${existingTax.taxID}`;
 
     moxios.stubRequest(updateEndpoint, {
       status: 200,
-      response: partiallyUpdatedTax
+      response: partiallyUpdatedTax,
     });
 
-    return store.dispatch(updateTax(updatedTax))
-      .then(() => {
-        const actual = store.getActions()
-          .map(action => action.tax)[1];
-        expect(actual).deep.equals(expected);
-      });
-
+    return store.dispatch(updateTax(updatedTax)).then(() => {
+      const actual = store.getActions().map(action => action.tax)[1];
+      expect(actual).deep.equals(expected);
+    });
   });
-
 });

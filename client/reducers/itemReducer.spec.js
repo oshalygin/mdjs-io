@@ -1,13 +1,11 @@
 import { expect } from 'chai';
 import {
   ITEM_DEACTIVATED_SUCCESS,
-  LOAD_ITEMS_SUCCESS
+  LOAD_ITEMS_SUCCESS,
 } from '../actions/actionTypes';
 import reducer from './itemReducer';
 
-
 describe('Reducer - Item', () => {
-
   const getInitialState = () => {
     return [];
   };
@@ -23,7 +21,7 @@ describe('Reducer - Item', () => {
       file: null,
       itemCategoryID: 2,
       isActive: 1,
-      priceTypeID: 1
+      priceTypeID: 1,
     },
     {
       itemID: 2,
@@ -35,7 +33,7 @@ describe('Reducer - Item', () => {
       file: null,
       itemCategoryID: 2,
       isActive: 1,
-      priceTypeID: 1
+      priceTypeID: 1,
     },
     {
       itemID: 3,
@@ -47,8 +45,8 @@ describe('Reducer - Item', () => {
       file: null,
       itemCategoryID: 2,
       isActive: 1,
-      priceTypeID: 1
-    }
+      priceTypeID: 1,
+    },
   ];
 
   const resultingItems = [
@@ -64,7 +62,7 @@ describe('Reducer - Item', () => {
       disabled: false,
       itemCategoryID: 2,
       isActive: 1,
-      priceTypeID: 1
+      priceTypeID: 1,
     },
     {
       itemID: 2,
@@ -78,7 +76,7 @@ describe('Reducer - Item', () => {
       disabled: false,
       itemCategoryID: 2,
       isActive: 1,
-      priceTypeID: 1
+      priceTypeID: 1,
     },
     {
       itemID: 3,
@@ -92,13 +90,13 @@ describe('Reducer - Item', () => {
       disabled: false,
       itemCategoryID: 2,
       isActive: 1,
-      priceTypeID: 1
-    }
+      priceTypeID: 1,
+    },
   ];
 
   it('should retrieve the initial state if the action type is not registered with the reducer', () => {
     const action = {
-      type: 'UNKNOWN'
+      type: 'UNKNOWN',
     };
 
     const expected = getInitialState();
@@ -108,32 +106,26 @@ describe('Reducer - Item', () => {
   });
 
   it('should hydrate the state with all of the items in the action in addition to the additional checked and disabled properties', () => {
-
     const action = {
       type: LOAD_ITEMS_SUCCESS,
-      items
+      items,
     };
 
     const expected = resultingItems;
     const actual = reducer(undefined, action); //eslint-disable-line no-undefined
 
     expect(actual).deep.equals(expected);
-
   });
 
   it('should remove the item that was passed in as part of the ITEM_DEACTIVATED_SUCCESS dispatched action', () => {
-
     const action = {
       type: ITEM_DEACTIVATED_SUCCESS,
-      item: items[0]
+      item: items[0],
     };
 
     const expected = 2;
-    const actual = reducer(items, action)
-      .length; 
+    const actual = reducer(items, action).length;
 
     expect(actual).equals(expected);
-
   });
-
 });

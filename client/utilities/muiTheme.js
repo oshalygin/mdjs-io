@@ -12,7 +12,7 @@ import {
   white,
   grey300,
   fullBlack,
-  primaryBlue
+  primaryBlue,
 } from './colors';
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -34,8 +34,8 @@ const muiTheme = getMuiTheme({
     disabledColor: fade(darkBlack, 0.3),
     pickerHeaderColor: cyan500,
     clockCircleColor: fade(darkBlack, 0.07),
-    shadowColor: fullBlack
-  }
+    shadowColor: fullBlack,
+  },
 });
 
 export default muiTheme;

@@ -8,21 +8,16 @@ import configureMockStore from 'redux-mock-store';
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware); //eslint-disable-line no-unused-vars
 
-
 describe('Xhr Status Actions', () => {
-
   it('xhrCallStarted properly returns back an action type of "XHR_CALL_START"', () => {
-
     const expected = actionTypes.XHR_CALL_START;
     const actual = xhrStatusActions.xhrCallStarted().type;
     expect(actual).equals(expected);
   });
 
   it('xhrCallFailure properly returns back an action type of "XHR_CALL_FAILURE"', () => {
-
     const expected = actionTypes.XHR_CALL_FAILURE;
     const actual = xhrStatusActions.xhrCallFailure().type;
     expect(actual).equals(expected);
   });
-
 });

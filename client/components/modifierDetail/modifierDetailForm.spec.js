@@ -8,26 +8,23 @@ import { expect } from 'chai';
 
 describe('<ModifierDetailForm />', () => {
   const errors = {
-    modifierName: false
+    modifierName: false,
   };
   const props = {
     modifier: {
       modifierID: 0,
-      modifierName: ''
+      modifierName: '',
     },
     errors,
-    onChange() { }
+    onChange() {},
   };
 
   it('should contain two text fields on the form', () => {
-
     const wrapper = shallow(<ModifierDetailForm {...props} />);
 
     const expected = 2;
     const actual = wrapper.find(TextField).length;
 
     expect(actual).equals(expected);
-
   });
-
 });

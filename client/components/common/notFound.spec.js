@@ -7,19 +7,14 @@ import React from 'react';
 import NotFound from './NotFound.jsx';
 
 describe('<NotFound />', () => {
-
   it('The text passed to the NotFound component is renderred in a paragraph below the image', () => {
     const props = {
-      message: 'Nothing matched the search criteria'
+      message: 'Nothing matched the search criteria',
     };
     const expected = props.message;
     const wrapper = shallow(<NotFound {...props} />);
-    const actual = wrapper.find('p')
-      .children()
-      .get(0);
+    const actual = wrapper.find('p').children().get(0);
 
     expect(actual).equals(expected);
-
   });
-
 });

@@ -11,6 +11,7 @@
       ],
       "plugins": [
         "transform-object-rest-spread",
+        "syntax-trailing-function-commas",
         [
           "react-css-modules",
           {
@@ -48,6 +49,7 @@
         "transform-react-constant-elements",
         "transform-react-remove-prop-types",
         "transform-object-rest-spread",
+        "syntax-trailing-function-commas",
         [
           "react-css-modules",
           {

@@ -1,13 +1,11 @@
 import { expect } from 'chai';
 import {
   CATEGORY_DEACTIVATED_SUCCESS,
-  LOAD_CATEGORIES_SUCCESS
+  LOAD_CATEGORIES_SUCCESS,
 } from '../actions/actionTypes';
 import reducer from './categoryReducer';
 
-
 describe('Reducer - Category', () => {
-
   const getInitialState = () => {
     return [];
   };
@@ -23,7 +21,7 @@ describe('Reducer - Category', () => {
       isActive: true,
       items: [],
       lastUpdatedBy: 1,
-      lastUpdatedDate: '2017-03-31T01:09:34.3905613-07:00'
+      lastUpdatedDate: '2017-03-31T01:09:34.3905613-07:00',
     },
     {
       categoryID: 2,
@@ -35,7 +33,7 @@ describe('Reducer - Category', () => {
       isActive: true,
       items: [],
       lastUpdatedBy: 1,
-      lastUpdatedDate: '2017-03-31T01:09:34.3905613-07:00'
+      lastUpdatedDate: '2017-03-31T01:09:34.3905613-07:00',
     },
     {
       categoryID: 3,
@@ -47,8 +45,8 @@ describe('Reducer - Category', () => {
       isActive: true,
       items: [],
       lastUpdatedBy: 1,
-      lastUpdatedDate: '2017-03-31T01:09:34.3905613-07:00'
-    }
+      lastUpdatedDate: '2017-03-31T01:09:34.3905613-07:00',
+    },
   ];
 
   const resultingCategories = [
@@ -62,7 +60,7 @@ describe('Reducer - Category', () => {
       isActive: true,
       items: [],
       lastUpdatedBy: 1,
-      lastUpdatedDate: '2017-03-31T01:09:34.3905613-07:00'
+      lastUpdatedDate: '2017-03-31T01:09:34.3905613-07:00',
     },
     {
       categoryID: 2,
@@ -74,7 +72,7 @@ describe('Reducer - Category', () => {
       isActive: true,
       items: [],
       lastUpdatedBy: 1,
-      lastUpdatedDate: '2017-03-31T01:09:34.3905613-07:00'
+      lastUpdatedDate: '2017-03-31T01:09:34.3905613-07:00',
     },
     {
       categoryID: 3,
@@ -86,13 +84,13 @@ describe('Reducer - Category', () => {
       isActive: true,
       items: [],
       lastUpdatedBy: 1,
-      lastUpdatedDate: '2017-03-31T01:09:34.3905613-07:00'
-    }
+      lastUpdatedDate: '2017-03-31T01:09:34.3905613-07:00',
+    },
   ];
 
   it('should retrieve the initial state if the action type is not registered with the reducer', () => {
     const action = {
-      type: 'UNKNOWN'
+      type: 'UNKNOWN',
     };
 
     const expected = getInitialState();
@@ -102,32 +100,26 @@ describe('Reducer - Category', () => {
   });
 
   it('should hydrate the state with all of the categories in the action in addition to the additional checked and disabled properties', () => {
-
     const action = {
       type: LOAD_CATEGORIES_SUCCESS,
-      categories
+      categories,
     };
 
     const expected = resultingCategories;
     const actual = reducer(undefined, action); //eslint-disable-line no-undefined
 
     expect(actual).deep.equals(expected);
-
   });
 
   it('should remove the category that was passed in as part of the CATEGORY_DEACTIVATED_SUCCESS dispatched action', () => {
-
     const action = {
       type: CATEGORY_DEACTIVATED_SUCCESS,
-      category: categories[0]
+      category: categories[0],
     };
 
     const expected = 2;
-    const actual = reducer(categories, action)
-      .length;
+    const actual = reducer(categories, action).length;
 
     expect(actual).equals(expected);
-
   });
-
 });
