@@ -1,3 +1,7 @@
+## 3.0.2 (July 26, 2017)
+
+- Updates to the `k8s-config` version, which will support the configuration used within this project.
+
 ## 3.0.1 (July 26, 2017)
 
 - Updates to the binary path which should be `linux_amd64_k8s-config`
