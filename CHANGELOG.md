@@ -1,3 +1,9 @@
+## 3.1.0 (August 1, 2017)
+
+- Fix all v0 routes for Categories to call the proper endpoint.
+- Addition of update and delete actions to the V0 Categories
+- Addition of routes for all V0 endpoints that do not require multi-part form upload.
+
 ## 3.0.3 (July 31, 2017)
 
 - Fixed the api wrapper in the client to pull the auth token from local storage on every request.  When this value was reset, it was cached internally.  Another means of handling this is to store it in the store, but that will come down the line.
