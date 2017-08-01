@@ -83,7 +83,7 @@ describe('Api Utilities', () => {
       headers: {
         'content-type': 'application/json',
         accept: 'application/json',
-        Authorization: undefined, //eslint-disable-line no-undefined
+        Authorization: 'abcd-efg-123',
       },
     };
 

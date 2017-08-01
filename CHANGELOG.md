@@ -1,4 +1,8 @@
-## 3.0.2 (July 26, 2017)
+## 3.0.3 (July 31, 2017)
+
+- Fixed the api wrapper in the client to pull the auth token from local storage on every request.  When this value was reset, it was cached internally.  Another means of handling this is to store it in the store, but that will come down the line.
+
+## 3.0.2 (July 30, 2017)
 
 - Updates to the `k8s-config` version, which will support the configuration used within this project.
 
