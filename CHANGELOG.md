@@ -1,3 +1,8 @@
+## 3.2.0 (August 2, 2017)
+
+- Addition of V0 Customer APIs
+  - Proxy passthrough to the current API backend
+
 ## 3.1.2 (August 1, 2017)
 
 - Addition of V0 Category API Tests
