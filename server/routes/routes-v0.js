@@ -3,6 +3,7 @@ import express from 'express';
 import categoryController from '../controllers/v0/categoryController';
 import customerController from '../controllers/v0/customerController';
 import discountController from '../controllers/v0/discountController';
+import inventoryController from '../controllers/v0/inventoryController';
 
 // v0
 const router = express.Router();
@@ -19,5 +20,13 @@ router.route('/customer/orders').post(customerController.orders);
 router.route('/discount/create').post(discountController.create);
 router.route('/discount/update').post(discountController.update);
 router.route('/discount/delete').post(discountController.delete);
+
+router.route('/inventory/setinventory').post(inventoryController.setInventory);
+router
+  .route('/inventory/inventoryforitems')
+  .post(inventoryController.addToInventory);
+router
+  .route('/inventory/addtoinventory')
+  .post(inventoryController.addToInventory);
 
 export default router;

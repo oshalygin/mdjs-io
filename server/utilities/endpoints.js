@@ -25,9 +25,9 @@ export const V0_DISCOUNT_CREATE_ENDPOINT = `${DOMAIN_ENDPOINT}/api/discount/crea
 export const V0_DISCOUNT_UPDATE_ENDPOINT = `${DOMAIN_ENDPOINT}/api/discount/update`;
 export const V0_DISCOUNT_DELETE_ENDPOINT = `${DOMAIN_ENDPOINT}/api/discount/delete`;
 
-export const V0_DISCOUNT_INVENTORY_FOR_ITEMS_ENDPOINT = `${DOMAIN_ENDPOINT}/api/inventory/inventoryforitems`;
-export const V0_DISCOUNT_SET_INVENTORY_ENDPOINT = `${DOMAIN_ENDPOINT}/api/inventory/setinventory`;
-export const V0_DISCOUNT_ADD_TO_INVENTORY_ENDPOINT = `${DOMAIN_ENDPOINT}/api/inventory/addtoinventory`;
+export const V0_INVENTORY_FOR_ITEMS_ENDPOINT = `${DOMAIN_ENDPOINT}/api/inventory/inventoryforitems`;
+export const V0_INVENTORY_SET_INVENTORY_ENDPOINT = `${DOMAIN_ENDPOINT}/api/inventory/setinventory`;
+export const V0_INVENTORY_ADD_TO_INVENTORY_ENDPOINT = `${DOMAIN_ENDPOINT}/api/inventory/addtoinventory`;
 
 export const V0_MESSAGE_GET_ENDPOINT = `${DOMAIN_ENDPOINT}/api/message/get`;
 export const V0_MESSAGE_MARK_READ_ENDPOINT = `${DOMAIN_ENDPOINT}/api/message/markread`;
