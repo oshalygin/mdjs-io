@@ -1,3 +1,8 @@
+## 3.3.0 (August 2, 2017)
+
+- Addition of V0 Discount APIs
+  - Proxy passthrough to the current API backend
+
 ## 3.2.0 (August 2, 2017)
 
 - Addition of V0 Customer APIs
