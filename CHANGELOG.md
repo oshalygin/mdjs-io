@@ -1,3 +1,7 @@
+## 3.1.1 (August 1, 2017)
+
+- Addition of API utility for server side code.
+
 ## 3.1.0 (August 1, 2017)
 
 - Fix all v0 routes for Categories to call the proper endpoint.
