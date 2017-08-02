@@ -1,3 +1,7 @@
+## 3.1.2 (August 1, 2017)
+
+- Addition of V0 Category API Tests
+
 ## 3.1.1 (August 1, 2017)
 
 - Addition of API utility for server side code.

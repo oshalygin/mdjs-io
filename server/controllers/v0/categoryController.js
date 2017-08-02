@@ -1,6 +1,5 @@
-import axios from 'axios';
+import api from '../../utilities/api';
 
-import { getHeaders } from '../../utilities/requestUtilities';
 import logger from '../../middleware/logger';
 import {
   V0_CATEGORY_CREATE_ENDPOINT,
@@ -21,13 +20,12 @@ export async function create(request, response) {
 
   try {
     const token = request.headers.authorization;
-    const headers = getHeaders(token);
 
-    const postedResponse = await axios.post(
+    const postedResponse = await api.post(token)(
       V0_CATEGORY_CREATE_ENDPOINT,
       postBody,
-      headers,
     );
+
     const newResource = postedResponse.data;
 
     return response.status(200).json(newResource);
@@ -51,13 +49,12 @@ export async function update(request, response) {
 
   try {
     const token = request.headers.authorization;
-    const headers = getHeaders(token);
 
-    const postedResponse = await axios.post(
+    const postedResponse = await api.post(token)(
       V0_CATEGORY_UPDATE_ENDPOINT,
       postBody,
-      headers,
     );
+
     const updatedResource = postedResponse.data;
 
     return response.status(200).json(updatedResource);
@@ -81,13 +78,12 @@ export async function deleteResource(request, response) {
 
   try {
     const token = request.headers.authorization;
-    const headers = getHeaders(token);
 
-    const postedResponse = await axios.post(
+    const postedResponse = await api.post(token)(
       V0_CATEGORY_DELETE_ENDPOINT,
       postBody,
-      headers,
     );
+
     const updatedResource = postedResponse.data;
 
     return response.status(200).json(updatedResource);
