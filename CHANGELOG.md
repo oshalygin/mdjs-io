@@ -1,3 +1,8 @@
+## 3.7.0 (August 2, 2017)
+
+- Addition of V0 Orders APIs
+  - Proxy passthrough to the current API backend
+
 ## 3.6.0 (August 2, 2017)
 
 - Addition of V0 Modifier APIs
