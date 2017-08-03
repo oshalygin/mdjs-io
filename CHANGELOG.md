@@ -1,3 +1,8 @@
+## 3.6.0 (August 2, 2017)
+
+- Addition of V0 Modifier APIs
+  - Proxy passthrough to the current API backend
+
 ## 3.5.0 (August 2, 2017)
 
 - Addition of V0 Message APIs

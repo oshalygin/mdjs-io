@@ -5,8 +5,8 @@ import customerController from '../controllers/v0/customerController';
 import discountController from '../controllers/v0/discountController';
 import inventoryController from '../controllers/v0/inventoryController';
 import messageController from '../controllers/v0/messageController';
+import modifierController from '../controllers/v0/modifierController';
 
-// v0
 const router = express.Router();
 
 router.route('/category/create').post(categoryController.create);
@@ -33,5 +33,9 @@ router
 router.route('/message/get').post(messageController.get);
 router.route('/message/markread').post(messageController.markRead);
 router.route('/message/delete').post(messageController.delete);
+
+router.route('/modifier/create').post(modifierController.create);
+router.route('/modifier/update').post(modifierController.update);
+router.route('/modifier/delete').post(modifierController.delete);
 
 export default router;
