@@ -1,3 +1,8 @@
+## 3.5.0 (August 2, 2017)
+
+- Addition of V0 Message APIs
+  - Proxy passthrough to the current API backend
+
 ## 3.4.0 (August 2, 2017)
 
 - Addition of V0 Inventory APIs
