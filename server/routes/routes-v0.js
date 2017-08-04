@@ -7,6 +7,7 @@ import inventoryController from '../controllers/v0/inventoryController';
 import messageController from '../controllers/v0/messageController';
 import modifierController from '../controllers/v0/modifierController';
 import ordersController from '../controllers/v0/ordersController';
+import postmarkController from '../controllers/v0/postmarkController';
 
 const router = express.Router();
 
@@ -49,5 +50,7 @@ router.route('/orders/complete').post(ordersController.complete);
 router.route('/orders/cancel').post(ordersController.cancel);
 router.route('/orders/update').post(ordersController.update);
 router.route('/orders/pay').post(ordersController.pay);
+
+router.route('/postmarkemail/post').post(postmarkController.post);
 
 export default router;

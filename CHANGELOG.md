@@ -1,3 +1,8 @@
+## 3.8.0 (August 3, 2017)
+
+- Addition of V0 Postmark Email APIs
+  - Proxy passthrough to the current API backend
+
 ## 3.7.0 (August 2, 2017)
 
 - Addition of V0 Orders APIs
