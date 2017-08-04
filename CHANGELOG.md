@@ -1,3 +1,8 @@
+## 3.9.0 (August 3, 2017)
+
+- Addition of V0 Receipt Email APIs
+  - Proxy passthrough to the current API backend
+
 ## 3.8.1 (August 3, 2017)
 
 - Removal of `open` in local development and from the project.
