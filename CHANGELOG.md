@@ -1,3 +1,8 @@
+## 3.10.0 (August 3, 2017)
+
+- Addition of V0 Refund Reason Email APIs
+  - Proxy passthrough to the current API backend
+
 ## 3.9.0 (August 3, 2017)
 
 - Addition of V0 Receipt Email APIs

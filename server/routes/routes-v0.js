@@ -9,6 +9,7 @@ import modifierController from '../controllers/v0/modifierController';
 import ordersController from '../controllers/v0/ordersController';
 import postmarkController from '../controllers/v0/postmarkController';
 import receiptController from '../controllers/v0/receiptController';
+import refundReasonController from '../controllers/v0/refundReasonController';
 
 const router = express.Router();
 
@@ -56,5 +57,9 @@ router.route('/postmarkemail/post').post(postmarkController.post);
 
 router.route('/receipt/send').post(receiptController.send);
 router.route('/receipt/update').post(receiptController.update);
+
+router.route('/refundreason/create').post(refundReasonController.create);
+router.route('/refundreason/update').post(refundReasonController.update);
+router.route('/refundreason/delete').post(refundReasonController.delete);
 
 export default router;
