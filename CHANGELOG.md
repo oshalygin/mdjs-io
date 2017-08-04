@@ -1,3 +1,7 @@
+## 3.8.1 (August 3, 2017)
+
+- Removal of `open` in local development and from the project.
+
 ## 3.8.0 (August 3, 2017)
 
 - Addition of V0 Postmark Email APIs

@@ -5,7 +5,6 @@ import cookieParser from 'cookie-parser';
 import webpack from 'webpack';
 import configuration from './utilities/configuration';
 import webpackConfiguration from '../webpack.config.dev';
-import open from 'open';
 import logger from './middleware/logger';
 
 import v0router from './routes/routes-v0';
@@ -48,7 +47,6 @@ application.listen(port, error => {
     logger.error(error);
   }
   logger.info(`Serving Application at http://localhost:${port}`);
-  open(`http://localhost:${port}`);
 });
 
 export default application;
