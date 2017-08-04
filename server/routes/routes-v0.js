@@ -11,6 +11,7 @@ import postmarkController from '../controllers/v0/postmarkController';
 import receiptController from '../controllers/v0/receiptController';
 import refundReasonController from '../controllers/v0/refundReasonController';
 import registrationController from '../controllers/v0/registrationController';
+import reportController from '../controllers/v0/reportController';
 
 const router = express.Router();
 
@@ -68,5 +69,11 @@ router.route('/registration/bank').post(registrationController.bank);
 router.route('/registration/business').post(registrationController.business);
 router.route('/registration/principal').post(registrationController.principal);
 router.route('/registration/status').post(registrationController.status);
+
+router
+  .route('/report/emailsalesreportv1')
+  .post(reportController.emailSalesReport);
+
+router.route('/report/salesreportv1').post(reportController.salesReport);
 
 export default router;
