@@ -13,6 +13,7 @@ import refundReasonController from '../controllers/v0/refundReasonController';
 import registrationController from '../controllers/v0/registrationController';
 import reportController from '../controllers/v0/reportController';
 import securityController from '../controllers/v0/securityController';
+import taxController from '../controllers/v0/taxController';
 
 const router = express.Router();
 
@@ -81,5 +82,9 @@ router
   .route('/security/forgotpassword')
   .post(securityController.forgotPassword);
 router.route('/security/login').post(securityController.login);
+
+router.route('/tax/create').post(taxController.create);
+router.route('/tax/update').post(taxController.update);
+router.route('/tax/delete').post(taxController.delete);
 
 export default router;
