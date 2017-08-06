@@ -1,3 +1,8 @@
+## 3.13.0 (August 5, 2017)
+
+- Addition of V0 Security APIs
+  - Proxy passthrough to the current API backend
+
 ## 3.12.0 (August 3, 2017)
 
 - Addition of V0 Report APIs

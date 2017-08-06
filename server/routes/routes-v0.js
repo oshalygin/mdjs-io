@@ -12,6 +12,7 @@ import receiptController from '../controllers/v0/receiptController';
 import refundReasonController from '../controllers/v0/refundReasonController';
 import registrationController from '../controllers/v0/registrationController';
 import reportController from '../controllers/v0/reportController';
+import securityController from '../controllers/v0/securityController';
 
 const router = express.Router();
 
@@ -75,5 +76,10 @@ router
   .post(reportController.emailSalesReport);
 
 router.route('/report/salesreportv1').post(reportController.salesReport);
+
+router
+  .route('/security/forgotpassword')
+  .post(securityController.forgotPassword);
+router.route('/security/login').post(securityController.login);
 
 export default router;
