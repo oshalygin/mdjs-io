@@ -14,6 +14,7 @@ import registrationController from '../controllers/v0/registrationController';
 import reportController from '../controllers/v0/reportController';
 import securityController from '../controllers/v0/securityController';
 import taxController from '../controllers/v0/taxController';
+import userController from '../controllers/v0/userController';
 
 const router = express.Router();
 
@@ -86,5 +87,14 @@ router.route('/security/login').post(securityController.login);
 router.route('/tax/create').post(taxController.create);
 router.route('/tax/update').post(taxController.update);
 router.route('/tax/delete').post(taxController.delete);
+
+router.route('/user/selectv2').post(userController.selectV2);
+router.route('/user/select').post(userController.select);
+router.route('/user/reactivate').post(userController.reactivate);
+router.route('/user/createv2').post(userController.createV2);
+router.route('/user/create').post(userController.create);
+router.route('/user/updatev2').post(userController.updateV2);
+router.route('/user/update').post(userController.update);
+router.route('/user/delete').post(userController.deleteUser);
 
 export default router;

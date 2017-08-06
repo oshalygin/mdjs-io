@@ -1,3 +1,8 @@
+## 3.15.0 (August 5, 2017)
+
+- Addition of V0 User APIs
+  - Proxy passthrough to the current API backend
+
 ## 3.14.0 (August 5, 2017)
 
 - Addition of V0 Tax APIs
