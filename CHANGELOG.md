@@ -1,3 +1,9 @@
+## 3.15.1 (August 6, 2017)
+
+- Addition of CodeClimate configuration
+  - The configuration file serves as a declarative means of what will be run in codeclimate.
+  - `nsp` as the central point in the analysis.
+
 ## 3.15.0 (August 5, 2017)
 
 - Addition of V0 User APIs
