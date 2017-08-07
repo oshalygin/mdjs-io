@@ -10,31 +10,10 @@ import modifierController from '../controllers/v1/modifierController';
 import discountController from '../controllers/v1/discountController';
 import ordersController from '../controllers/v1/ordersController';
 
-import multer from 'multer';
-
-import path from 'path';
-
-const storage = multer.diskStorage({
-  destination(request, file, callback) {
-    callback(null, path.join(__dirname, '../../temp-images'));
-  },
-  filename(request, file, callback) {
-    callback(null, file.originalname);
-  },
-});
-
-const uploads = multer({ storage });
+import { fileErrorHandler, multer } from '../utilities/fileUtility';
 
 // v1
 const router = express.Router();
-
-// {api/v1/items}
-router
-  .route('/items/:id?')
-  .get(itemController.get)
-  .put(uploads.single('file'), itemController.put)
-  .post(uploads.single('file'), itemController.post)
-  .delete(itemController.deleteItem);
 
 // {api/v1/orders}
 router.route('/orders/:id?').get(ordersController.get);
@@ -79,6 +58,14 @@ router
 
 // {api/v1/version}
 router.route('/version').get(versionController.get);
+
+// {api/v1/items}
+router
+  .route('/items/:id?')
+  .get(itemController.get)
+  .put(multer.single('file'), fileErrorHandler, itemController.put)
+  .post(multer.single('file'), fileErrorHandler, itemController.post)
+  .delete(itemController.deleteItem);
 
 // {api/v1/images}
 router.route('/images/:id').get(imagesController.get);

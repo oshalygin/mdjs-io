@@ -1,7 +1,4 @@
 import axios from 'axios';
-import fs from 'fs';
-import fsUtility from '../../utilities/fsUtility';
-import path from 'path';
 
 import { getHeaders } from '../../utilities/requestUtilities';
 import logger from '../../middleware/logger';
@@ -62,7 +59,6 @@ export async function deleteItem(request, response) {
   }
 }
 
-//eslint-disable-next-line consistent-return
 export async function put(request, response) {
   const itemId = request.params.id;
   const itemBody = request.body.item;
@@ -79,26 +75,18 @@ export async function put(request, response) {
   }
 
   try {
-    let file;
-
     const item = JSON.parse(itemBody);
     const token = request.headers.authorization;
     const headers = getHeaders(token);
 
     const itemEndpoint = `${ITEM_ENDPOINT}/${itemId}`;
 
-    if (!request.file) {
-      file = null;
-    } else {
-      file = path.join(
-        __dirname,
-        `../../../temp-images/${request.file.originalname}`,
-      );
-      const fileStream = fs.createReadStream(file);
+    if (request.file) {
+      const { file } = request;
 
       const imageNames = await imageService.upload(
-        fileStream,
-        request.file.originalname,
+        file.buffer,
+        file.originalname,
       );
       item.photoURL = imageNames[0];
     }
@@ -106,44 +94,16 @@ export async function put(request, response) {
     const postedResponse = await axios.put(itemEndpoint, item, headers);
     const updatedItem = postedResponse.data;
 
-    if (!file) {
-      return response.status(200).json(updatedItem);
-    }
-
-    await fsUtility
-      .unlink(file)
-      .then(() => {
-        return response.status(200).json(updatedItem);
-      })
-      .catch(error => {
-        logger.error(error);
-        return response.status(200).json(updatedItem);
-      });
+    return response.status(200).json(updatedItem);
   } catch (error) {
     logger.info(error);
     logger.info(`Error updating: ${itemId}`);
     logger.info(`Error updating: ${JSON.stringify(itemBody)}`);
 
-    // Cleanup
-    if (!request.file) {
-      return response.status(400).send('Failed to update the item');
-    }
-    const file = path.join(
-      __dirname,
-      `../../../temp-images/${request.file.originalname}`,
-    );
-
-    fs.unlink(file, unlinkError => {
-      if (unlinkError) {
-        logger.error(unlinkError);
-      }
-
-      return response.status(400).send('Failed to update the item');
-    });
+    return response.status(400).send('Failed to update the item');
   }
 }
 
-//eslint-disable-next-line consistent-return
 export async function post(request, response) {
   const itemBody = request.body.item;
 
@@ -157,63 +117,28 @@ export async function post(request, response) {
   }
 
   try {
-    let file;
-
     const item = JSON.parse(itemBody);
     const token = request.headers.authorization;
     const headers = getHeaders(token);
 
-    if (!request.file) {
-      file = null;
-    } else {
-      file = path.join(
-        __dirname,
-        `../../../temp-images/${request.file.originalname}`,
-      );
-      const fileStream = fs.createReadStream(file);
+    if (request.file) {
+      const { file } = request;
 
       const imageNames = await imageService.upload(
-        fileStream,
-        request.file.originalname,
+        file.buffer,
+        file.originalname,
       );
       item.photoURL = imageNames[0];
     }
     const postedResponse = await axios.post(ITEM_ENDPOINT, item, headers);
     const newItem = postedResponse.data;
 
-    if (!file) {
-      return response.status(200).json(newItem);
-    }
-
-    await fsUtility
-      .unlink(file)
-      .then(() => {
-        return response.status(200).json(newItem);
-      })
-      .catch(error => {
-        logger.error(error);
-        return response.status(200).json(newItem);
-      });
+    return response.status(200).json(newItem);
   } catch (error) {
     logger.info(error);
     logger.info(`Error updating: ${JSON.stringify(itemBody)}`);
 
-    // Cleanup
-    if (!request.file) {
-      return response.status(400).send('Failed to update the item');
-    }
-    const file = path.join(
-      __dirname,
-      `../../../temp-images/${request.file.originalname}`,
-    );
-
-    fs.unlink(file, unlinkError => {
-      if (unlinkError) {
-        logger.error(unlinkError);
-      }
-
-      return response.status(400).send('Failed to update the item');
-    });
+    return response.status(400).send('Failed to update the item');
   }
 }
 

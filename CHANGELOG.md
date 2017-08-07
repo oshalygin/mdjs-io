@@ -1,4 +1,8 @@
-## 3.19.0 (August 5, 2017)
+## 3.19.1 (August 7, 2017)
+
+- Refactored multer configuration and image upload for items.
+
+## 3.19.0 (August 6, 2017)
 
 - Addition of V0 Items APIs
   - Proxy passthrough to the current API backend

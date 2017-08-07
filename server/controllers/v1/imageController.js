@@ -1,6 +1,6 @@
-import logger from '../../middleware/logger';
 import fetch from 'node-fetch';
 
+import logger from '../../middleware/logger';
 import imageService from '../../services/imageService';
 
 //eslint-disable-next-line consistent-return

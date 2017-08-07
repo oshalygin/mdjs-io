@@ -5,17 +5,9 @@ import sinon from 'sinon';
 import { ITEM_ENDPOINT } from '../../utilities/endpoints';
 import ItemController from './itemController';
 
-jest.dontMock('fs');
-
 jest.mock('../../services/imageService', () => {
   return {
     upload: () => ['foobar.jpg'],
-  };
-});
-
-jest.mock('../../utilities/fsUtility', () => {
-  return {
-    unlink: () => Promise.resolve(),
   };
 });
 
@@ -504,10 +496,6 @@ describe('Item Controller', () => {
       status: statusStub,
     };
 
-    const fs = require('fs');
-    fs.unlink = () => {};
-    fs.createReadStream = () => {};
-
     const request = {
       headers: {
         authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e',
@@ -523,79 +511,6 @@ describe('Item Controller', () => {
 
     return ItemController.put(request, response).then(() => {
       const actual = statusStub.calledWith(200);
-      expect(actual).equals(expected);
-    });
-  });
-
-  it('should unlink the file on an unsuccessful PUT request', () => {
-    const expected = true;
-
-    moxios.stubRequest(ITEM_ENDPOINT, {
-      status: 500,
-    });
-
-    const sendSpy = sinon.spy();
-    const statusStub = sinon.stub().returns({
-      send: sendSpy,
-    });
-
-    const response = {
-      status: statusStub,
-    };
-
-    const unlinkSpy = sinon.spy();
-
-    const fs = require('fs');
-    fs.unlink = unlinkSpy;
-    fs.createReadStream = () => {};
-
-    const request = {
-      headers: {
-        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e',
-      },
-      params: {},
-      file,
-      body: {
-        item: items[0],
-      },
-    };
-
-    return ItemController.put(request, response).then(() => {
-      const actual = unlinkSpy.called;
-      expect(actual).equals(expected);
-    });
-  });
-
-  it('should set the file to null and thus not call unlink if the file was not part of the PUT request', () => {
-    const expected = true;
-
-    const sendSpy = sinon.spy();
-    const statusStub = sinon.stub().returns({
-      send: sendSpy,
-    });
-
-    const response = {
-      status: statusStub,
-    };
-
-    const unlinkSpy = sinon.spy();
-
-    const fs = require('fs');
-    fs.unlink = unlinkSpy;
-    fs.createReadStream = () => {};
-
-    const request = {
-      headers: {
-        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e',
-      },
-      params: {},
-      body: {
-        item: items[0],
-      },
-    };
-
-    return ItemController.put(request, response).then(() => {
-      const actual = unlinkSpy.notCalled;
       expect(actual).equals(expected);
     });
   });
@@ -717,75 +632,6 @@ describe('Item Controller', () => {
 
     return ItemController.post(request, response).then(() => {
       const actual = statusStub.calledWith(200);
-      expect(actual).equals(expected);
-    });
-  });
-
-  it('should unlink the file on an unsuccessful post request', () => {
-    const expected = true;
-
-    const sendSpy = sinon.spy();
-    const statusStub = sinon.stub().returns({
-      send: sendSpy,
-    });
-
-    const response = {
-      status: statusStub,
-    };
-
-    const unlinkSpy = sinon.spy();
-
-    const fs = require('fs');
-    fs.unlink = unlinkSpy;
-    fs.createReadStream = () => {};
-
-    const request = {
-      headers: {
-        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e',
-      },
-      params: {},
-      file,
-      body: {
-        item: items[0],
-      },
-    };
-
-    return ItemController.post(request, response).then(() => {
-      const actual = unlinkSpy.called;
-      expect(actual).equals(expected);
-    });
-  });
-
-  it('should set the file to null and thus not call unlink if the file was not part of the request', () => {
-    const expected = true;
-
-    const sendSpy = sinon.spy();
-    const statusStub = sinon.stub().returns({
-      send: sendSpy,
-    });
-
-    const response = {
-      status: statusStub,
-    };
-
-    const unlinkSpy = sinon.spy();
-
-    const fs = require('fs');
-    fs.unlink = unlinkSpy;
-    fs.createReadStream = () => {};
-
-    const request = {
-      headers: {
-        authorization: 'e9d9317c-2ccb-4f1c-8bb7-87417d38544e',
-      },
-      params: {},
-      body: {
-        item: items[0],
-      },
-    };
-
-    return ItemController.post(request, response).then(() => {
-      const actual = unlinkSpy.notCalled;
       expect(actual).equals(expected);
     });
   });

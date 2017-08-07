@@ -1,9 +1,11 @@
+import path from 'path';
+
 import googleCloudStorage from '@google-cloud/storage';
 import sharp from 'sharp';
 import uuid from 'uuid/v1';
-import path from 'path';
 
 import configuration from '../utilities/configuration';
+import { bufferToStream } from '../utilities/fileUtility';
 
 const gcs = googleCloudStorage({
   projectId: configuration.googleProject,
@@ -59,8 +61,10 @@ function uploadCompressedImage(imageStream, photoURL) {
   });
 }
 
-function upload(imageStream, originalFileName) {
+function upload(fileBuffer, originalFileName) {
   const photoURL = uuid();
+
+  const imageStream = bufferToStream(fileBuffer);
   const originalUploadPromise = uploadOriginalImage(
     imageStream,
     photoURL,
