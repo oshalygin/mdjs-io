@@ -1,3 +1,8 @@
+## 3.15.4 (August 6, 2017)
+
+- Addition of a local yarn file for local development.  
+  - Both yarn.lock as well as `npm-shrinkwrap.json` will be updated moving forward until there's a clear fix in place.
+
 ## 3.15.3 (August 6, 2017)
 
 - Bumping Node version to `8.2.1` in both Travis and in the Dockerbuild.
