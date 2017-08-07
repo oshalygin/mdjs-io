@@ -1,3 +1,9 @@
+## 3.16.0 (August 6, 2017)
+
+- Updated various dev dependencies
+- Added a console.log bypass in jest
+- Security v0 routes and the Registration route no longer require an Auth token
+
 ## 3.15.4 (August 6, 2017)
 
 - Addition of a local yarn file for local development.  

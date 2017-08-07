@@ -21,7 +21,7 @@ export async function register(request, response) {
   }
 
   try {
-    const token = request.headers.authorization;
+    const token = 'Authorization';
 
     const postedResponse = await api.post(token)(
       V0_REGISTRATION_REGISTER_ENDPOINT,

@@ -18,7 +18,7 @@ export async function forgotPassword(request, response) {
   }
 
   try {
-    const token = request.headers.authorization;
+    const token = 'Authorization';
 
     const postedResponse = await api.post(token)(
       V0_SECURITY_FORGOT_PASSWORD_ENDPOINT,
@@ -47,7 +47,7 @@ export async function login(request, response) {
   }
 
   try {
-    const token = request.headers.authorization;
+    const token = 'Authorization';
 
     const postedResponse = await api.post(token)(
       V0_SECURITY_LOGIN_ENDPOINT,
