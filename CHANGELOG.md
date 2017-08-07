@@ -1,3 +1,7 @@
+## 3.18.1 (August 6, 2017)
+
+- Add V0 Items routes
+
 ## 3.18.0 (August 6, 2017)
 
 - Fix V0 Inventory, `inventoryForItems` endpoint to call the proper controller.

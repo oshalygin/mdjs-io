@@ -81,3 +81,6 @@ export const V0_USER_CREATE_ENDPOINT = `${DOMAIN_ENDPOINT}/api/user/create`;
 export const V0_USER_UPDATE_V2_ENDPOINT = `${DOMAIN_ENDPOINT}/api/user/updatev2`;
 export const V0_USER_UPDATE_ENDPOINT = `${DOMAIN_ENDPOINT}/api/user/update`;
 export const V0_USER_DELETE_ENDPOINT = `${DOMAIN_ENDPOINT}/api/user/delete`;
+
+export const V0_ITEMS_CREATE_UPDATE_ENDPOINT = `${DOMAIN_ENDPOINT}/api/items/createupdate`;
+export const V0_ITEMS_DELETE_ENDPOINT = `${DOMAIN_ENDPOINT}/api/tax/delete`;
