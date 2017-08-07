@@ -34,7 +34,7 @@ router.route('/discount/delete').post(discountController.delete);
 router.route('/inventory/setinventory').post(inventoryController.setInventory);
 router
   .route('/inventory/inventoryforitems')
-  .post(inventoryController.addToInventory);
+  .post(inventoryController.inventoryForItems);
 router
   .route('/inventory/addtoinventory')
   .post(inventoryController.addToInventory);

@@ -1,6 +1,10 @@
+## 3.18.0 (August 6, 2017)
+
+- Fix V0 Inventory, `inventoryForItems` endpoint to call the proper controller.
+
 ## 3.17.0 (August 6, 2017)
 
-- Update orders route to `order`
+- Fix orders route to `order`
 
 ## 3.16.0 (August 6, 2017)
 
