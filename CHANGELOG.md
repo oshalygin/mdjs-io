@@ -1,3 +1,7 @@
+## 3.15.3 (August 6, 2017)
+
+- Bumping Node version to `8.2.1` in both Travis and in the Dockerbuild.
+
 ## 3.15.2 (August 6, 2017)
 
 - Replaced `package-lock.json` in favor of `npm-shrinkwrap.json`.  This is primarily done to ensure that offline mode for CodeClimates security check is ran.
