@@ -1,3 +1,8 @@
+## 3.19.0 (August 5, 2017)
+
+- Addition of V0 Items APIs
+  - Proxy passthrough to the current API backend
+
 ## 3.18.1 (August 6, 2017)
 
 - Add V0 Items routes

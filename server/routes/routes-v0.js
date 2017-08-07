@@ -15,6 +15,7 @@ import reportController from '../controllers/v0/reportController';
 import securityController from '../controllers/v0/securityController';
 import taxController from '../controllers/v0/taxController';
 import userController from '../controllers/v0/userController';
+import itemsController from '../controllers/v0/itemsController';
 
 const router = express.Router();
 
@@ -96,5 +97,8 @@ router.route('/user/create').post(userController.create);
 router.route('/user/updatev2').post(userController.updateV2);
 router.route('/user/update').post(userController.update);
 router.route('/user/delete').post(userController.deleteUser);
+
+router.route('/items/createupdate').post(itemsController.createUpdate);
+router.route('/items/delete').post(itemsController.delete);
 
 export default router;
