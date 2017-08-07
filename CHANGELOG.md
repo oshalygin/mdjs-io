@@ -1,3 +1,7 @@
+## 3.17.0 (August 6, 2017)
+
+- Update orders route to `order`
+
 ## 3.16.0 (August 6, 2017)
 
 - Updated various dev dependencies

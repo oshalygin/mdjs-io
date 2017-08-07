@@ -37,16 +37,16 @@ export const V0_MODIFIER_CREATE_ENDPOINT = `${DOMAIN_ENDPOINT}/api/modifier/crea
 export const V0_MODIFIER_UPDATE_ENDPOINT = `${DOMAIN_ENDPOINT}/api/modifier/update`;
 export const V0_MODIFIER_DELETE_ENDPOINT = `${DOMAIN_ENDPOINT}/api/modifier/delete`;
 
-export const V0_ORDERS_HEADERS_ENDPOINT = `${DOMAIN_ENDPOINT}/api/orders/headers`;
-export const V0_ORDERS_HEADERS_V2_ENDPOINT = `${DOMAIN_ENDPOINT}/api/orders/headersv2`;
-export const V0_ORDERS_GIFT_CARD_CHECK_ENDPOINT = `${DOMAIN_ENDPOINT}/api/orders/giftcardcheck`;
-export const V0_ORDERS_SELECT_ENDPOINT = `${DOMAIN_ENDPOINT}/api/orders/select`;
-export const V0_ORDERS_REFUND_ENDPOINT = `${DOMAIN_ENDPOINT}/api/orders/refund`;
-export const V0_ORDERS_CREATE_ENDPOINT = `${DOMAIN_ENDPOINT}/api/orders/create`;
-export const V0_ORDERS_COMPLETE_ENDPOINT = `${DOMAIN_ENDPOINT}/api/orders/complete`;
-export const V0_ORDERS_CANCEL_ENDPOINT = `${DOMAIN_ENDPOINT}/api/orders/cancel`;
-export const V0_ORDERS_UPDATE_ENDPOINT = `${DOMAIN_ENDPOINT}/api/orders/update`;
-export const V0_ORDERS_PAY_ENDPOINT = `${DOMAIN_ENDPOINT}/api/orders/pay`;
+export const V0_ORDERS_HEADERS_ENDPOINT = `${DOMAIN_ENDPOINT}/api/order/headers`;
+export const V0_ORDERS_HEADERS_V2_ENDPOINT = `${DOMAIN_ENDPOINT}/api/order/headersv2`;
+export const V0_ORDERS_GIFT_CARD_CHECK_ENDPOINT = `${DOMAIN_ENDPOINT}/api/order/giftcardcheck`;
+export const V0_ORDERS_SELECT_ENDPOINT = `${DOMAIN_ENDPOINT}/api/order/select`;
+export const V0_ORDERS_REFUND_ENDPOINT = `${DOMAIN_ENDPOINT}/api/order/refund`;
+export const V0_ORDERS_CREATE_ENDPOINT = `${DOMAIN_ENDPOINT}/api/order/create`;
+export const V0_ORDERS_COMPLETE_ENDPOINT = `${DOMAIN_ENDPOINT}/api/order/complete`;
+export const V0_ORDERS_CANCEL_ENDPOINT = `${DOMAIN_ENDPOINT}/api/order/cancel`;
+export const V0_ORDERS_UPDATE_ENDPOINT = `${DOMAIN_ENDPOINT}/api/order/update`;
+export const V0_ORDERS_PAY_ENDPOINT = `${DOMAIN_ENDPOINT}/api/order/pay`;
 
 export const V0_POSTMARKEMAIL_POST_ENDPOINT = `${DOMAIN_ENDPOINT}/api/postmarkemail/post`;
 

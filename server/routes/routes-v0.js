@@ -47,16 +47,16 @@ router.route('/modifier/create').post(modifierController.create);
 router.route('/modifier/update').post(modifierController.update);
 router.route('/modifier/delete').post(modifierController.delete);
 
-router.route('/orders/headers').post(ordersController.headers);
-router.route('/orders/headersv2').post(ordersController.headersV2);
-router.route('/orders/giftcardcheck').post(ordersController.giftCardCheck);
-router.route('/orders/select').post(ordersController.select);
-router.route('/orders/refund').post(ordersController.refund);
-router.route('/orders/create').post(ordersController.create);
-router.route('/orders/complete').post(ordersController.complete);
-router.route('/orders/cancel').post(ordersController.cancel);
-router.route('/orders/update').post(ordersController.update);
-router.route('/orders/pay').post(ordersController.pay);
+router.route('/order/headers').post(ordersController.headers);
+router.route('/order/headersv2').post(ordersController.headersV2);
+router.route('/order/giftcardcheck').post(ordersController.giftCardCheck);
+router.route('/order/select').post(ordersController.select);
+router.route('/order/refund').post(ordersController.refund);
+router.route('/order/create').post(ordersController.create);
+router.route('/order/complete').post(ordersController.complete);
+router.route('/order/cancel').post(ordersController.cancel);
+router.route('/order/update').post(ordersController.update);
+router.route('/order/pay').post(ordersController.pay);
 
 router.route('/postmarkemail/post').post(postmarkController.post);
 
