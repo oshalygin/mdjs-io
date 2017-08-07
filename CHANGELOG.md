@@ -1,3 +1,7 @@
+## 3.15.2 (August 6, 2017)
+
+- Replaced `package-lock.json` in favor of `npm-shrinkwrap.json`.  This is primarily done to ensure that offline mode for CodeClimates security check is ran.
+
 ## 3.15.1 (August 6, 2017)
 
 - Addition of CodeClimate configuration
