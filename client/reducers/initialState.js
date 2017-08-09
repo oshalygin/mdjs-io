@@ -24,6 +24,7 @@ export default {
     loadingOrders: true,
     loadingMonthlySummary: true,
   },
+  configuration: {},
   categories: [],
   discounts: [],
   modifiers: [],

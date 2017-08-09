@@ -4,6 +4,7 @@ import itemController from '../controllers/v1/itemController';
 import categoriesController from '../controllers/v1/categoriesController';
 import taxController from '../controllers/v1/taxController';
 import accountController from '../controllers/v1/accountController';
+import configurationController from '../controllers/v1/configurationController';
 import versionController from '../controllers/v1/versionController';
 import imagesController from '../controllers/v1/imageController';
 import modifierController from '../controllers/v1/modifierController';
@@ -58,6 +59,9 @@ router
 
 // {api/v1/version}
 router.route('/version').get(versionController.get);
+
+// {api/v1/configuration}
+router.route('/configuration').get(configurationController.get);
 
 // {api/v1/items}
 router

@@ -11,3 +11,4 @@ export const TAXES_ENDPOINT = `${baseEndpoint}/api/v1/taxes`;
 export const MODIFIER_ENDPOINT = `${baseEndpoint}/api/v1/modifiers`;
 export const DISCOUNTS_ENDPOINT = `${baseEndpoint}/api/v1/discounts`;
 export const ORDERS_ENDPOINT = `${baseEndpoint}/api/v1/orders`;
+export const CONFIGURATION_ENDPOINT = `${baseEndpoint}/api/v1/configuration`;

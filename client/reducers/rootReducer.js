@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import items from './itemReducer';
 import user from './userReducer';
+import configuration from './configurationReducer';
 import categories from './categoryReducer';
 import modifiers from './modifierReducer';
 import discounts from './discountReducer';
@@ -14,6 +15,7 @@ import version from './versionReducer';
 const rootReducer = combineReducers({
   user,
   categories,
+  configuration,
   items,
   modifiers,
   discounts,

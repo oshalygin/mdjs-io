@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actionCreators from '../actions/versionActions';
+import * as configurationActionCreators from '../actions/configurationActions';
+import * as versionActionCreators from '../actions/versionActions';
 
 import SideBarNavigation from './common/sidenav';
 import Version from './common/version';
@@ -12,8 +13,9 @@ import muiTheme from '../utilities/muiTheme.js';
 
 class Application extends React.Component {
   componentWillMount() {
-    const { versionActions } = this.props;
+    const { versionActions, configurationActions } = this.props;
     versionActions.getVersion();
+    configurationActions.retrieveApplicationConfiguration();
   }
 
   render() {
@@ -51,6 +53,7 @@ Application.propTypes = {
   children: PropTypes.object.isRequired,
   location: PropTypes.object,
   versionActions: PropTypes.object.isRequired,
+  configurationActions: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -59,7 +62,11 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    versionActions: bindActionCreators(actionCreators, dispatch),
+    versionActions: bindActionCreators(versionActionCreators, dispatch),
+    configurationActions: bindActionCreators(
+      configurationActionCreators,
+      dispatch,
+    ),
   };
 }
 

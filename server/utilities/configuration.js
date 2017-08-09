@@ -5,7 +5,7 @@ export default {
   compressedImageSize: 200,
 
   googleProject: process.env.GOOGLE_PROJECT || 'mdjs-io',
-
+  companyName: 'Western Register',
   domainEndpoint:
     process.env.DOMAIN_ENDPOINT || 'http://www.westernregister.com',
   port: process.env.PORT || 8080,

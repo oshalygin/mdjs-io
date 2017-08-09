@@ -1,3 +1,9 @@
+## 3.21.0 (August 9, 2017)
+
+- Addition of the `configuration` API endpoint which exposes the company name from environment variables.
+- Addition of sagas on the client to consume the configuration endpoint.
+- Addition of configuration reducer to the store.
+
 ## 3.20.1 (August 9, 2017)
 
 - Package updates:
