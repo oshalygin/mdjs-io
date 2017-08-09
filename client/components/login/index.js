@@ -68,10 +68,10 @@ class LoginPage extends React.Component {
         <div className="middle-box text-center loginscreen animated fadeInDown">
           <div>
             <div>
-              <h1 className="logo-name">MD</h1>
+              <h1 className="logo-name">WR</h1>
             </div>
-            <h3>Welcome to Merchant Dashboard</h3>
-            <p>The ultimate merchant dashboard experience</p>
+            <h3>Welcome to the Western Register Dashboard</h3>
+            <p>The ultimate dashboard experience</p>
             <p>Login to get started</p>
             <LoginForm
               hidden={loading}
@@ -82,8 +82,8 @@ class LoginPage extends React.Component {
             <Spinner hidden={!loading} />
             <p className="m-t">
               {' '}<small>
-                Merchant Dashboard is a registered trademark of Merchant
-                Dashboard, LLC.
+                Western Register is a registered trademark of Western Register,
+                LLC.
               </small>{' '}
             </p>
           </div>

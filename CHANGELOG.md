@@ -1,3 +1,7 @@
+## 3.21.1 (August 9, 2017)
+
+- Temporarily hardcode _Western Register_ into the login page to give indication that the site being accessed is western register.  This will be pulled from configuration in the future.
+
 ## 3.21.0 (August 9, 2017)
 
 - Addition of the `configuration` API endpoint which exposes the company name from environment variables.
