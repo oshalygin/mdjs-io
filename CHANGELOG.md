@@ -1,3 +1,8 @@
+## 3.20.1 (August 9, 2017)
+
+- Package updates:
+  - gcloud debug and storage packages.
+
 ## 3.20.0 (August 8, 2017)
 
 - Add image upload route which allows users to upload images directly.
