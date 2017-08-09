@@ -23,6 +23,35 @@ export async function get(request, response) {
   }
 }
 
+export async function post(request, response) {
+  if (!request.file) {
+    return response
+      .status(400)
+      .send(
+        'No image passed, please provide an image as part of multipart form data',
+      );
+  }
+
+  try {
+    const { file } = request;
+    //TODO: Add validation to make sure the user is valid
+    const imageNames = await imageService.upload(
+      file.buffer,
+      file.originalname,
+    );
+
+    const responseBody = {
+      photoUrl: imageNames[0],
+    };
+
+    return response.status(200).json(responseBody);
+  } catch (error) {
+    logger.info(error);
+    return response.status(400).send('Failed to retrieve the image');
+  }
+}
+
 export default {
   get,
+  post,
 };

@@ -1,3 +1,7 @@
+## 3.20.0 (August 8, 2017)
+
+- Add image upload route which allows users to upload images directly.
+
 ## 3.19.1 (August 7, 2017)
 
 - Refactored multer configuration and image upload for items.

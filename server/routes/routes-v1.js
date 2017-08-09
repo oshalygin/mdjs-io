@@ -68,6 +68,9 @@ router
   .delete(itemController.deleteItem);
 
 // {api/v1/images}
-router.route('/images/:id').get(imagesController.get);
+router
+  .route('/images/:id?')
+  .get(imagesController.get)
+  .post(multer.single('file'), fileErrorHandler, imagesController.post);
 
 export default router;
