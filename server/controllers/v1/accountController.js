@@ -68,7 +68,7 @@ export async function get(request, response) {
     );
 
     if (!accountDetails.data.data) {
-      return errorApiResponse(404, `Invalid token: ${token}`)(
+      return errorApiResponse(400, `Invalid token: ${token}`)(
         request,
         response,
       );
@@ -78,7 +78,7 @@ export async function get(request, response) {
 
     return response.status(200).json(accountData);
   } catch (error) {
-    return errorApiResponse(404, 'Invalid username or password')(
+    return errorApiResponse(400, 'Invalid username or password')(
       request,
       response,
     );

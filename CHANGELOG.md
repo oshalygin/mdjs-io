@@ -1,3 +1,8 @@
+## 3.21.4 (August 9, 2017)
+
+- Addition of robust logging through Stackdriver.
+  - Updated controllers to leverage the new logger.
+
 ## 3.21.3 (August 9, 2017)
 
 - Addition of robust logging through Stackdriver.
