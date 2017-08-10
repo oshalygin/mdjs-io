@@ -8,7 +8,7 @@ import cookieParser from 'cookie-parser';
 
 import hsts from 'hsts';
 import hstsMiddleware from './middleware/hsts';
-import logger from './middleware/logger';
+import logger from './utilities/logger';
 
 import v0router from './routes/routes-v0';
 import v1router from './routes/routes-v1';

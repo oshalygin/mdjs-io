@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser';
 import webpack from 'webpack';
 import configuration from './utilities/configuration';
 import webpackConfiguration from '../webpack.config.dev';
-import logger from './middleware/logger';
+import logger from './utilities/logger';
 
 import v0router from './routes/routes-v0';
 import v1router from './routes/routes-v1';

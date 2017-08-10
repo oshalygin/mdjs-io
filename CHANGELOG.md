@@ -1,3 +1,7 @@
+## 3.21.5 (August 9, 2017)
+
+- Update logger path in `application.dev` and `application.production`
+
 ## 3.21.4 (August 9, 2017)
 
 - Addition of robust logging through Stackdriver.
