@@ -1,6 +1,9 @@
 import api from '../../utilities/api';
 
-import logger from '../../middleware/logger';
+import {
+  errorApiResponse,
+  warningApiResponse,
+} from '../../utilities/requestUtilities';
 import {
   V0_SECURITY_FORGOT_PASSWORD_ENDPOINT,
   V0_SECURITY_LOGIN_ENDPOINT,
@@ -9,12 +12,17 @@ import {
 export async function forgotPassword(request, response) {
   const postBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!postBody) {
-    logger.error(`The request [body] cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The request [body] cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -29,21 +37,24 @@ export async function forgotPassword(request, response) {
 
     return response.status(200).json(newResource);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error resetting the password: ${JSON.stringify(postBody)}`);
-    return response.status(400).send('Failed to reset the password');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
 export async function login(request, response) {
   const postBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!postBody) {
-    logger.error(`The request [body] cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The request [body] cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -58,9 +69,7 @@ export async function login(request, response) {
 
     return response.status(200).json(updatedResource);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error logging in: ${JSON.stringify(postBody)}`);
-    return response.status(400).send('Failed to login');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 

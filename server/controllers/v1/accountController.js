@@ -1,7 +1,10 @@
 import axios from 'axios';
 
-import { getJsonHeaders } from '../../utilities/requestUtilities';
-import logger from '../../middleware/logger';
+import {
+  getJsonHeaders,
+  errorApiResponse,
+  warningApiResponse,
+} from '../../utilities/requestUtilities';
 import {
   LOGIN_ENDPOINT,
   LOGIN_TOKEN_ENDPOINT,
@@ -10,7 +13,10 @@ import {
 export async function post(request, response) {
   const { username, password } = request.body;
   if (!username || !password) {
-    return response.status(400).send('Bad request');
+    return warningApiResponse(400, `Bad request, ${username}: ${password}`)(
+      request,
+      response,
+    );
   }
 
   try {
@@ -27,16 +33,18 @@ export async function post(request, response) {
     );
 
     if (!accountDetails.data.data) {
-      logger.info(
-        `Invalid request: username: ${username}, password: ${password}`,
+      return warningApiResponse(400, 'Invalid username or password')(
+        request,
+        response,
       );
-      return response.status(400).send('Invalid username or password');
     }
     const token = accountDetails.data.data.token;
     return response.status(200).json({ token });
   } catch (error) {
-    logger.info(error);
-    return response.status(400).send('Invalid username or password');
+    return errorApiResponse(400, 'Invalid username or password', error)(
+      request,
+      response,
+    );
   }
 }
 
@@ -44,7 +52,7 @@ export async function get(request, response) {
   const { token } = request.query;
 
   if (!token) {
-    return response.status(400).send('Bad request');
+    return errorApiResponse(400, `Invalid token: ${token}`)(request, response);
   }
 
   try {
@@ -60,16 +68,20 @@ export async function get(request, response) {
     );
 
     if (!accountDetails.data.data) {
-      logger.info(`Invalid token: token: ${token}`);
-      return response.status(400).send('Invalid token');
+      return errorApiResponse(404, `Invalid token: ${token}`)(
+        request,
+        response,
+      );
     }
 
     const accountData = accountDetails.data.data;
 
     return response.status(200).json(accountData);
   } catch (error) {
-    logger.info(error);
-    return response.status(400).send('Invalid username or password');
+    return errorApiResponse(404, 'Invalid username or password')(
+      request,
+      response,
+    );
   }
 }
 

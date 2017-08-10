@@ -5,6 +5,11 @@ export default {
   compressedImageSize: 200,
 
   googleProject: process.env.GOOGLE_PROJECT || 'mdjs-io',
+  clusterName: process.env.CLUSTER_NAME || '',
+  podId: process.env.POD_ID || '',
+  containerName: process.env.CONTAINER_NAME || '',
+  clusterZone: process.env.CLUSTER_ZONE || '',
+
   companyName: 'Western Register',
   domainEndpoint:
     process.env.DOMAIN_ENDPOINT || 'http://www.westernregister.com',

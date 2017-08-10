@@ -1,3 +1,8 @@
+## 3.21.3 (August 9, 2017)
+
+- Addition of robust logging through Stackdriver.
+  - Updated controllers to leverage the new logger.
+
 ## 3.21.2 (August 9, 2017)
 
 - Bump `k8s-config` version to `1.2.0` which sets the stage to use `fieldRef` environment variables in the pod configuration.

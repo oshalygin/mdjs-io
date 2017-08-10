@@ -1,14 +1,18 @@
 import axios from 'axios';
 
-import { getHeaders } from '../../utilities/requestUtilities';
-import logger from '../../middleware/logger';
+import {
+  getHeaders,
+  warningApiResponse,
+  errorApiResponse,
+} from '../../utilities/requestUtilities';
 import { DISCOUNT_ENDPOINT } from '../../utilities/endpoints';
 
 export async function get(request, response) {
   if (request.params.id && isNaN(request.params.id)) {
-    return response
-      .status(400)
-      .send('The discount {id} must be a number representing the discountID');
+    return warningApiResponse(400, 'The resource requires an id')(
+      request,
+      response,
+    );
   }
   try {
     const token = request.headers.authorization;
@@ -21,18 +25,17 @@ export async function get(request, response) {
     const discountResponse = await axios.get(discountEndpoint, headers);
 
     if (!discountResponse.data.data) {
-      logger.info(
-        `Invalid request: token: ${token}, endpoint: ${discountEndpoint}`,
-      );
-      return response.status(400).send('Bad request');
+      return errorApiResponse(400, 'Bad Request')(request, response);
     }
 
     const discountData = discountResponse.data.data;
 
     return response.status(200).json(discountData);
   } catch (error) {
-    logger.info(error);
-    return response.status(404).send('Resource not found');
+    return errorApiResponse(404, 'Resource not found', error)(
+      request,
+      response,
+    );
   }
 }
 
@@ -40,7 +43,10 @@ export async function deleteDiscount(request, response) {
   const discountId = request.params.id;
 
   if (!discountId) {
-    return response.status(400).send('This resource expects a discount id');
+    return warningApiResponse(400, 'The resource requires an id')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -52,9 +58,7 @@ export async function deleteDiscount(request, response) {
 
     return response.status(200).send('OK');
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error deleting: ${discountId}`);
-    return response.status(400).send('Failed delete the discount item');
+    return errorApiResponse(400, 'Bad Request')(request, response);
   }
 }
 
@@ -63,14 +67,17 @@ export async function put(request, response) {
   const discountBody = request.body;
 
   if (request.params.id && isNaN(request.params.id)) {
-    return response
-      .status(400)
-      .send('The discount {id} must be a number representing the discountID');
+    return warningApiResponse(400, 'The resource requires an id')(
+      request,
+      response,
+    );
   }
 
   if (!discountBody) {
-    logger.error(`The request {body} cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The discount {body} cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -83,22 +90,24 @@ export async function put(request, response) {
 
     return response.status(200).json(updatedDiscount);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error updating: ${discountId}`);
-    logger.info(`Error updating: ${JSON.stringify(discountBody)}`);
-    return response.status(400).send('Failed to update the discount item');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
 export async function post(request, response) {
   const discountBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!discountBody) {
-    logger.error(`The request {body} cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The discount {body} cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -114,11 +123,7 @@ export async function post(request, response) {
 
     return response.status(200).json(newDiscount);
   } catch (error) {
-    logger.info(error);
-    logger.info(
-      `Error posting a new discount: ${JSON.stringify(discountBody)}`,
-    );
-    return response.status(400).send('Failed to create a new discount');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 

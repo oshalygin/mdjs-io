@@ -1,15 +1,19 @@
 import axios from 'axios';
 
-import { getHeaders } from '../../utilities/requestUtilities';
-import logger from '../../middleware/logger';
+import {
+  getHeaders,
+  errorApiResponse,
+  warningApiResponse,
+} from '../../utilities/requestUtilities';
 import { ITEM_ENDPOINT } from '../../utilities/endpoints';
 import imageService from '../../services/imageService';
 
 export async function get(request, response) {
   if (request.params.id && isNaN(request.params.id)) {
-    return response
-      .status(400)
-      .send('The item {id} must be a number representing the itemId');
+    return warningApiResponse(400, 'The resource requires an id')(
+      request,
+      response,
+    );
   }
   try {
     const token = request.headers.authorization;
@@ -22,18 +26,17 @@ export async function get(request, response) {
     const itemResponse = await axios.get(itemEndpoint, headers);
 
     if (!itemResponse.data.data) {
-      logger.info(
-        `Invalid request: token: ${token}, endpoint: ${itemEndpoint}`,
-      );
-      return response.status(400).send('Bad request');
+      return errorApiResponse(400, 'Bad Request')(request, response);
     }
 
     const itemData = itemResponse.data.data;
 
     return response.status(200).json(itemData);
   } catch (error) {
-    logger.info(error);
-    return response.status(404).send('Resource not found');
+    return errorApiResponse(404, 'Resource not found', error)(
+      request,
+      response,
+    );
   }
 }
 
@@ -41,7 +44,10 @@ export async function deleteItem(request, response) {
   const itemId = request.params.id;
 
   if (!itemId) {
-    return response.status(400).send('This resource expects an item id');
+    return warningApiResponse(400, 'The resource requires an id')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -53,9 +59,7 @@ export async function deleteItem(request, response) {
 
     return response.status(200).send('OK');
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error deleting: ${itemId}`);
-    return response.status(400).send('Failed delete the item');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
@@ -64,14 +68,17 @@ export async function put(request, response) {
   const itemBody = request.body.item;
 
   if (itemId && isNaN(itemId)) {
-    return response
-      .status(400)
-      .send('The item {id} must be a number representing the itemId');
+    return warningApiResponse(400, 'The resource requires an id')(
+      request,
+      response,
+    );
   }
 
   if (!itemBody) {
-    logger.error(`The request {body} cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The item {body} cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -96,11 +103,7 @@ export async function put(request, response) {
 
     return response.status(200).json(updatedItem);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error updating: ${itemId}`);
-    logger.info(`Error updating: ${JSON.stringify(itemBody)}`);
-
-    return response.status(400).send('Failed to update the item');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
@@ -108,12 +111,17 @@ export async function post(request, response) {
   const itemBody = request.body.item;
 
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!itemBody) {
-    logger.error(`The request {body} cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The item {body} cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -135,10 +143,7 @@ export async function post(request, response) {
 
     return response.status(200).json(newItem);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error updating: ${JSON.stringify(itemBody)}`);
-
-    return response.status(400).send('Failed to update the item');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 

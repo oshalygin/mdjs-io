@@ -1,6 +1,9 @@
 import api from '../../utilities/api';
 
-import logger from '../../middleware/logger';
+import {
+  errorApiResponse,
+  warningApiResponse,
+} from '../../utilities/requestUtilities';
 import {
   V0_USER_SELECT_V2_ENDPOINT,
   V0_USER_SELECT_ENDPOINT,
@@ -15,12 +18,17 @@ import {
 export async function selectV2(request, response) {
   const postBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!postBody) {
-    logger.error(`The request [body] cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The request [body] cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -35,21 +43,24 @@ export async function selectV2(request, response) {
 
     return response.status(200).json(newResource);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error posting selecting a user: ${JSON.stringify(postBody)}`);
-    return response.status(400).send('Failed to create selecting a user');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
 export async function select(request, response) {
   const postBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!postBody) {
-    logger.error(`The request [body] cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The request [body] cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -64,21 +75,24 @@ export async function select(request, response) {
 
     return response.status(200).json(updatedResource);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error selecting a user: ${JSON.stringify(postBody)}`);
-    return response.status(400).send('Failed to select a user');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
 export async function reactivate(request, response) {
   const postBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!postBody) {
-    logger.error(`The request [body] cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The request [body] cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -93,21 +107,24 @@ export async function reactivate(request, response) {
 
     return response.status(200).json(updatedResource);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error reactivating a user: ${JSON.stringify(postBody)}`);
-    return response.status(400).send('Failed to reactivate a user');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
 export async function createV2(request, response) {
   const postBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!postBody) {
-    logger.error(`The request [body] cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The request [body] cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -122,21 +139,24 @@ export async function createV2(request, response) {
 
     return response.status(200).json(updatedResource);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error creating a user: ${JSON.stringify(postBody)}`);
-    return response.status(400).send('Failed to create a user');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
 export async function create(request, response) {
   const postBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!postBody) {
-    logger.error(`The request [body] cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The request [body] cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -151,21 +171,24 @@ export async function create(request, response) {
 
     return response.status(200).json(updatedResource);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error creating a user: ${JSON.stringify(postBody)}`);
-    return response.status(400).send('Failed to create a user');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
 export async function updateV2(request, response) {
   const postBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!postBody) {
-    logger.error(`The request [body] cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The request [body] cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -180,21 +203,24 @@ export async function updateV2(request, response) {
 
     return response.status(200).json(updatedResource);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error updating a user: ${JSON.stringify(postBody)}`);
-    return response.status(400).send('Failed to updating a user');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
 export async function update(request, response) {
   const postBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!postBody) {
-    logger.error(`The request [body] cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The request [body] cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -209,21 +235,24 @@ export async function update(request, response) {
 
     return response.status(200).json(updatedResource);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error updating a user: ${JSON.stringify(postBody)}`);
-    return response.status(400).send('Failed to updating a user');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
 export async function deleteUser(request, response) {
   const postBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!postBody) {
-    logger.error(`The request [body] cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The request [body] cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -238,9 +267,7 @@ export async function deleteUser(request, response) {
 
     return response.status(200).json(updatedResource);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error deleting a user: ${JSON.stringify(postBody)}`);
-    return response.status(400).send('Failed to deleting a user');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 

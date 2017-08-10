@@ -1,6 +1,9 @@
 import api from '../../utilities/api';
 
-import logger from '../../middleware/logger';
+import {
+  errorApiResponse,
+  warningApiResponse,
+} from '../../utilities/requestUtilities';
 import {
   V0_REPORT_EMAIL_SALES_REPORT_V1_ENDPOINT,
   V0_REPORT_SALES_REPORT_V1_ENDPOINT,
@@ -9,12 +12,17 @@ import {
 export async function emailSalesReport(request, response) {
   const postBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!postBody) {
-    logger.error(`The request [body] cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The request [body] cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -29,21 +37,24 @@ export async function emailSalesReport(request, response) {
 
     return response.status(200).json(newResource);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error emailing the sales report: ${JSON.stringify(postBody)}`);
-    return response.status(400).send('Failed to email the sales report');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
 export async function salesReport(request, response) {
   const postBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!postBody) {
-    logger.error(`The request [body] cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The request [body] cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -58,11 +69,7 @@ export async function salesReport(request, response) {
 
     return response.status(200).json(updatedResource);
   } catch (error) {
-    logger.info(error);
-    logger.info(
-      `Error retrieving the sales report: ${JSON.stringify(postBody)}`,
-    );
-    return response.status(400).send('Failed to retrieve the sales report');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 

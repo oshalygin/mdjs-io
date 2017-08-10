@@ -1,6 +1,9 @@
 import api from '../../utilities/api';
 
-import logger from '../../middleware/logger';
+import {
+  errorApiResponse,
+  warningApiResponse,
+} from '../../utilities/requestUtilities';
 import {
   V0_ORDERS_HEADERS_ENDPOINT,
   V0_ORDERS_HEADERS_V2_ENDPOINT,
@@ -17,12 +20,17 @@ import {
 export async function headers(request, response) {
   const postBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!postBody) {
-    logger.error(`The request [body] cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The request [body] cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -37,21 +45,24 @@ export async function headers(request, response) {
 
     return response.status(200).json(newResource);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error posting order headers: ${JSON.stringify(postBody)}`);
-    return response.status(400).send('Failed to post order headers');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
 export async function headersV2(request, response) {
   const postBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!postBody) {
-    logger.error(`The request [body] cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The request [body] cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -66,21 +77,24 @@ export async function headersV2(request, response) {
 
     return response.status(200).json(updatedResource);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error posting headers V2: ${JSON.stringify(postBody)}`);
-    return response.status(400).send('Failed to post headers V2');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
 export async function giftCardCheck(request, response) {
   const postBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!postBody) {
-    logger.error(`The request [body] cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The request [body] cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -95,21 +109,24 @@ export async function giftCardCheck(request, response) {
 
     return response.status(200).json(updatedResource);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error posting gift card check: ${JSON.stringify(postBody)}`);
-    return response.status(400).send('Failed to post gift card check');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
 export async function select(request, response) {
   const postBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!postBody) {
-    logger.error(`The request [body] cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The request [body] cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -124,21 +141,24 @@ export async function select(request, response) {
 
     return response.status(200).json(newResource);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error selecting orders: ${JSON.stringify(postBody)}`);
-    return response.status(400).send('Failed to select orders');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
 export async function refund(request, response) {
   const postBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!postBody) {
-    logger.error(`The request [body] cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The request [body] cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -153,21 +173,24 @@ export async function refund(request, response) {
 
     return response.status(200).json(newResource);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error posting a refund: ${JSON.stringify(postBody)}`);
-    return response.status(400).send('Failed to post a refund');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
 export async function create(request, response) {
   const postBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!postBody) {
-    logger.error(`The request [body] cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The request [body] cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -182,21 +205,24 @@ export async function create(request, response) {
 
     return response.status(200).json(newResource);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error posting a new order: ${JSON.stringify(postBody)}`);
-    return response.status(400).send('Failed to create a new order');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
 export async function complete(request, response) {
   const postBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!postBody) {
-    logger.error(`The request [body] cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The request [body] cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -211,21 +237,24 @@ export async function complete(request, response) {
 
     return response.status(200).json(newResource);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error completing an order: ${JSON.stringify(postBody)}`);
-    return response.status(400).send('Failed to complete an order');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
 export async function cancel(request, response) {
   const postBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!postBody) {
-    logger.error(`The request [body] cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The request [body] cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -240,21 +269,24 @@ export async function cancel(request, response) {
 
     return response.status(200).json(newResource);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error canceling an order: ${JSON.stringify(postBody)}`);
-    return response.status(400).send('Failed to canceling an order');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
 export async function update(request, response) {
   const postBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!postBody) {
-    logger.error(`The request [body] cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The request [body] cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -269,21 +301,24 @@ export async function update(request, response) {
 
     return response.status(200).json(newResource);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error updating an order: ${JSON.stringify(postBody)}`);
-    return response.status(400).send('Failed to update the order');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
 export async function pay(request, response) {
   const postBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!postBody) {
-    logger.error(`The request [body] cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The request [body] cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -298,9 +333,7 @@ export async function pay(request, response) {
 
     return response.status(200).json(newResource);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error posting an order payment: ${JSON.stringify(postBody)}`);
-    return response.status(400).send('Failed to post an order payment');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 

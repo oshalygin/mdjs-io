@@ -1,6 +1,9 @@
 import api from '../../utilities/api';
 
-import logger from '../../middleware/logger';
+import {
+  errorApiResponse,
+  warningApiResponse,
+} from '../../utilities/requestUtilities';
 import {
   V0_REGISTRATION_REGISTER_ENDPOINT,
   V0_REGISTRATION_BANK_ENDPOINT,
@@ -12,12 +15,17 @@ import {
 export async function register(request, response) {
   const postBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!postBody) {
-    logger.error(`The request [body] cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The request [body] cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -32,21 +40,24 @@ export async function register(request, response) {
 
     return response.status(200).json(newResource);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error posting a registration: ${JSON.stringify(postBody)}`);
-    return response.status(400).send('Failed to post registration');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
 export async function bank(request, response) {
   const postBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!postBody) {
-    logger.error(`The request [body] cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The request [body] cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -61,21 +72,24 @@ export async function bank(request, response) {
 
     return response.status(200).json(updatedResource);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error posting bank registration: ${JSON.stringify(postBody)}`);
-    return response.status(400).send('Failed to post bank registration');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
 export async function business(request, response) {
   const postBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!postBody) {
-    logger.error(`The request [body] cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The request [body] cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -90,23 +104,24 @@ export async function business(request, response) {
 
     return response.status(200).json(updatedResource);
   } catch (error) {
-    logger.info(error);
-    logger.info(
-      `Error posting business registration: ${JSON.stringify(postBody)}`,
-    );
-    return response.status(400).send('Failed to post business registration');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
 export async function principal(request, response) {
   const postBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!postBody) {
-    logger.error(`The request [body] cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The request [body] cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -121,23 +136,24 @@ export async function principal(request, response) {
 
     return response.status(200).json(updatedResource);
   } catch (error) {
-    logger.info(error);
-    logger.info(
-      `Error posting principal registration: ${JSON.stringify(postBody)}`,
-    );
-    return response.status(400).send('Failed to post principal registration');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
 export async function status(request, response) {
   const postBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!postBody) {
-    logger.error(`The request [body] cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The request [body] cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -152,11 +168,7 @@ export async function status(request, response) {
 
     return response.status(200).json(updatedResource);
   } catch (error) {
-    logger.info(error);
-    logger.info(
-      `Error posting registration status: ${JSON.stringify(postBody)}`,
-    );
-    return response.status(400).send('Failed posting registration status');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 

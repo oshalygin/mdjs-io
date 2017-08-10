@@ -1,4 +1,4 @@
-import { parseIgnoredRoutes } from './logger';
+import { parseSuccessfulHealthChecks } from './logger';
 import { expect } from 'chai';
 
 describe('Logger Middleware', () => {
@@ -11,21 +11,7 @@ describe('Logger Middleware', () => {
     };
 
     const expected = true;
-    const actual = parseIgnoredRoutes(request, response);
-
-    expect(actual).equals(expected);
-  });
-
-  it('should NOT log the message if the root returns a 200 status', () => {
-    const request = {
-      url: '/',
-    };
-    const response = {
-      statusCode: 200,
-    };
-
-    const expected = true;
-    const actual = parseIgnoredRoutes(request, response);
+    const actual = parseSuccessfulHealthChecks(request, response);
 
     expect(actual).equals(expected);
   });
@@ -39,21 +25,7 @@ describe('Logger Middleware', () => {
     };
 
     const expected = false;
-    const actual = parseIgnoredRoutes(request, response);
-
-    expect(actual).equals(expected);
-  });
-
-  it('should log the message if the root returns a 400 status', () => {
-    const request = {
-      url: '/',
-    };
-    const response = {
-      statusCode: 400,
-    };
-
-    const expected = false;
-    const actual = parseIgnoredRoutes(request, response);
+    const actual = parseSuccessfulHealthChecks(request, response);
 
     expect(actual).equals(expected);
   });
@@ -67,7 +39,7 @@ describe('Logger Middleware', () => {
     };
 
     const expected = false;
-    const actual = parseIgnoredRoutes(request, response);
+    const actual = parseSuccessfulHealthChecks(request, response);
 
     expect(actual).equals(expected);
   });

@@ -1,14 +1,18 @@
 import axios from 'axios';
 
-import { getHeaders } from '../../utilities/requestUtilities';
-import logger from '../../middleware/logger';
+import {
+  getHeaders,
+  errorApiResponse,
+  warningApiResponse,
+} from '../../utilities/requestUtilities';
 import { TAX_ENDPOINT } from '../../utilities/endpoints';
 
 export async function get(request, response) {
   if (request.params.id && isNaN(request.params.id)) {
-    return response
-      .status(400)
-      .send('The tax {id} must be a number representing the taxID');
+    return warningApiResponse(400, 'The resource requires an id')(
+      request,
+      response,
+    );
   }
   try {
     const token = request.headers.authorization;
@@ -21,16 +25,17 @@ export async function get(request, response) {
     const taxResponse = await axios.get(taxEndpoint, headers);
 
     if (!taxResponse.data.data) {
-      logger.info(`Invalid request: token: ${token}, endpoint: ${taxEndpoint}`);
-      return response.status(400).send('Bad request');
+      return errorApiResponse(400, 'Bad Request')(request, response);
     }
 
     const taxData = taxResponse.data.data;
 
     return response.status(200).json(taxData);
   } catch (error) {
-    logger.info(error);
-    return response.status(404).send('Resource not found');
+    return errorApiResponse(404, 'Resource not found', error)(
+      request,
+      response,
+    );
   }
 }
 
@@ -38,7 +43,10 @@ export async function deleteTax(request, response) {
   const taxId = request.params.id;
 
   if (!taxId) {
-    return response.status(400).send('This resource expects a tax id');
+    return warningApiResponse(400, 'The resource requires an id')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -50,9 +58,7 @@ export async function deleteTax(request, response) {
 
     return response.status(200).send('OK');
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error deleting: ${taxId}`);
-    return response.status(400).send('Failed delete the tax item');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
@@ -61,14 +67,17 @@ export async function put(request, response) {
   const taxBody = request.body;
 
   if (request.params.id && isNaN(request.params.id)) {
-    return response
-      .status(400)
-      .send('The tax {id} must be a number representing the taxID');
+    return warningApiResponse(400, 'The resource requires an id')(
+      request,
+      response,
+    );
   }
 
   if (!taxBody) {
-    logger.error(`The request {body} cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The tax {body} cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -81,22 +90,24 @@ export async function put(request, response) {
 
     return response.status(200).json(updatedTax);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error updating: ${taxId}`);
-    logger.info(`Error updating: ${JSON.stringify(taxBody)}`);
-    return response.status(400).send('Failed to update the tax item');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
 export async function post(request, response) {
   const taxBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!taxBody) {
-    logger.error(`The request {body} cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The tax {body} cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -108,9 +119,7 @@ export async function post(request, response) {
 
     return response.status(200).json(newTax);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error posting a new tax: ${JSON.stringify(taxBody)}`);
-    return response.status(400).send('Failed to create a new tax');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 

@@ -1,6 +1,9 @@
 import api from '../../utilities/api';
 
-import logger from '../../middleware/logger';
+import {
+  errorApiResponse,
+  warningApiResponse,
+} from '../../utilities/requestUtilities';
 import {
   V0_MESSAGE_GET_ENDPOINT,
   V0_MESSAGE_MARK_READ_ENDPOINT,
@@ -10,12 +13,17 @@ import {
 export async function get(request, response) {
   const postBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!postBody) {
-    logger.error(`The request [body] cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The request [body] cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -30,21 +38,24 @@ export async function get(request, response) {
 
     return response.status(200).json(newResource);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error retrieving a new message: ${JSON.stringify(postBody)}`);
-    return response.status(400).send('Failed to retrieve a new message');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
 export async function markRead(request, response) {
   const postBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!postBody) {
-    logger.error(`The request [body] cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The request [body] cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -59,21 +70,24 @@ export async function markRead(request, response) {
 
     return response.status(200).json(updatedResource);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error marking a message as read: ${JSON.stringify(postBody)}`);
-    return response.status(400).send('Failed to mark a message as read');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
 export async function deleteResource(request, response) {
   const postBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!postBody) {
-    logger.error(`The request [body] cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The request [body] cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -88,9 +102,7 @@ export async function deleteResource(request, response) {
 
     return response.status(200).json(updatedResource);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error deleting a message: ${JSON.stringify(postBody)}`);
-    return response.status(400).send('Failed to delete a message');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 

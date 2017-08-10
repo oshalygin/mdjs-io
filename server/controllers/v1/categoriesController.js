@@ -1,14 +1,18 @@
 import axios from 'axios';
 
-import { getHeaders } from '../../utilities/requestUtilities';
-import logger from '../../middleware/logger';
+import {
+  getHeaders,
+  warningApiResponse,
+  errorApiResponse,
+} from '../../utilities/requestUtilities';
 import { CATEGORY_ENDPOINT } from '../../utilities/endpoints';
 
 export async function get(request, response) {
   if (request.params.id && isNaN(request.params.id)) {
-    return response
-      .status(400)
-      .send('The category {id} must be a number representing the categoryID');
+    return warningApiResponse(400, 'The resource requires an id')(
+      request,
+      response,
+    );
   }
   try {
     const token = request.headers.authorization;
@@ -21,18 +25,16 @@ export async function get(request, response) {
     const categoryResponse = await axios.get(categoryEndpoint, headers);
 
     if (!categoryResponse.data.data) {
-      logger.info(
-        `Invalid request: token: ${token}, endpoint: ${categoryEndpoint}`,
-      );
-      return response.status(400).send('Bad request');
+      return errorApiResponse(400, 'Bad Request')(request, response);
     }
 
     const categoriesData = categoryResponse.data.data;
-
     return response.status(200).json(categoriesData);
   } catch (error) {
-    logger.info(error);
-    return response.status(404).send('Resource not found');
+    return errorApiResponse(404, 'Resource not found', error)(
+      request,
+      response,
+    );
   }
 }
 
@@ -40,7 +42,10 @@ export async function deleteCategory(request, response) {
   const categoryId = request.params.id;
 
   if (!categoryId) {
-    return response.status(400).send('This resource expects a category id');
+    return warningApiResponse(400, 'The resource requires an id')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -52,9 +57,7 @@ export async function deleteCategory(request, response) {
 
     return response.status(200).send('OK');
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error deleting: ${categoryId}`);
-    return response.status(400).send('Failed delete the category');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
@@ -63,14 +66,17 @@ export async function put(request, response) {
   const categoryBody = request.body;
 
   if (request.params.id && isNaN(request.params.id)) {
-    return response
-      .status(400)
-      .send('The category {id} must be a number representing the categoryId');
+    return warningApiResponse(400, 'The resource requires an id')(
+      request,
+      response,
+    );
   }
 
   if (!categoryBody) {
-    logger.error(`The request {body} cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The category {body} cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -83,22 +89,24 @@ export async function put(request, response) {
 
     return response.status(200).json(updatedCategory);
   } catch (error) {
-    logger.info(error);
-    logger.info(`Error updating: ${categoryId}`);
-    logger.info(`Error updating: ${JSON.stringify(categoryBody)}`);
-    return response.status(400).send('Failed to update the category');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 
 export async function post(request, response) {
   const categoryBody = request.body;
   if (request.params.id) {
-    return response.status(400).send('This resource does not accept an id');
+    return warningApiResponse(400, 'The resource does not accept an id')(
+      request,
+      response,
+    );
   }
 
   if (!categoryBody) {
-    logger.error(`The request {body} cannot be null, ${request.originalUrl}`);
-    return response.status(400).send('The category {body} cannot be empty');
+    return warningApiResponse(400, 'The request [body] cannot be null')(
+      request,
+      response,
+    );
   }
 
   try {
@@ -114,11 +122,7 @@ export async function post(request, response) {
 
     return response.status(200).json(newCategory);
   } catch (error) {
-    logger.info(error);
-    logger.info(
-      `Error posting a new category: ${JSON.stringify(categoryBody)}`,
-    );
-    return response.status(400).send('Failed to create a new category');
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 

@@ -1,4 +1,4 @@
-import logger from '../../middleware/logger';
+import { errorApiResponse } from '../../utilities/requestUtilities';
 import { version } from '../../../package.json';
 
 export async function get(request, response) {
@@ -6,8 +6,7 @@ export async function get(request, response) {
     return response.status(200).json(version);
   }
 
-  logger.error('Could not parse the current application version');
-  return response.status(404).send('Could not retrieve the package version');
+  return errorApiResponse(404, 'Resource not found')(request, response);
 }
 
 export default {

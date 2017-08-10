@@ -12,4 +12,5 @@ data:
   domain_endpoint: aHR0cDovL3d3dy53ZXN0ZXJucmVnaXN0ZXIuY29t
   domain_endpoint: aHR0cDovL3d3dy53ZXN0ZXJucmVnaXN0ZXIuY29t
   image_storage_bucket: bWRqcy1pdGVtLWltYWdlcw==
+  cluster_name: bWRqcy1rdWJl
 type: Opaque
