@@ -1,3 +1,7 @@
+## 3.21.2 (August 9, 2017)
+
+- Bump `k8s-config` version to `1.2.0` which sets the stage to use `fieldRef` environment variables in the pod configuration.
+
 ## 3.21.1 (August 9, 2017)
 
 - Temporarily hardcode _Western Register_ into the login page to give indication that the site being accessed is western register.  This will be pulled from configuration in the future.

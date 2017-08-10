@@ -5,7 +5,7 @@
 set -o nounset
 set -o errexit -o errtrace
 
-readonly utility_version="1.1.0"
+readonly utility_version="1.2.0"
 readonly utility_binary="linux_amd64_k8s-config"
 readonly k8s_utility="${PWD}/.travis.d/k8s-config"
 readonly application_version=$(node -p -e "require('./package.json').version");
