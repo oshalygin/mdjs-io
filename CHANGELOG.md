@@ -1,3 +1,7 @@
+## 3.21.6 (August 9, 2017)
+
+- Fix erroneous log messages.  Using `console` ipo `logger`
+
 ## 3.21.5 (August 9, 2017)
 
 - Update logger path in `application.dev` and `application.production`

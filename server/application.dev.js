@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
@@ -44,9 +45,9 @@ application.get('*', (request, response) => {
 
 application.listen(port, error => {
   if (error) {
-    logger.error(error);
+    console.error(error);
   }
-  logger.info(`Serving Application at http://localhost:${port}`);
+  console.info(`Serving Application at http://localhost:${port}`);
 });
 
 export default application;

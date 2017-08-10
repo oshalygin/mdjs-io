@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 require('@google-cloud/debug-agent').start({ allowExpressions: true });
 
 import express from 'express';
@@ -43,9 +44,9 @@ application.get('*', (request, response) => {
 
 application.listen(port, error => {
   if (error) {
-    logger.error(error);
+    console.error(error);
   }
-  logger.info(`Serving application over port ${port}`);
+  console.info(`Serving application over port ${port}`);
 });
 
 export default application;
