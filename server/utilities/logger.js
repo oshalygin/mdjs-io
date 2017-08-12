@@ -1,6 +1,7 @@
 /* eslint-disable indent */
 import winston from 'winston';
 import expressWinston from 'express-winston';
+import R from 'ramda';
 import is from 'is';
 
 import stackdriverTransport from './stackdriverLogger';
@@ -28,12 +29,9 @@ if (configuration.environment === 'production') {
   };
 }
 
-export function parseSuccessfulHealthChecks(request, response) {
-  const healthCheckUrl = '/healthz';
-  const skipLogging =
-    request.url === healthCheckUrl && response.statusCode < 400;
-
-  return skipLogging;
+export function parseIgnoredRoutes(request, response) {
+  const ignoredRoutes = ['/healthz', '/'];
+  return R.contains(request.url, ignoredRoutes) && response.statusCode < 400;
 }
 
 const logMessage = (statusCode, message, request) =>
@@ -86,8 +84,9 @@ const logApiError = errorResponse => {
 };
 
 const requestLogger = expressWinston.logger({
-  ignoreRoute: parseSuccessfulHealthChecks,
+  ignoreRoute: parseIgnoredRoutes,
   winstonInstance: winston,
+
   expressFormat: loggerConfiguration.expressFormat,
   meta: loggerConfiguration.meta,
   colorize: loggerConfiguration.colorize,

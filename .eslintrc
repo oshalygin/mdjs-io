@@ -72,10 +72,7 @@
     "block-scoped-var": 0,
     "complexity": 0,
     "consistent-return": 2,
-    "curly": [
-      "error",
-      "all"
-    ],
+    "curly": ["error", "all"],
     "default-case": 2,
     "dot-notation": 2,
     "eqeqeq": 2,
@@ -222,7 +219,12 @@
     ],
     "sort-vars": 0,
     "keyword-spacing": 2,
-    "id-length": 2,
+    "id-length": [
+      "error",
+      {
+        "exceptions": ["R"]
+      }
+    ],
     "space-before-blocks": [2, "always"],
     "object-curly-spacing": "off",
     "object-shorthand": 2,
@@ -267,7 +269,7 @@
     "react/react-in-jsx-scope": 2,
     "react/self-closing-comp": 2,
     "react/jsx-wrap-multilines": 0,
-    
+
     "jest/no-disabled-tests": "warn",
     "jest/no-focused-tests": "error",
     "jest/no-identical-title": "error",

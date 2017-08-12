@@ -1,3 +1,7 @@
+## 3.21.7 (August 10, 2017)
+
+- Add default `/` route to the ignored routes for tracing/logging.
+
 ## 3.21.6 (August 9, 2017)
 
 - Fix erroneous log messages.  Using `console` ipo `logger`
