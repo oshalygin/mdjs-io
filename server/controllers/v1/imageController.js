@@ -38,6 +38,7 @@ export async function post(request, response) {
 
   try {
     const { file } = request;
+    console.log(file);
     //TODO: Add validation to make sure the user is valid
     const imageNames = await imageService.upload(
       file.buffer,
@@ -50,7 +51,11 @@ export async function post(request, response) {
 
     return response.status(200).json(responseBody);
   } catch (error) {
-    return errorApiResponse(400, 'Bad Request', error)(request, response);
+    return errorApiResponse(
+      400,
+      'Bad Request: Could not retrieve image',
+      error,
+    )(request, response);
   }
 }
 

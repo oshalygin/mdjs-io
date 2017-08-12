@@ -1,3 +1,7 @@
+## 3.22.2 (August 12, 2017)
+
+- Add logging statements to the image controller and switch the bad request text content to be more explicit.
+
 ## 3.22.1 (August 12, 2017)
 
 - Update failing modifier tests after last migration
