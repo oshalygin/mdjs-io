@@ -1,3 +1,7 @@
+## 3.22.0 (August 12, 2017)
+
+- Update logging to properly capture multi-part form data requests
+
 ## 3.21.7 (August 10, 2017)
 
 - Add default `/` route to the ignored routes for tracing/logging.

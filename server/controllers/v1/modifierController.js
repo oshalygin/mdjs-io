@@ -24,11 +24,11 @@ export async function get(request, response) {
 
     const modifierResponse = await axios.get(modifierEndpoint, headers);
 
-    if (!modifierResponse.data.data) {
+    if (!modifierResponse.data) {
       return errorApiResponse(400, 'Bad Request')(request, response);
     }
 
-    const modifierData = modifierResponse.data.data;
+    const modifierData = modifierResponse.data;
 
     return response.status(200).json(modifierData);
   } catch (error) {
