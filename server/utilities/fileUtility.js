@@ -29,7 +29,9 @@ export const multer = Multer({
 
 //eslint-disable-next-line no-unused-vars
 export function fileErrorHandler(error, request, response, next) {
-  return response.status(400).send(error.code);
+  console.log(request);
+  console.log(error);
+  return response.status(500).send(error.code);
 }
 
 export function bufferToStream(buffer) {

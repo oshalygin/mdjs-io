@@ -1,3 +1,7 @@
+## 3.22.4 (August 12, 2017)
+
+- Temporary test with multer
+
 ## 3.22.3 (August 12, 2017)
 
 - Add conditional check for when the multipart form data does not contain a body object.
