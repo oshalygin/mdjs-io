@@ -1,3 +1,7 @@
+## 3.22.3 (August 12, 2017)
+
+- Add conditional check for when the multipart form data does not contain a body object.
+
 ## 3.22.2 (August 12, 2017)
 
 - Add logging statements to the image controller and switch the bad request text content to be more explicit.

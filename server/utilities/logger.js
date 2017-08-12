@@ -97,11 +97,13 @@ const requestLogger = expressWinston.logger({
     const requestBody = req.body;
     if (req.headers.hasOwnProperty('content-type')) {
       if (req.headers['content-type'].includes('multipart/form-data')) {
-        const rootKey = R.keys(requestBody)[0];
-        const rootObject = R.values(requestBody)[0];
+        if (R.keys(requestBody).length) {
+          const rootKey = R.keys(requestBody)[0];
+          const rootObject = R.values(requestBody)[0];
 
-        const parsedObject = JSON.parse(R.replace("'", '')(rootObject)); //eslint-disable-line quotes
-        requestBody[rootKey] = parsedObject;
+          const parsedObject = JSON.parse(R.replace("'", '')(rootObject)); //eslint-disable-line quotes
+          requestBody[rootKey] = parsedObject;
+        }
       }
     }
 
