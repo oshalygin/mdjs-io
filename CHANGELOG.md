@@ -1,3 +1,7 @@
+## 3.22.1 (August 12, 2017)
+
+- Update failing modifier tests after last migration
+
 ## 3.22.0 (August 12, 2017)
 
 - Update logging to properly capture multi-part form data requests

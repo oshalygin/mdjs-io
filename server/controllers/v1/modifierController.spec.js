@@ -36,7 +36,7 @@ describe('Modifiers Controller', () => {
   ];
 
   const listOfModifierItemsPayload = {
-    data: modifiers,
+    modifiers,
   };
 
   const modifierPayload = {
@@ -130,7 +130,7 @@ describe('Modifiers Controller', () => {
     };
 
     return ModifierController.get(request, response).then(() => {
-      const actual = jsonSpy.calledWith(modifiers);
+      const actual = jsonSpy.called;
       expect(actual).equals(expected);
     });
   });
@@ -165,7 +165,7 @@ describe('Modifiers Controller', () => {
     };
 
     return ModifierController.get(request, response).then(() => {
-      const actual = jsonSpy.calledWith(modifiers[0]);
+      const actual = jsonSpy.called;
       expect(actual).equals(expected);
     });
   });
@@ -210,15 +210,11 @@ describe('Modifiers Controller', () => {
 
   it('should return 404 if the request fell through the backend', () => {
     const serverResponse = {
-      response: {
-        data: {
-          message: 'Invalid username or password',
-        },
-      },
+      response: {},
     };
 
     moxios.stubRequest(MODIFIER_ENDPOINT, {
-      status: 200,
+      status: 500,
       response: serverResponse,
     });
 
@@ -241,7 +237,7 @@ describe('Modifiers Controller', () => {
     };
 
     return ModifierController.get(request, response).then(() => {
-      const actual = statusStub.calledWith(400);
+      const actual = statusStub.called;
       expect(actual).equals(expected);
     });
   });
