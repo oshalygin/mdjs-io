@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import muiTheme from '../../utilities/muiTheme';
 
 import Snackbar from '../common/snackbar';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
 import * as actionCreators from '../../actions/userActions';
 
 import './login.css';
@@ -51,7 +52,8 @@ class LoginPage extends React.Component {
   }
 
   redirect() {
-    browserHistory.push('/dashboard');
+    const { history } = this.props;
+    history.push('/');
   }
 
   onChange(event) {
@@ -64,44 +66,47 @@ class LoginPage extends React.Component {
     const { loading } = this.props;
     const { formErrors } = this.state;
     return (
-      <div>
-        <div className="middle-box text-center loginscreen animated fadeInDown">
-          <div>
+      <MuiThemeProvider muiTheme={muiTheme}>
+        <div>
+          <div className="middle-box text-center loginscreen animated fadeInDown">
             <div>
-              <h1 className="logo-name">WR</h1>
+              <div>
+                <h1 className="logo-name">WR</h1>
+              </div>
+              <h3>Welcome to the Western Register Dashboard</h3>
+              <p>The ultimate dashboard experience</p>
+              <p>Login to get started</p>
+              <LoginForm
+                hidden={loading}
+                errors={formErrors}
+                onChange={this.onChange}
+                login={this.login}
+              />
+              <Spinner hidden={!loading} />
+              <p className="m-t">
+                <small>
+                  Western Register is a registered trademark of Western
+                  Register, LLC.
+                </small>
+              </p>
             </div>
-            <h3>Welcome to the Western Register Dashboard</h3>
-            <p>The ultimate dashboard experience</p>
-            <p>Login to get started</p>
-            <LoginForm
-              hidden={loading}
-              errors={formErrors}
-              onChange={this.onChange}
-              login={this.login}
-            />
-            <Spinner hidden={!loading} />
-            <p className="m-t">
-              {' '}<small>
-                Western Register is a registered trademark of Western Register,
-                LLC.
-              </small>{' '}
-            </p>
           </div>
+          <Snackbar
+            open={this.state.notification}
+            action="OK"
+            message={this.state.notificationMessage}
+            onActionTouchTap={this.closeNotification}
+            onRequestClose={this.closeNotification}
+          />
+          <Version />
         </div>
-        <Snackbar
-          open={this.state.notification}
-          action="OK"
-          message={this.state.notificationMessage}
-          onActionTouchTap={this.closeNotification}
-          onRequestClose={this.closeNotification}
-        />
-        <Version />
-      </div>
+      </MuiThemeProvider>
     );
   }
 }
 
 LoginPage.propTypes = {
+  history: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
   userActions: PropTypes.object.isRequired,

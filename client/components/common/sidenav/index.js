@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 
 import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
@@ -61,52 +62,46 @@ class SideBarNavigation extends React.Component {
               <div className="logo-element">WR+</div>
             </li>
             <li className={path.dashboard}>
-              <a onClick={() => this.navigateToPortal('dashboard')}>
-                <i className="fa fa-th-large" />{' '}
-                <span className="nav-label">Dashboard</span>
-              </a>
+              <NavLink exact to="/" activeClassName="active">
+                <i className="fa fa-th-large" />
+                <span className="nav-label">Home</span>
+              </NavLink>
             </li>
             <li className={path.items}>
-              <a onClick={() => this.navigateToPortal('items')}>
-                <i className="fa fa-tasks" />{' '}
-                <span className="nav-label">Items</span>
-              </a>
+              <NavLink exact to="/items" activeClassName="active">
+                <i className="fa fa-tasks" />
+                <span className="nav-label">Go Items</span>
+              </NavLink>
             </li>
             <li className={path.itemCategories}>
-              <a onClick={() => this.navigateToPortal('categories')}>
-                <i className="fa fa-folder-open-o" />{' '}
-                <span className="nav-label">Item Categories</span>
-              </a>
+              <NavLink exact to="/categories" activeClassName="active">
+                <i className="fa fa-folder-open-o" />
+                <span className="nav-label">Go Categories</span>
+              </NavLink>
             </li>
             <li className={path.modifiers}>
-              <a onClick={() => this.navigateToPortal('modifiers')}>
-                <i className="fa fa-pencil-square-o" />{' '}
+              <NavLink exact to="/modifiers" activeClassName="active">
+                <i className="fa fa-pencil-square-o" />
                 <span className="nav-label">Modifiers</span>
-              </a>
+              </NavLink>
             </li>
             <li className={path.taxes}>
-              <a onClick={() => this.navigateToPortal('taxes')}>
-                <i className="fa fa-percent" />{' '}
+              <NavLink exact to="/taxes" activeClassName="active">
+                <i className="fa fa-percent" />
                 <span className="nav-label">Taxes</span>
-              </a>
+              </NavLink>
             </li>
             <li className={path.discounts}>
-              <a onClick={() => this.navigateToPortal('discounts')}>
-                <i className="fa fa-download" />{' '}
+              <NavLink exact to="/discounts" activeClassName="active">
+                <i className="fa fa-download" />
                 <span className="nav-label">Discounts</span>
-              </a>
+              </NavLink>
             </li>
             <li className={path.orders}>
-              <a onClick={() => this.navigateToPortal('orders')}>
-                <i className="fa fa-shopping-cart" />{' '}
+              <NavLink exact to="/orders" activeClassName="active">
+                <i className="fa fa-shopping-cart" />
                 <span className="nav-label">Orders</span>
-              </a>
-            </li>
-            <li className={path.users}>
-              <a onClick={() => this.navigateToPortal('users')}>
-                <i className="fa fa-users" />{' '}
-                <span className="nav-label">Users</span>
-              </a>
+              </NavLink>
             </li>
           </ul>
         </div>

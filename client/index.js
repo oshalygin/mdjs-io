@@ -5,17 +5,12 @@ import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
 import configureStore from './store/configureStore';
-import {
-  Router,
-  Route,
-  IndexRoute,
-  browserHistory,
-  Redirect,
-} from 'react-router';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { retrieveUser } from './reducers/initialState';
 import { hostLocation } from './utilities/endpoints';
 
+import Login from './components/login';
 import rootSaga from './sagas';
 
 // To load styles globally without CSS modules, use the !style!css!{{path}} format.
@@ -45,21 +40,7 @@ pace.start();
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
-import Application from './components/Application.jsx';
-import Dashboard from './components/dashboard';
-import ItemPage from './components/item';
-import ItemDetailPage from './components/itemDetail';
-import CategoryDetailPage from './components/categoryDetail';
-import CategoriesPage from './components/categories';
-import TaxesPage from './components/taxes';
-import TaxDetailPage from './components/taxDetail';
-import ModifiersPage from './components/modifiers';
-import ModifierDetailPage from './components/modifierDetail';
-import DiscountPage from './components/discounts';
-import DiscountDetailPage from './components/discountDetail';
-import OrderPage from './components/orders';
-
-import Login from './components/login';
+import DashboardApplication from './components/DashboardApplication.jsx';
 
 const environment = process.env.NODE_ENV; // eslint-disable-line no-process-env
 if (environment === 'production') {
@@ -95,31 +76,14 @@ function isAuthorized(nextState, replace, callback) {
 
 render(
   <Provider store={store}>
-    <Router history={browserHistory}>
-      <Route
-        path="/"
-        component={Application}
-        onEnter={(nextState, replace, callback) =>
-          isAuthorized(nextState, replace, callback)}
-      >
-        <IndexRoute component={Dashboard} />
-        <Route path="login" component={Login} />
-        <Route path="dashboard" component={Dashboard} />
-        <Route path="items" component={ItemPage} />
-        <Route path="item(/:id)" component={ItemDetailPage} />
-        <Route path="category(/:id)" component={CategoryDetailPage} />
-        <Route path="categories" component={CategoriesPage} />
-        <Route path="taxes" component={TaxesPage} />
-        <Route path="modifiers" component={ModifiersPage} />
-        <Route path="modifier(/:id)" component={ModifierDetailPage} />
-        <Route path="tax(/:id)" component={TaxDetailPage} />
-        <Route path="discounts" component={DiscountPage} />
-        <Route path="discount(/:id)" component={DiscountDetailPage} />
-        <Route path="orders" component={OrderPage} />
-        <Route path="users" component={Dashboard} />
-        <Redirect to="dashboard" from="*" />
-      </Route>
-    </Router>
+    <BrowserRouter>
+      <div>
+        <Switch>
+          <Route path="/login" component={Login} />
+          <Route path="/" component={DashboardApplication} />
+        </Switch>
+      </div>
+    </BrowserRouter>
   </Provider>,
   document.getElementById('application'),
 );

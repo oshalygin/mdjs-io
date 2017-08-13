@@ -19,8 +19,8 @@ const SideBarUser = ({ firstName, lastName, roleId, logout }) => {
     <div className="dropdown profile-element">
       <a data-toggle="dropdown" className="dropdown-toggle" href="#">
         <span className="clear">
-          {' '}<span className="block m-t-xs">
-            {' '}<strong className="font-bold">
+          <span className="block m-t-xs">
+            <strong className="font-bold">
               {firstName} {lastName}
             </strong>
           </span>

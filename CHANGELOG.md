@@ -1,3 +1,8 @@
+## 3.22.6 (August 13, 2017)
+
+- This is a first in a series of WIP commits to migrate the codebase over to React Router 4.
+- Numerous pieces are still broken such as authentication/authorization as well as proper routing.
+
 ## 3.22.5 (August 12, 2017)
 
 - Remove erroneous logs
