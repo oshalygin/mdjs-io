@@ -1,3 +1,7 @@
+## 3.22.5 (August 12, 2017)
+
+- Remove erroneous logs
+
 ## 3.22.4 (August 12, 2017)
 
 - Temporary test with multer

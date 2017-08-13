@@ -38,7 +38,6 @@ export async function post(request, response) {
 
   try {
     const { file } = request;
-    console.log(file);
     //TODO: Add validation to make sure the user is valid
     const imageNames = await imageService.upload(
       file.buffer,
