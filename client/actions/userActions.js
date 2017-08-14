@@ -7,6 +7,8 @@ import {
   REQUEST_LOGGED_IN_USER,
   GET_LOGGED_IN_USER_ERROR,
   GET_LOGGED_IN_USER_SUCCESS,
+  REQUEST_LOGIN,
+  LOGIN_ERROR,
 } from './actionTypes';
 import { ACCOUNT_ENDPOINT } from '../utilities/endpoints.js';
 import { getJsonHeaders } from '../utilities/requestUtilities';
@@ -44,6 +46,15 @@ export function retrieveLoggedInUser() {
     type: REQUEST_LOGGED_IN_USER,
   };
 }
+
+export const userLogin = data => ({
+  type: REQUEST_LOGIN,
+  data,
+});
+
+export const userLoginValidationErrors = () => ({
+  type: LOGIN_ERROR,
+});
 
 export function getLoggedInUserError() {
   return {

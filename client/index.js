@@ -5,11 +5,9 @@ import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
 import configureStore from './store/configureStore';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { hostLocation } from './utilities/endpoints';
 
-import Login from './components/login';
 import rootSaga from './sagas';
 
 // To load styles globally without CSS modules, use the !style!css!{{path}} format.
@@ -39,7 +37,7 @@ pace.start();
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
-import DashboardApplication from './components/DashboardApplication.jsx';
+import App from './components/App.jsx';
 
 const environment = process.env.NODE_ENV; // eslint-disable-line no-process-env
 if (environment === 'production') {
@@ -56,14 +54,7 @@ store.runSaga(rootSaga);
 
 render(
   <Provider store={store}>
-    <BrowserRouter>
-      <div>
-        <Switch>
-          <Route path="/login" component={Login} />
-          <Route path="/" component={DashboardApplication} />
-        </Switch>
-      </div>
-    </BrowserRouter>
+    <App />
   </Provider>,
   document.getElementById('application'),
 );

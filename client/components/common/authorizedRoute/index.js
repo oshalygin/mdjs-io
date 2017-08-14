@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import muiTheme from '../../../utilities/muiTheme';
+
 import R from 'ramda';
 
 import Spinner from '../spinner';
@@ -17,11 +20,20 @@ class AuthorizedRoute extends React.Component {
       <Route
         {...rest}
         render={props => {
-          if (loading) {
+          if (!loading) {
             return (
-              <div>
-                <Spinner hidden={!loading} />
-              </div>
+              <MuiThemeProvider muiTheme={muiTheme}>
+                <div
+                  style={{
+                    position: 'fixed',
+                    left: '50%',
+                    top: '50%',
+                    transform: 'translate(-50%, -50%)',
+                  }}
+                >
+                  <Spinner size={200} />
+                </div>
+              </MuiThemeProvider>
             );
           }
 

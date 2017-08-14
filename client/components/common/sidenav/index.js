@@ -62,43 +62,47 @@ class SideBarNavigation extends React.Component {
               <div className="logo-element">WR+</div>
             </li>
             <li className={path.dashboard}>
-              <NavLink exact to="/" activeClassName="active">
+              <NavLink exact to="/dashboard" activeClassName="active">
                 <i className="fa fa-th-large" />
                 <span className="nav-label">Home</span>
               </NavLink>
             </li>
             <li className={path.items}>
-              <NavLink exact to="/items" activeClassName="active">
+              <NavLink exact to="/dashboard/items" activeClassName="active">
                 <i className="fa fa-tasks" />
                 <span className="nav-label">Go Items</span>
               </NavLink>
             </li>
             <li className={path.itemCategories}>
-              <NavLink exact to="/categories" activeClassName="active">
+              <NavLink
+                exact
+                to="/dashboard/categories"
+                activeClassName="active"
+              >
                 <i className="fa fa-folder-open-o" />
                 <span className="nav-label">Go Categories</span>
               </NavLink>
             </li>
             <li className={path.modifiers}>
-              <NavLink exact to="/modifiers" activeClassName="active">
+              <NavLink exact to="/dashboard/modifiers" activeClassName="active">
                 <i className="fa fa-pencil-square-o" />
                 <span className="nav-label">Modifiers</span>
               </NavLink>
             </li>
             <li className={path.taxes}>
-              <NavLink exact to="/taxes" activeClassName="active">
+              <NavLink exact to="/dashboard/taxes" activeClassName="active">
                 <i className="fa fa-percent" />
                 <span className="nav-label">Taxes</span>
               </NavLink>
             </li>
             <li className={path.discounts}>
-              <NavLink exact to="/discounts" activeClassName="active">
+              <NavLink exact to="/dashboard/discounts" activeClassName="active">
                 <i className="fa fa-download" />
                 <span className="nav-label">Discounts</span>
               </NavLink>
             </li>
             <li className={path.orders}>
-              <NavLink exact to="/orders" activeClassName="active">
+              <NavLink exact to="/dashboard/orders" activeClassName="active">
                 <i className="fa fa-shopping-cart" />
                 <span className="nav-label">Orders</span>
               </NavLink>

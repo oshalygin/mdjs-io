@@ -1,3 +1,9 @@
+## 3.22.9 (August 14, 2017)
+
+- Addition of a root `/` route which will be used to serve up the frontend site.
+- Routing updates for user login to be handled through sagas
+- Significant refactoring across the board in the initial routes.
+
 ## 3.22.8 (August 13, 2017)
 
 - Refactored `<AuthorizedRoute />` to properly read the component passed in.

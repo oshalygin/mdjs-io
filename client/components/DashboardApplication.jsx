@@ -11,10 +11,8 @@ import SideBarNavigation from './common/sidenav';
 import Version from './common/version';
 import SearchBar from './common/SearchBar.jsx';
 
-import AuthorizedRoute from './common/authorizedRoute';
 import Spinner from './common/spinner';
 
-import Login from './login';
 import Dashboard from './dashboard';
 import ItemPage from './item';
 import CategoriesPage from './categories';
@@ -24,16 +22,9 @@ import DiscountPage from './discounts';
 import OrderPage from './orders';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import muiTheme from '../utilities/muiTheme.js';
+import muiTheme from '../utilities/muiTheme';
 
-class Application extends React.Component {
-  componentWillMount() {
-    const { versionActions, configurationActions, userActions } = this.props;
-    versionActions.getVersion();
-    configurationActions.retrieveApplicationConfiguration();
-    userActions.retrieveLoggedInUser();
-  }
-
+class DashboardApplication extends React.Component {
   render() {
     const { match, loadingUser } = this.props;
     const path = match.path;
@@ -49,37 +40,26 @@ class Application extends React.Component {
               <div className="row">
                 <div className="col-lg-12">
                   <Switch>
-                    <AuthorizedRoute
+                    <Route exact path={`${path}`} component={Dashboard} />
+                    <Route
                       exact
-                      path={`${path}`}
-                      component={Dashboard}
-                    />
-                    <Route path={`${path}/login`} component={Login} />
-                    <AuthorizedRoute
-                      exact
-                      path={`${this.props.match.path}items`}
+                      path={`${this.props.match.path}/items`}
                       component={ItemPage}
                     />
-                    <AuthorizedRoute
-                      path={`${path}categories`}
+                    <Route
+                      path={`${path}/categories`}
                       component={CategoriesPage}
                     />
-                    <AuthorizedRoute
-                      path={`${path}taxes`}
-                      component={TaxesPage}
-                    />
-                    <AuthorizedRoute
-                      path={`${path}modifiers`}
+                    <Route path={`${path}/taxes`} component={TaxesPage} />
+                    <Route
+                      path={`${path}/modifiers`}
                       component={ModifiersPage}
                     />
-                    <AuthorizedRoute
-                      path={`${path}discounts`}
+                    <Route
+                      path={`${path}/discounts`}
                       component={DiscountPage}
                     />
-                    <AuthorizedRoute
-                      path={`${path}orders`}
-                      component={OrderPage}
-                    />
+                    <Route path={`${path}/orders`} component={OrderPage} />
                     <Redirect to="/" />
                   </Switch>
                 </div>
@@ -108,7 +88,7 @@ class Application extends React.Component {
   }
 }
 
-Application.propTypes = {
+DashboardApplication.propTypes = {
   match: PropTypes.object.isRequired,
   location: PropTypes.object,
   loadingUser: PropTypes.bool.isRequired,
@@ -134,4 +114,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Application);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  DashboardApplication,
+);

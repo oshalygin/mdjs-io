@@ -34,17 +34,9 @@ class LoginPage extends React.Component {
   login(event) {
     event.preventDefault();
     const { user } = this.state;
-    const { login, loginValidationErrors } = this.props.userActions;
+    const { userActions } = this.props;
 
-    login(user).then(() => this.redirect()).catch(() => {
-      this.setState({
-        notification: true,
-        notificationMessage: 'Invalid Username or Password',
-      });
-
-      loginValidationErrors();
-      this.setState({ formErrors: true });
-    });
+    userActions.userLogin(user);
   }
 
   closeNotification() {
@@ -53,7 +45,7 @@ class LoginPage extends React.Component {
 
   redirect() {
     const { history } = this.props;
-    history.push('/');
+    history.push('/dashboard');
   }
 
   onChange(event) {

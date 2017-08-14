@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import $ from 'jquery'; //eslint-disable-line
-import { browserHistory } from 'react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import * as actionCreators from '../../actions/userActions';
 
 class SearchBar extends React.Component {
@@ -19,8 +19,9 @@ class SearchBar extends React.Component {
   }
 
   logout() {
-    this.props.userActions.logout();
-    browserHistory.push('login');
+    const { userActions, history } = this.props;
+    userActions.logout();
+    history.push('/login');
   }
 
   toggleSideNavMenu() {
@@ -72,6 +73,7 @@ class SearchBar extends React.Component {
 
 SearchBar.propTypes = {
   user: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
   userActions: PropTypes.object.isRequired,
 };
 
@@ -87,4 +89,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(SearchBar),
+);
