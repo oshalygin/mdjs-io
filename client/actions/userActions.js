@@ -4,6 +4,9 @@ import {
   LOADING_USER,
   LOADED_USER_SUCCESS,
   LOADED_USER_FAILURE,
+  REQUEST_LOGGED_IN_USER,
+  GET_LOGGED_IN_USER_ERROR,
+  GET_LOGGED_IN_USER_SUCCESS,
 } from './actionTypes';
 import { ACCOUNT_ENDPOINT } from '../utilities/endpoints.js';
 import { getJsonHeaders } from '../utilities/requestUtilities';
@@ -35,6 +38,23 @@ export function loadingUser() {
     type: LOADING_USER,
   };
 }
+
+export function retrieveLoggedInUser() {
+  return {
+    type: REQUEST_LOGGED_IN_USER,
+  };
+}
+
+export function getLoggedInUserError() {
+  return {
+    type: GET_LOGGED_IN_USER_ERROR,
+  };
+}
+
+export const getLoggedInUserSuccess = data => ({
+  type: GET_LOGGED_IN_USER_SUCCESS,
+  data,
+});
 
 export function loadedUserSuccess() {
   return {

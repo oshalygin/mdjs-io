@@ -7,7 +7,6 @@ import { render } from 'react-dom';
 import configureStore from './store/configureStore';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { retrieveUser } from './reducers/initialState';
 import { hostLocation } from './utilities/endpoints';
 
 import Login from './components/login';
@@ -54,25 +53,6 @@ if (environment === 'production') {
 
 const store = configureStore();
 store.runSaga(rootSaga);
-
-function isAuthorized(nextState, replace, callback) {
-  if (nextState.location.pathname === '/login') {
-    callback();
-    return;
-  }
-  const state = store.getState();
-  if (state.user && state.user.loggedIn === true) {
-    callback();
-    return;
-  }
-
-  retrieveUser(store.dispatch, error => {
-    if (!!error) {
-      replace('/login');
-    }
-    callback();
-  });
-}
 
 render(
   <Provider store={store}>

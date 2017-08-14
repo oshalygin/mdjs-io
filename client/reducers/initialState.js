@@ -20,7 +20,7 @@ export function retrieveUser(dispatch, callback) {
 export default {
   user: {},
   loading: {
-    loadingUser: false,
+    loadingUser: true,
     loadingOrders: true,
     loadingMonthlySummary: true,
   },

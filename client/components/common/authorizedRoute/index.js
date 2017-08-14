@@ -10,7 +10,7 @@ import Spinner from '../spinner';
 
 class AuthorizedRoute extends React.Component {
   render() {
-    const { Component, loading, user, ...rest } = this.props;
+    const { component: Component, loading, user, ...rest } = this.props;
     const loggedIn = !R.isEmpty(user);
 
     return (
@@ -39,7 +39,7 @@ class AuthorizedRoute extends React.Component {
 }
 
 AuthorizedRoute.propTypes = {
-  Component: PropTypes.any.isRequired,
+  component: PropTypes.any.isRequired,
   loading: PropTypes.bool.isRequired,
   user: PropTypes.object.isRequired,
 };

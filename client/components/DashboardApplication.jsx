@@ -3,12 +3,16 @@ import PropTypes from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import * as userActionCreators from '../actions/userActions';
 import * as configurationActionCreators from '../actions/configurationActions';
 import * as versionActionCreators from '../actions/versionActions';
 
 import SideBarNavigation from './common/sidenav';
 import Version from './common/version';
 import SearchBar from './common/SearchBar.jsx';
+
+import AuthorizedRoute from './common/authorizedRoute';
+import Spinner from './common/spinner';
 
 import Login from './login';
 import Dashboard from './dashboard';
@@ -24,17 +28,18 @@ import muiTheme from '../utilities/muiTheme.js';
 
 class Application extends React.Component {
   componentWillMount() {
-    const { versionActions, configurationActions } = this.props;
+    const { versionActions, configurationActions, userActions } = this.props;
     versionActions.getVersion();
     configurationActions.retrieveApplicationConfiguration();
+    userActions.retrieveLoggedInUser();
   }
 
   render() {
-    const { match } = this.props;
+    const { match, loadingUser } = this.props;
     const path = match.path;
     const currentPath = this.props.location.pathname.replace('/', '');
 
-    return (
+    const content = (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div id="wrapper">
           <SideBarNavigation pathName={currentPath} />
@@ -44,24 +49,37 @@ class Application extends React.Component {
               <div className="row">
                 <div className="col-lg-12">
                   <Switch>
-                    <Route exact path={`${path}`} component={Dashboard} />
+                    <AuthorizedRoute
+                      exact
+                      path={`${path}`}
+                      component={Dashboard}
+                    />
                     <Route path={`${path}/login`} component={Login} />
-                    <Route
+                    <AuthorizedRoute
                       exact
                       path={`${this.props.match.path}items`}
                       component={ItemPage}
                     />
-                    <Route
+                    <AuthorizedRoute
                       path={`${path}categories`}
                       component={CategoriesPage}
                     />
-                    <Route path={`${path}taxes`} component={TaxesPage} />
-                    <Route
+                    <AuthorizedRoute
+                      path={`${path}taxes`}
+                      component={TaxesPage}
+                    />
+                    <AuthorizedRoute
                       path={`${path}modifiers`}
                       component={ModifiersPage}
                     />
-                    <Route path={`${path}discounts`} component={DiscountPage} />
-                    <Route path={`${path}orders`} component={OrderPage} />
+                    <AuthorizedRoute
+                      path={`${path}discounts`}
+                      component={DiscountPage}
+                    />
+                    <AuthorizedRoute
+                      path={`${path}orders`}
+                      component={OrderPage}
+                    />
                     <Redirect to="/" />
                   </Switch>
                 </div>
@@ -72,18 +90,37 @@ class Application extends React.Component {
         </div>
       </MuiThemeProvider>
     );
+
+    return loadingUser
+      ? <MuiThemeProvider muiTheme={muiTheme}>
+          <div
+            style={{
+              position: 'fixed',
+              left: '50%',
+              top: '50%',
+              transform: 'translate(-50%, -50%)',
+            }}
+          >
+            <Spinner size={200} />
+          </div>
+        </MuiThemeProvider>
+      : content;
   }
 }
 
 Application.propTypes = {
   match: PropTypes.object.isRequired,
   location: PropTypes.object,
+  loadingUser: PropTypes.bool.isRequired,
   versionActions: PropTypes.object.isRequired,
   configurationActions: PropTypes.object.isRequired,
+  userActions: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
-  return state;
+  return {
+    loadingUser: state.loading.loadingUser,
+  };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -93,6 +130,7 @@ function mapDispatchToProps(dispatch) {
       configurationActionCreators,
       dispatch,
     ),
+    userActions: bindActionCreators(userActionCreators, dispatch),
   };
 }
 

@@ -1,3 +1,9 @@
+## 3.22.8 (August 13, 2017)
+
+- Refactored `<AuthorizedRoute />` to properly read the component passed in.
+- Addition of user sagas to handle logged in user.
+- Refactored reducers and initialState related to the logged in user.
+
 ## 3.22.7 (August 13, 2017)
 
 - Addition of an <AuthorizedRoute /> handler which will be set on certain routes to restrict access unless the user is logged.
