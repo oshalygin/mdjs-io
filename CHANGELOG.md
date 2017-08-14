@@ -1,3 +1,8 @@
+## 3.22.7 (August 13, 2017)
+
+- Addition of an <AuthorizedRoute /> handler which will be set on certain routes to restrict access unless the user is logged.
+- This component will be built out in the future to provide its own data retrieval if the user object is null.
+
 ## 3.22.6 (August 13, 2017)
 
 - This is a first in a series of WIP commits to migrate the codebase over to React Router 4.
