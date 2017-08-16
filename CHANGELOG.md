@@ -1,3 +1,7 @@
+## 3.22.10 (August 15, 2017)
+
+- Remove Chrome's autocomplete styles altogether from the page.
+
 ## 3.22.9 (August 14, 2017)
 
 - Addition of a root `/` route which will be used to serve up the frontend site.
