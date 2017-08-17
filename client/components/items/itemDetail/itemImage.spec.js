@@ -1,5 +1,5 @@
 import { shallow } from 'enzyme';
-import { IMAGE_ENDPOINT } from '../../utilities/endpoints';
+import { IMAGE_ENDPOINT } from '../../../utilities/endpoints';
 import ItemImage, { getImageUrl } from './ItemImage.jsx';
 import DropZone from 'react-dropzone';
 

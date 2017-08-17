@@ -8,9 +8,9 @@ import {
   TableRow,
   TableHeaderColumn,
 } from 'material-ui/Table';
-import ItemTableRow from './ItemTableRow.jsx';
+import ItemsTableRow from './ItemsTableRow.jsx';
 
-const ItemTable = ({ items, deactivate }) => {
+const ItemsTable = ({ items, deactivate }) => {
   return (
     <div className="table-responsive">
       <Table selectable multiSelectable>
@@ -27,7 +27,7 @@ const ItemTable = ({ items, deactivate }) => {
         <TableBody showRowHover>
           {items.map((item, index) => {
             return (
-              <ItemTableRow key={index} item={item} deactivate={deactivate} />
+              <ItemsTableRow key={index} item={item} deactivate={deactivate} />
             );
           })}
         </TableBody>
@@ -36,9 +36,9 @@ const ItemTable = ({ items, deactivate }) => {
   );
 };
 
-ItemTable.propTypes = {
+ItemsTable.propTypes = {
   items: PropTypes.array.isRequired,
   deactivate: PropTypes.func.isRequired,
 };
 
-export default ItemTable;
+export default ItemsTable;

@@ -3,16 +3,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import dateFns from 'date-fns';
 
+import history from '../../utilities/history';
+
 import { TableRow, TableRowColumn } from 'material-ui/Table';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
-import { browserHistory } from 'react-router';
 
 import ItemImage from '../common/itemImage';
 
-import './item.css';
+import './items.css';
 
-class ItemTableRow extends React.Component {
+class ItemsTableRow extends React.Component {
   constructor(props) {
     super(props);
 
@@ -21,7 +22,7 @@ class ItemTableRow extends React.Component {
   }
 
   navigateToEditLink(itemId) {
-    browserHistory.push(`item/${itemId}`);
+    history.push(`/dashboard/items/${itemId}`);
   }
 
   disabledText(itemDisabledState) {
@@ -77,9 +78,9 @@ class ItemTableRow extends React.Component {
   }
 }
 
-ItemTableRow.propTypes = {
+ItemsTableRow.propTypes = {
   item: PropTypes.object.isRequired,
   deactivate: PropTypes.func.isRequired,
 };
 
-export default ItemTableRow;
+export default ItemsTableRow;

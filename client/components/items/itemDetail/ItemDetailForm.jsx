@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import TextField from '../common/TextField.jsx';
-import SelectList from '../common/SelectList.jsx';
+import TextField from '../../common/TextField.jsx';
+import SelectList from '../../common/SelectList.jsx';
 import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
 import ItemImage from './ItemImage.jsx';
-import { itemPriceTypes } from '../../utilities/constants';
+import { itemPriceTypes } from '../../../utilities/constants';
 
 import './itemDetail.css';
 

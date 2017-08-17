@@ -5,14 +5,14 @@ import { browserHistory } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actionCreators from '../../actions/itemActions';
-import { itemPriceTypes } from '../../utilities/constants';
-import Snackbar from '../common/snackbar';
+import * as actionCreators from '../../../actions/itemActions';
+import { itemPriceTypes } from '../../../utilities/constants';
+import Snackbar from '../../common/snackbar';
 
 import './itemDetail.css';
 
 import ItemDetailForm from './ItemDetailForm.jsx';
-import Spinner from '../common/spinner/';
+import Spinner from '../../common/spinner/';
 
 export function setDefaultLabel(name) {
   return name.charAt(0).toUpperCase() + name.substring(1, 2);
@@ -242,7 +242,7 @@ export function mapStateToProps(state, ownProps) {
   const existingItem = items.find(
     stateItem =>
       //eslint-disable-next-line eqeqeq
-      stateItem.itemID == ownProps.params.id ||
+      stateItem.itemID == ownProps.match.params.id ||
       stateItem.itemID === item.itemID,
   );
 

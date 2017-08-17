@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
-import TextField from '../common/TextField.jsx';
-import SelectList from '../common/SelectList.jsx';
+import TextField from '../../common/TextField.jsx';
+import SelectList from '../../common/SelectList.jsx';
 import ItemImage from './ItemImage.jsx';
 
 import React from 'react';

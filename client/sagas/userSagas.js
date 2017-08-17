@@ -32,6 +32,7 @@ export function* getLoggedInUser() {
     if (!token) {
       yield call(removeUserToken);
       yield put(getLoggedInUserError());
+      yield call(history.push, '/login');
     } else {
       const endpoint = `${ACCOUNT_ENDPOINT}?token=${token}`;
       const response = yield call(api.get, endpoint);
@@ -50,6 +51,7 @@ export function* getLoggedInUser() {
       yield call(history.push, '/dashboard');
     }
   } catch (error) {
+    yield call(history.push, '/login');
     yield call(removeUserToken());
     yield put(getLoggedInUserError());
   }

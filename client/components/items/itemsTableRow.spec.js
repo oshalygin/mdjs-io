@@ -5,12 +5,12 @@ import FlatButton from 'material-ui/FlatButton';
 import sinon from 'sinon';
 
 import React from 'react';
-import ItemTableRow from './ItemTableRow.jsx';
+import ItemsTableRow from './ItemsTableRow.jsx';
 
 jest.dontMock('react-router');
 import { expect } from 'chai';
 
-describe('<ItemTableRow />', () => {
+describe('<ItemsTableRow />', () => {
   const props = {
     item: {
       itemID: 85,
@@ -31,7 +31,7 @@ describe('<ItemTableRow />', () => {
     const browserHistory = require('react-router').browserHistory;
     browserHistory.push = redirectSpy;
 
-    const wrapper = shallow(<ItemTableRow {...props} />);
+    const wrapper = shallow(<ItemsTableRow {...props} />);
 
     wrapper.find(FlatButton).simulate('click');
 
@@ -51,7 +51,7 @@ describe('<ItemTableRow />', () => {
     const browserHistory = require('react-router').browserHistory;
     browserHistory.push = redirectSpy;
 
-    const wrapper = shallow(<ItemTableRow {...updatedProps} />);
+    const wrapper = shallow(<ItemsTableRow {...updatedProps} />);
 
     wrapper.find(RaisedButton).simulate('click');
 

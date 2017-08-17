@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { browserHistory } from 'react-router';
+import history from '../../utilities/history';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import { bindActionCreators } from 'redux';
@@ -9,13 +9,13 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/itemActions';
 
 import TextField from '../common/TextField.jsx';
-import ItemTable from './ItemTable.jsx';
+import ItemsTable from './ItemsTable.jsx';
 
-import './item.css';
+import './items.css';
 
 const fullWidth = { width: '100%' };
 
-export class Item extends React.Component {
+export class Items extends React.Component {
   constructor(props, context) {
     super(props, context);
 
@@ -31,7 +31,7 @@ export class Item extends React.Component {
   }
 
   navigateToNewItemPage() {
-    browserHistory.push('item');
+    history.push('/dashboard/items/new');
   }
 
   deactivate(itemId) {
@@ -95,7 +95,7 @@ export class Item extends React.Component {
                   />
                 </div>
               </div>
-              <ItemTable items={items} deactivate={this.deactivate} />
+              <ItemsTable items={items} deactivate={this.deactivate} />
             </div>
           </div>
         </div>
@@ -104,7 +104,7 @@ export class Item extends React.Component {
   }
 }
 
-Item.propTypes = {
+Items.propTypes = {
   items: PropTypes.array.isRequired,
   itemActions: PropTypes.object.isRequired,
 };
@@ -120,4 +120,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Item);
+export default connect(mapStateToProps, mapDispatchToProps)(Items);

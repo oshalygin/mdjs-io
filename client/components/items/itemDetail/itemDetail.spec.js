@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import ItemDetail, { setDefaultLabel, mapStateToProps } from './index';
 
-import Spinner from '../common/spinner';
+import Spinner from '../../common/spinner';
 import sinon from 'sinon';
 
 jest.dontMock('react-router');

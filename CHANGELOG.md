@@ -1,3 +1,7 @@
+## 3.22.11 (August 16, 2017)
+
+- Update routing to handle `/dashboard/items/:id` and `/dashboard/items/new`.  Both of these routes are now handled through RR4 configuration at the item router level.
+
 ## 3.22.10 (August 15, 2017)
 
 - Remove Chrome's autocomplete styles altogether from the page.

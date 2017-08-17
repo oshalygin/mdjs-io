@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { IMAGE_ENDPOINT } from '../../utilities/endpoints';
+import { IMAGE_ENDPOINT } from '../../../utilities/endpoints';
 import DropZone from 'react-dropzone';
 
 export function getImageUrl(itemPreview) {

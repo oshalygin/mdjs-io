@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { browserHistory } from 'react-router';
+import history from '../../utilities/history';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import { bindActionCreators } from 'redux';
@@ -30,7 +30,7 @@ export class Categories extends React.Component {
   }
 
   navigateToNewCategoryPage() {
-    browserHistory.push('category');
+    history.push('category');
   }
 
   deactivate(categoryId) {

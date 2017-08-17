@@ -1,9 +1,10 @@
-import { browserHistory } from 'react-router';
 import { put, call, take, fork } from 'redux-saga/effects';
 import * as actionTypes from '../actions/actionTypes';
 import * as categoryActions from '../actions/categoryActions';
 
+import history from '../utilities/history';
 import api from '../utilities/api';
+
 import { CATEGORIES_ENDPOINT } from '../utilities/endpoints';
 
 export function* createCategory(category) {
@@ -15,7 +16,7 @@ export function* createCategory(category) {
 
     yield put(categoryActions.categoryCreatedSuccess(data));
     yield put(categoryActions.loadingCategoryCreationSuccess());
-    browserHistory.push('categories');
+    history.push('categories');
   } catch (error) {
     yield put(categoryActions.categoryCreationFailure());
   }
@@ -32,7 +33,7 @@ export function* updateCategory(category) {
 
     yield put(categoryActions.categoryUpdatedSuccess(data));
     yield put(categoryActions.loadingCategoryUpdateSuccess());
-    browserHistory.push('categories');
+    history.push('categories');
   } catch (error) {
     yield put(categoryActions.categoryUpdateFailure());
   }
