@@ -44,9 +44,6 @@ describe('<AuthorizedRoute />', () => {
     const actual = shallow(wrapper.find(Route).props().render()).find(Redirect)
       .length;
 
-    console.log('lolz');
-    console.log('afsdsafd');
-
     expect(actual).to.equal(expected);
   });
 

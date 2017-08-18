@@ -1,3 +1,7 @@
+## 3.22.18 (August 18, 2017)
+
+- Removed erroneous console.log statements
+
 ## 3.22.17 (August 18, 2017)
 
 - Update routing for `categories`.
