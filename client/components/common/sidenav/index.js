@@ -70,7 +70,7 @@ class SideBarNavigation extends React.Component {
             <li className={path.items}>
               <NavLink exact to="/dashboard/items" activeClassName="active">
                 <i className="fa fa-tasks" />
-                <span className="nav-label">Go Items</span>
+                <span className="nav-label">Items</span>
               </NavLink>
             </li>
             <li className={path.itemCategories}>
@@ -80,7 +80,7 @@ class SideBarNavigation extends React.Component {
                 activeClassName="active"
               >
                 <i className="fa fa-folder-open-o" />
-                <span className="nav-label">Go Categories</span>
+                <span className="nav-label">Categories</span>
               </NavLink>
             </li>
             <li className={path.modifiers}>

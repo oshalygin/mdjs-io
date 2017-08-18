@@ -1,3 +1,7 @@
+## 3.22.15 (August 17, 2017)
+
+- Updated sidenav to remove the `Go` prefix from Items and Categories
+
 ## 3.22.14 (August 17, 2017)
 
 - Update routing for `modifiers`.
