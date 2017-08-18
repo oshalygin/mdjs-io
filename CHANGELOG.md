@@ -1,3 +1,8 @@
+## 3.22.12 (August 17, 2017)
+
+- Updated routing folder structure for items to nest `items` and `itemDetail`.
+  - Refactored `browserHistory` to push via the history component.
+
 ## 3.22.11 (August 16, 2017)
 
 - Update routing to handle `/dashboard/items/:id` and `/dashboard/items/new`.  Both of these routes are now handled through RR4 configuration at the item router level.

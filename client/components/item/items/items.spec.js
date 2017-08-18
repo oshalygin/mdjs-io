@@ -8,7 +8,7 @@ import Item from './index';
 
 import { expect } from 'chai';
 
-describe('<Item />', () => {
+describe('<Items />', () => {
   const items = [
     {
       itemID: 1,

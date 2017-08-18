@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Items from './Items.jsx';
+import Items from './items';
 import ItemDetail from './itemDetail';
 
 export const ItemsRouter = ({ match }) => {

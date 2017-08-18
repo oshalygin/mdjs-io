@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import history from '../../utilities/history';
+import history from '../../../utilities/history';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actionCreators from '../../actions/itemActions';
+import * as actionCreators from '../../../actions/itemActions';
 
-import TextField from '../common/TextField.jsx';
+import TextField from '../../common/TextField.jsx';
 import ItemsTable from './ItemsTable.jsx';
 
 import './items.css';

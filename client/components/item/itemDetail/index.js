@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import { browserHistory } from 'react-router';
-import RaisedButton from 'material-ui/RaisedButton';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actionCreators from '../../../actions/itemActions';
-import { itemPriceTypes } from '../../../utilities/constants';
+
+import RaisedButton from 'material-ui/RaisedButton';
 import Snackbar from '../../common/snackbar';
+
+import { itemPriceTypes } from '../../../utilities/constants';
+import history from '../../../utilities/history';
 
 import './itemDetail.css';
 
@@ -105,7 +106,7 @@ class ItemDetailPage extends React.Component {
   }
 
   redirect() {
-    browserHistory.push('items');
+    history.push('/dashboard/items');
   }
 
   propertyIsValid(property, value, errors) {

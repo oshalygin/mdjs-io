@@ -3,13 +3,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import dateFns from 'date-fns';
 
-import history from '../../utilities/history';
+import history from '../../../utilities/history';
 
 import { TableRow, TableRowColumn } from 'material-ui/Table';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import ItemImage from '../common/itemImage';
+import ItemImage from '../../common/itemImage';
 
 import './items.css';
 
