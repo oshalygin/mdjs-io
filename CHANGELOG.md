@@ -1,3 +1,10 @@
+## 3.22.13 (August 17, 2017)
+
+- Update routing for `taxes`.
+  - Introduction of the `/new` route to handle creation
+  - Introduction of the `/taxes/:id` to handle editing
+  - Refactored browserHistory to use the internal history outer.
+
 ## 3.22.12 (August 17, 2017)
 
 - Updated routing folder structure for items to nest `items` and `itemDetail`.

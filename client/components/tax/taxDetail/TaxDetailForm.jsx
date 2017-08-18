@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-import TextField from '../common/TextField.jsx';
+import TextField from '../../common/TextField.jsx';
 
 import './taxDetail.css';
 

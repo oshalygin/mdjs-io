@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { browserHistory } from 'react-router';
+import history from '../../../utilities/history';
 import RaisedButton from 'material-ui/RaisedButton';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actionCreators from '../../actions/taxActions';
-import Snackbar from '../common/snackbar';
+import * as actionCreators from '../../../actions/taxActions';
+import Snackbar from '../../common/snackbar';
 
 import './taxDetail.css';
 
 import TaxDetailForm from './TaxDetailForm.jsx';
-import Spinner from '../common/spinner/';
+import Spinner from '../../common/spinner/';
 
 class TaxDetail extends React.Component {
   constructor(props, context) {
@@ -87,7 +87,7 @@ class TaxDetail extends React.Component {
   }
 
   redirect() {
-    browserHistory.push('taxes');
+    history.push('/dashboard/taxes');
   }
 
   propertyIsValid(property, value, errors) {
@@ -213,7 +213,11 @@ export function mapStateToProps(state, ownProps) {
   };
 
   const { taxes } = state;
-  const existingTax = taxes.find(stateTax => stateTax.taxID == ownProps.params.id || stateTax.taxID === tax.taxID); //eslint-disable-line
+  const existingTax = taxes.find(
+    stateTax =>
+      //eslint-disable-next-line
+      stateTax.taxID == ownProps.match.params.id || stateTax.taxID === tax.taxID,
+  );
 
   if (!!existingTax) {
     tax = { ...existingTax };

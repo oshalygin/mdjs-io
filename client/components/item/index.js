@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import Items from './items';
 import ItemDetail from './itemDetail';
 
-export const ItemsRouter = ({ match }) => {
+export const ItemRouter = ({ match }) => {
   const path = match.path;
 
   return (
@@ -18,8 +18,8 @@ export const ItemsRouter = ({ match }) => {
   );
 };
 
-ItemsRouter.propTypes = {
+ItemRouter.propTypes = {
   match: PropTypes.object.isRequired,
 };
 
-export default ItemsRouter;
+export default ItemRouter;

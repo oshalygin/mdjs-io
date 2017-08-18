@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { browserHistory } from 'react-router';
+import history from '../../../utilities/history';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actionCreators from '../../actions/taxActions';
+import * as actionCreators from '../../../actions/taxActions';
 
-import TextField from '../common/TextField.jsx';
+import TextField from '../../common/TextField.jsx';
 import TaxTable from './TaxTable.jsx';
 
 import './taxes.css';
@@ -30,7 +30,7 @@ export class Taxes extends React.Component {
   }
 
   navigateToNewTaxPage() {
-    browserHistory.push('tax');
+    history.push('/dashboard/taxes/new');
   }
 
   deactivate(taxId) {

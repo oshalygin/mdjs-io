@@ -14,9 +14,9 @@ import SearchBar from './common/SearchBar.jsx';
 import Spinner from './common/spinner';
 
 import Dashboard from './dashboard';
-import Item from './item';
+import ItemRouter from './item';
 import CategoriesPage from './categories';
-import TaxesPage from './taxes';
+import TaxRouter from './tax';
 import ModifiersPage from './modifiers';
 import DiscountPage from './discounts';
 import OrderPage from './orders';
@@ -43,13 +43,13 @@ class DashboardApplication extends React.Component {
                     <Route exact path={`${path}`} component={Dashboard} />
                     <Route
                       path={`${this.props.match.path}/items`}
-                      component={Item}
+                      component={ItemRouter}
                     />
                     <Route
                       path={`${path}/categories`}
                       component={CategoriesPage}
                     />
-                    <Route path={`${path}/taxes`} component={TaxesPage} />
+                    <Route path={`${path}/taxes`} component={TaxRouter} />
                     <Route
                       path={`${path}/modifiers`}
                       component={ModifiersPage}
