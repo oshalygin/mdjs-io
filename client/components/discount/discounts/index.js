@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { browserHistory } from 'react-router';
+import history from '../../../utilities/history';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actionCreators from '../../actions/discountActions';
+import * as actionCreators from '../../../actions/discountActions';
 
-import TextField from '../common/TextField.jsx';
+import TextField from '../../common/TextField.jsx';
 import DiscountTable from './DiscountTable.jsx';
 
 import './discounts.css';
@@ -30,7 +30,7 @@ export class Discounts extends React.Component {
   }
 
   navigateToNewDiscountPage() {
-    browserHistory.push('discount');
+    history.push('/dashboard/discounts/new');
   }
 
   deactivate(discountId) {

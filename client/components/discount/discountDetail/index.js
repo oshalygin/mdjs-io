@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { browserHistory } from 'react-router';
+import history from '../../../utilities/history';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actionCreators from '../../actions/discountActions';
-import Snackbar from '../common/snackbar';
+import * as actionCreators from '../../../actions/discountActions';
+import Snackbar from '../../common/snackbar';
 
 import './discountDetail.css';
 
 import DiscountDetailForm from './DiscountDetailForm.jsx';
-import Spinner from '../common/spinner/';
+import Spinner from '../../common/spinner/';
 
 class DiscountDetail extends React.Component {
   constructor(props, context) {
@@ -93,7 +93,7 @@ class DiscountDetail extends React.Component {
   }
 
   redirect() {
-    browserHistory.push('discounts');
+    history.push('/dashboard/discounts');
   }
 
   propertyIsValid(property, value, errors) {
@@ -223,7 +223,7 @@ export function mapStateToProps(state, ownProps) {
   const existingDiscount = discounts.find(
     stateDiscount =>
       //eslint-disable-next-line eqeqeq
-      stateDiscount.discountID == ownProps.params.id ||
+      stateDiscount.discountID == ownProps.match.params.id ||
       stateDiscount.discountID === discount.discountID,
   );
 

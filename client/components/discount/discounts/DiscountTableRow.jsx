@@ -6,7 +6,7 @@ import dateFns from 'date-fns';
 import { TableRow, TableRowColumn } from 'material-ui/Table';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
-import { browserHistory } from 'react-router';
+import history from '../../../utilities/history';
 
 import './discounts.css';
 
@@ -19,7 +19,7 @@ class DiscountTableRow extends React.Component {
   }
 
   navigateToEditLink(discountId) {
-    browserHistory.push(`discount/${discountId}`);
+    history.push(`/dashboard/discounts/${discountId}`);
   }
 
   disabledText(discountDisabledState) {

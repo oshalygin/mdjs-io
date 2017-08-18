@@ -18,7 +18,7 @@ import ItemRouter from './item';
 import CategoriesPage from './categories';
 import TaxRouter from './tax';
 import ModifierRouter from './modifier';
-import DiscountPage from './discounts';
+import DiscountRouter from './discount';
 import OrderPage from './orders';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -56,7 +56,7 @@ class DashboardApplication extends React.Component {
                     />
                     <Route
                       path={`${path}/discounts`}
-                      component={DiscountPage}
+                      component={DiscountRouter}
                     />
                     <Route path={`${path}/orders`} component={OrderPage} />
                     <Redirect to="/" />
