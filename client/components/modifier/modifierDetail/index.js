@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { browserHistory } from 'react-router';
+import history from '../../../utilities/history';
 import RaisedButton from 'material-ui/RaisedButton';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actionCreators from '../../actions/modifierActions';
-import Snackbar from '../common/snackbar';
+import * as actionCreators from '../../../actions/modifierActions';
+import Snackbar from '../../common/snackbar';
 
 import './modifierDetail.css';
 
 import ModifierDetailForm from './ModifierDetailForm.jsx';
-import Spinner from '../common/spinner/';
+import Spinner from '../../common/spinner/';
 
 class ModifierDetail extends React.Component {
   constructor(props, context) {
@@ -87,7 +87,7 @@ class ModifierDetail extends React.Component {
   }
 
   redirect() {
-    browserHistory.push('modifiers');
+    history.push('/dashboard/modifiers');
   }
 
   propertyIsValid(property, value, errors) {
@@ -200,7 +200,7 @@ export function mapStateToProps(state, ownProps) {
   const existingModifier = modifiers.find(
     stateModifier =>
       //eslint-disable-next-line eqeqeq
-      stateModifier.modifierID == ownProps.params.id ||
+      stateModifier.modifierID == ownProps.match.params.id ||
       stateModifier.modifierID === modifier.modifierID,
   );
 

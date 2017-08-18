@@ -1,5 +1,5 @@
 import { shallow } from 'enzyme';
-import TextField from '../common/TextField.jsx';
+import TextField from '../../common/TextField.jsx';
 
 import React from 'react';
 import ModifierDetailForm from './ModifierDetailForm.jsx';

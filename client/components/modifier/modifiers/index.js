@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { browserHistory } from 'react-router';
+import history from '../../../utilities/history';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actionCreators from '../../actions/modifierActions';
+import * as actionCreators from '../../../actions/modifierActions';
 
-import TextField from '../common/TextField.jsx';
+import TextField from '../../common/TextField.jsx';
 import ModifierTable from './ModifierTable.jsx';
 
 import './modifiers.css';
@@ -30,7 +30,7 @@ export class Modifiers extends React.Component {
   }
 
   navigateToNewModifierPage() {
-    browserHistory.push('modifier');
+    history.push('/dashboard/modifiers/new');
   }
 
   deactivate(modifierId) {

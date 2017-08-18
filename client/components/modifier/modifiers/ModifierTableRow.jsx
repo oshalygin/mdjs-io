@@ -6,7 +6,7 @@ import dateFns from 'date-fns';
 import { TableRow, TableRowColumn } from 'material-ui/Table';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
-import { browserHistory } from 'react-router';
+import history from '../../../utilities/history';
 
 import './modifiers.css';
 
@@ -19,7 +19,7 @@ class ModifierTableRow extends React.Component {
   }
 
   navigateToEditLink(modifierId) {
-    browserHistory.push(`modifier/${modifierId}`);
+    history.push(`/dashboard/modifiers/${modifierId}`);
   }
 
   disabledText(modifierDisabledState) {

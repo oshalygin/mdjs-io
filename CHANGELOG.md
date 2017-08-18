@@ -1,3 +1,10 @@
+## 3.22.14 (August 17, 2017)
+
+- Update routing for `modifiers`.
+  - Introduction of the `/new` route to handle creation
+  - Introduction of the `/modifiers/:id` to handle editing
+  - Refactored browserHistory to use the internal history outer.
+
 ## 3.22.13 (August 17, 2017)
 
 - Update routing for `taxes`.

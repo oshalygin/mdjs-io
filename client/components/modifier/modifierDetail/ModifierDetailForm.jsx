@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import TextField from '../common/TextField.jsx';
+import TextField from '../../common/TextField.jsx';
 import './modifierDetail.css';
 
 const ModifierDetialForm = ({ modifier, errors, onChange }) => {

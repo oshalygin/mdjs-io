@@ -17,7 +17,7 @@ import Dashboard from './dashboard';
 import ItemRouter from './item';
 import CategoriesPage from './categories';
 import TaxRouter from './tax';
-import ModifiersPage from './modifiers';
+import ModifierRouter from './modifier';
 import DiscountPage from './discounts';
 import OrderPage from './orders';
 
@@ -52,7 +52,7 @@ class DashboardApplication extends React.Component {
                     <Route path={`${path}/taxes`} component={TaxRouter} />
                     <Route
                       path={`${path}/modifiers`}
-                      component={ModifiersPage}
+                      component={ModifierRouter}
                     />
                     <Route
                       path={`${path}/discounts`}
