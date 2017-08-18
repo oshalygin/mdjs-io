@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { browserHistory } from 'react-router';
+import history from '../../../utilities/history';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as actionCreators from '../../actions/categoryActions';
-import Snackbar from '../common/snackbar';
+import * as actionCreators from '../../../actions/categoryActions';
+import Snackbar from '../../common/snackbar';
 
 import './categoryDetail.css';
 
 import CategoryDetailForm from './CategoryDetailForm.jsx';
-import Spinner from '../common/spinner/';
+import Spinner from '../../common/spinner/';
 
 class CategoryDetail extends React.Component {
   constructor(props, context) {
@@ -78,7 +78,7 @@ class CategoryDetail extends React.Component {
   }
 
   redirect() {
-    browserHistory.push('categories');
+    history.push('/dashboard/categories');
   }
 
   propertyIsValid(property, value, errors) {
@@ -190,7 +190,7 @@ export function mapStateToProps(state, ownProps) {
   const existingCategory = categories.find(
     stateCategory =>
       //eslint-disable-next-line eqeqeq
-      stateCategory.categoryID == ownProps.params.id ||
+      stateCategory.categoryID == ownProps.match.params.id ||
       stateCategory.categoryID === category.categoryID,
   );
 

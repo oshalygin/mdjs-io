@@ -16,7 +16,7 @@ export function* createCategory(category) {
 
     yield put(categoryActions.categoryCreatedSuccess(data));
     yield put(categoryActions.loadingCategoryCreationSuccess());
-    history.push('categories');
+    history.push('/dashboard/categories');
   } catch (error) {
     yield put(categoryActions.categoryCreationFailure());
   }
@@ -33,7 +33,7 @@ export function* updateCategory(category) {
 
     yield put(categoryActions.categoryUpdatedSuccess(data));
     yield put(categoryActions.loadingCategoryUpdateSuccess());
-    history.push('categories');
+    history.push('/dashboard/categories');
   } catch (error) {
     yield put(categoryActions.categoryUpdateFailure());
   }

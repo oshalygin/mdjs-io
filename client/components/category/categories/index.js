@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import history from '../../utilities/history';
+import history from '../../../utilities/history';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actionCreators from '../../actions/categoryActions';
+import * as actionCreators from '../../../actions/categoryActions';
 
-import TextField from '../common/TextField.jsx';
+import TextField from '../../common/TextField.jsx';
 import CategoriesTable from './CategoriesTable.jsx';
 
 import './categories.css';
@@ -30,7 +30,7 @@ export class Categories extends React.Component {
   }
 
   navigateToNewCategoryPage() {
-    history.push('category');
+    history.push('/dashboard/categories/new');
   }
 
   deactivate(categoryId) {

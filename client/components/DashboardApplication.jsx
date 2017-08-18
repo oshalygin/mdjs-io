@@ -15,7 +15,7 @@ import Spinner from './common/spinner';
 
 import Dashboard from './dashboard';
 import ItemRouter from './item';
-import CategoriesPage from './categories';
+import CategoryRouter from './category';
 import TaxRouter from './tax';
 import ModifierRouter from './modifier';
 import DiscountRouter from './discount';
@@ -47,7 +47,7 @@ class DashboardApplication extends React.Component {
                     />
                     <Route
                       path={`${path}/categories`}
-                      component={CategoriesPage}
+                      component={CategoryRouter}
                     />
                     <Route path={`${path}/taxes`} component={TaxRouter} />
                     <Route

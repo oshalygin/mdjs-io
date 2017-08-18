@@ -6,7 +6,7 @@ import dateFns from 'date-fns';
 import { TableRow, TableRowColumn } from 'material-ui/Table';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
-import { browserHistory } from 'react-router';
+import history from '../../../utilities/history';
 
 import './categories.css';
 
@@ -19,7 +19,7 @@ class CategoriesTableRow extends React.Component {
   }
 
   navigateToEditLink(categoryId) {
-    browserHistory.push(`category/${categoryId}`);
+    history.push(`/dashboard/categories/${categoryId}`);
   }
 
   disabledText(categoryDisabledState) {

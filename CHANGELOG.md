@@ -1,3 +1,10 @@
+## 3.22.17 (August 18, 2017)
+
+- Update routing for `categories`.
+  - Introduction of the `/new` route to handle creation
+  - Introduction of the `/categories/:id` to handle editing
+  - Refactored browserHistory to use the internal history outer.
+
 ## 3.22.16 (August 17, 2017)
 
 - Update routing for `discounts`.
