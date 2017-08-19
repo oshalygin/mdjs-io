@@ -10,7 +10,7 @@ export const ItemRouter = ({ match }) => {
   return (
     <div>
       <Switch>
-        <Route exact path={`${path}`} component={Items} />
+        <Route exact path={`${path}`} component={Items} />x
         <Route path={`${path}/:id`} component={ItemDetail} />
         <Route exact path={`${path}/new`} component={ItemDetail} />
       </Switch>

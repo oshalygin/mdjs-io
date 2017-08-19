@@ -110,8 +110,10 @@ describe('<TaxDetail />', () => {
       taxes,
     };
     const ownProps = {
-      params: {
-        id: null,
+      match: {
+        params: {
+          id: null,
+        },
       },
     };
 
@@ -126,8 +128,10 @@ describe('<TaxDetail />', () => {
       taxes,
     };
     const ownProps = {
-      params: {
-        id: 19,
+      match: {
+        params: {
+          id: 19,
+        },
       },
     };
 
@@ -158,8 +162,10 @@ describe('<TaxDetail />', () => {
       taxes,
     };
     const ownProps = {
-      params: {
-        id: null,
+      match: {
+        params: {
+          id: null,
+        },
       },
     };
 

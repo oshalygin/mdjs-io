@@ -1,4 +1,4 @@
-module.exports = function (wallaby) {
+module.exports = function(wallaby) {
   'use strict';
   return {
     debug: true,
@@ -13,42 +13,41 @@ module.exports = function (wallaby) {
       'utilities/fileMock.js',
       'utilities/logger.js',
       'utilities/configuration.js',
-      { pattern: '/**/*.png', load: 'null' }
+      { pattern: '/**/*.png', load: 'null' },
     ],
 
-    tests: [
-      'client/**/*.spec.js',
-      'server/**/*.spec.js'
-    ],
+    tests: ['client/**/*.spec.js', 'server/**/*.spec.js'],
     env: {
       type: 'node',
       params: {
-        env: 'NODE_ENV=test;DOMAIN_ENDPOINT=http://www.foobar.com;'
-      }
+        env: 'NODE_ENV=test;DOMAIN_ENDPOINT=http://www.foobar.com;',
+      },
     },
     testFramework: 'jest',
     compilers: {
       '**/*.js*': wallaby.compilers.babel({
         presets: ['latest', 'react', 'stage-1'],
-        plugins: ['transform-object-rest-spread', [
-          'transform-runtime',
-          {
-            polyfill: false
-          }
-        ],
+        plugins: [
+          'transform-object-rest-spread',
+          [
+            'transform-runtime',
+            {
+              polyfill: false,
+            },
+          ],
           [
             'react-css-modules',
             {
-              generateScopedName: '[local]'
-            }
-          ]
-        ]
-      })
-    }
+              generateScopedName: '[local]',
+            },
+          ],
+        ],
+      }),
+    },
     // Toggle when you experience caching issues
 
-    // , workers: {
-    //   recycle: true
-    // }
+    // workers: {
+    //   recycle: true,
+    // },
   };
 };

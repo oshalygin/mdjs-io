@@ -240,6 +240,7 @@ export function mapStateToProps(state, ownProps) {
   };
 
   const { items } = state;
+
   const existingItem = items.find(
     stateItem =>
       //eslint-disable-next-line eqeqeq

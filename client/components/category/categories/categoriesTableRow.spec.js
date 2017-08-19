@@ -7,7 +7,6 @@ import sinon from 'sinon';
 import React from 'react';
 import CategoriesTableRow from './CategoriesTableRow.jsx';
 
-jest.dontMock('react-router');
 import { expect } from 'chai';
 
 describe('<CategoriesTableRow />', () => {
@@ -55,7 +54,7 @@ describe('<CategoriesTableRow />', () => {
     };
 
     const redirectSpy = sinon.spy();
-    const browserHistory = require('react-router').browserHistory;
+    const browserHistory = require('../../../utilities/history').push;
     browserHistory.push = redirectSpy;
 
     const wrapper = shallow(<CategoriesTableRow {...updatedProps} />);

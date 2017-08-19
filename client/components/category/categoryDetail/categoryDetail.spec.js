@@ -78,8 +78,10 @@ describe('<CategoryDetail />', () => {
       categories,
     };
     const ownProps = {
-      params: {
-        id: null,
+      match: {
+        params: {
+          id: null,
+        },
       },
     };
 
@@ -94,8 +96,10 @@ describe('<CategoryDetail />', () => {
       categories,
     };
     const ownProps = {
-      params: {
-        id: 1,
+      match: {
+        params: {
+          id: 1,
+        },
       },
     };
 
@@ -110,8 +114,10 @@ describe('<CategoryDetail />', () => {
       categories,
     };
     const ownProps = {
-      params: {
-        id: 1,
+      match: {
+        params: {
+          id: 1,
+        },
       },
     };
 
@@ -126,8 +132,10 @@ describe('<CategoryDetail />', () => {
       categories,
     };
     const ownProps = {
-      params: {
-        id: null,
+      match: {
+        params: {
+          id: null,
+        },
       },
     };
 

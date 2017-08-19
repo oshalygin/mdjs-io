@@ -69,8 +69,10 @@ describe('<ModifierDetail />', () => {
       modifiers,
     };
     const ownProps = {
-      params: {
-        id: null,
+      match: {
+        params: {
+          id: null,
+        },
       },
     };
 
@@ -85,8 +87,10 @@ describe('<ModifierDetail />', () => {
       modifiers,
     };
     const ownProps = {
-      params: {
-        id: 3,
+      match: {
+        params: {
+          id: 3,
+        },
       },
     };
 
@@ -101,8 +105,10 @@ describe('<ModifierDetail />', () => {
       modifiers,
     };
     const ownProps = {
-      params: {
-        id: 3,
+      match: {
+        params: {
+          id: 3,
+        },
       },
     };
 
@@ -118,8 +124,10 @@ describe('<ModifierDetail />', () => {
     };
 
     const ownProps = {
-      params: {
-        id: null,
+      match: {
+        params: {
+          id: null,
+        },
       },
     };
 

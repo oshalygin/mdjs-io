@@ -112,8 +112,10 @@ describe('<DiscountDetail />', () => {
       discounts,
     };
     const ownProps = {
-      params: {
-        id: null,
+      match: {
+        params: {
+          id: null,
+        },
       },
     };
 
@@ -128,8 +130,10 @@ describe('<DiscountDetail />', () => {
       discounts,
     };
     const ownProps = {
-      params: {
-        id: 31,
+      match: {
+        params: {
+          id: 31,
+        },
       },
     };
 
@@ -144,8 +148,10 @@ describe('<DiscountDetail />', () => {
       discounts,
     };
     const ownProps = {
-      params: {
-        id: 31,
+      match: {
+        params: {
+          id: 31,
+        },
       },
     };
 
@@ -160,8 +166,10 @@ describe('<DiscountDetail />', () => {
       discounts,
     };
     const ownProps = {
-      params: {
-        id: null,
+      match: {
+        params: {
+          id: null,
+        },
       },
     };
 

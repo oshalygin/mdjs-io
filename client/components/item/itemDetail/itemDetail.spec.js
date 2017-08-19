@@ -129,8 +129,10 @@ describe('<ItemDetail />', () => {
       items,
     };
     const ownProps = {
-      params: {
-        id: null,
+      match: {
+        params: {
+          id: null,
+        },
       },
     };
 
@@ -145,8 +147,10 @@ describe('<ItemDetail />', () => {
       items,
     };
     const ownProps = {
-      params: {
-        id: 1,
+      match: {
+        params: {
+          id: 1,
+        },
       },
     };
 
@@ -161,8 +165,10 @@ describe('<ItemDetail />', () => {
       items,
     };
     const ownProps = {
-      params: {
-        id: 1,
+      match: {
+        params: {
+          id: 1,
+        },
       },
     };
 
@@ -177,8 +183,10 @@ describe('<ItemDetail />', () => {
       items,
     };
     const ownProps = {
-      params: {
-        id: null,
+      match: {
+        params: {
+          id: null,
+        },
       },
     };
 
@@ -194,8 +202,10 @@ describe('<ItemDetail />', () => {
       categories,
     };
     const ownProps = {
-      params: {
-        id: null,
+      match: {
+        params: {
+          id: null,
+        },
       },
     };
 

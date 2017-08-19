@@ -1,3 +1,7 @@
+## 3.22.19 (August 18, 2017)
+
+- Fix various tests to check for `match.params.id` instead of the `params.id` which was for RR3.
+
 ## 3.22.18 (August 18, 2017)
 
 - Removed erroneous console.log statements
