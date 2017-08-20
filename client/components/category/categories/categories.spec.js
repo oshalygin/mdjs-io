@@ -55,8 +55,8 @@ describe('<Categories />', () => {
 
   it('should navigate to the "category" route when navigateToNewCategoryPage is called', () => {
     const redirectSpy = sinon.spy();
-    const browserHistory = require('react-router').browserHistory;
-    browserHistory.push = redirectSpy;
+    const history = require('../../../utilities/history').default;
+    history.push = redirectSpy;
 
     const expected = true;
     const wrapper = shallow(<Categories.WrappedComponent {...props} />);
@@ -64,7 +64,7 @@ describe('<Categories />', () => {
     const instance = wrapper.instance();
     instance.navigateToNewCategoryPage();
 
-    const actual = redirectSpy.calledWith('category');
+    const actual = redirectSpy.calledWith('/dashboard/categories/new');
 
     expect(actual).equals(expected);
   });

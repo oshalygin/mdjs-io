@@ -35,14 +35,16 @@ describe('<TaxTableRow />', () => {
     const expected = true;
 
     const redirectSpy = sinon.spy();
-    const browserHistory = require('react-router').browserHistory;
-    browserHistory.push = redirectSpy;
+    const history = require('../../../utilities/history').default;
+    history.push = redirectSpy;
 
     const wrapper = shallow(<TaxTableRow {...props} />);
 
     wrapper.find(FlatButton).simulate('click');
 
-    const actual = redirectSpy.calledWith(`tax/${props.tax.taxID}`);
+    const actual = redirectSpy.calledWith(
+      `/dashboard/taxes/${props.tax.taxID}`,
+    );
     expect(actual).equals(expected);
   });
 
@@ -55,8 +57,8 @@ describe('<TaxTableRow />', () => {
     };
 
     const redirectSpy = sinon.spy();
-    const browserHistory = require('react-router').browserHistory;
-    browserHistory.push = redirectSpy;
+    const history = require('../../../utilities/history').default;
+    history.push = redirectSpy;
 
     const wrapper = shallow(<TaxTableRow {...updatedProps} />);
 

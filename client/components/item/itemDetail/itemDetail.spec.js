@@ -233,8 +233,8 @@ describe('<ItemDetail />', () => {
 
   it('should navigate back to the "items" page if the back button is clicked', () => {
     const redirectSpy = sinon.spy();
-    const browserHistory = require('react-router').browserHistory;
-    browserHistory.push = redirectSpy;
+    const history = require('../../../utilities/history').default;
+    history.push = redirectSpy;
 
     const expected = true;
     const wrapper = shallow(<ItemDetail.WrappedComponent {...props} />);
@@ -242,7 +242,7 @@ describe('<ItemDetail />', () => {
     const instance = wrapper.instance();
     instance.redirect();
 
-    const actual = redirectSpy.calledWith('items');
+    const actual = redirectSpy.calledWith('/dashboard/items');
 
     expect(actual).equals(expected);
   });
@@ -342,8 +342,8 @@ describe('<ItemDetail />', () => {
 
   it('should call "updateItem" with the item that was passed in to onSave along but with updated price and label', () => {
     const redirectSpy = sinon.spy();
-    const browserHistory = require('react-router').browserHistory;
-    browserHistory.push = redirectSpy;
+    const history = require('../../../utilities/history').default;
+    history.push = redirectSpy;
 
     const createItemSpy = sinon.stub().returns({
       then() {
@@ -382,8 +382,8 @@ describe('<ItemDetail />', () => {
 
   it('should call "updateItem" with the item that was passed in to onSave along but with the label that was passed in', () => {
     const redirectSpy = sinon.spy();
-    const browserHistory = require('react-router').browserHistory;
-    browserHistory.push = redirectSpy;
+    const history = require('../../../utilities/history').default;
+    history.push = redirectSpy;
 
     const createItemSpy = sinon.stub().returns({
       then() {

@@ -5,7 +5,7 @@ import reducer from './loadingReducer';
 describe('Reducer - Loading', () => {
   const getInitialState = () => {
     return {
-      loadingUser: false,
+      loadingUser: true,
       loadingOrders: true,
       loadingMonthlySummary: true,
     };

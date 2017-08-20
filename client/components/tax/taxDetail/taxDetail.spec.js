@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import TaxDetail, { mapStateToProps } from './index';
-import Spinner from '../common/spinner';
+import Spinner from '../../common/spinner';
 import sinon from 'sinon';
 
 jest.dontMock('react-router');
@@ -146,8 +146,10 @@ describe('<TaxDetail />', () => {
       taxes,
     };
     const ownProps = {
-      params: {
-        id: 19,
+      match: {
+        params: {
+          id: 19,
+        },
       },
     };
 
@@ -193,8 +195,8 @@ describe('<TaxDetail />', () => {
 
   it('should navigate back to the "taxes" page if the back button is clicked', () => {
     const redirectSpy = sinon.spy();
-    const browserHistory = require('react-router').browserHistory;
-    browserHistory.push = redirectSpy;
+    const history = require('../../../utilities/history').default;
+    history.push = redirectSpy;
 
     const expected = true;
     const wrapper = shallow(<TaxDetail.WrappedComponent {...props} />);
@@ -202,7 +204,7 @@ describe('<TaxDetail />', () => {
     const instance = wrapper.instance();
     instance.redirect();
 
-    const actual = redirectSpy.calledWith('taxes');
+    const actual = redirectSpy.calledWith('/dashboard/taxes');
 
     expect(actual).equals(expected);
   });
@@ -296,8 +298,8 @@ describe('<TaxDetail />', () => {
 
   it('should call "updateTax" with the category that was passed in to onSave', () => {
     const redirectSpy = sinon.spy();
-    const browserHistory = require('react-router').browserHistory;
-    browserHistory.push = redirectSpy;
+    const history = require('../../../utilities/history').default;
+    history.push = redirectSpy;
 
     const createTaxSpy = sinon.stub().returns({
       then() {

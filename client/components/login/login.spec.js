@@ -83,8 +83,8 @@ describe('<Login />', () => {
 
   it('should redirect to the dashboard if the redirect function is called', () => {
     const redirectSpy = sinon.spy();
-    const browserHistory = require('react-router').browserHistory;
-    browserHistory.push = redirectSpy;
+    const history = require('../../utilities/history').default;
+    history.push = redirectSpy;
 
     const expected = false;
     const instance = shallow(<Login.WrappedComponent {...props} />).instance();
@@ -92,7 +92,6 @@ describe('<Login />', () => {
     instance.redirect();
 
     const actual = instance.state.notification;
-
     expect(actual).equals(expected);
   });
 });

@@ -36,15 +36,15 @@ describe('<DiscountTableRow />', () => {
     const expected = true;
 
     const redirectSpy = sinon.spy();
-    const browserHistory = require('react-router').browserHistory;
-    browserHistory.push = redirectSpy;
+    const history = require('../../../utilities/history').default;
+    history.push = redirectSpy;
 
     const wrapper = shallow(<DiscountTableRow {...props} />);
 
     wrapper.find(FlatButton).simulate('click');
 
     const actual = redirectSpy.calledWith(
-      `discount/${props.discount.discountID}`,
+      `/dashboard/discounts/${props.discount.discountID}`,
     );
     expect(actual).equals(expected);
   });
@@ -58,8 +58,8 @@ describe('<DiscountTableRow />', () => {
     };
 
     const redirectSpy = sinon.spy();
-    const browserHistory = require('react-router').browserHistory;
-    browserHistory.push = redirectSpy;
+    const history = require('../../../utilities/history').default;
+    history.push = redirectSpy;
 
     const wrapper = shallow(<DiscountTableRow {...updatedProps} />);
 

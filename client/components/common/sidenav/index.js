@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
-import { browserHistory } from 'react-router';
+import history from '../../../utilities/history';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -31,17 +31,12 @@ class SideBarNavigation extends React.Component {
     super();
 
     this.state = {};
-    this.navigateToPortal = this.navigateToPortal.bind(this);
     this.logout = this.logout.bind(this);
-  }
-
-  navigateToPortal(portal) {
-    browserHistory.push(`/${portal}`);
   }
 
   logout() {
     this.props.userActions.logout();
-    browserHistory.push('login');
+    history.push('/login');
   }
 
   render() {

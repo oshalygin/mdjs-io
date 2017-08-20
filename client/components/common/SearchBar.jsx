@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import $ from 'jquery'; //eslint-disable-line
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import * as actionCreators from '../../actions/userActions';
+import history from '../../utilities/history';
+
+import $ from 'jquery'; //eslint-disable-line
 
 class SearchBar extends React.Component {
   constructor(props, context) {
@@ -19,7 +21,7 @@ class SearchBar extends React.Component {
   }
 
   logout() {
-    const { userActions, history } = this.props;
+    const { userActions } = this.props;
     userActions.logout();
     history.push('/login');
   }

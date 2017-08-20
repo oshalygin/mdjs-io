@@ -56,8 +56,8 @@ describe('<Modifiers />', () => {
 
   it('should navigate to the "modifier" route when navigateToNewModifierPage is called', () => {
     const redirectSpy = sinon.spy();
-    const browserHistory = require('react-router').browserHistory;
-    browserHistory.push = redirectSpy;
+    const history = require('../../../utilities/history').default;
+    history.push = redirectSpy;
 
     const expected = true;
     const wrapper = shallow(<Modifiers.WrappedComponent {...props} />);
@@ -65,8 +65,7 @@ describe('<Modifiers />', () => {
     const instance = wrapper.instance();
     instance.navigateToNewModifierPage();
 
-    const actual = redirectSpy.calledWith('modifier');
-
+    const actual = redirectSpy.calledWith('/dashboard/modifiers/new');
     expect(actual).equals(expected);
   });
 

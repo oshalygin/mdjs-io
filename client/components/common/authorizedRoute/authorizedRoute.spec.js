@@ -3,6 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
+import sinon from 'sinon';
 
 import AuthorizedRoute from './index';
 import Spinner from '../spinner';
@@ -11,6 +12,9 @@ describe('<AuthorizedRoute />', () => {
   const props = {
     loading: true,
     user: {},
+    userActions: {
+      retrieveLoggedInUser() {},
+    },
   };
 
   it('should be wrapped in a <Route /> component from react-router', () => {
@@ -19,7 +23,7 @@ describe('<AuthorizedRoute />', () => {
     const wrapper = shallow(<AuthorizedRoute.WrappedComponent {...props} />);
     const actual = wrapper.find(Route).length;
 
-    expect(actual).to.equal(expected);
+    expect(actual).equals(expected);
   });
 
   it('should set the render props to contain a <Spinner /> component if loading is true', () => {
@@ -29,7 +33,7 @@ describe('<AuthorizedRoute />', () => {
     const actual = shallow(wrapper.find(Route).props().render()).find(Spinner)
       .length;
 
-    expect(actual).to.equal(expected);
+    expect(actual).equals(expected);
   });
 
   it('should set the render props to contain a <Redirect /> to login if loggedIn is false', () => {
@@ -44,7 +48,7 @@ describe('<AuthorizedRoute />', () => {
     const actual = shallow(wrapper.find(Route).props().render()).find(Redirect)
       .length;
 
-    expect(actual).to.equal(expected);
+    expect(actual).equals(expected);
   });
 
   it('should set the render props to contain the passed in component if loggedIn is true', () => {
@@ -54,15 +58,35 @@ describe('<AuthorizedRoute />', () => {
       ...props,
       loading: false,
       user: { firstName: 'Oleg', lastName: 'Shalygin' },
-      Component: Spinner,
+      component: Spinner,
     };
     const wrapper = shallow(
       <AuthorizedRoute.WrappedComponent {...updatedProps} />,
     );
     const actual = shallow(wrapper.first().props().render()).find(
-      updatedProps.Component,
+      updatedProps.component,
     ).length;
 
-    expect(actual).to.equal(expected);
+    expect(actual).equals(expected);
+  });
+
+  it('should call retrieveLoggedInUser on componentWillMount', () => {
+    const expected = true;
+
+    const retrieveLoggedInUserSpy = sinon.spy();
+    const updatedProps = {
+      ...props,
+      userActions: {
+        retrieveLoggedInUser: retrieveLoggedInUserSpy,
+      },
+    };
+
+    const wrapper = shallow(
+      <AuthorizedRoute.WrappedComponent {...updatedProps} />,
+    );
+    wrapper.instance();
+
+    const actual = retrieveLoggedInUserSpy.called;
+    expect(actual).equals(expected);
   });
 });

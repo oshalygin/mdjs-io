@@ -38,8 +38,8 @@ describe('<SideNav />', () => {
     };
 
     const redirectSpy = sinon.spy();
-    const browserHistory = require('react-router').browserHistory;
-    browserHistory.push = redirectSpy;
+    const history = require('../../../utilities/history').default;
+    history.push = redirectSpy;
 
     const expected = true;
     const instance = shallow(
@@ -47,7 +47,7 @@ describe('<SideNav />', () => {
     ).instance();
     instance.logout();
 
-    const actual = redirectSpy.calledWith('login');
+    const actual = redirectSpy.calledWith('/login');
     expect(actual).to.equal(expected);
   });
 
@@ -61,8 +61,8 @@ describe('<SideNav />', () => {
     };
 
     const redirectSpy = sinon.spy();
-    const browserHistory = require('react-router').browserHistory;
-    browserHistory.push = redirectSpy;
+    const history = require('../../../utilities/history').default;
+    history.push = redirectSpy;
 
     const expected = true;
     const instance = shallow(

@@ -1,3 +1,8 @@
+## 3.22.20 (August 19, 2017)
+
+- Fix various tests that were using RR3 `browserHistory`.
+- Various refactoring to leverage the `history` component.
+
 ## 3.22.19 (August 18, 2017)
 
 - Fix various tests to check for `match.params.id` instead of the `params.id` which was for RR3.

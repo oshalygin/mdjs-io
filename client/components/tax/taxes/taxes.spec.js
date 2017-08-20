@@ -58,8 +58,8 @@ describe('<Taxes />', () => {
 
   it('should navigate to the "tax" route when navigateToNewTaxPage is called', () => {
     const redirectSpy = sinon.spy();
-    const browserHistory = require('react-router').browserHistory;
-    browserHistory.push = redirectSpy;
+    const history = require('../../../utilities/history').default;
+    history.push = redirectSpy;
 
     const expected = true;
     const wrapper = shallow(<Taxes.WrappedComponent {...props} />);
@@ -67,7 +67,7 @@ describe('<Taxes />', () => {
     const instance = wrapper.instance();
     instance.navigateToNewTaxPage();
 
-    const actual = redirectSpy.calledWith('tax');
+    const actual = redirectSpy.calledWith('/dashboard/taxes/new');
 
     expect(actual).equals(expected);
   });
