@@ -1,3 +1,8 @@
+## 3.23.3 (August 20, 2017)
+
+- Addition of Swagger specification that describes the public API.
+  - This is the initial round which includes a /categories collection(NOT IMPLEMENTED).
+
 ## 3.23.2 (August 20, 2017)
 
 - Fix user saga call to clear the token
