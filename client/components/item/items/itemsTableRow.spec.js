@@ -28,14 +28,16 @@ describe('<ItemsTableRow />', () => {
     const expected = true;
 
     const redirectSpy = sinon.spy();
-    const browserHistory = require('react-router').browserHistory;
-    browserHistory.push = redirectSpy;
+    const history = require('../../../utilities/history').default;
+    history.push = redirectSpy;
 
     const wrapper = shallow(<ItemsTableRow {...props} />);
 
     wrapper.find(FlatButton).simulate('click');
 
-    const actual = redirectSpy.calledWith(`item/${props.item.itemID}`);
+    const actual = redirectSpy.calledWith(
+      `/dashboard/items/${props.item.itemID}`,
+    );
     expect(actual).equals(expected);
   });
 
@@ -48,8 +50,8 @@ describe('<ItemsTableRow />', () => {
     };
 
     const redirectSpy = sinon.spy();
-    const browserHistory = require('react-router').browserHistory;
-    browserHistory.push = redirectSpy;
+    const history = require('../../../utilities/history').default;
+    history.push = redirectSpy;
 
     const wrapper = shallow(<ItemsTableRow {...updatedProps} />);
 

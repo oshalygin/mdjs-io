@@ -8,6 +8,7 @@ import Snackbar from '../common/snackbar';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../../actions/userActions';
+import history from '../../utilities/history';
 
 import './login.css';
 
@@ -44,7 +45,6 @@ class LoginPage extends React.Component {
   }
 
   redirect() {
-    const { history } = this.props;
     history.push('/dashboard');
   }
 

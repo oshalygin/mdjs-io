@@ -157,8 +157,8 @@ describe('<ModifierDetail />', () => {
 
   it('should navigate back to the "modifiers" page if the back button is clicked', () => {
     const redirectSpy = sinon.spy();
-    const browserHistory = require('react-router').browserHistory;
-    browserHistory.push = redirectSpy;
+    const history = require('../../../utilities/history').default;
+    history.push = redirectSpy;
 
     const expected = true;
     const wrapper = shallow(<ModifierDetail.WrappedComponent {...props} />);
@@ -166,7 +166,7 @@ describe('<ModifierDetail />', () => {
     const instance = wrapper.instance();
     instance.redirect();
 
-    const actual = redirectSpy.calledWith('modifiers');
+    const actual = redirectSpy.calledWith('/dashboard/modifiers');
 
     expect(actual).equals(expected);
   });
@@ -202,8 +202,8 @@ describe('<ModifierDetail />', () => {
 
   it('should call "updateModifier" with the modifier that was passed in to onSave', () => {
     const redirectSpy = sinon.spy();
-    const browserHistory = require('react-router').browserHistory;
-    browserHistory.push = redirectSpy;
+    const history = require('../../../utilities/history').default;
+    history.push = redirectSpy;
 
     const createModifierSpy = sinon.stub().returns({
       then() {

@@ -60,8 +60,8 @@ describe('<Discounts />', () => {
 
   it('should navigate to the "discount" route when navigateToNewDiscountPage is called', () => {
     const redirectSpy = sinon.spy();
-    const browserHistory = require('react-router').browserHistory;
-    browserHistory.push = redirectSpy;
+    const history = require('../../../utilities/history').default;
+    history.push = redirectSpy;
 
     const expected = true;
     const wrapper = shallow(<Discounts.WrappedComponent {...props} />);
@@ -69,7 +69,7 @@ describe('<Discounts />', () => {
     const instance = wrapper.instance();
     instance.navigateToNewDiscountPage();
 
-    const actual = redirectSpy.calledWith('discount');
+    const actual = redirectSpy.calledWith('/dashboard/discounts/new');
 
     expect(actual).equals(expected);
   });

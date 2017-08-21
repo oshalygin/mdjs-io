@@ -88,11 +88,11 @@ class MonthlySummary extends React.Component {
           <div styleName="sales-summary-totals">
             <div styleName="sales-summary-total-text">
               Year-To-Date Sales:
-              <strong>{numberToLocaleString(yearToDate)}</strong>
+              <strong> {numberToLocaleString(yearToDate)}</strong>
             </div>
             <div styleName="sales-summary-total-text">
               Average Sale Amount:
-              <strong>{numberToLocaleString(orderAverage)}</strong>
+              <strong> {numberToLocaleString(orderAverage)}</strong>
             </div>
           </div>
         </div>

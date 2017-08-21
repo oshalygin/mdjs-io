@@ -66,8 +66,8 @@ describe('<Items />', () => {
 
   it('should navigate to the "item" route when navigateToNewItemPage is called', () => {
     const redirectSpy = sinon.spy();
-    const browserHistory = require('react-router').browserHistory;
-    browserHistory.push = redirectSpy;
+    const history = require('../../../utilities/history').default;
+    history.push = redirectSpy;
 
     const expected = true;
     const wrapper = shallow(<Item.WrappedComponent {...props} />);
@@ -75,7 +75,7 @@ describe('<Items />', () => {
     const instance = wrapper.instance();
     instance.navigateToNewItemPage();
 
-    const actual = redirectSpy.calledWith('item');
+    const actual = redirectSpy.calledWith('/dashboard/items/new');
 
     expect(actual).equals(expected);
   });

@@ -165,8 +165,8 @@ describe('<CategoryDetail />', () => {
 
   it('should navigate back to the "categories" page if the back button is clicked', () => {
     const redirectSpy = sinon.spy();
-    const browserHistory = require('react-router').browserHistory;
-    browserHistory.push = redirectSpy;
+    const history = require('../../../utilities/history').default;
+    history.push = redirectSpy;
 
     const expected = true;
     const wrapper = shallow(<CategoryDetail.WrappedComponent {...props} />);
@@ -174,7 +174,7 @@ describe('<CategoryDetail />', () => {
     const instance = wrapper.instance();
     instance.redirect();
 
-    const actual = redirectSpy.calledWith('categories');
+    const actual = redirectSpy.calledWith('/dashboard/categories');
 
     expect(actual).equals(expected);
   });
@@ -210,8 +210,8 @@ describe('<CategoryDetail />', () => {
 
   it('should call "updateCategory" with the category that was passed in to onSave', () => {
     const redirectSpy = sinon.spy();
-    const browserHistory = require('react-router').browserHistory;
-    browserHistory.push = redirectSpy;
+    const history = require('../../../utilities/history').default;
+    history.push = redirectSpy;
 
     const triggerCategoryUpdateSpy = sinon.stub().returns({
       then() {

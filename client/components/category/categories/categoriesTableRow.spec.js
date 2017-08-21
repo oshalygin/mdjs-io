@@ -32,7 +32,7 @@ describe('<CategoriesTableRow />', () => {
     const expected = true;
 
     const redirectSpy = sinon.spy();
-    const browserHistory = require('react-router').browserHistory;
+    const browserHistory = require('../../../utilities/history').default;
     browserHistory.push = redirectSpy;
 
     const wrapper = shallow(<CategoriesTableRow {...props} />);
@@ -40,7 +40,7 @@ describe('<CategoriesTableRow />', () => {
     wrapper.find(FlatButton).simulate('click');
 
     const actual = redirectSpy.calledWith(
-      `category/${props.category.categoryID}`,
+      `/dashboard/categories/${props.category.categoryID}`,
     );
     expect(actual).equals(expected);
   });
@@ -54,7 +54,7 @@ describe('<CategoriesTableRow />', () => {
     };
 
     const redirectSpy = sinon.spy();
-    const browserHistory = require('../../../utilities/history').push;
+    const browserHistory = require('../../../utilities/history').default;
     browserHistory.push = redirectSpy;
 
     const wrapper = shallow(<CategoriesTableRow {...updatedProps} />);

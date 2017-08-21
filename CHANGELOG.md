@@ -1,3 +1,8 @@
+## 3.22.21 (August 20, 2017)
+
+- Fix additional various tests that were using RR3 `browserHistory`.
+- Various refactoring to leverage the `history` component.
+
 ## 3.22.20 (August 19, 2017)
 
 - Fix various tests that were using RR3 `browserHistory`.
