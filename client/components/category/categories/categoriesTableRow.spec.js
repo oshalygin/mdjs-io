@@ -32,8 +32,8 @@ describe('<CategoriesTableRow />', () => {
     const expected = true;
 
     const redirectSpy = sinon.spy();
-    const browserHistory = require('../../../utilities/history').default;
-    browserHistory.push = redirectSpy;
+    const history = require('../../../utilities/history').default;
+    history.push = redirectSpy;
 
     const wrapper = shallow(<CategoriesTableRow {...props} />);
 
@@ -54,8 +54,8 @@ describe('<CategoriesTableRow />', () => {
     };
 
     const redirectSpy = sinon.spy();
-    const browserHistory = require('../../../utilities/history').default;
-    browserHistory.push = redirectSpy;
+    const history = require('../../../utilities/history').default;
+    history.push = redirectSpy;
 
     const wrapper = shallow(<CategoriesTableRow {...updatedProps} />);
 

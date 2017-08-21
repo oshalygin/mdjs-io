@@ -34,15 +34,15 @@ describe('<ModifierTableRow />', () => {
     const expected = true;
 
     const redirectSpy = sinon.spy();
-    const browserHistory = require('react-router').browserHistory;
-    browserHistory.push = redirectSpy;
+    const history = require('../../../utilities/history').default;
+    history.push = redirectSpy;
 
     const wrapper = shallow(<ModifierTableRow {...props} />);
 
     wrapper.find(FlatButton).simulate('click');
 
     const actual = redirectSpy.calledWith(
-      `modifier/${props.modifier.modifierID}`,
+      `/dashboard/modifiers/${props.modifier.modifierID}`,
     );
     expect(actual).equals(expected);
   });
@@ -56,8 +56,8 @@ describe('<ModifierTableRow />', () => {
     };
 
     const redirectSpy = sinon.spy();
-    const browserHistory = require('react-router').browserHistory;
-    browserHistory.push = redirectSpy;
+    const history = require('../../../utilities/history').default;
+    history.push = redirectSpy;
 
     const wrapper = shallow(<ModifierTableRow {...updatedProps} />);
 

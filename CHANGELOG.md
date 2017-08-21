@@ -1,3 +1,7 @@
+## 3.23.0 (August 20, 2017)
+
+- Fix remaining failing tests which were related to RR3 and various paths.
+
 ## 3.22.21 (August 20, 2017)
 
 - Fix additional various tests that were using RR3 `browserHistory`.

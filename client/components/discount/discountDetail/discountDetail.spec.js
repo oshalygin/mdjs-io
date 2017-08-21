@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import DiscountDetail, { mapStateToProps } from './index';
-import Spinner from '../common/spinner';
+import Spinner from '../../common/spinner';
 import sinon from 'sinon';
 
 jest.dontMock('react-router');
@@ -206,8 +206,8 @@ describe('<DiscountDetail />', () => {
 
   it('should navigate back to the "discounts" page if the back button is clicked', () => {
     const redirectSpy = sinon.spy();
-    const browserHistory = require('react-router').browserHistory;
-    browserHistory.push = redirectSpy;
+    const history = require('../../../utilities/history').default;
+    history.push = redirectSpy;
 
     const expected = true;
     const wrapper = shallow(<DiscountDetail.WrappedComponent {...props} />);
@@ -215,7 +215,7 @@ describe('<DiscountDetail />', () => {
     const instance = wrapper.instance();
     instance.redirect();
 
-    const actual = redirectSpy.calledWith('discounts');
+    const actual = redirectSpy.calledWith('/dashboard/discounts');
 
     expect(actual).equals(expected);
   });
@@ -315,8 +315,8 @@ describe('<DiscountDetail />', () => {
 
   it('should call "updateDiscount" with the category that was passed in to onSave', () => {
     const redirectSpy = sinon.spy();
-    const browserHistory = require('react-router').browserHistory;
-    browserHistory.push = redirectSpy;
+    const history = require('../../../utilities/history').default;
+    history.push = redirectSpy;
 
     const updateDiscountSpy = sinon.stub().returns({
       then() {
