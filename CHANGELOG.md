@@ -1,3 +1,7 @@
+## 3.23.2 (August 20, 2017)
+
+- Fix user saga call to clear the token
+
 ## 3.23.1 (August 20, 2017)
 
 - Fix login spinner issues.

@@ -52,7 +52,7 @@ export function* getLoggedInUser() {
     }
   } catch (error) {
     yield call(history.push, '/login');
-    yield call(removeUserToken());
+    yield call(removeUserToken);
     yield put(getLoggedInUserError());
   }
 }
