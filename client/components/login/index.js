@@ -111,7 +111,7 @@ LoginPage.contextTypes = {
 function mapStateToProps(state) {
   return {
     user: state.user,
-    loading: state.loading.loadingUser,
+    loading: state.loading.loadingUserLogin,
   };
 }
 

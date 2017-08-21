@@ -1,3 +1,8 @@
+## 3.23.1 (August 20, 2017)
+
+- Fix login spinner issues.
+   - New loadingUserLogin state which is only tied to the login page.
+
 ## 3.23.0 (August 20, 2017)
 
 - Fix remaining failing tests which were related to RR3 and various paths.

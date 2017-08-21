@@ -9,7 +9,7 @@ export default function loadingReducer(state = initialState.loading, action) {
     }
     case actionTypes.GET_LOGGED_IN_USER_SUCCESS:
     case actionTypes.GET_LOGGED_IN_USER_ERROR: {
-      return { ...state, loadingUser: false };
+      return { ...state, loadingUser: false, loadingUserLogin: false };
     }
     case actionTypes.LOADING_ITEM_CREATION:
     case actionTypes.LOADING_ITEM_UPDATE: {
@@ -99,6 +99,12 @@ export default function loadingReducer(state = initialState.loading, action) {
     }
     case actionTypes.LOAD_MONTHLY_SUMMARY_SUCCESS: {
       return { ...state, loadingMonthlySummary: false };
+    }
+    case actionTypes.REQUEST_LOGIN: {
+      return { ...state, loadingUserLogin: true };
+    }
+    case actionTypes.LOGIN_ERROR: {
+      return { ...state, loadingUserLogin: false };
     }
     default: {
       return state;

@@ -7,6 +7,7 @@ describe('Reducer - Loading', () => {
     return {
       loadingUser: true,
       loadingOrders: true,
+      loadingUserLogin: false,
       loadingMonthlySummary: true,
     };
   };

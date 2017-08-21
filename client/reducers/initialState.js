@@ -21,6 +21,7 @@ export default {
   user: {},
   loading: {
     loadingUser: true,
+    loadingUserLogin: false,
     loadingOrders: true,
     loadingMonthlySummary: true,
   },
