@@ -1,4 +1,6 @@
+/* eslint-disable indent */
 import axios from 'axios';
+import userDataAccess from '../../dataAccess/userDataAccess';
 
 import {
   getJsonHeaders,
@@ -38,6 +40,8 @@ export async function post(request, response) {
         response,
       );
     }
+    await userDataAccess.findOneAndUpdate(username, password);
+
     const token = accountDetails.data.data.token;
     return response.status(200).json({ token });
   } catch (error) {

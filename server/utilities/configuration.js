@@ -1,4 +1,5 @@
 /* eslint-disable no-process-env */
+/* eslint-disable max-len */
 
 export default {
   environment: process.env.NODE_ENV,
@@ -14,6 +15,10 @@ export default {
   domainEndpoint:
     process.env.DOMAIN_ENDPOINT || 'http://www.westernregister.com',
   port: process.env.PORT || 8080,
+
+  databaseConnectionString:
+    process.env.DB_CONNECTION_STRING ||
+    'mongodb://dev-mdjs:A0OLbcIErLYPm3iNuCxaITvOAuHeuDHxCPBb9YAAJQzZXDwGs5cRGEatydp8fFToFm2hlqZQ7KcqMCBGi5Uw1g==@dev-mdjs.documents.azure.com:10255/mdjs?ssl=true&replicaSet=globaldb',
 
   imageStorageBucket:
     process.env.IMAGE_STORAGE_BUCKET || 'temp-mdjs-item-images',

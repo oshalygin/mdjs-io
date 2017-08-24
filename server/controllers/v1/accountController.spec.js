@@ -226,6 +226,9 @@ describe('Account Controller', () => {
 
     const expected = true;
 
+    const userDataAccess = require('../../dataAccess/userDataAccess');
+    userDataAccess.findOneAndUpdate = () => Promise.resolve();
+
     const jsonSpy = sinon.spy();
     const statusStub = sinon.stub().returns({
       json: jsonSpy,
@@ -353,6 +356,9 @@ describe('Account Controller', () => {
         password: 'password12345!',
       },
     };
+
+    const userDataAccess = require('../../dataAccess/userDataAccess');
+    userDataAccess.findOneAndUpdate = () => Promise.resolve();
 
     return post(request, response).then(() => {
       const actual = jsonSpy.calledWith(tokenResponse);

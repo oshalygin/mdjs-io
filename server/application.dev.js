@@ -11,6 +11,8 @@ import logger from './utilities/logger';
 import v0router from './routes/routes-v0';
 import v1router from './routes/routes-v1';
 
+import database from './dataAccess/database';
+
 const application = express();
 application.use(bodyParser.urlencoded({ extended: true }));
 application.use(bodyParser.json());
@@ -42,6 +44,11 @@ application.get('*', (request, response) => {
     response.end();
   });
 });
+
+database
+  .connect()
+  .then(nativeConnection => database.connectedOutput(nativeConnection))
+  .catch(error => console.log(error));
 
 application.listen(port, error => {
   if (error) {

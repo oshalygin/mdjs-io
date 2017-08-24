@@ -1,3 +1,10 @@
+## 3.24.0 (August 24, 2017)
+
+- Add MongoDB Persistence
+  - Initial foray into persistence of the application
+  - Only account details are stored.
+  - Default DB connection pointing to Azure, this will be reconfigured in the future.
+
 ## 3.23.3 (August 20, 2017)
 
 - Addition of Swagger specification that describes the public API.
