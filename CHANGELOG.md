@@ -1,3 +1,8 @@
+## 3.25.0 (August 27, 2017)
+
+- Add stylelint configuration
+  -  Styles mostly based on the `stylelint-config-standard`
+
 ## 3.24.0 (August 24, 2017)
 
 - Add MongoDB Persistence
