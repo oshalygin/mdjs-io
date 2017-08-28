@@ -1,3 +1,9 @@
+## 3.26.0 (August 27, 2017)
+
+- Addition of a registration route:
+  - POST `api/v1/registration`
+  - This API exposes a registration endpoint that tunnels back to the current backend
+
 ## 3.25.1 (August 27, 2017)
 
 - Add base styles to the root of the project

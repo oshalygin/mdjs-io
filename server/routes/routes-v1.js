@@ -4,6 +4,7 @@ import itemController from '../controllers/v1/itemController';
 import categoriesController from '../controllers/v1/categoriesController';
 import taxController from '../controllers/v1/taxController';
 import accountController from '../controllers/v1/accountController';
+import registrationController from '../controllers/v1/registrationController';
 import configurationController from '../controllers/v1/configurationController';
 import versionController from '../controllers/v1/versionController';
 import imagesController from '../controllers/v1/imageController';
@@ -56,6 +57,9 @@ router
   .route('/account')
   .get(accountController.get)
   .post(accountController.post);
+
+// {api/v1/registration}
+router.route('/registration').post(registrationController.post);
 
 // {api/v1/version}
 router.route('/version').get(versionController.get);
