@@ -1,3 +1,7 @@
+## 3.26.1 (August 27, 2017)
+
+- Addition of an email validation utility
+
 ## 3.26.0 (August 27, 2017)
 
 - Addition of a registration route:
