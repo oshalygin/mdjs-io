@@ -1,3 +1,7 @@
+## 3.25.1 (August 27, 2017)
+
+- Add base styles to the root of the project
+
 ## 3.25.0 (August 27, 2017)
 
 - Add stylelint configuration
