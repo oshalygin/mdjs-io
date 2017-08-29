@@ -12,6 +12,7 @@ import * as versionActionCreators from '../actions/versionActions';
 import AuthorizedRoute from './common/authorizedRoute';
 import DashboardApplication from './DashboardApplication.jsx';
 import Login from './login';
+import Registration from './registration';
 import Home from './home';
 
 class App extends React.Component {
@@ -31,6 +32,7 @@ class App extends React.Component {
               component={DashboardApplication}
             />
             <Route path="/login" component={Login} />
+            <Route path="/registration" component={Registration} />
             <Route exact path="/" component={Home} />
             <Redirect to="/" />
           </Switch>

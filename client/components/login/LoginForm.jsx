@@ -26,10 +26,10 @@ const LoginForm = ({ hidden, errors, onChange, login }) => {
       <div styleName="login-container">
         <div styleName="login-field-container">
           <div style={errorTextDisplay} styleName="error-text">
-            Invalid username or password
+            Invalid email address or password
           </div>
           <TextField
-            floatingLabelText="Username"
+            floatingLabelText="Email Address"
             inputStyle={textFieldInputStyle}
             name="email"
             type="text"

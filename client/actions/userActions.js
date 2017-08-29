@@ -41,11 +41,9 @@ export function loadingUser() {
   };
 }
 
-export function retrieveLoggedInUser() {
-  return {
-    type: REQUEST_LOGGED_IN_USER,
-  };
-}
+export const retrieveLoggedInUser = () => ({
+  type: REQUEST_LOGGED_IN_USER,
+});
 
 export const userLogin = data => ({
   type: REQUEST_LOGIN,

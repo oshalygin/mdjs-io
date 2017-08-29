@@ -106,6 +106,12 @@ export default function loadingReducer(state = initialState.loading, action) {
     case actionTypes.LOGIN_ERROR: {
       return { ...state, loadingUserLogin: false };
     }
+    case actionTypes.REQUEST_REGISTRATION: {
+      return { ...state, loadingRegistration: true };
+    }
+    case actionTypes.REGISTRATION_ERROR: {
+      return { ...state, loadingRegistration: false };
+    }
     default: {
       return state;
     }

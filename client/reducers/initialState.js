@@ -24,6 +24,7 @@ export default {
     loadingUserLogin: false,
     loadingOrders: true,
     loadingMonthlySummary: true,
+    loadingRegistration: false,
   },
   configuration: {},
   categories: [],

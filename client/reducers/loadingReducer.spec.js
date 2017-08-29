@@ -9,6 +9,7 @@ describe('Reducer - Loading', () => {
       loadingOrders: true,
       loadingUserLogin: false,
       loadingMonthlySummary: true,
+      loadingRegistration: false,
     };
   };
 

@@ -1,3 +1,8 @@
+## 3.27.0 (August 28, 2017)
+
+- Addition of a `/registration` route which allows users to register with the application
+  - Error handling is forthcoming
+
 ## 3.26.1 (August 27, 2017)
 
 - Addition of an email validation utility
