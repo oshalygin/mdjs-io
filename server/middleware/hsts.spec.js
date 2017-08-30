@@ -1,6 +1,5 @@
 import hstsMiddleware from './hsts';
 import sinon from 'sinon';
-import { expect } from 'chai';
 
 describe('HSTS Middleware', () => {
   it('should proceed if the request is secure', () => {
@@ -20,7 +19,7 @@ describe('HSTS Middleware', () => {
     hstsMiddleware()(request, response, next);
 
     const actual = next.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should redirect if request was not secure', () => {
@@ -46,7 +45,7 @@ describe('HSTS Middleware', () => {
     hstsMiddleware()(request, response, next);
 
     const actual = response.redirect.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should redirect to the requested url with https', () => {
@@ -73,7 +72,7 @@ describe('HSTS Middleware', () => {
     hstsMiddleware()(request, response, next);
 
     const actual = response.redirect.calledWith(301, redirectUri);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send back 403 if the request is not a GET over HTTP', () => {
@@ -99,7 +98,7 @@ describe('HSTS Middleware', () => {
     hstsMiddleware()(request, response, next);
 
     const actual = response.status.calledWith(403);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should proceed if the request is from a health readiness check on /healthz', () => {
@@ -120,6 +119,6 @@ describe('HSTS Middleware', () => {
     hstsMiddleware()(request, response, next);
 
     const actual = next.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

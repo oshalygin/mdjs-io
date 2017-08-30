@@ -5,9 +5,6 @@ import sinon from 'sinon';
 import React from 'react';
 import Taxes from './index';
 
-jest.dontMock('react-router');
-import { expect } from 'chai';
-
 describe('<Taxes />', () => {
   const taxes = [
     {
@@ -53,7 +50,7 @@ describe('<Taxes />', () => {
 
     const actual = wrapper.find(RaisedButton).props().label;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should navigate to the "tax" route when navigateToNewTaxPage is called', () => {
@@ -69,7 +66,7 @@ describe('<Taxes />', () => {
 
     const actual = redirectSpy.calledWith('/dashboard/taxes/new');
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should dispatch the deactivate action with the passed in id that matches the tax in the list', () => {
@@ -97,7 +94,7 @@ describe('<Taxes />', () => {
     instance.deactivate(19);
 
     const actual = deactivatedTaxSpy.calledWith(taxes[0]);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should filter the list to only include the taxes from the searchCriteria', () => {
@@ -117,7 +114,7 @@ describe('<Taxes />', () => {
 
     const actual = instance.state.taxes.length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should filter the list and match on lowercase as well', () => {
@@ -137,7 +134,7 @@ describe('<Taxes />', () => {
 
     const actual = instance.state.taxes.length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the filter object appropriately on the local state', () => {
@@ -157,6 +154,6 @@ describe('<Taxes />', () => {
 
     const actual = instance.state.filter;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

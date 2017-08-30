@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import sinon from 'sinon';
 
 import postmarkController from './postmarkController';
@@ -40,7 +39,7 @@ describe('V0 - Postmark Controller', () => {
     await postmarkController.post(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the postmark email creation endpoint threw an error', async () => {
@@ -63,7 +62,7 @@ describe('V0 - Postmark Controller', () => {
     await postmarkController.post(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the postmark email creation endpoint is null', async () => {
@@ -82,7 +81,7 @@ describe('V0 - Postmark Controller', () => {
     await postmarkController.post(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the postmark email creation endpoint was called with an id', async () => {
@@ -103,6 +102,6 @@ describe('V0 - Postmark Controller', () => {
     await postmarkController.post(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

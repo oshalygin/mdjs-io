@@ -4,9 +4,6 @@ import ModifierDetail, { mapStateToProps } from './index';
 import Spinner from '../../common/spinner';
 import sinon from 'sinon';
 
-jest.dontMock('react-router');
-import { expect } from 'chai';
-
 describe('<ModifierDetail />', () => {
   const errors = {
     modifierName: false,
@@ -61,7 +58,7 @@ describe('<ModifierDetail />', () => {
 
     const actual = wrapper.find('h5').props().children;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return the heading as "New Modifier" if the passed in props is null', () => {
@@ -79,7 +76,7 @@ describe('<ModifierDetail />', () => {
     const expected = 'New Modifier';
     const actual = mapStateToProps(state, ownProps).modifierHeading;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return the heading as "Update Modifier" if the passed in id prop matches the state modifiers', () => {
@@ -97,7 +94,7 @@ describe('<ModifierDetail />', () => {
     const expected = 'Update Modifier';
     const actual = mapStateToProps(state, ownProps).modifierHeading;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return the existing modifier properties if the passed in id prop matches the state modifiers', () => {
@@ -115,7 +112,7 @@ describe('<ModifierDetail />', () => {
     const expected = modifiers[0];
     const actual = mapStateToProps(state, ownProps).modifier;
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return the an empty modifier if the passed in id prop is null', () => {
@@ -134,7 +131,7 @@ describe('<ModifierDetail />', () => {
     const expected = props.modifier;
     const actual = mapStateToProps(state, ownProps).modifier;
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should render a spinner if the "createUpdateModifier" loading flag is set', () => {
@@ -152,7 +149,7 @@ describe('<ModifierDetail />', () => {
 
     const actual = wrapper.find(Spinner).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should navigate back to the "modifiers" page if the back button is clicked', () => {
@@ -168,7 +165,7 @@ describe('<ModifierDetail />', () => {
 
     const actual = redirectSpy.calledWith('/dashboard/modifiers');
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the new state of the modifier based on the form field that was changed', () => {
@@ -197,7 +194,7 @@ describe('<ModifierDetail />', () => {
     instance.onChange(event, index, payload);
     const actual = instance.state.modifier.modifierName;
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should call "updateModifier" with the modifier that was passed in to onSave', () => {
@@ -233,7 +230,7 @@ describe('<ModifierDetail />', () => {
 
     const actual = createModifierSpy.calledWith(modifiers[0]);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return false if the modifierName is empty when calling formIsValid', () => {
@@ -251,7 +248,7 @@ describe('<ModifierDetail />', () => {
     instance.state.modifier.modifierName = '';
     const actual = instance.formIsValid();
     instance.state.modifier.modifierName = 'Foo'; //reset back to the original state.
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return false if there are validation errors calling formIsValid', () => {
@@ -275,7 +272,7 @@ describe('<ModifierDetail />', () => {
     const actual = instance.formIsValid();
     instance.state.errors = errors; //reset back to the original state.
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the error object property modifierName to false if it passes the regex test', () => {
@@ -296,7 +293,7 @@ describe('<ModifierDetail />', () => {
     instance.propertyIsValid(property, value, errors);
     const actual = instance.state.errors.modifierName;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the error object property modifierName to whitespace if it DOES NOT pass the regex test', () => {
@@ -317,7 +314,7 @@ describe('<ModifierDetail />', () => {
     instance.propertyIsValid(property, value, errors);
     const actual = instance.state.errors.modifierName;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the error object property price to false if it passes the regex test', () => {
@@ -338,6 +335,6 @@ describe('<ModifierDetail />', () => {
     instance.propertyIsValid(property, value, errors);
     const actual = instance.state.errors.price;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

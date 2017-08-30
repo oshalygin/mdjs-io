@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import sinon from 'sinon';
 
 import receiptController from './receiptController';
@@ -40,7 +39,7 @@ describe('V0 - Receipt Controller', () => {
     await receiptController.send(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the receipt send endpoint threw an error', async () => {
@@ -63,7 +62,7 @@ describe('V0 - Receipt Controller', () => {
     await receiptController.send(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the receipt send endpoint is null', async () => {
@@ -82,7 +81,7 @@ describe('V0 - Receipt Controller', () => {
     await receiptController.send(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the receipt send endpoint was called with an id', async () => {
@@ -103,7 +102,7 @@ describe('V0 - Receipt Controller', () => {
     await receiptController.send(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the receipt update endpoint', async () => {
@@ -126,7 +125,7 @@ describe('V0 - Receipt Controller', () => {
     await receiptController.update(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the receipt update endpoint threw an error', async () => {
@@ -149,7 +148,7 @@ describe('V0 - Receipt Controller', () => {
     await receiptController.update(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the receipt update endpoint is null', async () => {
@@ -168,7 +167,7 @@ describe('V0 - Receipt Controller', () => {
     await receiptController.update(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the receipt update endpoint was called with an id', async () => {
@@ -187,6 +186,6 @@ describe('V0 - Receipt Controller', () => {
     await receiptController.update(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import sinon from 'sinon';
 
 import securityController from './securityController';
@@ -46,7 +45,7 @@ describe('V0 - Security Controller', () => {
     await securityController.forgotPassword(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the forgot password endpoint threw an error', async () => {
@@ -69,7 +68,7 @@ describe('V0 - Security Controller', () => {
     await securityController.forgotPassword(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the forgot password endpoint is null', async () => {
@@ -88,7 +87,7 @@ describe('V0 - Security Controller', () => {
     await securityController.forgotPassword(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the forgot password endpoint was called with an id', async () => {
@@ -109,7 +108,7 @@ describe('V0 - Security Controller', () => {
     await securityController.forgotPassword(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the login endpoint', async () => {
@@ -134,7 +133,7 @@ describe('V0 - Security Controller', () => {
     await securityController.login(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the login endpoint threw an error', async () => {
@@ -157,7 +156,7 @@ describe('V0 - Security Controller', () => {
     await securityController.login(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the login endpoint is null', async () => {
@@ -176,7 +175,7 @@ describe('V0 - Security Controller', () => {
     await securityController.login(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the login endpoint was called with an id', async () => {
@@ -195,6 +194,6 @@ describe('V0 - Security Controller', () => {
     await securityController.login(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

@@ -4,15 +4,13 @@ import {
   getDateFromRequestUrl,
 } from './dateTimeUtilities';
 
-import { expect } from 'chai';
-
 describe('http endpoints', () => {
   it('should contain the same number of elements in the array as the passed in months', () => {
     const months = 7;
     const expected = months;
     const actual = getLastNumberOfMonthsArray(months).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the first value in the array with the current month value', () => {
@@ -20,7 +18,7 @@ describe('http endpoints', () => {
     const expected = new Date().getMonth();
     const actual = getLastNumberOfMonthsArray(months)[0].monthValue;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the first value in the array with the current month display name', () => {
@@ -28,7 +26,7 @@ describe('http endpoints', () => {
     const expected = dateFns.format(new Date(), 'MMM');
     const actual = getLastNumberOfMonthsArray(months)[0].displayName;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the first value in the array with the current year', () => {
@@ -36,7 +34,7 @@ describe('http endpoints', () => {
     const expected = new Date().getFullYear();
     const actual = getLastNumberOfMonthsArray(months)[0].year;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the first value in the array with the current month value with a base of 1', () => {
@@ -44,7 +42,7 @@ describe('http endpoints', () => {
     const expected = new Date().getMonth() + 1;
     const actual = getLastNumberOfMonthsArray(months)[0].monthDisplayValue;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the second value in the array with the current month value with a base of 1', () => {
@@ -52,7 +50,7 @@ describe('http endpoints', () => {
     const expected = new Date().getMonth();
     const actual = getLastNumberOfMonthsArray(months)[1].monthDisplayValue;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should extract the date out of the requestUrl', () => {
@@ -61,6 +59,6 @@ describe('http endpoints', () => {
     const expected = '12-1-2016';
     const actual = getDateFromRequestUrl(requestUrl);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

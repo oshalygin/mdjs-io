@@ -16,7 +16,6 @@ import { ITEM_ENDPOINT } from '../utilities/endpoints';
 import moxios from 'moxios';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
-import { expect } from 'chai';
 
 describe('Item Actions', () => {
   let store;
@@ -83,7 +82,7 @@ describe('Item Actions', () => {
 
     return store.dispatch(deactivateItem(existingItem)).then(() => {
       const actual = store.getActions().map(action => action.type)[0];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -97,7 +96,7 @@ describe('Item Actions', () => {
 
     return store.dispatch(deactivateItem(existingItem)).then(() => {
       const actual = store.getActions().map(action => action.type)[1];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -110,7 +109,7 @@ describe('Item Actions', () => {
 
     return store.dispatch(createItem(newItem)).then(() => {
       const actual = store.getActions().map(action => action.type)[0];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -123,7 +122,7 @@ describe('Item Actions', () => {
 
     return store.dispatch(createItem(newItem)).then(() => {
       const actual = store.getActions().map(action => action.type)[2];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -136,7 +135,7 @@ describe('Item Actions', () => {
 
     return store.dispatch(createItem(newItem)).then(() => {
       const actual = store.getActions().map(action => action.type)[1];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -151,7 +150,7 @@ describe('Item Actions', () => {
 
     return store.dispatch(createItem(newItem)).then(() => {
       const actual = store.getActions().map(action => action.item)[1];
-      expect(actual).deep.equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -166,7 +165,7 @@ describe('Item Actions', () => {
 
     return store.dispatch(updateItem(updatedItem)).then(() => {
       const actual = store.getActions().map(action => action.type)[0];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -181,7 +180,7 @@ describe('Item Actions', () => {
 
     return store.dispatch(updateItem(updatedItem)).then(() => {
       const actual = store.getActions().map(action => action.type)[2];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -196,7 +195,7 @@ describe('Item Actions', () => {
 
     return store.dispatch(updateItem(updatedItem)).catch(() => {
       const actual = store.getActions().map(action => action.type)[1];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -209,7 +208,7 @@ describe('Item Actions', () => {
 
     return store.dispatch(createItem(newItem)).catch(() => {
       const actual = store.getActions().map(action => action.type)[1];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -224,7 +223,7 @@ describe('Item Actions', () => {
 
     return store.dispatch(updateItem(updatedItem)).then(() => {
       const actual = store.getActions().map(action => action.type)[1];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -240,7 +239,7 @@ describe('Item Actions', () => {
 
     return store.dispatch(updateItem(updatedItem)).then(() => {
       const actual = store.getActions().map(action => action.item)[1];
-      expect(actual).deep.equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -264,7 +263,7 @@ describe('Item Actions', () => {
 
     return store.dispatch(updateItem(updatedItemWithFile)).then(() => {
       const actual = store.getActions().map(action => action.item)[1];
-      expect(actual).deep.equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 });

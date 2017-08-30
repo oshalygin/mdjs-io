@@ -1,6 +1,6 @@
 {
   "name": "mdjs",
-  "version": "3.27.0",
+  "version": "3.27.1",
   "description": "Merchant Dashboard built with React and Redux",
   "scripts": {
     "start-dev-server": "babel-watch server/application.dev.js",
@@ -102,7 +102,6 @@
     "babel-watch": "2.0.6",
     "caniuse-api": "1.5.2",
     "caniuse-db": "1.0.30000673",
-    "chai": "3.5.0",
     "codeclimate-test-reporter": "0.5.0",
     "compression": "1.6.2",
     "cross-env": "3.0.0",

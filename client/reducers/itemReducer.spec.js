@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import {
   ITEM_DEACTIVATED_SUCCESS,
   LOAD_ITEMS_SUCCESS,
@@ -102,7 +101,7 @@ describe('Reducer - Item', () => {
     const expected = getInitialState();
     const actual = reducer(undefined, action); //eslint-disable-line no-undefined
 
-    expect(actual).to.deep.equal(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should hydrate the state with all of the items in the action in addition to the additional checked and disabled properties', () => {
@@ -114,7 +113,7 @@ describe('Reducer - Item', () => {
     const expected = resultingItems;
     const actual = reducer(undefined, action); //eslint-disable-line no-undefined
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should remove the item that was passed in as part of the ITEM_DEACTIVATED_SUCCESS dispatched action', () => {
@@ -126,6 +125,6 @@ describe('Reducer - Item', () => {
     const expected = 2;
     const actual = reducer(items, action).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

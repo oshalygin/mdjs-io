@@ -1,5 +1,4 @@
 import React from 'react';
-import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
 import LoginForm from './LoginForm.jsx';
@@ -17,7 +16,7 @@ describe('<LoginForm />', () => {
     const expected = 2;
 
     const actual = wrapper.find(TextField).length;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should display a button that states "Log In"', () => {
@@ -25,7 +24,7 @@ describe('<LoginForm />', () => {
     const expected = 'Log In';
 
     const actual = wrapper.find(RaisedButton).props().label;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the display to none on the form if the hidden prop is passed in as true', () => {
@@ -38,7 +37,7 @@ describe('<LoginForm />', () => {
     const expected = 'none';
 
     const actual = wrapper.first().props().style.display;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the display to initial on the form if the hidden prop is passed in as true', () => {
@@ -51,7 +50,7 @@ describe('<LoginForm />', () => {
     const expected = 'initial';
 
     const actual = wrapper.first().props().style.display;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should display the error text if the errors prop is passed in as true', () => {
@@ -64,7 +63,7 @@ describe('<LoginForm />', () => {
     const expected = 'initial';
 
     const actual = wrapper.find('.error-text').props().style.display;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should display the error text of "Invalid email address or password" for generic errors', () => {
@@ -77,6 +76,6 @@ describe('<LoginForm />', () => {
     const expected = 'Invalid email address or password';
 
     const actual = wrapper.find('.error-text').text();
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

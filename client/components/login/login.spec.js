@@ -9,9 +9,6 @@ import sinon from 'sinon';
 
 import Login from './index';
 
-jest.dontMock('react-router');
-import { expect } from 'chai';
-
 describe('<Login />', () => {
   const props = {
     loading: {
@@ -26,7 +23,7 @@ describe('<Login />', () => {
 
     const actual = wrapper.find('h1').props().className;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should display the LoginForm component when the loadingUser flag is false', () => {
@@ -35,7 +32,7 @@ describe('<Login />', () => {
 
     const actual = wrapper.find(LoginForm).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should display the Spinner component when the loadingUser flag is true', () => {
@@ -48,7 +45,7 @@ describe('<Login />', () => {
 
     const actual = wrapper.find(Spinner).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should contain a version component', () => {
@@ -57,7 +54,7 @@ describe('<Login />', () => {
 
     const actual = wrapper.find(Version).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should contain a <Snackbar /> component', () => {
@@ -66,7 +63,7 @@ describe('<Login />', () => {
 
     const actual = wrapper.find(Snackbar).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should turn off the notification when calling closeNotification', () => {
@@ -78,7 +75,7 @@ describe('<Login />', () => {
 
     const actual = instance.state.notification;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should redirect to the dashboard if the redirect function is called', () => {
@@ -92,6 +89,6 @@ describe('<Login />', () => {
     instance.redirect();
 
     const actual = instance.state.notification;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

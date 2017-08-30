@@ -7,8 +7,6 @@ import MonthlyChart from './MonthlyChart.jsx';
 import Spinner from '../../common/spinner';
 import ProgressBar from '../../common/progressBar';
 
-import { expect } from 'chai';
-
 describe('<MonthlySummary />', () => {
   const props = {
     data: [],
@@ -29,7 +27,7 @@ describe('<MonthlySummary />', () => {
     const wrapper = shallow(<MonthlySummary.WrappedComponent {...props} />);
     const actual = wrapper.find('.title-heading').text();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the title subheading to "Number of orders"', () => {
@@ -37,7 +35,7 @@ describe('<MonthlySummary />', () => {
     const wrapper = shallow(<MonthlySummary.WrappedComponent {...props} />);
     const actual = wrapper.find('.title-subheading').text();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should contain a material icon, "schedule" which represents the updated date', () => {
@@ -45,7 +43,7 @@ describe('<MonthlySummary />', () => {
     const wrapper = shallow(<MonthlySummary.WrappedComponent {...props} />);
     const actual = wrapper.find('.material-icons').text();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should contain two <ProgressBar />  components to represent the monthly sales summary', () => {
@@ -53,7 +51,7 @@ describe('<MonthlySummary />', () => {
     const wrapper = shallow(<MonthlySummary.WrappedComponent {...props} />);
     const actual = wrapper.find(ProgressBar).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should contain a <MonthlyChart /> component', () => {
@@ -61,7 +59,7 @@ describe('<MonthlySummary />', () => {
     const wrapper = shallow(<MonthlySummary.WrappedComponent {...props} />);
     const actual = wrapper.find(MonthlyChart).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should render a <Spinner /> component if the loading prop is true', () => {
@@ -76,7 +74,7 @@ describe('<MonthlySummary />', () => {
     );
     const actual = wrapper.find(Spinner).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set data to null if the monthlySummary array length is falsy', () => {
@@ -92,7 +90,7 @@ describe('<MonthlySummary />', () => {
 
     const actual = mapStateToProps(state).data;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set loading prop to the loadingMonthlySummary property of loading in the store', () => {
@@ -108,7 +106,7 @@ describe('<MonthlySummary />', () => {
 
     const actual = mapStateToProps(state).loading;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set data property to an array of monthlySales', () => {
@@ -135,7 +133,7 @@ describe('<MonthlySummary />', () => {
 
     const actual = mapStateToProps(state).data.length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the average monthly amount to the average across all orders when mapping from the monthlySummary', () => {
@@ -162,7 +160,7 @@ describe('<MonthlySummary />', () => {
 
     const actual = mapStateToProps(state).monthAverage;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the average count amount to the average across all orders when mapping from the monthlySummary', () => {
@@ -189,7 +187,7 @@ describe('<MonthlySummary />', () => {
 
     const actual = mapStateToProps(state).monthAverageCount;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the monthlyAverage to 0 if no orders exist', () => {
@@ -205,7 +203,7 @@ describe('<MonthlySummary />', () => {
 
     const actual = mapStateToProps(state).monthAverage;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the monthAverageCount to 0 if no orders exist', () => {
@@ -221,7 +219,7 @@ describe('<MonthlySummary />', () => {
 
     const actual = mapStateToProps(state).monthAverageCount;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the current month sales amount accordingly', () => {
@@ -248,7 +246,7 @@ describe('<MonthlySummary />', () => {
 
     const actual = mapStateToProps(state).currentMonthSales;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the current month order count accordingly', () => {
@@ -275,7 +273,7 @@ describe('<MonthlySummary />', () => {
 
     const actual = mapStateToProps(state).currentMonthCount;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the current month sales amount to 0 if there are no sales in the store', () => {
@@ -291,7 +289,7 @@ describe('<MonthlySummary />', () => {
 
     const actual = mapStateToProps(state).currentMonthSales;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the current month order count to 0 if there are no sales in the store', () => {
@@ -307,7 +305,7 @@ describe('<MonthlySummary />', () => {
 
     const actual = mapStateToProps(state).currentMonthCount;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the sales progress bar percentage accordingly', () => {
@@ -322,7 +320,7 @@ describe('<MonthlySummary />', () => {
 
     const actual = instance.getProgressBarPercentage(current, total);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the sales progress bar percentage to 0 if the value is NaN', () => {
@@ -336,7 +334,7 @@ describe('<MonthlySummary />', () => {
 
     const actual = instance.getProgressBarPercentage(current, total);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the sales progress bar percentage to 100 if the value exceeds the monthly average', () => {
@@ -350,7 +348,7 @@ describe('<MonthlySummary />', () => {
 
     const actual = instance.getProgressBarPercentage(current, total);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the sales progress bar percentage as the value', () => {
@@ -362,7 +360,7 @@ describe('<MonthlySummary />', () => {
 
     const actual = wrapper.at(0).props().value;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the order progress bar percentage as the value', () => {
@@ -374,7 +372,7 @@ describe('<MonthlySummary />', () => {
 
     const actual = wrapper.at(1).props().value;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the date on the component from the current state', () => {
@@ -385,7 +383,7 @@ describe('<MonthlySummary />', () => {
 
     const actual = wrapper.find('.date-container').text();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the year to date sales amount from props', () => {
@@ -393,7 +391,7 @@ describe('<MonthlySummary />', () => {
     const wrapper = shallow(<MonthlySummary.WrappedComponent {...props} />);
     const actual = wrapper.find('.sales-summary-total-text').at(0).text();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the average sales amount from props', () => {
@@ -401,6 +399,6 @@ describe('<MonthlySummary />', () => {
     const wrapper = shallow(<MonthlySummary.WrappedComponent {...props} />);
     const actual = wrapper.find('.sales-summary-total-text').at(1).text();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

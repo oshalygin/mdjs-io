@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import sinon from 'sinon';
 
 import reportController from './reportController';
@@ -39,7 +38,7 @@ describe('V0 - Report Controller', () => {
     await reportController.emailSalesReport(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the email report endpoint threw an error', async () => {
@@ -62,7 +61,7 @@ describe('V0 - Report Controller', () => {
     await reportController.emailSalesReport(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the email report endpoint is null', async () => {
@@ -81,7 +80,7 @@ describe('V0 - Report Controller', () => {
     await reportController.emailSalesReport(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the email report endpoint was called with an id', async () => {
@@ -102,7 +101,7 @@ describe('V0 - Report Controller', () => {
     await reportController.emailSalesReport(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the sales report endpoint', async () => {
@@ -125,7 +124,7 @@ describe('V0 - Report Controller', () => {
     await reportController.salesReport(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the sales report endpoint threw an error', async () => {
@@ -148,7 +147,7 @@ describe('V0 - Report Controller', () => {
     await reportController.salesReport(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the sales report endpoint is null', async () => {
@@ -167,7 +166,7 @@ describe('V0 - Report Controller', () => {
     await reportController.salesReport(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the sales report endpoint was called with an id', async () => {
@@ -186,6 +185,6 @@ describe('V0 - Report Controller', () => {
     await reportController.salesReport(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

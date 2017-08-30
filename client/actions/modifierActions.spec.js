@@ -20,7 +20,6 @@ import { MODIFIER_ENDPOINT } from '../utilities/endpoints';
 import moxios from 'moxios';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
-import { expect } from 'chai';
 
 describe('Modifier Actions', () => {
   let store;
@@ -82,7 +81,7 @@ describe('Modifier Actions', () => {
 
     return store.dispatch(deactivateModifier(existingModifier)).then(() => {
       const actual = store.getActions().map(action => action.type)[0];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -96,7 +95,7 @@ describe('Modifier Actions', () => {
 
     return store.dispatch(deactivateModifier(existingModifier)).then(() => {
       const actual = store.getActions().map(action => action.type)[1];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -109,7 +108,7 @@ describe('Modifier Actions', () => {
 
     return store.dispatch(createModifier(newModifier)).then(() => {
       const actual = store.getActions().map(action => action.type)[0];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -122,7 +121,7 @@ describe('Modifier Actions', () => {
 
     return store.dispatch(createModifier(newModifier)).then(() => {
       const actual = store.getActions().map(action => action.type)[2];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -135,7 +134,7 @@ describe('Modifier Actions', () => {
 
     return store.dispatch(createModifier(newModifier)).then(() => {
       const actual = store.getActions().map(action => action.type)[1];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -150,7 +149,7 @@ describe('Modifier Actions', () => {
 
     return store.dispatch(createModifier(newModifier)).then(() => {
       const actual = store.getActions().map(action => action.modifier)[1];
-      expect(actual).deep.equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -165,7 +164,7 @@ describe('Modifier Actions', () => {
 
     return store.dispatch(updateModifier(existingModifier)).then(() => {
       const actual = store.getActions().map(action => action.type)[0];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -180,7 +179,7 @@ describe('Modifier Actions', () => {
 
     return store.dispatch(updateModifier(existingModifier)).then(() => {
       const actual = store.getActions().map(action => action.type)[2];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -195,7 +194,7 @@ describe('Modifier Actions', () => {
 
     return store.dispatch(updateModifier(existingModifier)).catch(() => {
       const actual = store.getActions().map(action => action.type)[1];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -208,7 +207,7 @@ describe('Modifier Actions', () => {
 
     return store.dispatch(createModifier(newModifier)).catch(() => {
       const actual = store.getActions().map(action => action.type)[1];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -223,7 +222,7 @@ describe('Modifier Actions', () => {
 
     return store.dispatch(updateModifier(updatedModifier)).then(() => {
       const actual = store.getActions().map(action => action.type)[1];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -242,7 +241,7 @@ describe('Modifier Actions', () => {
 
     return store.dispatch(updateModifier(updatedModifier)).then(() => {
       const actual = store.getActions().map(action => action.modifier)[1];
-      expect(actual).deep.equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 });

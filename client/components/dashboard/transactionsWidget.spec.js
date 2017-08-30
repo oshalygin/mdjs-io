@@ -4,8 +4,6 @@ import React from 'react';
 import TransactionsWidget from './TransactionsWidget.jsx';
 import Pill from '../common/pill';
 
-import { expect } from 'chai';
-
 describe('<TransactionsWidget />', () => {
   const props = {
     creditCardTransactions: 1500,
@@ -17,7 +15,7 @@ describe('<TransactionsWidget />', () => {
     const wrapper = shallow(<TransactionsWidget {...props} />);
     const actual = wrapper.find('.widget-title').text();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should display the credit card transactions value as "$ 1,500"', () => {
@@ -28,7 +26,7 @@ describe('<TransactionsWidget />', () => {
       .at(0)
       .text();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should display the cash transactions value as "$ 1,304"', () => {
@@ -39,7 +37,7 @@ describe('<TransactionsWidget />', () => {
       .at(1)
       .text();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should display the credit card transaction percentage as "53% Credit Card"', () => {
@@ -47,7 +45,7 @@ describe('<TransactionsWidget />', () => {
     const wrapper = shallow(<TransactionsWidget {...props} />);
     const actual = wrapper.find('.transaction-content-subtext').at(0).text();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should display the cash transaction percentage as "47% Cash"', () => {
@@ -55,7 +53,7 @@ describe('<TransactionsWidget />', () => {
     const wrapper = shallow(<TransactionsWidget {...props} />);
     const actual = wrapper.find('.transaction-content-subtext').at(1).text();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should contain a <Pill /> component with a label of "Today"', () => {
@@ -63,6 +61,6 @@ describe('<TransactionsWidget />', () => {
     const wrapper = shallow(<TransactionsWidget {...props} />);
     const actual = wrapper.find(Pill).props().label;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

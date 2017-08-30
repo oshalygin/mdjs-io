@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import sinon from 'sinon';
 
 import messageController from './messageController';
@@ -42,7 +41,7 @@ describe('V0 - Message Controller', () => {
     await messageController.get(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the message get endpoint threw an error', async () => {
@@ -65,7 +64,7 @@ describe('V0 - Message Controller', () => {
     await messageController.get(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the message get endpoint is null', async () => {
@@ -84,7 +83,7 @@ describe('V0 - Message Controller', () => {
     await messageController.get(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the message get endpoint was called with an id', async () => {
@@ -105,7 +104,7 @@ describe('V0 - Message Controller', () => {
     await messageController.get(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the message markRead endpoint', async () => {
@@ -128,7 +127,7 @@ describe('V0 - Message Controller', () => {
     await messageController.markRead(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the message markRead endpoint threw an error', async () => {
@@ -151,7 +150,7 @@ describe('V0 - Message Controller', () => {
     await messageController.markRead(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the message markRead endpoint is null', async () => {
@@ -170,7 +169,7 @@ describe('V0 - Message Controller', () => {
     await messageController.markRead(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the message markRead endpoint was called with an id', async () => {
@@ -189,7 +188,7 @@ describe('V0 - Message Controller', () => {
     await messageController.markRead(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the message delete endpoint', async () => {
@@ -212,7 +211,7 @@ describe('V0 - Message Controller', () => {
     await messageController.delete(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the message delete endpoint threw an error', async () => {
@@ -235,7 +234,7 @@ describe('V0 - Message Controller', () => {
     await messageController.delete(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the message delete endpoint is null', async () => {
@@ -254,7 +253,7 @@ describe('V0 - Message Controller', () => {
     await messageController.delete(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the message delete endpoint was called with an id', async () => {
@@ -273,6 +272,6 @@ describe('V0 - Message Controller', () => {
     await messageController.delete(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

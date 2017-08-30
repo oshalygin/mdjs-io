@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import * as actionTypes from '../actions/actionTypes';
 import reducer from './loadingReducer';
 
@@ -21,7 +20,7 @@ describe('Reducer - Loading', () => {
     const expected = getInitialState();
     const actual = reducer(undefined, action); //eslint-disable-line no-undefined
 
-    expect(actual).to.deep.equal(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the loadingItems flag to true on a ITEM_DEACTIVATED dispatch', () => {
@@ -32,7 +31,7 @@ describe('Reducer - Loading', () => {
     const expected = true;
     const actual = reducer(getInitialState(), action).loadingItems;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the loadingItems flag to false on a ITEM_DEACTIVATED_SUCCESS dispatch', () => {
@@ -43,7 +42,7 @@ describe('Reducer - Loading', () => {
     const expected = false;
     const actual = reducer(getInitialState(), action).loadingItems;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the loadingUser flag to false on a LOGOUT_SUCCESS dispatch', () => {
@@ -54,7 +53,7 @@ describe('Reducer - Loading', () => {
     const expected = false;
     const actual = reducer(getInitialState(), action).loadingUser;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the loadingMonthlySummary flag to true on a "LOADING_MONTHLY_SUMMARY" dispatch', () => {
@@ -65,7 +64,7 @@ describe('Reducer - Loading', () => {
     const expected = true;
     const actual = reducer(getInitialState(), action).loadingMonthlySummary;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the loadingMonthlySummary flag to false on a "LOAD_MONTHLY_SUMMARY_SUCCESS" dispatch', () => {
@@ -76,6 +75,6 @@ describe('Reducer - Loading', () => {
     const expected = false;
     const actual = reducer(getInitialState(), action).loadingMonthlySummary;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

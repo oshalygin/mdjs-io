@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import moxios from 'moxios';
 import sinon from 'sinon';
 
@@ -82,7 +81,7 @@ describe('Categories Controller', () => {
     CategoriesController.get(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return a 200 status code on a successful request', () => {
@@ -111,7 +110,7 @@ describe('Categories Controller', () => {
 
     return CategoriesController.get(request, response).then(() => {
       const actual = statusStub.calledWith(200);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -141,7 +140,7 @@ describe('Categories Controller', () => {
 
     return CategoriesController.get(request, response).then(() => {
       const actual = jsonSpy.calledWith(categories);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -176,7 +175,7 @@ describe('Categories Controller', () => {
 
     return CategoriesController.get(request, response).then(() => {
       const actual = jsonSpy.calledWith(categories[0]);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -214,7 +213,7 @@ describe('Categories Controller', () => {
 
     return CategoriesController.get(request, response).then(() => {
       const actual = statusStub.calledWith(404);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -252,7 +251,7 @@ describe('Categories Controller', () => {
 
     return CategoriesController.get(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -275,7 +274,7 @@ describe('Categories Controller', () => {
     CategoriesController.deleteCategory(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return 404 if the request fell through the backend on a deleteCategory call', () => {
@@ -317,7 +316,7 @@ describe('Categories Controller', () => {
 
     return CategoriesController.deleteCategory(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -360,7 +359,7 @@ describe('Categories Controller', () => {
 
     return CategoriesController.deleteCategory(request, response).then(() => {
       const actual = statusStub.calledWith(200);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -385,7 +384,7 @@ describe('Categories Controller', () => {
 
     return CategoriesController.put(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -411,7 +410,7 @@ describe('Categories Controller', () => {
 
     return CategoriesController.put(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -448,7 +447,7 @@ describe('Categories Controller', () => {
 
     return CategoriesController.put(request, response).then(() => {
       const actual = statusStub.calledWith(200);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -493,7 +492,7 @@ describe('Categories Controller', () => {
 
     return CategoriesController.put(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -534,7 +533,7 @@ describe('Categories Controller', () => {
 
     return CategoriesController.post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -567,7 +566,7 @@ describe('Categories Controller', () => {
 
     return CategoriesController.post(request, response).then(() => {
       const actual = statusStub.calledWith(200);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -589,7 +588,7 @@ describe('Categories Controller', () => {
 
     return CategoriesController.post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -616,7 +615,7 @@ describe('Categories Controller', () => {
 
     return CategoriesController.post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 });

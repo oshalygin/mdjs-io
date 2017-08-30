@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import {
   TAX_DEACTIVATED_SUCCESS,
   LOAD_TAXES_SUCCESS,
@@ -49,7 +48,7 @@ describe('Reducer - Tax', () => {
     const expected = getInitialState();
     const actual = reducer(undefined, action); //eslint-disable-line no-undefined
 
-    expect(actual).to.deep.equal(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should hydrate the state with all of the taxes in the action in addition to the additional checked and disabled properties', () => {
@@ -61,7 +60,7 @@ describe('Reducer - Tax', () => {
     const expected = taxes;
     const actual = reducer(undefined, action); //eslint-disable-line no-undefined
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should remove the tax that was passed in as part of the TAX_DEACTIVATED_SUCCESS dispatched action', () => {
@@ -73,6 +72,6 @@ describe('Reducer - Tax', () => {
     const expected = 1;
     const actual = reducer(taxes, action).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

@@ -13,8 +13,6 @@ import moxios from 'moxios';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
 
-import { expect } from 'chai';
-
 describe('Order Actions', () => {
   let store;
   const middlewares = [thunk];
@@ -251,7 +249,7 @@ describe('Order Actions', () => {
 
     return store.dispatch(getAllOrders()).then(() => {
       const actual = store.getActions().map(action => action.type)[0];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -267,7 +265,7 @@ describe('Order Actions', () => {
 
     return store.dispatch(getOrderDetails(orderId)).then(() => {
       const actual = store.getActions().map(action => action.type)[0];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -283,7 +281,7 @@ describe('Order Actions', () => {
 
     return store.dispatch(getOrderDetails(orderId)).then(() => {
       const actual = store.getActions()[1].type;
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -299,7 +297,7 @@ describe('Order Actions', () => {
 
     return store.dispatch(getOrderDetails(orderId)).catch(() => {
       const actual = store.getActions()[1].type;
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -312,7 +310,7 @@ describe('Order Actions', () => {
 
     return store.dispatch(getAllOrders()).then(() => {
       const actual = store.getActions().map(action => action.type)[1];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -326,7 +324,7 @@ describe('Order Actions', () => {
 
     return store.dispatch(getAllOrders()).catch(() => {
       const actual = store.getActions().map(action => action.type)[1];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -335,7 +333,7 @@ describe('Order Actions', () => {
 
     return store.dispatch(hideOrderDetail()).then(() => {
       const actual = store.getActions().map(action => action.type)[0];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -362,7 +360,7 @@ describe('Order Actions', () => {
 
     return store.dispatch(getMonthlySummary(months)).then(() => {
       const actual = store.getActions()[0].type;
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -389,7 +387,7 @@ describe('Order Actions', () => {
 
     return store.dispatch(getMonthlySummary(months)).then(() => {
       const actual = store.getActions()[1].type;
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -416,7 +414,7 @@ describe('Order Actions', () => {
 
     return store.dispatch(getMonthlySummary(months)).then(() => {
       const actual = store.getActions()[2].type;
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -443,7 +441,7 @@ describe('Order Actions', () => {
 
     return store.dispatch(getMonthlySummary(months)).then(() => {
       const actual = store.getActions()[3].type;
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -470,7 +468,7 @@ describe('Order Actions', () => {
 
     return store.dispatch(getMonthlySummary(months)).then(() => {
       const actual = store.getActions()[4].type;
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -494,7 +492,7 @@ describe('Order Actions', () => {
 
     return store.dispatch(getMonthlySummary(months)).catch(() => {
       const actual = store.getActions()[1].type;
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 });

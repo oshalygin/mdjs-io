@@ -5,8 +5,6 @@ import Dashboard, { mapStateToProps } from './index';
 import MonthlySummary from './monthlySummary';
 import SalesWidget from './SalesWidget.jsx';
 
-import { expect } from 'chai';
-
 describe('<Dashboard />', () => {
   const orders = [
     {
@@ -100,7 +98,7 @@ describe('<Dashboard />', () => {
     const wrapper = shallow(<Dashboard.WrappedComponent />);
     const actual = wrapper.find(MonthlySummary).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should contain a <SalesWidget /> component on the dashboard', () => {
@@ -108,7 +106,7 @@ describe('<Dashboard />', () => {
     const wrapper = shallow(<Dashboard.WrappedComponent />);
     const actual = wrapper.find(SalesWidget).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should map the sales amount accordingly in mapStateToProps for yesterdaysSales', () => {
@@ -123,7 +121,7 @@ describe('<Dashboard />', () => {
 
     const actual = mapStateToProps(state).yesterdaysSales;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should map the sales amount accordingly in mapStateToProps for todaysSales', () => {
@@ -138,7 +136,7 @@ describe('<Dashboard />', () => {
 
     const actual = mapStateToProps(state).todaysSales;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should map the count accordingly in mapStateToProps for todaysCount', () => {
@@ -153,7 +151,7 @@ describe('<Dashboard />', () => {
 
     const actual = mapStateToProps(state).todaysCount;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should map the count accordingly in mapStateToProps for yesterdaysCount', () => {
@@ -168,7 +166,7 @@ describe('<Dashboard />', () => {
 
     const actual = mapStateToProps(state).yesterdaysCount;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should map the cash transaction sales amount accordingly in mapStateToProps for todaysCashTransactionSales', () => {
@@ -185,7 +183,7 @@ describe('<Dashboard />', () => {
       mapStateToProps(state).todaysCashTransactionSales.toFixed(2),
     );
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should map the credit card transaction sales amount accordingly in mapStateToProps for todaysCreditCardTransactionSales', () => {
@@ -202,6 +200,6 @@ describe('<Dashboard />', () => {
       mapStateToProps(state).todaysCreditCardTransactionSales.toFixed(2),
     );
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

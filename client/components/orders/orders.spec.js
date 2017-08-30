@@ -4,8 +4,6 @@ import React from 'react';
 import Orders, { mapStateToProps } from './index';
 import Spinner from '../common/spinner/';
 
-import { expect } from 'chai';
-
 describe('<Orders />', () => {
   const orders = [
     {
@@ -120,7 +118,7 @@ describe('<Orders />', () => {
 
     const actual = instance.state.orders.length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should filter the list and match on lowercase as well', () => {
@@ -140,7 +138,7 @@ describe('<Orders />', () => {
 
     const actual = instance.state.orders.length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the filter object appropriately on the local state', () => {
@@ -160,7 +158,7 @@ describe('<Orders />', () => {
 
     const actual = instance.state.filter;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should map loading to false for every order object', () => {
@@ -178,7 +176,7 @@ describe('<Orders />', () => {
     const mappedOrders = mapStateToProps(state).orders;
 
     const actual = mappedOrders.every(order => !order.loading);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the notification property to false if closeNotification is called', () => {
@@ -189,7 +187,7 @@ describe('<Orders />', () => {
     instance.closeNotification();
     const actual = instance.state.notification;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the notification property to true if displayNotification is called', () => {
@@ -201,7 +199,7 @@ describe('<Orders />', () => {
     const actual = instance.state.notification;
     instance.closeNotification();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the notification message to the value that the message was called with', () => {
@@ -214,7 +212,7 @@ describe('<Orders />', () => {
     const actual = instance.state.notificationMessage;
     instance.closeNotification();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should NOT display the spinner if the loading prop is false', () => {
@@ -225,7 +223,7 @@ describe('<Orders />', () => {
 
     const actual = wrapper.find(Spinner).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should display the spinner if the loading prop is true', () => {
@@ -236,6 +234,6 @@ describe('<Orders />', () => {
 
     const actual = wrapper.find(Spinner).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

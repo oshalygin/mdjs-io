@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import moxios from 'moxios';
 import sinon from 'sinon';
 
@@ -74,7 +73,7 @@ describe('Tax Controller', () => {
     TaxController.get(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return a 200 status code on a successful request', () => {
@@ -103,7 +102,7 @@ describe('Tax Controller', () => {
 
     return TaxController.get(request, response).then(() => {
       const actual = statusStub.calledWith(200);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -133,7 +132,7 @@ describe('Tax Controller', () => {
 
     return TaxController.get(request, response).then(() => {
       const actual = jsonSpy.calledWith(taxes);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -168,7 +167,7 @@ describe('Tax Controller', () => {
 
     return TaxController.get(request, response).then(() => {
       const actual = jsonSpy.calledWith(taxes[0]);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -206,7 +205,7 @@ describe('Tax Controller', () => {
 
     return TaxController.get(request, response).then(() => {
       const actual = statusStub.calledWith(404);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -244,7 +243,7 @@ describe('Tax Controller', () => {
 
     return TaxController.get(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -267,7 +266,7 @@ describe('Tax Controller', () => {
     TaxController.deleteTax(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return 404 if the request fell through the backend on a deleteTax call', () => {
@@ -309,7 +308,7 @@ describe('Tax Controller', () => {
 
     return TaxController.deleteTax(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -352,7 +351,7 @@ describe('Tax Controller', () => {
 
     return TaxController.deleteTax(request, response).then(() => {
       const actual = statusStub.calledWith(200);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -377,7 +376,7 @@ describe('Tax Controller', () => {
 
     return TaxController.put(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -403,7 +402,7 @@ describe('Tax Controller', () => {
 
     return TaxController.put(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -440,7 +439,7 @@ describe('Tax Controller', () => {
 
     return TaxController.put(request, response).then(() => {
       const actual = statusStub.calledWith(200);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -485,7 +484,7 @@ describe('Tax Controller', () => {
 
     return TaxController.put(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -526,7 +525,7 @@ describe('Tax Controller', () => {
 
     return TaxController.post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -559,7 +558,7 @@ describe('Tax Controller', () => {
 
     return TaxController.post(request, response).then(() => {
       const actual = statusStub.calledWith(200);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -581,7 +580,7 @@ describe('Tax Controller', () => {
 
     return TaxController.post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -608,7 +607,7 @@ describe('Tax Controller', () => {
 
     return TaxController.post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 });

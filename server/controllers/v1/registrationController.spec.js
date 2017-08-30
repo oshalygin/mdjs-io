@@ -3,8 +3,6 @@ import sinon from 'sinon';
 import moxios from 'moxios';
 import { REGISTRATION_ENDPOINT } from '../../utilities/endpoints';
 
-import { expect } from 'chai';
-
 describe('Registration Controller', () => {
   beforeEach(() => {
     moxios.install();
@@ -57,7 +55,7 @@ describe('Registration Controller', () => {
     post(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return a 400 status code if the password is null', () => {
@@ -83,7 +81,7 @@ describe('Registration Controller', () => {
     post(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return a 400 status code if the confirmPassword is null', () => {
@@ -109,7 +107,7 @@ describe('Registration Controller', () => {
     post(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return a 400 status code if the firstName is null', () => {
@@ -135,7 +133,7 @@ describe('Registration Controller', () => {
     post(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return a 400 status code if the referrer is null', () => {
@@ -161,7 +159,7 @@ describe('Registration Controller', () => {
     post(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return a 400 status code if the lastName is null', () => {
@@ -187,7 +185,7 @@ describe('Registration Controller', () => {
     post(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return a 400 status code if the password does not match the confirmPassword', () => {
@@ -214,7 +212,7 @@ describe('Registration Controller', () => {
     post(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return a 200 status code if all the required parameters were passed in', () => {
@@ -241,7 +239,7 @@ describe('Registration Controller', () => {
 
     return post(request, response).then(() => {
       const actual = statusStub.calledWith(200);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -277,7 +275,7 @@ describe('Registration Controller', () => {
 
     return post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -311,7 +309,7 @@ describe('Registration Controller', () => {
 
     return post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -343,7 +341,7 @@ describe('Registration Controller', () => {
 
     return post(request, response).then(() => {
       const actual = jsonSpy.calledWith(tokenResponse);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 });

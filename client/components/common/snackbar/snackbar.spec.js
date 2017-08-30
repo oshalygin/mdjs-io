@@ -1,5 +1,4 @@
 import React from 'react';
-import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
 import Snackbar from './index.js';
@@ -17,7 +16,7 @@ describe('<Snackbar />', () => {
     const expected = 1;
 
     const actual = wrapper.find(BaseSnackbar).length;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the default autoHideDuration to 3 seconds if nothing is passed in as props', () => {
@@ -26,7 +25,7 @@ describe('<Snackbar />', () => {
 
     const actual = wrapper.find(BaseSnackbar).props().autoHideDuration;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should properly accept the message value if it is passed in', () => {
@@ -40,6 +39,6 @@ describe('<Snackbar />', () => {
 
     const actual = wrapper.find(BaseSnackbar).props().message;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

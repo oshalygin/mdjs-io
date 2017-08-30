@@ -6,8 +6,6 @@ import {
   LOGIN_TOKEN_ENDPOINT,
 } from '../../utilities/endpoints';
 
-import { expect } from 'chai';
-
 describe('Account Controller', () => {
   beforeEach(() => {
     moxios.install();
@@ -190,7 +188,7 @@ describe('Account Controller', () => {
     post(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return a 400 status code if the password is null', () => {
@@ -215,7 +213,7 @@ describe('Account Controller', () => {
     post(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return a 200 status code if both the username and password were passed', () => {
@@ -248,7 +246,7 @@ describe('Account Controller', () => {
 
     return post(request, response).then(() => {
       const actual = statusStub.calledWith(200);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -287,7 +285,7 @@ describe('Account Controller', () => {
 
     return post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -324,7 +322,7 @@ describe('Account Controller', () => {
 
     return post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -362,7 +360,7 @@ describe('Account Controller', () => {
 
     return post(request, response).then(() => {
       const actual = jsonSpy.calledWith(tokenResponse);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -391,7 +389,7 @@ describe('Account Controller', () => {
 
     return get(request, response).then(() => {
       const actual = jsonSpy.calledWith(accountDetailsResponse);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -414,7 +412,7 @@ describe('Account Controller', () => {
     get(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return a 400 if the account response object has null data on a loginWithToken request', () => {
@@ -446,7 +444,7 @@ describe('Account Controller', () => {
 
     return get(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -483,7 +481,7 @@ describe('Account Controller', () => {
 
     return get(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 });

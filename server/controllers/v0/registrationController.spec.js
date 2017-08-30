@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import sinon from 'sinon';
 
 import registrationController from './registrationController';
@@ -44,7 +43,7 @@ describe('V0 - Registration Controller', () => {
     await registrationController.register(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the registration endpoint threw an error', async () => {
@@ -67,7 +66,7 @@ describe('V0 - Registration Controller', () => {
     await registrationController.register(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the registration endpoint is null', async () => {
@@ -86,7 +85,7 @@ describe('V0 - Registration Controller', () => {
     await registrationController.register(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the registration endpoint was called with an id', async () => {
@@ -107,7 +106,7 @@ describe('V0 - Registration Controller', () => {
     await registrationController.register(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the registration bank endpoint', async () => {
@@ -130,7 +129,7 @@ describe('V0 - Registration Controller', () => {
     await registrationController.bank(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the registration bank endpoint threw an error', async () => {
@@ -153,7 +152,7 @@ describe('V0 - Registration Controller', () => {
     await registrationController.bank(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the registration bank endpoint is null', async () => {
@@ -172,7 +171,7 @@ describe('V0 - Registration Controller', () => {
     await registrationController.bank(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the registration bank endpoint was called with an id', async () => {
@@ -191,7 +190,7 @@ describe('V0 - Registration Controller', () => {
     await registrationController.bank(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the registration business endpoint', async () => {
@@ -214,7 +213,7 @@ describe('V0 - Registration Controller', () => {
     await registrationController.business(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the registration business endpoint threw an error', async () => {
@@ -237,7 +236,7 @@ describe('V0 - Registration Controller', () => {
     await registrationController.business(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the registration business endpoint is null', async () => {
@@ -256,7 +255,7 @@ describe('V0 - Registration Controller', () => {
     await registrationController.business(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the registration business endpoint was called with an id', async () => {
@@ -275,7 +274,7 @@ describe('V0 - Registration Controller', () => {
     await registrationController.business(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the registration principal endpoint', async () => {
@@ -298,7 +297,7 @@ describe('V0 - Registration Controller', () => {
     await registrationController.principal(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the registration principal endpoint threw an error', async () => {
@@ -321,7 +320,7 @@ describe('V0 - Registration Controller', () => {
     await registrationController.principal(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the registration principal endpoint is null', async () => {
@@ -340,7 +339,7 @@ describe('V0 - Registration Controller', () => {
     await registrationController.principal(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the registration principal endpoint was called with an id', async () => {
@@ -359,7 +358,7 @@ describe('V0 - Registration Controller', () => {
     await registrationController.principal(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the status endpoint', async () => {
@@ -382,7 +381,7 @@ describe('V0 - Registration Controller', () => {
     await registrationController.status(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the status endpoint threw an error', async () => {
@@ -405,7 +404,7 @@ describe('V0 - Registration Controller', () => {
     await registrationController.status(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the status endpoint is null', async () => {
@@ -424,7 +423,7 @@ describe('V0 - Registration Controller', () => {
     await registrationController.status(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the status endpoint was called with an id', async () => {
@@ -443,6 +442,6 @@ describe('V0 - Registration Controller', () => {
     await registrationController.status(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

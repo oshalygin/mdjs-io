@@ -1,5 +1,4 @@
 import React from 'react';
-import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
 import Spinner from './index.js';
@@ -11,7 +10,7 @@ describe('<Spinner />', () => {
     const expected = 1;
 
     const actual = wrapper.find(CircularProgress).length;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the default spinner thickness to 5 if nothing is passed in as props', () => {
@@ -20,7 +19,7 @@ describe('<Spinner />', () => {
 
     const actual = wrapper.find(CircularProgress).props().thickness;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the default spinner size to 80 if nothing is passed in as props', () => {
@@ -29,7 +28,7 @@ describe('<Spinner />', () => {
 
     const actual = wrapper.find(CircularProgress).props().size;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the thickness to the passed in prop', () => {
@@ -38,7 +37,7 @@ describe('<Spinner />', () => {
 
     const actual = wrapper.find(CircularProgress).props().thickness;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should not be displayed if the hidden prop is passed in', () => {
@@ -51,7 +50,7 @@ describe('<Spinner />', () => {
 
     const actual = wrapper.find(CircularProgress).props().style.display;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should have the initial display if the prop passed in is false', () => {
@@ -64,6 +63,6 @@ describe('<Spinner />', () => {
 
     const actual = wrapper.find(CircularProgress).props().style.display;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

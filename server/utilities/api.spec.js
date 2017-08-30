@@ -1,7 +1,6 @@
 import api from './api';
 
 import sinon from 'sinon';
-import { expect } from 'chai';
 
 jest.dontMock('axios');
 
@@ -19,7 +18,7 @@ describe('Api Utilities', () => {
     api.get(token)(endpoint);
 
     const actual = getSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should curry back a get', () => {
@@ -32,7 +31,7 @@ describe('Api Utilities', () => {
     api.get(token)(endpoint);
 
     const actual = getSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a PUT request when calling the put property with an endpoint and data', () => {
@@ -45,7 +44,7 @@ describe('Api Utilities', () => {
     api.put(token)(endpoint, {});
 
     const actual = putSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a POST request when calling the post property with an endpoint and data', () => {
@@ -58,7 +57,7 @@ describe('Api Utilities', () => {
     api.post(token)(endpoint, {});
 
     const actual = postSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a PATCH request when calling the post property with an endpoint and data', () => {
@@ -71,7 +70,7 @@ describe('Api Utilities', () => {
     api.patch(token)(endpoint, {});
 
     const actual = patchSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a DELETE request when calling the post property with an endpoint', () => {
@@ -84,7 +83,7 @@ describe('Api Utilities', () => {
     api.delete(token)(endpoint);
 
     const actual = deleteSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the request headers to include content-type on a GET request', () => {
@@ -105,6 +104,6 @@ describe('Api Utilities', () => {
     api.get(token)(endpoint);
 
     const actual = getSpy.calledWith(endpoint, requestHeaders);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

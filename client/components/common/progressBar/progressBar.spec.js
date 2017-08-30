@@ -1,5 +1,4 @@
 import React from 'react';
-import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
 import ProgressBar from './index.js';
@@ -14,7 +13,7 @@ describe('<ProgressBar />', () => {
     const wrapper = shallow(<ProgressBar />);
     const actual = wrapper.find(LinearProgress).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the default <LinearProgress /> height to 0.5rems', () => {
@@ -23,7 +22,7 @@ describe('<ProgressBar />', () => {
     const wrapper = shallow(<ProgressBar />);
     const actual = wrapper.find(LinearProgress).props().style.height;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the default ProgressBar color to blue', () => {
@@ -33,7 +32,7 @@ describe('<ProgressBar />', () => {
 
     const actual = wrapper.find(LinearProgress).props().color;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the min value to the passed in prop', () => {
@@ -42,6 +41,6 @@ describe('<ProgressBar />', () => {
 
     const actual = wrapper.find(LinearProgress).props().min;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

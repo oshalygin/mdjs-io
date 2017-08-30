@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { getJsonHeaders, getHeaders } from './requestUtilities';
 
 describe('Request Utilities', () => {
@@ -8,20 +7,20 @@ describe('Request Utilities', () => {
     const expected = 'application/json';
     const actual = getJsonHeaders().headers['Content-Type'];
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return Content-Type, "application/json" when requesting headers with a token', () => {
     const expected = 'application/json';
     const actual = getHeaders(token).headers['Content-Type'];
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return Authorization with the token when requesting headers with a token', () => {
     const expected = token;
     const actual = getHeaders(token).headers.Authorization;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

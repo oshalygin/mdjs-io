@@ -4,9 +4,6 @@ import sinon from 'sinon';
 import { shallow } from 'enzyme';
 import SearchBar from './SearchBar.jsx';
 
-jest.dontMock('react-router');
-import { expect } from 'chai';
-
 describe('<SearchBar />', () => {
   const defaultProps = {
     user: {},
@@ -19,7 +16,7 @@ describe('<SearchBar />', () => {
     const wrapper = shallow(<SearchBar.WrappedComponent {...defaultProps} />);
     const actual = wrapper.first('i.fa-sign-out').text();
 
-    expect(actual).to.equal(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('navbar contains a clickHandler to toggle the side navigation menu', () => {
@@ -27,7 +24,7 @@ describe('<SearchBar />', () => {
     const wrapper = shallow(<SearchBar.WrappedComponent {...defaultProps} />);
     const actual = wrapper.find('a').first().props().onClick();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should properly redirect to the /login route when logout is clicked', () => {
@@ -48,7 +45,7 @@ describe('<SearchBar />', () => {
       .simulate('click');
 
     const actual = redirectSpy.calledWith('/login');
-    expect(actual).to.equal(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should call the logout userAction when clicking the logout link', () => {
@@ -70,6 +67,6 @@ describe('<SearchBar />', () => {
       .simulate('click');
 
     const actual = logoutUserActionSpy.called;
-    expect(actual).to.equal(expected);
+    expect(actual).toEqual(expected);
   });
 });

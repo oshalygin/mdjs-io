@@ -6,9 +6,6 @@ import sinon from 'sinon';
 import React from 'react';
 import Categories from './index';
 
-jest.dontMock('react-router');
-import { expect } from 'chai';
-
 describe('<Categories />', () => {
   const categories = [
     {
@@ -50,7 +47,7 @@ describe('<Categories />', () => {
 
     const actual = wrapper.find(RaisedButton).props().label;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should navigate to the "category" route when navigateToNewCategoryPage is called', () => {
@@ -66,7 +63,7 @@ describe('<Categories />', () => {
 
     const actual = redirectSpy.calledWith('/dashboard/categories/new');
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should dispatch the deactivate action with the passed in id that matches the categories in the list', () => {
@@ -95,7 +92,7 @@ describe('<Categories />', () => {
     instance.deactivate(37);
 
     const actual = triggerCategoryDeletionSpy.calledWith(categories[0]);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should filter the list to only include the categories from the searchCriteria', () => {
@@ -115,7 +112,7 @@ describe('<Categories />', () => {
 
     const actual = instance.state.categories.length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should filter the list and match on lowercase as well', () => {
@@ -135,7 +132,7 @@ describe('<Categories />', () => {
 
     const actual = instance.state.categories.length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the filter object appropriately on the local state', () => {
@@ -155,6 +152,6 @@ describe('<Categories />', () => {
 
     const actual = instance.state.filter;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

@@ -7,8 +7,6 @@ import React from 'react';
 import DiscountDetailForm from './DiscountDetailForm.jsx';
 import DiscountValueField from './DiscountValueField.jsx';
 
-import { expect } from 'chai';
-
 describe('<DiscountDetailForm />', () => {
   const errors = {
     discountName: false,
@@ -72,7 +70,7 @@ describe('<DiscountDetailForm />', () => {
     const expected = 1;
     const actual = wrapper.find(TextField).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should contain one <DiscountValueField /> on the form', () => {
@@ -81,7 +79,7 @@ describe('<DiscountDetailForm />', () => {
     const expected = 1;
     const actual = wrapper.find(DiscountValueField).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should contain a SelectField dropdown which has an "Apply To" property', () => {
@@ -92,7 +90,7 @@ describe('<DiscountDetailForm />', () => {
       .find(SelectField)
       .nodes.filter(node => node.props.floatingLabelText === 'Apply To').length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should contain a SelectField dropdown which has an "Value Type" property', () => {
@@ -104,7 +102,7 @@ describe('<DiscountDetailForm />', () => {
       .nodes.filter(node => node.props.floatingLabelText === 'Value Type')
       .length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should still render only a two SelectField controls if the discountOption selected is 0 for applyTypeID', () => {
@@ -124,7 +122,7 @@ describe('<DiscountDetailForm />', () => {
     const expected = 2;
     const actual = wrapper.find(SelectField).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should render three SelectFields if the discountOption selected is 1 for applyTypeID', () => {
@@ -144,7 +142,7 @@ describe('<DiscountDetailForm />', () => {
     const expected = 3;
     const actual = wrapper.find(SelectField).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should render the number of matching items as MenuItems to the second SelectFields with applyTypeID of 1', () => {
@@ -164,7 +162,7 @@ describe('<DiscountDetailForm />', () => {
     const expected = 4 + items.length;
     const actual = wrapper.find(MenuItem).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should contain a material icon "play_for_work" that helps identify the page', () => {
@@ -173,6 +171,6 @@ describe('<DiscountDetailForm />', () => {
     const expected = 'play_for_work';
     const actual = wrapper.find('.material-icons').text();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

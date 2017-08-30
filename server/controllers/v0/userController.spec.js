@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import sinon from 'sinon';
 
 import userController from './userController';
@@ -36,7 +35,7 @@ describe('V0 - User Controller', () => {
     await userController.selectV2(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the user select V2 endpoint threw an error', async () => {
@@ -59,7 +58,7 @@ describe('V0 - User Controller', () => {
     await userController.selectV2(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the user select V2 endpoint is null', async () => {
@@ -78,7 +77,7 @@ describe('V0 - User Controller', () => {
     await userController.selectV2(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the user select V2 endpoint was called with an id', async () => {
@@ -97,7 +96,7 @@ describe('V0 - User Controller', () => {
     await userController.selectV2(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the user select endpoint', async () => {
@@ -120,7 +119,7 @@ describe('V0 - User Controller', () => {
     await userController.select(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the user select endpoint threw an error', async () => {
@@ -143,7 +142,7 @@ describe('V0 - User Controller', () => {
     await userController.select(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the user select endpoint is null', async () => {
@@ -162,7 +161,7 @@ describe('V0 - User Controller', () => {
     await userController.select(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the user select endpoint was called with an id', async () => {
@@ -181,7 +180,7 @@ describe('V0 - User Controller', () => {
     await userController.select(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the user create V2 endpoint', async () => {
@@ -204,7 +203,7 @@ describe('V0 - User Controller', () => {
     await userController.createV2(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the user create V2 endpoint threw an error', async () => {
@@ -227,7 +226,7 @@ describe('V0 - User Controller', () => {
     await userController.createV2(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the user create V2 endpoint is null', async () => {
@@ -246,7 +245,7 @@ describe('V0 - User Controller', () => {
     await userController.createV2(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the user create V2 endpoint was called with an id', async () => {
@@ -265,7 +264,7 @@ describe('V0 - User Controller', () => {
     await userController.createV2(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the user create endpoint', async () => {
@@ -288,7 +287,7 @@ describe('V0 - User Controller', () => {
     await userController.create(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the user create endpoint threw an error', async () => {
@@ -311,7 +310,7 @@ describe('V0 - User Controller', () => {
     await userController.create(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the user create endpoint is null', async () => {
@@ -330,7 +329,7 @@ describe('V0 - User Controller', () => {
     await userController.create(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the user create endpoint was called with an id', async () => {
@@ -349,7 +348,7 @@ describe('V0 - User Controller', () => {
     await userController.create(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the user update V2 endpoint', async () => {
@@ -372,7 +371,7 @@ describe('V0 - User Controller', () => {
     await userController.updateV2(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the user update V2 endpoint threw an error', async () => {
@@ -395,7 +394,7 @@ describe('V0 - User Controller', () => {
     await userController.updateV2(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the user update V2 endpoint is null', async () => {
@@ -414,7 +413,7 @@ describe('V0 - User Controller', () => {
     await userController.updateV2(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the user update V2 endpoint was called with an id', async () => {
@@ -433,7 +432,7 @@ describe('V0 - User Controller', () => {
     await userController.updateV2(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the user update endpoint', async () => {
@@ -456,7 +455,7 @@ describe('V0 - User Controller', () => {
     await userController.update(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the user update endpoint threw an error', async () => {
@@ -479,7 +478,7 @@ describe('V0 - User Controller', () => {
     await userController.update(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the user update endpoint is null', async () => {
@@ -498,7 +497,7 @@ describe('V0 - User Controller', () => {
     await userController.update(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the user update endpoint was called with an id', async () => {
@@ -517,7 +516,7 @@ describe('V0 - User Controller', () => {
     await userController.update(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the user deletion endpoint', async () => {
@@ -540,7 +539,7 @@ describe('V0 - User Controller', () => {
     await userController.deleteUser(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the user deletion endpoint threw an error', async () => {
@@ -563,7 +562,7 @@ describe('V0 - User Controller', () => {
     await userController.deleteUser(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the user deletion endpoint is null', async () => {
@@ -582,7 +581,7 @@ describe('V0 - User Controller', () => {
     await userController.deleteUser(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the user deletion endpoint was called with an id', async () => {
@@ -601,7 +600,7 @@ describe('V0 - User Controller', () => {
     await userController.deleteUser(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the user reactivate endpoint', async () => {
@@ -624,7 +623,7 @@ describe('V0 - User Controller', () => {
     await userController.reactivate(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the user reactivate endpoint threw an error', async () => {
@@ -647,7 +646,7 @@ describe('V0 - User Controller', () => {
     await userController.reactivate(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the user reactivate endpoint is null', async () => {
@@ -666,7 +665,7 @@ describe('V0 - User Controller', () => {
     await userController.reactivate(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the user reactivate endpoint was called with an id', async () => {
@@ -685,6 +684,6 @@ describe('V0 - User Controller', () => {
     await userController.reactivate(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

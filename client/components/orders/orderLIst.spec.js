@@ -4,8 +4,6 @@ import React from 'react';
 import OrderList from './OrderList.jsx';
 import OrderListCard from './OrderListCard.jsx';
 
-import { expect } from 'chai';
-
 describe('<OrderList />', () => {
   const props = {
     orders: [
@@ -104,7 +102,7 @@ describe('<OrderList />', () => {
     const wrapper = shallow(<OrderList {...props} />);
     const actual = wrapper.find('.first-section').text();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should contain a column with the "Date" heading', () => {
@@ -113,7 +111,7 @@ describe('<OrderList />', () => {
     const wrapper = shallow(<OrderList {...props} />);
     const actual = wrapper.find('.second-section').text();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should contain a column with the "Discounts" heading', () => {
@@ -122,7 +120,7 @@ describe('<OrderList />', () => {
     const wrapper = shallow(<OrderList {...props} />);
     const actual = wrapper.find('.third-section').text();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should contain a column with the "Taxes" heading', () => {
@@ -131,7 +129,7 @@ describe('<OrderList />', () => {
     const wrapper = shallow(<OrderList {...props} />);
     const actual = wrapper.find('.fourth-section').text();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should contain a column with the "Total" heading', () => {
@@ -140,7 +138,7 @@ describe('<OrderList />', () => {
     const wrapper = shallow(<OrderList {...props} />);
     const actual = wrapper.find('.fifth-section').text();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should contain a column with the "Status" heading', () => {
@@ -149,7 +147,7 @@ describe('<OrderList />', () => {
     const wrapper = shallow(<OrderList {...props} />);
     const actual = wrapper.find('.sixth-section').text();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should list the number of <OrderListCard /> that match the total number of orders', () => {
@@ -158,6 +156,6 @@ describe('<OrderList />', () => {
     const wrapper = shallow(<OrderList {...props} />);
     const actual = wrapper.find(OrderListCard).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

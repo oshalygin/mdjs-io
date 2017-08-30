@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 import { shallow } from 'enzyme';
-import { expect } from 'chai';
 import sinon from 'sinon';
 
 import AuthorizedRoute from './index';
@@ -23,7 +22,7 @@ describe('<AuthorizedRoute />', () => {
     const wrapper = shallow(<AuthorizedRoute.WrappedComponent {...props} />);
     const actual = wrapper.find(Route).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the render props to contain a <Spinner /> component if loading is true', () => {
@@ -33,7 +32,7 @@ describe('<AuthorizedRoute />', () => {
     const actual = shallow(wrapper.find(Route).props().render()).find(Spinner)
       .length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the render props to contain a <Redirect /> to login if loggedIn is false', () => {
@@ -48,7 +47,7 @@ describe('<AuthorizedRoute />', () => {
     const actual = shallow(wrapper.find(Route).props().render()).find(Redirect)
       .length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the render props to contain the passed in component if loggedIn is true', () => {
@@ -67,7 +66,7 @@ describe('<AuthorizedRoute />', () => {
       updatedProps.component,
     ).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should call retrieveLoggedInUser on componentWillMount', () => {
@@ -87,6 +86,6 @@ describe('<AuthorizedRoute />', () => {
     wrapper.instance();
 
     const actual = retrieveLoggedInUserSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

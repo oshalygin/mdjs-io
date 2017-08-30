@@ -4,8 +4,6 @@ import React from 'react';
 import MonthlyChart, { currencyFormatter } from './MonthlyChart';
 import { ResponsiveContainer, Area, AreaChart } from 'recharts';
 
-import { expect } from 'chai';
-
 describe('<MonthlyChart />', () => {
   const props = {
     data: [],
@@ -16,7 +14,7 @@ describe('<MonthlyChart />', () => {
     const wrapper = shallow(<MonthlyChart {...props} />);
     const actual = wrapper.find(ResponsiveContainer).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the data from props to the <AreaChart /> component', () => {
@@ -24,7 +22,7 @@ describe('<MonthlyChart />', () => {
     const wrapper = shallow(<MonthlyChart {...props} />);
     const actual = wrapper.find(AreaChart).props().data;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should contain two <Area /> components', () => {
@@ -32,7 +30,7 @@ describe('<MonthlyChart />', () => {
     const wrapper = shallow(<MonthlyChart {...props} />);
     const actual = wrapper.find(Area).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should perform a pass through and display the number value in the local currency when calling currencyFormatter', () => {
@@ -40,6 +38,6 @@ describe('<MonthlyChart />', () => {
     const expected = '$ 1,000.00';
     const actual = currencyFormatter(number);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

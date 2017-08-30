@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import imageService from './imageService';
 
 jest.dontMock('@google-cloud/storage');
@@ -11,6 +10,6 @@ describe('Image Service', () => {
 
     const actual = imageService.imageUrl(imageName);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

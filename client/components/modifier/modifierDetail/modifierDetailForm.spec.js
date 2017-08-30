@@ -4,8 +4,6 @@ import TextField from '../../common/TextField.jsx';
 import React from 'react';
 import ModifierDetailForm from './ModifierDetailForm.jsx';
 
-import { expect } from 'chai';
-
 describe('<ModifierDetailForm />', () => {
   const errors = {
     modifierName: false,
@@ -25,6 +23,6 @@ describe('<ModifierDetailForm />', () => {
     const expected = 2;
     const actual = wrapper.find(TextField).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

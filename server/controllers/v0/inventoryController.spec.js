@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import sinon from 'sinon';
 
 import inventoryController from './inventoryController';
@@ -43,7 +42,7 @@ describe('V0 - Inventory Controller', () => {
     await inventoryController.inventoryForItems(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the inventory inventory for items endpoint threw an error', async () => {
@@ -66,7 +65,7 @@ describe('V0 - Inventory Controller', () => {
     await inventoryController.inventoryForItems(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the inventory inventory for items endpoint is null', async () => {
@@ -85,7 +84,7 @@ describe('V0 - Inventory Controller', () => {
     await inventoryController.inventoryForItems(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the inventory inventory for items endpoint was called with an id', async () => {
@@ -106,7 +105,7 @@ describe('V0 - Inventory Controller', () => {
     await inventoryController.inventoryForItems(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the inventory set endpoint', async () => {
@@ -129,7 +128,7 @@ describe('V0 - Inventory Controller', () => {
     await inventoryController.setInventory(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the inventory set endpoint threw an error', async () => {
@@ -152,7 +151,7 @@ describe('V0 - Inventory Controller', () => {
     await inventoryController.setInventory(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the inventory set endpoint is null', async () => {
@@ -171,7 +170,7 @@ describe('V0 - Inventory Controller', () => {
     await inventoryController.setInventory(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the inventory set endpoint was called with an id', async () => {
@@ -190,7 +189,7 @@ describe('V0 - Inventory Controller', () => {
     await inventoryController.setInventory(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the inventory add endpoint', async () => {
@@ -213,7 +212,7 @@ describe('V0 - Inventory Controller', () => {
     await inventoryController.addToInventory(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the inventory add endpoint threw an error', async () => {
@@ -236,7 +235,7 @@ describe('V0 - Inventory Controller', () => {
     await inventoryController.addToInventory(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the inventory add endpoint is null', async () => {
@@ -255,7 +254,7 @@ describe('V0 - Inventory Controller', () => {
     await inventoryController.addToInventory(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the inventory add endpoint was called with an id', async () => {
@@ -274,6 +273,6 @@ describe('V0 - Inventory Controller', () => {
     await inventoryController.addToInventory(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

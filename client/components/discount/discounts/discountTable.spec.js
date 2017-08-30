@@ -5,8 +5,6 @@ import DiscountTableRow from './DiscountTableRow.jsx';
 import React from 'react';
 import DiscountTable from './DiscountTable.jsx';
 
-import { expect } from 'chai';
-
 describe('<DiscountTable />', () => {
   const props = {
     discounts: [
@@ -51,7 +49,7 @@ describe('<DiscountTable />', () => {
     const wrapper = shallow(<DiscountTable {...props} />);
     const actual = wrapper.find(TableHeaderColumn).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the displaySelectAll to false on the table to not render the checkboxes', () => {
@@ -60,7 +58,7 @@ describe('<DiscountTable />', () => {
     const wrapper = shallow(<DiscountTable {...props} />);
     const actual = wrapper.find(TableHeader).props().displaySelectAll;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should render an equivalent number of rows to the number of discounts in props', () => {
@@ -69,6 +67,6 @@ describe('<DiscountTable />', () => {
     const wrapper = shallow(<DiscountTable {...props} />);
     const actual = wrapper.find(DiscountTableRow).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

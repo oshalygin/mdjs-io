@@ -7,7 +7,6 @@ import { VERSION_ENDPOINT } from '../utilities/endpoints';
 import moxios from 'moxios';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
-import { expect } from 'chai';
 
 describe('Version Actions', () => {
   let store;
@@ -37,7 +36,7 @@ describe('Version Actions', () => {
 
     return store.dispatch(getVersion()).then(() => {
       const actual = store.getActions().map(action => action.type)[0];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -51,7 +50,7 @@ describe('Version Actions', () => {
 
     return store.dispatch(getVersion()).then(() => {
       const actual = store.getActions();
-      expect(actual).deep.equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 });

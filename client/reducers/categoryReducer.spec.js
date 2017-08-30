@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import {
   CATEGORY_DEACTIVATED_SUCCESS,
   LOAD_CATEGORIES_SUCCESS,
@@ -96,7 +95,7 @@ describe('Reducer - Category', () => {
     const expected = getInitialState();
     const actual = reducer(undefined, action); //eslint-disable-line no-undefined
 
-    expect(actual).to.deep.equal(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should hydrate the state with all of the categories in the action in addition to the additional checked and disabled properties', () => {
@@ -108,7 +107,7 @@ describe('Reducer - Category', () => {
     const expected = resultingCategories;
     const actual = reducer(undefined, action); //eslint-disable-line no-undefined
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should remove the category that was passed in as part of the CATEGORY_DEACTIVATED_SUCCESS dispatched action', () => {
@@ -120,6 +119,6 @@ describe('Reducer - Category', () => {
     const expected = 2;
     const actual = reducer(categories, action).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

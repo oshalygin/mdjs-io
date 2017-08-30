@@ -7,9 +7,6 @@ import sinon from 'sinon';
 import React from 'react';
 import ItemsTableRow from './ItemsTableRow.jsx';
 
-jest.dontMock('react-router');
-import { expect } from 'chai';
-
 describe('<ItemsTableRow />', () => {
   const props = {
     item: {
@@ -38,7 +35,7 @@ describe('<ItemsTableRow />', () => {
     const actual = redirectSpy.calledWith(
       `/dashboard/items/${props.item.itemID}`,
     );
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should call the deactivate prop function when the "Deactivate" button is clicked', () => {
@@ -58,6 +55,6 @@ describe('<ItemsTableRow />', () => {
     wrapper.find(RaisedButton).simulate('click');
 
     const actual = deactivateSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

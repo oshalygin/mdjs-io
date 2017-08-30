@@ -1,3 +1,7 @@
+## 3.27.1 (August 30, 2017)
+
+- Deprecated consumption of `chai` in favor of Jest assertion library
+
 ## 3.27.0 (August 28, 2017)
 
 - Addition of a `/registration` route which allows users to register with the application

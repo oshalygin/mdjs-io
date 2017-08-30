@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import sinon from 'sinon';
 
 import customerController from './customerController';
@@ -48,7 +47,7 @@ describe('V0 - Customer Controller', () => {
     await customerController.create(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the customer create endpoint threw an error', async () => {
@@ -71,7 +70,7 @@ describe('V0 - Customer Controller', () => {
     await customerController.create(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the customer create endpoint is null', async () => {
@@ -90,7 +89,7 @@ describe('V0 - Customer Controller', () => {
     await customerController.create(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the customer create endpoint was called with an id', async () => {
@@ -111,7 +110,7 @@ describe('V0 - Customer Controller', () => {
     await customerController.create(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the customer update endpoint', async () => {
@@ -134,7 +133,7 @@ describe('V0 - Customer Controller', () => {
     await customerController.update(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the customer update endpoint threw an error', async () => {
@@ -157,7 +156,7 @@ describe('V0 - Customer Controller', () => {
     await customerController.update(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the customer update endpoint is null', async () => {
@@ -176,7 +175,7 @@ describe('V0 - Customer Controller', () => {
     await customerController.update(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the customer update endpoint was called with an id', async () => {
@@ -195,7 +194,7 @@ describe('V0 - Customer Controller', () => {
     await customerController.update(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the customer find endpoint', async () => {
@@ -218,7 +217,7 @@ describe('V0 - Customer Controller', () => {
     await customerController.find(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the customer find endpoint threw an error', async () => {
@@ -241,7 +240,7 @@ describe('V0 - Customer Controller', () => {
     await customerController.find(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the customer find endpoint is null', async () => {
@@ -260,7 +259,7 @@ describe('V0 - Customer Controller', () => {
     await customerController.find(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the customer find endpoint was called with an id', async () => {
@@ -279,7 +278,7 @@ describe('V0 - Customer Controller', () => {
     await customerController.find(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the customer orders endpoint', async () => {
@@ -302,7 +301,7 @@ describe('V0 - Customer Controller', () => {
     await customerController.orders(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the customer orders endpoint threw an error', async () => {
@@ -325,7 +324,7 @@ describe('V0 - Customer Controller', () => {
     await customerController.orders(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the customer orders endpoint is null', async () => {
@@ -344,7 +343,7 @@ describe('V0 - Customer Controller', () => {
     await customerController.orders(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the customer orders endpoint was called with an id', async () => {
@@ -363,6 +362,6 @@ describe('V0 - Customer Controller', () => {
     await customerController.orders(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

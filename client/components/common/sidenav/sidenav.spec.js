@@ -6,9 +6,6 @@ import { shallow } from 'enzyme';
 import SideNav from './index';
 import SideBarUser from './SideBarUser.jsx';
 
-jest.dontMock('react-router');
-import { expect } from 'chai';
-
 describe('<SideNav />', () => {
   const defaultProps = {
     user: {
@@ -26,7 +23,7 @@ describe('<SideNav />', () => {
     const wrapper = shallow(<SideNav.WrappedComponent {...defaultProps} />);
     const actual = wrapper.find(SideBarUser).length;
 
-    expect(actual).to.equal(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should properly redirect to the /login route when logout is clicked', () => {
@@ -48,7 +45,7 @@ describe('<SideNav />', () => {
     instance.logout();
 
     const actual = redirectSpy.calledWith('/login');
-    expect(actual).to.equal(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should call the logout userAction when clicking the logout link', () => {
@@ -71,6 +68,6 @@ describe('<SideNav />', () => {
     instance.logout();
 
     const actual = logoutUserActionSpy.called;
-    expect(actual).to.equal(expected);
+    expect(actual).toEqual(expected);
   });
 });

@@ -1,6 +1,5 @@
 import imageController from './imageController';
 
-import { expect } from 'chai';
 import sinon from 'sinon';
 
 jest.mock('../../services/imageService', () => {
@@ -40,7 +39,7 @@ describe('Image Controller', () => {
     await imageController.get(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return a 400 status code if posting an image without a file', async () => {
@@ -56,7 +55,7 @@ describe('Image Controller', () => {
     await imageController.post(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return a 200 status code if posting an image successfully', async () => {
@@ -75,6 +74,6 @@ describe('Image Controller', () => {
     await imageController.post(request, response);
 
     const actual = statusStub.calledWith(200);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

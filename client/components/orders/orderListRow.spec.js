@@ -3,8 +3,6 @@ import { shallow } from 'enzyme';
 import React from 'react';
 import OrderListRow from './OrderListRow.jsx';
 
-import { expect } from 'chai';
-
 describe('<OrderListRow />', () => {
   const props = {
     order: {
@@ -28,7 +26,7 @@ describe('<OrderListRow />', () => {
     const wrapper = shallow(<OrderListRow {...props} />);
     const actual = wrapper.find('.sixth-section').text();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should list the total amount with the locale', () => {
@@ -37,7 +35,7 @@ describe('<OrderListRow />', () => {
     const wrapper = shallow(<OrderListRow {...props} />);
     const actual = wrapper.find('.fifth-section').text();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should list the tax total amount with the locale', () => {
@@ -46,6 +44,6 @@ describe('<OrderListRow />', () => {
     const wrapper = shallow(<OrderListRow {...props} />);
     const actual = wrapper.find('.fourth-section').text();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

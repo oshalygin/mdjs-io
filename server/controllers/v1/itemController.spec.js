@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import moxios from 'moxios';
 import sinon from 'sinon';
 
@@ -141,7 +140,7 @@ describe('Item Controller', () => {
     ItemController.get(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return a 200 status code on a successful request', () => {
@@ -170,7 +169,7 @@ describe('Item Controller', () => {
 
     return ItemController.get(request, response).then(() => {
       const actual = statusStub.calledWith(200);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -200,7 +199,7 @@ describe('Item Controller', () => {
 
     return ItemController.get(request, response).then(() => {
       const actual = jsonSpy.calledWith(items);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -235,7 +234,7 @@ describe('Item Controller', () => {
 
     return ItemController.get(request, response).then(() => {
       const actual = jsonSpy.calledWith(items[0]);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -273,7 +272,7 @@ describe('Item Controller', () => {
 
     return ItemController.get(request, response).then(() => {
       const actual = statusStub.calledWith(404);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -311,7 +310,7 @@ describe('Item Controller', () => {
 
     return ItemController.get(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -334,7 +333,7 @@ describe('Item Controller', () => {
     ItemController.deleteItem(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return 404 if the request fell through the backend on a deleteItem call', () => {
@@ -376,7 +375,7 @@ describe('Item Controller', () => {
 
     return ItemController.deleteItem(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -419,7 +418,7 @@ describe('Item Controller', () => {
 
     return ItemController.deleteItem(request, response).then(() => {
       const actual = statusStub.calledWith(200);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -444,7 +443,7 @@ describe('Item Controller', () => {
 
     return ItemController.put(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -471,7 +470,7 @@ describe('Item Controller', () => {
 
     return ItemController.put(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -511,7 +510,7 @@ describe('Item Controller', () => {
 
     return ItemController.put(request, response).then(() => {
       const actual = statusStub.calledWith(200);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -557,7 +556,7 @@ describe('Item Controller', () => {
 
     return ItemController.put(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -598,7 +597,7 @@ describe('Item Controller', () => {
 
     return ItemController.post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -632,7 +631,7 @@ describe('Item Controller', () => {
 
     return ItemController.post(request, response).then(() => {
       const actual = statusStub.calledWith(200);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -655,7 +654,7 @@ describe('Item Controller', () => {
 
     return ItemController.post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -682,7 +681,7 @@ describe('Item Controller', () => {
 
     return ItemController.post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 });

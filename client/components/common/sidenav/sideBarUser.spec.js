@@ -2,7 +2,6 @@ import React from 'react';
 import sinon from 'sinon';
 
 import { shallow } from 'enzyme';
-import { expect } from 'chai';
 
 import SideBarUser from './SideBarUser.jsx';
 
@@ -20,7 +19,7 @@ describe('<SideBarUser />', () => {
     const wrapper = shallow(<SideBarUser {...defaultProps} />);
     const actual = wrapper.find('.logout-link-side-nav').text();
 
-    expect(actual).to.equal(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should call the logout callback when clicking the logout link', () => {
@@ -37,7 +36,7 @@ describe('<SideBarUser />', () => {
 
     const actual = logoutSpy.called;
 
-    expect(actual).to.equal(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should persist the first and last name to the name component', () => {
@@ -46,7 +45,7 @@ describe('<SideBarUser />', () => {
     const wrapper = shallow(<SideBarUser {...defaultProps} />);
     const actual = wrapper.find('strong.font-bold').text();
 
-    expect(actual).to.equal(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the title to Owner if the roleId is 1', () => {
@@ -55,7 +54,7 @@ describe('<SideBarUser />', () => {
     const wrapper = shallow(<SideBarUser {...defaultProps} />);
     const actual = wrapper.find('span.text-muted').text();
 
-    expect(actual).to.equal(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the title to Administrator if the roleId is 2', () => {
@@ -69,7 +68,7 @@ describe('<SideBarUser />', () => {
     const wrapper = shallow(<SideBarUser {...updatedProps} />);
     const actual = wrapper.find('span.text-muted').text();
 
-    expect(actual).to.equal(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the title to User if the roleId is 3', () => {
@@ -83,7 +82,7 @@ describe('<SideBarUser />', () => {
     const wrapper = shallow(<SideBarUser {...updatedProps} />);
     const actual = wrapper.find('span.text-muted').text();
 
-    expect(actual).to.equal(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the title to User if the roleId is empty', () => {
@@ -97,6 +96,6 @@ describe('<SideBarUser />', () => {
     const wrapper = shallow(<SideBarUser {...updatedProps} />);
     const actual = wrapper.find('span.text-muted').text();
 
-    expect(actual).to.equal(expected);
+    expect(actual).toEqual(expected);
   });
 });

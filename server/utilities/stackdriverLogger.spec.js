@@ -1,8 +1,6 @@
 /* eslint-disable camelcase */
 import StackdriverLogger from './stackdriverLogger';
 
-import { expect } from 'chai';
-
 describe('Stackdriver Logger - Winston Transport', () => {
   const baseOptions = {
     inspectMetadata: true,
@@ -29,7 +27,7 @@ describe('Stackdriver Logger - Winston Transport', () => {
     const logger = new StackdriverLogger(baseOptions);
     const actual = logger.options;
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the metadata on logEntry to include the default logName as "fe-web"', () => {
@@ -38,7 +36,7 @@ describe('Stackdriver Logger - Winston Transport', () => {
     const logger = new StackdriverLogger(baseOptions);
     const actual = logger.logEntry.name;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the message from the log message on the data object', () => {
@@ -53,7 +51,7 @@ describe('Stackdriver Logger - Winston Transport', () => {
     const actual = logger.log(levelName, logMessage, logMetadata, callback).data
       .message;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the request headers on the data request object', () => {
@@ -78,7 +76,7 @@ describe('Stackdriver Logger - Winston Transport', () => {
     const actual = logger.log(levelName, logMessage, logMetadata, callback).data
       .request.headers['content-type'];
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the request body on the data request object', () => {
@@ -108,7 +106,7 @@ describe('Stackdriver Logger - Winston Transport', () => {
     const actual = logger.log(levelName, logMessage, logMetadata, callback).data
       .request.body;
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the response body on the data response object', () => {
@@ -138,7 +136,7 @@ describe('Stackdriver Logger - Winston Transport', () => {
     const actual = logger.log(levelName, logMessage, logMetadata, callback).data
       .response.body;
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the executionTimeMillis of the data object off of the metadata responseTime', () => {
@@ -164,7 +162,7 @@ describe('Stackdriver Logger - Winston Transport', () => {
     const actual = logger.log(levelName, logMessage, logMetadata, callback).data
       .executionTimeMillis;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should persist the stacktrace space separated from the message if it was included with the metadata', () => {
@@ -197,7 +195,7 @@ describe('Stackdriver Logger - Winston Transport', () => {
     const actual = logger.log(levelName, logMessage, logMetadata, callback).data
       .message;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should persist the stacktrace if it was included with the metadata', () => {
@@ -230,7 +228,7 @@ describe('Stackdriver Logger - Winston Transport', () => {
     const actual = logger.log(levelName, logMessage, logMetadata, callback).data
       .message;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the "x-cloud-trace-context" http header on the request metadata as a label', () => {
@@ -256,7 +254,7 @@ describe('Stackdriver Logger - Winston Transport', () => {
     const actual = logger.log(levelName, logMessage, logMetadata, callback)
       .metadata.labels.traceId;
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the "x-cloud-trace-context" header value to an empty string if it was not set', () => {
@@ -281,6 +279,6 @@ describe('Stackdriver Logger - Winston Transport', () => {
     const actual = logger.log(levelName, logMessage, logMetadata, callback)
       .metadata.labels.traceId;
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

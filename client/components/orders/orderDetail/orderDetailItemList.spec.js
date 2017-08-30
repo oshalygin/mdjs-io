@@ -4,8 +4,6 @@ import React from 'react';
 import OrderDetailItemList from './OrderDetailItemList.jsx';
 import OrderDetailItemListRow from './OrderDetailItemListRow.jsx';
 
-import { expect } from 'chai';
-
 describe('<OrderDetailItemList />', () => {
   const props = {
     items: [
@@ -58,7 +56,7 @@ describe('<OrderDetailItemList />', () => {
     const wrapper = shallow(<OrderDetailItemList {...props} />);
     const actual = wrapper.find('.item-heading').at(0).text();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should contain an equal number of <OrderDetailItemListRow /> components to the number of items', () => {
@@ -67,6 +65,6 @@ describe('<OrderDetailItemList />', () => {
     const wrapper = shallow(<OrderDetailItemList {...props} />);
     const actual = wrapper.find(OrderDetailItemListRow).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

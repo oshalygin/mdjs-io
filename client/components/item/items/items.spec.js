@@ -6,8 +6,6 @@ import sinon from 'sinon';
 import React from 'react';
 import Item from './index';
 
-import { expect } from 'chai';
-
 describe('<Items />', () => {
   const items = [
     {
@@ -61,7 +59,7 @@ describe('<Items />', () => {
 
     const actual = wrapper.find(RaisedButton).props().label;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should navigate to the "item" route when navigateToNewItemPage is called', () => {
@@ -77,7 +75,7 @@ describe('<Items />', () => {
 
     const actual = redirectSpy.calledWith('/dashboard/items/new');
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should dispatch the deactivate action with the passed in id that matches the items in the list', () => {
@@ -106,7 +104,7 @@ describe('<Items />', () => {
     instance.deactivate(1);
 
     const actual = deactivateItemSpy.calledWith(items[0]);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should filter the list to only include the items from the searchCriteria', () => {
@@ -126,7 +124,7 @@ describe('<Items />', () => {
 
     const actual = instance.state.items.length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should filter the list and match on lowercase as well', () => {
@@ -146,7 +144,7 @@ describe('<Items />', () => {
 
     const actual = instance.state.items.length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the filter object appropriately on the local state', () => {
@@ -166,6 +164,6 @@ describe('<Items />', () => {
 
     const actual = instance.state.filter;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

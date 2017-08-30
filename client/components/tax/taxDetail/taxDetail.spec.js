@@ -4,9 +4,6 @@ import TaxDetail, { mapStateToProps } from './index';
 import Spinner from '../../common/spinner';
 import sinon from 'sinon';
 
-jest.dontMock('react-router');
-import { expect } from 'chai';
-
 describe('<TaxDetail />', () => {
   const errors = {
     taxName: false,
@@ -102,7 +99,7 @@ describe('<TaxDetail />', () => {
 
     const actual = wrapper.find('h5').props().children;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return the heading as "New Tax" if the passed in props is null', () => {
@@ -120,7 +117,7 @@ describe('<TaxDetail />', () => {
     const expected = 'New Tax';
     const actual = mapStateToProps(state, ownProps).taxHeading;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return the heading as "Update Tax" if the passed in id prop matches the state categories', () => {
@@ -138,7 +135,7 @@ describe('<TaxDetail />', () => {
     const expected = 'Update Tax';
     const actual = mapStateToProps(state, ownProps).taxHeading;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return the existing tax properties if the passed in id prop matches the state taxes', () => {
@@ -156,7 +153,7 @@ describe('<TaxDetail />', () => {
     const expected = taxes[0];
     const actual = mapStateToProps(state, ownProps).tax;
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return the an empty tax if the passed in id prop is null', () => {
@@ -174,7 +171,7 @@ describe('<TaxDetail />', () => {
     const expected = props.category;
     const actual = mapStateToProps(state, ownProps).category;
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should render a spinner if the "createUpdateTax" loading flag is set', () => {
@@ -190,7 +187,7 @@ describe('<TaxDetail />', () => {
 
     const actual = wrapper.find(Spinner).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should navigate back to the "taxes" page if the back button is clicked', () => {
@@ -206,7 +203,7 @@ describe('<TaxDetail />', () => {
 
     const actual = redirectSpy.calledWith('/dashboard/taxes');
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the new state of the tax based on the form field that was changed', () => {
@@ -233,7 +230,7 @@ describe('<TaxDetail />', () => {
     instance.onChange(event, index, payload);
     const actual = instance.state.tax.taxName;
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the items property to the payload array if its an array', () => {
@@ -254,7 +251,7 @@ describe('<TaxDetail />', () => {
     instance.onChange(event, index, payload);
     const actual = instance.state.tax.items;
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the items property to the payload property value if it is passed in', () => {
@@ -279,7 +276,7 @@ describe('<TaxDetail />', () => {
     instance.onChange(event, index, payload);
     const actual = instance.state.tax.taxTypeID;
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the notifications to false if closeNotification is called', () => {
@@ -293,7 +290,7 @@ describe('<TaxDetail />', () => {
     instance.closeNotification();
     const actual = instance.state.notification;
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should call "updateTax" with the category that was passed in to onSave', () => {
@@ -327,7 +324,7 @@ describe('<TaxDetail />', () => {
 
     const actual = createTaxSpy.calledWith(taxes[0]);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return false if the tax taxName is empty when calling formIsValid', () => {
@@ -343,7 +340,7 @@ describe('<TaxDetail />', () => {
     instance.state.tax.taxName = '';
     const actual = instance.formIsValid();
     instance.state.tax.taxName = 'Foo'; //reset back to the original state.
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return false from formIsValid if the taxTypeID value is not set', () => {
@@ -361,7 +358,7 @@ describe('<TaxDetail />', () => {
     const instance = wrapper.instance();
     instance.state.tax.taxName = 'Foobar';
     const actual = instance.formIsValid();
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return false from formIsValid if the taxTypeID is greater than 0 and the items array is empty', () => {
@@ -381,7 +378,7 @@ describe('<TaxDetail />', () => {
     const instance = wrapper.instance();
     instance.state.tax.taxName = 'Foobar';
     const actual = instance.formIsValid();
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return false if there are validation errors calling formIsValid', () => {
@@ -403,7 +400,7 @@ describe('<TaxDetail />', () => {
     const actual = instance.formIsValid();
     instance.state.errors = errors; //reset back to the original state.
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the error object property taxName to false if it passes the regex test', () => {
@@ -422,7 +419,7 @@ describe('<TaxDetail />', () => {
     instance.propertyIsValid(property, value, errors);
     const actual = instance.state.errors.taxName;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the error object property taxName to whitespace if it DOES NOT pass the regex test', () => {
@@ -441,7 +438,7 @@ describe('<TaxDetail />', () => {
     instance.propertyIsValid(property, value, errors);
     const actual = instance.state.errors.taxName;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the error object property price to false if it passes the regex test', () => {
@@ -460,6 +457,6 @@ describe('<TaxDetail />', () => {
     instance.propertyIsValid(property, value, errors);
     const actual = instance.state.errors.price;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

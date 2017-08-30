@@ -5,7 +5,6 @@ import { IMAGE_ENDPOINT } from '../../../utilities/endpoints';
 import ItemImage, { getImageStyle } from './index.js';
 
 import sinon from 'sinon';
-import { expect } from 'chai';
 
 describe('<ItemImage />', () => {
   it('should set the background-image property if the imageId is present', () => {
@@ -14,7 +13,7 @@ describe('<ItemImage />', () => {
 
     const actual = getImageStyle(imageId).backgroundImage;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should have an empty background-image property if the imageId was not provided', () => {
@@ -22,7 +21,7 @@ describe('<ItemImage />', () => {
 
     const actual = getImageStyle().backgroundImage;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should render the component with the item label if the imageId is not set', () => {
@@ -35,7 +34,7 @@ describe('<ItemImage />', () => {
     const wrapper = shallow(<ItemImage {...props} />);
     const actual = wrapper.find('.image-label').length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should NOT render the label component if the imageId is present', () => {
@@ -49,7 +48,7 @@ describe('<ItemImage />', () => {
     const wrapper = shallow(<ItemImage {...props} />);
     const actual = wrapper.find('.image-label').length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should render the label component if the imageId is an empty string', () => {
@@ -63,7 +62,7 @@ describe('<ItemImage />', () => {
     const wrapper = shallow(<ItemImage {...props} />);
     const actual = wrapper.find('.image-label').length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should properly call the onClick callback when the image container is clicked', () => {
@@ -80,6 +79,6 @@ describe('<ItemImage />', () => {
     wrapper.find('.image-container').simulate('click');
 
     const actual = onClickSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

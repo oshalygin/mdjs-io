@@ -1,8 +1,6 @@
 import { get } from './configurationController';
 import sinon from 'sinon';
 
-import { expect } from 'chai';
-
 describe('Configuration Controller', () => {
   it('should return 200 with a configuration object', () => {
     const expected = true;
@@ -21,7 +19,7 @@ describe('Configuration Controller', () => {
 
     return get(request, response).then(() => {
       const actual = statusStub.calledWith(200);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 });

@@ -6,8 +6,6 @@ import sinon from 'sinon';
 import React from 'react';
 import OrderListCard from './OrderListCard.jsx';
 
-import { expect } from 'chai';
-
 describe('<OrderListCard />', () => {
   const props = {
     order: {
@@ -153,7 +151,7 @@ describe('<OrderListCard />', () => {
     const wrapper = shallow(<OrderListCard {...props} />);
     const actual = wrapper.find(Card).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should contain a <CardHeader /> component', () => {
@@ -162,7 +160,7 @@ describe('<OrderListCard />', () => {
     const wrapper = shallow(<OrderListCard {...props} />);
     const actual = wrapper.find(CardHeader).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should contain a <CardText /> component', () => {
@@ -171,7 +169,7 @@ describe('<OrderListCard />', () => {
     const wrapper = shallow(<OrderListCard {...props} />);
     const actual = wrapper.find(CardText).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should call the onExpandedChange callback with the orderID', () => {
@@ -188,7 +186,7 @@ describe('<OrderListCard />', () => {
 
     const actual = onExpandchangeSpy.calledWith(props.order.orderID);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the expanded prop to true if the order expanded flag is true', () => {
@@ -197,7 +195,7 @@ describe('<OrderListCard />', () => {
     const wrapper = shallow(<OrderListCard {...props} />);
     const actual = wrapper.find(Card).props().expanded;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the expanded prop to false if the order expanded flag is false', () => {
@@ -214,6 +212,6 @@ describe('<OrderListCard />', () => {
     const wrapper = shallow(<OrderListCard {...updatedProps} />);
     const actual = wrapper.find(Card).props().expanded;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

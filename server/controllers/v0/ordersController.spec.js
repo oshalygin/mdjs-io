@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import sinon from 'sinon';
 
 import ordersController from './ordersController';
@@ -58,7 +57,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.headers(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the order headers endpoint threw an error', async () => {
@@ -81,7 +80,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.headers(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the order headers endpoint is null', async () => {
@@ -100,7 +99,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.headers(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the order headers endpoint was called with an id', async () => {
@@ -121,7 +120,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.headers(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the order headers V2 endpoint', async () => {
@@ -144,7 +143,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.headersV2(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the order headers V2 endpoint threw an error', async () => {
@@ -167,7 +166,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.headersV2(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the order headers V2 endpoint is null', async () => {
@@ -186,7 +185,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.headersV2(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the order headers V2 endpoint was called with an id', async () => {
@@ -205,7 +204,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.headersV2(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the orders gift card check endpoint', async () => {
@@ -228,7 +227,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.giftCardCheck(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the orders gift card check endpoint threw an error', async () => {
@@ -251,7 +250,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.giftCardCheck(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the orders gift card check endpoint is null', async () => {
@@ -270,7 +269,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.giftCardCheck(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the orders gift card check endpoint was called with an id', async () => {
@@ -289,7 +288,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.giftCardCheck(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the orders select endpoint', async () => {
@@ -312,7 +311,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.select(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the orders select endpoint threw an error', async () => {
@@ -335,7 +334,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.select(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the orders select endpoint is null', async () => {
@@ -354,7 +353,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.select(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the orders select endpoint was called with an id', async () => {
@@ -373,7 +372,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.select(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the orders refund endpoint', async () => {
@@ -396,7 +395,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.refund(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the orders refund endpoint threw an error', async () => {
@@ -419,7 +418,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.refund(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the orders refund endpoint is null', async () => {
@@ -438,7 +437,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.refund(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the orders refund endpoint was called with an id', async () => {
@@ -457,7 +456,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.refund(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the orders create endpoint', async () => {
@@ -480,7 +479,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.create(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the orders create endpoint threw an error', async () => {
@@ -503,7 +502,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.create(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the orders create endpoint is null', async () => {
@@ -522,7 +521,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.create(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the orders create endpoint was called with an id', async () => {
@@ -541,7 +540,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.create(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the orders complete endpoint', async () => {
@@ -564,7 +563,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.complete(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the orders complete endpoint threw an error', async () => {
@@ -587,7 +586,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.complete(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the orders complete endpoint is null', async () => {
@@ -606,7 +605,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.complete(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the orders complete endpoint was called with an id', async () => {
@@ -625,7 +624,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.complete(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the orders cancel endpoint', async () => {
@@ -648,7 +647,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.cancel(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the orders cancel endpoint threw an error', async () => {
@@ -671,7 +670,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.cancel(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the orders cancel endpoint is null', async () => {
@@ -690,7 +689,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.cancel(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the orders cancel endpoint was called with an id', async () => {
@@ -709,7 +708,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.cancel(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the orders update endpoint', async () => {
@@ -732,7 +731,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.update(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the orders update endpoint threw an error', async () => {
@@ -755,7 +754,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.update(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the orders update endpoint is null', async () => {
@@ -774,7 +773,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.update(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the orders update endpoint was called with an id', async () => {
@@ -793,7 +792,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.update(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the orders pay endpoint', async () => {
@@ -816,7 +815,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.pay(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the orders pay endpoint threw an error', async () => {
@@ -839,7 +838,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.pay(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the orders pay endpoint is null', async () => {
@@ -858,7 +857,7 @@ describe('V0 - Orders Controller', () => {
     await ordersController.pay(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the orders pay endpoint was called with an id', async () => {
@@ -877,6 +876,6 @@ describe('V0 - Orders Controller', () => {
     await ordersController.pay(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

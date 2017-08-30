@@ -5,9 +5,6 @@ import sinon from 'sinon';
 import React from 'react';
 import Discounts from './index';
 
-jest.dontMock('react-router');
-import { expect } from 'chai';
-
 describe('<Discounts />', () => {
   const discounts = [
     {
@@ -55,7 +52,7 @@ describe('<Discounts />', () => {
 
     const actual = wrapper.find(RaisedButton).props().label;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should navigate to the "discount" route when navigateToNewDiscountPage is called', () => {
@@ -71,7 +68,7 @@ describe('<Discounts />', () => {
 
     const actual = redirectSpy.calledWith('/dashboard/discounts/new');
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should dispatch the deactivate action with the passed in id that matches the discount in the list', () => {
@@ -99,7 +96,7 @@ describe('<Discounts />', () => {
     instance.deactivate(31);
 
     const actual = deactivatedDiscountSpy.calledWith(discounts[0]);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should filter the list to only include the discounts from the searchCriteria', () => {
@@ -119,7 +116,7 @@ describe('<Discounts />', () => {
 
     const actual = instance.state.discounts.length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should filter the list and match on lowercase as well', () => {
@@ -139,7 +136,7 @@ describe('<Discounts />', () => {
 
     const actual = instance.state.discounts.length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the filter object appropriately on the local state', () => {
@@ -159,6 +156,6 @@ describe('<Discounts />', () => {
 
     const actual = instance.state.filter;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

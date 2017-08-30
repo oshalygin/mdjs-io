@@ -5,8 +5,6 @@ import TaxTableRow from './TaxTableRow.jsx';
 import React from 'react';
 import TaxTable from './TaxTable.jsx';
 
-import { expect } from 'chai';
-
 describe('<TaxTable />', () => {
   const props = {
     taxes: [
@@ -49,7 +47,7 @@ describe('<TaxTable />', () => {
     const wrapper = shallow(<TaxTable {...props} />);
     const actual = wrapper.find(TableHeaderColumn).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the displaySelectAll to false on the table to not render the checkboxes', () => {
@@ -58,7 +56,7 @@ describe('<TaxTable />', () => {
     const wrapper = shallow(<TaxTable {...props} />);
     const actual = wrapper.find(TableHeader).props().displaySelectAll;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should render an equivalent number of rows to the number of taxes in props', () => {
@@ -67,6 +65,6 @@ describe('<TaxTable />', () => {
     const wrapper = shallow(<TaxTable {...props} />);
     const actual = wrapper.find(TaxTableRow).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import sinon from 'sinon';
 
 import itemsController from './itemsController';
@@ -36,7 +35,7 @@ describe('V0 - Items Controller', () => {
     await itemsController.createUpdate(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the items createUpdate endpoint threw an error', async () => {
@@ -59,7 +58,7 @@ describe('V0 - Items Controller', () => {
     await itemsController.createUpdate(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the items createUpdate endpoint is null', async () => {
@@ -78,7 +77,7 @@ describe('V0 - Items Controller', () => {
     await itemsController.createUpdate(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the items createUpdate endpoint was called with an id', async () => {
@@ -99,7 +98,7 @@ describe('V0 - Items Controller', () => {
     await itemsController.createUpdate(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the items delete endpoint', async () => {
@@ -122,7 +121,7 @@ describe('V0 - Items Controller', () => {
     await itemsController.delete(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the items delete endpoint threw an error', async () => {
@@ -145,7 +144,7 @@ describe('V0 - Items Controller', () => {
     await itemsController.delete(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the items delete endpoint is null', async () => {
@@ -164,7 +163,7 @@ describe('V0 - Items Controller', () => {
     await itemsController.delete(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the items delete endpoint was called with an id', async () => {
@@ -183,6 +182,6 @@ describe('V0 - Items Controller', () => {
     await itemsController.delete(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

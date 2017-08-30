@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import {
   DISCOUNT_DEACTIVATED_SUCCESS,
   LOAD_DISCOUNTS_SUCCESS,
@@ -51,7 +50,7 @@ describe('Reducer - Discount', () => {
     const expected = getInitialState();
     const actual = reducer(undefined, action); //eslint-disable-line no-undefined
 
-    expect(actual).to.deep.equal(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should hydrate the state with all of the discounts in the action in addition to the additional checked and disabled properties', () => {
@@ -63,7 +62,7 @@ describe('Reducer - Discount', () => {
     const expected = discounts;
     const actual = reducer(undefined, action); //eslint-disable-line no-undefined
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should remove the discount that was passed in as part of the DISCOUNT_DEACTIVATED_SUCCESS dispatched action', () => {
@@ -75,6 +74,6 @@ describe('Reducer - Discount', () => {
     const expected = 1;
     const actual = reducer(discounts, action).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

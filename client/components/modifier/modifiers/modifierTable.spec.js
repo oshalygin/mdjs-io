@@ -5,8 +5,6 @@ import ModifierTableRow from './ModifierTableRow.jsx';
 import React from 'react';
 import ModifierTable from './ModifierTable.jsx';
 
-import { expect } from 'chai';
-
 describe('<ModifierTable />', () => {
   const props = {
     modifiers: [
@@ -47,7 +45,7 @@ describe('<ModifierTable />', () => {
     const wrapper = shallow(<ModifierTable {...props} />);
     const actual = wrapper.find(TableHeaderColumn).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the displaySelectAll to false on the table to not render the checkboxes', () => {
@@ -56,7 +54,7 @@ describe('<ModifierTable />', () => {
     const wrapper = shallow(<ModifierTable {...props} />);
     const actual = wrapper.find(TableHeader).props().displaySelectAll;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should render an equivalent number of rows to the number of modifiers in props', () => {
@@ -65,6 +63,6 @@ describe('<ModifierTable />', () => {
     const wrapper = shallow(<ModifierTable {...props} />);
     const actual = wrapper.find(ModifierTableRow).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

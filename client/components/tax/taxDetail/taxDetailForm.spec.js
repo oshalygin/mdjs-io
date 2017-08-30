@@ -6,8 +6,6 @@ import MenuItem from 'material-ui/MenuItem';
 import React from 'react';
 import TaxDetailForm from './TaxDetailForm.jsx';
 
-import { expect } from 'chai';
-
 describe('<TaxDetailForm />', () => {
   const errors = {
     taxName: false,
@@ -68,7 +66,7 @@ describe('<TaxDetailForm />', () => {
     const expected = 2;
     const actual = wrapper.find(TextField).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should contain a SelectField dropdown which has an "Apply To" property', () => {
@@ -77,7 +75,7 @@ describe('<TaxDetailForm />', () => {
     const expected = 'Apply To';
     const actual = wrapper.find(SelectField).props().floatingLabelText;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('the dropdown for "Apply To" has two menu items', () => {
@@ -86,7 +84,7 @@ describe('<TaxDetailForm />', () => {
     const expected = 2;
     const actual = wrapper.find(MenuItem).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should still render only a single SelectField if the taxOption selected is 0 for taxTypeID', () => {
@@ -104,7 +102,7 @@ describe('<TaxDetailForm />', () => {
     const expected = 1;
     const actual = wrapper.find(SelectField).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should render two SelectFields if the taxOption selected is 1 for taxTypeID', () => {
@@ -122,7 +120,7 @@ describe('<TaxDetailForm />', () => {
     const expected = 2;
     const actual = wrapper.find(SelectField).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should render the number of matching items as MenuItems to the second SelectFields with taxTypeID of 1', () => {
@@ -140,7 +138,7 @@ describe('<TaxDetailForm />', () => {
     const expected = 2 + items.length;
     const actual = wrapper.find(MenuItem).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should contain a material icon "account_balance" that helps identify the page', () => {
@@ -149,6 +147,6 @@ describe('<TaxDetailForm />', () => {
     const expected = 'account_balance';
     const actual = wrapper.find('.material-icons').text();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

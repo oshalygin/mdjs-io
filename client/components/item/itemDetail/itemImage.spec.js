@@ -5,8 +5,6 @@ import DropZone from 'react-dropzone';
 
 import React from 'react';
 
-import { expect } from 'chai';
-
 describe('<ItemImage />', () => {
   const props = {
     itemPreview: '187141ee-d6e7-472d-9173-2ff9f6b88d6e',
@@ -19,7 +17,7 @@ describe('<ItemImage />', () => {
     const expected = 1;
     const actual = wrapper.find(DropZone).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should display the image if the preview was passed in', () => {
@@ -29,7 +27,7 @@ describe('<ItemImage />', () => {
     const actual = wrapper.find(DropZone).childAt(0).props().style
       .backgroundImage;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should display text of "Drag/Click Here" if the preview image was not passed in', () => {
@@ -43,14 +41,14 @@ describe('<ItemImage />', () => {
     const expected = 'Drag/Click Here';
     const actual = wrapper.find(DropZone).childAt(0).text();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return null for the imageUrl if nothing was passed in', () => {
     const expected = null;
     const actual = getImageUrl();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return the exact argument if it contains "blob" in the string', () => {
@@ -58,7 +56,7 @@ describe('<ItemImage />', () => {
     const expected = itemPreview;
     const actual = getImageUrl(itemPreview);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return the exact argument if it contains "blob" at the end of the string', () => {
@@ -66,7 +64,7 @@ describe('<ItemImage />', () => {
     const expected = itemPreview;
     const actual = getImageUrl(itemPreview);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return the image path at the api if the preview is a uuid', () => {
@@ -74,6 +72,6 @@ describe('<ItemImage />', () => {
     const expected = `${IMAGE_ENDPOINT}/${itemPreview}`;
     const actual = getImageUrl(itemPreview);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

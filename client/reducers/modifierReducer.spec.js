@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import {
   MODIFIER_DEACTIVATED_SUCCESS,
   LOAD_MODIFIERS_SUCCESS,
@@ -47,7 +46,7 @@ describe('Reducer - Modifier', () => {
     const expected = getInitialState();
     const actual = reducer(undefined, action); //eslint-disable-line no-undefined
 
-    expect(actual).to.deep.equal(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should hydrate the state with all of the modifiers in the action in addition to the additional checked and disabled properties', () => {
@@ -59,7 +58,7 @@ describe('Reducer - Modifier', () => {
     const expected = modifiers;
     const actual = reducer(undefined, action); //eslint-disable-line no-undefined
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should remove the modifier that was passed in as part of the MODIFIER_DEACTIVATED_SUCCESS dispatched action', () => {
@@ -71,6 +70,6 @@ describe('Reducer - Modifier', () => {
     const expected = 1;
     const actual = reducer(modifiers, action).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

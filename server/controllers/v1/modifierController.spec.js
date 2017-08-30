@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import moxios from 'moxios';
 import sinon from 'sinon';
 
@@ -72,7 +71,7 @@ describe('Modifiers Controller', () => {
     ModifierController.get(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return a 200 status code on a successful request', () => {
@@ -101,7 +100,7 @@ describe('Modifiers Controller', () => {
 
     return ModifierController.get(request, response).then(() => {
       const actual = statusStub.calledWith(200);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -131,7 +130,7 @@ describe('Modifiers Controller', () => {
 
     return ModifierController.get(request, response).then(() => {
       const actual = jsonSpy.called;
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -166,7 +165,7 @@ describe('Modifiers Controller', () => {
 
     return ModifierController.get(request, response).then(() => {
       const actual = jsonSpy.called;
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -204,7 +203,7 @@ describe('Modifiers Controller', () => {
 
     return ModifierController.get(request, response).then(() => {
       const actual = statusStub.calledWith(404);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -238,7 +237,7 @@ describe('Modifiers Controller', () => {
 
     return ModifierController.get(request, response).then(() => {
       const actual = statusStub.called;
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -261,7 +260,7 @@ describe('Modifiers Controller', () => {
     ModifierController.deleteModifier(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return 404 if the request fell through the backend on a deleteModifier call', () => {
@@ -303,7 +302,7 @@ describe('Modifiers Controller', () => {
 
     return ModifierController.deleteModifier(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -346,7 +345,7 @@ describe('Modifiers Controller', () => {
 
     return ModifierController.deleteModifier(request, response).then(() => {
       const actual = statusStub.calledWith(200);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -371,7 +370,7 @@ describe('Modifiers Controller', () => {
 
     return ModifierController.put(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -397,7 +396,7 @@ describe('Modifiers Controller', () => {
 
     return ModifierController.put(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -434,7 +433,7 @@ describe('Modifiers Controller', () => {
 
     return ModifierController.put(request, response).then(() => {
       const actual = statusStub.calledWith(200);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -479,7 +478,7 @@ describe('Modifiers Controller', () => {
 
     return ModifierController.put(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -520,7 +519,7 @@ describe('Modifiers Controller', () => {
 
     return ModifierController.post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -553,7 +552,7 @@ describe('Modifiers Controller', () => {
 
     return ModifierController.post(request, response).then(() => {
       const actual = statusStub.calledWith(200);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -575,7 +574,7 @@ describe('Modifiers Controller', () => {
 
     return ModifierController.post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -602,7 +601,7 @@ describe('Modifiers Controller', () => {
 
     return ModifierController.post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 });

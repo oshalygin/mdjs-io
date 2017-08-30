@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import sinon from 'sinon';
 
 import modifierController from './modifierController';
@@ -41,7 +40,7 @@ describe('V0 - Modifier Controller', () => {
     await modifierController.create(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the modifier create endpoint threw an error', async () => {
@@ -64,7 +63,7 @@ describe('V0 - Modifier Controller', () => {
     await modifierController.create(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the modifier create endpoint is null', async () => {
@@ -83,7 +82,7 @@ describe('V0 - Modifier Controller', () => {
     await modifierController.create(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the modifier create endpoint was called with an id', async () => {
@@ -104,7 +103,7 @@ describe('V0 - Modifier Controller', () => {
     await modifierController.create(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the modifier update endpoint', async () => {
@@ -127,7 +126,7 @@ describe('V0 - Modifier Controller', () => {
     await modifierController.update(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the modifier update endpoint threw an error', async () => {
@@ -150,7 +149,7 @@ describe('V0 - Modifier Controller', () => {
     await modifierController.update(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the modifier update endpoint is null', async () => {
@@ -169,7 +168,7 @@ describe('V0 - Modifier Controller', () => {
     await modifierController.update(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the modifier update endpoint was called with an id', async () => {
@@ -188,7 +187,7 @@ describe('V0 - Modifier Controller', () => {
     await modifierController.update(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the modifier delete endpoint', async () => {
@@ -211,7 +210,7 @@ describe('V0 - Modifier Controller', () => {
     await modifierController.delete(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the modifier delete endpoint threw an error', async () => {
@@ -234,7 +233,7 @@ describe('V0 - Modifier Controller', () => {
     await modifierController.delete(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the modifier delete endpoint is null', async () => {
@@ -253,7 +252,7 @@ describe('V0 - Modifier Controller', () => {
     await modifierController.delete(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the modifier delete endpoint was called with an id', async () => {
@@ -272,6 +271,6 @@ describe('V0 - Modifier Controller', () => {
     await modifierController.delete(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

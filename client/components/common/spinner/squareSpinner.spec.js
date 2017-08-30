@@ -1,5 +1,4 @@
 import React from 'react';
-import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
 import SquareSpinner from './SquareSpinner.jsx';
@@ -10,7 +9,7 @@ describe('<SquareSpinner />', () => {
     const expected = 'spinner';
 
     const actual = wrapper.first().props().className;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should not be displayed if the hidden prop is passed in', () => {
@@ -23,7 +22,7 @@ describe('<SquareSpinner />', () => {
 
     const actual = wrapper.first().props().style.display;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should have the initial display if the prop passed in is false', () => {
@@ -36,6 +35,6 @@ describe('<SquareSpinner />', () => {
 
     const actual = wrapper.first().props().style.display;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

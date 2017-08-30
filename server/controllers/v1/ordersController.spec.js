@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import moxios from 'moxios';
 import sinon from 'sinon';
 
@@ -65,7 +64,7 @@ describe('Orders Controller', () => {
     OrdersController.get(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return a 200 status code on a successful request without an id', () => {
@@ -95,7 +94,7 @@ describe('Orders Controller', () => {
 
     return OrdersController.get(request, response).then(() => {
       const actual = statusStub.calledWith(200);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -126,7 +125,7 @@ describe('Orders Controller', () => {
 
     return OrdersController.get(request, response).then(() => {
       const actual = jsonSpy.calledWith(orders);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -162,7 +161,7 @@ describe('Orders Controller', () => {
 
     return OrdersController.get(request, response).then(() => {
       const actual = jsonSpy.calledWith(orders[0]);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -201,7 +200,7 @@ describe('Orders Controller', () => {
 
     return OrdersController.get(request, response).then(() => {
       const actual = statusStub.calledWith(404);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -245,7 +244,7 @@ describe('Orders Controller', () => {
 
     return OrdersController.get(request, response).then(() => {
       const actual = statusStub.calledWith(404);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -284,7 +283,7 @@ describe('Orders Controller', () => {
 
     return OrdersController.get(request, response).then(() => {
       const actual = statusStub.calledWith(200);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 });

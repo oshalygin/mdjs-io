@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import {
   numberToLocaleString,
   numberToLocaleStringWithoutDecimals,
@@ -10,7 +9,7 @@ describe('Currency Utilities', () => {
     const number = 500000;
     const actual = numberToLocaleString(number);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return "$ 3,401.13" when passing a raw number of 3401.13 to the utility', () => {
@@ -18,7 +17,7 @@ describe('Currency Utilities', () => {
     const number = 3401.13;
     const actual = numberToLocaleString(number);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return "$ 79.13" when passing a raw number of 79.13 to the utility', () => {
@@ -26,7 +25,7 @@ describe('Currency Utilities', () => {
     const number = 79.13;
     const actual = numberToLocaleString(number);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return "$ 0.00" when passing a raw number of 0 to the utility', () => {
@@ -34,7 +33,7 @@ describe('Currency Utilities', () => {
     const number = 0;
     const actual = numberToLocaleString(number);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return "$ 0" when passing a raw number of 0 to the non-decimal utility', () => {
@@ -42,7 +41,7 @@ describe('Currency Utilities', () => {
     const number = 0;
     const actual = numberToLocaleStringWithoutDecimals(number);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return "$ 79" when passing a raw number of 79.13 to the non-decimal utility', () => {
@@ -50,7 +49,7 @@ describe('Currency Utilities', () => {
     const number = 79.13;
     const actual = numberToLocaleStringWithoutDecimals(number);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return "$ 3,401" when passing a raw number of 3401.13 to the non-decimal utility', () => {
@@ -58,6 +57,6 @@ describe('Currency Utilities', () => {
     const number = 3401.13;
     const actual = numberToLocaleStringWithoutDecimals(number);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

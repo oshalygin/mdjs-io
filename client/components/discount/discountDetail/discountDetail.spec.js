@@ -4,9 +4,6 @@ import DiscountDetail, { mapStateToProps } from './index';
 import Spinner from '../../common/spinner';
 import sinon from 'sinon';
 
-jest.dontMock('react-router');
-import { expect } from 'chai';
-
 describe('<DiscountDetail />', () => {
   const errors = {
     discountName: false,
@@ -104,7 +101,7 @@ describe('<DiscountDetail />', () => {
 
     const actual = wrapper.find('h5').props().children;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return the heading as "New Discount" if the passed in props is null', () => {
@@ -122,7 +119,7 @@ describe('<DiscountDetail />', () => {
     const expected = 'New Discount';
     const actual = mapStateToProps(state, ownProps).discountHeading;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return the heading as "Update Discount" if the passed in id prop matches the state categories', () => {
@@ -140,7 +137,7 @@ describe('<DiscountDetail />', () => {
     const expected = 'Update Discount';
     const actual = mapStateToProps(state, ownProps).discountHeading;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return the existing discount properties if the passed in id prop matches the state discounts', () => {
@@ -158,7 +155,7 @@ describe('<DiscountDetail />', () => {
     const expected = discounts[0];
     const actual = mapStateToProps(state, ownProps).discount;
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return the an empty discount if the passed in id prop is null', () => {
@@ -183,7 +180,7 @@ describe('<DiscountDetail />', () => {
 
     const actual = mapStateToProps(state, ownProps).discount;
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should render a spinner if the "createUpdateDiscount" loading flag is set', () => {
@@ -201,7 +198,7 @@ describe('<DiscountDetail />', () => {
 
     const actual = wrapper.find(Spinner).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should navigate back to the "discounts" page if the back button is clicked', () => {
@@ -217,7 +214,7 @@ describe('<DiscountDetail />', () => {
 
     const actual = redirectSpy.calledWith('/dashboard/discounts');
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the new state of the discount based on the form field that was changed', () => {
@@ -246,7 +243,7 @@ describe('<DiscountDetail />', () => {
     instance.onChange(event, index, payload);
     const actual = instance.state.discount.discountName;
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the items property to the payload array if its an array', () => {
@@ -269,7 +266,7 @@ describe('<DiscountDetail />', () => {
     instance.onChange(event, index, payload);
     const actual = instance.state.discount.items;
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the items property to the payload property value if it is passed in', () => {
@@ -296,7 +293,7 @@ describe('<DiscountDetail />', () => {
     instance.onChange(event, index, payload);
     const actual = instance.state.discount.applyTypeID;
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the notifications to false if closeNotification is called', () => {
@@ -310,7 +307,7 @@ describe('<DiscountDetail />', () => {
     instance.closeNotification();
     const actual = instance.state.notification;
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should call "updateDiscount" with the category that was passed in to onSave', () => {
@@ -346,7 +343,7 @@ describe('<DiscountDetail />', () => {
 
     const actual = updateDiscountSpy.calledWith(discounts[0]);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return false if the discount discountName is empty when calling formIsValid', () => {
@@ -364,7 +361,7 @@ describe('<DiscountDetail />', () => {
     instance.state.discount.discountName = '';
     const actual = instance.formIsValid();
     instance.state.discount.discountName = 'Foo'; //reset back to the original state.
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return false from formIsValid if the applyTypeID value is not set', () => {
@@ -384,7 +381,7 @@ describe('<DiscountDetail />', () => {
     const instance = wrapper.instance();
     instance.state.discount.discountName = 'Foobar';
     const actual = instance.formIsValid();
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return false from formIsValid if the applyTypeID is greater than 0 and the items array is empty', () => {
@@ -406,7 +403,7 @@ describe('<DiscountDetail />', () => {
     const instance = wrapper.instance();
     instance.state.discount.discountName = 'Foobar';
     const actual = instance.formIsValid();
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return false if there are validation errors calling formIsValid', () => {
@@ -430,7 +427,7 @@ describe('<DiscountDetail />', () => {
     const actual = instance.formIsValid();
     instance.state.errors = errors; //reset back to the original state.
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the error object property discountName to false if it passes the regex test', () => {
@@ -451,7 +448,7 @@ describe('<DiscountDetail />', () => {
     instance.propertyIsValid(property, value, errors);
     const actual = instance.state.errors.discountName;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the error object property discountName to whitespace if it DOES NOT pass the regex test', () => {
@@ -472,7 +469,7 @@ describe('<DiscountDetail />', () => {
     instance.propertyIsValid(property, value, errors);
     const actual = instance.state.errors.discountName;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the error object property price to false if it passes the regex test', () => {
@@ -493,6 +490,6 @@ describe('<DiscountDetail />', () => {
     instance.propertyIsValid(property, value, errors);
     const actual = instance.state.errors.price;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

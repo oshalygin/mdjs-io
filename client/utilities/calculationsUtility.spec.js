@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { percentDifference, percentageOf } from './calculationsUtility';
 
 describe('Calculations Utilities', () => {
@@ -11,7 +10,7 @@ describe('Calculations Utilities', () => {
 
     const actual = percentDifference(firstValue, secondValue, decimalPlaces);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return 28% difference with a first value of 1500 and the second 2000 when no decimal places is requested', () => {
@@ -23,7 +22,7 @@ describe('Calculations Utilities', () => {
 
     const actual = percentDifference(firstValue, secondValue, decimalPlaces);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return 0% difference with a first value of 1500 and the second 1500 when no decimal places is requested', () => {
@@ -35,7 +34,7 @@ describe('Calculations Utilities', () => {
 
     const actual = percentDifference(firstValue, secondValue, decimalPlaces);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return 0% difference with a first value of 0 and the second 0 when no decimal places is requested', () => {
@@ -47,7 +46,7 @@ describe('Calculations Utilities', () => {
 
     const actual = percentDifference(firstValue, secondValue, decimalPlaces);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return 40% as the percentage of when calling percentageOf', () => {
@@ -59,7 +58,7 @@ describe('Calculations Utilities', () => {
 
     const actual = percentageOf(numerator, total, decimalPlaces);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return 22% as the percentage of when calling percentageOf without a decimalPlace value', () => {
@@ -70,7 +69,7 @@ describe('Calculations Utilities', () => {
 
     const actual = percentageOf(numerator, total);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return 22.222% as the percentage of when calling percentageOf with 3 decimal places', () => {
@@ -82,7 +81,7 @@ describe('Calculations Utilities', () => {
 
     const actual = percentageOf(numerator, total, decimalPlaces);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return 0% as the percentage of when calling percentageOf where the total is 0', () => {
@@ -94,6 +93,6 @@ describe('Calculations Utilities', () => {
 
     const actual = percentageOf(numerator, total, decimalPlaces);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

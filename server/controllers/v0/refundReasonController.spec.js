@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import sinon from 'sinon';
 
 import refundReasonController from './refundReasonController';
@@ -39,7 +38,7 @@ describe('V0 - Refund Reason Controller', () => {
     await refundReasonController.create(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the refund reason create endpoint threw an error', async () => {
@@ -62,7 +61,7 @@ describe('V0 - Refund Reason Controller', () => {
     await refundReasonController.create(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the refund reason create endpoint is null', async () => {
@@ -81,7 +80,7 @@ describe('V0 - Refund Reason Controller', () => {
     await refundReasonController.create(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the refund reason create endpoint was called with an id', async () => {
@@ -102,7 +101,7 @@ describe('V0 - Refund Reason Controller', () => {
     await refundReasonController.create(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the refund reason update endpoint', async () => {
@@ -125,7 +124,7 @@ describe('V0 - Refund Reason Controller', () => {
     await refundReasonController.update(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the refund reason update endpoint threw an error', async () => {
@@ -148,7 +147,7 @@ describe('V0 - Refund Reason Controller', () => {
     await refundReasonController.update(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the refund reason update endpoint is null', async () => {
@@ -167,7 +166,7 @@ describe('V0 - Refund Reason Controller', () => {
     await refundReasonController.update(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the refund reason update endpoint was called with an id', async () => {
@@ -186,7 +185,7 @@ describe('V0 - Refund Reason Controller', () => {
     await refundReasonController.update(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a post to the refund reason delete endpoint', async () => {
@@ -209,7 +208,7 @@ describe('V0 - Refund Reason Controller', () => {
     await refundReasonController.delete(request, response);
 
     const actual = jsonSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should send a 400 status code if the response from the refund reason delete endpoint threw an error', async () => {
@@ -232,7 +231,7 @@ describe('V0 - Refund Reason Controller', () => {
     await refundReasonController.delete(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the post body on the refund reason delete endpoint is null', async () => {
@@ -251,7 +250,7 @@ describe('V0 - Refund Reason Controller', () => {
     await refundReasonController.delete(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return with a 400 if the refund reason delete endpoint was called with an id', async () => {
@@ -270,6 +269,6 @@ describe('V0 - Refund Reason Controller', () => {
     await refundReasonController.delete(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

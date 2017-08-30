@@ -1,5 +1,4 @@
 import React from 'react';
-import { expect } from 'chai';
 import { shallow } from 'enzyme';
 
 import RegistrationForm from './RegistrationForm.jsx';
@@ -18,7 +17,7 @@ describe('<RegistrationForm />', () => {
     const expected = 7;
 
     const actual = wrapper.find(TextField).length;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should display a button that states "Register"', () => {
@@ -26,7 +25,7 @@ describe('<RegistrationForm />', () => {
     const expected = 'Register';
 
     const actual = wrapper.find(RaisedButton).props().label;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the display to none on the form if the hidden prop is passed in as true', () => {
@@ -40,7 +39,7 @@ describe('<RegistrationForm />', () => {
 
     const actual = wrapper.first().props().style.display;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the display to initial on the form if the server error prop is passed in as true', () => {
@@ -56,7 +55,7 @@ describe('<RegistrationForm />', () => {
 
     const actual = wrapper.first().props().style.display;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should not display the error text if the server errors state is false', () => {
@@ -71,7 +70,7 @@ describe('<RegistrationForm />', () => {
     const expected = 'none';
 
     const actual = wrapper.find('.error-text').props().style.display;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should display the text, "Cannot register, please try again later" if the error text is visible', () => {
@@ -86,6 +85,6 @@ describe('<RegistrationForm />', () => {
     const wrapper = shallow(<RegistrationForm {...updatedProps} />);
 
     const actual = wrapper.find('.error-text').text();
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

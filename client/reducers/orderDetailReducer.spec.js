@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import * as actionTypes from '../actions/actionTypes';
 import reducer from './orderDetailReducer';
 
@@ -137,7 +136,7 @@ describe('Reducer - OrderDetail', () => {
     const expected = getInitialState();
     const actual = reducer(getInitialState(), action); //eslint-disable-line no-undefined
 
-    expect(actual).to.deep.equal(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should hydrate the state with the orderDetail in the action', () => {
@@ -149,6 +148,6 @@ describe('Reducer - OrderDetail', () => {
     const expected = order;
     const actual = reducer(undefined, action); //eslint-disable-line no-undefined
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

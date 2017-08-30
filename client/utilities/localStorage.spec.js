@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import { loadState, saveState } from './localStorage';
 
 describe('Local Storage', () => {
@@ -14,9 +13,12 @@ describe('Local Storage', () => {
       return { success: true, object };
     },
   };
+
   it('Loading the state properly returns the object from the key', () => {
+    const expected = true;
+
     const actual = !!loadState().state.items;
-    expect(actual).is.true; //eslint-disable-line no-unused-expressions
+    expect(actual).toEqual(expected);
   });
 
   it('Persisting the state properly saves the object to the state', () => {

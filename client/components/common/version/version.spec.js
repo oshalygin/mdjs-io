@@ -1,5 +1,4 @@
 import { shallow } from 'enzyme';
-import { expect } from 'chai';
 import React from 'react';
 import Version from './index';
 

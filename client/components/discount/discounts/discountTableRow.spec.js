@@ -8,9 +8,6 @@ import sinon from 'sinon';
 import React from 'react';
 import DiscountTableRow from './DiscountTableRow.jsx';
 
-jest.dontMock('react-router');
-import { expect } from 'chai';
-
 describe('<DiscountTableRow />', () => {
   const props = {
     discount: {
@@ -46,7 +43,7 @@ describe('<DiscountTableRow />', () => {
     const actual = redirectSpy.calledWith(
       `/dashboard/discounts/${props.discount.discountID}`,
     );
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should call the deactivate prop function when the "Deactivate" button is clicked', () => {
@@ -66,7 +63,7 @@ describe('<DiscountTableRow />', () => {
     wrapper.find(RaisedButton).simulate('click');
 
     const actual = deactivateSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should render "Everything" if the discount applyToID is 0', () => {
@@ -75,7 +72,7 @@ describe('<DiscountTableRow />', () => {
 
     const actual = wrapper.find(TableRowColumn).at(2).props().children;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should render "1 Item" if the discount discountID is 1 and the length of items is 1', () => {
@@ -94,7 +91,7 @@ describe('<DiscountTableRow />', () => {
 
     const actual = wrapper.find(TableRowColumn).at(2).props().children;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should render "3 Items" if the discount applyTypeID is 1 and the length of items is 3', () => {
@@ -112,7 +109,7 @@ describe('<DiscountTableRow />', () => {
 
     const actual = wrapper.find(TableRowColumn).at(2).props().children;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should render the price toFixed with 2 decimal places as a dollar value when the discountTypeID is 1', () => {
@@ -130,7 +127,7 @@ describe('<DiscountTableRow />', () => {
 
     const actual = wrapper.find(TableRowColumn).at(1).props().children;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should render the value toFixed with 2 decimal places as a percentage value when the discountTypeID is 0', () => {
@@ -148,6 +145,6 @@ describe('<DiscountTableRow />', () => {
 
     const actual = wrapper.find(TableRowColumn).at(1).props().children;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

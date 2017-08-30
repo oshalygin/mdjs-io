@@ -8,8 +8,6 @@ import Snackbar from '../common/snackbar';
 
 import Registration from './index';
 
-import { expect } from 'chai';
-
 describe('<Registration />', () => {
   const props = {
     loading: {
@@ -24,7 +22,7 @@ describe('<Registration />', () => {
 
     const actual = wrapper.find('h1').props().className;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should display the RegistrationForm component when the loadingUser flag is false', () => {
@@ -33,7 +31,7 @@ describe('<Registration />', () => {
 
     const actual = wrapper.find(RegistrationForm).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should display the Spinner component when the loadingUser flag is true', () => {
@@ -47,7 +45,7 @@ describe('<Registration />', () => {
     );
 
     const actual = wrapper.find(Spinner).length;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should contain a version component', () => {
@@ -55,7 +53,7 @@ describe('<Registration />', () => {
     const wrapper = shallow(<Registration.WrappedComponent {...props} />);
 
     const actual = wrapper.find(Version).length;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should contain a <Snackbar /> component', () => {
@@ -63,7 +61,7 @@ describe('<Registration />', () => {
     const wrapper = shallow(<Registration.WrappedComponent {...props} />);
 
     const actual = wrapper.find(Snackbar).length;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should turn off the notification when calling closeNotification', () => {
@@ -76,7 +74,7 @@ describe('<Registration />', () => {
     instance.closeNotification();
 
     const actual = instance.state.notification;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should display the heading text as "Processing Registration" when the loading state is true', () => {
@@ -84,7 +82,7 @@ describe('<Registration />', () => {
     const wrapper = shallow(<Registration.WrappedComponent {...props} />);
 
     const actual = wrapper.find('h3').text();
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should display the heading text as "Registration" when the loading state is false', () => {
@@ -99,6 +97,6 @@ describe('<Registration />', () => {
     );
 
     const actual = wrapper.find('h3').text();
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

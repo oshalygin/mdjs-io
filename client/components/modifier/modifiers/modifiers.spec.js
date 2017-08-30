@@ -5,9 +5,6 @@ import sinon from 'sinon';
 import React from 'react';
 import Modifiers from './index';
 
-jest.dontMock('react-router');
-import { expect } from 'chai';
-
 describe('<Modifiers />', () => {
   const modifiers = [
     {
@@ -51,7 +48,7 @@ describe('<Modifiers />', () => {
 
     const actual = wrapper.find(RaisedButton).props().label;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should navigate to the "modifier" route when navigateToNewModifierPage is called', () => {
@@ -66,7 +63,7 @@ describe('<Modifiers />', () => {
     instance.navigateToNewModifierPage();
 
     const actual = redirectSpy.calledWith('/dashboard/modifiers/new');
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should dispatch the deactivate action with the passed in id that matches the modifier in the list', () => {
@@ -94,7 +91,7 @@ describe('<Modifiers />', () => {
     instance.deactivate(3);
 
     const actual = deactivatedModifierSpy.calledWith(modifiers[0]);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should filter the list to only include the modifiers from the searchCriteria', () => {
@@ -114,7 +111,7 @@ describe('<Modifiers />', () => {
 
     const actual = instance.state.modifiers.length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should filter the list and match on lowercase as well', () => {
@@ -134,7 +131,7 @@ describe('<Modifiers />', () => {
 
     const actual = instance.state.modifiers.length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the filter object appropriately on the local state', () => {
@@ -154,6 +151,6 @@ describe('<Modifiers />', () => {
 
     const actual = instance.state.filter;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

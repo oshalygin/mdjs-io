@@ -4,8 +4,6 @@ import TextField from '../../common/TextField.jsx';
 import React from 'react';
 import CategoryDetailForm from './CategoryDetailForm.jsx';
 
-import { expect } from 'chai';
-
 describe('<CategoryDetailForm />', () => {
   const errors = {
     categoryName: false,
@@ -25,6 +23,6 @@ describe('<CategoryDetailForm />', () => {
     const expected = 1;
     const actual = wrapper.find(TextField).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

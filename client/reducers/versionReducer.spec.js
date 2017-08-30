@@ -1,6 +1,5 @@
 /* eslint-disable indent */
 
-import { expect } from 'chai';
 import { LOAD_VERSION_SUCCESS } from '../actions/actionTypes';
 import reducer from './versionReducer';
 
@@ -17,7 +16,7 @@ describe('Reducer - Version', () => {
     const expected = getInitialState();
     const actual = reducer(undefined, action); //eslint-disable-line no-undefined
 
-    expect(actual).to.deep.equal(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the version to the version value when LOAD_VERSION_SUCCESS dispatches', () => {
@@ -29,6 +28,6 @@ describe('Reducer - Version', () => {
     const expected = '1.8.8';
     const actual = reducer(getInitialState(), action);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

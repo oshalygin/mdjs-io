@@ -4,8 +4,6 @@ import TextField from '../../common/TextField.jsx';
 import React from 'react';
 import DiscountValueField from './DiscountValueField.jsx';
 
-import { expect } from 'chai';
-
 describe('<DiscountValueField />', () => {
   const props = {
     isPercent: false,
@@ -24,7 +22,7 @@ describe('<DiscountValueField />', () => {
     const expected = 1;
     const actual = wrapper.find(TextField).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should render a component with a % symbol if isPercent is true', () => {
@@ -38,7 +36,7 @@ describe('<DiscountValueField />', () => {
     const expected = '%';
     const actual = wrapper.find('.percent-text').text();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should render a component with a $ symbol if isPercent is false', () => {
@@ -52,7 +50,7 @@ describe('<DiscountValueField />', () => {
     const expected = '$';
     const actual = wrapper.find('.currency-text').text();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should properly set the name on the TextField from props', () => {
@@ -66,7 +64,7 @@ describe('<DiscountValueField />', () => {
     const expected = 'valueTypeID';
     const actual = wrapper.find(TextField).props().name;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should properly set the value on the TextField from props', () => {
@@ -80,7 +78,7 @@ describe('<DiscountValueField />', () => {
     const expected = 5;
     const actual = wrapper.find(TextField).props().value;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should properly set the floatingLabelText on the TextField from props', () => {
@@ -94,7 +92,7 @@ describe('<DiscountValueField />', () => {
     const expected = 'value';
     const actual = wrapper.find(TextField).props().floatingLabelText;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should properly set the style on the TextField from props', () => {
@@ -108,6 +106,6 @@ describe('<DiscountValueField />', () => {
     const expected = { color: 'blue' };
     const actual = wrapper.find(TextField).props().style;
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

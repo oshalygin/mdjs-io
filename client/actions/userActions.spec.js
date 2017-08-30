@@ -24,7 +24,6 @@ import moxios from 'moxios';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
 import sinon from 'sinon';
-import { expect } from 'chai';
 
 describe('User Actions', () => {
   let store;
@@ -188,7 +187,7 @@ describe('User Actions', () => {
 
     return store.dispatch(loginValidationErrors()).then(() => {
       const actual = store.getActions().map(action => action.type)[0];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -197,7 +196,7 @@ describe('User Actions', () => {
 
     return store.dispatch(logout()).then(() => {
       const actual = store.getActions().map(action => action.type)[0];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -221,7 +220,7 @@ describe('User Actions', () => {
 
     return store.dispatch(login(postedUser)).then(() => {
       const actual = store.getActions().map(action => action.type)[0];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -245,7 +244,7 @@ describe('User Actions', () => {
 
     return store.dispatch(login(postedUser)).catch(() => {
       const actual = store.getActions().map(action => action.type)[1];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -264,7 +263,7 @@ describe('User Actions', () => {
         type: LOADING_USER,
       });
 
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -284,7 +283,7 @@ describe('User Actions', () => {
         categories: companyData.categories,
       });
 
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -304,7 +303,7 @@ describe('User Actions', () => {
         discounts: companyData.discounts,
       });
 
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -324,7 +323,7 @@ describe('User Actions', () => {
         items: companyData.items,
       });
 
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -344,7 +343,7 @@ describe('User Actions', () => {
         taxes: companyData.taxes,
       });
 
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -364,7 +363,7 @@ describe('User Actions', () => {
         modifiers: companyData.modifiers,
       });
 
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -384,7 +383,7 @@ describe('User Actions', () => {
         refundReasons: companyData.refundReasons,
       });
 
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -403,7 +402,7 @@ describe('User Actions', () => {
         type: LOADED_USER_SUCCESS,
       });
 
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -427,7 +426,7 @@ describe('User Actions', () => {
         type: LOADED_USER_FAILURE,
       });
 
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 });

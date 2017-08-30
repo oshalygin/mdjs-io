@@ -20,7 +20,6 @@ import { DISCOUNTS_ENDPOINT } from '../utilities/endpoints';
 import moxios from 'moxios';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
-import { expect } from 'chai';
 
 describe('Discount Actions', () => {
   let store;
@@ -85,7 +84,7 @@ describe('Discount Actions', () => {
 
     return store.dispatch(deactivateDiscount(existingDiscount)).then(() => {
       const actual = store.getActions().map(action => action.type)[0];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -99,7 +98,7 @@ describe('Discount Actions', () => {
 
     return store.dispatch(deactivateDiscount(existingDiscount)).then(() => {
       const actual = store.getActions().map(action => action.type)[1];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -112,7 +111,7 @@ describe('Discount Actions', () => {
 
     return store.dispatch(createDiscount(newDiscount)).then(() => {
       const actual = store.getActions().map(action => action.type)[0];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -125,7 +124,7 @@ describe('Discount Actions', () => {
 
     return store.dispatch(createDiscount(newDiscount)).then(() => {
       const actual = store.getActions().map(action => action.type)[2];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -138,7 +137,7 @@ describe('Discount Actions', () => {
 
     return store.dispatch(createDiscount(newDiscount)).then(() => {
       const actual = store.getActions().map(action => action.type)[1];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -153,7 +152,7 @@ describe('Discount Actions', () => {
 
     return store.dispatch(createDiscount(newDiscount)).then(() => {
       const actual = store.getActions().map(action => action.discount)[1];
-      expect(actual).deep.equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -168,7 +167,7 @@ describe('Discount Actions', () => {
 
     return store.dispatch(updateDiscount(existingDiscount)).then(() => {
       const actual = store.getActions().map(action => action.type)[0];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -183,7 +182,7 @@ describe('Discount Actions', () => {
 
     return store.dispatch(updateDiscount(existingDiscount)).then(() => {
       const actual = store.getActions().map(action => action.type)[2];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -198,7 +197,7 @@ describe('Discount Actions', () => {
 
     return store.dispatch(updateDiscount(existingDiscount)).catch(() => {
       const actual = store.getActions().map(action => action.type)[1];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -211,7 +210,7 @@ describe('Discount Actions', () => {
 
     return store.dispatch(createDiscount(newDiscount)).catch(() => {
       const actual = store.getActions().map(action => action.type)[1];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -226,7 +225,7 @@ describe('Discount Actions', () => {
 
     return store.dispatch(updateDiscount(updatedDiscount)).then(() => {
       const actual = store.getActions().map(action => action.type)[1];
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -245,7 +244,7 @@ describe('Discount Actions', () => {
 
     return store.dispatch(updateDiscount(updatedDiscount)).then(() => {
       const actual = store.getActions().map(action => action.discount)[1];
-      expect(actual).deep.equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 });

@@ -4,9 +4,6 @@ import CategoryDetail, { mapStateToProps } from './index';
 import Spinner from '../../common/spinner';
 import sinon from 'sinon';
 
-jest.dontMock('react-router');
-import { expect } from 'chai';
-
 describe('<CategoryDetail />', () => {
   const errors = {
     categoryName: false,
@@ -70,7 +67,7 @@ describe('<CategoryDetail />', () => {
 
     const actual = wrapper.find('h5').props().children;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return the heading as "New Category" if the passed in props is null', () => {
@@ -88,7 +85,7 @@ describe('<CategoryDetail />', () => {
     const expected = 'New Category';
     const actual = mapStateToProps(state, ownProps).categoryHeading;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return the heading as "Update Category" if the passed in id prop matches the state categories', () => {
@@ -106,7 +103,7 @@ describe('<CategoryDetail />', () => {
     const expected = 'Update Category';
     const actual = mapStateToProps(state, ownProps).categoryHeading;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return the existing category properties if the passed in id prop matches the state categories', () => {
@@ -124,7 +121,7 @@ describe('<CategoryDetail />', () => {
     const expected = categories[0];
     const actual = mapStateToProps(state, ownProps).category;
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return the an empty category if the passed in id prop is null', () => {
@@ -142,7 +139,7 @@ describe('<CategoryDetail />', () => {
     const expected = props.category;
     const actual = mapStateToProps(state, ownProps).category;
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should render a spinner if the "createUpdateCategory" loading flag is set', () => {
@@ -160,7 +157,7 @@ describe('<CategoryDetail />', () => {
 
     const actual = wrapper.find(Spinner).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should navigate back to the "categories" page if the back button is clicked', () => {
@@ -176,7 +173,7 @@ describe('<CategoryDetail />', () => {
 
     const actual = redirectSpy.calledWith('/dashboard/categories');
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the new state of the category based on the form field that was changed', () => {
@@ -205,7 +202,7 @@ describe('<CategoryDetail />', () => {
     instance.onChange(event, index, payload);
     const actual = instance.state.category.categoryName;
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should call "updateCategory" with the category that was passed in to onSave', () => {
@@ -241,7 +238,7 @@ describe('<CategoryDetail />', () => {
 
     const actual = triggerCategoryUpdateSpy.calledWith(categories[0]);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return false if the category categoryName is empty when calling formIsValid', () => {
@@ -259,7 +256,7 @@ describe('<CategoryDetail />', () => {
     instance.state.category.categoryName = '';
     const actual = instance.formIsValid();
     instance.state.category.categoryName = 'Foo'; //reset back to the original state.
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return false if there are validation errors calling formIsValid', () => {
@@ -283,7 +280,7 @@ describe('<CategoryDetail />', () => {
     const actual = instance.formIsValid();
     instance.state.errors = errors; //reset back to the original state.
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the error object property categoryName to false if it passes the regex test', () => {
@@ -304,7 +301,7 @@ describe('<CategoryDetail />', () => {
     instance.propertyIsValid(property, value, errors);
     const actual = instance.state.errors.categoryName;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the error object property categoryName to whitespace if it DOES NOT pass the regex test', () => {
@@ -325,7 +322,7 @@ describe('<CategoryDetail />', () => {
     instance.propertyIsValid(property, value, errors);
     const actual = instance.state.errors.categoryName;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the error object property price to false if it passes the regex test', () => {
@@ -346,6 +343,6 @@ describe('<CategoryDetail />', () => {
     instance.propertyIsValid(property, value, errors);
     const actual = instance.state.errors.price;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

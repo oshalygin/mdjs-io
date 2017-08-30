@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import * as actionTypes from '../actions/actionTypes';
 import reducer from './orderReducer';
 
@@ -131,7 +130,7 @@ describe('Reducer - Orders', () => {
     const expected = getInitialState();
     const actual = reducer(getInitialState(), action); //eslint-disable-line no-undefined
 
-    expect(actual).to.deep.equal(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should hydrate the state with all of the orders in the action', () => {
@@ -156,7 +155,7 @@ describe('Reducer - Orders', () => {
     };
 
     const actual = reducer(undefined, action); //eslint-disable-line no-undefined
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the expanded flag to true on the order that has the same orderID as the detail', () => {
@@ -183,7 +182,7 @@ describe('Reducer - Orders', () => {
       order => order.orderID === selectedOrder.orderID,
     ).expanded;
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the expanded flag to false if the orderID does not match the orders', () => {
@@ -209,7 +208,7 @@ describe('Reducer - Orders', () => {
       order => !order.expanded,
     );
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should leave the order untouched with the expanded flag to true if the orderID does match the order', () => {
@@ -233,7 +232,7 @@ describe('Reducer - Orders', () => {
     const expected = true;
     const actual = reducer(state, action).orderList[0].expanded;
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the monthlySummary property in the reducer accordingly with the data from the dispatch', () => {
@@ -250,7 +249,7 @@ describe('Reducer - Orders', () => {
     const expected = monthlySummary;
     const actual = reducer(state, action).monthlySummary;
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the orderAverage property in the reducer accordingly with the data from the dispatch', () => {
@@ -267,7 +266,7 @@ describe('Reducer - Orders', () => {
     const expected = action.average;
     const actual = reducer(state, action).orderAverage;
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should hydrate the store with the orders in the payload of "LOAD_YESTERDAYS_ORDERS_SUCCESS"', () => {
@@ -285,7 +284,7 @@ describe('Reducer - Orders', () => {
     };
 
     const actual = reducer(undefined, action); //eslint-disable-line no-undefined
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should hydrate the store with the orders in the payload of "LOAD_TODAYS_ORDERS_SUCCESS"', () => {
@@ -303,6 +302,6 @@ describe('Reducer - Orders', () => {
     };
 
     const actual = reducer(undefined, action); //eslint-disable-line no-undefined
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

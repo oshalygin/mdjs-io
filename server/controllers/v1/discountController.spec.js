@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import moxios from 'moxios';
 import sinon from 'sinon';
 
@@ -76,7 +75,7 @@ describe('Discount Controller', () => {
     DiscountController.get(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return a 200 status code on a successful request', () => {
@@ -105,7 +104,7 @@ describe('Discount Controller', () => {
 
     return DiscountController.get(request, response).then(() => {
       const actual = statusStub.calledWith(200);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -135,7 +134,7 @@ describe('Discount Controller', () => {
 
     return DiscountController.get(request, response).then(() => {
       const actual = jsonSpy.calledWith(discounts);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -170,7 +169,7 @@ describe('Discount Controller', () => {
 
     return DiscountController.get(request, response).then(() => {
       const actual = jsonSpy.calledWith(discounts[0]);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -208,7 +207,7 @@ describe('Discount Controller', () => {
 
     return DiscountController.get(request, response).then(() => {
       const actual = statusStub.calledWith(404);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -246,7 +245,7 @@ describe('Discount Controller', () => {
 
     return DiscountController.get(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -269,7 +268,7 @@ describe('Discount Controller', () => {
     DiscountController.deleteDiscount(request, response);
 
     const actual = statusStub.calledWith(400);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should return 404 if the request fell through the backend on a deleteDiscount call', () => {
@@ -311,7 +310,7 @@ describe('Discount Controller', () => {
 
     return DiscountController.deleteDiscount(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -354,7 +353,7 @@ describe('Discount Controller', () => {
 
     return DiscountController.deleteDiscount(request, response).then(() => {
       const actual = statusStub.calledWith(200);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -379,7 +378,7 @@ describe('Discount Controller', () => {
 
     return DiscountController.put(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -405,7 +404,7 @@ describe('Discount Controller', () => {
 
     return DiscountController.put(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -442,7 +441,7 @@ describe('Discount Controller', () => {
 
     return DiscountController.put(request, response).then(() => {
       const actual = statusStub.calledWith(200);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -487,7 +486,7 @@ describe('Discount Controller', () => {
 
     return DiscountController.put(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -528,7 +527,7 @@ describe('Discount Controller', () => {
 
     return DiscountController.post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -561,7 +560,7 @@ describe('Discount Controller', () => {
 
     return DiscountController.post(request, response).then(() => {
       const actual = statusStub.calledWith(200);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -583,7 +582,7 @@ describe('Discount Controller', () => {
 
     return DiscountController.post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 
@@ -610,7 +609,7 @@ describe('Discount Controller', () => {
 
     return DiscountController.post(request, response).then(() => {
       const actual = statusStub.calledWith(400);
-      expect(actual).equals(expected);
+      expect(actual).toEqual(expected);
     });
   });
 });

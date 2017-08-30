@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import * as actionTypes from '../actions/actionTypes';
 import reducer from './configurationReducer';
 
@@ -20,7 +19,7 @@ describe('Reducer - Configuration', () => {
     const expected = getInitialState();
     const actual = reducer(getInitialState(), action);
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the configuration state to the retrieved object on a successful action dispatch', () => {
@@ -33,6 +32,6 @@ describe('Reducer - Configuration', () => {
 
     const actual = reducer(currentState, action);
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

@@ -6,8 +6,6 @@ import ItemImage from './ItemImage.jsx';
 import React from 'react';
 import ItemDetailForm, { getModifierLabel } from './ItemDetailForm.jsx';
 
-import { expect } from 'chai';
-
 describe('<ItemDetailForm />', () => {
   const errors = {
     name: false,
@@ -109,7 +107,7 @@ describe('<ItemDetailForm />', () => {
     const expected = 3;
     const actual = wrapper.find(TextField).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should render an ItemImage component', () => {
@@ -118,7 +116,7 @@ describe('<ItemDetailForm />', () => {
     const expected = 1;
     const actual = wrapper.find(ItemImage).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should render three SelectList components', () => {
@@ -127,7 +125,7 @@ describe('<ItemDetailForm />', () => {
     const expected = 3;
     const actual = wrapper.find(SelectList).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should render 4 list items on the SelectListComponent for priceType', () => {
@@ -136,7 +134,7 @@ describe('<ItemDetailForm />', () => {
     const expected = 4;
     const actual = wrapper.find(SelectList).at(0).props().children.length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should render 3 list items on the SelectListComponent for category', () => {
@@ -145,7 +143,7 @@ describe('<ItemDetailForm />', () => {
     const expected = 3;
     const actual = wrapper.find(SelectList).at(1).props().children.length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the itemPriceType based on the itemPriceTypeID', () => {
@@ -154,7 +152,7 @@ describe('<ItemDetailForm />', () => {
     const expected = { name: 'priceTypeID', label: 'Each', value: 0 };
     const actual = wrapper.find(SelectList).at(0).props().value;
 
-    expect(actual).deep.equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should contain an "Additional Configuration" heading', () => {
@@ -163,7 +161,7 @@ describe('<ItemDetailForm />', () => {
     const expected = 'Additional Configuration';
     const actual = wrapper.find('.additional-items-heading').text();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the modifier label to include the label name and the price in dollars', () => {
@@ -172,7 +170,7 @@ describe('<ItemDetailForm />', () => {
     const expected = 'test - $30.99';
     const actual = getModifierLabel(modifier);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the modifier price to two decimal places', () => {
@@ -181,6 +179,6 @@ describe('<ItemDetailForm />', () => {
     const expected = 'Foobar - $79.00';
     const actual = getModifierLabel(modifier);
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

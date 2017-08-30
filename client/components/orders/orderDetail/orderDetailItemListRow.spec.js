@@ -4,8 +4,6 @@ import React from 'react';
 import OrderDetailItemListRow from './OrderDetailItemListRow.jsx';
 import ItemImage from '../../common/itemImage';
 
-import { expect } from 'chai';
-
 describe('<OrderDetailItemListRow />', () => {
   const props = {
     item: {
@@ -56,7 +54,7 @@ describe('<OrderDetailItemListRow />', () => {
     const wrapper = shallow(<OrderDetailItemListRow {...props} />);
     const actual = wrapper.find(ItemImage).length;
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should properly map the price description and the price together', () => {
@@ -65,7 +63,7 @@ describe('<OrderDetailItemListRow />', () => {
     const wrapper = shallow(<OrderDetailItemListRow {...props} />);
     const actual = wrapper.find('.item-list-row-name').last().text();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should display the total price', () => {
@@ -74,7 +72,7 @@ describe('<OrderDetailItemListRow />', () => {
     const wrapper = shallow(<OrderDetailItemListRow {...props} />);
     const actual = wrapper.find('.item-price').text();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should display the total taxes', () => {
@@ -83,6 +81,6 @@ describe('<OrderDetailItemListRow />', () => {
     const wrapper = shallow(<OrderDetailItemListRow {...props} />);
     const actual = wrapper.find('.item-list-row-tax-container').text();
 
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });

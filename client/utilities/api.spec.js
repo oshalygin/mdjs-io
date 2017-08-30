@@ -1,7 +1,5 @@
 import api from './api';
-
 import sinon from 'sinon';
-import { expect } from 'chai';
 
 jest.dontMock('axios');
 
@@ -19,7 +17,7 @@ describe('Api Utilities', () => {
     api.get(endpoint);
 
     const actual = getSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a PUT request when calling the put property with an endpoint and data', () => {
@@ -32,7 +30,7 @@ describe('Api Utilities', () => {
     api.put(endpoint, {});
 
     const actual = putSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a POST request when calling the post property with an endpoint and data', () => {
@@ -45,7 +43,7 @@ describe('Api Utilities', () => {
     api.post(endpoint, {});
 
     const actual = postSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a PATCH request when calling the post property with an endpoint and data', () => {
@@ -58,7 +56,7 @@ describe('Api Utilities', () => {
     api.patch(endpoint, {});
 
     const actual = patchSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should make a DELETE request when calling the post property with an endpoint', () => {
@@ -71,7 +69,7 @@ describe('Api Utilities', () => {
     api.delete(endpoint);
 
     const actual = deleteSpy.called;
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 
   it('should set the request headers to include content-type and accept as "application/json" on a GET request', () => {
@@ -95,6 +93,6 @@ describe('Api Utilities', () => {
     api.get(endpoint);
 
     const actual = getSpy.calledWith(endpoint, requestHeaders);
-    expect(actual).equals(expected);
+    expect(actual).toEqual(expected);
   });
 });
