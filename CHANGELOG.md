@@ -1,3 +1,7 @@
+## 3.27.2 (August 30, 2017)
+
+- Deprecate the /temp-images folder
+
 ## 3.27.1 (August 30, 2017)
 
 - Deprecated consumption of `chai` in favor of Jest assertion library
