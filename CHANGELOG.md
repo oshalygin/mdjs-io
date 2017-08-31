@@ -1,3 +1,8 @@
+## 3.28.0 (August 31, 2017)
+
+- Add navigation from homepage to the dashboard or the registration page
+  - This serves as a placeholder for future implementations of the main content page
+
 ## 3.27.2 (August 30, 2017)
 
 - Deprecate the /temp-images folder
