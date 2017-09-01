@@ -27,6 +27,7 @@ install:
 
 script:
   - npm run lint
+  - npm run stylelint
   - npm run test:coverage
   - npm run publish:coverage
 

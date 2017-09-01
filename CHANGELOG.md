@@ -1,3 +1,10 @@
+## 3.28.2 (September 1, 2017)
+
+- Addition of `stylelint`.
+  - Provides an automated way to check whether or not the codebase complies with the styling guidelines outlined in `.stylelintrc`
+  - Cleaned up files that violated the configuration
+  - Addition of lint step into the CI pipeline through Travis.
+
 ## 3.28.1 (September 1, 2017)
 
 - Remove all references to `PropTypes` from the `react` package and instead pull appropriately from `prop-types`.

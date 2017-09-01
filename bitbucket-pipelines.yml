@@ -6,4 +6,5 @@ pipelines:
         script:
           - yarn
           - npm run lint
+          - npm run stylelint
           - npm run test:coverage

@@ -1,12 +1,13 @@
 {
   "name": "mdjs",
-  "version": "3.28.1",
+  "version": "3.28.2",
   "description": "Merchant Dashboard built with React and Redux",
   "scripts": {
     "start-dev-server": "babel-watch server/application.dev.js",
     "start": "npm-run-all start-dev-server",
     "lint": "eslint webpack.config.* \"client/**\" \"server/**\" utilities/** --color",
     "lint:watch": "npm run lint -- --watch",
+    "stylelint":  "stylelint \"client/**/*.css\"",
     "test": "jest --silent",
     "test:watch": "npm run test -- --watch",
     "test:coverage": "jest --maxWorkers=4 --coverage",
@@ -139,6 +140,7 @@
     "rimraf": "2.6.1",
     "sinon": "3.0.0",
     "source-map-support": "0.4.15",
+    "stylelint": "8.0.0",
     "wallaby-webpack": "0.0.38",
     "webpack": "2.5.1",
     "webpack-dev-middleware": "1.12.0",
