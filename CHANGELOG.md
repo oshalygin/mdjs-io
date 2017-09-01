@@ -1,3 +1,8 @@
+## 3.28.1 (September 1, 2017)
+
+- Remove all references to `PropTypes` from the `react` package and instead pull appropriately from `prop-types`.
+- Updates to `react-redux@5.0.6`
+
 ## 3.28.0 (August 31, 2017)
 
 - Add navigation from homepage to the dashboard or the registration page

@@ -135,7 +135,7 @@ Registration.propTypes = {
 };
 
 Registration.contextTypes = {
-  router: React.PropTypes.object.isRequired,
+  router: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {

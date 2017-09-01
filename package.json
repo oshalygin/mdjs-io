@@ -1,6 +1,6 @@
 {
   "name": "mdjs",
-  "version": "3.28.0",
+  "version": "3.28.1",
   "description": "Merchant Dashboard built with React and Redux",
   "scripts": {
     "start-dev-server": "babel-watch server/application.dev.js",
@@ -60,7 +60,7 @@
     "react": "15.5.4",
     "react-dom": "15.5.4",
     "react-dropzone": "3.13.1",
-    "react-redux": "5.0.3",
+    "react-redux": "5.0.6",
     "react-router-dom": "4.1.2",
     "react-router-redux": "4.0.8",
     "react-tap-event-plugin": "2.0.1",
