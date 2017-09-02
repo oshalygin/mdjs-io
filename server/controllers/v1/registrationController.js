@@ -88,10 +88,8 @@ export async function post(request, response) {
     );
 
     if (!accountDetails.data.data) {
-      return warningApiResponse(400, 'Invalid username or password')(
-        request,
-        response,
-      );
+      const { message } = accountDetails.data;
+      return warningApiResponse(400, message)(request, response);
     }
 
     // await userDataAccess.findOneAndUpdate(username, password);
@@ -99,10 +97,12 @@ export async function post(request, response) {
     const token = accountDetails.data.data.token;
     return response.status(200).json({ token });
   } catch (error) {
-    return errorApiResponse(400, 'Invalid username or password', error)(
-      request,
-      response,
-    );
+    if (error.response && error.response.data && error.response.data.message) {
+      const { message } = error.response.data;
+      return warningApiResponse(400, message)(request, response);
+    }
+
+    return errorApiResponse(400, 'Bad Request', error)(request, response);
   }
 }
 

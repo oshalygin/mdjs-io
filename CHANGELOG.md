@@ -1,3 +1,8 @@
+## 3.29.1 (September 2, 2017)
+
+- Updated error logging in the registration controller
+  - Capturing the response object from the server and persisting it back down to the API caller.
+
 ## 3.29.0 (September 2, 2017)
 
 - Navigation between the Registration page and the Login page is now possible through button controls.
