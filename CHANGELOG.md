@@ -1,3 +1,8 @@
+## 3.29.2 (September 2, 2017)
+
+- Addition of Notification Snackbars
+  - Initial rollout involves persistence through Registration API responses.
+
 ## 3.29.1 (September 2, 2017)
 
 - Updated error logging in the registration controller

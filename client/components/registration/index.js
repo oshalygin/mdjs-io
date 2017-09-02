@@ -35,6 +35,15 @@ class Registration extends React.Component {
     this.validateForm = this.validateForm.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.notificationMessage) {
+      this.setState({
+        notification: true,
+        notificationMessage: nextProps.notificationMessage,
+      });
+    }
+  }
+
   submit(event) {
     event.preventDefault();
     const { user } = this.state;
@@ -139,6 +148,7 @@ Registration.propTypes = {
   user: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
   registrationActions: PropTypes.object.isRequired,
+  notificationMessage: PropTypes.string,
 };
 
 Registration.contextTypes = {
@@ -149,6 +159,7 @@ function mapStateToProps(state) {
   return {
     user: state.user,
     loading: state.loading.loadingRegistration,
+    notificationMessage: state.notification,
   };
 }
 

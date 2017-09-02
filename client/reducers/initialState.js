@@ -42,4 +42,5 @@ export default {
   orderDetail: {},
   refundReasons: [],
   version: '',
+  notification: '',
 };

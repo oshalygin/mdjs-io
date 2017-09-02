@@ -4,6 +4,7 @@ import * as actionTypes from '../actions/actionTypes';
 
 import { registrationError } from '../actions/registrationActions';
 import { retrieveLoggedInUser } from '../actions/userActions';
+import { saveNotification } from '../actions/notificationActions';
 
 import { persistUserToken } from '../utilities/localStorage';
 
@@ -24,11 +25,17 @@ export function* register(registrationPostData) {
     yield put(retrieveLoggedInUser());
   } catch (error) {
     yield put(registrationError());
+
+    const message =
+      error.response && error.response.data
+        ? error.response.data
+        : 'Could not register';
+
+    yield put(saveNotification({ message }));
   }
 }
 
 /* WATCHERS */
-
 export function* registerUser() {
   while (true) {
     const action = yield take(actionTypes.REQUEST_REGISTRATION);

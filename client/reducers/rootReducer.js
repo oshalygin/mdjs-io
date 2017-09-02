@@ -11,6 +11,7 @@ import orderDetail from './orderDetailReducer';
 import refundReasons from './refundReasonReducer';
 import loading from './loadingReducer';
 import version from './versionReducer';
+import notification from './notificationReducer';
 
 const rootReducer = combineReducers({
   user,
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   refundReasons,
   loading,
   version,
+  notification,
 });
 
 export default rootReducer;
