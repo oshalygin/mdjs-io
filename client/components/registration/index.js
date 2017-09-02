@@ -15,6 +15,7 @@ import Spinner from '../common/spinner/';
 import RegistrationForm from './RegistrationForm.jsx';
 import Version from '../common/version';
 import { validateEmail } from '../../utilities/validation';
+import history from '../../utilities/history';
 
 class Registration extends React.Component {
   constructor(props, context) {
@@ -30,6 +31,7 @@ class Registration extends React.Component {
     this.submit = this.submit.bind(this);
     this.onChange = this.onChange.bind(this);
     this.closeNotification = this.closeNotification.bind(this);
+    this.navigateToLogin = this.navigateToLogin.bind(this);
     this.validateForm = this.validateForm.bind(this);
   }
 
@@ -72,6 +74,10 @@ class Registration extends React.Component {
     this.setState({ notification: false });
   }
 
+  navigateToLogin() {
+    history.push('/login');
+  }
+
   onChange(event) {
     const property = event.target.name;
     const { user } = this.state;
@@ -105,6 +111,7 @@ class Registration extends React.Component {
                   errors={formErrors}
                   onChange={this.onChange}
                   onSubmit={this.submit}
+                  navigateToLogin={this.navigateToLogin}
                 />
                 {loading &&
                   <div styleName="content-container-spinner">

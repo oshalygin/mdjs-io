@@ -14,7 +14,13 @@ const textFieldInputStyle = {
   color: '#F5F5F5',
 };
 
-const LoginForm = ({ hidden, errors, onChange, login }) => {
+const LoginForm = ({
+  hidden,
+  errors,
+  onChange,
+  onSubmit,
+  navigateToRegistration,
+}) => {
   const formDisplay = hidden ? { display: 'none' } : { display: 'initial' };
 
   const errorTextDisplay = errors
@@ -52,8 +58,7 @@ const LoginForm = ({ hidden, errors, onChange, login }) => {
           label="Log In"
           fullWidth
           primary
-          onClick={login}
-          onSubmit={login}
+          onClick={onSubmit}
         />
         <a href="#">
           <small>Forgot password?</small>
@@ -62,9 +67,13 @@ const LoginForm = ({ hidden, errors, onChange, login }) => {
       <p className="text-muted text-center">
         <small>Don't have an account?</small>
       </p>
-      <a className="btn btn-sm btn-white btn-block" href="#">
-        Create an account
-      </a>
+      <RaisedButton
+        type="button"
+        label="Register"
+        primary={false}
+        fullWidth
+        onClick={navigateToRegistration}
+      />
     </form>
   );
 };
@@ -73,7 +82,8 @@ LoginForm.propTypes = {
   hidden: PropTypes.bool.isRequired,
   errors: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
-  login: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  navigateToRegistration: PropTypes.func.isRequired,
 };
 
 export default LoginForm;

@@ -6,7 +6,13 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 import './registration.css';
 
-const RegistrationForm = ({ hidden, errors, onChange, onSubmit }) => {
+const RegistrationForm = ({
+  hidden,
+  errors,
+  onChange,
+  onSubmit,
+  navigateToLogin,
+}) => {
   const formDisplay = hidden ? { display: 'none' } : { display: 'initial' };
 
   const errorTextDisplay = errors.server
@@ -85,7 +91,7 @@ const RegistrationForm = ({ hidden, errors, onChange, onSubmit }) => {
         </div>
         <RaisedButton
           type="submit"
-          label="Register"
+          label="register"
           fullWidth
           primary
           onClick={onSubmit}
@@ -95,9 +101,13 @@ const RegistrationForm = ({ hidden, errors, onChange, onSubmit }) => {
       <p className="text-muted text-center">
         <small>Already have an account?</small>
       </p>
-      <a className="btn btn-sm btn-white btn-block" href="#">
-        Login
-      </a>
+      <RaisedButton
+        type="button"
+        label="login"
+        primary={false}
+        fullWidth
+        onClick={navigateToLogin}
+      />
     </form>
   );
 };
@@ -107,6 +117,7 @@ RegistrationForm.propTypes = {
   errors: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  navigateToLogin: PropTypes.func.isRequired,
 };
 
 export default RegistrationForm;

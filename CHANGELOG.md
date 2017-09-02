@@ -1,3 +1,7 @@
+## 3.29.0 (September 2, 2017)
+
+- Navigation between the Registration page and the Login page is now possible through button controls.
+
 ## 3.28.2 (September 1, 2017)
 
 - Addition of `stylelint`.

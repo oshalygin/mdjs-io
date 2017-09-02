@@ -26,13 +26,13 @@ class LoginPage extends React.Component {
       notification: false,
       notificationMessage: '',
     };
-    this.login = this.login.bind(this);
+
+    this.submit = this.submit.bind(this);
     this.onChange = this.onChange.bind(this);
-    this.redirect = this.redirect.bind(this);
     this.closeNotification = this.closeNotification.bind(this);
   }
 
-  login(event) {
+  submit(event) {
     event.preventDefault();
     const { user } = this.state;
     const { userActions } = this.props;
@@ -44,8 +44,8 @@ class LoginPage extends React.Component {
     this.setState({ notification: false });
   }
 
-  redirect() {
-    history.push('/dashboard');
+  navigateToRegistration() {
+    history.push('/registration');
   }
 
   onChange(event) {
@@ -72,7 +72,8 @@ class LoginPage extends React.Component {
                 hidden={loading}
                 errors={formErrors}
                 onChange={this.onChange}
-                login={this.login}
+                navigateToRegistration={this.navigateToRegistration}
+                onSubmit={this.submit}
               />
               <Spinner hidden={!loading} />
               <p className="m-t">
