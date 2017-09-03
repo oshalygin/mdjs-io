@@ -75,7 +75,8 @@ const RegistrationForm = ({
               floatingLabelFixed
               floatingLabelText="Phone Number"
               name="phoneNumber"
-              type="tel"
+              errorText={errors.phoneNumber ? 'Invalid phone number' : ''}
+              type="text"
               fullWidth
               onChange={onChange}
             />

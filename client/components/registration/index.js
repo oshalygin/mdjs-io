@@ -14,7 +14,7 @@ import './registration.css';
 import Spinner from '../common/spinner/';
 import RegistrationForm from './RegistrationForm.jsx';
 import Version from '../common/version';
-import { validateEmail } from '../../utilities/validation';
+import { validateEmail, validatePhoneNumber } from '../../utilities/validation';
 import history from '../../utilities/history';
 
 class Registration extends React.Component {
@@ -59,7 +59,7 @@ class Registration extends React.Component {
 
   validateForm() {
     const { user, formErrors } = this.state;
-    const { email, password, confirmPassword } = user;
+    const { email, password, confirmPassword, phoneNumber } = user;
 
     let isValid = true;
     let errors = { ...formErrors };
@@ -76,6 +76,13 @@ class Registration extends React.Component {
       isValid = false;
     } else {
       errors = { ...errors, email: false };
+    }
+
+    if (!validatePhoneNumber(phoneNumber)) {
+      errors = { ...errors, phoneNumber: true };
+      isValid = false;
+    } else {
+      errors = { ...errors, phoneNumber: false };
     }
 
     this.setState({ formErrors: errors });

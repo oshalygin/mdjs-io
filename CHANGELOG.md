@@ -1,3 +1,7 @@
+## 3.29.7 (September 2, 2017)
+
+- Addition of a Phone number validation check on the registration page.
+
 ## 3.29.6 (September 2, 2017)
 
 - Updated `<Registration />` and `<Login />` test suites to support the latest navigation changes.
