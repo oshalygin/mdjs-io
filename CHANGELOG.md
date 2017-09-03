@@ -1,3 +1,8 @@
+## 3.29.4 (September 2, 2017)
+
+- Addition of a phone number validator utility
+  - Basic US phone numbers can now be validated
+
 ## 3.29.3 (September 2, 2017)
 
 - Persist error message to client registration page
