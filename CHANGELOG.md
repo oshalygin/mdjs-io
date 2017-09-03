@@ -1,3 +1,7 @@
+## 3.31.1 (September 2, 2017)
+
+- Resolved broken tests related to the `error` object state within Login
+
 ## 3.31.0 (September 2, 2017)
 
 - Addition of login validation checks on the email and password.

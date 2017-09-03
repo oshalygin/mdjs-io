@@ -7,6 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 describe('<LoginForm />', () => {
   const props = {
+    errors: {},
     onChange() {},
     login() {},
   };
@@ -70,7 +71,9 @@ describe('<LoginForm />', () => {
   it('should display the error text if the errors prop is passed in as true', () => {
     const updatedProps = {
       ...props,
-      errors: true,
+      errors: {
+        server: 'Invalid email address or password',
+      },
     };
 
     const wrapper = shallow(<LoginForm {...updatedProps} />);
@@ -83,7 +86,9 @@ describe('<LoginForm />', () => {
   it('should display the error text of "Invalid email address or password" for generic errors', () => {
     const updatedProps = {
       ...props,
-      errors: true,
+      errors: {
+        server: 'Invalid email address or password',
+      },
     };
 
     const wrapper = shallow(<LoginForm {...updatedProps} />);
