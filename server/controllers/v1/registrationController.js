@@ -62,6 +62,13 @@ export async function post(request, response) {
     )(request, response);
   }
 
+  if (!phoneNumber) {
+    return warningApiResponse(
+      400,
+      `Bad request, the "phoneNumber" property is required, passed in: ${phoneNumber}`,
+    )(request, response);
+  }
+
   if (password !== confirmPassword) {
     return warningApiResponse(
       400,

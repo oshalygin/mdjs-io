@@ -1,6 +1,10 @@
+## 3.30.0 (September 2, 2017)
+
+- Server side validation for the phone number when registering.
+
 ## 3.29.7 (September 2, 2017)
 
-- Addition of a Phone number validation check on the registration page.
+- Addition of a phone number validation check on the registration page.
 
 ## 3.29.6 (September 2, 2017)
 
