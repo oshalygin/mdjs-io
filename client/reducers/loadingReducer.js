@@ -9,7 +9,12 @@ export default function loadingReducer(state = initialState.loading, action) {
     }
     case actionTypes.GET_LOGGED_IN_USER_SUCCESS:
     case actionTypes.GET_LOGGED_IN_USER_ERROR: {
-      return { ...state, loadingUser: false, loadingUserLogin: false };
+      return {
+        ...state,
+        loadingUser: false,
+        loadingUserLogin: false,
+        loadingRegistration: false,
+      };
     }
     case actionTypes.LOADING_ITEM_CREATION:
     case actionTypes.LOADING_ITEM_UPDATE: {

@@ -1,3 +1,7 @@
+## 3.29.5 (September 2, 2017)
+
+- Remove loading state when successfully registering and logging in.
+
 ## 3.29.4 (September 2, 2017)
 
 - Addition of a phone number validator utility
