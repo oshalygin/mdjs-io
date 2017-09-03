@@ -188,6 +188,32 @@ describe('Registration Controller', () => {
     expect(actual).toEqual(expected);
   });
 
+  it('should return a 400 status code if the phoneNumber is null', () => {
+    const expected = true;
+
+    const sendSpy = sinon.spy();
+    const statusStub = sinon.stub().returns({
+      send: sendSpy,
+    });
+
+    const response = {
+      status: statusStub,
+    };
+
+    const request = {
+      params: {},
+      body: {
+        ...userRegistration,
+        phoneNumber: null,
+      },
+    };
+
+    post(request, response);
+
+    const actual = statusStub.calledWith(400);
+    expect(actual).toEqual(expected);
+  });
+
   it('should return a 400 status code if the password does not match the confirmPassword', () => {
     const expected = true;
 
@@ -236,6 +262,9 @@ describe('Registration Controller', () => {
       params: {},
       body: userRegistration,
     };
+
+    const userDataAccess = require('../../dataAccess/userDataAccess');
+    userDataAccess.findOneAndUpdate = () => Promise.resolve();
 
     return post(request, response).then(() => {
       const actual = statusStub.calledWith(200);
@@ -338,6 +367,9 @@ describe('Registration Controller', () => {
       params: {},
       body: userRegistration,
     };
+
+    const userDataAccess = require('../../dataAccess/userDataAccess');
+    userDataAccess.findOneAndUpdate = () => Promise.resolve();
 
     return post(request, response).then(() => {
       const actual = jsonSpy.calledWith(tokenResponse);

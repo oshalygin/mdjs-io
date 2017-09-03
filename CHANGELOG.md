@@ -1,3 +1,7 @@
+## 3.32.1 (September 3, 2017)
+
+- Addition tests to support the latest changes to the RegistrationController
+
 ## 3.32.0 (September 3, 2017)
 
 - Addition of data persistence upon user registration
