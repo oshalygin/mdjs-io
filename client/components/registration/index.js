@@ -37,9 +37,12 @@ class Registration extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.notificationMessage) {
+      const { notificationMessage } = nextProps;
+
       this.setState({
         notification: true,
-        notificationMessage: nextProps.notificationMessage,
+        formErrors: { ...this.state.formErrors, server: notificationMessage },
+        notificationMessage,
       });
     }
   }

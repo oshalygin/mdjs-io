@@ -24,7 +24,7 @@ const RegistrationForm = ({
       <div styleName="login-container">
         <div styleName="login-field-container">
           <div style={errorTextDisplay} styleName="error-text">
-            Cannot register, please try again later
+            {errors.server}
           </div>
           <div styleName="form-controls">
             <TextField

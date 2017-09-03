@@ -1,3 +1,8 @@
+## 3.29.3 (September 2, 2017)
+
+- Persist error message to client registration page
+  - The notification message will appear below the Register heading
+
 ## 3.29.2 (September 2, 2017)
 
 - Addition of Notification Snackbars
