@@ -1,3 +1,7 @@
+## 3.29.6 (September 2, 2017)
+
+- Updated `<Registration />` and `<Login />` test suites to support the latest navigation changes.
+
 ## 3.29.5 (September 2, 2017)
 
 - Remove loading state when successfully registering and logging in.

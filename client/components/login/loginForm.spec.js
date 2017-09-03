@@ -20,10 +20,24 @@ describe('<LoginForm />', () => {
   });
 
   it('should display a button that states "Log In"', () => {
-    const wrapper = shallow(<LoginForm {...props} />);
-    const expected = 'Log In';
+    const expected = 1;
 
-    const actual = wrapper.find(RaisedButton).props().label;
+    const wrapper = shallow(<LoginForm {...props} />);
+    const actual = wrapper
+      .find(RaisedButton)
+      .nodes.filter(node => node.props.label === 'Log In').length;
+
+    expect(actual).toEqual(expected);
+  });
+
+  it('should display a button that states "Register"', () => {
+    const expected = 1;
+
+    const wrapper = shallow(<LoginForm {...props} />);
+    const actual = wrapper
+      .find(RaisedButton)
+      .nodes.filter(node => node.props.label === 'Register').length;
+
     expect(actual).toEqual(expected);
   });
 

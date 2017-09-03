@@ -21,10 +21,24 @@ describe('<RegistrationForm />', () => {
   });
 
   it('should display a button that states "Register"', () => {
-    const wrapper = shallow(<RegistrationForm {...props} />);
-    const expected = 'Register';
+    const expected = 1;
 
-    const actual = wrapper.find(RaisedButton).props().label;
+    const wrapper = shallow(<RegistrationForm {...props} />);
+    const actual = wrapper
+      .find(RaisedButton)
+      .nodes.filter(node => node.props.label === 'register').length;
+
+    expect(actual).toEqual(expected);
+  });
+
+  it('should display a button that states "Login"', () => {
+    const expected = 1;
+
+    const wrapper = shallow(<RegistrationForm {...props} />);
+    const actual = wrapper
+      .find(RaisedButton)
+      .nodes.filter(node => node.props.label === 'login').length;
+
     expect(actual).toEqual(expected);
   });
 
@@ -77,7 +91,7 @@ describe('<RegistrationForm />', () => {
     const updatedProps = {
       ...props,
       errors: {
-        server: true,
+        server: 'Cannot register, please try again later',
       },
     };
 

@@ -5,7 +5,6 @@ import LoginForm from './LoginForm.jsx';
 import Spinner from '../common/spinner';
 import Version from '../common/version';
 import Snackbar from '../common/snackbar';
-import sinon from 'sinon';
 
 import Login from './index';
 
@@ -75,20 +74,6 @@ describe('<Login />', () => {
 
     const actual = instance.state.notification;
 
-    expect(actual).toEqual(expected);
-  });
-
-  it('should redirect to the dashboard if the redirect function is called', () => {
-    const redirectSpy = sinon.spy();
-    const history = require('../../utilities/history').default;
-    history.push = redirectSpy;
-
-    const expected = false;
-    const instance = shallow(<Login.WrappedComponent {...props} />).instance();
-
-    instance.redirect();
-
-    const actual = instance.state.notification;
     expect(actual).toEqual(expected);
   });
 });
