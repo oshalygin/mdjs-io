@@ -1,3 +1,7 @@
+## 3.31.0 (September 2, 2017)
+
+- Addition of login validation checks on the email and password.
+
 ## 3.30.0 (September 2, 2017)
 
 - Server side validation for the phone number when registering.

@@ -23,7 +23,7 @@ const LoginForm = ({
 }) => {
   const formDisplay = hidden ? { display: 'none' } : { display: 'initial' };
 
-  const errorTextDisplay = errors
+  const errorTextDisplay = errors.server
     ? { display: 'initial' }
     : { display: 'none' };
 
@@ -32,13 +32,14 @@ const LoginForm = ({
       <div styleName="login-container">
         <div styleName="login-field-container">
           <div style={errorTextDisplay} styleName="error-text">
-            Invalid email address or password
+            {errors.server}
           </div>
           <TextField
             floatingLabelText="Email Address"
             inputStyle={textFieldInputStyle}
             name="email"
             type="text"
+            errorText={errors.email ? 'Not a valid email address' : ''}
             fullWidth
             floatingLabelStyle={textFieldLoginStyles}
             onChange={onChange}
@@ -48,6 +49,7 @@ const LoginForm = ({
             inputStyle={textFieldInputStyle}
             name="password"
             type="password"
+            errorText={errors.password ? 'Enter a password' : ''}
             fullWidth
             floatingLabelStyle={textFieldLoginStyles}
             onChange={onChange}
@@ -80,7 +82,7 @@ const LoginForm = ({
 
 LoginForm.propTypes = {
   hidden: PropTypes.bool.isRequired,
-  errors: PropTypes.bool.isRequired,
+  errors: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   navigateToRegistration: PropTypes.func.isRequired,

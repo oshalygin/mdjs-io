@@ -24,6 +24,7 @@ import {
 } from '../utilities/localStorage';
 
 import { ACCOUNT_ENDPOINT } from '../utilities/endpoints';
+import { saveNotification } from '../actions/notificationActions';
 
 export function* getLoggedInUser() {
   try {
@@ -67,6 +68,13 @@ export function* login(loginPostData) {
     yield put(retrieveLoggedInUser());
   } catch (error) {
     yield put(userLoginValidationErrors());
+
+    const message =
+      error.response && error.response.data
+        ? error.response.data
+        : 'Could not login';
+
+    yield put(saveNotification({ message }));
   }
 }
 

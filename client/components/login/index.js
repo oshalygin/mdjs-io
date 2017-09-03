@@ -15,6 +15,7 @@ import './login.css';
 import Spinner from '../common/spinner/';
 import LoginForm from './LoginForm.jsx';
 import Version from '../common/version';
+import { validateEmail } from '../../utilities/validation';
 
 class LoginPage extends React.Component {
   constructor(props, context) {
@@ -22,7 +23,7 @@ class LoginPage extends React.Component {
     this.state = {
       user: {},
       loading: false,
-      formErrors: false,
+      formErrors: {},
       notification: false,
       notificationMessage: '',
     };
@@ -30,6 +31,19 @@ class LoginPage extends React.Component {
     this.submit = this.submit.bind(this);
     this.onChange = this.onChange.bind(this);
     this.closeNotification = this.closeNotification.bind(this);
+    this.validateForm = this.validateForm.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.notificationMessage) {
+      const { notificationMessage } = nextProps;
+
+      this.setState({
+        notification: true,
+        formErrors: { ...this.state.formErrors, server: notificationMessage },
+        notificationMessage,
+      });
+    }
   }
 
   submit(event) {
@@ -37,7 +51,34 @@ class LoginPage extends React.Component {
     const { user } = this.state;
     const { userActions } = this.props;
 
-    userActions.userLogin(user);
+    if (this.validateForm()) {
+      userActions.userLogin(user);
+    }
+  }
+
+  validateForm() {
+    const { user, formErrors } = this.state;
+    const { email, password } = user;
+
+    let isValid = true;
+    let errors = { ...formErrors };
+
+    if (!password) {
+      errors = { ...errors, password: true };
+      isValid = false;
+    } else {
+      errors = { ...errors, password: false };
+    }
+
+    if (!validateEmail(email)) {
+      errors = { ...errors, email: true };
+      isValid = false;
+    } else {
+      errors = { ...errors, email: false };
+    }
+
+    this.setState({ formErrors: errors });
+    return isValid;
   }
 
   closeNotification() {
@@ -103,6 +144,7 @@ LoginPage.propTypes = {
   user: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired,
   userActions: PropTypes.object.isRequired,
+  notificationMessage: PropTypes.string,
 };
 
 LoginPage.contextTypes = {
@@ -113,6 +155,7 @@ function mapStateToProps(state) {
   return {
     user: state.user,
     loading: state.loading.loadingUserLogin,
+    notificationMessage: state.notification,
   };
 }
 
