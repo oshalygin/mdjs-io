@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-  username: {
+  email: {
     type: String,
     required: true,
     index: {
@@ -12,6 +12,27 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true,
+  },
+  firstName: {
+    type: String,
+    required: true,
+  },
+  lastName: {
+    type: String,
+    required: true,
+  },
+  phoneNumber: {
+    type: String,
+    required: true,
+  },
+  referrer: {
+    type: String,
+  },
+  photoUrl: {
+    type: String,
+  },
+  role: {
+    type: Number,
   },
 });
 

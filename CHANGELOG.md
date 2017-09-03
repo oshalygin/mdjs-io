@@ -1,3 +1,7 @@
+## 3.32.0 (September 3, 2017)
+
+- Addition of data persistence upon user registration
+
 ## 3.31.1 (September 2, 2017)
 
 - Resolved broken tests related to the `error` object state within Login

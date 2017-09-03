@@ -1,19 +1,42 @@
 import User from './models/user';
 
-async function findOneAndUpdate(username, password) {
-  const user = new User({
-    username,
+async function findOneAndUpdate(model) {
+  const {
+    email,
     password,
+    firstName,
+    lastName,
+    phoneNumber,
+    referrer,
+    photoUrl,
+    role,
+  } = model;
+
+  const user = new User({
+    email,
+    password,
+    firstName,
+    lastName,
+    phoneNumber,
+    referrer,
+    photoUrl,
+    role,
   });
 
   await user.collection.findOneAndUpdate(
     {
-      username,
+      email: model.email,
     },
     {
       $set: {
-        username,
+        email,
         password,
+        firstName,
+        lastName,
+        phoneNumber,
+        referrer,
+        photoUrl,
+        role,
       },
     },
     {
