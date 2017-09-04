@@ -1,3 +1,8 @@
+## 3.33.0 (September 3, 2017)
+
+- Add Notification removal saga watcher.
+  - Removes the notification message after a 1 second delay.
+
 ## 3.32.1 (September 3, 2017)
 
 - Addition tests to support the latest changes to the RegistrationController

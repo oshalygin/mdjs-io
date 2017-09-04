@@ -64,7 +64,9 @@ export function* login(loginPostData) {
       username: loginPostData.email,
       password: loginPostData.password,
     });
+
     yield call(persistUserToken, data.token);
+
     yield put(retrieveLoggedInUser());
   } catch (error) {
     yield put(userLoginValidationErrors());

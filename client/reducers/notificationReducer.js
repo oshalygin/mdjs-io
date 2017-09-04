@@ -10,7 +10,7 @@ export default function notificationReducer(
     case actionTypes.SAVE_NOTIFICATION_SUCCESS: {
       return action.data.message;
     }
-    case actionTypes.REMOVE_NOTIFICATIONS: {
+    case actionTypes.REMOVE_NOTIFICATIONS_SUCCESS: {
       return '';
     }
     default: {

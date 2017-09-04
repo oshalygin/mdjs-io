@@ -1,4 +1,5 @@
-import { put, take, fork } from 'redux-saga/effects';
+import { delay } from 'redux-saga';
+import { put, take, takeLatest, fork } from 'redux-saga/effects';
 import * as actionTypes from '../actions/actionTypes';
 
 import {
@@ -11,15 +12,13 @@ export function* save(message) {
 }
 
 export function* remove() {
+  yield delay(1000);
   yield put(removeNotificationsSuccess());
 }
 
 /* WATCHERS */
 export function* removeNotifications() {
-  while (true) {
-    yield take(actionTypes.REMOVE_NOTIFICATIONS);
-    yield fork(remove);
-  }
+  yield takeLatest(actionTypes.SAVE_NOTIFICATION, remove);
 }
 
 export function* saveNotification() {
