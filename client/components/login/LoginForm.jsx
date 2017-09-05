@@ -62,9 +62,6 @@ const LoginForm = ({
           primary
           onClick={onSubmit}
         />
-        <a href="#">
-          <small>Forgot password?</small>
-        </a>
       </div>
       <p className="text-muted text-center">
         <small>Don't have an account?</small>

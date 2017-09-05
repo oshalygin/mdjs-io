@@ -1,3 +1,8 @@
+## 3.33.1 (September 4, 2017)
+
+- Removal of _"Forgot Password"_ from the Login page.
+  - This feature isn't wired up yet and should not be displayed to the user.
+
 ## 3.33.0 (September 3, 2017)
 
 - Add Notification removal saga watcher.

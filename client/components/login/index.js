@@ -107,7 +107,6 @@ class LoginPage extends React.Component {
                 <h1 className="logo-name">WR</h1>
               </div>
               <h3>Welcome to the Western Register Dashboard</h3>
-              <p>The ultimate dashboard experience</p>
               <p>Login to get started</p>
               <LoginForm
                 hidden={loading}
