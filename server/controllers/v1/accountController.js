@@ -55,7 +55,12 @@ export async function post(request, response) {
 }
 
 export async function get(request, response) {
+  if (!request.cookies.access_token) {
+    return errorApiResponse(400, 'Invalid token')(request, response);
+  }
+
   const { access_token: token } = request.cookies;
+
   try {
     const options = getJsonHeaders();
     const requestBody = {

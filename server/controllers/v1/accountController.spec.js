@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { post, get } from './accountController';
 import sinon from 'sinon';
 import moxios from 'moxios';
@@ -175,10 +176,12 @@ describe('Account Controller', () => {
     });
 
     const response = {
+      cookie() {},
       status: statusStub,
     };
 
     const request = {
+      cookies: {},
       params: {},
       body: {
         password: 'password12345!',
@@ -200,10 +203,12 @@ describe('Account Controller', () => {
     });
 
     const response = {
+      cookie() {},
       status: statusStub,
     };
 
     const request = {
+      cookies: {},
       params: {},
       body: {
         username: 'oshalygin@gmail.com',
@@ -233,11 +238,13 @@ describe('Account Controller', () => {
     });
 
     const response = {
+      cookie() {},
       status: statusStub,
     };
 
     const request = {
       params: {},
+      cookies: {},
       body: {
         username: 'oshalygin@gmail.com',
         password: 'password12345!',
@@ -272,10 +279,12 @@ describe('Account Controller', () => {
     });
 
     const response = {
+      cookie() {},
       status: statusStub,
     };
 
     const request = {
+      cookies: {},
       params: {},
       body: {
         username: 'oshalygin@gmail.com',
@@ -309,11 +318,13 @@ describe('Account Controller', () => {
     });
 
     const response = {
+      cookie() {},
       status: statusStub,
     };
 
     const request = {
       params: {},
+      cookies: {},
       body: {
         username: 'oshalygin@gmail.com',
         password: 'password12345!',
@@ -377,10 +388,14 @@ describe('Account Controller', () => {
     });
 
     const response = {
+      cookie() {},
       status: statusStub,
     };
 
     const request = {
+      cookies: {
+        access_token: 'abcdefg',
+      },
       query: {
         token: accountPayload.data.token,
       },
@@ -401,10 +416,12 @@ describe('Account Controller', () => {
     });
 
     const response = {
+      cookie() {},
       status: statusStub,
     };
 
     const request = {
+      cookies: {},
       query: {},
     };
 
@@ -432,10 +449,12 @@ describe('Account Controller', () => {
     });
 
     const response = {
+      cookie() {},
       status: statusStub,
     };
 
     const request = {
+      cookies: {},
       query: {
         token: accountPayload.data.token,
       },
@@ -469,10 +488,12 @@ describe('Account Controller', () => {
     });
 
     const response = {
+      cookie() {},
       status: statusStub,
     };
 
     const request = {
+      cookies: {},
       query: {
         token: accountPayload.data.token,
       },

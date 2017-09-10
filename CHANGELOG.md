@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 3.34.1 (September 10, 2017)
+
+- Fixed broken tests related to the last release
+
 ## 3.34.0 (September 10, 2017)
 
 - Complete overhaul to authentication and authorization within the dashboard application
