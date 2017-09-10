@@ -10,6 +10,7 @@ async function findOneAndUpdate(model) {
     referrer,
     photoUrl,
     role,
+    token,
   } = model;
 
   const user = new User({
@@ -21,6 +22,7 @@ async function findOneAndUpdate(model) {
     referrer,
     photoUrl,
     role,
+    token,
   });
 
   await user.collection.findOneAndUpdate(
@@ -37,6 +39,7 @@ async function findOneAndUpdate(model) {
         referrer,
         photoUrl,
         role,
+        token,
       },
     },
     {

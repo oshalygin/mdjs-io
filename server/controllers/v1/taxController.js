@@ -15,7 +15,7 @@ export async function get(request, response) {
     );
   }
   try {
-    const token = request.headers.authorization;
+    const { token } = request;
     const headers = getHeaders(token);
 
     const taxEndpoint = request.params.id
@@ -50,7 +50,7 @@ export async function deleteTax(request, response) {
   }
 
   try {
-    const token = request.headers.authorization;
+    const { token } = request;
     const headers = getHeaders(token);
     const taxEndpoint = `${TAX_ENDPOINT}/${request.params.id}`;
 
@@ -81,7 +81,7 @@ export async function put(request, response) {
   }
 
   try {
-    const token = request.headers.authorization;
+    const { token } = request;
     const headers = getHeaders(token);
     const endpoint = `${TAX_ENDPOINT}/${taxId}`;
 
@@ -111,7 +111,7 @@ export async function post(request, response) {
   }
 
   try {
-    const token = request.headers.authorization;
+    const { token } = request;
     const headers = getHeaders(token);
 
     const postedResponse = await axios.post(TAX_ENDPOINT, taxBody, headers);

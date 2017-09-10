@@ -110,6 +110,8 @@ export async function post(request, response) {
     });
 
     const token = accountDetails.data.data.token;
+    response.cookie('access_token', token);
+
     return response.status(200).json({ token });
   } catch (error) {
     if (error.response && error.response.data && error.response.data.message) {

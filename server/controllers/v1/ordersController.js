@@ -20,7 +20,7 @@ export async function get(request, response) {
 
   if (orderId) {
     try {
-      const token = request.headers.authorization;
+      const { token } = request;
       const headers = getHeaders(token);
 
       const ordersEndpoint = `${ORDERS_ENDPOINT}/${orderId}`;
@@ -38,7 +38,7 @@ export async function get(request, response) {
   }
 
   try {
-    const token = request.headers.authorization;
+    const { token } = request;
     const headers = getHeaders(token);
 
     const endpoint =

@@ -22,6 +22,7 @@ class SearchBar extends React.Component {
 
   logout() {
     const { userActions } = this.props;
+
     userActions.logout();
     history.push('/login');
   }

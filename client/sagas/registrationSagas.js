@@ -6,21 +6,13 @@ import { registrationError } from '../actions/registrationActions';
 import { retrieveLoggedInUser } from '../actions/userActions';
 import { saveNotification } from '../actions/notificationActions';
 
-import { persistUserToken } from '../utilities/localStorage';
-
 import api from '../utilities/api';
 
 import { REGISTRATION_ENDPOINT } from '../utilities/endpoints';
 
 export function* register(registrationPostData) {
   try {
-    const { data } = yield call(
-      api.post,
-      REGISTRATION_ENDPOINT,
-      registrationPostData,
-    );
-
-    yield call(persistUserToken, data.token);
+    yield call(api.post, REGISTRATION_ENDPOINT, registrationPostData);
 
     yield put(retrieveLoggedInUser());
   } catch (error) {

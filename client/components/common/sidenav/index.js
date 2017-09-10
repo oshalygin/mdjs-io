@@ -35,7 +35,9 @@ class SideBarNavigation extends React.Component {
   }
 
   logout() {
-    this.props.userActions.logout();
+    const { userActions } = this.props;
+
+    userActions.logout();
     history.push('/login');
   }
 

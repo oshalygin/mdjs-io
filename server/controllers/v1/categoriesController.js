@@ -15,7 +15,7 @@ export async function get(request, response) {
     );
   }
   try {
-    const token = request.headers.authorization;
+    const { token } = request;
     const headers = getHeaders(token);
 
     const categoryEndpoint = request.params.id
@@ -49,7 +49,7 @@ export async function deleteCategory(request, response) {
   }
 
   try {
-    const token = request.headers.authorization;
+    const { token } = request;
     const headers = getHeaders(token);
     const categoryEndpoint = `${CATEGORY_ENDPOINT}/${request.params.id}`;
 
@@ -80,7 +80,7 @@ export async function put(request, response) {
   }
 
   try {
-    const token = request.headers.authorization;
+    const { token } = request;
     const headers = getHeaders(token);
     const endpoint = `${CATEGORY_ENDPOINT}/${categoryId}`;
 
@@ -110,7 +110,7 @@ export async function post(request, response) {
   }
 
   try {
-    const token = request.headers.authorization;
+    const { token } = request;
     const headers = getHeaders(token);
 
     const postedResponse = await axios.post(

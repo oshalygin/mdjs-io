@@ -34,6 +34,9 @@ const userSchema = new Schema({
   role: {
     type: Number,
   },
+  token: {
+    type: String,
+  },
 });
 
 const User = mongoose.model('User', userSchema);

@@ -8,7 +8,10 @@ import {
   getLoggedInUserSuccess,
   getLoggedInUserError,
   userLoginValidationErrors,
+  logoutSuccess,
 } from '../actions/userActions';
+import { saveNotification } from '../actions/notificationActions';
+
 import { loadCategoriesSuccess } from '../actions/categoryActions';
 import { loadDiscountsSuccess } from '../actions/discountActions';
 import { loadModifiersSuccess } from '../actions/modifierActions';
@@ -17,27 +20,18 @@ import { loadItemsSuccess } from '../actions/itemActions';
 import { loadRefundReasonsSuccess } from '../actions/refundReasonActions';
 
 import api from '../utilities/api';
-import {
-  loadUserToken,
-  persistUserToken,
-  removeUserToken,
-} from '../utilities/localStorage';
-
+import accountUtilities from '../utilities/accountUtilities';
 import { ACCOUNT_ENDPOINT } from '../utilities/endpoints';
-import { saveNotification } from '../actions/notificationActions';
 
 export function* getLoggedInUser() {
   try {
-    const token = yield call(loadUserToken);
-
+    const token = yield call(accountUtilities.loadToken);
     if (!token) {
-      yield call(removeUserToken);
+      yield call(accountUtilities.removeToken);
       yield put(getLoggedInUserError());
       yield call(history.push, '/login');
     } else {
-      const endpoint = `${ACCOUNT_ENDPOINT}?token=${token}`;
-      const response = yield call(api.get, endpoint);
-
+      const response = yield call(api.get, ACCOUNT_ENDPOINT);
       const data = response.data;
 
       yield put(loadCategoriesSuccess(data.companyData.categories));
@@ -46,26 +40,23 @@ export function* getLoggedInUser() {
       yield put(loadTaxesSuccess(data.companyData.taxes));
       yield put(loadModifiersSuccess(data.companyData.modifiers));
       yield put(loadRefundReasonsSuccess(data.companyData.refundReasons));
-      yield call(persistUserToken, data.token);
 
       yield put(getLoggedInUserSuccess(data));
       yield call(history.push, '/dashboard');
     }
   } catch (error) {
     yield call(history.push, '/login');
-    yield call(removeUserToken);
+    yield call(accountUtilities.removeToken);
     yield put(getLoggedInUserError());
   }
 }
 
 export function* login(loginPostData) {
   try {
-    const { data } = yield call(api.post, ACCOUNT_ENDPOINT, {
+    yield call(api.post, ACCOUNT_ENDPOINT, {
       username: loginPostData.email,
       password: loginPostData.password,
     });
-
-    yield call(persistUserToken, data.token);
 
     yield put(retrieveLoggedInUser());
   } catch (error) {
@@ -78,6 +69,11 @@ export function* login(loginPostData) {
 
     yield put(saveNotification({ message }));
   }
+}
+
+export function* logout() {
+  yield call(accountUtilities.removeToken);
+  yield put(logoutSuccess());
 }
 
 /* WATCHERS */
@@ -96,4 +92,11 @@ export function* loginUser() {
   }
 }
 
-export default [retrieveUserWithToken, loginUser];
+export function* logoutUser() {
+  while (true) {
+    const action = yield take(actionTypes.REQUEST_LOGOUT);
+    yield fork(logout, action.data);
+  }
+}
+
+export default [retrieveUserWithToken, loginUser, logoutUser];

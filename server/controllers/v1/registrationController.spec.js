@@ -255,11 +255,13 @@ describe('Registration Controller', () => {
     });
 
     const response = {
+      cookie() {},
       status: statusStub,
     };
 
     const request = {
       params: {},
+      cookies: {},
       body: userRegistration,
     };
 
@@ -360,11 +362,13 @@ describe('Registration Controller', () => {
     });
 
     const response = {
+      cookie() {},
       status: statusStub,
     };
 
     const request = {
       params: {},
+      cookies: {},
       body: userRegistration,
     };
 

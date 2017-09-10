@@ -40,9 +40,11 @@ export async function post(request, response) {
         response,
       );
     }
-    await userDataAccess.findOneAndUpdate({ email: username, password });
-
     const token = accountDetails.data.data.token;
+    await userDataAccess.findOneAndUpdate({ email: username, password, token });
+
+    response.cookie('access_token', token);
+
     return response.status(200).json({ token });
   } catch (error) {
     return errorApiResponse(400, 'Invalid username or password', error)(
@@ -53,12 +55,7 @@ export async function post(request, response) {
 }
 
 export async function get(request, response) {
-  const { token } = request.query;
-
-  if (!token) {
-    return errorApiResponse(400, `Invalid token: ${token}`)(request, response);
-  }
-
+  const { access_token: token } = request.cookies;
   try {
     const options = getJsonHeaders();
     const requestBody = {
@@ -79,13 +76,15 @@ export async function get(request, response) {
     }
 
     const accountData = accountDetails.data.data;
+    const { email } = accountData.user;
+    const responseToken = accountDetails.data.data.token;
+
+    await userDataAccess.findOneAndUpdate({ email, token });
+    response.cookie('access_token', responseToken);
 
     return response.status(200).json(accountData);
   } catch (error) {
-    return errorApiResponse(400, 'Invalid username or password')(
-      request,
-      response,
-    );
+    return errorApiResponse(400, 'Invalid token')(request, response);
   }
 }
 

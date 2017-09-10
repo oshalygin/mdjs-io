@@ -13,9 +13,27 @@ import discountController from '../controllers/v1/discountController';
 import ordersController from '../controllers/v1/ordersController';
 
 import { fileErrorHandler, multer } from '../utilities/fileUtility';
+import authMiddleware from '../middleware/authMiddleware';
 
 // v1
 const router = express.Router();
+
+// {api/v1/account}
+router
+  .route('/account')
+  .get(accountController.get)
+  .post(accountController.post);
+
+// {api/v1/registration}
+router.route('/registration').post(registrationController.post);
+
+// {api/v1/version}
+router.route('/version').get(versionController.get);
+
+// {api/v1/configuration}
+router.route('/configuration').get(configurationController.get);
+
+router.use(authMiddleware());
 
 // {api/v1/orders}
 router.route('/orders/:id?').get(ordersController.get);
@@ -51,21 +69,6 @@ router
   .put(modifierController.put)
   .post(modifierController.post)
   .delete(modifierController.deleteModifier);
-
-// {api/v1/account}
-router
-  .route('/account')
-  .get(accountController.get)
-  .post(accountController.post);
-
-// {api/v1/registration}
-router.route('/registration').post(registrationController.post);
-
-// {api/v1/version}
-router.route('/version').get(versionController.get);
-
-// {api/v1/configuration}
-router.route('/configuration').get(configurationController.get);
 
 // {api/v1/items}
 router

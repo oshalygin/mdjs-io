@@ -15,7 +15,7 @@ export async function get(request, response) {
     );
   }
   try {
-    const token = request.headers.authorization;
+    const { token } = request;
     const headers = getHeaders(token);
 
     const modifierEndpoint = request.params.id
@@ -50,7 +50,7 @@ export async function deleteModifier(request, response) {
   }
 
   try {
-    const token = request.headers.authorization;
+    const { token } = request;
     const headers = getHeaders(token);
     const modifierEndpoint = `${MODIFIER_ENDPOINT}/${request.params.id}`;
 
@@ -81,7 +81,7 @@ export async function put(request, response) {
   }
 
   try {
-    const token = request.headers.authorization;
+    const { token } = request;
     const headers = getHeaders(token);
     const endpoint = `${MODIFIER_ENDPOINT}/${modifierId}`;
 
@@ -111,7 +111,7 @@ export async function post(request, response) {
   }
 
   try {
-    const token = request.headers.authorization;
+    const { token } = request;
     const headers = getHeaders(token);
 
     const postedResponse = await axios.post(

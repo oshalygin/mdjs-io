@@ -343,12 +343,11 @@ describe('Account Controller', () => {
       json: jsonSpy,
     });
 
-    const response = {
-      status: statusStub,
-    };
+    const response = { cookie() {}, status: statusStub };
 
     const request = {
       params: {},
+      cookies: {},
       body: {
         username: 'oshalygin@gmail.com',
         password: 'password12345!',

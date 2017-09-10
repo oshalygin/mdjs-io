@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 3.34.0 (September 10, 2017)
+
+- Complete overhaul to authentication and authorization within the dashboard application
+  - Cookie storage used instead of Local Storage to store the Auth Token
+  - Logout will now remove all cookies related to the website
+  - Registration will receive a new auth token as part of the header request which would be used to subsequently log in.
+
 ## 3.33.2 (September 9, 2017)
 
 - Addition of the `universal-cookie` package to the project.

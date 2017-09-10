@@ -16,7 +16,7 @@ export async function get(request, response) {
     );
   }
   try {
-    const token = request.headers.authorization;
+    const { token } = request;
     const headers = getHeaders(token);
 
     const itemEndpoint = request.params.id
@@ -51,7 +51,7 @@ export async function deleteItem(request, response) {
   }
 
   try {
-    const token = request.headers.authorization;
+    const { token } = request;
     const headers = getHeaders(token);
     const itemEndpoint = `${ITEM_ENDPOINT}/${request.params.id}`;
 
@@ -83,7 +83,7 @@ export async function put(request, response) {
 
   try {
     const item = JSON.parse(itemBody);
-    const token = request.headers.authorization;
+    const { token } = request;
     const headers = getHeaders(token);
 
     const itemEndpoint = `${ITEM_ENDPOINT}/${itemId}`;
@@ -126,7 +126,7 @@ export async function post(request, response) {
 
   try {
     const item = JSON.parse(itemBody);
-    const token = request.headers.authorization;
+    const { token } = request;
     const headers = getHeaders(token);
 
     if (request.file) {
