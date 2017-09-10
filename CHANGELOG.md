@@ -1,3 +1,10 @@
+# CHANGELOG
+
+## 3.33.2 (September 9, 2017)
+
+- Addition of the `universal-cookie` package to the project.
+  - This utility will be used in subsequent releases to read cookies
+
 ## 3.33.1 (September 4, 2017)
 
 - Removal of _"Forgot Password"_ from the Login page.
