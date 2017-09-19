@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 3.35.0 (September 19, 2017)
+
+- Updated the Image API to no longer be behind the auth middleware.
+  - All of the images are wide open to all users.  That said, they would have to have the UUID to actually access the endpoint.  This could be abused by the fact that the collection API is wide open, but this will be picked up later and resolved.
+
 ## 3.34.1 (September 10, 2017)
 
 - Fixed broken tests related to the last release

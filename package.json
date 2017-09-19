@@ -1,6 +1,6 @@
 {
   "name": "mdjs",
-  "version": "3.34.1",
+  "version": "3.35.0",
   "description": "Merchant Dashboard built with React and Redux",
   "scripts": {
     "start-dev-server": "babel-watch server/application.dev.js",

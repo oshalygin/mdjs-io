@@ -33,6 +33,12 @@ router.route('/version').get(versionController.get);
 // {api/v1/configuration}
 router.route('/configuration').get(configurationController.get);
 
+// {api/v1/images}
+router
+  .route('/images/:id?')
+  .get(imagesController.get)
+  .post(multer.single('file'), fileErrorHandler, imagesController.post);
+
 router.use(authMiddleware());
 
 // {api/v1/orders}
@@ -77,11 +83,5 @@ router
   .put(multer.single('file'), fileErrorHandler, itemController.put)
   .post(multer.single('file'), fileErrorHandler, itemController.post)
   .delete(itemController.deleteItem);
-
-// {api/v1/images}
-router
-  .route('/images/:id?')
-  .get(imagesController.get)
-  .post(multer.single('file'), fileErrorHandler, imagesController.post);
 
 export default router;
