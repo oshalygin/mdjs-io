@@ -45,10 +45,10 @@ application.get('*', (request, response) => {
   });
 });
 
-database
-  .connect()
-  .then(nativeConnection => database.connectedOutput(nativeConnection))
-  .catch(error => console.log(error));
+// database
+//   .connect()
+//   .then(nativeConnection => database.connectedOutput(nativeConnection))
+//   .catch(error => console.log(error));
 
 application.listen(port, error => {
   if (error) {
