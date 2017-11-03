@@ -11,7 +11,8 @@ import logger from './utilities/logger';
 import v0router from './routes/routes-v0';
 import v1router from './routes/routes-v1';
 
-import database from './dataAccess/database';
+// TODO: Will be brought back in the future
+// import database from './dataAccess/database';
 
 const application = express();
 application.use(bodyParser.urlencoded({ extended: true }));

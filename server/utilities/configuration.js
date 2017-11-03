@@ -16,9 +16,7 @@ export default {
     process.env.DOMAIN_ENDPOINT || 'http://www.westernregister.com',
   port: process.env.PORT || 8080,
 
-  databaseConnectionString:
-    process.env.DB_CONNECTION_STRING ||
-    '',
+  databaseConnectionString: process.env.DB_CONNECTION_STRING || '',
 
   imageStorageBucket:
     process.env.IMAGE_STORAGE_BUCKET || 'temp-mdjs-item-images',
