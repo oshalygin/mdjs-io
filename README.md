@@ -1,8 +1,15 @@
-# Merchant Dashboard
-[![Code Climate](https://codeclimate.com/repos/593e287a150338028600480b/badges/d8e88772201d137ea8b7/gpa.svg)](https://codeclimate.com/repos/593e287a150338028600480b/feed)
-[![Test Coverage](https://codeclimate.com/repos/593e287a150338028600480b/badges/d8e88772201d137ea8b7/coverage.svg)](https://codeclimate.com/repos/593e287a150338028600480b/coverage)
-[![Issue Count](https://codeclimate.com/repos/593e287a150338028600480b/badges/d8e88772201d137ea8b7/issue_count.svg)](https://codeclimate.com/repos/593e287a150338028600480b/feed)
-[![Build Status](https://travis-ci.com/oshalygin/mdjs.svg?token=dsDcJ24J6wpmry92sFaJ&branch=master)](https://travis-ci.com/oshalygin/mdjs)
+<p align="center">
+  <img alt="React Logo" src="docs/react.png" height="140" />
+  <img alt="Node.js Logo" src="docs/nodejs.png" height="140" />
+  <h3 align="center">mdjs-io</h3>
+  <p align="center">A React and Node.js Merchant Dashboard</p>
+  <p align="center">
+    <a href="https://github.com/oshalygin/mdjs-io/releases/latest"><img alt="Release" src="https://img.shields.io/github/release/oshalygin/mdjs-io.svg?style=flat-square"></a>
+    <a href="https://travis-ci.org/oshalygin/mdjs-io"><img alt="Travis" src="https://travis-ci.org/oshalygin/mdjs-io.svg?branch=master"></a>
+    <a href="/LICENSE.md"><img alt="Software License" src="https://img.shields.io/badge/license-AGPLv3-brightgreen.svg?style=flat-square"></a>
+    <a href="https://codeclimate.com/repos/59bede4e2bfc96025600026b/feed"><img alt="Code Climate Issue Count" src="https://codeclimate.com/repos/59bede4e2bfc96025600026b/badges/d8e88772201d137ea8b7/issue_count.svg"></a>
+    <a href="https://goreportcard.com/report/github.com/oshalygin/go-tag"><img alt="Go Report Card" src="https://goreportcard.com/badge/github.com/oshalygin/go-tag"></a>
+  </p>
 
 ## Deployment
 
@@ -52,7 +59,7 @@ Some of these steps may seem redundant, but they are necessary to make sure thin
 ```bash
 # A browser window will launch and you will authenticate with your google account.
 # Once everything is successful, you will be navigated back to your terminal
-gcloud auth login 
+gcloud auth login
 
 # gcloud auth login doesn't write application-default credentials as you'll see from this message:
 # "WARNING: `gcloud auth login` no longer writes application default credentials."
@@ -110,15 +117,15 @@ $ npm run test:watch # Run the tests and watch the source code for changes, re-r
 
 The main purpose of this repository is to continue to evolve Merchant Dashboard, making it a robust dashboard experience.
 
-## License
 
-Merchant Dashboard is [AGPLv3 licensed](./LICENSE.md).
-
-
-### Environment Variables
+#### Environment Variables
 | **Name** | **Description**|
 |----------|-------|
 | `GOOGLE_PROJECT` | The project that houses the infrastructure   | |
 | `NOD_ENV` | The Node environment   | |
 | `IMAGE_STORAGE_BUCKET` | The bucket name that images are stored to   | |
 | `DOMAIN_ENDPOINT` | The backend domain endpoint   | |
+
+#### License
+
+mdjs-io is [AGPLv3 licensed](./LICENSE.md).
