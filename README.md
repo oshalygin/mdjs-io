@@ -8,7 +8,6 @@
     <a href="https://travis-ci.org/oshalygin/mdjs-io"><img alt="Travis" src="https://travis-ci.org/oshalygin/mdjs-io.svg?branch=master"></a>
     <a href="/LICENSE.md"><img alt="Software License" src="https://img.shields.io/badge/license-AGPLv3-brightgreen.svg?style=flat-square"></a>
     <a href="https://codeclimate.com/repos/59bede4e2bfc96025600026b/feed"><img alt="Code Climate Issue Count" src="https://codeclimate.com/repos/59bede4e2bfc96025600026b/badges/d8e88772201d137ea8b7/issue_count.svg"></a>
-    <a href="https://goreportcard.com/report/github.com/oshalygin/go-tag"><img alt="Go Report Card" src="https://goreportcard.com/badge/github.com/oshalygin/go-tag"></a>
   </p>
 
 ## Deployment
